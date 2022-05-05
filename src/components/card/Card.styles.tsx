@@ -20,4 +20,4 @@ export const CardTitle = styled.h2``;
 
 export const CardFooter = styled.div``;
 
-export const CardImage = styled.img``;
+export const CardImage = styled.img<{ $height: number; $width: number }>``;

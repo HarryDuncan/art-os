@@ -3,7 +3,6 @@ import {
   AnyAction,
   ThunkAction,
   ThunkDispatch,
-  getDefaultMiddleware,
 } from "@reduxjs/toolkit";
 
 import { middleware } from "./middleware";

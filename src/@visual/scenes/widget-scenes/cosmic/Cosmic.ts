@@ -4,7 +4,7 @@ import { TWidgetVisual, IFramework } from "../../../../animations/interfaces";
 import { fragShader } from "./frag.ts";
 import { vertShader } from "./vert.ts";
 
-const init = (sceneData, framework: IFramework) => {
+const init = (sceneData, __: IFramework) => {
   return new Promise((resolve, reject) => {
     // Camera
     const camera = new THREE.PerspectiveCamera(50, 1.0, 1, 10000);

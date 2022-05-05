@@ -1,10 +1,8 @@
 // @ts-nocheck
 import * as THREE from "three";
 import { TWidgetVisual, IFramework } from "../../../../animations/interfaces";
-import { fragShader } from "./frag.ts";
-import { vertShader } from "./vert.ts";
-import obj from "./../../../assets/models/nymph1.obj";
 import { loadObjModel } from "../../../helpers/ModelLoader";
+import { useWebGLShader } from "@visual/hooks/webglshader";
 const init = (sceneData, framework: IFramework) => {
   return new Promise((resolve, reject) => {
     // Camera
@@ -15,44 +13,29 @@ const init = (sceneData, framework: IFramework) => {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff);
 
-    const geometry = new THREE.PlaneGeometry(2, 2);
-
-    let uniforms = {
-      iTime: { value: 0.0 },
-      change: { value: 1.0 },
-      iResolution: { type: "v3", value: new THREE.Vector3() },
-    };
-
-    // choose a resolution to pass to the shader
-    uniforms.iResolution.value.x = window.innerWidth;
-    uniforms.iResolution.value.y = window.innerHeight;
-
-    const material = new THREE.ShaderMaterial({
-      uniforms: uniforms,
-      vertexShader: vertShader,
-      fragmentShader: fragShader,
-      depthWrite: true,
-      derivatives: true,
-    });
-
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-    loadObjModel("assets/models/nymph1.obj").then((value) => {
+    loadObjModel("../assets/models/nymph1.obj").then((value) => {
       console.log("value");
     });
+
+    const uniformsPassed = {
+      iChannel0: {
+        type: "t",
+        value: THREE.ImageUtils.loadTexture("../images/textures/8Bytes.jpg"),
+        uniformType: "sampler2D",
+      },
+    };
+    const { sceneMesh, uniforms } = useWebGLShader("blobs", uniformsPassed);
     const sceneParams = { uniforms: uniforms };
+    scene.add(sceneMesh);
     resolve({ camera: camera, scene: scene, sceneParams: sceneParams });
   });
 };
 
 const onUpdate = (framework: IFramework, sceneParams: any) => {
   sceneParams.uniforms.iTime.value = performance.now() / 10000;
-  sceneParams.uniforms.change.value = Math.sin(
-    (performance.now() / 1000) * 0.03
-  );
 };
 export const NymphAndColors: TWidgetVisual = {
-  name: "nymphandcolors",
+  name: "nymphAndColors",
   scene: null,
   camera: null,
   sceneParams: {},

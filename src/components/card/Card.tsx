@@ -13,9 +13,6 @@ interface ICardProps {
 export const Card = ({ cardDetails, onClick }: ICardProps) => {
   const imgEl: any = useRef();
 
-  const [isImageLoaded, updateIsImageLoaded] = useState<boolean>(
-    !cardDetails.imageUrl
-  );
   const [dimensions, updateDimensions] = useState<{
     width: number;
     height: number;
@@ -31,6 +28,8 @@ export const Card = ({ cardDetails, onClick }: ICardProps) => {
     <CardWrapper onClick={cardClicked}>
       {cardDetails.imageUrl && (
         <CardImage
+          $height={dimensions.height}
+          $width={dimensions.width}
           src={cardDetails.imageUrl}
           alt={cardDetails.title}
           ref={imgEl}
@@ -39,7 +38,6 @@ export const Card = ({ cardDetails, onClick }: ICardProps) => {
               height: imgEl.current.naturalHeight,
               width: imgEl.current.naturalWidth,
             });
-            updateIsImageLoaded(true);
           }}
         />
       )}

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -9,7 +8,6 @@ const SIDE_BAR_WIDTH_OPEN = 320;
 const SIDE_BAR_LINK_HEIGHT = 65;
 const SIDE_BAR_LINK_FONT_SIZE = "1.6rem";
 
-const LOGO_WIDTH = 220;
 const LOGO_HEIGHT = 40;
 
 // const textVisibleStyles = css`
