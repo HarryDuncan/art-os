@@ -1,4 +1,5 @@
 import { ObjectLoader } from "three";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 // import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
@@ -18,12 +19,12 @@ export const loadModel = (url) =>
     });
   });
 
-const objLoader = new ObjectLoader();
+const objLoader = new OBJLoader();
+
 export const loadObjModel = (url) =>
   new Promise((resolve, reject) => {
     objLoader.load(url, (object) => {
       const result = object;
-      console.log(result);
       resolve(result);
     });
   });

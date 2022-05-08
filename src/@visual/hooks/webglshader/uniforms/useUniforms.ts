@@ -13,6 +13,7 @@ export const useUniforms = (uniformParams: UniformParams = {}) => {
   };
 
   // choose a resolution to pass to the shader
+
   uniforms.iResolution.value.x = window.innerWidth;
   uniforms.iResolution.value.y = window.innerHeight;
 

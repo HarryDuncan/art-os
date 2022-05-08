@@ -1,6 +1,6 @@
 export interface IAnimationWidgetScene {
   name: string;
-  assetUrls;
+  data: any;
 }
 
 export type TWidgetVisual = any;

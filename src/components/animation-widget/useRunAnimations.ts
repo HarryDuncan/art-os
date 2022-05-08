@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { INITIAL_FRAMEWORK } from "./framework/consts";
 import { IFramework } from "./framework/types";
-import { IAnimationWidgetScene, TWidgetVisual } from "./interfaces";
+import { IAnimationWidgetScene, TWidgetVisual } from "./types";
 import { useInitializeScenes } from "./scenes";
 import { shouldChangeScene } from "./utils/sceneManager";
 
@@ -109,5 +109,5 @@ export const useRunAnimations = (
         }, currentVisual.sceneLength);
       }
     }
-  }, [isRunningRef, sceneArrayRef, currentVisualRef]);
+  }, [isRunningRef.current, sceneArrayRef.current, currentVisualRef.current]);
 };

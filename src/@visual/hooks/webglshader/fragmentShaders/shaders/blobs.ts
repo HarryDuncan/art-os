@@ -1,8 +1,21 @@
 export const blobs: string = `
+#define PI 3.14159265359;
+#define TWO_PI 6.28318530718;
+
+
+#define size 0.0240525;
+#define lineSize 0.24540144;
+#define blur 0.227794;
+#define grid 9.510933;
+#define morph 5.2208757;
+#define delayAmount 3.223359;
+#define delay2 6.429779;
+#define speed 0.39144516;
+
 const float tau = 6.28318530717958647692;
 
 // Gamma correction
-#define GAMMA (2.2)
+#define GAMMA (2.2);
 
 vec3 ToLinear( in vec3 col )
 {

@@ -1,4 +1,4 @@
-import { IAnimationWidgetScene, TWidgetVisual } from "../interfaces";
+import { IAnimationWidgetScene, TWidgetVisual } from "../types";
 import * as Scenes from "../../../@visual/scenes/widget-scenes";
 import { IFramework } from "../framework/types";
 

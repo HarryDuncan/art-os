@@ -1,4 +1,3 @@
-export * from "./arrays";
 export * from "./colors";
 export * from "./materials";
 export * from "./textures";

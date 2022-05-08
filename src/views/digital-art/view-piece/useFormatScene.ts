@@ -1,4 +1,4 @@
-import { IAnimationWidgetScene } from "components/animation-widget/interfaces";
+import { IAnimationWidgetScene } from "components/animation-widget/types";
 import { IPiece } from "../context/Context";
 
 export const useFormatScene = (
@@ -11,7 +11,7 @@ export const useFormatScene = (
   return [
     {
       name: String(sceneName),
-      assetUrls: assets,
+      data: assets,
     },
   ];
 };

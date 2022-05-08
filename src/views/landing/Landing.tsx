@@ -4,7 +4,11 @@ import { Overlay } from "../../components/overlay/Overlay";
 import { LandingContainer, LandingPageTitle } from "./StyledComponents";
 
 export const Landing = () => {
-  const landingScene = { title: "cosmic", name: "Cosmic", assetUrls: {} };
+  const landingScene = {
+    title: "shaderScene",
+    name: "ShaderScene",
+    data: { shaderName: "cosmic" },
+  };
 
   return (
     <LandingContainer>

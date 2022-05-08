@@ -1,6 +1,6 @@
 import React from "react";
 import { Clock, PerspectiveCamera, Scene, WebGLRenderer } from "three";
-import { TWidgetVisual } from "../interfaces";
+import { TWidgetVisual } from "../types";
 import { TScene } from "../scenes/types";
 
 export interface IWidgetState {

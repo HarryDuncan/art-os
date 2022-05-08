@@ -10,7 +10,6 @@ export const useFragmentShader = (
   shaderName: string,
   uniformText: string = ""
 ): string => {
-  const shader = FragmentShaders[shaderName] as string;
-
+  const shader = FragmentShaders[shaderName].frag as string;
   return `${uniformText} varying vec2 vUv; ${shader} ${main}`;
 };

@@ -1,5 +1,5 @@
 import React, { FC, useRef } from "react";
-import { IAnimationWidgetScene } from "./interfaces";
+import { IAnimationWidgetScene } from "./types";
 import { useFramework } from "./framework/useFramework";
 import { useRunAnimations } from "./useRunAnimations";
 

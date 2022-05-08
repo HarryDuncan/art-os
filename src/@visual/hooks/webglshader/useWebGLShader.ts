@@ -1,8 +1,11 @@
+// @ts-nocheck
 import * as THREE from "three";
+import { ShaderMaterial } from "three";
 import { useFragmentShader } from "./fragmentShaders/useFragmentShader";
 import { useUniforms } from "./uniforms/useUniforms";
 import { vertShader } from "./vertexShader/vert";
 
+export type Shader = ShaderMaterial & { derivatives: boolean };
 export type UniformParams = any;
 export const useWebGLShader = (
   shaderName: string,
@@ -14,11 +17,12 @@ export const useWebGLShader = (
 
   const fragShader = useFragmentShader(shaderName, uniformText);
 
-  const material = new THREE.ShaderMaterial({
+  const material: Shader = new THREE.ShaderMaterial({
     uniforms: uniforms,
     vertexShader: vertShader,
     fragmentShader: fragShader,
     depthWrite: true,
+    derivatives: true,
   });
 
   const sceneMesh = new THREE.Mesh(geometry, material);
