@@ -1,11 +1,8 @@
 import { combineReducers, Reducer } from "redux";
-import digitalArtSlice from "./digital-art/digitalArt.slice";
 
 export type IGlobalState = ReturnType<typeof rootReducer>;
 
-const appReducer = combineReducers({
-  digitalArtSlice,
-});
+const appReducer = combineReducers({});
 
 export const rootReducer: Reducer<ReturnType<typeof appReducer>> = (
   state,

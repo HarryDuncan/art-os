@@ -1,7 +1,6 @@
 import { IAnimationWidgetScene, TWidgetVisual } from "../interfaces";
 import * as Scenes from "../../../@visual/scenes/widget-scenes";
 import { IFramework } from "../framework/types";
-import { useEffect, useMemo } from "react";
 
 export const useInitializeScenes = (
   scenes: IAnimationWidgetScene[],
@@ -12,7 +11,7 @@ export const useInitializeScenes = (
     if (!framework.widgetState || isRunning) {
       reject();
     }
-    const { isInitialized } = framework;
+
     const initializedScenes: TWidgetVisual[] = [];
     let errorCount = 0;
     scenes.forEach((sceneItem) => {

@@ -20,6 +20,7 @@ export const useFramework = () => {
       widgetState,
     });
   }, []);
+
   return { framework, updateFramework };
 };
 

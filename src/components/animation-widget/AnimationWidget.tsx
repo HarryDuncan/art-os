@@ -20,15 +20,6 @@ export const AnimationWidget: FC<IAnimationWidgetProps> = ({
   const { framework, updateFramework } = useFramework();
 
   useRunAnimations(container, scenes, updateFramework, framework);
-  // useEffect(() => {
-  //   const { initializedFramework } = initializeWidget(
-  //     scenes,
-  //     setSceneArray,
-  //     viewWidth,
-  //     viewHeight
-  //   );
-  //   // setFramework(initializedFramework);
-  // }, []);
 
   return (
     <div

@@ -3,8 +3,6 @@ import { INITIAL_FRAMEWORK } from "./framework/consts";
 import { IFramework } from "./framework/types";
 import { IAnimationWidgetScene, TWidgetVisual } from "./interfaces";
 import { useInitializeScenes } from "./scenes";
-
-// import { useResponsive } from "./utils";
 import { shouldChangeScene } from "./utils/sceneManager";
 
 export const useRunAnimations = (
@@ -111,5 +109,5 @@ export const useRunAnimations = (
         }, currentVisual.sceneLength);
       }
     }
-  }, [isRunningRef.current, sceneArrayRef.current, currentVisualRef.current]);
+  }, [isRunningRef, sceneArrayRef, currentVisualRef]);
 };
