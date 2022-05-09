@@ -6,6 +6,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
+    "@testing-library/react": "^13.2.0",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.29",
     "@types/react": "^18.0.8",
@@ -52,7 +53,8 @@
     "electron-build": "electron-builder",
     "release": "yarn react-build && electron-builder --publish=always",
     "build": "yarn react-build && yarn electron-build",
-    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [

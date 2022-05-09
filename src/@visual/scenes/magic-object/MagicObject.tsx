@@ -9,26 +9,26 @@ export const MagicObject = () => {
 
   const initialize = async () => {
     Promise.all([
-      loadTexture("dist/img/obsidian.jpg"),
-      loadModel("dist/models/suzanne.glb"),
+      loadTexture("../assets//textures/obsidian.jpg"),
+      loadModel("../assets/models/suzanne.glb"),
     ]).then((values) => {
       console.log(values);
+
+      const {
+        progress,
+        baseNoiseIteration,
+        noiseDiffusion,
+        mainColor,
+        noisePrecision,
+        lightningThickness,
+        lightningPower,
+        lightningDiffusion,
+        vanishDirection,
+      } = PARAMS;
     });
   };
 
   const initializeMaterials = () => {
-    const {
-      progress,
-      baseNoiseIteration,
-      noiseDiffusion,
-      mainColor,
-      noisePrecision,
-      lightningThickness,
-      lightningPower,
-      lightningDiffusion,
-      vanishDirection,
-    } = PARAMS;
-
     // const material = new LokiMaterial({
     //   matcap: { value: this.store.obsidian },
     //   progress,
@@ -60,6 +60,6 @@ export const MagicObject = () => {
 
   //   this.add(this.mesh, this.particles);
   // };
-
+  initialize();
   return <RootContainer containerRef={container} />;
 };
