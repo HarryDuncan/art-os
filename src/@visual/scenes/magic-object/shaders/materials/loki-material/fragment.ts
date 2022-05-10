@@ -1,11 +1,15 @@
-precision highp float;
+import { addShaders } from "@visual/shader-functions/addShaderFunctions";
+import { noise3D } from "@visual/shader-functions/noise/simplex/noise3D";
+import { noise4D } from "@visual/shader-functions/noise/simplex/noise4D";
+
+export const fragment = `precision highp float;
 #define OCTAVES 10
 #define PI 3.14159265359
 #define S smoothstep
 #define saturate(t) clamp(t, 0., 1.)
 
-#pragma glslify: noise3D = require('glsl-noise/simplex/3d')
-#pragma glslify: noise4D = require('glsl-noise/simplex/4d')
+${addShaders([noise3D, noise4D])}
+
 
 uniform sampler2D matcap;
 uniform float progress;
@@ -97,4 +101,4 @@ void main() {
     if (finalColor.a <= 0.) discard;
 
     gl_FragColor = finalColor;
-}
+}`;

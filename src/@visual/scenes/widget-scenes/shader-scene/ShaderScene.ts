@@ -1,7 +1,7 @@
 // @ts-nocheck
 import * as THREE from "three";
 import { TWidgetVisual, IFramework } from "../../../../animations/interfaces";
-import { useWebGLShader } from "@visual/hooks/webglshader";
+import { useWebGLShader } from "@visual/hooks/use-webgl-shader";
 
 const init = (sceneData, __: IFramework) => {
   return new Promise((resolve, reject) => {

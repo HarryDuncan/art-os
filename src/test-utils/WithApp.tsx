@@ -1,6 +1,5 @@
 import { PropsWithChildren } from "react";
-
-import { WithRouter } from "./WithRouter";
+import React from "react";
 import { IWithStoreState, WithStore } from "./WithStore";
 
 type WithAppProps = PropsWithChildren<{

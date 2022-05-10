@@ -3,4 +3,3 @@ export * from "./materials";
 export * from "./textures";
 export * from "./mesh";
 export * from "./lights";
-export * from "./camera";

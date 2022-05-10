@@ -2,7 +2,7 @@
 import * as THREE from "three";
 import { TWidgetVisual, IFramework } from "../../../../animations/interfaces";
 import { loadObjModel } from "../../../helpers/ModelLoader";
-import { useWebGLShader } from "@visual/hooks/webglshader";
+import { useWebGLShader } from "@visual/hooks/use-webgl-shader";
 
 const init = (sceneData, framework: IFramework) => {
   return new Promise((resolve, reject) => {
