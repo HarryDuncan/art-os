@@ -1,14 +1,16 @@
-import { useRenderer } from "@visual/hooks/renderer/useRenderer";
+import { useRenderer } from "@visual/hooks/use-renderer/useRenderer";
 import { useCamera } from "@visual/hooks/use-camera/useCamera";
 import { useScene } from "@visual/hooks/use-scene/useScene";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Color, Mesh, Vector3 } from "three";
 import { RootContainer } from "../../components/root-container";
 import { loadModel } from "../../helpers/ModelLoader";
 import loadTexture from "../../helpers/TextureLoader";
 import ParticleSystem from "./class-components/ParticleSystem";
-import PARAMS from "./Params";
-import LokiMaterial from "./shaders/materials/loki-material";
+import PARAMS from "./magic-object-params";
+import LokiMaterial from "./materials/loki-material";
+import { ev } from "@visual/hooks/use-events/useEvents";
+import { usePosenet } from "@visual/hooks/use-posenet/usePosenet";
 
 export interface IMagicObjectStore {
   model?: any;
@@ -17,11 +19,13 @@ export interface IMagicObjectStore {
 
 export const MagicObject = () => {
   // Set up ref, scene, and renderer, camera
+
   const container = useRef(null);
   const renderer = useRenderer(container);
   const scene = useScene();
-  const camera = useCamera();
+  const camera = useCamera({ position: { x: 0, y: 0, z: 5 } });
 
+  const { posenetNode } = usePosenet();
   const {
     progress,
     baseNoiseIteration,
@@ -33,10 +37,7 @@ export const MagicObject = () => {
     lightningDiffusion,
     vanishDirection,
   } = PARAMS;
-
   const store: IMagicObjectStore = {};
-
-  console.log(renderer);
   const initialize = async () => {
     Promise.all([
       loadTexture("../assets//textures/obsidian.jpg"),
@@ -78,29 +79,22 @@ export const MagicObject = () => {
       scene.add(mesh, particles);
 
       renderer.render(scene, camera);
+      update();
     });
   };
 
-  const initializeMaterials = () => {
-    // const material = new LokiMaterial({
-    //   matcap: { value: this.store.obsidian },
-    //   progress,
-    //   baseNoiseIteration,
-    //   noisePrecision,
-    //   size: { value: new Vector3() },
-    //   color: { value: new Color(mainColor) },
-    //   noiseDiffusion,
-    //   lightningThickness,
-    //   lightningPower,
-    //   lightningDiffusion,
-    //   vanishDirection,
-    //   time: { value: 0 },
-    // });
+  const update = () => {
+    ev("scene:update");
+    renderer.render(scene, camera);
+    requestAnimationFrame(update);
   };
+  useEffect(() => {
+    if (container.current) {
+      //@ts-ignore
+      container.current.appendChild(renderer.domElement);
+      initialize();
+    }
+  }, [container]);
 
-  // const initializeScene = () => {
-
-  // };
-  initialize();
   return <RootContainer containerRef={container} />;
 };

@@ -1,4 +1,4 @@
-precision highp float;
+export const fragment = `precision highp float;
 
 uniform float progress;
 uniform float time;
@@ -25,4 +25,4 @@ void main() {
     if (finalColor.a <= 0.) discard;
 
     gl_FragColor = finalColor;
-}
+}`;

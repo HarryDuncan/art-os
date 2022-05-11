@@ -8,8 +8,6 @@ export const addShaders = (shaders: string[]) => {
       .filter(
         (shaderFunction: string) => !includedFunctions.includes(shaderFunction)
       );
-    console.log(allFunctionsInShader);
-
     includedFunctions = includedFunctions.concat(allFunctionsInShader);
 
     allFunctionsInShader.forEach((functionStr: string) => {

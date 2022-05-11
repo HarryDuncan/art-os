@@ -8,8 +8,8 @@ import {
   Vector3,
 } from "three";
 import { MeshSurfaceSampler } from "three/examples/jsm/math/MeshSurfaceSampler";
-import ParticleMaterial from "../shaders/materials/particle-material";
-import PARAMS from "../Params";
+import ParticleMaterial from "../materials/particle-material";
+import PARAMS from "../magic-object-params";
 import { IMagicObjectStore } from "../MagicObject";
 
 const MAX_PARTICLES = 20000;
