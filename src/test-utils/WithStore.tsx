@@ -1,7 +1,7 @@
 import React from "react";
 import { configureStore } from "@reduxjs/toolkit";
-import { middleware } from "redux/middleware";
-import { IGlobalState, rootReducer } from "redux/reducer";
+import { middleware } from "app/redux/middleware";
+import { IGlobalState, rootReducer } from "app/redux/reducer";
 import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { WithTheme } from "./WithTheme";

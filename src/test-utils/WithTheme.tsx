@@ -1,5 +1,5 @@
 import React from "react";
-import { THEME } from "theme";
+import { THEME } from "app/theme";
 import { PropsWithChildren } from "react";
 import { ThemeProvider } from "styled-components/macro";
 

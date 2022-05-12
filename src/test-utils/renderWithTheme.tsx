@@ -1,7 +1,7 @@
 import React from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { JSXElementConstructor, ReactElement } from "react";
-import { THEME } from "theme";
+import { THEME } from "app/theme";
 import { ThemeProvider } from "styled-components/macro";
 
 export const renderWithTheme = (
