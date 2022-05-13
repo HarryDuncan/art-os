@@ -1,7 +1,5 @@
-import { ObjectLoader } from "three";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-// import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
 const loader = new GLTFLoader();
 export const loadModel = (url) =>

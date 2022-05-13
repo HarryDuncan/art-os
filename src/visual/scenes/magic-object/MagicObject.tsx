@@ -1,7 +1,7 @@
 import { useRenderer } from "visual/hooks/use-renderer/useRenderer";
 import { useCamera } from "visual/hooks/use-camera/useCamera";
 import { useScene } from "visual/hooks/use-scene/useScene";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Color, Mesh, Vector3 } from "three";
 import { RootContainer } from "../../components/root-container";
 import { loadModel } from "../../helpers/ModelLoader";
@@ -10,8 +10,8 @@ import ParticleSystem from "./class-components/ParticleSystem";
 import PARAMS from "./magic-object-params";
 import LokiMaterial from "./materials/loki-material";
 import { ev } from "visual/hooks/use-events/useEvents";
-import { usePosenet } from "visual/hooks/use-posenet/usePosenet";
 import { bindEvents } from "./functions/events";
+import { useInitializeNode } from "visual/hooks/use-initialize-node/useInitializeNode";
 
 export interface IMagicObjectStore {
   model?: any;
@@ -22,11 +22,10 @@ export const MagicObject = () => {
   // Set up ref, scene, and renderer, camera
 
   const container = useRef(null);
-  const renderer = useRenderer(container);
+  const renderer = useRenderer();
   const scene = useScene();
   const camera = useCamera({ position: { x: 0, y: 0, z: 5 } });
 
-  const { posenetNode } = usePosenet();
   const {
     progress,
     baseNoiseIteration,
@@ -90,13 +89,8 @@ export const MagicObject = () => {
     renderer.render(scene, camera);
     requestAnimationFrame(update);
   };
-  useEffect(() => {
-    if (container.current) {
-      //@ts-ignore
-      container.current.appendChild(renderer.domElement);
-      initialize();
-    }
-  }, [container]);
+  console.log("test");
+  useInitializeNode(container, renderer, initialize);
 
   return <RootContainer containerRef={container} />;
 };
