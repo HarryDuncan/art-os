@@ -1,78 +1,84 @@
 //@ts-nocheck
 import React, { useEffect, useRef, useState } from "react";
-// import * as tf from "@tensorflow/tfjs";
-// import * as posenet from "@tensorflow-models/posenet";
-// import Webcam from "react-webcam";
+import * as tf from "@tensorflow/tfjs";
+import * as posenet from "@tensorflow-models/posenet";
+import Webcam from "react-webcam";
 import * as THREE from "three";
+import { getFeature } from "./getFeature";
+import { KEYPOINT_FEATURES } from "./const";
+import { ev } from "../use-events/useEvents";
 
-export const usePosenet = () => {
+export const usePosenet = (posenetParams: PosenetParams) => {
+  const { posenetIdentify } = posenetParams;
+  const [isPosenetInitialized, setIsPosenetInitialized] = useState<boolean>(
+    false
+  );
   const webcamRef = useRef(null);
 
-  // const runPosenet = async () => {
-  //   const net = await posenet.load({
-  //     inputResolution: { width: 240, height: 200 },
-  //     scale: 0.8,
-  //   });
+  const runPosenet = async () => {
+    const net = await posenet.load({
+      inputResolution: { width: 240, height: 200 },
+      scale: 0.8,
+    });
 
-  //   //
-  //   setInterval(() => {
-  //     detect(net);
-  //   }, 200);
-  // };
+    //
+    setInterval(() => {
+      detect(net);
+    }, 200);
+  };
 
-  // const detect = async (net) => {
-  //   if (
-  //     typeof webcamRef.current !== "undefined" &&
-  //     webcamRef.current !== null &&
-  //     webcamRef.current.video.readyState === 4
-  //   ) {
-  //     // Get Video Properties
-  //     const video = webcamRef.current.video;
-  //     const videoWidth = webcamRef.current.video.videoWidth;
-  //     const videoHeight = webcamRef.current.video.videoHeight;
+  const detect = async (net) => {
+    if (
+      typeof webcamRef.current !== "undefined" &&
+      webcamRef.current !== null &&
+      webcamRef.current.video.readyState === 4
+    ) {
+      // Get Video Properties
+      const video = webcamRef.current.video;
+      const videoWidth = webcamRef.current.video.videoWidth;
+      const videoHeight = webcamRef.current.video.videoHeight;
 
-  //     // Set video width
-  //     webcamRef.current.video.width = videoWidth;
-  //     webcamRef.current.video.height = videoHeight;
+      // Set video width
+      webcamRef.current.video.width = videoWidth;
+      webcamRef.current.video.height = videoHeight;
 
-  //     // Make Detections
-  //     const pose = await net.estimateSinglePose(video);
-  //     const leftWrist = pose.keypoints[10];
+      // Make Detections
+      const pose = await net.estimateSinglePose(video);
+      posenetIdentify.forEach(({ event, featureKey }) => {
+        const keyPoints = getFeature(pose.keypoints, featureKey);
+        ev(event.key, keyPoints);
+      });
+    }
+  };
 
-  //     if (leftWrist.score > 0.85) {
-  //       xPos = leftWrist.position.x;
-  //       yPos = leftWrist.position.y;
-  //     }
-  //     setIsLoading(false);
+  useEffect(() => {
+    if (isPosenetInitialized) {
+      runPosenet();
+    }
+  }, [isPosenetInitialized]);
 
-  //     // console.log(`x: ${leftWristXPos * 100}%`);
-  //     // console.log(`y: ${leftWristYPos * 100}%`);
-  //     //   drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
-  //   }
-  // };
-  // tf.ready().then((_) => {
-  //   setTimeout(() => {
-  //     runPosenet();
-  //   }, 1500);
-  // });
+  tf.ready().then((_) => {
+    setIsPosenetInitialized(true);
+  });
 
-  const posenetNode: JSX.Element = <></>;
+  const posenetNode: JSX.Element = (
+    <Webcam
+      ref={webcamRef}
+      style={{
+        position: "absolute",
+        marginLeft: "auto",
+        marginRight: "auto",
+        left: 0,
+        right: 0,
+        textAlign: "center",
+        zindex: -1,
+        width: 240,
+        height: 200,
+        visibility: "hidden",
+      }}
+    />
+  );
 
   return { posenetNode };
 };
 // };
-// <Webcam
-// ref={webcamRef}
-// style={{
-//   position: "absolute",
-//   marginLeft: "auto",
-//   marginRight: "auto",
-//   left: 0,
-//   right: 0,
-//   textAlign: "center",
-//   zindex: -1,
-//   width: 240,
-//   height: 200,
-//   visibility: "hidden",
-// }}
-// />

@@ -1,7 +1,7 @@
 import { useRenderer } from "visual/hooks/use-renderer/useRenderer";
 import { useCamera } from "visual/hooks/use-camera/useCamera";
 import { useScene } from "visual/hooks/use-scene/useScene";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Color, Mesh, Vector3 } from "three";
 import { RootContainer } from "../../components/root-container";
 import { loadModel } from "../../helpers/ModelLoader";
@@ -10,12 +10,16 @@ import ParticleSystem from "./class-components/ParticleSystem";
 import PARAMS from "./magic-object-params";
 import LokiMaterial from "./materials/loki-material";
 import { ev, useEvents } from "visual/hooks/use-events/useEvents";
-import { bindEvents } from "./functions/events";
 import { useInitializeNode } from "visual/hooks/use-initialize-node/useInitializeNode";
 import { useController } from "visual/hooks/use-controller/useController";
-import { EVENT_BIND_TYPES, USER_EVENTS } from "visual/hooks/use-events/consts";
+import {
+  EVENT_BIND_TYPES,
+  POSENET_EVENTS,
+  USER_EVENTS,
+} from "visual/hooks/use-events/consts";
 import { BindTypeKey, EventParam } from "visual/hooks/use-events/types";
-import { IController } from "visual/hooks/use-controller/types";
+import { usePosenet } from "visual/hooks/use-posenet/usePosenet";
+import { KEYPOINT_FEATURES } from "visual/hooks/use-posenet/const";
 
 export interface IMagicObjectStore {
   model?: any;
@@ -28,16 +32,21 @@ export const MagicObject = () => {
   const renderer = useRenderer();
   const scene = useScene();
   const camera = useCamera({ position: { x: 0, y: 0, z: 5 } });
-
-  const initialController = { isInitialized: false, isRunningThread: false };
-  const [controller, updateController] = useState<IController>(
-    initialController
-  );
+  const { controller, updateController } = useController();
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
   // EVENTS
 
-  const onClick = ({ controller }) => {
-    ev("click");
+  const onClick = (args) => {};
+
+  const onLeftWristMove = (args) => {
+    console.log(args);
+  };
+
+  const leftWristMoveEvent = {
+    bindType: EVENT_BIND_TYPES.DOCUMENT as BindTypeKey,
+    key: POSENET_EVENTS.LEFT_WRIST,
+    onEventFire: onLeftWristMove,
+    props: {},
   };
 
   const events: EventParam[] = [
@@ -45,10 +54,12 @@ export const MagicObject = () => {
       bindType: EVENT_BIND_TYPES.DOCUMENT as BindTypeKey,
       key: USER_EVENTS.CLICK,
       onEventFire: onClick,
+      props: {},
     },
+    leftWristMoveEvent,
   ];
 
-  useEvents({ events, props: {} });
+  useEvents({ events, props: { controller } });
   const {
     progress,
     baseNoiseIteration,
@@ -110,14 +121,12 @@ export const MagicObject = () => {
     });
   };
 
-  useEffect(() => {
-    if (controller.isInitialized && controller.isRunningThread) {
-      update();
-    } else if (controller.isInitialized && !controller.isRunningThread) {
-      pause();
-    }
-  }, [controller]);
-
+  const posenetParams = {
+    posenetIdentify: [
+      { event: leftWristMoveEvent, featureKey: KEYPOINT_FEATURES.LEFT_WRIST },
+    ],
+  };
+  const { posenetNode } = usePosenet(posenetParams);
   const update = () => {
     ev("scene:update");
     renderer.render(scene, camera);
@@ -130,7 +139,20 @@ export const MagicObject = () => {
     cancelAnimationFrame(currentFrameRef.current);
   };
 
+  useEffect(() => {
+    if (controller.isInitialized && controller.isRunningThread) {
+      update();
+    } else if (controller.isInitialized && !controller.isRunningThread) {
+      pause();
+    }
+  }, [controller, update, pause]);
+
   useInitializeNode(container, renderer, initialize);
 
-  return <RootContainer containerRef={container} />;
+  return (
+    <>
+      {posenetNode}
+      <RootContainer containerRef={container} />
+    </>
+  );
 };

@@ -2,11 +2,6 @@ import { Clock, DoubleSide, RawShaderMaterial } from "three";
 import { vertex } from "./vertex";
 import { fragment } from "./fragment";
 import gsap from "gsap";
-import { ev } from "visual/hooks/use-events/useEvents";
-import { getVanishingDirection } from "../../functions/vanishingDirection";
-import { IController } from "visual/hooks/use-controller/types";
-
-interface IUniforms {}
 
 export default class LokiMaterial extends RawShaderMaterial {
   clock: Clock;
@@ -28,11 +23,8 @@ export default class LokiMaterial extends RawShaderMaterial {
   }
 
   bindEvents() {
-    // document.addEventListener("colorUpdate", (e) =>
-    //   this.onUpdateColor(e.detail)
-    // );
     document.addEventListener("scene:update", () => this.onUpdateTime());
-    document.addEventListener("click:continue", () => this.continueThread());
+    document.addEventListener("click", () => this.continueThread());
   }
 
   onUpdateColor({ color }) {
@@ -41,7 +33,7 @@ export default class LokiMaterial extends RawShaderMaterial {
   }
 
   continueThread() {
-    this.isRunningThread = true;
+    this.isRunningThread = !this.isRunningThread;
   }
 
   onUpdateTime() {
