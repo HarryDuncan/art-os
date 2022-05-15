@@ -2,10 +2,15 @@ import { Clock, DoubleSide, RawShaderMaterial } from "three";
 import { vertex } from "./vertex";
 import { fragment } from "./fragment";
 import gsap from "gsap";
+import { POSENET_EVENTS } from "visual/hooks/use-events/consts";
+import { getPosenetDetailFromEvent } from "visual/helpers/posenetHelpers";
+import { PoseNetEventTracker } from "visual/components/pose-net-event-tracker";
 
+const minimumScoreThreshold = 0.75;
 export default class LokiMaterial extends RawShaderMaterial {
   clock: Clock;
   isRunningThread: boolean;
+  leftWristEventTracker: PoseNetEventTracker;
   constructor(uniforms = {}) {
     super({
       vertexShader: vertex,
@@ -15,7 +20,7 @@ export default class LokiMaterial extends RawShaderMaterial {
       side: DoubleSide,
     });
     this.isRunningThread = true;
-
+    this.leftWristEventTracker = new PoseNetEventTracker(minimumScoreThreshold);
     this.uniforms = uniforms;
     this.clock = new Clock();
 
@@ -25,6 +30,9 @@ export default class LokiMaterial extends RawShaderMaterial {
   bindEvents() {
     document.addEventListener("scene:update", () => this.onUpdateTime());
     document.addEventListener("click", () => this.continueThread());
+    document.addEventListener(POSENET_EVENTS.LEFT_WRIST, (ev) =>
+      this.handleMovement(ev)
+    );
   }
 
   onUpdateColor({ color }) {
@@ -34,6 +42,13 @@ export default class LokiMaterial extends RawShaderMaterial {
 
   continueThread() {
     this.isRunningThread = !this.isRunningThread;
+  }
+
+  handleMovement(ev) {
+    if (!this.isRunningThread) {
+      const movementDetails = getPosenetDetailFromEvent(ev);
+      this.leftWristEventTracker.addPoint(movementDetails);
+    }
   }
 
   onUpdateTime() {

@@ -1,27 +1,25 @@
-//@ts-nocheck
 import React, { useEffect, useRef, useState } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
-import * as THREE from "three";
 import { getFeature } from "./getFeature";
-import { KEYPOINT_FEATURES } from "./const";
 import { ev } from "../use-events/useEvents";
+import { PosenetParams } from "./types";
 
-export const usePosenet = (posenetParams: PosenetParams) => {
+export const usePoseNet = (posenetParams: PosenetParams) => {
   const { posenetIdentify } = posenetParams;
   const [isPosenetInitialized, setIsPosenetInitialized] = useState<boolean>(
     false
   );
-  const webcamRef = useRef(null);
+  const webcamRef: React.MutableRefObject<any> = useRef(null);
 
   const runPosenet = async () => {
     const net = await posenet.load({
       inputResolution: { width: 240, height: 200 },
-      scale: 0.8,
+      architecture: "MobileNetV1",
+      outputStride: 8,
     });
 
-    //
     setInterval(() => {
       detect(net);
     }, 200);
@@ -31,7 +29,7 @@ export const usePosenet = (posenetParams: PosenetParams) => {
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null &&
-      webcamRef.current.video.readyState === 4
+      webcamRef.current?.video.readyState === 4
     ) {
       // Get Video Properties
       const video = webcamRef.current.video;
@@ -71,7 +69,6 @@ export const usePosenet = (posenetParams: PosenetParams) => {
         left: 0,
         right: 0,
         textAlign: "center",
-        zindex: -1,
         width: 240,
         height: 200,
         visibility: "hidden",

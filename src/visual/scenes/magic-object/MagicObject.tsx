@@ -8,7 +8,7 @@ import { loadModel } from "../../helpers/ModelLoader";
 import loadTexture from "../../helpers/TextureLoader";
 import ParticleSystem from "./class-components/ParticleSystem";
 import PARAMS from "./magic-object-params";
-import LokiMaterial from "./materials/loki-material";
+import LokiMaterial from "./materials/loki-material/lokiMaterial";
 import { ev, useEvents } from "visual/hooks/use-events/useEvents";
 import { useInitializeNode } from "visual/hooks/use-initialize-node/useInitializeNode";
 import { useController } from "visual/hooks/use-controller/useController";
@@ -18,8 +18,9 @@ import {
   USER_EVENTS,
 } from "visual/hooks/use-events/consts";
 import { BindTypeKey, EventParam } from "visual/hooks/use-events/types";
-import { usePosenet } from "visual/hooks/use-posenet/usePosenet";
-import { KEYPOINT_FEATURES } from "visual/hooks/use-posenet/const";
+import { usePoseNet } from "visual/hooks/use-pose-net/usePoseNet";
+import { KEYPOINT_FEATURES } from "visual/hooks/use-pose-net/const";
+import { KEYPOINT_FEATURE_KEY } from "visual/hooks/use-pose-net/types";
 
 export interface IMagicObjectStore {
   model?: any;
@@ -38,9 +39,7 @@ export const MagicObject = () => {
 
   const onClick = (args) => {};
 
-  const onLeftWristMove = (args) => {
-    console.log(args);
-  };
+  const onLeftWristMove = (args) => {};
 
   const leftWristMoveEvent = {
     bindType: EVENT_BIND_TYPES.DOCUMENT as BindTypeKey,
@@ -121,12 +120,15 @@ export const MagicObject = () => {
     });
   };
 
-  const posenetParams = {
+  const poseNetParams = {
     posenetIdentify: [
-      { event: leftWristMoveEvent, featureKey: KEYPOINT_FEATURES.LEFT_WRIST },
+      {
+        event: leftWristMoveEvent,
+        featureKey: KEYPOINT_FEATURES.LEFT_WRIST as KEYPOINT_FEATURE_KEY,
+      },
     ],
   };
-  const { posenetNode } = usePosenet(posenetParams);
+  const { posenetNode } = usePoseNet(poseNetParams);
   const update = () => {
     ev("scene:update");
     renderer.render(scene, camera);
