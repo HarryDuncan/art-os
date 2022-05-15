@@ -1,7 +1,7 @@
 import { useRenderer } from "visual/hooks/use-renderer/useRenderer";
 import { useCamera } from "visual/hooks/use-camera/useCamera";
 import { useScene } from "visual/hooks/use-scene/useScene";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Color, Mesh, Vector3 } from "three";
 import { RootContainer } from "../../components/root-container";
 import { loadModel } from "../../helpers/ModelLoader";
@@ -9,9 +9,13 @@ import loadTexture from "../../helpers/TextureLoader";
 import ParticleSystem from "./class-components/ParticleSystem";
 import PARAMS from "./magic-object-params";
 import LokiMaterial from "./materials/loki-material";
-import { ev } from "visual/hooks/use-events/useEvents";
+import { ev, useEvents } from "visual/hooks/use-events/useEvents";
 import { bindEvents } from "./functions/events";
 import { useInitializeNode } from "visual/hooks/use-initialize-node/useInitializeNode";
+import { useController } from "visual/hooks/use-controller/useController";
+import { EVENT_BIND_TYPES, USER_EVENTS } from "visual/hooks/use-events/consts";
+import { BindTypeKey, EventParam } from "visual/hooks/use-events/types";
+import { IController } from "visual/hooks/use-controller/types";
 
 export interface IMagicObjectStore {
   model?: any;
@@ -20,12 +24,31 @@ export interface IMagicObjectStore {
 
 export const MagicObject = () => {
   // Set up ref, scene, and renderer, camera
-
   const container = useRef(null);
   const renderer = useRenderer();
   const scene = useScene();
   const camera = useCamera({ position: { x: 0, y: 0, z: 5 } });
 
+  const initialController = { isInitialized: false, isRunningThread: false };
+  const [controller, updateController] = useState<IController>(
+    initialController
+  );
+  const currentFrameRef: React.MutableRefObject<number> = useRef(0);
+  // EVENTS
+
+  const onClick = ({ controller }) => {
+    ev("click");
+  };
+
+  const events: EventParam[] = [
+    {
+      bindType: EVENT_BIND_TYPES.DOCUMENT as BindTypeKey,
+      key: USER_EVENTS.CLICK,
+      onEventFire: onClick,
+    },
+  ];
+
+  useEvents({ events, props: {} });
   const {
     progress,
     baseNoiseIteration,
@@ -37,6 +60,7 @@ export const MagicObject = () => {
     lightningDiffusion,
     vanishDirection,
   } = PARAMS;
+
   const store: IMagicObjectStore = {};
   const initialize = async () => {
     Promise.all([
@@ -60,6 +84,7 @@ export const MagicObject = () => {
         lightningDiffusion,
         vanishDirection,
         time: { value: 0 },
+        delta: { value: 0.01 },
       });
 
       // @ts-ignore
@@ -75,21 +100,36 @@ export const MagicObject = () => {
 
       const particles = new ParticleSystem(store);
       particles.init();
-
       scene.add(mesh, particles);
-
       renderer.render(scene, camera);
-      update();
-      bindEvents();
+      updateController({
+        ...controller,
+        isInitialized: true,
+        isRunningThread: true,
+      });
     });
   };
+
+  useEffect(() => {
+    if (controller.isInitialized && controller.isRunningThread) {
+      update();
+    } else if (controller.isInitialized && !controller.isRunningThread) {
+      pause();
+    }
+  }, [controller]);
 
   const update = () => {
     ev("scene:update");
     renderer.render(scene, camera);
-    requestAnimationFrame(update);
+    if (controller.isRunningThread) {
+      currentFrameRef.current = requestAnimationFrame(update);
+    }
   };
-  console.log("test");
+
+  const pause = () => {
+    cancelAnimationFrame(currentFrameRef.current);
+  };
+
   useInitializeNode(container, renderer, initialize);
 
   return <RootContainer containerRef={container} />;

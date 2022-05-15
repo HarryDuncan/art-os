@@ -8,7 +8,8 @@ export const useInitializeNode = (
   initializeFunction: () => void
 ) =>
   useEffect(() => {
-    if (containerRef?.current) {
+    //@ts-ignore
+    if (containerRef?.current && !containerRef.current.hasChildNodes()) {
       //@ts-ignore
       containerRef?.current?.appendChild(renderer.domElement);
       initializeFunction();

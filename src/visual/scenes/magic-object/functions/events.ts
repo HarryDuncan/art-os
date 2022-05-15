@@ -1,4 +1,7 @@
-export const bindEvents = () => {
+import { getWindowParams } from "visual/helpers/getWindowParams";
+import { IController } from "visual/hooks/use-controller/types";
+
+export const bindEvents = (controller: IController) => {
   window.addEventListener("resize", () => onDelayedResize());
   window.addEventListener(
     "wheel",
@@ -13,8 +16,16 @@ export const bindEvents = () => {
   document.addEventListener("touchmove", (e) => onTouchMove(e), {
     passive: false,
   });
+  window.addEventListener("click", (e) => onClick(controller));
 
   document.body.addEventListener("mousemove", (e) => onMove(e));
+};
+
+const onClick = (controller) => {
+  console.log(controller);
+  if (!controller.runThread) {
+    controller.runThread = true;
+  }
 };
 
 const onResize = () => {
@@ -41,9 +52,9 @@ const onScroll = (e) => {
 };
 
 const onMove = (e) => {
-  // const { x, y } = getPos(e)
-  // const { W, H } = this
-  // const nx = (x / W) * 2 - 1
-  // const ny = -(y / H) * 2 + 1
-  // ev('layout:pointerMove', { x, y, nx, ny })
+  const { x, y } = { x: 100, y: 100 };
+  const { width, height } = getWindowParams();
+  const nx = (x / width) * 2 - 1;
+  const ny = -(y / height) * 2 + 1;
+  // ev("layout:pointerMove", { x, y, nx, ny });
 };
