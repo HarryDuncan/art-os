@@ -8,7 +8,7 @@ import {
   Vector3,
 } from "three";
 import { MeshSurfaceSampler } from "three/examples/jsm/math/MeshSurfaceSampler";
-import ParticleMaterial from "../materials/particle-material";
+import ParticleMaterial from "../materials/particle-material/ParticleMaterial";
 import PARAMS from "../magic-object-params";
 import { IMagicObjectStore } from "../MagicObject";
 

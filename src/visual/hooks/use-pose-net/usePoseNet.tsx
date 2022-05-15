@@ -16,8 +16,8 @@ export const usePoseNet = (posenetParams: PosenetParams) => {
   const runPosenet = async () => {
     const net = await posenet.load({
       inputResolution: { width: 240, height: 200 },
-      architecture: "MobileNetV1",
-      outputStride: 8,
+      architecture: "ResNet50",
+      outputStride: 32,
     });
 
     setInterval(() => {

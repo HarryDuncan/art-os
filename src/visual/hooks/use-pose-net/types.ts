@@ -7,14 +7,14 @@ export interface PosenetParams {
 
 export interface IPosenetIdentify {
   event: EventParam;
-  featureKey: KEYPOINT_FEATURE_KEY;
+  featureKey: KeypointFeatureKey;
 }
 
-export type KEYPOINT_FEATURE = typeof KEYPOINT_FEATURES;
-export type KEYPOINT_FEATURE_KEY = keyof KEYPOINT_FEATURE;
+export type KeypointFeature = typeof KEYPOINT_FEATURES;
+export type KeypointFeatureKey = keyof KeypointFeature;
 
 export type Keypoint = {
-  part: KEYPOINT_FEATURE_KEY;
+  part: KeypointFeatureKey;
   position: KeypointPosition;
   score: number;
 };

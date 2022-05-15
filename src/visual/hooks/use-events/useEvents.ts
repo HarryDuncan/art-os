@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { EVENT_BIND_TYPES } from "./consts";
+import { dummyEvent, EVENT_BIND_TYPES } from "./consts";
 import { IUseEventProps } from "./types";
 
 export const useEvents = (eventParams: IUseEventProps) =>
@@ -7,7 +7,13 @@ export const useEvents = (eventParams: IUseEventProps) =>
     eventParams.events.forEach(({ bindType, key, onEventFire, props }) => {
       switch (bindType) {
         case EVENT_BIND_TYPES.DOCUMENT:
-          document.addEventListener(key, (e) => onEventFire({ e, props }));
+          document.addEventListener(key, (e) =>
+            onEventFire ? onEventFire({ e, props }) : dummyEvent
+          );
+        case EVENT_BIND_TYPES.WINDOW:
+          window.addEventListener(key, (e) =>
+            onEventFire ? onEventFire({ e, props }) : dummyEvent
+          );
       }
     });
   }, []);

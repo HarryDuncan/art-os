@@ -10,9 +10,7 @@ export default class ParticleMaterial extends RawShaderMaterial {
       vertexShader: vertex,
       fragmentShader: fragment,
       transparent: true,
-      // blending: AdditiveBlending,
       depthWrite: false,
-      // depthTest: false,
     });
 
     this.uniforms = uniforms;

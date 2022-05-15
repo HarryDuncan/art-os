@@ -1,7 +1,7 @@
 import { useRenderer } from "visual/hooks/use-renderer/useRenderer";
 import { useCamera } from "visual/hooks/use-camera/useCamera";
 import { useScene } from "visual/hooks/use-scene/useScene";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Color, Mesh, Vector3 } from "three";
 import { RootContainer } from "../../components/root-container";
 import { loadModel } from "../../helpers/ModelLoader";
@@ -20,7 +20,8 @@ import {
 import { BindTypeKey, EventParam } from "visual/hooks/use-events/types";
 import { usePoseNet } from "visual/hooks/use-pose-net/usePoseNet";
 import { KEYPOINT_FEATURES } from "visual/hooks/use-pose-net/const";
-import { KEYPOINT_FEATURE_KEY } from "visual/hooks/use-pose-net/types";
+import { KeypointFeatureKey } from "visual/hooks/use-pose-net/types";
+import { useControlThread } from "visual/hooks/use-control-thread/use-control-thread";
 
 export interface IMagicObjectStore {
   model?: any;
@@ -35,30 +36,48 @@ export const MagicObject = () => {
   const camera = useCamera({ position: { x: 0, y: 0, z: 5 } });
   const { controller, updateController } = useController();
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
+
   // EVENTS
-
-  const onClick = (args) => {};
-
-  const onLeftWristMove = (args) => {};
-
   const leftWristMoveEvent = {
     bindType: EVENT_BIND_TYPES.DOCUMENT as BindTypeKey,
     key: POSENET_EVENTS.LEFT_WRIST,
-    onEventFire: onLeftWristMove,
-    props: {},
   };
 
   const events: EventParam[] = [
     {
       bindType: EVENT_BIND_TYPES.DOCUMENT as BindTypeKey,
       key: USER_EVENTS.CLICK,
-      onEventFire: onClick,
-      props: {},
     },
     leftWristMoveEvent,
   ];
 
   useEvents({ events, props: { controller } });
+
+  // POSENET
+  const poseNetParams = {
+    posenetIdentify: [
+      {
+        event: leftWristMoveEvent,
+        featureKey: KEYPOINT_FEATURES.LEFT_WRIST as KeypointFeatureKey,
+      },
+    ],
+  };
+  const { posenetNode } = usePoseNet(poseNetParams);
+
+  // THREAD CONTROL
+  const update = () => {
+    ev("scene:update");
+    renderer.render(scene, camera);
+    if (controller.isRunningThread) {
+      currentFrameRef.current = requestAnimationFrame(update);
+    }
+  };
+  const pause = () => {
+    cancelAnimationFrame(currentFrameRef.current);
+  };
+  useControlThread(controller, update, pause);
+
+  // SCENE SET UP
   const {
     progress,
     baseNoiseIteration,
@@ -70,7 +89,6 @@ export const MagicObject = () => {
     lightningDiffusion,
     vanishDirection,
   } = PARAMS;
-
   const store: IMagicObjectStore = {};
   const initialize = async () => {
     Promise.all([
@@ -119,36 +137,6 @@ export const MagicObject = () => {
       });
     });
   };
-
-  const poseNetParams = {
-    posenetIdentify: [
-      {
-        event: leftWristMoveEvent,
-        featureKey: KEYPOINT_FEATURES.LEFT_WRIST as KEYPOINT_FEATURE_KEY,
-      },
-    ],
-  };
-  const { posenetNode } = usePoseNet(poseNetParams);
-  const update = () => {
-    ev("scene:update");
-    renderer.render(scene, camera);
-    if (controller.isRunningThread) {
-      currentFrameRef.current = requestAnimationFrame(update);
-    }
-  };
-
-  const pause = () => {
-    cancelAnimationFrame(currentFrameRef.current);
-  };
-
-  useEffect(() => {
-    if (controller.isInitialized && controller.isRunningThread) {
-      update();
-    } else if (controller.isInitialized && !controller.isRunningThread) {
-      pause();
-    }
-  }, [controller, update, pause]);
-
   useInitializeNode(container, renderer, initialize);
 
   return (

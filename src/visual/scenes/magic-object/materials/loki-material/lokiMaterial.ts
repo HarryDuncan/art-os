@@ -5,8 +5,14 @@ import gsap from "gsap";
 import { POSENET_EVENTS } from "visual/hooks/use-events/consts";
 import { getPosenetDetailFromEvent } from "visual/helpers/posenetHelpers";
 import { PoseNetEventTracker } from "visual/components/pose-net-event-tracker";
+import { POSENET_SWIPE_EVENT } from "visual/components/pose-net-event-tracker/consts";
+import { AdvancedEventKey } from "visual/components/pose-net-event-tracker/types";
 
-const minimumScoreThreshold = 0.75;
+const minimumScoreThreshold = 0.65;
+const advancedEvents: AdvancedEventKey[] = [
+  POSENET_SWIPE_EVENT.LEFT as AdvancedEventKey,
+  POSENET_SWIPE_EVENT.RIGHT as AdvancedEventKey,
+];
 export default class LokiMaterial extends RawShaderMaterial {
   clock: Clock;
   isRunningThread: boolean;
@@ -20,7 +26,10 @@ export default class LokiMaterial extends RawShaderMaterial {
       side: DoubleSide,
     });
     this.isRunningThread = true;
-    this.leftWristEventTracker = new PoseNetEventTracker(minimumScoreThreshold);
+    this.leftWristEventTracker = new PoseNetEventTracker(
+      minimumScoreThreshold,
+      advancedEvents
+    );
     this.uniforms = uniforms;
     this.clock = new Clock();
 
@@ -33,6 +42,9 @@ export default class LokiMaterial extends RawShaderMaterial {
     document.addEventListener(POSENET_EVENTS.LEFT_WRIST, (ev) =>
       this.handleMovement(ev)
     );
+    document.addEventListener(POSENET_SWIPE_EVENT.RIGHT, (ev) =>
+      this.onSwipeRight()
+    );
   }
 
   onUpdateColor({ color }) {
@@ -44,12 +56,19 @@ export default class LokiMaterial extends RawShaderMaterial {
     this.isRunningThread = !this.isRunningThread;
   }
 
+  // POSENET
+
   handleMovement(ev) {
     if (!this.isRunningThread) {
       const movementDetails = getPosenetDetailFromEvent(ev);
       this.leftWristEventTracker.addPoint(movementDetails);
     }
   }
+  onSwipeRight() {
+    this.isRunningThread = true;
+  }
+
+  // RENDER FUNCTIONS
 
   onUpdateTime() {
     if (this.isRunningThread) {

@@ -1,5 +1,5 @@
-import { Keypoint, KEYPOINT_FEATURE_KEY } from "./types";
+import { Keypoint, KeypointFeatureKey } from "./types";
 
-export const getFeature = (poseData, featureKey: KEYPOINT_FEATURE_KEY) => {
+export const getFeature = (poseData, featureKey: KeypointFeatureKey) => {
   return poseData.find((keypoint: Keypoint) => keypoint.part === featureKey);
 };

@@ -23,7 +23,10 @@ export const POSENET_EVENTS = {
   LEFT_ANKLE: "posenet:leftAnkle",
   RIGHT_ANKLE: "posenet:rightAnkle",
 };
+
 export const EVENT_BIND_TYPES = {
   DOCUMENT: "document",
   WINDOW: "window",
 };
+
+export const dummyEvent = () => {};
