@@ -8,7 +8,9 @@ export const useControlThread = (
 ) => {
   useEffect(() => {
     if (controller.isInitialized && controller.isRunningThread) {
-      update();
+      setTimeout(() => {
+        update();
+      }, 5000);
     } else if (controller.isInitialized && !controller.isRunningThread) {
       pause();
     }

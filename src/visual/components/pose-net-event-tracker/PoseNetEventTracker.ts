@@ -51,7 +51,6 @@ export class PoseNetEventTracker {
 
   trackForHorizontalSwipeEvents() {
     const xMovement = getXDelta(this.steps);
-    console.log(xMovement);
     if (
       xMovement > 150 &&
       this.advancedEvents.includes(

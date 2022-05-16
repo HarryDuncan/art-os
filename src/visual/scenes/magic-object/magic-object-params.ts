@@ -23,17 +23,4 @@ const PARAMS = {
   },
 };
 
-export const DIRECTION_KEYS = {
-  LEFT_TO_RIGHT: "left-to-right",
-  RIGHT_TO_LEFT: "right-to-left",
-  TOP_TO_BOTTOM: "top-to-bottom",
-  BOTTOM_TO_TOP: "bottom-to-top",
-};
-export const DIRECTIONS = {
-  LEFT_TO_RIGHT: new Vector2(-1, 0),
-  RIGHT_TO_LEFT: new Vector2(1, 0),
-  TOP_TO_BOTTOM: new Vector2(0, -1),
-  BOTTOM_TO_TOP: new Vector2(0, 1),
-};
-
 export default PARAMS;

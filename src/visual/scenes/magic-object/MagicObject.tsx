@@ -1,8 +1,7 @@
-import { useRenderer } from "visual/hooks/use-renderer/useRenderer";
 import { useCamera } from "visual/hooks/use-camera/useCamera";
 import { useScene } from "visual/hooks/use-scene/useScene";
 import React, { useRef } from "react";
-import { Color, Mesh, Vector3 } from "three";
+import { Clock, Color, Mesh, Vector3 } from "three";
 import { RootContainer } from "../../components/root-container";
 import { loadModel } from "../../helpers/ModelLoader";
 import loadTexture from "../../helpers/TextureLoader";
@@ -22,6 +21,8 @@ import { usePoseNet } from "visual/hooks/use-pose-net/usePoseNet";
 import { KEYPOINT_FEATURES } from "visual/hooks/use-pose-net/const";
 import { KeypointFeatureKey } from "visual/hooks/use-pose-net/types";
 import { useControlThread } from "visual/hooks/use-control-thread/use-control-thread";
+import PostProcessing from "../../components/post-processing/PostProcessing";
+import { useRenderer } from "visual/hooks/renderer";
 
 export interface IMagicObjectStore {
   model?: any;
@@ -36,7 +37,10 @@ export const MagicObject = () => {
   const camera = useCamera({ position: { x: 0, y: 0, z: 5 } });
   const { controller, updateController } = useController();
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
-
+  const postProcessor: React.MutableRefObject<null | PostProcessing> = useRef(
+    null
+  );
+  const clock: Clock = new Clock();
   // EVENTS
   const leftWristMoveEvent = {
     bindType: EVENT_BIND_TYPES.DOCUMENT as BindTypeKey,
@@ -67,7 +71,9 @@ export const MagicObject = () => {
   // THREAD CONTROL
   const update = () => {
     ev("scene:update");
-    renderer.render(scene, camera);
+    postProcessor.current?.render(clock.getDelta());
+
+    // renderer.render(scene, camera);
     if (controller.isRunningThread) {
       currentFrameRef.current = requestAnimationFrame(update);
     }
@@ -129,12 +135,15 @@ export const MagicObject = () => {
       const particles = new ParticleSystem(store);
       particles.init();
       scene.add(mesh, particles);
-      renderer.render(scene, camera);
-      updateController({
-        ...controller,
-        isInitialized: true,
-        isRunningThread: true,
-      });
+
+      postProcessor.current = new PostProcessing({ renderer, scene, camera });
+      setTimeout(() => {
+        updateController({
+          ...controller,
+          isInitialized: true,
+          isRunningThread: true,
+        });
+      }, 1000);
     });
   };
   useInitializeNode(container, renderer, initialize);

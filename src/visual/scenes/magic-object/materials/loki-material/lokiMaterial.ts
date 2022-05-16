@@ -1,4 +1,4 @@
-import { Clock, DoubleSide, RawShaderMaterial } from "three";
+import { Clock, DoubleSide, RawShaderMaterial, Vector2 } from "three";
 import { vertex } from "./vertex";
 import { fragment } from "./fragment";
 import gsap from "gsap";
@@ -7,6 +7,9 @@ import { getPosenetDetailFromEvent } from "visual/helpers/posenetHelpers";
 import { PoseNetEventTracker } from "visual/components/pose-net-event-tracker";
 import { POSENET_SWIPE_EVENT } from "visual/components/pose-net-event-tracker/consts";
 import { AdvancedEventKey } from "visual/components/pose-net-event-tracker/types";
+import { getDirectionalVector } from "visual/helpers/vectors";
+import { DIRECTION_KEYS } from "visual/helpers/vectors/consts";
+import { DirectionKey } from "visual/helpers/vectors/types";
 
 const minimumScoreThreshold = 0.65;
 const advancedEvents: AdvancedEventKey[] = [
@@ -45,6 +48,9 @@ export default class LokiMaterial extends RawShaderMaterial {
     document.addEventListener(POSENET_SWIPE_EVENT.RIGHT, (ev) =>
       this.onSwipeRight()
     );
+    document.addEventListener(POSENET_SWIPE_EVENT.LEFT, (ev) =>
+      this.onSwipeLeft()
+    );
   }
 
   onUpdateColor({ color }) {
@@ -65,9 +71,27 @@ export default class LokiMaterial extends RawShaderMaterial {
     }
   }
   onSwipeRight() {
-    this.isRunningThread = true;
+    this.uniforms.vanishDirection.value = getDirectionalVector({
+      referenceVector: this.uniforms.vanishDirection.value,
+      directionKey: DIRECTION_KEYS.LEFT_TO_RIGHT as DirectionKey,
+    });
+
+    this.startThread();
   }
 
+  onSwipeLeft() {
+    this.uniforms.vanishDirection.value = getDirectionalVector({
+      referenceVector: this.uniforms.vanishDirection.value,
+      directionKey: DIRECTION_KEYS.RIGHT_TO_LEFT as DirectionKey,
+    });
+    this.startThread();
+  }
+
+  startThread() {
+    setTimeout(() => {
+      this.isRunningThread = true;
+    }, 100);
+  }
   // RENDER FUNCTIONS
 
   onUpdateTime() {
@@ -79,6 +103,7 @@ export default class LokiMaterial extends RawShaderMaterial {
         duration: 1.2,
         overwrite: true,
       });
+
       this.changeDirectionOnComplete();
     }
   }
