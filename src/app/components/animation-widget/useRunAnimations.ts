@@ -54,6 +54,7 @@ export const useRunAnimations = (
   useInitializeScenes(sceneParams, framework, isRunningRef.current)
     .then((response: TWidgetVisual[]) => {
       sceneArrayRef.current = response;
+      console.log(response);
       initializeVisual();
     })
     .catch(() => {

@@ -2,6 +2,7 @@ import React from "react";
 
 interface IRootContainerProps {
   containerRef: React.MutableRefObject<any>;
+  children?: React.ReactNode;
   viewWidth?: string;
   viewHeight?: string;
 }

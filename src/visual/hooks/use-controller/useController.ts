@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { IController } from "./types";
 
-export const useController = () => {
+interface UseControllerProps {
+  initializeTimeoutOffset?: number;
+}
+
+export const useController = ({
+  initializeTimeoutOffset = 1000,
+}: UseControllerProps) => {
   const initialController = { isInitialized: false, isRunningThread: false };
   const [controller, updateController] = useState<IController>(
     initialController
   );
-  return { controller, updateController };
+
+  const onSceneInitialized = useCallback(() => {
+    setTimeout(() => {
+      updateController({
+        ...controller,
+        isInitialized: true,
+        isRunningThread: true,
+      });
+    }, initializeTimeoutOffset);
+  }, []);
+  return { controller, updateController, onSceneInitialized };
 };

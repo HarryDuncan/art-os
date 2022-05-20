@@ -35,7 +35,7 @@ export const MagicObject = () => {
   const renderer = useRenderer();
   const scene = useScene();
   const camera = useCamera({ position: { x: 0, y: 0, z: 5 } });
-  const { controller, updateController } = useController();
+  const { controller, updateController } = useController({});
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
   const postProcessor: React.MutableRefObject<null | PostProcessing> = useRef(
     null

@@ -4,11 +4,13 @@ import { Overlay } from "../../components/overlay/Overlay";
 import { LandingContainer, LandingPageTitle } from "./Landing.styles";
 
 export const Landing = () => {
-  const landingScene = {
+  const shaderSceneNames = ["cosmic", "matrixSea"];
+
+  const landingScenes = shaderSceneNames.map((scene: string) => ({
     title: "shaderScene",
     name: "ShaderScene",
-    data: { shaderName: "cosmic" },
-  };
+    data: { shaderName: scene },
+  }));
 
   return (
     <LandingContainer>
@@ -16,7 +18,7 @@ export const Landing = () => {
         <LandingPageTitle>Welcome To GLO</LandingPageTitle>
       </Overlay>
 
-      <AnimationWidget scenes={[landingScene]} />
+      <AnimationWidget scenes={landingScenes} />
     </LandingContainer>
   );
 };
