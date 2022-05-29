@@ -16,7 +16,7 @@ export const useRunAnimations = (
   const isRunningRef: React.MutableRefObject<boolean> = useRef(false);
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
   const currentVisualRef: React.MutableRefObject<TWidgetVisual> = useRef();
-
+  const sceneIndex: React.MutableRefObject<number> = useRef(0);
   const initializeVisual = () => {
     if (!!container && framework.isInitialized) {
       let node: any = container.current;
@@ -24,12 +24,8 @@ export const useRunAnimations = (
         node.appendChild(framework?.visual?.renderer.domElement);
       }
 
-      if (
-        framework?.widgetState?.sceneIndex !== undefined &&
-        framework?.visual
-      ) {
-        currentVisualRef.current =
-          sceneArrayRef.current[framework?.widgetState?.sceneIndex];
+      if (framework?.widgetState && framework?.visual) {
+        currentVisualRef.current = sceneArrayRef.current[sceneIndex.current];
 
         framework?.visual?.renderer?.render(
           currentVisualRef.current.scene,
@@ -68,6 +64,7 @@ export const useRunAnimations = (
     if (isRunning && !!sceneArray && currentVisual) {
       // PLAYING THE THREAD
       const play = () => {
+        console.log(sceneIndex.current);
         currentVisual.onUpdate(framework, currentVisual.sceneParams);
         framework?.visual?.renderer?.render(
           currentVisual.scene,
@@ -82,13 +79,14 @@ export const useRunAnimations = (
       };
 
       const changeScene = () => {
-        const { sceneIndex, updateSceneIndex } = framework.widgetState || {};
-        if (sceneIndex && updateSceneIndex) {
-          const newIndex =
-            sceneIndex >= sceneArray.length - 1 ? 0 : sceneIndex + 1;
-          currentVisualRef.current = sceneArray[newIndex];
-          updateSceneIndex(newIndex);
-        }
+        sceneIndex.current =
+          sceneIndex.current >= sceneArray.length - 1
+            ? 0
+            : sceneIndex.current + 1;
+
+        console.log(sceneIndex.current);
+        currentVisualRef.current = sceneArray[sceneIndex.current];
+
         updateFramework({
           ...framework,
           controlParams: {
@@ -99,16 +97,17 @@ export const useRunAnimations = (
             changeVisuals: false,
           },
         } as IFramework);
+        play();
       };
 
-      play();
-
       if (shouldChangeScene(currentVisual.sceneLength, sceneArray.length)) {
+        console.log("test");
         setTimeout(() => {
           pause();
           changeScene();
         }, currentVisual.sceneLength);
       }
+      play();
     }
   }, [isRunningRef.current, sceneArrayRef.current, currentVisualRef.current]);
 };

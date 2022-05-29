@@ -11,7 +11,7 @@ import { getDirectionalVector } from "visual/helpers/vectors";
 import { DIRECTION_KEYS } from "visual/helpers/vectors/consts";
 import { DirectionKey } from "visual/helpers/vectors/types";
 
-const minimumScoreThreshold = 0.65;
+const minimumScoreThreshold = 0.35;
 const advancedEvents: AdvancedEventKey[] = [
   POSENET_SWIPE_EVENT.LEFT as AdvancedEventKey,
   POSENET_SWIPE_EVENT.RIGHT as AdvancedEventKey,

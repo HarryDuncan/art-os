@@ -3,7 +3,7 @@ import { useScene } from "visual/hooks/use-scene/useScene";
 import React, { useRef } from "react";
 import { Clock, Color, Mesh, Vector3 } from "three";
 import { RootContainer } from "../../components/root-container";
-import { loadModel } from "../../helpers/ModelLoader";
+import { loadModel, loadObjModel } from "../../helpers/ModelLoader";
 import loadTexture from "../../helpers/TextureLoader";
 import ParticleSystem from "./class-components/ParticleSystem";
 import PARAMS from "./magic-object-params";
@@ -34,7 +34,7 @@ export const MagicObject = () => {
   const container = useRef(null);
   const renderer = useRenderer();
   const scene = useScene();
-  const camera = useCamera({ position: { x: 0, y: 0, z: 5 } });
+  const camera = useCamera({ position: { x: 0, y: 30, z: 105 } });
   const { controller, updateController } = useController({});
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
   const postProcessor: React.MutableRefObject<null | PostProcessing> = useRef(
@@ -99,9 +99,11 @@ export const MagicObject = () => {
   const initialize = async () => {
     Promise.all([
       loadTexture("../assets//textures/obsidian.jpg"),
-      loadModel("../assets/models/suzanne.glb"),
+      loadObjModel("../assets/models/ZeusBust.obj"),
     ]).then((values) => {
       store.texture = values[0];
+      //@ts-ignore
+      console.log(values[1].children[0]);
       //@ts-ignore
       store.model = values[1].children[0];
 
@@ -123,6 +125,8 @@ export const MagicObject = () => {
 
       // @ts-ignore
       const geom = store.model.geometry.clone();
+
+      console.log(geom);
       geom.computeBoundingBox();
 
       const size = new Vector3();
