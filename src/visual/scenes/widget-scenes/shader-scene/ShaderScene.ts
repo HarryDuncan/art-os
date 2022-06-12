@@ -18,6 +18,7 @@ const init = (sceneData, __: IFramework) => {
       uniformsPassed
     );
     const sceneParams = { uniforms: uniforms };
+    sceneParams.name = sceneData.data.shaderName;
     scene.add(sceneMesh);
     resolve({ camera: camera, scene: scene, sceneParams: sceneParams });
   });

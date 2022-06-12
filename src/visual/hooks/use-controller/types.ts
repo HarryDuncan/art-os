@@ -1,4 +1,6 @@
 export interface IController {
   isRunningThread: boolean;
-  isInitialized: boolean;
+  isFrameworkInitialized: boolean;
+  isAssetsInitialized: boolean;
+  isSceneInitialized: boolean;
 }

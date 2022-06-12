@@ -1,6 +1,7 @@
 import { IAnimationWidgetScene, TWidgetVisual } from "../types";
 import * as Scenes from "../../../../visual/scenes/widget-scenes";
 import { IFramework } from "../framework/types";
+import { cloneDeep } from "lodash";
 
 export const useInitializeScenes = (
   scenes: IAnimationWidgetScene[],
@@ -15,7 +16,7 @@ export const useInitializeScenes = (
     const initializedScenes: TWidgetVisual[] = [];
     let errorCount = 0;
     scenes.forEach((sceneItem) => {
-      const newScene: TWidgetVisual = Scenes[sceneItem.name];
+      const newScene: TWidgetVisual = cloneDeep(Scenes[sceneItem.name]);
       newScene
         .init(sceneItem, framework)
         .then((response) => {

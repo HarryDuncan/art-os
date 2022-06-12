@@ -1,11 +1,11 @@
-import { useCamera } from "visual/hooks/use-camera/useCamera";
-import { useScene } from "visual/hooks/use-scene/useScene";
+import { useCamera } from "visual/hooks/use-three-js/use-camera/useCamera";
+import { useScene } from "visual/hooks/use-three-js/use-scene/useScene";
 import React, { useEffect, useRef, useState } from "react";
 import { ev } from "visual/hooks/use-events/useEvents";
 import { useInitializeNode } from "visual/hooks/use-initialize-node/useInitializeNode";
 import { useController } from "visual/hooks/use-controller/useController";
 import { useControlThread } from "visual/hooks/use-control-thread/use-control-thread";
-import { useRenderer } from "visual/hooks/renderer";
+import { useRenderer } from "visual/hooks/use-three-js/renderer";
 import { getRatio } from "./utils";
 import {
   Clock,

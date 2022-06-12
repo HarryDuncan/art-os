@@ -1,38 +1,34 @@
 import { Clock, DoubleSide, RawShaderMaterial, Vector2 } from "three";
-import { vertex } from "./vertex";
-import { fragment } from "./fragment";
+
 import gsap from "gsap";
-import { POSENET_EVENTS } from "visual/hooks/use-events/consts";
 import { getPosenetDetailFromEvent } from "visual/helpers/posenetHelpers";
-// import { PoseNetEventTracker } from "visual/components/pose-net-event-tracker";
-// import { POSENET_SWIPE_EVENT } from "visual/components/pose-net-event-tracker/consts";
-// import { AdvancedEventKey } from "visual/components/pose-net-event-tracker/types";
+
 import { getDirectionalVector } from "visual/helpers/vectors";
 import { DIRECTION_KEYS } from "visual/helpers/vectors/consts";
 import { DirectionKey } from "visual/helpers/vectors/types";
 
-const minimumScoreThreshold = 0.35;
-// const advancedEvents: AdvancedEventKey[] = [
-//   POSENET_SWIPE_EVENT.LEFT as AdvancedEventKey,
-//   POSENET_SWIPE_EVENT.RIGHT as AdvancedEventKey,
-// ];
-export default class LokiMaterial extends RawShaderMaterial {
+interface InteractiveShaderProps {
+  vertexShader: string;
+  fragmentShader: string;
+  uniforms: any;
+}
+export default class InteractiveShader extends RawShaderMaterial {
   clock: Clock;
   isRunningThread: boolean;
-  // leftWristEventTracker: PoseNetEventTracker;
-  constructor(uniforms = {}) {
-    super({
-      vertexShader: vertex,
-      fragmentShader: fragment,
 
+  constructor({
+    vertexShader,
+    fragmentShader,
+    uniforms,
+  }: InteractiveShaderProps) {
+    super({
+      vertexShader,
+      fragmentShader,
+      uniforms,
       transparent: true,
       side: DoubleSide,
     });
     this.isRunningThread = true;
-    // this.leftWristEventTracker = new PoseNetEventTracker(
-    //   minimumScoreThreshold,
-    //   advancedEvents
-    // );
     this.uniforms = uniforms;
     this.clock = new Clock();
 
@@ -42,15 +38,6 @@ export default class LokiMaterial extends RawShaderMaterial {
   bindEvents() {
     document.addEventListener("scene:update", () => this.onUpdateTime());
     document.addEventListener("click", () => this.continueThread());
-    document.addEventListener(POSENET_EVENTS.LEFT_WRIST, (ev) =>
-      this.handleMovement(ev)
-    );
-    // document.addEventListener(POSENET_SWIPE_EVENT.RIGHT, (ev) =>
-    //   this.onSwipeRight()
-    // );
-    // document.addEventListener(POSENET_SWIPE_EVENT.LEFT, (ev) =>
-    //   this.onSwipeLeft()
-    // );
   }
 
   onUpdateColor({ color }) {
@@ -67,7 +54,6 @@ export default class LokiMaterial extends RawShaderMaterial {
   handleMovement(ev) {
     if (!this.isRunningThread) {
       const movementDetails = getPosenetDetailFromEvent(ev);
-      // this.leftWristEventTracker.addPoint(movementDetails);
     }
   }
   onSwipeRight() {

@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { PerspectiveCamera } from "three";
 import { CameraParams } from "./types";
 
-const defaultParams = {
+const defaultParams: CameraParams = {
   position: {
     x: 0,
     y: 0,

@@ -11,7 +11,7 @@ export const useRenderer = () => {
 
     newRenderer.setPixelRatio(window.devicePixelRatio);
     newRenderer.setSize(window.innerWidth, window.innerHeight);
-    newRenderer.setClearColor("#ffffff");
+    // newRenderer.setClearColor("#ffffff");
     return newRenderer;
   }, []);
 };

@@ -50,7 +50,6 @@ export const useRunAnimations = (
   useInitializeScenes(sceneParams, framework, isRunningRef.current)
     .then((response: TWidgetVisual[]) => {
       sceneArrayRef.current = response;
-      console.log(response);
       initializeVisual();
     })
     .catch(() => {
@@ -64,7 +63,6 @@ export const useRunAnimations = (
     if (isRunning && !!sceneArray && currentVisual) {
       // PLAYING THE THREAD
       const play = () => {
-        console.log(sceneIndex.current);
         currentVisual.onUpdate(framework, currentVisual.sceneParams);
         framework?.visual?.renderer?.render(
           currentVisual.scene,

@@ -1,11 +1,11 @@
-import { useCamera } from "visual/hooks/use-camera/useCamera";
-import { useScene } from "visual/hooks/use-scene/useScene";
+import { useCamera } from "visual/hooks/use-three-js/use-camera/useCamera";
+import { useScene } from "visual/hooks/use-three-js/use-scene/useScene";
 import React, { useRef } from "react";
 import { Clock, Color, Mesh, Vector3 } from "three";
 import { RootContainer } from "../../components/root-container";
 import { loadModel, loadObjModel } from "../../helpers/ModelLoader";
 import loadTexture from "../../helpers/TextureLoader";
-import ParticleSystem from "./class-components/ParticleSystem";
+import ParticleSystem from "../../components/particle-system/ParticleSystem";
 import PARAMS from "./magic-object-params";
 import LokiMaterial from "./materials/loki-material/lokiMaterial";
 import { ev, useEvents } from "visual/hooks/use-events/useEvents";
@@ -22,7 +22,7 @@ import { KEYPOINT_FEATURES } from "visual/hooks/use-pose-net/const";
 import { KeypointFeatureKey } from "visual/hooks/use-pose-net/types";
 import { useControlThread } from "visual/hooks/use-control-thread/use-control-thread";
 import PostProcessing from "../../components/post-processing/PostProcessing";
-import { useRenderer } from "visual/hooks/renderer";
+import { useRenderer } from "visual/hooks/use-three-js/renderer";
 
 export interface IMagicObjectStore {
   model?: any;
@@ -103,7 +103,7 @@ export const MagicObject = () => {
     ]).then((values) => {
       store.texture = values[0];
       //@ts-ignore
-      console.log(values[1].children[0]);
+
       //@ts-ignore
       store.model = values[1].children[0];
 
@@ -141,13 +141,13 @@ export const MagicObject = () => {
       scene.add(mesh, particles);
 
       postProcessor.current = new PostProcessing({ renderer, scene, camera });
-      setTimeout(() => {
-        updateController({
-          ...controller,
-          isInitialized: true,
-          isRunningThread: true,
-        });
-      }, 1000);
+      // setTimeout(() => {
+      //   updateController({
+      //     ...controller,
+      //     isInitialized: true,
+      //     isRunningThread: true,
+      //   });
+      // }, 1000);
     });
   };
   useInitializeNode(container, renderer, initialize);

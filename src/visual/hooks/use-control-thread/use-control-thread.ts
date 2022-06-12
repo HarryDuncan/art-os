@@ -7,11 +7,11 @@ export const useControlThread = (
   pause: () => void
 ) => {
   useEffect(() => {
-    if (controller.isInitialized && controller.isRunningThread) {
+    if (controller.isSceneInitialized && controller.isRunningThread) {
       setTimeout(() => {
         update();
       }, 5000);
-    } else if (controller.isInitialized && !controller.isRunningThread) {
+    } else if (controller.isSceneInitialized && !controller.isRunningThread) {
       pause();
     }
   }, [controller, update, pause]);
