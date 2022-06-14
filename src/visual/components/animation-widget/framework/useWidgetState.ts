@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { TScene } from "../scenes/types";
 
 export const useWidgetState = () => {
@@ -8,14 +8,16 @@ export const useWidgetState = () => {
   const [isRunning, toggleIsRunning] = useState<boolean>(false);
   const currentFrame = useRef<number>(0);
 
-  return {
-    sceneIndex,
-    updateSceneIndex,
-    sceneArray,
-    currentVisual,
-    setCurrentVisual,
-    isRunning,
-    toggleIsRunning,
-    currentFrame,
-  };
+  return useCallback(() => {
+    return {
+      sceneIndex,
+      updateSceneIndex,
+      sceneArray,
+      currentVisual,
+      setCurrentVisual,
+      isRunning,
+      toggleIsRunning,
+      currentFrame,
+    };
+  }, []);
 };

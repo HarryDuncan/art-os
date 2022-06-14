@@ -1,4 +1,4 @@
-import { IAnimationWidgetScene } from "app/components/animation-widget/types";
+import { IAnimationWidgetScene } from "visual/components/animation-widget/types";
 import { IPiece } from "../context/Context";
 
 export const useFormatScene = (
