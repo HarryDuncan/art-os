@@ -12,11 +12,14 @@ export const useRunAnimations = (
   framework: Partial<IFramework> = INITIAL_FRAMEWORK
 ) => {
   // Refs
-  const sceneArrayRef: React.MutableRefObject<TWidgetVisual[]> = useRef([]);
-  const isRunningRef: React.MutableRefObject<boolean> = useRef(false);
-  const currentFrameRef: React.MutableRefObject<number> = useRef(0);
-  const currentVisualRef: React.MutableRefObject<TWidgetVisual> = useRef();
-  const sceneIndex: React.MutableRefObject<number> = useRef(0);
+  const {
+    sceneIndex,
+    isRunningRef,
+    currentFrameRef,
+    currentVisualRef,
+    sceneArrayRef,
+  } = useAnimationWidgetRefs();
+
   const initializeVisual = () => {
     if (!!container && framework.isInitialized) {
       let node: any = container.current;
@@ -68,6 +71,7 @@ export const useRunAnimations = (
           currentVisual.scene,
           currentVisual.camera
         );
+
         currentFrameRef.current = requestAnimationFrame(play);
       };
 
@@ -82,7 +86,7 @@ export const useRunAnimations = (
             ? 0
             : sceneIndex.current + 1;
 
-        console.log(sceneIndex.current);
+        cancelAnimationFrame(currentFrameRef.current);
         currentVisualRef.current = sceneArray[sceneIndex.current];
 
         updateFramework({
@@ -99,7 +103,6 @@ export const useRunAnimations = (
       };
 
       if (shouldChangeScene(currentVisual.sceneLength, sceneArray.length)) {
-        console.log("test");
         setTimeout(() => {
           pause();
           changeScene();
@@ -109,3 +112,19 @@ export const useRunAnimations = (
     }
   }, [isRunningRef.current, sceneArrayRef.current, currentVisualRef.current]);
 };
+
+function useAnimationWidgetRefs() {
+  const sceneArrayRef: React.MutableRefObject<TWidgetVisual[]> = useRef([]);
+  const isRunningRef: React.MutableRefObject<boolean> = useRef(false);
+  const currentFrameRef: React.MutableRefObject<number> = useRef(0);
+  const currentVisualRef: React.MutableRefObject<TWidgetVisual> = useRef();
+  const sceneIndex: React.MutableRefObject<number> = useRef(0);
+
+  return {
+    sceneIndex,
+    isRunningRef,
+    currentFrameRef,
+    currentVisualRef,
+    sceneArrayRef,
+  };
+}

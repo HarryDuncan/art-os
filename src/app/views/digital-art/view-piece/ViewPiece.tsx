@@ -1,5 +1,5 @@
 import React from "react";
-import { AnimationWidget } from "../../../components/animation-widget/AnimationWidget";
+import { AnimationWidget } from "../../../../visual/components/animation-widget/AnimationWidget";
 import { useDigitalArtContext } from "../context/useDigitalArtContext";
 import { useFormatScene } from "./useFormatScene";
 import { ViewPieceContainer, ViewPieceHeader } from "./ViewPiece.styles";

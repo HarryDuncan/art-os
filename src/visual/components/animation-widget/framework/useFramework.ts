@@ -7,12 +7,12 @@ import { cloneDeep } from "lodash";
 
 export const useFramework = () => {
   const [framework, updateFramework] = useState<IFramework>();
-  const widgetState = useWidgetState();
+  const getState = useWidgetState();
 
   useEffect(() => {
     // Set up the framework
     const initializedFramework: IFramework = cloneDeep(INITIAL_FRAMEWORK);
-
+    const widgetState = getState();
     updateFramework({
       ...initializedFramework,
       isInitialized: true,

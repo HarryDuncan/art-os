@@ -1,5 +1,5 @@
 import { IAnimationWidgetScene, TWidgetVisual } from "../types";
-import * as Scenes from "../../../../visual/scenes/widget-scenes";
+import * as Scenes from "../../../scenes/widget-scenes";
 import { IFramework } from "../framework/types";
 import { cloneDeep } from "lodash";
 
