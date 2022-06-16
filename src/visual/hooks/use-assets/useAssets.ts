@@ -1,12 +1,22 @@
+import { useCallback } from "react";
 import { getFileTypeFromFilename } from "utils/getFileType";
-import { Asset } from "./types";
+import { useGeometryLoader } from "visual/helpers/geometry/load-geometry/LoadGeometry";
+import { Asset, AssetType } from "./types";
 
 export const useAssets = (assets: Asset[]) => {
-  console.log(assets);
-  assets.forEach(async (asset) => await loadAsset(asset));
+  assets.forEach(async (asset) => useAssetLoader(asset));
 };
 
-const loadAsset = async (asset: Asset) => {
+const useAssetLoader = async (asset: Asset) => {
   const fileType = getFileTypeFromFilename(asset.url);
-  console.log(fileType);
+
+  const geometryLoader = useGeometryLoader(fileType);
+  return useCallback(() => {
+    switch (asset.assetType) {
+      case AssetType.Geometry:
+        return geometryLoader;
+      default:
+        return null;
+    }
+  }, [geometryLoader]);
 };

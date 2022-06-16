@@ -34,7 +34,13 @@ export const InteractiveObject = ({
   interactionEvents,
   assets,
 }: InteractiveObjectProps) => {
-  const { controller, updateController } = useController({});
+  const {
+    controller,
+    updateController,
+    onSceneInitialized,
+    onAssetsInitialized,
+    onFrameworkInitialized,
+  } = useController({});
 
   // Set up ref, scene, and renderer, camera
   const {
@@ -72,6 +78,7 @@ export const InteractiveObject = ({
   useEffect(() => {
     initializeAssets();
   }, []);
+
   const initializeAssets = async () => {
     if (!store.texture) {
       Promise.all([

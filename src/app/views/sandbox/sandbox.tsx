@@ -1,5 +1,6 @@
 import React from "react";
 import { Asset, AssetType } from "visual/hooks/use-assets/types";
+import { useController } from "visual/hooks/use-controller/useController";
 import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import {
   EventKey,
@@ -47,6 +48,14 @@ export const Sandbox = () => {
       assetType: AssetType.Texture,
     },
   ];
+
+  const {
+    controller,
+    updateController,
+    onSceneInitialized,
+    onAssetsInitialized,
+    onFrameworkInitialized,
+  } = useController({});
 
   return (
     <InteractiveObject

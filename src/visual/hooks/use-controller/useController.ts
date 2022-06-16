@@ -18,27 +18,21 @@ export const useController = ({
     initialController
   );
 
-  const onFrameworkInitialized = useCallback(() => {
-    setTimeout(() => {
-      updateController({ ...controller, isFrameworkInitialized: true });
-    }, initializeTimeoutOffset);
-  }, []);
+  const onFrameworkInitialized = () => {
+    updateController({ ...controller, isFrameworkInitialized: true });
+  };
 
-  const onAssetsInitialized = useCallback(() => {
-    setTimeout(() => {
-      updateController({ ...controller, isAssetsInitialized: true });
-    }, initializeTimeoutOffset);
-  }, []);
+  const onAssetsInitialized = () => {
+    updateController({ ...controller, isAssetsInitialized: true });
+  };
 
-  const onSceneInitialized = useCallback(() => {
-    setTimeout(() => {
-      updateController({
-        ...controller,
-        isSceneInitialized: true,
-        isRunningThread: true,
-      });
-    }, initializeTimeoutOffset);
-  }, []);
+  const onSceneInitialized = () => {
+    updateController({
+      ...controller,
+      isSceneInitialized: true,
+      isRunningThread: true,
+    });
+  };
 
   return {
     controller,

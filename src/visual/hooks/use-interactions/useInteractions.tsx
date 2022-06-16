@@ -20,7 +20,7 @@ export const useInteractions = (
         runPosenet(webcamRef, interactionEventObjects);
       }
     }
-  }, [isInitialized, webcamRef]);
+  }, [isInitialized, webcamRef, modelType, interactionEventObjects]);
 
   tf.ready().then((_) => {
     setIsInitialized(true);
