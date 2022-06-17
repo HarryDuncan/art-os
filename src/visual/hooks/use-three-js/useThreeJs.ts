@@ -26,5 +26,6 @@ export const useThreeJs = (threeJsParams: ThreeJsParams) => {
     currentFrameRef,
     postProcessor,
     clock,
+    threeJsInitialized: true,
   };
 };

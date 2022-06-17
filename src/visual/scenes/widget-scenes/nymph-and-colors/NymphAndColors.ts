@@ -14,23 +14,23 @@ const init = (sceneData, framework: IFramework) => {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff);
 
-    loadObjModel("../assets/models/nymph1.obj")
-      .then((value) => {
-        const uniformsPassed = {};
+    // loadObjModel("../assets/models/nymph1.obj")
+    //   .then((value) => {
+    //     const uniformsPassed = {};
 
-        const { sceneMesh, uniforms } = useWebGLShader(
-          "checkerBlobs",
-          uniformsPassed
-        );
-        const sceneParams = { uniforms: uniforms };
-        scene.add(sceneMesh);
-        value.position.set(-3, -1, 0);
-        scene.add(value);
-        resolve({ camera: camera, scene: scene, sceneParams: sceneParams });
-      })
-      .catch(() => {
-        reject();
-      });
+    //     const { sceneMesh, uniforms } = useWebGLShader(
+    //       "checkerBlobs",
+    //       uniformsPassed
+    //     );
+    //     const sceneParams = { uniforms: uniforms };
+    //     scene.add(sceneMesh);
+    //     value.position.set(-3, -1, 0);
+    //     scene.add(value);
+    //     resolve({ camera: camera, scene: scene, sceneParams: sceneParams });
+    //   })
+    //   .catch(() => {
+    //     reject();
+    //   });
   });
 };
 

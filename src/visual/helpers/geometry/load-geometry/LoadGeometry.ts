@@ -1,13 +1,15 @@
 import { FILE_TYPES } from "visual/constants";
-import { useGLTFLoader } from "./useGLTFLoader";
-import { useObjectLoader } from "./useObjectLoader";
+import { loadGLTF } from "./loadGLTF";
+import { loadObject } from "./loadObject";
 
-export const useGeometryLoader = (fileType: string = "") => {
+export const loadGeometry = async (path: string, fileType) => {
   switch (fileType) {
     case FILE_TYPES.MODELS.GLTF:
-      return useGLTFLoader();
+      const gltf = loadGLTF(path);
+      return gltf;
     case FILE_TYPES.MODELS.OBJ:
-      return useObjectLoader();
+      const object = await loadObject(path);
+      return object;
     case "":
     default:
       return null;

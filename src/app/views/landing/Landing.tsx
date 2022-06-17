@@ -4,7 +4,7 @@ import { Overlay } from "../../components/overlay/Overlay";
 import { LandingContainer, LandingPageTitle } from "./Landing.styles";
 
 export const Landing = () => {
-  const shaderSceneNames = ["cosmic", "matrixSea", "liquid"];
+  const shaderSceneNames = ["liquid"];
 
   //
   const landingScenes = shaderSceneNames.map((scene: string) => ({

@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { Color, Mesh, Vector3 } from "three";
-import PARAMS from "visual/scenes/magic-object/magic-object-params";
+
 import { InteractionEventObject } from "../use-interactions/types";
 import InteractiveMaterial from "./InteractiveMaterial";
 
-export const useInteractiveMaterial = () => {
+export const useInteractiveMaterial = (materialParams: any) => {
   return useCallback(
     (
       interactionEventObjects: InteractionEventObject[],
@@ -21,7 +21,7 @@ export const useInteractiveMaterial = () => {
         lightningPower,
         lightningDiffusion,
         vanishDirection,
-      } = PARAMS;
+      } = materialParams;
 
       const size = new Vector3();
       geometry.boundingBox.getSize(size);

@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import ttfFont from "./fonts/AnimationS.ttf";
 import woff from "./fonts/AnimationS.woff";
 export const GlobalStyle = createGlobalStyle`
@@ -17,19 +17,4 @@ export const GlobalStyle = createGlobalStyle`
   
  h1 { font-family : 'HarryDuncan'}
  h2 { font-family : 'HarryDuncan'}
-`;
-
-const scrollbarStyles = css`
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.mono.ui05};
-  }
-
-  ::-webkit-scrollbar-corner {
-    background: transparent;
-  }
 `;

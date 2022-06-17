@@ -5,13 +5,13 @@ import { ContainerNode } from "visual/interfaces";
 export const useInitializeNode = (
   containerRef: ContainerNode,
   renderer: WebGLRenderer,
-  initializeFunction: () => void
+  initializeNode: () => void
 ) =>
   useEffect(() => {
     //@ts-ignore
     if (containerRef?.current && !containerRef.current.hasChildNodes()) {
       //@ts-ignore
       containerRef?.current?.appendChild(renderer.domElement);
-      initializeFunction();
+      initializeNode();
     }
-  }, [containerRef, renderer, initializeFunction]);
+  }, [containerRef, renderer, initializeNode]);

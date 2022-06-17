@@ -1,0 +1,16 @@
+// import { useMemo } from "react";
+// import { InteractionEventObject } from "visual/hooks/use-interactions/types";
+// import { ThreeJsParams } from "visual/hooks/use-three-js/types";
+// import { Framework } from "./Framework";
+
+// export const useFramework = (
+//   threeJsParams: ThreeJsParams = {},
+//   interactionEvents: InteractionEventObject[] = []
+// ) => {
+//   return useMemo(() => {
+//     const framework = new Framework();
+//     framework.threeJS = threeJsParams;
+//     framework.interactions = interactionEvents;
+//     return framework;
+//   }, []);
+// };

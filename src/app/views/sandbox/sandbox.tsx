@@ -1,12 +1,12 @@
 import React from "react";
 import { Asset, AssetType } from "visual/hooks/use-assets/types";
-import { useController } from "visual/hooks/use-controller/useController";
 import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import {
   EventKey,
   InteractionEventObject,
   InteractionKey,
 } from "visual/hooks/use-interactions/types";
+import { useInteractiveMaterialParams } from "visual/hooks/use-interactive-material/useInteractiveMaterialParams";
 import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 import { InteractiveObject } from "visual/scenes/interactive-object/InteractiveObject";
 
@@ -49,19 +49,13 @@ export const Sandbox = () => {
     },
   ];
 
-  const {
-    controller,
-    updateController,
-    onSceneInitialized,
-    onAssetsInitialized,
-    onFrameworkInitialized,
-  } = useController({});
-
+  const materialParams = useInteractiveMaterialParams();
   return (
     <InteractiveObject
       threeJsParams={threeJSParams}
       interactionEvents={interactions}
       assets={assets}
+      materialParams={materialParams}
     />
   );
 };
