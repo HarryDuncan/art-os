@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { RootContainer } from "../../components/root-container";
-import { ev } from "visual/hooks/use-events/useEvents";
-import { useInitializeNode } from "visual/hooks/use-initialize-node/useInitializeNode";
 import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import { useThreeJs } from "visual/hooks/use-three-js/useThreeJs";
 import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 import { Asset } from "visual/hooks/use-assets/types";
-import { useInitializeAssets } from "visual/hooks/use-assets/useAssets";
+import { useAssets } from "visual/hooks/use-assets/useAssets";
+import PostProcessing from "visual/components/post-processing/PostProcessing";
+import { useThread } from "visual/hooks/use-thread/useThread";
 
 interface InteractiveObjectProps {
   threeJsParams: ThreeJsParams;
@@ -22,16 +22,8 @@ export const InteractiveObject = ({
   assets,
   materialParams,
 }: InteractiveObjectProps) => {
-  // Assets
-  const initializeAssets = useInitializeAssets(assets);
-  useEffect(() => {
-    async function getAssets() {
-      const loadedAssets = await initializeAssets();
-      console.log(loadedAssets);
-    }
+  const { initializedAssets, areAssetsInitialized } = useAssets(assets);
 
-    getAssets();
-  }, [assets]);
   // Set up ref, scene, and renderer, camera
   const {
     container,
@@ -44,27 +36,28 @@ export const InteractiveObject = ({
   } = useThreeJs(threeJsParams);
 
   // THREAD CONTROL
-  // const update = () => {
-  //   ev("scene:update");
-
-  //   postProcessor.current?.render(clock.getDelta());
-  //   // renderer.render(scene, camera);
-  //   if (controller.isRunningThread) {
-  //     currentFrameRef.current = requestAnimationFrame(update);
-  //   }
-  // };
-  // const pause = () => {
-  //   cancelAnimationFrame(currentFrameRef.current);
-  // };
-  // useControlThread(controller, update, pause);
+  const { update } = useThread(postProcessor, currentFrameRef, clock);
 
   // Interactive
   const { interactiveNode } = useInteractions(interactionEvents);
-  const createInteractiveMesh = useInteractiveMaterial(materialParams);
+  const interactiveMesh = useInteractiveMaterial(
+    materialParams,
+    interactionEvents,
+    areAssetsInitialized,
+    initializedAssets
+  );
 
-  const initializeNode = () => {};
+  const initializeMesh = useCallback(() => {
+    if (interactiveMesh) {
+      scene.add(interactiveMesh);
+      postProcessor.current = new PostProcessing({ renderer, scene, camera });
+      update();
+    }
+  }, [postProcessor, renderer, scene, camera, interactiveMesh, update]);
 
-  useInitializeNode(container, renderer, initializeNode);
+  useEffect(() => {
+    initializeMesh();
+  }, [initializeMesh]);
 
   return (
     <>

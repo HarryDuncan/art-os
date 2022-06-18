@@ -1,4 +1,5 @@
-export const vertex = `uniform mat4 modelMatrix;
+export const vanishingObjectVertex = {
+  vert: `uniform mat4 modelMatrix;
 uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
 
@@ -24,4 +25,5 @@ void main() {
 
     gl_Position = projectionMatrix * worldPos;
 }
-`;
+`,
+};

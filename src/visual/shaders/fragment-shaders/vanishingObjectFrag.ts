@@ -1,8 +1,9 @@
-import { addShaders } from "visual/shader-functions/addShaderFunctions";
-import { noise3D } from "visual/shader-functions/noise/simplex/noise3D";
-import { noise4D } from "visual/shader-functions/noise/simplex/noise4D";
+import { addShaders } from "visual/shaders/shader-functions/addShaderFunctions";
+import { noise3D } from "visual/shaders/shader-functions/noise/simplex/noise3D";
+import { noise4D } from "visual/shaders/shader-functions/noise/simplex/noise4D";
 
-export const fragment = `precision highp float;
+export const vanishingObjectFragment = {
+  frag: `precision highp float;
 #define OCTAVES 10
 #define PI 3.14159265359
 #define S smoothstep
@@ -101,4 +102,5 @@ void main() {
     if (finalColor.a <= 0.) discard;
 
     gl_FragColor = finalColor;
-}`;
+}`,
+};

@@ -6,6 +6,8 @@ import {
   InteractionEventObject,
   InteractionKey,
 } from "visual/hooks/use-interactions/types";
+import InteractiveMaterial from "visual/hooks/use-interactive-material/InteractiveMaterial";
+import { InteractiveScenes } from "visual/hooks/use-interactive-material/types";
 import { useInteractiveMaterialParams } from "visual/hooks/use-interactive-material/useInteractiveMaterialParams";
 import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 import { InteractiveObject } from "visual/scenes/interactive-object/InteractiveObject";
@@ -21,35 +23,38 @@ export const Sandbox = () => {
     {
       eventKey: EventKey.SwipeUp,
       interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
-      eventFunction: (shader) => {
-        shader.uniforms.delta.value = shader.uniforms.delta.value * -1;
-        shader.isRunningThread = true;
+      eventFunction: (material: InteractiveMaterial) => {
+        material.uniforms.delta.value = material.uniforms.delta.value * -1;
+        material.isRunningThread = true;
       },
     },
     {
       eventKey: EventKey.SwipeDown,
       interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
-      eventFunction: (shader) => {
-        shader.uniforms.delta.value = shader.uniforms.delta.value * -1;
-        shader.isRunningThread = true;
+      eventFunction: (material: InteractiveMaterial) => {
+        material.uniforms.delta.value = material.uniforms.delta.value * -1;
+        material.isRunningThread = true;
       },
     },
   ];
 
   const assets: Asset[] = [
     {
-      name: "model-geometry",
+      name: "geometry",
       url: "../assets/models/ZeusBust.obj",
       assetType: AssetType.Geometry,
     },
     {
-      name: "model-texture",
-      url: "../assets//textures/obsidian.jpg",
+      name: "matcap",
+      url: "../assets/textures/obsidian.jpg",
       assetType: AssetType.Texture,
     },
   ];
 
-  const materialParams = useInteractiveMaterialParams();
+  const materialParams = useInteractiveMaterialParams(
+    InteractiveScenes.VANISHING_OBJECT
+  );
+
   return (
     <InteractiveObject
       threeJsParams={threeJSParams}

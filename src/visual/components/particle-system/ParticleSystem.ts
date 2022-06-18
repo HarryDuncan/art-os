@@ -7,6 +7,7 @@ import {
   Color,
   Vector3,
   Vector2,
+  Mesh,
 } from "three";
 import { MeshSurfaceSampler } from "three/examples/jsm/math/MeshSurfaceSampler";
 import ParticleMaterial from "./materials/particle-material/ParticleMaterial";
@@ -39,14 +40,14 @@ interface IMagicObjectStore {
   model: any;
 }
 export default class ParticleSystem extends Object3D {
-  store: IMagicObjectStore;
+  model: any;
   init: any;
   mat: any;
 
-  constructor(store: IMagicObjectStore) {
+  constructor(store: any) {
     super();
 
-    this.store = store;
+    this.model = store;
 
     this.init = () => {
       this.initMaterial();
@@ -66,7 +67,8 @@ export default class ParticleSystem extends Object3D {
       vanishDirection,
       particleDiffusion,
     } = PARAMS;
-    const geom = this.store.model.geometry;
+
+    const geom = this.model;
 
     geom.computeBoundingBox();
 
@@ -99,7 +101,7 @@ export default class ParticleSystem extends Object3D {
     const colors: any[] = [];
     const randoms: any[] = [];
 
-    const sampler = new MeshSurfaceSampler(this.store.model)
+    const sampler = new MeshSurfaceSampler(new Mesh(this.model))
       .setWeightAttribute("uv")
       .build();
     const v3 = new Vector3();

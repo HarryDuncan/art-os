@@ -3,7 +3,7 @@ import {
   mod289Vec4,
   permuteVec4,
   taylorInvSqrtVec4,
-} from "visual/shader-functions/maths/maths";
+} from "visual/shaders/shader-functions/maths/maths";
 
 export const noise3D = `
 

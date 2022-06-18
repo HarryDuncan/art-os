@@ -1,6 +1,11 @@
 type FragmentShaderTag = "interactive" | "mouse" | "noUniforms" | "uniforms";
 
-export interface IFragmentShader {
+export interface FragmentShader {
   frag: string;
-  tags: FragmentShaderTag[];
+  tags?: FragmentShaderTag[];
+}
+
+export interface VertexShader {
+  vert: string;
+  tags?: FragmentShaderTag[];
 }

@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import { Group } from "three";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 

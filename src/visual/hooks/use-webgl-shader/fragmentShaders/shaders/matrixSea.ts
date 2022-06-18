@@ -1,6 +1,6 @@
-import { IFragmentShader } from "../types";
+import { FragmentShader } from "../types";
 
-export const matrixSea: IFragmentShader = {
+export const matrixSea: FragmentShader = {
   tags: [],
   frag: `float hash(float n) {
         return fract(sin(n)*43578.5453);
