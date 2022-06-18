@@ -3,4 +3,8 @@ export const FILE_TYPES = {
     JPG: "jpg",
     PNG: "png",
   },
+  MODELS: {
+    GLTF: "gltf",
+    OBJ: "obj",
+  },
 };

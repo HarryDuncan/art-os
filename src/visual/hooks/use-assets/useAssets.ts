@@ -1,12 +1,19 @@
-import { getFileTypeFromFilename } from "utils/getFileType";
+import { useEffect, useState } from "react";
 import { Asset } from "./types";
+import { useInitializeAssets } from "./useInitializeAssets";
 
 export const useAssets = (assets: Asset[]) => {
-  console.log(assets);
-  assets.forEach(async (asset) => await loadAsset(asset));
-};
+  const [areAssetsInitialized, setAreAssetsInitialized] = useState(false);
+  const [initializedAssets, setInitializedAssets] = useState<Asset[]>([]);
+  const initializeAssets = useInitializeAssets(assets);
+  useEffect(() => {
+    async function getAssets() {
+      const loadedAssets = await initializeAssets();
+      setAreAssetsInitialized(true);
+      setInitializedAssets(loadedAssets);
+    }
+    getAssets();
+  }, [assets, initializeAssets]);
 
-const loadAsset = async (asset: Asset) => {
-  const fileType = getFileTypeFromFilename(asset.url);
-  console.log(fileType);
+  return { initializedAssets, areAssetsInitialized };
 };

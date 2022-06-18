@@ -39,7 +39,7 @@ export const runPosenet = (
       webcam.video.height = videoHeight;
 
       // Make Detections
-      const { score, keypoints } = await net.estimateSinglePose(video);
+      const { keypoints } = await net.estimateSinglePose(video);
       const trackedKeyPoints = featureKeys.map((featureKey) =>
         keypoints.find(
           (keypoint) => featureKey === (keypoint.part as KeypointFeatureKey)

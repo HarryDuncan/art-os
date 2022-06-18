@@ -1,1 +1,0 @@
-export { MagicObject } from "./MagicObject";

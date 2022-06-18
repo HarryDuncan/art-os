@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Color, WebGLRenderer } from "three";
+import { WebGLRenderer } from "three";
 
 export const useRenderer = () => {
   return useMemo(() => {
@@ -11,7 +11,7 @@ export const useRenderer = () => {
 
     newRenderer.setPixelRatio(window.devicePixelRatio);
     newRenderer.setSize(window.innerWidth, window.innerHeight);
-    // newRenderer.setClearColor("#ffffff");
+
     return newRenderer;
   }, []);
 };

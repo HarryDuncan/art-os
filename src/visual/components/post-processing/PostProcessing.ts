@@ -1,16 +1,33 @@
 import { Camera, Scene, Vector2, WebGLRenderTarget } from "three";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-import { SMAAPass } from "three/examples/jsm/postprocessing/SMAAPass";
+// import { SMAAPass } from "three/examples/jsm/postprocessing/SMAAPass";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 import { getWindowParams } from "visual/helpers/getWindowParams";
 
-import PARAMS from "../../scenes/magic-object/magic-object-params";
 import { defaultRenderTargetParameters } from "./consts";
 
-/* POST PROCESSING
----------------------------------------------------------------------------------------------------- */
+const PARAMS = {
+  progress: { value: 0.5 },
+  mainColor: 0xffcf79,
+  particleDiffusion: { value: 1 },
+  baseNoiseIteration: { value: 5 },
+  noiseDiffusion: { value: 0.76 },
+  noisePrecision: { value: 2.61 },
+  lightningDiffusion: { value: 0.01 },
 
+  lightningThickness: { value: 0.79 },
+  lightningPower: { value: 0.07 },
+  vanishDirection: { value: new Vector2(-1, 0) },
+
+  useBloom: true,
+
+  bloom: {
+    strength: 2,
+    radius: 0.16,
+    threshold: 0.7,
+  },
+};
 export default class PostProcessing extends EffectComposer {
   scene: Scene;
   camera: Camera;
@@ -63,7 +80,7 @@ export default class PostProcessing extends EffectComposer {
 
     const { bloom } = PARAMS;
     const modifier = 1;
-    const { width, height, pixelRatio } = getWindowParams();
+    const { width, height } = getWindowParams();
     this.bloomPass = new UnrealBloomPass(
       new Vector2(width, height),
       bloom.strength * modifier,

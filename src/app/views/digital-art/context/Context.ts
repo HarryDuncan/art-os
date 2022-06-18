@@ -18,11 +18,6 @@ export const defaultState: DigitalArtState = {
       sceneName: "Swirl",
       assets: { img: "../assets/8Bytes.jpg" },
     },
-    {
-      title: "Nymph And Colors",
-      sceneName: "NymphAndColors",
-      assets: {},
-    },
   ],
 };
 

@@ -1,6 +1,6 @@
-import { IFragmentShader } from "../types";
+import { FragmentShader } from "../types";
 
-export const electricPulse: IFragmentShader = {
+export const electricPulse: FragmentShader = {
   tags: ["noUniforms"],
   frag: `
 

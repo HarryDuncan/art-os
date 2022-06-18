@@ -1,16 +1,16 @@
-import { Clock, DoubleSide, RawShaderMaterial, Vector2 } from "three";
+import { Clock, DoubleSide, RawShaderMaterial } from "three";
 import gsap from "gsap";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
+import { InteractiveShaders } from "./types";
 
-const registerEvents = (eventKey) => {};
 export default class InteractiveMaterial extends RawShaderMaterial {
   clock: Clock;
   isRunningThread: boolean;
   interactionEvents: InteractionEventObject[];
-  constructor(vertex, fragment, uniforms = {}, interactions) {
+  constructor(uniforms, shaders: InteractiveShaders, interactions) {
     super({
-      vertexShader: vertex,
-      fragmentShader: fragment,
+      vertexShader: shaders.vertexShader.vert,
+      fragmentShader: shaders.fragmentShader.frag,
       transparent: true,
       side: DoubleSide,
     });
@@ -24,13 +24,8 @@ export default class InteractiveMaterial extends RawShaderMaterial {
     });
   }
 
-  onEvent(event: any) {
-    console.log(event);
-  }
-
   onGestureEvent(event: Event) {
     const { type } = event;
-
     const currentAction = this.interactionEvents.find(
       (interactionEvent) => interactionEvent.eventKey === type
     );
@@ -54,7 +49,6 @@ export default class InteractiveMaterial extends RawShaderMaterial {
   onUpdateTime() {
     if (this.isRunningThread) {
       this.uniforms.time.value += this.clock.getDelta();
-
       gsap.to(this.uniforms.progress, {
         value: this.uniforms.progress.value + this.uniforms.delta.value,
         ease: "power4.out",

@@ -1,5 +1,4 @@
-import { EventParam } from "../use-events/types";
-import { KEYPOINT_FEATURES, INTERACTION_EVENTS } from "./const";
+import { KEYPOINT_FEATURES } from "./const";
 
 export interface InteractionEventObject {
   interactionKey: InteractionKey;

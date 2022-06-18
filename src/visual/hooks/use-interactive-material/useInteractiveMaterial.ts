@@ -1,55 +1,57 @@
-import { useCallback } from "react";
-import { Color, Mesh, Vector3 } from "three";
-import PARAMS from "visual/scenes/magic-object/magic-object-params";
+import { useMemo } from "react";
+import { Vector3 } from "three";
+import { getGeometryAsset } from "visual/helpers/assets/getGeometryAsset";
+import { Asset } from "../use-assets/types";
 import { InteractionEventObject } from "../use-interactions/types";
-import InteractiveMaterial from "./InteractiveMaterial";
+import { InteractiveParam } from "./types";
+import { useCreateInteractiveMesh } from "./useCreateInteractiveMesh";
 
-export const useInteractiveMaterial = () => {
-  return useCallback(
-    (
-      interactionEventObjects: InteractionEventObject[],
-      geometry: any,
-      params: any
-    ) => {
-      const {
-        progress,
-        baseNoiseIteration,
-        noiseDiffusion,
-        mainColor,
-        noisePrecision,
-        lightningThickness,
-        lightningPower,
-        lightningDiffusion,
-        vanishDirection,
-      } = PARAMS;
+export const useInteractiveMaterial = (
+  materialParams: InteractiveParam,
+  interactionEvents: InteractionEventObject[],
+  areAssetsInitialized: boolean,
+  assets: Asset[]
+) => {
+  const createInteractiveMesh = useCreateInteractiveMesh();
 
-      const size = new Vector3();
-      geometry.boundingBox.getSize(size);
+  // Interactive mesh must be created after assets are loaded - in case we use any geometries/textures
+  const interactiveMesh = useMemo(() => {
+    if (!areAssetsInitialized) return;
+    const { geometry, uniforms, shaders } = formatAssets(
+      assets,
+      materialParams
+    );
 
-      const interactiveMaterial = new InteractiveMaterial(
-        params.vertex,
-        params.fragment,
-        {
-          matcap: { value: params.texture },
-          progress,
-          baseNoiseIteration,
-          noisePrecision,
-          size: { value: size },
-          color: { value: new Color(mainColor) },
-          noiseDiffusion,
-          lightningThickness,
-          lightningPower,
-          lightningDiffusion,
-          vanishDirection,
-          time: { value: 0 },
-          delta: { value: 0.01 },
-        },
-        interactionEventObjects
-      );
+    return createInteractiveMesh(
+      interactionEvents,
+      geometry,
+      uniforms,
+      shaders
+    );
+  }, [
+    areAssetsInitialized,
+    assets,
+    createInteractiveMesh,
+    interactionEvents,
+    materialParams,
+  ]);
 
-      const interactiveMesh = new Mesh(geometry, interactiveMaterial);
-      return interactiveMesh;
-    },
-    []
-  );
+  return interactiveMesh;
+};
+
+const formatAssets = (assets, materialParams) => {
+  const { uniforms, shaders } = Object.assign(materialParams);
+  const geometry = getGeometryAsset(assets);
+  const matcap = assets.find((asset) => asset.name === "matcap").data;
+
+  uniforms.matcap.value = matcap;
+
+  const geom = geometry.clone();
+
+  geom.computeBoundingBox();
+
+  const size = new Vector3();
+  geom.boundingBox.getSize(size);
+  uniforms.size.value.copy(size);
+  return { geometry: geom, uniforms, shaders };
 };

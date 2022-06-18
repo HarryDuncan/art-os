@@ -10,10 +10,12 @@ export const useEvents = (eventParams: IUseEventProps) =>
           document.addEventListener(key, (e) =>
             onEventFire ? onEventFire({ e, props }) : dummyEvent
           );
+          break;
         case EVENT_BIND_TYPES.WINDOW:
           window.addEventListener(key, (e) =>
             onEventFire ? onEventFire({ e, props }) : dummyEvent
           );
+          break;
       }
     });
   }, []);
