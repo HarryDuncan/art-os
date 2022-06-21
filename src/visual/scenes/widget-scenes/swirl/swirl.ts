@@ -1,6 +1,9 @@
 // @ts-nocheck
 import * as THREE from "three";
-import { TWidgetVisual, IFramework } from "../../../../animations/interfaces";
+import {
+  FunctionBasedScene,
+  IFramework,
+} from "../../../../animations/interfaces";
 import { fragShader } from "./frag.ts";
 import { vertShader } from "./vert.ts";
 
@@ -54,7 +57,7 @@ const onUpdate = (framework: IFramework, sceneParams: any) => {
     (performance.now() / 1000) * 0.03
   );
 };
-export const Swirl: TWidgetVisual = {
+export const Swirl: FunctionBasedScene = {
   name: "swirl",
   scene: null,
   camera: null,

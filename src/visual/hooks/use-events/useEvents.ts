@@ -18,7 +18,7 @@ export const useEvents = (eventParams: IUseEventProps) =>
           break;
       }
     });
-  }, []);
+  }, [eventParams]);
 
 export const ev = (eventName, data?, once = false) => {
   const e = new CustomEvent(eventName, { detail: data });

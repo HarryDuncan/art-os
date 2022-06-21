@@ -19,7 +19,7 @@ export const useFramework = () => {
       visual: setUpVisual(),
       widgetState,
     });
-  }, []);
+  }, [getState]);
 
   return { framework, updateFramework };
 };

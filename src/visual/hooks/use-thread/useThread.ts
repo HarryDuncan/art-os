@@ -8,8 +8,9 @@ export const useThread = (postProcessor, currentFrameRef, clock) => {
     currentFrameRef.current = requestAnimationFrame(update);
   }, [currentFrameRef, postProcessor, clock]);
 
-  return { update };
-  // const pause = () => {
-  //   cancelAnimationFrame(currentFrameRef.current);
-  // };
+  const pause = useCallback(() => {
+    cancelAnimationFrame(currentFrameRef.current);
+  }, [currentFrameRef]);
+
+  return { update, pause };
 };

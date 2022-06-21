@@ -7,7 +7,7 @@ import { ThreeJsParams } from "./types";
 import { useCamera } from "./use-camera/useCamera";
 import { useScene } from "./use-scene/useScene";
 
-export const useThreeJs = (threeJsParams: ThreeJsParams) => {
+export const useThreeJs = (threeJsParams: ThreeJsParams = {}) => {
   const container = useRef(null);
   const renderer = useRenderer();
   const scene = useScene();

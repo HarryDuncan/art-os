@@ -1,6 +1,5 @@
-import React, { FC, useRef } from "react";
+import React, { FC } from "react";
 import { IAnimationWidgetScene } from "./types";
-import { useFramework } from "./framework/useFramework";
 import { useRunAnimations } from "./useRunAnimations";
 import { RootContainer } from "../root-container";
 
@@ -16,9 +15,7 @@ export const AnimationWidget: FC<IAnimationWidgetProps> = ({
   viewWidth = "100vw",
   viewHeight = "100vh",
 }) => {
-  const container = useRef(null);
-  const { framework, updateFramework } = useFramework();
-  useRunAnimations(container, scenes, updateFramework, framework);
+  const { container } = useRunAnimations(scenes);
 
   return (
     <RootContainer

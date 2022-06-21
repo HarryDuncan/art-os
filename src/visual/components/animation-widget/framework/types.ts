@@ -1,16 +1,11 @@
 import React from "react";
 import { Clock, PerspectiveCamera, Scene, WebGLRenderer } from "three";
-import { TWidgetVisual } from "../types";
 import { TScene } from "../scenes/types";
 
 export interface IWidgetState {
   sceneIndex: number;
   updateSceneIndex: React.Dispatch<React.SetStateAction<number>>;
   sceneArray: TScene[];
-  currentVisual: TWidgetVisual;
-  setCurrentVisual: React.Dispatch<React.SetStateAction<TWidgetVisual>>;
-  isRunning: boolean;
-  toggleIsRunning: React.Dispatch<React.SetStateAction<boolean>>;
   currentFrame: React.MutableRefObject<number>;
 }
 

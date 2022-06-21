@@ -7,7 +7,7 @@ import { mockImplementation } from "test-utils/mockImplementation";
 import { LandingContainer, LandingPageTitle } from "../Landing.styles";
 import { AnimationWidget } from "visual/components/animation-widget";
 
-jest.mock("app/components/animation-widget", () => ({
+jest.mock("visual/components/animation-widget", () => ({
   AnimationWidget: jest.fn(),
 }));
 

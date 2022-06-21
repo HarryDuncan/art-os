@@ -1,9 +1,12 @@
 // @ts-nocheck
 import * as THREE from "three";
-import { TWidgetVisual, IFramework } from "../../../../animations/interfaces";
+import {
+  FunctionBasedScene,
+  IFramework,
+} from "../../../../animations/interfaces";
 import { useWebGLShader } from "visual/hooks/use-webgl-shader";
 
-const init = (sceneData, __: IFramework) => {
+const init = (sceneData) => {
   return new Promise((resolve, reject) => {
     // Camera
     const camera = new THREE.PerspectiveCamera(50, 1.0, 1, 10000);
@@ -27,7 +30,7 @@ const init = (sceneData, __: IFramework) => {
 const onUpdate = (framework: IFramework, sceneParams: any) => {
   sceneParams.uniforms.iTime.value = performance.now() / 10000;
 };
-export const ShaderScene: TWidgetVisual = {
+export const ShaderScene: FunctionBasedScene = {
   name: "shader-scene",
   scene: null,
   camera: null,

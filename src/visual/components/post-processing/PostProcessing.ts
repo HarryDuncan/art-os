@@ -31,9 +31,8 @@ const PARAMS = {
 export default class PostProcessing extends EffectComposer {
   scene: Scene;
   camera: Camera;
-
   bloomPass: any;
-  constructor({ renderer, scene, camera }) {
+  constructor({ renderer, scene, camera, passes = [] }) {
     const renderTarget = new WebGLRenderTarget(
       window.innerHeight,
       window.outerHeight,
@@ -45,10 +44,7 @@ export default class PostProcessing extends EffectComposer {
     this.camera = camera;
     this.renderer = renderer;
     this.onResize();
-
-    // const renderPass = new RenderPass(scene, camera);
-    // this.addPass(renderPass);
-    this.addCustomPasses();
+    this.addCustomPasses(passes);
 
     this.bindEvents();
   }
@@ -74,26 +70,27 @@ export default class PostProcessing extends EffectComposer {
     // this.bloomPass.threshold = bloom.threshold * mod;
   }
 
-  addCustomPasses() {
+  addCustomPasses(passes) {
     const renderPass = new RenderPass(this.scene, this.camera);
     this.addPass(renderPass);
+    if (passes.length) {
+      const { bloom } = PARAMS;
+      const modifier = 1;
+      const { width, height } = getWindowParams();
+      this.bloomPass = new UnrealBloomPass(
+        new Vector2(width, height),
+        bloom.strength * modifier,
+        bloom.radius * modifier,
+        bloom.threshold * modifier
+      );
+      this.bloomPass.strength = bloom.strength * modifier;
+      this.bloomPass.radius = bloom.radius * modifier;
+      this.bloomPass.threshold = bloom.threshold * modifier;
 
-    const { bloom } = PARAMS;
-    const modifier = 1;
-    const { width, height } = getWindowParams();
-    this.bloomPass = new UnrealBloomPass(
-      new Vector2(width, height),
-      bloom.strength * modifier,
-      bloom.radius * modifier,
-      bloom.threshold * modifier
-    );
-    this.bloomPass.strength = bloom.strength * modifier;
-    this.bloomPass.radius = bloom.radius * modifier;
-    this.bloomPass.threshold = bloom.threshold * modifier;
+      this.addPass(this.bloomPass);
 
-    this.addPass(this.bloomPass);
-
-    // this.smaaPass = new SMAAPass(width * pixelRatio, height * pixelRatio);
-    // this.addPass(this.smaaPass);
+      // this.smaaPass = new SMAAPass(width * pixelRatio, height * pixelRatio);
+      // this.addPass(this.smaaPass);
+    }
   }
 }
