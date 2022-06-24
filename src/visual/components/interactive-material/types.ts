@@ -1,10 +1,10 @@
 import { Color, Texture, Vector2, Vector3 } from "three";
+import InteractiveMaterial from "visual/hooks/use-interactive-material/InteractiveMaterial";
 import {
   FragmentShader,
   VertexShader,
 } from "../../hooks/use-webgl-shader/fragmentShaders/types";
 import TouchTexture from "../touch-texture/TouchTexture";
-import InteractiveMaterial from "./InteractiveMaterial";
 
 export interface VanishingObjectUniforms {
   matcap: { value: Texture | null };

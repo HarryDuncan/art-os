@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { Geometry, Mesh } from "three";
 import { InteractionEventObject } from "../use-interactions/types";
-import InteractiveMaterial from "../../components/interactive-material/InteractiveMaterial";
+import InteractiveMaterial from "./InteractiveMaterial";
 import {
   InteractiveMaterialFunctions,
   InteractiveShaders,
@@ -20,8 +20,7 @@ export const useCreateInteractiveMesh = () => {
       const interactiveMaterial = new InteractiveMaterial(
         uniforms,
         shaders,
-        interactionEventObjects,
-        materialFunctions
+        interactionEventObjects
       );
 
       const interactiveMesh = new Mesh(geometry, interactiveMaterial);

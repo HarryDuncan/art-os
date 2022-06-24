@@ -1,4 +1,4 @@
-export interface IRendererParams {
+export interface RendererParams {
   clearColor?: string;
   effects?: {};
 }

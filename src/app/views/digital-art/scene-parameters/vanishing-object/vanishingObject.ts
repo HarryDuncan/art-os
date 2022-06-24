@@ -1,9 +1,9 @@
-import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
 import { AssetType } from "visual/hooks/use-assets/types";
 import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { vanishingObjectMaterialParams } from "./materialParams";
 import gsap from "gsap";
+import InteractiveMaterial from "visual/hooks/use-interactive-material/InteractiveMaterial";
 
 export const vanishingObject = {
   threeJSParams: {
