@@ -9,7 +9,9 @@ import {
   VanishingObjectUniforms,
 } from "../../components/interactive-material/types";
 
-export const useInteractiveMaterialParams = (sceneType: InteractiveScenes) =>
+export const useInteractiveMaterialParams = (
+  sceneType: InteractiveScenes
+): InteractiveParam =>
   useMemo(() => {
     const params: InteractiveParam = {
       sceneType: sceneType,

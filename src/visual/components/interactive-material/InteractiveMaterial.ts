@@ -1,8 +1,7 @@
 import { Clock, DoubleSide, RawShaderMaterial } from "three";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
-import { InteractiveShaders } from "../../hooks/use-interactive-material/types";
 import { defaultInteractiveMaterialFunctions } from "./interactiveMaterialConstants";
-import { InteractiveMaterialFunctions } from "./types";
+import { InteractiveMaterialFunctions, InteractiveShaders } from "./types";
 
 export default class InteractiveMaterial extends RawShaderMaterial {
   clock: Clock;

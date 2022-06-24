@@ -5,6 +5,7 @@ export interface DigitalPiece {
   title: string;
   sceneId: string;
   componentId: string;
+  cardImageName?: string;
 }
 export interface DigitalArtState {
   selectedToViewIndex: number | null;
@@ -17,6 +18,7 @@ export const defaultState: DigitalArtState = {
       title: "Vanishing Object",
       sceneId: "vanishingObject",
       componentId: "InteractiveObject",
+      cardImageName: "vanishingObject.jpg",
     },
   ],
 };

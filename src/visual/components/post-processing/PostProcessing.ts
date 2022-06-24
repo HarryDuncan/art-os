@@ -32,7 +32,17 @@ export default class PostProcessing extends EffectComposer {
   scene: Scene;
   camera: Camera;
   bloomPass: any;
-  constructor({ renderer, scene, camera, passes = [] }) {
+  constructor({
+    renderer,
+    scene,
+    camera,
+    passes = [],
+  }: {
+    renderer: any;
+    camera: any;
+    scene: any;
+    passes?: string[];
+  }) {
     const renderTarget = new WebGLRenderTarget(
       window.innerHeight,
       window.outerHeight,
@@ -70,7 +80,7 @@ export default class PostProcessing extends EffectComposer {
     // this.bloomPass.threshold = bloom.threshold * mod;
   }
 
-  addCustomPasses(passes) {
+  addCustomPasses(passes: string[]) {
     const renderPass = new RenderPass(this.scene, this.camera);
     this.addPass(renderPass);
     if (passes.length) {
