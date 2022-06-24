@@ -15,12 +15,14 @@ interface InteractiveObjectProps {
   interactionEvents: InteractionEventObject[];
   assets: Asset[];
   materialParams: any;
+  materialFunctions: any;
 }
 export const InteractiveObject = ({
   threeJsParams,
   interactionEvents,
   assets,
   materialParams,
+  materialFunctions,
 }: InteractiveObjectProps) => {
   const { initializedAssets, areAssetsInitialized } = useAssets(assets);
 
@@ -45,7 +47,7 @@ export const InteractiveObject = ({
     interactionEvents,
     areAssetsInitialized,
     initializedAssets,
-    { onTimeUpdate: () => console.log("s") }
+    materialFunctions
   );
 
   const initializeMesh = useCallback(() => {

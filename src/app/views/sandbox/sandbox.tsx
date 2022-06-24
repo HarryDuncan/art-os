@@ -20,6 +20,7 @@ export const Sandbox = () => {
       interactionEvents={interactions}
       assets={assets}
       materialParams={materialParams}
+      materialFunctions={materialFunctions}
     />
   );
 };

@@ -1,17 +1,19 @@
 import { Clock, DoubleSide, RawShaderMaterial } from "three";
-import gsap from "gsap";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
 import { InteractiveShaders } from "../../hooks/use-interactive-material/types";
+import { defaultInteractiveMaterialFunctions } from "./interactiveMaterialConstants";
+import { InteractiveMaterialFunctions } from "./types";
 
 export default class InteractiveMaterial extends RawShaderMaterial {
   clock: Clock;
   isRunningThread: boolean;
   interactionEvents: InteractionEventObject[];
+  materialFunctions: InteractiveMaterialFunctions;
   constructor(
     uniforms,
     shaders: InteractiveShaders,
     interactions: InteractionEventObject[],
-    materialFunctions
+    materialFunctions: InteractiveMaterialFunctions = defaultInteractiveMaterialFunctions
   ) {
     super({
       vertexShader: shaders.vertexShader.vert,
@@ -21,22 +23,32 @@ export default class InteractiveMaterial extends RawShaderMaterial {
     });
     this.isRunningThread = true;
     this.uniforms = uniforms;
+    this.materialFunctions = materialFunctions;
     this.clock = new Clock();
     this.interactionEvents = interactions;
-    document.addEventListener("scene:update", () => this.onUpdateTime());
+
+    this.bindMaterialFunctions();
     interactions.forEach(({ eventKey }) => {
-      document.addEventListener(`${eventKey}`, (ev) => this.onGestureEvent(ev));
+      document.addEventListener(`${eventKey}`, (ev) =>
+        this.onGestureEvent(ev as CustomEvent)
+      );
     });
   }
 
-  onGestureEvent(event: Event) {
-    const { type } = event;
+  bindMaterialFunctions() {
+    document.addEventListener("scene:update", () =>
+      this.materialFunctions.onTimeUpdate(this)
+    );
+  }
+
+  onGestureEvent(event: CustomEvent) {
+    const { type, detail } = event;
     const currentAction = this.interactionEvents.find(
       (interactionEvent) => interactionEvent.eventKey === type
     );
 
     if (currentAction?.eventFunction) {
-      currentAction.eventFunction(this);
+      currentAction.eventFunction(this, detail);
     }
   }
 
@@ -49,28 +61,4 @@ export default class InteractiveMaterial extends RawShaderMaterial {
       this.isRunningThread = true;
     }, 100);
   }
-  // RENDER FUNCTIONS
-
-  onUpdateTime() {
-    if (this.isRunningThread) {
-      this.uniforms.time.value += this.clock.getDelta();
-      gsap.to(this.uniforms.progress, {
-        value: this.uniforms.progress.value + this.uniforms.delta.value,
-        ease: "power4.out",
-        duration: 1.2,
-        overwrite: true,
-      });
-
-      this.changeAnimationDirection();
-    }
-  }
-
-  changeAnimationDirection = () => {
-    if (
-      (this.uniforms?.progress.value > 1.0 && this.uniforms.delta.value > 0) ||
-      (this.uniforms.progress.value < 0 && this.uniforms.delta.value < 0)
-    ) {
-      this.isRunningThread = false;
-    }
-  };
 }
