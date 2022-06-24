@@ -1,13 +1,18 @@
 import { Clock, DoubleSide, RawShaderMaterial } from "three";
 import gsap from "gsap";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
-import { InteractiveShaders } from "./types";
+import { InteractiveShaders } from "../../hooks/use-interactive-material/types";
 
 export default class InteractiveMaterial extends RawShaderMaterial {
   clock: Clock;
   isRunningThread: boolean;
   interactionEvents: InteractionEventObject[];
-  constructor(uniforms, shaders: InteractiveShaders, interactions) {
+  constructor(
+    uniforms,
+    shaders: InteractiveShaders,
+    interactions: InteractionEventObject[],
+    materialFunctions
+  ) {
     super({
       vertexShader: shaders.vertexShader.vert,
       fragmentShader: shaders.fragmentShader.frag,

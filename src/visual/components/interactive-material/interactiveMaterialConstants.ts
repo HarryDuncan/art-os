@@ -1,4 +1,4 @@
-import InteractiveMaterial from "visual/hooks/use-interactive-material/InteractiveMaterial";
+import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
 import { InteractiveMaterialFunctions } from "./types";
 
 export const defaultInteractiveMaterialFunctions: InteractiveMaterialFunctions = {
