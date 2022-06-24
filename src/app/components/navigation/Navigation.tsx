@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import SideBar from "./SideBar";
+import SideBar from "./side-bar/SideBar";
 
 export const Navigation = () => {
   const navItems = useMemo(

@@ -1,22 +1,22 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import React, { createContext } from "react";
 
-export interface IPiece {
+export interface DigitalPiece {
   title: string;
-  sceneName?: string;
-  assets?: any;
+  sceneId: string;
+  componentId: string;
 }
 export interface DigitalArtState {
   selectedToViewIndex: number | null;
-  pieces: IPiece[];
+  pieces: DigitalPiece[];
 }
 export const defaultState: DigitalArtState = {
   selectedToViewIndex: null,
   pieces: [
     {
-      title: "Piece One",
-      sceneName: "Swirl",
-      assets: { img: "../assets/8Bytes.jpg" },
+      title: "Vanishing Object",
+      sceneId: "vanishingObject",
+      componentId: "InteractiveObject",
     },
   ],
 };

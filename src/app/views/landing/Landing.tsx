@@ -1,5 +1,5 @@
 import React from "react";
-import { AnimationWidget } from "../../../visual/components/animation-widget/AnimationWidget";
+import { AnimationWidget } from "../../../visual/visual-components/animation-widget";
 import { Overlay } from "../../components/overlay/Overlay";
 import { LandingContainer, LandingPageTitle } from "./Landing.styles";
 
@@ -18,7 +18,6 @@ export const Landing = () => {
       <Overlay>
         <LandingPageTitle>Welcome To GLO</LandingPageTitle>
       </Overlay>
-
       <AnimationWidget scenes={landingScenes} />
     </LandingContainer>
   );

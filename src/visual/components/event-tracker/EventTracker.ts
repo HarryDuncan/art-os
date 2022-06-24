@@ -2,19 +2,12 @@ import { ev } from "visual/hooks/use-events/useEvents";
 import {
   EventKey,
   InteractionEventObject,
-  InteractionKey,
 } from "visual/hooks/use-interactions/types";
 import { getXDelta, getYDelta, trackSteps } from "./functions";
 import { Step } from "./types";
 
-interface EventTrackerProps {
-  threshold: number;
-}
-
-interface EventParameters {
-  interaction: InteractionKey;
-  eventKey: EventKey;
-}
+const EVENT_REREGISTER_DELAY = 1500;
+const DEFAULT_Y_MOVEMENT = 250;
 
 const getEventFunctionName = (eventKey: EventKey) => {
   switch (eventKey) {
@@ -39,6 +32,7 @@ export class EventTracker {
   maxStepTimeMilis: number;
   events: EventKey[];
   steps: Step[];
+  canRegisterEvent: boolean;
   constructor(
     interactionEventObjs: InteractionEventObject[],
     threshold: number = 0.5,
@@ -48,6 +42,7 @@ export class EventTracker {
     this.events = interactionEventObjs.map(({ eventKey }) => eventKey);
     this.maxStepTimeMilis = maxStepTimeMilis;
     this.steps = [];
+    this.canRegisterEvent = true;
     interactionEventObjs.forEach(({ eventKey, interactionKey }) => {
       document.addEventListener(`:${interactionKey}`, (ev) =>
         this[getEventFunctionName(eventKey)](ev)
@@ -101,27 +96,44 @@ export class EventTracker {
       position
     );
     if (this.steps.length > 4) {
-      const xMovement = getYDelta(this.steps);
+      const yMovement = getYDelta(this.steps);
       if (
-        xMovement < -150 &&
+        yMovement < -DEFAULT_Y_MOVEMENT &&
         (this.events.includes(EventKey.SwipeVertical) ||
-          this.events.includes(EventKey.SwipeDown))
+          this.events.includes(EventKey.SwipeDown)) &&
+        this.canRegisterEvent
       ) {
-        this.steps = [];
+        this.temporarilyPauseEventRegistering();
         ev(EventKey.SwipeDown);
       }
       if (
-        xMovement > 150 &&
+        yMovement > DEFAULT_Y_MOVEMENT &&
         (this.events.includes(EventKey.SwipeVertical) ||
-          this.events.includes(EventKey.SwipeUp))
+          this.events.includes(EventKey.SwipeUp)) &&
+        this.canRegisterEvent
       ) {
-        this.steps = [];
+        this.temporarilyPauseEventRegistering();
         ev(EventKey.SwipeUp);
       }
     }
   }
 
+  trackPosition(event: CustomEvent) {
+    const {
+      detail: { position },
+    } = event;
+    ev(EventKey.Position, position);
+  }
+
   // HELPER FUNCTIONS
+
+  temporarilyPauseEventRegistering() {
+    this.steps = [];
+    this.canRegisterEvent = false;
+    setTimeout(() => {
+      this.canRegisterEvent = true;
+    }, EVENT_REREGISTER_DELAY);
+  }
 }
 //
 

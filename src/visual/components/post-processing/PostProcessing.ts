@@ -58,8 +58,8 @@ export default class PostProcessing extends EffectComposer {
     --------------------------------------------------------- */
 
   onResize() {
-    // const { W, H, PR } = Layout
-    // this.setSize(W, H)
+    // const { W, H, PR } = Layout;
+    // this.setSize(W, H);
   }
 
   onPostNeedUpdate() {

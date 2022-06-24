@@ -44,7 +44,8 @@ export const InteractiveObject = ({
     materialParams,
     interactionEvents,
     areAssetsInitialized,
-    initializedAssets
+    initializedAssets,
+    { onTimeUpdate: () => console.log("s") }
   );
 
   const initializeMesh = useCallback(() => {
