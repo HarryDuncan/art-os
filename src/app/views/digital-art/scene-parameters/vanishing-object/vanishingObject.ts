@@ -3,13 +3,13 @@ import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { vanishingObjectMaterialParams } from "./materialParams";
 import gsap from "gsap";
-import InteractiveMaterial from "visual/hooks/use-interactive-material/InteractiveMaterial";
+import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
 
 export const vanishingObject = {
-  threeJSParams: {
-    camera: { position: { x: 0, y: 90, z: 405 } },
+  threeJsParams: {
+    camera: { position: { x: 0, y: 30, z: 105 } },
   },
-  interactions: [
+  interactionEvents: [
     {
       eventKey: EventKey.SwipeUp,
       interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,

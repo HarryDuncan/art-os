@@ -3,7 +3,7 @@ import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { InteractiveScenes } from "visual/components/interactive-material/types";
 import gsap from "gsap";
-import InteractiveMaterial from "visual/hooks/use-interactive-material/InteractiveMaterial";
+import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
 
 export const vanishingObject = {
   threeJSParams: {
@@ -13,7 +13,7 @@ export const vanishingObject = {
     {
       eventKey: EventKey.SwipeUp,
       interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
-      eventFunction: (material: InteractiveMaterial) => {
+      eventFunction: (material: InteractiveMaterial, detail) => {
         material.uniforms.delta.value = material.uniforms.delta.value * -1;
         material.isRunningThread = true;
       },
@@ -21,7 +21,7 @@ export const vanishingObject = {
     {
       eventKey: EventKey.SwipeDown,
       interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
-      eventFunction: (material: InteractiveMaterial) => {
+      eventFunction: (material: InteractiveMaterial, detail) => {
         material.uniforms.delta.value = material.uniforms.delta.value * -1;
         material.isRunningThread = true;
       },

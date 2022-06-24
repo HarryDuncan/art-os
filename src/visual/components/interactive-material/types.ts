@@ -1,5 +1,5 @@
 import { Color, Texture, Vector2, Vector3 } from "three";
-import InteractiveMaterial from "visual/hooks/use-interactive-material/InteractiveMaterial";
+import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
 import {
   FragmentShader,
   VertexShader,

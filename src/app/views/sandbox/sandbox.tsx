@@ -1,6 +1,6 @@
 import React from "react";
 import { useInteractiveMaterialParams } from "visual/hooks/use-interactive-material/useInteractiveMaterialParams";
-import { InteractiveObject } from "visual/scenes/interactive-object/InteractiveObject";
+import { InteractiveObject } from "visual/visual-components";
 import { picturePoint, vanishingObject } from "./interactiveSceneParams";
 
 export const Sandbox = () => {
@@ -16,10 +16,13 @@ export const Sandbox = () => {
 
   return (
     <InteractiveObject
-      threeJsParams={threeJSParams}
-      interactionEvents={interactions}
-      assets={assets}
-      materialParams={materialParams}
+      params={{
+        threeJsParams: threeJSParams,
+        interactionEvents: interactions,
+        assets,
+        materialParams,
+        materialFunctions,
+      }}
     />
   );
 };

@@ -1,41 +1,25 @@
-import React, { useCallback, useEffect, FC } from "react";
+import React, { useCallback, useEffect } from "react";
 import { RootContainer } from "../../components/root-container";
 import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
-import { InteractionEventObject } from "visual/hooks/use-interactions/types";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import { useThreeJs } from "visual/hooks/use-three-js/useThreeJs";
-import { ThreeJsParams } from "visual/hooks/use-three-js/types";
-import { Asset } from "visual/hooks/use-assets/types";
 import { useAssets } from "visual/hooks/use-assets/useAssets";
 import PostProcessing from "visual/components/post-processing/PostProcessing";
 import { useThread } from "visual/hooks/use-thread/useThread";
-import {
-  InteractiveMaterialFunctions,
-  InteractiveParam,
-} from "visual/components/interactive-material/types";
-import { VisualComponentProps } from "../types";
+import { InteractiveObjectParams } from "./types";
 
-interface InteractiveObjectParams {
-  threeJsParams: ThreeJsParams;
-  interactions: InteractionEventObject[];
-  assets: Asset[];
-  materialParams: InteractiveParam;
-  materialFunctions: InteractiveMaterialFunctions;
+interface InteractiveObjectProps {
+  params: InteractiveObjectParams;
 }
 
-export const InteractiveObject: FC<VisualComponentProps> = ({
-  params,
-}: {
-  params: InteractiveObjectParams;
-}) => {
+export const InteractiveObject = ({ params }: InteractiveObjectProps) => {
   const {
     threeJsParams,
-    interactions,
+    interactionEvents,
     assets,
     materialParams,
     materialFunctions,
   } = params;
-
   const {
     container,
     renderer,
@@ -46,29 +30,35 @@ export const InteractiveObject: FC<VisualComponentProps> = ({
     clock,
   } = useThreeJs(threeJsParams);
   const { initializedAssets, areAssetsInitialized } = useAssets(assets);
-  const { update } = useThread(postProcessor, currentFrameRef, clock);
-  const { interactiveNode } = useInteractions(interactions);
+  const { update, pause } = useThread(postProcessor, currentFrameRef, clock);
+  const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
     materialParams,
-    interactions,
+    interactionEvents,
     areAssetsInitialized,
     initializedAssets,
     materialFunctions
   );
-
   const initializeMesh = useCallback(() => {
     if (interactiveMesh) {
       scene.add(interactiveMesh);
-      setTimeout(() => {
-        postProcessor.current = new PostProcessing({ renderer, scene, camera });
-        update();
-      }, 500);
+      postProcessor.current = new PostProcessing({
+        renderer,
+        scene,
+        camera,
+        passes: ["bloom"],
+      });
+      update();
     }
   }, [postProcessor, renderer, scene, camera, interactiveMesh, update]);
 
   useEffect(() => {
     initializeMesh();
   }, [initializeMesh]);
+
+  useEffect(() => {
+    return () => pause();
+  }, [pause]);
 
   return (
     <>

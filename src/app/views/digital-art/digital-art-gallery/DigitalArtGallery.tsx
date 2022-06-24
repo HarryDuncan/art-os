@@ -4,6 +4,7 @@ import { useDigitalArtContext } from "../context/useDigitalArtContext";
 import { GalleryContainer } from "../StyledComponents";
 import { Card } from "../../../components";
 
+const DIGITAL_ART_CARD_IMAGE_URL = "../card-images";
 export const DigitalArtGallery = () => {
   const { dispatch, pieces } = useDigitalArtContext();
 
@@ -12,10 +13,13 @@ export const DigitalArtGallery = () => {
   };
   return (
     <GalleryContainer>
-      {pieces.map((item, index) => (
+      {pieces.map(({ title, cardImageName }, index) => (
         <Card
           key={index}
-          cardDetails={{ title: item.title }}
+          cardDetails={{
+            title: title,
+            imageUrl: `${DIGITAL_ART_CARD_IMAGE_URL}/${cardImageName}`,
+          }}
           onClick={() => onCardClick(index)}
         />
       ))}

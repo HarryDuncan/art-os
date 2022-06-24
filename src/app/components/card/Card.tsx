@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { CardFooter, CardImage, CardTitle, CardWrapper } from "./Card.styles";
 
 interface ICardDetails {
@@ -11,13 +11,7 @@ interface ICardProps {
 }
 
 export const Card = ({ cardDetails, onClick }: ICardProps) => {
-  const imgEl: any = useRef();
-
-  const [dimensions, updateDimensions] = useState<{
-    width: number;
-    height: number;
-  }>({ width: 0, height: 0 });
-
+  const imgElementRef = useRef<HTMLImageElement | null>(null);
   const cardClicked = () => {
     if (onClick) {
       onClick();
@@ -28,17 +22,9 @@ export const Card = ({ cardDetails, onClick }: ICardProps) => {
     <CardWrapper onClick={cardClicked}>
       {cardDetails.imageUrl && (
         <CardImage
-          $height={dimensions.height}
-          $width={dimensions.width}
           src={cardDetails.imageUrl}
           alt={cardDetails.title}
-          ref={imgEl}
-          onLoad={() => {
-            updateDimensions({
-              height: imgEl.current.naturalHeight,
-              width: imgEl.current.naturalWidth,
-            });
-          }}
+          ref={imgElementRef}
         />
       )}
       <CardFooter>
