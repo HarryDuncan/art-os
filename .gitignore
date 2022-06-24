@@ -10,7 +10,7 @@
 /build
 /dist
 /public/assets
-/public/cart-images
+/public/card-images
 # misc
 .DS_Store
 .env.local
