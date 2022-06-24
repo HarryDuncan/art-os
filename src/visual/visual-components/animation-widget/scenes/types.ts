@@ -1,0 +1,1 @@
+export type TScene = any;

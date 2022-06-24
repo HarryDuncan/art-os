@@ -1,16 +1,19 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { WithApp } from "test-utils/WithApp";
-import { IWithStoreState } from "test-utils/WithStore";
 import { Landing } from "../Landing";
 import { mockImplementation } from "test-utils/mockImplementation";
 import { LandingContainer, LandingPageTitle } from "../Landing.styles";
-import { AnimationWidget } from "visual/components/animation-widget";
+import { AnimationWidget } from "visual/visual-components/animation-widget";
+import { useRunAnimations } from "visual/visual-components/animation-widget/useRunAnimations";
 
 jest.mock("visual/components/animation-widget", () => ({
   AnimationWidget: jest.fn(),
 }));
 
+jest.mock("visual/components/animation-widget/useRunAnimations", () => ({
+  useRunAnimations: jest.fn(),
+}));
 jest.mock("../Landing.styles", () => ({
   LandingContainer: jest.fn(),
   LandingPageTitle: jest.fn(),
@@ -21,6 +24,7 @@ describe("<Landing />", () => {
     mockImplementation(LandingContainer, ({ children }) => <>{children}</>);
     mockImplementation(LandingPageTitle, () => <></>);
     mockImplementation(AnimationWidget, () => <>AnimationWidget</>);
+    mockImplementation(useRunAnimations, () => <>Running Animation</>);
   });
 
   test("Renders landing by with correct components", () => {
@@ -31,9 +35,9 @@ describe("<Landing />", () => {
   });
 });
 
-const LandingWithContext = ({ state }: { state?: IWithStoreState }) => {
+const LandingWithContext = () => {
   return (
-    <WithApp state={{}}>
+    <WithApp>
       <Landing />
     </WithApp>
   );

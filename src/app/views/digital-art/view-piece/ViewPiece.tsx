@@ -1,21 +1,16 @@
 import React from "react";
-import { AnimationWidget } from "../../../../visual/components/animation-widget/AnimationWidget";
 import { useDigitalArtContext } from "../context/useDigitalArtContext";
-import { useFormatScene } from "./useFormatScene";
+import { useViewPiece } from "./useViewPiece";
 import { ViewPieceContainer, ViewPieceHeader } from "./ViewPiece.styles";
 
 export const ViewPiece = () => {
-  const { selectedToViewIndex, pieces } = useDigitalArtContext();
-
-  const selectedPiece = selectedToViewIndex
-    ? pieces[selectedToViewIndex]
-    : null;
-  const scenes = useFormatScene(selectedToViewIndex, pieces);
+  const { selectedToViewIndex: index, pieces } = useDigitalArtContext();
+  const { component, title } = useViewPiece(pieces, index);
 
   return (
     <ViewPieceContainer>
-      <ViewPieceHeader>{selectedPiece?.title} </ViewPieceHeader>
-      <AnimationWidget scenes={scenes} />
+      <ViewPieceHeader>{title}</ViewPieceHeader>
+      <>{component}</>
     </ViewPieceContainer>
   );
 };

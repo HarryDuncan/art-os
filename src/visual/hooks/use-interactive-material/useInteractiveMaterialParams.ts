@@ -1,32 +1,46 @@
+import { useMemo } from "react";
 import { Color, Vector2, Vector3 } from "three";
-import { vanishingObjectFragment } from "visual/shaders/fragment-shaders/vanishingObjectFrag";
-import { vanishingObjectVertex } from "visual/shaders/vertex-shaders";
+import * as fragmentShaders from "visual/shaders/fragment-shaders";
+import * as vertexShaders from "visual/shaders/vertex-shaders";
 import {
   InteractiveParam,
   InteractiveScenes,
   InteractiveShaders,
   VanishingObjectUniforms,
-} from "./types";
+} from "../../components/interactive-material/types";
 
-export const useInteractiveMaterialParams = (sceneType: InteractiveScenes) => {
-  const params: InteractiveParam = {
-    sceneType: sceneType,
-    uniforms: null,
-    shaders: null,
-  };
-  switch (sceneType) {
-    case InteractiveScenes.VANISHING_OBJECT:
-      params.uniforms = vanishingObjectUniforms;
-      params.shaders = getShaders(sceneType);
-  }
-  return params;
-};
+export const useInteractiveMaterialParams = (sceneType: InteractiveScenes) =>
+  useMemo(() => {
+    const params: InteractiveParam = {
+      sceneType: sceneType,
+      uniforms: null,
+      shaders: null,
+    };
+    switch (sceneType) {
+      case InteractiveScenes.VANISHING_OBJECT:
+        params.uniforms = vanishingObjectUniforms;
+        params.shaders = getShaders(sceneType);
+        break;
+      case InteractiveScenes.INTERACTIVE_PARTICLES:
+        params.uniforms = particleUniforms;
+        params.shaders = getShaders(sceneType);
+    }
+    return params;
+  }, [sceneType]);
 
 const getShaders = (sceneType: InteractiveScenes): InteractiveShaders => {
-  return {
-    fragmentShader: vanishingObjectFragment,
-    vertexShader: vanishingObjectVertex,
-  };
+  switch (sceneType) {
+    case InteractiveScenes.VANISHING_OBJECT:
+      return {
+        fragmentShader: fragmentShaders.vanishingObjectFragment,
+        vertexShader: vertexShaders.vanishingObjectVertex,
+      };
+    case InteractiveScenes.INTERACTIVE_PARTICLES:
+      return {
+        fragmentShader: fragmentShaders.interactiveParticleFragment,
+        vertexShader: vertexShaders.interactiveParticlesVert,
+      };
+  }
 };
 
 const vanishingObjectUniforms: VanishingObjectUniforms = {
@@ -46,12 +60,12 @@ const vanishingObjectUniforms: VanishingObjectUniforms = {
   delta: { value: 0.01 },
 };
 
-// const PARAMS =
-
-// useBloom: true,
-
-// bloom: {
-//   strength: 2,
-//   radius: 0.16,
-//   threshold: 0.7,
-// },
+const particleUniforms = {
+  uTime: { value: 0 },
+  uRandom: { value: 1.0 },
+  uDepth: { value: 2.0 },
+  uSize: { value: 0.0 },
+  uTextureSize: { value: new Vector2(0, 0) },
+  uTexture: { value: null },
+  uTouch: { value: null },
+};

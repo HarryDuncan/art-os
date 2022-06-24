@@ -4,6 +4,7 @@ import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 export enum AssetType {
   Geometry = "geometry",
   Texture = "texture",
+  Image = "image",
 }
 
 export type Model = GLTF | Group;

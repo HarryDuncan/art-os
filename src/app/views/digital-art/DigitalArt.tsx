@@ -21,7 +21,6 @@ export const DigitalArt = () => {
 
 const DigitalArtContent = () => {
   const { selectedToViewIndex } = useDigitalArtContext();
-
   return (
     <>{selectedToViewIndex !== null ? <ViewPiece /> : <DigitalArtGallery />}</>
   );
