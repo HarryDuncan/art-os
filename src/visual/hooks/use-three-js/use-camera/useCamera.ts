@@ -8,21 +8,22 @@ const defaultParams: CameraParams = {
     y: 0,
     z: 0,
   },
+  fov: 45,
+  aspect: window.innerWidth / window.innerHeight,
+  near: 1,
+  far: 2000,
 };
 
 export const useCamera = (cameraParams: CameraParams = defaultParams) =>
   useMemo(() => {
     const {
       position: { x, y, z },
+      fov,
+      aspect,
+      near,
+      far,
     } = cameraParams;
-    const camera = new PerspectiveCamera(
-      45,
-      window.innerWidth / window.innerHeight > 1
-        ? window.innerWidth / window.innerHeight
-        : 1.0,
-      1,
-      10000
-    );
+    const camera = new PerspectiveCamera(fov, aspect, near, far);
     camera.position.set(x, y, z);
 
     return camera;

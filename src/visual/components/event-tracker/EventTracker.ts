@@ -19,11 +19,11 @@ const getEventFunctionName = (eventKey: EventKey) => {
     case EventKey.SwipeDown:
     case EventKey.SwipeVertical:
       return "trackVerticalMovement";
+    case EventKey.Scale:
+      return "trackScale";
     case EventKey.Position:
+    default:
       return "trackPosition";
-    case EventKey.SlideX:
-    case EventKey.SlideY:
-      return "trackSlide";
   }
 };
 
@@ -45,7 +45,7 @@ export class EventTracker {
     this.canRegisterEvent = true;
     interactionEventObjs.forEach(({ eventKey, interactionKey }) => {
       document.addEventListener(`:${interactionKey}`, (ev) =>
-        this[getEventFunctionName(eventKey)](ev)
+        this[getEventFunctionName(eventKey)](ev as CustomEvent)
       );
     });
   }
@@ -123,6 +123,16 @@ export class EventTracker {
       detail: { position },
     } = event;
     ev(EventKey.Position, position);
+  }
+
+  trackScale(event: CustomEvent) {
+    const {
+      detail: { position },
+    } = event;
+    ev(EventKey.Scale, {
+      xAsScale: position.x / 800,
+      yAsScale: position.y / 800,
+    });
   }
 
   // HELPER FUNCTIONS

@@ -7,11 +7,12 @@ export const useRenderer = (renderParams: RendererParams = {}) => {
     const newRenderer = new WebGLRenderer({
       powerPreference: "high-performance",
       antialias: true,
+      alpha: true,
     });
 
     newRenderer.setPixelRatio(window.devicePixelRatio);
     newRenderer.setSize(window.innerWidth, window.innerHeight);
-
+    newRenderer.setClearColor(0x000000, 0);
     return newRenderer;
   }, []);
 };
