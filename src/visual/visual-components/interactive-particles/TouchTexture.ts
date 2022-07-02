@@ -10,7 +10,7 @@ export default class TouchTexture {
   ctx: any;
   texture: any;
   constructor() {
-    this.size = 800;
+    this.size = 580;
     this.maxAge = 120;
     this.radius = 0.15;
     this.trail = [];

@@ -65,6 +65,7 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
     <>
       {interactiveNode}
       <RootContainer containerRef={container} />
+     
     </>
   );
 };

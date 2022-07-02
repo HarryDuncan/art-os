@@ -101,11 +101,12 @@ const formatGeometry = (loadedTexture, uniforms) => {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   let numVisible = 0;
+  console.log(height)
   canvas.width = width;
   canvas.height = height;
   if (ctx) {
-    ctx.scale(6, -6);
-    ctx.drawImage(img, 0, 0, width, height * -6);
+    ctx.scale(10, -10);
+    ctx.drawImage(img, 0, 0, width, height * -10);
     const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     originalColors = Float32Array.from(imgData.data);
     for (let i = 0; i < numPoints; i++) {
