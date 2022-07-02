@@ -19,6 +19,8 @@ export const RootContainer = ({
         height: `${viewHeight}`,
         width: `${viewWidth}`,
         overflow: "hidden",
+        backgroundImage: `url(../assets/textures/MarshBg.jpg)`,
+        backgroundRepeat: "repeat",
       }}
       ref={containerRef}
     ></div>

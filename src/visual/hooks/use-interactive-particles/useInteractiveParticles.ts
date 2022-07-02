@@ -66,14 +66,15 @@ export const useInteractiveParticles = (
 };
 
 const formatGeometry = (loadedTexture, uniforms) => {
+  const touch = new TouchTexture();
   const geometry = new InstancedBufferGeometry();
 
   // positions
   const positions = new BufferAttribute(new Float32Array(4 * 3), 3);
-  positions.setXYZ(0, -0.5, 0.5, 0.0);
-  positions.setXYZ(1, 0.5, 0.5, 0.0);
-  positions.setXYZ(2, -0.5, -0.5, 0.0);
-  positions.setXYZ(3, 0.5, -0.5, 0.0);
+  positions.setXYZ(0, -1, 1, 0.0);
+  positions.setXYZ(1, 1, 1, 0.0);
+  positions.setXYZ(2, -1, -1, 0.0);
+  positions.setXYZ(3, 1, -1, 0.0);
   geometry.setAttribute("position", positions);
 
   // uvs
@@ -94,7 +95,7 @@ const formatGeometry = (loadedTexture, uniforms) => {
   let threshold = 0;
   let originalColors;
 
-  threshold = 34;
+  threshold = 40;
 
   const img = loadedTexture.texture.image;
   const canvas = document.createElement("canvas");
@@ -103,11 +104,10 @@ const formatGeometry = (loadedTexture, uniforms) => {
   canvas.width = width;
   canvas.height = height;
   if (ctx) {
-    ctx.scale(1, -1);
-    ctx.drawImage(img, 0, 0, width, height * -1);
+    ctx.scale(6, -6);
+    ctx.drawImage(img, 0, 0, width, height * -6);
     const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     originalColors = Float32Array.from(imgData.data);
-
     for (let i = 0; i < numPoints; i++) {
       if (originalColors[i * 4 + 0] > threshold) numVisible++;
     }
@@ -142,7 +142,6 @@ const formatGeometry = (loadedTexture, uniforms) => {
     new InstancedBufferAttribute(angles, 1, false)
   );
 
-  const touch = new TouchTexture();
   uniforms.uTextureSize.value = new Vector2(width, height);
   uniforms.uTexture.value = loadedTexture.texture;
   uniforms.uTouch.value = touch.texture;

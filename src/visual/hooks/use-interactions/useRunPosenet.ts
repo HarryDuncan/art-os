@@ -37,7 +37,6 @@ export const runPosenet = (
       // Set video width
       webcam.video.width = videoWidth;
       webcam.video.height = videoHeight;
-
       // Make Detections
       const { keypoints } = await net.estimateSinglePose(video);
       const trackedKeyPoints = featureKeys.map((featureKey) =>

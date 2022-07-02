@@ -1,10 +1,5 @@
 import * as THREE from "three";
-// import {
-//   easeOutQuad,
-//   easeInOutQuad,
-//   easeOutSine,
-//   easeInOutSine,
-// } from "../../scenes/interactive-points/utils/easing";
+import { easeOutSine } from "./utils";
 
 export default class TouchTexture {
   size: number;
@@ -30,7 +25,7 @@ export default class TouchTexture {
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.texture = new THREE.Texture(this.canvas);
     this.canvas.id = "touchTexture";
-    this.canvas.style.width = this.canvas.style.height = `${this.size * 2}px`;
+    this.canvas.style.width = this.canvas.style.height = `${this.size}px`;
   }
 
   update() {
@@ -78,8 +73,16 @@ export default class TouchTexture {
 
     let intensity = 1;
 
-    intensity *= 1;
-
+    if (point.age < this.maxAge * 0.3) {
+      intensity = easeOutSine(point.age / (this.maxAge * 0.3), 0, 1, 1);
+    } else {
+      intensity = easeOutSine(
+        1 - (point.age - this.maxAge * 0.3) / (this.maxAge * 0.7),
+        0,
+        1,
+        1
+      );
+    }
     const radius = this.size * this.radius * intensity;
 
     const grd = this.ctx.createRadialGradient(

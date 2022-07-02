@@ -16,8 +16,8 @@ export const picturePoint = {
     },
     renderer: {
       size: { width: 800, height: 800 },
-      // clearColor: 0x000000,
-      // alpha: 0,
+      clearColor: 0x000000,
+      alpha: 0,
     },
   },
   interactionEvents: [
@@ -35,7 +35,7 @@ export const picturePoint = {
   assets: [
     {
       name: "image",
-      url: "../assets/textures/barba.jpg",
+      url: "../assets/textures/Marsh.jpg",
       assetType: AssetType.Texture,
     },
   ],

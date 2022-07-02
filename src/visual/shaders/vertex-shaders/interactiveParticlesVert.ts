@@ -51,7 +51,7 @@ export const interactiveParticlesVert = {
     
         // pixel color
         vec4 colA = texture2D(uTexture, puv);
-        float grey = colA.r * 0.21 + colA.g * 0.71 + colA.b * 0.07;
+        float grey = colA.r * 0.2 + colA.g * 0.71 + colA.b * 0.07;
     
         // displacement
         vec3 displaced = offset;
@@ -70,7 +70,12 @@ export const interactiveParticlesVert = {
     
         // particle size
         float psize = (noise(vec2(uTime, pindex) * 0.5) + 2.0);
-        psize *= max(grey, 0.2);
+        float siz = 0.0;
+        if( grey < 0.8 )
+        {
+            siz = 0.4;
+        };
+        psize *= min(grey, siz);
         psize *= uSize;
     
         // final position

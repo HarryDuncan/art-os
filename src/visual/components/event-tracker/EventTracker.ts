@@ -35,7 +35,7 @@ export class EventTracker {
   canRegisterEvent: boolean;
   constructor(
     interactionEventObjs: InteractionEventObject[],
-    threshold: number = 0.5,
+    threshold: number = 0.7,
     maxStepTimeMilis: number = 1000
   ) {
     this.scoreThreshold = threshold;
@@ -129,9 +129,10 @@ export class EventTracker {
     const {
       detail: { position },
     } = event;
+
     ev(EventKey.Scale, {
-      xAsScale: position.x / 800,
-      yAsScale: position.y / 800,
+      xAsScale: (640 - position.x) / 640,
+      yAsScale: (480 - position.y) / 480,
     });
   }
 
