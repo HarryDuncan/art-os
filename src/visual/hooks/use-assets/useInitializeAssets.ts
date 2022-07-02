@@ -3,6 +3,7 @@ import { getFileTypeFromFilename } from "utils/getFileType";
 import { loadGeometry } from "visual/helpers/geometry/load-geometry/LoadGeometry";
 import { Asset, AssetType } from "./types";
 import { loadTexture } from "visual/helpers/texture/load-texture/loadTexture";
+import { loadImage } from "visual/helpers/image/load-image/LoadImage";
 
 export const useInitializeAssets = (assets: Asset[]) => {
   async function initializeAsset(asset: Asset) {
@@ -27,6 +28,9 @@ const loadAsset = async (asset: Asset) => {
     case AssetType.Texture:
       const texture = await loadTexture(path);
       return texture;
+    case AssetType.Image:
+      const image = await loadImage(path);
+      return image;
     default:
       return null;
   }

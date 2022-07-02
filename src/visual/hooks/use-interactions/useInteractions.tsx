@@ -26,7 +26,7 @@ export const useInteractions = (
     setIsInitialized(true);
   });
 
-  const eventTracker = new EventTracker(interactionEventObjects);
+  const eventTracker = new EventTracker(interactionEventObjects, 0.7);
   const interactiveNode: JSX.Element = (
     <Webcam
       ref={webcamRef}
@@ -37,8 +37,8 @@ export const useInteractions = (
         left: 0,
         right: 0,
         textAlign: "center",
-        width: 240,
-        height: 200,
+        width: 440,
+        height: 400,
         visibility: "hidden",
       }}
     />

@@ -19,6 +19,8 @@ export const RootContainer = ({
         height: `${viewHeight}`,
         width: `${viewWidth}`,
         overflow: "hidden",
+        backgroundColor : 'transparent'
+      
       }}
       ref={containerRef}
     ></div>

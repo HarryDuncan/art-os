@@ -70,4 +70,5 @@ const particleUniforms = {
   uTextureSize: { value: new Vector2(0, 0) },
   uTexture: { value: null },
   uTouch: { value: null },
+  uTouchRef: { value: null },
 };

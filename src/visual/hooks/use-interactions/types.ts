@@ -3,8 +3,7 @@ import { KEYPOINT_FEATURES } from "./const";
 export interface InteractionEventObject {
   interactionKey: InteractionKey;
   eventKey: EventKey;
-  // TODO generic type
-  eventFunction?: any;
+  eventFunction?: (materialReference, eventDetails) => void;
 }
 
 export type InteractionKey = KeypointFeatureKey;
@@ -12,17 +11,14 @@ export type InteractionKey = KeypointFeatureKey;
 export type ModelType = "posenet";
 
 export enum EventKey {
-  SwipeLeft = "SWIPELEFT",
-  SwipeRight = "SWIPERIGHT",
-  SwipeUp = "SWIPEUP",
-  SwipeDown = "SWIPEDOWN",
-  SwipeHorizontal = "SWIPEHORIZONTAL",
-  SwipeVertical = "SWIPEVERTICAL",
-
-  SlideX = "SLIDEX",
-  SlideY = "SLIDEY",
-
-  Position = "Position",
+  SwipeLeft = "SWIPE_LEFT",
+  SwipeRight = "SWIPE_RIGHT",
+  SwipeUp = "SWIPE_UP",
+  SwipeDown = "SWIPE_DOWN",
+  SwipeHorizontal = "SWIPE_HORIZONTAL",
+  SwipeVertical = "SWIPE_VERTICAL",
+  Scale = "SCALE",
+  Position = "POSITION",
 }
 
 // <------------------ POSENET --------------------->

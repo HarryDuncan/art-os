@@ -1,24 +1,24 @@
 import React from "react";
 import { useInteractiveMaterialParams } from "visual/hooks/use-interactive-material/useInteractiveMaterialParams";
-import { InteractiveObject } from "visual/visual-components";
-import { picturePoint, vanishingObject } from "./interactiveSceneParams";
+import { InteractiveParticles } from "visual/visual-components";
+import { picturePoint } from "./interactiveSceneParams";
 
 export const Sandbox = () => {
   const {
-    threeJSParams,
-    interactions,
+    threeJsParams,
+    interactionEvents,
     assets,
     materialParamType,
     materialFunctions,
-  } = vanishingObject;
+  } = picturePoint;
 
   const materialParams = useInteractiveMaterialParams(materialParamType);
 
   return (
-    <InteractiveObject
+    <InteractiveParticles
       params={{
-        threeJsParams: threeJSParams,
-        interactionEvents: interactions,
+        threeJsParams,
+        interactionEvents,
         assets,
         materialParams,
         materialFunctions,

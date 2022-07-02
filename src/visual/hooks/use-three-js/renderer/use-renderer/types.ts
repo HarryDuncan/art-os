@@ -1,4 +1,5 @@
 export interface RendererParams {
-  clearColor?: string;
+  clearColor?: number;
   effects?: {};
+  size?: { width: number; height: number };
 }

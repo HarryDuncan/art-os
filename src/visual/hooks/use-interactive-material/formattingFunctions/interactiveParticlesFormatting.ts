@@ -23,7 +23,4 @@ const getTextureFeatures = (loadedTexture: Texture) => {
   loadedTexture.minFilter = LinearFilter;
   loadedTexture.magFilter = LinearFilter;
   loadedTexture.format = RGBFormat;
-
-  const width = loadedTexture.image.width;
-  const height = loadedTexture.image.height;
 };

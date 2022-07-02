@@ -5,7 +5,6 @@
   "version": "0.2.7",
   "private": true,
   "dependencies": {
-    "@brunoimbrizi/controlkit": "^0.2.2",
     "@reduxjs/toolkit": "^1.8.1",
     "@tensorflow-models/posenet": "^2.2.2",
     "@tensorflow/tfjs": "^3.18.0",

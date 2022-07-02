@@ -4,7 +4,7 @@ import {
   FragmentShader,
   VertexShader,
 } from "../../hooks/use-webgl-shader/fragmentShaders/types";
-import TouchTexture from "../touch-texture/TouchTexture";
+import TouchTexture from "../../visual-components/interactive-particles/TouchTexture";
 
 export interface VanishingObjectUniforms {
   matcap: { value: Texture | null };
