@@ -1,11 +1,12 @@
 import { AssetType } from "visual/hooks/use-assets/types";
 import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
-import { InteractiveScenes } from "visual/components/interactive-material/types";
 import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
 import { TweenLite } from "gsap/all";
+import { materialParams } from "./materialParams";
+import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
 
-export const picturePoint = {
+export const interactiveParticles = {
   threeJsParams: {
     camera: {
       position: { x: 0, y: 0, z: 300 },
@@ -15,6 +16,7 @@ export const picturePoint = {
       far: 1080,
     },
     renderer: {
+      rendererType: RendererTypes.WEBGL,
       size: { width: 800, height: 800 },
       clearColor: 0x000000,
       alpha: 0,
@@ -27,8 +29,6 @@ export const picturePoint = {
       eventFunction: (material: InteractiveMaterial, details) => {
         material.uniforms.uTouchRef.value.addTouch(details);
         material.uniforms.uTouchRef.value.update();
-        // details.forEach(element => {
-        // });
       },
     },
   ],
@@ -39,9 +39,8 @@ export const picturePoint = {
       assetType: AssetType.Texture,
     },
   ],
-  materialParamType: InteractiveScenes.INTERACTIVE_PARTICLES,
+  materialParams,
   materialFunctions: {
-    onInitialize: (material: InteractiveMaterial) => {},
     onTimeUpdate: (material: InteractiveMaterial) => {
       if (material.isRunningThread) {
         TweenLite.fromTo(

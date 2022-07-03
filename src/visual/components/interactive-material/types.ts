@@ -54,5 +54,6 @@ export interface InteractiveParticlesUniforms {
   uSize: { value: number };
   uTextureSize: { value: Vector2 };
   uTexture: { value: null | Texture };
-  uTouch: { value: null | TouchTexture };
+  uTouch: { value: null | Texture };
+  uTouchRef: { value: null | TouchTexture };
 }

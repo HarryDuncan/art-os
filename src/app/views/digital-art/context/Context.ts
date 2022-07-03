@@ -20,6 +20,12 @@ export const defaultState: DigitalArtState = {
       componentId: "InteractiveObject",
       cardImageName: "vanishingObject.jpg",
     },
+    {
+      title: "Interactive Particles",
+      sceneId: "interactiveParticles",
+      componentId: "InteractiveParticles",
+      cardImageName: "interactiveParticles.jpg",
+    },
   ],
 };
 
