@@ -1,4 +1,4 @@
-import { RendererParams } from "./renderer/use-renderer/types";
+import { RendererParams } from "./renderer/types";
 import { CameraParams } from "./use-camera/types";
 
 export type ThreeJsParams = {

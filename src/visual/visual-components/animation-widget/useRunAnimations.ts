@@ -4,7 +4,7 @@ import { useAnimationWidgetRefs } from "./useAnimationWidgetRefs";
 import { useThreeJs } from "visual/hooks/use-three-js/useThreeJs";
 import { useScenes } from "./scenes/useScenes";
 import { useSetActiveScene } from "./scenes/useSetActiveScene";
-import { useThread } from "visual/hooks/use-thread/useThread";
+import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
 import { useUpdateScene } from "./scenes/useUpdateScene";
 
 export const useRunAnimations = (sceneParams: IAnimationWidgetScene[]) => {
@@ -27,7 +27,11 @@ export const useRunAnimations = (sceneParams: IAnimationWidgetScene[]) => {
     isRunningRef
   );
 
-  const { update } = useThread(postProcessor, currentFrameRef, clock);
+  const { update } = useThreadWithPostProcessor(
+    postProcessor,
+    currentFrameRef,
+    clock
+  );
 
   useEffect(() => {
     if (areScenesInitialized) {

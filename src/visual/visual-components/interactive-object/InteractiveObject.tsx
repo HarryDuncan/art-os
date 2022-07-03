@@ -5,7 +5,7 @@ import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/us
 import { useThreeJs } from "visual/hooks/use-three-js/useThreeJs";
 import { useAssets } from "visual/hooks/use-assets/useAssets";
 import PostProcessing from "visual/components/post-processing/PostProcessing";
-import { useThread } from "visual/hooks/use-thread/useThread";
+import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
 import { InteractiveObjectParams } from "./types";
 
 interface InteractiveObjectProps {
@@ -30,7 +30,11 @@ export const InteractiveObject = ({ params }: InteractiveObjectProps) => {
     clock,
   } = useThreeJs(threeJsParams);
   const { initializedAssets, areAssetsInitialized } = useAssets(assets);
-  const { update, pause } = useThread(postProcessor, currentFrameRef, clock);
+  const { update, pause } = useThreadWithPostProcessor(
+    postProcessor,
+    currentFrameRef,
+    clock
+  );
   const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
     materialParams,

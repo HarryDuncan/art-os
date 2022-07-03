@@ -4,7 +4,7 @@ import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useThreeJs } from "visual/hooks/use-three-js/useThreeJs";
 import { useAssets } from "visual/hooks/use-assets/useAssets";
 import PostProcessing from "visual/components/post-processing/PostProcessing";
-import { useThread } from "visual/hooks/use-thread/useThread";
+import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
 import { InteractiveParticlesParams } from "./types";
 import { useInteractiveParticles } from "visual/hooks/use-interactive-particles/useInteractiveParticles";
 import { StaticBackgroundContainer } from "visual/components/static-background/StaticBackground.styles";
@@ -31,7 +31,11 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
     clock,
   } = useThreeJs(threeJsParams);
   const { initializedAssets, areAssetsInitialized } = useAssets(assets);
-  const { update, pause } = useThread(postProcessor, currentFrameRef, clock);
+  const { update, pause } = useThreadWithPostProcessor(
+    postProcessor,
+    currentFrameRef,
+    clock
+  );
   const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveParticleMesh = useInteractiveParticles(
     materialParams,
@@ -65,8 +69,12 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
   return (
     <>
       {interactiveNode}
-      <RootContainer containerRef={container} viewHeight={'800px'} viewWidth={'800px'}/>
-     <StaticBackgroundContainer />
+      <RootContainer
+        containerRef={container}
+        viewHeight={"800px"}
+        viewWidth={"800px"}
+      />
+      <StaticBackgroundContainer />
     </>
   );
 };

@@ -3,18 +3,22 @@ import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { InteractiveScenes } from "visual/components/interactive-material/types";
 import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
-import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
+import { TweenLite } from "gsap/all";
 
-export const threeDGallery = {
+export const picturePoint = {
   threeJsParams: {
     camera: {
-      position: { x: 0, y: 0, z: 3000 },
-      fov: 50,
+      position: { x: 0, y: 0, z: 300 },
+      fov: 100,
       aspect: 1,
       near: 1,
-      far: 10080,
+      far: 1080,
     },
-    renderer: { rendererType: RendererTypes.CSS },
+    renderer: {
+      size: { width: 800, height: 800 },
+      clearColor: 0x000000,
+      alpha: 0,
+    },
   },
   interactionEvents: [
     {
