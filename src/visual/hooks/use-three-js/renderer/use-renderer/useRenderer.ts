@@ -9,10 +9,18 @@ export const useRenderer = (renderParams: RendererParams = {}) => {
       antialias: true,
       alpha: true,
     });
-
     newRenderer.setPixelRatio(window.devicePixelRatio);
-    newRenderer.setSize(window.innerWidth, window.innerHeight);
+    const {width, height} = getRendererSize(renderParams)
+    newRenderer.setSize(width, height);
     newRenderer.setClearColor(0x000000, 0);
     return newRenderer;
-  }, []);
+  }, [renderParams]);
 };
+
+
+const getRendererSize = (renderParams) => {
+  const {size} = renderParams
+  if(!size) return {width : window.innerWidth, height :window.innerHeight};
+    return {width : size.width, height : size.height}
+
+}

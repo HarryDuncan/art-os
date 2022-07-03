@@ -101,7 +101,6 @@ const formatGeometry = (loadedTexture, uniforms) => {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   let numVisible = 0;
-  console.log(height)
   canvas.width = width;
   canvas.height = height;
   if (ctx) {

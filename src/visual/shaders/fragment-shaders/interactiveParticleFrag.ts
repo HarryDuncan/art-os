@@ -1,12 +1,17 @@
 export const interactiveParticleFragment = {
   frag: `precision highp float;
+  #define C(c) U.x-=.5; O+= char(U,64+c)
 
     uniform sampler2D uTexture;
 
     varying vec2 vPUv;
     varying vec2 vUv;
     uniform float uTime;
+
+ 
+
     void main() {
+      
         vec4 color = vec4(0.0);
         vec2 uv = vUv;
         vec2 puv = vPUv;
@@ -31,3 +36,4 @@ export const interactiveParticleFragment = {
         gl_FragColor = color;
     }`,
 };
+

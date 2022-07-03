@@ -23,7 +23,7 @@ export const picturePoint = {
   interactionEvents: [
     {
       eventKey: EventKey.Scale,
-      interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
+      interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
       eventFunction: (material: InteractiveMaterial, details) => {
         material.uniforms.uTouchRef.value.addTouch(details);
         material.uniforms.uTouchRef.value.update();
@@ -35,7 +35,7 @@ export const picturePoint = {
   assets: [
     {
       name: "image",
-      url: "../assets/textures/Marsh.jpg",
+      url: "../assets/textures/zz.jpg",
       assetType: AssetType.Texture,
     },
   ],

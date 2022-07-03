@@ -7,6 +7,7 @@ import PostProcessing from "visual/components/post-processing/PostProcessing";
 import { useThread } from "visual/hooks/use-thread/useThread";
 import { InteractiveParticlesParams } from "./types";
 import { useInteractiveParticles } from "visual/hooks/use-interactive-particles/useInteractiveParticles";
+import { StaticBackgroundContainer } from "visual/components/static-background/StaticBackground.styles";
 
 interface InteractiveObjectProps {
   params: InteractiveParticlesParams;
@@ -64,8 +65,8 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
   return (
     <>
       {interactiveNode}
-      <RootContainer containerRef={container} />
-     
+      <RootContainer containerRef={container} viewHeight={'800px'} viewWidth={'800px'}/>
+     <StaticBackgroundContainer />
     </>
   );
 };

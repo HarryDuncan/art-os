@@ -73,7 +73,7 @@ export const interactiveParticlesVert = {
         float siz = 0.0;
         if( grey < 0.8 )
         {
-            siz = 0.4;
+            siz = 0.4 ;
         };
         psize *= min(grey, siz);
         psize *= uSize;
