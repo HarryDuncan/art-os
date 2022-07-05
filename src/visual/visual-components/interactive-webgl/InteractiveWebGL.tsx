@@ -1,18 +1,17 @@
 import React, { useCallback, useEffect } from "react";
 import { RootContainer } from "../../components/root-container";
 import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
-import PostProcessing from "visual/components/post-processing/PostProcessing";
-import { InteractiveParticlesParams } from "./types";
-import { StaticBackgroundContainer } from "visual/components/static-background/StaticBackground.styles";
-import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
-import { useFormatParticleParams } from "./use-format-particle-params/useFormatParticleParams";
+import PostProcessing from "visual/components/post-processing/PostProcessing";
+import { InteractiveObjectParams } from "./types";
+import { useSetUpScene } from "visual/hooks/useSetUpScene";
+import { useFormatWebGL } from "./useFormatWebGL";
 
 interface InteractiveObjectProps {
-  params: InteractiveParticlesParams;
+  params: InteractiveObjectParams;
 }
 
-export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
+export const InteractiveWebGL = ({ params }: InteractiveObjectProps) => {
   const {
     threeJsParams,
     interactionEvents,
@@ -20,6 +19,7 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
     materialParams,
     materialFunctions,
   } = params;
+
   const {
     areAssetsInitialized,
     initializedAssets,
@@ -31,33 +31,30 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
     container,
   } = useSetUpScene(threeJsParams, assets);
 
-  const { geometry, uniforms, shaders } = useFormatParticleParams(
+  const { uniforms, shaders, geometry } = useFormatWebGL(
     initializedAssets,
     areAssetsInitialized,
     materialParams
   );
-
   const { interactiveNode } = useInteractions(interactionEvents);
-  const interactiveParticleMesh = useInteractiveMaterial(
+  const interactiveMesh = useInteractiveMaterial(
     interactionEvents,
     materialFunctions,
     geometry,
     uniforms,
     shaders
   );
-
   const initializeMesh = useCallback(() => {
-    if (interactiveParticleMesh) {
-      scene.add(interactiveParticleMesh);
+    if (interactiveMesh) {
+      scene.add(interactiveMesh);
       postProcessor.current = new PostProcessing({
         renderer,
         scene,
         camera,
       });
-      renderer.render(scene, camera);
       update();
     }
-  }, [postProcessor, renderer, scene, camera, interactiveParticleMesh, update]);
+  }, [postProcessor, renderer, scene, camera, interactiveMesh, update]);
 
   useEffect(() => {
     initializeMesh();
@@ -66,12 +63,7 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
   return (
     <>
       {interactiveNode}
-      <RootContainer
-        containerRef={container}
-        viewHeight={"800px"}
-        viewWidth={"800px"}
-      />
-      <StaticBackgroundContainer />
+      <RootContainer containerRef={container} />
     </>
   );
 };

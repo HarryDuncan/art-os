@@ -2,11 +2,10 @@ import React, { useCallback, useEffect } from "react";
 import { RootContainer } from "../../components/root-container";
 import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
-import { useThreeJs } from "visual/hooks/use-three-js/useThreeJs";
-import { useAssets } from "visual/hooks/use-assets/useAssets";
 import PostProcessing from "visual/components/post-processing/PostProcessing";
-import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
 import { InteractiveObjectParams } from "./types";
+import { useSetUpScene } from "visual/hooks/useSetUpScene";
+import { useFormatMaterialParams } from "./useFormatMaterialParams";
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;
@@ -20,29 +19,33 @@ export const InteractiveObject = ({ params }: InteractiveObjectProps) => {
     materialParams,
     materialFunctions,
   } = params;
+
   const {
-    container,
-    renderer,
-    scene,
-    camera,
-    currentFrameRef,
-    postProcessor,
-    clock,
-  } = useThreeJs(threeJsParams);
-  const { initializedAssets, areAssetsInitialized } = useAssets(assets);
-  const { update, pause } = useThreadWithPostProcessor(
-    postProcessor,
-    currentFrameRef,
-    clock
-  );
-  const { interactiveNode } = useInteractions(interactionEvents);
-  const interactiveMesh = useInteractiveMaterial(
-    materialParams,
-    interactionEvents,
     areAssetsInitialized,
     initializedAssets,
-    materialFunctions
+    scene,
+    postProcessor,
+    renderer,
+    camera,
+    update,
+    container,
+  } = useSetUpScene(threeJsParams, assets);
+
+  const { geometry, uniforms, shaders } = useFormatMaterialParams(
+    initializedAssets,
+    areAssetsInitialized,
+    materialParams
   );
+
+  const { interactiveNode } = useInteractions(interactionEvents);
+  const interactiveMesh = useInteractiveMaterial(
+    interactionEvents,
+    materialFunctions,
+    geometry,
+    uniforms,
+    shaders
+  );
+
   const initializeMesh = useCallback(() => {
     if (interactiveMesh) {
       scene.add(interactiveMesh);
@@ -59,10 +62,6 @@ export const InteractiveObject = ({ params }: InteractiveObjectProps) => {
   useEffect(() => {
     initializeMesh();
   }, [initializeMesh]);
-
-  useEffect(() => {
-    return () => pause();
-  }, [pause]);
 
   return (
     <>

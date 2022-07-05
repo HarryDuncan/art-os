@@ -12,7 +12,7 @@ export const useViewPiece = (
 
   const currentSceneParams = SceneParams[sceneId];
   const SceneComponent = VisualComponents[componentId] as React.ElementType;
-  console.log(currentSceneParams);
+
   return {
     component: <SceneComponent params={currentSceneParams} />,
     title,

@@ -1,19 +1,25 @@
 import React from "react";
-import { useInteractiveMaterialParams } from "visual/hooks/use-interactive-material/useInteractiveMaterialParams";
-import { ThreeDGallery } from "visual/visual-components";
-
-import { threeDGallery } from "./interactiveSceneParams";
+import { InteractiveWebGL } from "visual/visual-components";
+import { interactiveWebGL } from "./interactiveWebGL";
 
 export const Sandbox = () => {
   const {
     threeJsParams,
     interactionEvents,
     assets,
-    materialParamType,
     materialFunctions,
-  } = threeDGallery;
+    materialParams,
+  } = interactiveWebGL;
 
-  const materialParams = useInteractiveMaterialParams(materialParamType);
-
-  return <ThreeDGallery params={{ threeJsParams, interactionEvents }} />;
+  return (
+    <InteractiveWebGL
+      params={{
+        threeJsParams,
+        interactionEvents,
+        assets,
+        materialFunctions,
+        materialParams,
+      }}
+    />
+  );
 };

@@ -30,9 +30,11 @@ export interface VanishingObjectShaders {
 export type InteractiveUniform =
   | VanishingObjectUniforms
   | InteractiveParticlesUniforms;
+
 export enum InteractiveScenes {
   VANISHING_OBJECT = "vanishingObject",
-  INTERACTIVE_PARTICLES = "movementTracking",
+  INTERACTIVE_PARTICLES = "interactiveParticles",
+  INTERACTIVE_WEBGL = "interactiveWebGL",
 }
 export type InteractiveShaders = VanishingObjectShaders;
 

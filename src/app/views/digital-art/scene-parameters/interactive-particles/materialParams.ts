@@ -4,7 +4,7 @@ import {
   InteractiveScenes,
 } from "visual/components/interactive-material/types";
 import { interactiveParticleFragment } from "visual/shaders/fragment-shaders";
-import { interactiveParticlesVert } from "visual/shaders/vertex-shaders";
+import { interactiveParticlesVertex } from "visual/shaders/vertex-shaders";
 
 export const materialParams: InteractiveParam = {
   sceneType: InteractiveScenes.INTERACTIVE_PARTICLES,
@@ -20,6 +20,6 @@ export const materialParams: InteractiveParam = {
   },
   shaders: {
     fragmentShader: interactiveParticleFragment,
-    vertexShader: interactiveParticlesVert,
+    vertexShader: interactiveParticlesVertex,
   },
 };
