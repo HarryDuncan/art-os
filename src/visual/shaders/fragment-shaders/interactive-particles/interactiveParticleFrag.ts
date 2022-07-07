@@ -36,4 +36,3 @@ export const interactiveParticleFragment = {
         gl_FragColor = color;
     }`,
 };
-

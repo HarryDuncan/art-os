@@ -23,8 +23,6 @@ export const threeDGallery = {
       eventFunction: (material: InteractiveMaterial, details) => {
         material.uniforms.uTouchRef.value.addTouch(details);
         material.uniforms.uTouchRef.value.update();
-        // details.forEach(element => {
-        // });
       },
     },
   ],

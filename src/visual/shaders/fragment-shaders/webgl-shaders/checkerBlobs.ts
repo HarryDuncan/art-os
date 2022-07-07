@@ -2,8 +2,8 @@ export const checkerBlobs = {
   tags: ["noUniforms"],
   frag: `void mainImage( out vec4 fragColor, in vec2 fragCoord )
     {
-        float time = iTime * 1.;									// adjust time
-        vec2 uv = (2. * fragCoord - iResolution.xy) / iResolution.y;	// center coordinates
+        float time = uTime * 1.;									// adjust time
+        vec2 uv = (2. * fragCoord - uResolution.xy) / uResolution.y;	// center coordinates
         float timeOsc = sin(time) * 0.05;								// oscillation helper
         float dist = 0.;												// start distance count from 0
         for(float i=10.; i < 60.; i++) {								// create x control points

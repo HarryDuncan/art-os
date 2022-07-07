@@ -1,1 +1,0 @@
-export { useWebGLShader } from "./useWebGLShader";

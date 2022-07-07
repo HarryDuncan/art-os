@@ -63,15 +63,15 @@ vec2 Noise( in vec3 x )
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
-	vec2 uv = (fragCoord.xy-.5*iResolution.xy) / iResolution.x;
+	vec2 uv = (fragCoord.xy-.5*uResolution.xy) / uResolution.x;
 	
-	vec2 blob = Noise( vec3(uv.x,uv.y*sqrt(3.0)*.5,uv.y*.5)*4.0 + iTime*vec3(0,-.1,.1) );
+	vec2 blob = Noise( vec3(uv.x,uv.y*sqrt(3.0)*.5,uv.y*.5)*4.0 + uTime*vec3(0,-.1,.1) );
 	
 	const vec3 ink1 = vec3(.9,.6,.1);
 	const vec3 ink2 = vec3(.9,.5,.8);
 	
-	vec3 col1 = pow(ink1,vec3(4.0*sqrt(max(0.0,(blob.x-0.5 * sin(iTime))*1.0))));
-	vec3 col2 = pow(ink2,vec3(4.0*sqrt(max(0.0,(blob.y-0.6 *cos(iTime))*1.0))));
+	vec3 col1 = pow(ink1,vec3(4.0*sqrt(max(0.0,(blob.x-0.5 * sin(uTime))*1.0))));
+	vec3 col2 = pow(ink2,vec3(4.0*sqrt(max(0.0,(blob.y-0.6 *cos(uTime))*1.0))));
 	
 	fragColor = vec4(ToGamma(col1*col2),1);
 }`;

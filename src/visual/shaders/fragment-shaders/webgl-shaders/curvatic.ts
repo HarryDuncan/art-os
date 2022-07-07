@@ -9,13 +9,13 @@ export const curvatic = {
 	
 	void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	{
-		vec2 q = fragCoord.xy/iResolution.xy;
+		vec2 q = fragCoord.xy/uResolution.xy;
 		vec2 p = -1.0+2.0*q;
-		p.x *= iResolution.x/iResolution.y;
+		p.x *= uResolution.x/uResolution.y;
 		
 		// camera	
-		vec3 ro =  vec3(sin(iTime*0.16),0.,cos(iTime*0.1) );
-		vec3 ta =  ro + vec3(sin(iTime*0.15),sin(iTime*0.18),cos(iTime*0.24));
+		vec3 ro =  vec3(sin(uTime*0.16),0.,cos(uTime*0.1) );
+		vec3 ta =  ro + vec3(sin(uTime*0.15),sin(uTime*0.18),cos(uTime*0.24));
 		float roll = 0.0;
 		
 		// camera tx
@@ -31,7 +31,7 @@ export const curvatic = {
 			vec3 p=ro+rd*s;
 	
 			for(float i=0.1; i<1.; i+=0.12){
-				p=abs(p)/dot(p+sin(iTime*0.1)*0.1,p)-0.5; // the magic formula
+				p=abs(p)/dot(p+sin(uTime*0.1)*0.1,p)-0.5; // the magic formula
 				float a=length(p); // absolute sum of average change
 				v+= vec3(i,i*i,i*i*i)*a*0.12; // coloring based on distance
 			}

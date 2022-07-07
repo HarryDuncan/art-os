@@ -3,8 +3,7 @@ import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { InteractiveScenes } from "visual/components/interactive-material/types";
 import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
-import { defaultVertex } from "visual/shaders/vertex-shaders";
-import { interactiveDisplacementFrag } from "visual/shaders/fragment-shaders";
+import { UniformTypes } from "visual/shaders/types";
 
 export const interactiveWebGL = {
   threeJsParams: {
@@ -28,21 +27,19 @@ export const interactiveWebGL = {
   ],
   assets: [
     {
-      name: "image",
+      name: "uChannel0",
       url: "../assets/textures/zz.jpg",
       assetType: AssetType.Texture,
     },
   ],
   materialParams: {
     sceneType: InteractiveScenes.INTERACTIVE_WEBGL,
-    shaders: {
-      fragmentShader: interactiveDisplacementFrag,
-      vertexShader: defaultVertex,
-    },
-    uniforms: null,
+    shaderName: "interactiveDisplacementFrag",
+    uniformDefinition: [
+      { uniformName: "uChannel0", uniformType: UniformTypes.sampler2D },
+    ],
   },
   materialFunctions: {
-    onInitialize: (material: InteractiveMaterial) => {},
     onTimeUpdate: (material: InteractiveMaterial) => {
       const delta = material.clock.getDelta();
       material.uniforms.uTime.value += delta;

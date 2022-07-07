@@ -78,7 +78,6 @@ export const useFormatTextureToGeometry = () => {
           j++;
         }
       }
-      console.log(geometry);
       geometry.setAttribute(
         "pindex",
         new InstancedBufferAttribute(indices, 1, false)

@@ -1,10 +1,10 @@
-import { FragmentShader } from "../types";
+import { FragmentShader } from "visual/shaders/types";
 
 export const electricPulse: FragmentShader = {
   tags: ["noUniforms"],
   frag: `
 
-	#define time iTime*0.15
+	#define time uTime*0.15
 	#define tau 6.2831853
 	
 	mat2 makem2(in float theta){float c = cos(theta);float s = sin(theta);return mat2(c,-s,s,c);}
@@ -47,8 +47,8 @@ export const electricPulse: FragmentShader = {
 	void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	{
 		//setup system
-		vec2 p = fragCoord.xy / iResolution.xy-0.5;
-		p.x *= iResolution.x/iResolution.y;
+		vec2 p = fragCoord.xy / uResolution.xy-0.5;
+		p.x *= uResolution.x/uResolution.y;
 		p*=4.;
 		
 		float rz = dualfbm(p);

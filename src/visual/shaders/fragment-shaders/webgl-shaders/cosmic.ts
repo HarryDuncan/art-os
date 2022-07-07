@@ -4,7 +4,7 @@ export const cosmic = {
     #define PI 3.14159265359
     #define TWO_PI 6.28318530718
     
-    #define resolution iResolution.xy
+    #define resolution uResolution.xy
     #define size 0.0240525
     #define lineSize 0.24540144
     #define blur 0.227794
@@ -73,24 +73,24 @@ export const cosmic = {
       for(int i=0;i<5;i++) {
           
           float m = (float(i)/5.);
-          st.y += size*m*sin(iTime/3.);
-          float a = atan(st.x,st.y)+PI+(morph*m) + (0.03*m * sin(iTime));
+          st.y += size*m*sin(uTime/3.);
+          float a = atan(st.x,st.y)+PI+(morph*m) + (0.03*m * sin(uTime));
           float r = TWO_PI/float(N);
           
           d = cos(floor(.5+a/r)*r-a )*length(st);
           d = impulse(d,delayAmount);
           vec3 color = vec3(0.0);
           float check = delay2 * (1.-length(st));
-          color.r = plot(fract(d*grid - check + iTime*speed));
-          color.g = plot(fract(d*grid - check + iTime*speed*0.8));
-          color.b = plot(fract(d*grid - check + iTime*speed*0.6));
+          color.r = plot(fract(d*grid - check + uTime*speed));
+          color.g = plot(fract(d*grid - check + uTime*speed*0.8));
+          color.b = plot(fract(d*grid - check + uTime*speed*0.6));
           colorNew+= ( color*m );
         }
         
         
      
        vec3 hue = rgb2hsb(colorNew);
-        hue.x = tan(iTime * 0.6);
+        hue.x = tan(uTime * 0.6);
         hue.y = 0.5;
         hue.y = 0.5;
         fragColor = vec4( hsb2rgb(hue)-colorNew*0.2 ,1.);

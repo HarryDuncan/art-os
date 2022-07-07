@@ -1,9 +1,6 @@
 import { Color, Texture, Vector2, Vector3 } from "three";
 import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
-import {
-  FragmentShader,
-  VertexShader,
-} from "../../hooks/use-webgl-shader/fragmentShaders/types";
+import { FragmentShader, VertexShader } from "../../shaders/types";
 import TouchTexture from "../../visual-components/interactive-particles/TouchTexture";
 
 export interface VanishingObjectUniforms {

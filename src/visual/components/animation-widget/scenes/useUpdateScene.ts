@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { FunctionBasedScene } from "../types";
+import { FunctionBasedScene } from "visual/function-based-scenes/types";
 import { useChangeScenes } from "./useChangeScenes";
 
 export const useUpdateScene = (

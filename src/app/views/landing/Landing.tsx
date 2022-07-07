@@ -8,7 +8,7 @@ export const Landing = () => {
 
   const landingScenes = shaderSceneNames.map((scene: string) => ({
     title: "shaderScene",
-    name: "ShaderScene",
+    name: "GenericShaderScene",
     data: { shaderName: scene },
   }));
 

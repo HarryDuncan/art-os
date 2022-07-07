@@ -1,20 +1,30 @@
 import { useCallback } from "react";
 import { PlaneGeometry } from "three";
-import { InteractiveParam } from "visual/components/interactive-material/types";
 import { Asset } from "visual/hooks/use-assets/types";
+
+import { WebGLShaderMaterialParams } from "./types";
+import { defaultVertex } from "visual/shaders/vertex-shaders";
+import { formatUniforms } from "visual/shaders/shader-functions/uniforms/formatUniforms";
+import { formatFragmentShader } from "visual/shaders/shader-functions/formatFragmentShader";
 
 export const useFormatWebGL = (
   initializedAssets: Asset[],
   areAssetsInitialized: boolean,
-  materialParams: InteractiveParam
+  materialParams: WebGLShaderMaterialParams
 ) => {
-  const { uniforms, shaders } = materialParams;
+  const { shaderName, uniformDefinition } = materialParams;
+  const { uniforms, uniformText } = formatUniforms();
+  const fragmentShader = formatFragmentShader(shaderName, uniformText);
   const formatUniformsAndGeometry = useCallback(
-    (assets: Asset[], uniforms): { geometry; uniforms; shaders } => {
+    (assets: Asset[], unformattedUniforms): { geometry; uniforms; shaders } => {
       const geometry = new PlaneGeometry(2, 2);
-      return { geometry, uniforms, shaders };
+      const shaders = {
+        fragmentShader,
+        vertexShader: defaultVertex,
+      };
+      return { geometry, uniforms: unformattedUniforms, shaders };
     },
-    [shaders]
+    [fragmentShader]
   );
   return formatUniformsAndGeometry(initializedAssets, uniforms);
 };

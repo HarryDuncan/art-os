@@ -46,9 +46,9 @@ export const liquid = {
     }
     
     void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
-      vec2 p = fragCoord.xy / iResolution.xy;
-      ltime = iTime;
-      float ctime = iTime + fbm(p/8.)*40.;
+      vec2 p = fragCoord.xy / uResolution.xy;
+      ltime = uTime;
+      float ctime = uTime + fbm(p/8.)*40.;
       float ftime = fract(ctime/6.);
       ltime = floor(ctime/6.) + (1.-cos(ftime*3.1415)/2.);
       ltime = ltime*6.;

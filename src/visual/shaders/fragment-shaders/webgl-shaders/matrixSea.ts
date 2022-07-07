@@ -1,4 +1,4 @@
-import { FragmentShader } from "../types";
+import { FragmentShader } from "visual/shaders/types";
 
 export const matrixSea: FragmentShader = {
   tags: [],
@@ -42,7 +42,7 @@ export const matrixSea: FragmentShader = {
           vec2 g = vec2(float(i), float(j));
           vec2 o = hash(p + g);
           if(i == 0)
-            o = 0.5 + 0.5*sin(6.28138*o + 0.2*iTime);
+            o = 0.5 + 0.5*sin(6.28138*o + 0.2*uTime);
           
           vec2 r = g + o - f;
       
@@ -60,8 +60,8 @@ export const matrixSea: FragmentShader = {
       }
       
       vec3 formula(vec2 p) {
-        p *= mat2(cos(iTime*0.1), sin(iTime*0.1), -sin(iTime*0.1), cos(iTime*0.1));
-        p += vec2(iTime*0.5, sin(iTime*0.7));
+        p *= mat2(cos(uTime*0.1), sin(uTime*0.1), -sin(uTime*0.1), cos(uTime*0.1));
+        p += vec2(uTime*0.5, sin(uTime*0.7));
         
         float v = 0.0;
         float a = 0.7, f = 1.0;
@@ -106,7 +106,7 @@ export const matrixSea: FragmentShader = {
       }
         
       void mainImage(out vec4 fragColor, in vec2 fragCoord ) {
-        vec2 p = (-iResolution.xy + 4.0*fragCoord)/iResolution.y;
+        vec2 p = (-uResolution.xy + 4.0*fragCoord)/uResolution.y;
         
         vec3 rd = normalize(vec3(p, 1.97));
         vec3 sn = normalize(bump(p, 0.8));
@@ -119,7 +119,7 @@ export const matrixSea: FragmentShader = {
         col += pow(clamp(dot(-rd, re), 0.0, 1.0), 8.0);
         col *= vec3(0.2, 0.5, 1.4)*mat.b;
         
-        col += vec3(cos(iTime *0.9), sin(iTime *0.5), 0.5)*smoothstep(0.0, 2.0, sin(mat.r*mat.b));
+        col += vec3(cos(uTime *0.9), sin(uTime *0.5), 0.5)*smoothstep(0.0, 2.0, sin(mat.r*mat.b));
       
         col = pow(col, vec3(1.0/2.2));
         fragColor = vec4(col, 1);
