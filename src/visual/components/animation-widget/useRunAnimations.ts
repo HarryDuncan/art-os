@@ -8,9 +8,7 @@ import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
 import { useUpdateScene } from "./scenes/useUpdateScene";
 
 export const useRunAnimations = (sceneParams: IAnimationWidgetScene[]) => {
-  // Refs
   const { sceneIndex, isRunningRef } = useAnimationWidgetRefs();
-
   const {
     container,
     postProcessor,
@@ -18,7 +16,6 @@ export const useRunAnimations = (sceneParams: IAnimationWidgetScene[]) => {
     currentFrameRef,
     clock,
   } = useThreeJs();
-
   const { initializedScenes, areScenesInitialized } = useScenes(sceneParams);
   const setActiveScene = useSetActiveScene(
     initializedScenes,
@@ -26,13 +23,11 @@ export const useRunAnimations = (sceneParams: IAnimationWidgetScene[]) => {
     postProcessor,
     isRunningRef
   );
-
   const { update } = useThreadWithPostProcessor(
     postProcessor,
     currentFrameRef,
     clock
   );
-
   useEffect(() => {
     if (areScenesInitialized) {
       setActiveScene(0);
@@ -44,54 +39,3 @@ export const useRunAnimations = (sceneParams: IAnimationWidgetScene[]) => {
 
   return { container };
 };
-
-// const { current: sceneArray } = sceneArrayRef;
-// const { current: isRunning } = isRunningRef;
-// const { current: currentVisual } = currentVisualRef;
-// if (isRunning && !!sceneArray && currentVisual) {
-//   // PLAYING THE THREAD
-//   const play = () => {
-//     currentVisual.onUpdate(framework, currentVisual.sceneParams);
-//     framework?.visual?.renderer?.render(
-//       currentVisual.scene,
-//       currentVisual.camera
-//     );
-
-//     currentFrameRef.current = requestAnimationFrame(play);
-//   };
-
-//   // PAUSING THE THREAD
-//   const pause = () => {
-//     cancelAnimationFrame(currentFrameRef.current);
-//   };
-
-//   const changeScene = () => {
-//     sceneIndex.current =
-//       sceneIndex.current >= sceneArray.length - 1
-//         ? 0
-//         : sceneIndex.current + 1;
-
-//     cancelAnimationFrame(currentFrameRef.current);
-//     currentVisualRef.current = sceneArray[sceneIndex.current];
-
-//     updateFramework({
-//       ...framework,
-//       controlParams: {
-//         ...framework.controlParams,
-//         reInitScene: true,
-//         automaticSwitchingOn: true,
-//         breakAnimation: false,
-//         changeVisuals: false,
-//       },
-//     } as IFramework);
-//     play();
-//   };
-
-//   if (shouldChangeScene(currentVisual.sceneLength, sceneArray.length)) {
-//     setTimeout(() => {
-//       pause();
-//       changeScene();
-//     }, currentVisual.sceneLength);
-//   }
-//   play();
-// }

@@ -2,7 +2,7 @@ import { Vector2 } from "three";
 import {
   InteractiveParam,
   InteractiveScenes,
-} from "visual/components/interactive-material/types";
+} from "visual/components/interactive-shaders/types";
 import { interactiveParticleFragment } from "visual/shaders/fragment-shaders";
 import { interactiveParticlesVertex } from "visual/shaders/vertex-shaders";
 

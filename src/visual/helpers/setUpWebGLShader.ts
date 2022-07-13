@@ -1,10 +1,10 @@
-import { Mesh, PlaneGeometry, ShaderMaterial } from "three";
+import { Mesh, PlaneGeometry, RawShaderMaterial, ShaderMaterial } from "three";
 import { defaultVertex } from "visual/shaders/vertex-shaders";
 import { formatFragmentShader } from "visual/shaders/shader-functions/formatFragmentShader";
 import { UniformDefinition } from "visual/shaders/types";
 import { formatUniforms } from "visual/shaders/shader-functions/uniforms/formatUniforms";
 
-export type Shader = ShaderMaterial & { derivatives: boolean };
+export type Shader = RawShaderMaterial & { derivatives: boolean };
 
 export const setUpWebGLShader = (
   shaderName: string,

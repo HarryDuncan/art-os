@@ -1,9 +1,9 @@
-import { Clock, DoubleSide, RawShaderMaterial } from "three";
+import { Clock, ShaderMaterial } from "three";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
-import { defaultInteractiveMaterialFunctions } from "./interactiveMaterialConstants";
-import { InteractiveMaterialFunctions, InteractiveShaders } from "./types";
+import { defaultInteractiveMaterialFunctions } from "../interactiveMaterialConstants";
+import { InteractiveMaterialFunctions, InteractiveShaders } from "../types";
 
-export default class InteractiveMaterial extends RawShaderMaterial {
+export default class InteractiveShader extends ShaderMaterial {
   clock: Clock;
   isRunningThread: boolean;
   interactionEvents: InteractionEventObject[];
@@ -15,10 +15,12 @@ export default class InteractiveMaterial extends RawShaderMaterial {
     materialFunctions: InteractiveMaterialFunctions = defaultInteractiveMaterialFunctions
   ) {
     super({
+      uniforms: uniforms,
       vertexShader: shaders.vertexShader.vert,
       fragmentShader: shaders.fragmentShader.frag,
-      transparent: true,
-      side: DoubleSide,
+      depthWrite: true,
+      //@ts-ignore
+      derivatives: true,
     });
     this.isRunningThread = true;
     this.uniforms = uniforms;

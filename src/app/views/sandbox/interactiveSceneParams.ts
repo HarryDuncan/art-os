@@ -1,14 +1,14 @@
 import { AssetType } from "visual/hooks/use-assets/types";
 import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
-import { InteractiveScenes } from "visual/components/interactive-material/types";
-import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
+import { InteractiveScenes } from "visual/components/interactive-shaders/types";
 import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
+import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
 
 export const threeDGallery = {
   threeJsParams: {
     camera: {
-      position: { x: 0, y: 0, z: 3000 },
+      position: { x: 0, y: 0, z: 100 },
       fov: 50,
       aspect: 1,
       near: 1,
@@ -20,7 +20,7 @@ export const threeDGallery = {
     {
       eventKey: EventKey.Scale,
       interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
-      eventFunction: (material: InteractiveMaterial, details) => {
+      eventFunction: (material: InteractiveShader, details) => {
         material.uniforms.uTouchRef.value.addTouch(details);
         material.uniforms.uTouchRef.value.update();
       },
@@ -35,8 +35,7 @@ export const threeDGallery = {
   ],
   materialParamType: InteractiveScenes.INTERACTIVE_PARTICLES,
   materialFunctions: {
-    onInitialize: (material: InteractiveMaterial) => {},
-    onTimeUpdate: (material: InteractiveMaterial) => {
+    onTimeUpdate: (material: InteractiveShader) => {
       if (material.isRunningThread) {
         TweenLite.fromTo(
           material.uniforms.uSize,

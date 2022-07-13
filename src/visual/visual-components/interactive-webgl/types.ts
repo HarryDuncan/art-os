@@ -1,4 +1,4 @@
-import { InteractiveMaterialFunctions } from "visual/components/interactive-material/types";
+import { InteractiveMaterialFunctions } from "visual/components/interactive-shaders/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
 import { ThreeJsParams } from "visual/hooks/use-three-js/types";

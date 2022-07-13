@@ -1,7 +1,7 @@
 import { AssetType } from "visual/hooks/use-assets/types";
 import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
-import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
+import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
 import { TweenLite } from "gsap/all";
 import { materialParams } from "./materialParams";
 import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";

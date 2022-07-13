@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { Vector3 } from "three";
-import { InteractiveParam } from "visual/components/interactive-material/types";
+import { InteractiveParam } from "visual/components/interactive-shaders/types";
 import { getGeometryFromAsset } from "visual/helpers/assets/getGeometryFromAsset";
 import { Asset } from "visual/hooks/use-assets/types";
 

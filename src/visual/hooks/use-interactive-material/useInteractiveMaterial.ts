@@ -1,6 +1,9 @@
 import { useMemo } from "react";
 import { InteractionEventObject } from "../use-interactions/types";
-import { InteractiveMaterialFunctions } from "../../components/interactive-material/types";
+import {
+  InteractiveMaterialFunctions,
+  InteractiveShaderTypes,
+} from "../../components/interactive-shaders/types";
 import { useCreateInteractiveMesh } from "./useCreateInteractiveMesh";
 
 export const useInteractiveMaterial = (
@@ -8,9 +11,10 @@ export const useInteractiveMaterial = (
   materialFunctions: InteractiveMaterialFunctions,
   geometry,
   uniforms,
-  shaders
+  shaders,
+  shaderType: InteractiveShaderTypes = InteractiveShaderTypes.RAW_SHADER
 ) => {
-  const createInteractiveMesh = useCreateInteractiveMesh();
+  const createInteractiveMesh = useCreateInteractiveMesh(shaderType);
 
   // Interactive mesh must be created after assets are loaded - in case we use any geometries/textures
   const interactiveMesh = useMemo(() => {

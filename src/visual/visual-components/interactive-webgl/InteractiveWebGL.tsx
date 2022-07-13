@@ -6,6 +6,7 @@ import PostProcessing from "visual/components/post-processing/PostProcessing";
 import { InteractiveObjectParams } from "./types";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import { useFormatWebGL } from "./useFormatWebGL";
+import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;
@@ -42,7 +43,8 @@ export const InteractiveWebGL = ({ params }: InteractiveObjectProps) => {
     materialFunctions,
     geometry,
     uniforms,
-    shaders
+    shaders,
+    InteractiveShaderTypes.SHADER
   );
   const initializeMesh = useCallback(() => {
     if (interactiveMesh) {

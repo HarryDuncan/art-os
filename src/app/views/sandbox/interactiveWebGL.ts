@@ -1,8 +1,11 @@
 import { AssetType } from "visual/hooks/use-assets/types";
 import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
-import { InteractiveScenes } from "visual/components/interactive-material/types";
-import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
+import {
+  InteractiveScenes,
+  InteractiveShaderTypes,
+} from "visual/components/interactive-shaders/types";
+import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
 import { UniformTypes } from "visual/shaders/types";
 
 export const interactiveWebGL = {
@@ -28,15 +31,20 @@ export const interactiveWebGL = {
   assets: [
     {
       name: "uChannel0",
-      url: "../assets/textures/zz.jpg",
+      url: "../assets/textures/Marsh.jpg",
       assetType: AssetType.Texture,
     },
   ],
   materialParams: {
     sceneType: InteractiveScenes.INTERACTIVE_WEBGL,
+    shaderType: InteractiveShaderTypes.SHADER,
     shaderName: "interactiveDisplacementFrag",
     uniformDefinition: [
-      { uniformName: "uChannel0", uniformType: UniformTypes.sampler2D },
+      {
+        uniformName: "uChannel0",
+        uniformType: UniformTypes.sampler2D,
+        type: "t",
+      },
     ],
   },
   materialFunctions: {

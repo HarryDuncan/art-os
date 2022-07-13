@@ -1,10 +1,10 @@
 export const interactiveDisplacementFrag = {
   frag: `
-  
+ 
    #define PI 3.14159265359
     #define MAGENTA vec3(.24, .1, .35)
     #define WHITE vec3(1.)
-    #define REPETITIONS 12
+    #define REPETITIONS 8
     #define DELTA PI/float(REPETITIONS)
     #define THICKNESS 0.05
     #define ES .15
@@ -45,7 +45,7 @@ export const interactiveDisplacementFrag = {
         vec3 displace = mix(MAGENTA, WHITE, color)*vec3(sin(uTime*0.1),cos(uTime*0.1),sin(uTime*0.1));
         
         displace.xy *= 1.2;	
-        fragColor = texture(iChannel0,st+ displace.xy);
+        fragColor = texture(uChannel0,st+ displace.xy);
      
     }`,
 };

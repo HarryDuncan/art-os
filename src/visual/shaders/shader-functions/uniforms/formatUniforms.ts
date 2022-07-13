@@ -21,7 +21,8 @@ export const formatUniforms = (uniformParams: UniformDefinition[] = []) => {
       uniformValue["type"] = type;
     }
     uniforms[uniformName] = uniformValue;
-    uniformDeclarationText += `uniform ${uniformType} ${uniformName};`;
+    uniformDeclarationText += `uniform ${uniformType} ${uniformName};
+    `;
   });
 
   if (uniforms.uResolution) {

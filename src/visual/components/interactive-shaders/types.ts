@@ -1,7 +1,9 @@
 import { Color, Texture, Vector2, Vector3 } from "three";
-import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
+import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
 import { FragmentShader, VertexShader } from "../../shaders/types";
 import TouchTexture from "../../visual-components/interactive-particles/TouchTexture";
+import InteractiveShader from "./interactive-shader/InteractiveShader";
+import InteractiveRawShader from "./interactive-shader/InteractiveShader";
 
 export interface VanishingObjectUniforms {
   matcap: { value: Texture | null };
@@ -33,6 +35,11 @@ export enum InteractiveScenes {
   INTERACTIVE_PARTICLES = "interactiveParticles",
   INTERACTIVE_WEBGL = "interactiveWebGL",
 }
+
+export enum InteractiveShaderTypes {
+  RAW_SHADER = "rawShader",
+  SHADER = "shader",
+}
 export type InteractiveShaders = VanishingObjectShaders;
 
 export interface InteractiveParam {
@@ -56,3 +63,7 @@ export interface InteractiveParticlesUniforms {
   uTouch: { value: null | Texture };
   uTouchRef: { value: null | TouchTexture };
 }
+
+export type InteractiveShaderMaterial =
+  | InteractiveRawShader
+  | InteractiveShader;

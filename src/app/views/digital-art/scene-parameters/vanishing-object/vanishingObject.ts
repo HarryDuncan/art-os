@@ -3,7 +3,7 @@ import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { vanishingObjectMaterialParams } from "./materialParams";
 import gsap from "gsap";
-import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
+import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
 import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
 
 export const vanishingObject = {

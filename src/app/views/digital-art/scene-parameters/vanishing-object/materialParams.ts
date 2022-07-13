@@ -3,7 +3,7 @@ import {
   InteractiveParam,
   InteractiveScenes,
   VanishingObjectUniforms,
-} from "visual/components/interactive-material/types";
+} from "visual/components/interactive-shaders/types";
 import { vanishingObjectFragment } from "visual/shaders/fragment-shaders";
 import { vanishingObjectVertex } from "visual/shaders/vertex-shaders";
 

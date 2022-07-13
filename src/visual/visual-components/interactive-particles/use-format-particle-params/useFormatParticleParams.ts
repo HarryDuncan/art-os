@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { LinearFilter, RGBFormat, Texture } from "three";
-import { InteractiveParam } from "visual/components/interactive-material/types";
+import { InteractiveParam } from "visual/components/interactive-shaders/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { useFormatTextureToGeometry } from "./useFormatTextureToGeometry";
 
