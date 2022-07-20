@@ -6,9 +6,7 @@ export const useAnimationWidgetRefs = () => {
     []
   );
   const sceneIndex: React.MutableRefObject<number> = useRef(0);
-
   const isRunningRef: React.MutableRefObject<boolean> = useRef(false);
-
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
 
   return {

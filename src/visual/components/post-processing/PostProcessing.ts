@@ -109,4 +109,11 @@ export default class PostProcessing extends EffectComposer {
       // this.addPass(this.smaaPass);
     }
   }
+
+  updateProcessorParams(camera: Camera, scene: Scene, passes?: string[]) {
+    this.camera = camera;
+    this.scene = scene;
+    const renderPass = new RenderPass(this.scene, this.camera);
+    this.addPass(renderPass);
+  }
 }
