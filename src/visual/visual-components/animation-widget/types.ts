@@ -1,6 +1,6 @@
 import { Camera, Scene } from "three";
 
-export interface IAnimationWidgetScene {
+export interface AnimationWidgetScene {
   name: string;
   data: any;
 }

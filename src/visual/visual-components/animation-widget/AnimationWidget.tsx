@@ -1,10 +1,10 @@
 import React, { FC, useEffect } from "react";
-import { IAnimationWidgetScene } from "./types";
+import { AnimationWidgetScene } from "./types";
 import { useRunAnimations } from "./useRunAnimations";
 import { RootContainer } from "../../components/root-container";
 
 interface IAnimationWidgetProps {
-  scenes: IAnimationWidgetScene[];
+  scenes: AnimationWidgetScene[];
   viewHeight?: string;
   viewWidth?: string;
 }

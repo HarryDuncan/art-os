@@ -1,26 +1,20 @@
 import { useCallback, useEffect } from "react";
 import { FunctionBasedScene } from "../types";
-import { useChangeScenes } from "./useChangeScenes";
 
 export const useUpdateScene = (
   initializedScenes: FunctionBasedScene[],
   areScenesInitialized: boolean,
   sceneIndex
 ) => {
-  const currentIndex = sceneIndex.current;
-  useChangeScenes(initializedScenes, areScenesInitialized, sceneIndex);
-
-  const updateScene = useCallback(
-    (currentIndex: number) => {
-      const currentScene: FunctionBasedScene = initializedScenes[currentIndex];
-      if (currentScene) {
-        currentScene.onUpdate({}, currentScene.sceneParams);
-      }
-    },
-    [initializedScenes]
-  );
+  const updateScene = useCallback(() => {
+    const currentIndex = sceneIndex.current;
+    const currentScene: FunctionBasedScene = initializedScenes[currentIndex];
+    if (currentScene) {
+      currentScene.onUpdate({}, currentScene.sceneParams);
+    }
+  }, [initializedScenes, sceneIndex]);
 
   useEffect(() => {
-    document.addEventListener("scene:update", () => updateScene(currentIndex));
-  }, [areScenesInitialized, currentIndex, updateScene]);
+    document.addEventListener("scene:update", () => updateScene());
+  }, [areScenesInitialized, sceneIndex, updateScene]);
 };

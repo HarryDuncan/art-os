@@ -1,8 +1,8 @@
-import { IAnimationWidgetScene, FunctionBasedScene } from "../types";
+import { AnimationWidgetScene, FunctionBasedScene } from "../types";
 import { useEffect, useState } from "react";
 import { useInitializeScenes } from "./useInitializeScenes";
 
-export const useScenes = (scenes: IAnimationWidgetScene[]) => {
+export const useScenes = (scenes: AnimationWidgetScene[]) => {
   const [areScenesInitialized, setAreScenesInitialized] = useState(false);
   const [initializedScenes, setInitializedScenes] = useState<
     FunctionBasedScene[]
