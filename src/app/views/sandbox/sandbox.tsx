@@ -1,6 +1,6 @@
 import React from "react";
 import { InteractiveWebGL } from "visual/visual-components";
-import { interactiveWebGL } from "./interactiveWebGL";
+import { interactiveWebGL } from "./interactiveWebGLParams";
 
 export const Sandbox = () => {
   const {

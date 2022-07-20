@@ -23,8 +23,10 @@ export const interactiveWebGL = {
       eventKey: EventKey.Scale,
       interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
       eventFunction: (material: InteractiveMaterial, details) => {
-        // details.forEach(element => {
-        // });
+        const maxs = 12;
+        const d = details.xAsScale > 0 ? details.xAsScale : 0;
+        material.uniforms.uReflectionCount.value =
+          Number(Math.floor(maxs * d).toFixed(2)) + 0.1;
       },
     },
   ],
@@ -45,6 +47,7 @@ export const interactiveWebGL = {
         uniformType: UniformTypes.sampler2D,
         type: "t",
       },
+      { uniformName: "uReflectionCount", uniformType: UniformTypes.Float },
     ],
   },
   materialFunctions: {

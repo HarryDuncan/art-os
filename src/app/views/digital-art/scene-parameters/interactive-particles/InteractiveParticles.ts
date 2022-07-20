@@ -25,7 +25,7 @@ export const interactiveParticles = {
   interactionEvents: [
     {
       eventKey: EventKey.Scale,
-      interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
+      interactionKey: INTERACTION_EVENTS.POSENET.LEFT_EYE as InteractionKey,
       eventFunction: (material: InteractiveMaterial, details) => {
         material.uniforms.uTouchRef.value.addTouch(details);
         material.uniforms.uTouchRef.value.update();
@@ -35,7 +35,7 @@ export const interactiveParticles = {
   assets: [
     {
       name: "image",
-      url: "../assets/textures/zz.jpg",
+      url: "../assets/textures/barba.jpg",
       assetType: AssetType.Texture,
     },
   ],
