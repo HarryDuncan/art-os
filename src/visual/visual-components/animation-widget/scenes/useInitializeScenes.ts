@@ -1,7 +1,8 @@
-import { IAnimationWidgetScene, FunctionBasedScene } from "../types";
+import * as Scenes from "visual/function-based-scenes";
+import { IAnimationWidgetScene } from "../types";
 import { cloneDeep } from "lodash";
-import * as Scenes from "../../../scenes/widget-scenes";
 import { useCallback } from "react";
+import { FunctionBasedScene } from "visual/function-based-scenes/types";
 
 export const useInitializeScenes = (scenes: IAnimationWidgetScene[]) => {
   async function initializeScene(unInitializedScene: IAnimationWidgetScene) {

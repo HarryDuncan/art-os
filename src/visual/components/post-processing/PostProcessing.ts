@@ -1,4 +1,10 @@
-import { Camera, Scene, Vector2, WebGLRenderTarget } from "three";
+import {
+  Camera,
+  Scene,
+  Vector2,
+  WebGLRenderer,
+  WebGLRenderTarget,
+} from "three";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 // import { SMAAPass } from "three/examples/jsm/postprocessing/SMAAPass";
@@ -38,9 +44,9 @@ export default class PostProcessing extends EffectComposer {
     camera,
     passes = [],
   }: {
-    renderer: any;
-    camera: any;
-    scene: any;
+    renderer: WebGLRenderer;
+    camera: Camera;
+    scene: Scene;
     passes?: string[];
   }) {
     const renderTarget = new WebGLRenderTarget(

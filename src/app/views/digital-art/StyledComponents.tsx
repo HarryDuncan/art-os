@@ -4,7 +4,7 @@ import { SIDE_BAR_WIDTH } from "../../components/navigation/side-bar/SideBar.sty
 export const DigitalArtContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.mono.ui06};
+  background-color: transparent;
   padding-left: ${SIDE_BAR_WIDTH};
   position: relative;
 `;
@@ -12,6 +12,7 @@ export const DigitalArtContainer = styled.div`
 export const DigitalArtHeader = styled.div`
   display: flex;
   margin: 0 auto;
+  background-color: ${({ theme }) => theme.colors.mono.ui01};
 `;
 export const GalleryContainer = styled.div`
   width: 70%;

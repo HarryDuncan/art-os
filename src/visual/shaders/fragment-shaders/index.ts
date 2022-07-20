@@ -1,2 +1,4 @@
-export * from "./vanishingObjectFrag";
-export * from "./interactiveParticleFrag";
+export * from "./interactive-object";
+export * from "./interactive-particles";
+export * from "./interactive-web-gl";
+export * from "./webgl-shaders";

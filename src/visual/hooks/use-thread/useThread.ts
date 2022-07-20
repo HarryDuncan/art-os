@@ -1,12 +1,23 @@
 import { useCallback } from "react";
+import { WebGLRenderer } from "three";
+import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
 import { ev } from "../use-events/useEvents";
 
-export const useThread = (postProcessor, currentFrameRef, clock) => {
+export const useThread = (
+  renderer: WebGLRenderer | CSS3DRenderer | undefined,
+  currentFrameRef: React.MutableRefObject<number>,
+  scene,
+  camera
+) => {
   const update = useCallback(() => {
+    if (!renderer) {
+      console.warn("renderer not defined");
+      return;
+    }
     ev("scene:update");
-    postProcessor.current?.render(clock.getDelta());
+    renderer.render(scene, camera);
     currentFrameRef.current = requestAnimationFrame(update);
-  }, [currentFrameRef, postProcessor, clock]);
+  }, [currentFrameRef, renderer, scene, camera]);
 
   const pause = useCallback(() => {
     cancelAnimationFrame(currentFrameRef.current);

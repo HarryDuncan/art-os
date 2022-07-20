@@ -1,1 +1,1 @@
-export * from './AnimationWidget';
+export { AnimationWidget } from "./AnimationWidget";

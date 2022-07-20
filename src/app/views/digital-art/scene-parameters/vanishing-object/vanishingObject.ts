@@ -3,11 +3,18 @@ import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { vanishingObjectMaterialParams } from "./materialParams";
 import gsap from "gsap";
-import InteractiveMaterial from "visual/components/interactive-material/InteractiveMaterial";
+import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
+import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
 
 export const vanishingObject = {
   threeJsParams: {
     camera: { position: { x: 0, y: 30, z: 105 } },
+    renderer: {
+      rendererType: RendererTypes.WEBGL,
+      size: { width: 800, height: 800 },
+      clearColor: 0x000000,
+      alpha: 0,
+    },
   },
   interactionEvents: [
     {

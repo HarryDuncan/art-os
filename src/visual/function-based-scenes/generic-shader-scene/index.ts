@@ -1,0 +1,1 @@
+export { GenericShaderScene } from "./genericShaderScene";

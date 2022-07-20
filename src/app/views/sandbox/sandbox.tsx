@@ -1,27 +1,24 @@
 import React from "react";
-import { useInteractiveMaterialParams } from "visual/hooks/use-interactive-material/useInteractiveMaterialParams";
-import { InteractiveParticles } from "visual/visual-components";
-import { picturePoint } from "./interactiveSceneParams";
+import { InteractiveWebGL } from "visual/visual-components";
+import { interactiveWebGL } from "./interactiveWebGLParams";
 
 export const Sandbox = () => {
   const {
     threeJsParams,
     interactionEvents,
     assets,
-    materialParamType,
     materialFunctions,
-  } = picturePoint;
-
-  const materialParams = useInteractiveMaterialParams(materialParamType);
+    materialParams,
+  } = interactiveWebGL;
 
   return (
-    <InteractiveParticles
+    <InteractiveWebGL
       params={{
         threeJsParams,
         interactionEvents,
         assets,
-        materialParams,
         materialFunctions,
+        materialParams,
       }}
     />
   );

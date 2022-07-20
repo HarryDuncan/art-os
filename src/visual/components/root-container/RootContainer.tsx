@@ -1,4 +1,5 @@
 import React from "react";
+import { Root } from "./RootContainer.styles";
 
 interface IRootContainerProps {
   containerRef: React.MutableRefObject<any>;
@@ -12,17 +13,5 @@ export const RootContainer = ({
   viewWidth = "100vw",
   viewHeight = "100vh",
 }: IRootContainerProps) => {
-  return (
-    <div
-      key={`Root-Container`}
-      style={{
-        height: `${viewHeight}`,
-        width: `${viewWidth}`,
-        overflow: "hidden",
-        backgroundColor : 'transparent'
-      
-      }}
-      ref={containerRef}
-    ></div>
-  );
+  return <Root $height={viewHeight} $width={viewWidth} ref={containerRef} />;
 };

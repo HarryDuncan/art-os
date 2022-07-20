@@ -1,4 +1,30 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+export const CardTitle = styled.h2`
+  color: rgba(237, 235, 233, 0);
+  position: absolute;
+  z-index: 40;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  font-size: 4em;
+  margin-left: 20px;
+  font-weight: 400;
+  top: 0;
+  pointer-events: none;
+  &: hover {
+  }
+`;
+
+export const CardFooter = styled.div``;
+
+const showTitle = keyframes`
+0% {
+}
+100% {
+  color: rgba(237, 235, 233, 1);
+}
+`;
 
 export const CardWrapper = styled.div`
   box-sizing: inherit;
@@ -14,12 +40,22 @@ export const CardWrapper = styled.div`
   box-shadow: 15px 15px 16px #ccc;
   cursor: pointer;
   margin-bottom: 30px;
+  &:hover {
+    ${CardTitle} {
+      animation: ${showTitle} 500ms 1 forwards;
+    }
+  }
 `;
 
-export const CardTitle = styled.h2``;
-
-export const CardFooter = styled.div``;
-
 export const CardImage = styled.img`
-  max-width: 50%;
+  object-fit: contain;
+  width: 100%;
+  min-height: 100px;
+  vertical-align: middle;
+  &: hover {
+    filter: brightness(30%);
+    animation-timing-function: ease-in-out;
+
+    -webkit-animation: showTitle 500ms 1 forwards;
+  }
 `;

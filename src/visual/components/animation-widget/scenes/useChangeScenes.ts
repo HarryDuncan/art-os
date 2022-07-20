@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { moveThroughArray } from "utils/moveThroughArray";
-import { FunctionBasedScene } from "../types";
+import { FunctionBasedScene } from "visual/function-based-scenes/types";
 import { shouldChangeScene } from "../utils/sceneManager";
 
 export const useChangeScenes = (

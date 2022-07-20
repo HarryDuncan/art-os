@@ -1,1 +1,1 @@
-export { useRenderer } from "./use-renderer";
+export { useWebGLRenderer } from "./use-webgl-renderer";

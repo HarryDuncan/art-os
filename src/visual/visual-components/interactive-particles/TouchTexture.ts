@@ -8,7 +8,7 @@ export default class TouchTexture {
   maxAge: number;
   radius: number;
   trail: TouchPoint[];
-  canvas: HTMLCanvasElement;
+  canvas: HTMLCanvasElement | null;
   ctx: CanvasRenderingContext2D | null;
   texture: Texture | undefined;
   constructor() {
@@ -16,12 +16,13 @@ export default class TouchTexture {
     this.maxAge = 120;
     this.radius = 0.15;
     this.trail = [];
-    this.canvas = document.createElement("canvas");
+    this.canvas = null;
     this.ctx = null;
     this.initTexture();
   }
 
   initTexture() {
+    this.canvas = document.createElement("canvas");
     this.canvas.width = this.canvas.height = this.size;
     this.ctx = this.canvas.getContext("2d");
     if (this.ctx) {
@@ -51,7 +52,7 @@ export default class TouchTexture {
   }
 
   clear() {
-    if (this.ctx) {
+    if (this.ctx && this.canvas) {
       this.ctx.fillStyle = "black";
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
