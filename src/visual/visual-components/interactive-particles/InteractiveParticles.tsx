@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { RootContainer } from "../../components/root-container";
 import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
-import PostProcessing from "visual/components/post-processing/PostProcessing";
+import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { InteractiveParticlesParams } from "./types";
 import { StaticBackgroundContainer } from "visual/components/static-background/StaticBackground.styles";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
@@ -50,7 +50,7 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
     if (interactiveParticleMesh) {
       console.log(interactiveParticleMesh);
       scene.add(interactiveParticleMesh);
-      postProcessor.current = new PostProcessing({
+      postProcessor.current = new PostProcessor({
         renderer,
         scene,
         camera,

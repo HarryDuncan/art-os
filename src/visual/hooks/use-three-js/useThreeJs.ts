@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Clock } from "three";
-import PostProcessing from "visual/components/post-processing/PostProcessing";
+import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { useInitializeNode } from "../use-initialize-node/useInitializeNode";
 import { useWebGLRenderer } from "./renderer";
 import { useCssRenderer } from "./renderer/use-css-renderer";
@@ -13,7 +13,7 @@ export const useThreeJs = (threeJsParams: ThreeJsParams = {}) => {
   const scene = useScene();
   const camera = useCamera(threeJsParams.camera);
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
-  const postProcessor: React.MutableRefObject<null | PostProcessing> = useRef(
+  const postProcessor: React.MutableRefObject<null | PostProcessor> = useRef(
     null
   );
   const clock: Clock = new Clock();

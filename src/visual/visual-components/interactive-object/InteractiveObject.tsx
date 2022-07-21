@@ -2,10 +2,11 @@ import React, { useCallback, useEffect } from "react";
 import { RootContainer } from "../../components/root-container";
 import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
-import PostProcessing from "visual/components/post-processing/PostProcessing";
+import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { InteractiveObjectParams } from "./types";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import { useFormatMaterialParams } from "./useFormatMaterialParams";
+import { PostProcessorPasses } from "visual/components/post-processor/types";
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;
@@ -49,11 +50,11 @@ export const InteractiveObject = ({ params }: InteractiveObjectProps) => {
   const initializeMesh = useCallback(() => {
     if (interactiveMesh) {
       scene.add(interactiveMesh);
-      postProcessor.current = new PostProcessing({
+      postProcessor.current = new PostProcessor({
         renderer,
         scene,
         camera,
-        passes: ["bloom"],
+        passes: [PostProcessorPasses.BLOOM],
       });
       update();
     }
