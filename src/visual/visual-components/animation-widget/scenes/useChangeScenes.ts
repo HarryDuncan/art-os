@@ -1,13 +1,13 @@
 import { MutableRefObject, useCallback, useEffect } from "react";
 import { moveThroughArray } from "utils/moveThroughArray";
-import PostProcessing from "visual/components/post-processing/PostProcessing";
+import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { FunctionBasedScene } from "../types";
 
 export const useChangeScenes = (
   initializedScenes: FunctionBasedScene[],
   areScenesInitialized: boolean,
   sceneIndex: MutableRefObject<number>,
-  postProccessor: MutableRefObject<PostProcessing | null>
+  postProccessor: MutableRefObject<PostProcessor | null>
 ) => {
   const currentIndex = sceneIndex.current;
 

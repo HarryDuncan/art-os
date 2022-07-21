@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import PostProcessing from "visual/components/post-processing/PostProcessing";
+import PostProcessor from "visual/components/post-processor/PostProcessor";
 
 export const useSetActiveScene = (
   initializedScenes,
@@ -10,7 +10,7 @@ export const useSetActiveScene = (
   return useCallback(
     (sceneIndex: number) => {
       const currentScene = initializedScenes[sceneIndex];
-      postProcessor.current = new PostProcessing({
+      postProcessor.current = new PostProcessor({
         renderer,
         scene: currentScene.scene,
         camera: currentScene.camera,

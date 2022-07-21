@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
 import { Clock } from "three";
-import PostProcessing from "visual/components/post-processing/PostProcessing";
+import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { ev } from "../use-events/useEvents";
 
 export const useThreadWithPostProcessor = (
-  postProcessor: React.MutableRefObject<PostProcessing | null>,
+  postProcessor: React.MutableRefObject<PostProcessor | null>,
   currentFrameRef: React.MutableRefObject<number>,
   clock: Clock
 ) => {
