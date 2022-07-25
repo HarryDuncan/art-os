@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { PlaneGeometry, RepeatWrapping } from "three";
 import { Asset } from "visual/hooks/use-assets/types";
-
 import { WebGLShaderMaterialParams } from "./types";
 import { defaultVertex } from "visual/shaders/vertex-shaders";
 import { formatUniforms } from "visual/shaders/shader-functions/uniforms/formatUniforms";
@@ -26,8 +25,6 @@ export const useFormatWebGL = (
       };
 
       formatAssetWithUniforms(unformattedUniforms, assets);
-      console.log(shaders);
-      console.log(unformattedUniforms);
       return { geometry, uniforms: unformattedUniforms, shaders };
     },
     [fragmentShader]

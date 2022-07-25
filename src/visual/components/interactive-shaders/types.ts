@@ -34,6 +34,7 @@ export enum InteractiveScenes {
   VANISHING_OBJECT = "vanishingObject",
   INTERACTIVE_PARTICLES = "interactiveParticles",
   INTERACTIVE_WEBGL = "interactiveWebGL",
+  IMAGE_DISTORTION = "imageDistortion",
 }
 
 export enum InteractiveShaderTypes {

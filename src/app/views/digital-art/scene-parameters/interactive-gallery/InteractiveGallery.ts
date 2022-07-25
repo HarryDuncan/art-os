@@ -4,15 +4,13 @@ import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { InteractiveScenes } from "visual/components/interactive-shaders/types";
 import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
 import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
+import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
 
 export const threeDGallery = {
   threeJsParams: {
     camera: {
+      defaultCameraParams,
       position: { x: 0, y: 0, z: 3000 },
-      fov: 50,
-      aspect: 1,
-      near: 1,
-      far: 10080,
     },
     renderer: { rendererType: RendererTypes.CSS },
   },
@@ -23,8 +21,6 @@ export const threeDGallery = {
       eventFunction: (material: InteractiveMaterial, details) => {
         material.uniforms.uTouchRef.value.addTouch(details);
         material.uniforms.uTouchRef.value.update();
-        // details.forEach(element => {
-        // });
       },
     },
   ],

@@ -1,5 +1,6 @@
 import React from "react";
-import { InteractiveWebGL } from "visual/visual-components";
+import { ImageDistortion, InteractiveWebGL } from "visual/visual-components";
+import { imageDistortion } from "./ImageDistortionParams";
 import { interactiveWebGL } from "./interactiveWebGLParams";
 
 export const Sandbox = () => {
@@ -9,10 +10,10 @@ export const Sandbox = () => {
     assets,
     materialFunctions,
     materialParams,
-  } = interactiveWebGL;
+  } = imageDistortion;
 
   return (
-    <InteractiveWebGL
+    <ImageDistortion
       params={{
         threeJsParams,
         interactionEvents,

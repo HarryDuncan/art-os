@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { WebGLRenderer } from "three";
+import { LinearEncoding, WebGLRenderer } from "three";
 import { getRendererSize } from "../helpers/getRendererSize";
 import { DEFAULT_RENDERER_PARAMS } from "../rendererConstants";
 import { RendererParams } from "../types";
@@ -17,6 +17,8 @@ export const useWebGLRenderer = (
     const { width, height } = getRendererSize(rendererParams);
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
+    renderer.physicallyCorrectLights = true;
+    renderer.outputEncoding = rendererParams.outputEncoding ?? LinearEncoding;
     return renderer;
   }, [rendererParams]);
 };

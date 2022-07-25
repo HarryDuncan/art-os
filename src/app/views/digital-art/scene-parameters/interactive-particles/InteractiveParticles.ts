@@ -5,15 +5,13 @@ import InteractiveMaterial from "visual/components/interactive-shaders/interacti
 import { TweenLite } from "gsap/all";
 import { materialParams } from "./materialParams";
 import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
+import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
 
 export const interactiveParticles = {
   threeJsParams: {
     camera: {
+      ...defaultCameraParams,
       position: { x: 0, y: 0, z: 300 },
-      fov: 100,
-      aspect: 1,
-      near: 1,
-      far: 1080,
     },
     renderer: {
       rendererType: RendererTypes.WEBGL,
@@ -35,7 +33,7 @@ export const interactiveParticles = {
   assets: [
     {
       name: "image",
-      url: "../assets/textures/barba.jpg",
+      url: "../assets/textures/zz.jpg",
       assetType: AssetType.Texture,
     },
   ],
