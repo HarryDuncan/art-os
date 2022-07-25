@@ -6,7 +6,7 @@ export const Navigation = () => {
     () => [
       {
         key: "digital-art",
-        title: "Digital Art",
+        title: "Gallery",
         link: "digital-art",
       },
       {

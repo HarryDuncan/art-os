@@ -26,7 +26,7 @@ export const ImageDistortion = ({ params }: ImageDistortionProps) => {
     threeJsParams
   );
   const { areAssetsInitialized, initializedAssets } = useAssets(assets);
-  const { update, pause } = useThread(renderer, currentFrameRef, scene, camera);
+  const { update } = useThread(renderer, currentFrameRef, scene, camera);
 
   const { uniforms, shaders, geometry } = useFormatWebGL(
     initializedAssets,

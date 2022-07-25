@@ -35,7 +35,7 @@ export const imageDistortion = {
   assets: [
     {
       name: "uTexture",
-      url: "../assets/textures/Marsh.jpg",
+      url: "../assets/textures/zeus.jpg",
       assetType: AssetType.Texture,
     },
   ],
@@ -76,7 +76,7 @@ const updateDataTexture = (material, details) => {
 
   const size = 15;
   let gridMouseX = size * details.xAsScale;
-  let gridMouseY = size * (1 - details.yAsScale);
+  let gridMouseY = size * details.yAsScale;
   let maxDist = size * 0.25;
   let aspect = 1;
 
@@ -92,12 +92,11 @@ const updateDataTexture = (material, details) => {
         power = clamp(power, 0, 10);
         // if(distance <size/32) power = 1;
         // power = 1;
-        data[index] += 1 * 100 * 32 * power;
-        data[index + 1] -= 1 * 100 * 12 * power;
+        data[index] += 1 * 0.1 * power;
+        data[index + 1] -= 1 * 0.1 * power;
       }
     }
   }
-  console.log(data);
   material.uniforms.uDataTexture.value.image.data = data;
   material.uniforms.uDataTexture.value.needsUpdate = true;
 };

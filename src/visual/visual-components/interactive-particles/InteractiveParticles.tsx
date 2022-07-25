@@ -48,7 +48,6 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
 
   const initializeMesh = useCallback(() => {
     if (interactiveParticleMesh) {
-      console.log(interactiveParticleMesh);
       scene.add(interactiveParticleMesh);
       postProcessor.current = new PostProcessor({
         renderer,

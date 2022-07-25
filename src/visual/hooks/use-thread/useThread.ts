@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { WebGLRenderer } from "three";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
 import { ev } from "../use-events/useEvents";
@@ -23,5 +23,10 @@ export const useThread = (
     cancelAnimationFrame(currentFrameRef.current);
   }, [currentFrameRef]);
 
+  useEffect(() => {
+    return () => {
+      pause();
+    };
+  }, [pause]);
   return { update, pause };
 };

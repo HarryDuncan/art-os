@@ -29,7 +29,7 @@ export default class PostProcessor extends EffectComposer {
     this.scene = scene;
     this.camera = camera as PostProcessorCamera;
     this.renderer = renderer;
-
+    this.addPasses(passes);
     this.bindEvents();
   }
 

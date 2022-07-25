@@ -7,7 +7,7 @@ export const CardTitle = styled.h2`
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.05em;
-  font-size: 4em;
+  font-size: 2em;
   margin-left: 20px;
   font-weight: 400;
   top: 0;
@@ -31,7 +31,7 @@ export const CardWrapper = styled.div`
   display: inline-block;
   position: relative;
   vertical-align: middle;
-  width: 100%;
+  width: 30%;
   flex: 1 0 22%;
   background-color: transparent !important;
   padding-bottom: -4%;
@@ -40,6 +40,7 @@ export const CardWrapper = styled.div`
   box-shadow: 15px 15px 16px #ccc;
   cursor: pointer;
   margin-bottom: 30px;
+  margin-right: 1rem;
   &:hover {
     ${CardTitle} {
       animation: ${showTitle} 500ms 1 forwards;

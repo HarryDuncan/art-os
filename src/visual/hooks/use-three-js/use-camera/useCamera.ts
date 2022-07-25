@@ -23,7 +23,6 @@ export const defaultCameraParams: CameraParams = {
 export const useCamera = (cameraParams: CameraParams = defaultCameraParams) =>
   useMemo(() => {
     const camera = getCamera(cameraParams);
-
     const {
       position: { x, y, z },
     } = cameraParams;
@@ -51,7 +50,6 @@ const getCamera = (cameraParams: CameraParams) => {
     }
     case CameraType.PERSPECTIVE_CAMERA:
     default: {
-      console.log(cameraParams);
       const {
         perspectiveCameraProps: { fov, aspect, near, far },
       } = cameraParams;
