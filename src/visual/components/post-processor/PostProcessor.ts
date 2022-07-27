@@ -1,13 +1,18 @@
 import { Camera, Scene, WebGLRenderer, WebGLRenderTarget } from "three";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { defaultRenderTargetParameters } from "./consts";
 import { getBloomPass } from "./render-passes/getBloomPass";
-import { PostProcessorCamera, PostProcessorPasses } from "./types";
+import {
+  PostProcessorCamera,
+  PostProcessorPasses,
+  ExtendedEffectComposer,
+} from "./types";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 
 export default class PostProcessor extends EffectComposer {
   scene: Scene;
   camera: PostProcessorCamera;
+  renderer: WebGLRenderer;
   constructor({
     renderer,
     scene,

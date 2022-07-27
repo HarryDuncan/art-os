@@ -25,7 +25,7 @@ export const imageDistortion = {
   interactionEvents: [
     {
       eventKey: EventKey.Scale,
-      interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
+      interactionKey: INTERACTION_EVENTS.POSENET.LEFT_EYE as InteractionKey,
       eventFunction: (material: InteractiveMaterial, details) => {
         material.uniforms.uDataTexture.value.needsUpdate = true;
         updateDataTexture(material, details);
@@ -35,7 +35,7 @@ export const imageDistortion = {
   assets: [
     {
       name: "uTexture",
-      url: "../assets/textures/zeus.jpg",
+      url: "../assets/textures/RGB.jpg",
       assetType: AssetType.Texture,
     },
   ],
@@ -45,6 +45,7 @@ export const imageDistortion = {
       uTime: { value: 0 },
       uResolution: { value: new Vector4() },
       uTexture: { value: null },
+      uGridSize: { value: 10 },
       uDataTexture: {
         value: null,
       },
@@ -74,10 +75,10 @@ const updateDataTexture = (material, details) => {
     data[i + 1] *= relaxation;
   }
 
-  const size = 15;
+  const size = material.uniforms.uGridSize.value;
   let gridMouseX = size * details.xAsScale;
   let gridMouseY = size * details.yAsScale;
-  let maxDist = size * 0.25;
+  let maxDist = size * 0.15;
   let aspect = 1;
 
   for (let i = 0; i < size; i++) {

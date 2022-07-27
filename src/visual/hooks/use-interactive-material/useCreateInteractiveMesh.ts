@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Geometry, Mesh } from "three";
+import { Mesh } from "three";
 import { InteractionEventObject } from "../use-interactions/types";
 import {
   InteractiveMaterialFunctions,
@@ -9,6 +9,7 @@ import {
 } from "../../components/interactive-shaders/types";
 import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
 import { InteractiveRawShader } from "../../components/interactive-shaders/interactive-raw-shader";
+import { Geometry } from "types/threeJs.types";
 
 export const useCreateInteractiveMesh = (
   shaderType: InteractiveShaderTypes

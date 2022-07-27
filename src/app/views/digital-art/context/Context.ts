@@ -26,6 +26,12 @@ export const defaultState: DigitalArtState = {
       componentId: "InteractiveParticles",
       cardImageName: "interactiveParticles.jpg",
     },
+    {
+      title: "Image Distortion",
+      sceneId: "imageDistortion",
+      componentId: "ImageDistortion",
+      cardImageName: "imageDistortion.jpg",
+    },
   ],
 };
 

@@ -63,7 +63,7 @@ const resize = (uniforms) => {
 };
 
 export const updateGrid = (uniforms) => {
-  const size = 15;
+  const size = uniforms.uGridSize.value;
 
   const width = size;
   const height = size;
