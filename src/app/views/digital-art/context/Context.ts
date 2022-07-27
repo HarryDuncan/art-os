@@ -1,5 +1,5 @@
-import { AnyAction } from "@reduxjs/toolkit";
-import React, { createContext } from "react";
+import { AnyAction } from '@reduxjs/toolkit';
+import React, { createContext } from 'react';
 
 export interface DigitalPiece {
   title: string;
@@ -15,22 +15,22 @@ export const defaultState: DigitalArtState = {
   selectedToViewIndex: null,
   pieces: [
     {
-      title: "Vanishing Object",
-      sceneId: "vanishingObject",
-      componentId: "InteractiveObject",
-      cardImageName: "vanishingObject.jpg",
+      title: 'Vanishing Object',
+      sceneId: 'vanishingObject',
+      componentId: 'InteractiveObject',
+      cardImageName: 'vanishingObject.jpg',
     },
     {
-      title: "Interactive Particles",
-      sceneId: "interactiveParticles",
-      componentId: "InteractiveParticles",
-      cardImageName: "interactiveParticles.jpg",
+      title: 'Interactive Particles',
+      sceneId: 'interactiveParticles',
+      componentId: 'InteractiveParticles',
+      cardImageName: 'interactiveParticles.jpg',
     },
     {
-      title: "Image Distortion",
-      sceneId: "imageDistortion",
-      componentId: "ImageDistortion",
-      cardImageName: "imageDistortion.jpg",
+      title: 'Image Distortion',
+      sceneId: 'imageDistortion',
+      componentId: 'ImageDistortion',
+      cardImageName: 'imageDistortion.jpg',
     },
   ],
 };
@@ -42,4 +42,4 @@ export const Context = createContext({
   dispatch: defaultDispatch,
 });
 
-Context.displayName = "digitalArtContext";
+Context.displayName = 'digitalArtContext';

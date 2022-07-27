@@ -1,10 +1,10 @@
-import { Vector2 } from "three";
+import { Vector2 } from 'three';
 import {
   InteractiveParam,
   InteractiveScenes,
-} from "visual/components/interactive-shaders/types";
-import { interactiveParticleFragment } from "visual/shaders/fragment-shaders";
-import { interactiveParticlesVertex } from "visual/shaders/vertex-shaders";
+} from 'visual/components/interactive-shaders/types';
+import { interactiveParticleFragment } from 'visual/shaders/fragment-shaders';
+import { interactiveParticlesVertex } from 'visual/shaders/vertex-shaders';
 
 export const materialParams: InteractiveParam = {
   sceneType: InteractiveScenes.INTERACTIVE_PARTICLES,

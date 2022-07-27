@@ -1,12 +1,8 @@
-import { Step } from "./types";
+import { Step } from './types';
 
-export const getXDelta = (steps: Step[]) => {
-  return steps[0].position.x - steps[steps.length - 1].position.x;
-};
+export const getXDelta = (steps: Step[]) => steps[0].position.x - steps[steps.length - 1].position.x;
 
-export const getYDelta = (steps: Step[]) => {
-  return steps[0].position.y - steps[steps.length - 1].position.y;
-};
+export const getYDelta = (steps: Step[]) => steps[0].position.y - steps[steps.length - 1].position.y;
 
 export const trackSteps = (
   steps: Step[],
@@ -14,16 +10,16 @@ export const trackSteps = (
   maxStepTimeMilis: number,
   score: number,
   timeStamp: number,
-  position
+  position,
 ) => {
   if (
-    score > scoreThreshold &&
-    (!steps.length || timeStamp - steps[steps.length - 1].timeStamp > 100)
+    score > scoreThreshold
+    && (!steps.length || timeStamp - steps[steps.length - 1].timeStamp > 100)
   ) {
     steps = steps.filter(
-      (step) => timeStamp - step.timeStamp < maxStepTimeMilis
+      (step) => timeStamp - step.timeStamp < maxStepTimeMilis,
     );
-    steps.push({ position, timeStamp: timeStamp });
+    steps.push({ position, timeStamp });
   }
   return steps;
 };

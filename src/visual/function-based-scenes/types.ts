@@ -1,4 +1,4 @@
-import { Camera, Scene } from "three";
+import { Camera, Scene } from 'three';
 
 export type FunctionBasedScene = {
   name: string;

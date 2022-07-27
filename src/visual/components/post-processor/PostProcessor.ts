@@ -1,18 +1,19 @@
-import { Camera, Scene, WebGLRenderer, WebGLRenderTarget } from "three";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-import { defaultRenderTargetParameters } from "./consts";
-import { getBloomPass } from "./render-passes/getBloomPass";
 import {
-  PostProcessorCamera,
-  PostProcessorPasses,
-  ExtendedEffectComposer,
-} from "./types";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
+  Camera, Scene, WebGLRenderer, WebGLRenderTarget,
+} from 'three';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+import { defaultRenderTargetParameters } from './consts';
+import { getBloomPass } from './render-passes/getBloomPass';
+import { PostProcessorCamera, PostProcessorPasses } from './types';
 
 export default class PostProcessor extends EffectComposer {
   scene: Scene;
+
   camera: PostProcessorCamera;
+
   renderer: WebGLRenderer;
+
   constructor({
     renderer,
     scene,
@@ -27,7 +28,7 @@ export default class PostProcessor extends EffectComposer {
     const renderTarget = new WebGLRenderTarget(
       window.innerHeight,
       window.outerHeight,
-      defaultRenderTargetParameters
+      defaultRenderTargetParameters,
     );
 
     super(renderer, renderTarget);
@@ -39,7 +40,7 @@ export default class PostProcessor extends EffectComposer {
   }
 
   bindEvents() {
-    window.addEventListener("resize", () => this.onResize());
+    window.addEventListener('resize', () => this.onResize());
   }
 
   onResize() {
@@ -62,7 +63,7 @@ export default class PostProcessor extends EffectComposer {
   updateProcessorParams(
     camera: Camera,
     scene: Scene,
-    passes?: PostProcessorPasses[]
+    passes?: PostProcessorPasses[],
   ) {
     this.camera = camera as PostProcessorCamera;
     this.scene = scene;

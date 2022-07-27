@@ -1,1 +1,1 @@
-export { RootContainer } from "./RootContainer";
+export { RootContainer } from './RootContainer';

@@ -1,4 +1,4 @@
-import { LinearFilter, RGBFormat } from "three";
+import { LinearFilter, RGBFormat } from 'three';
 
 export const defaultRenderTargetParameters = {
   minFilter: LinearFilter,

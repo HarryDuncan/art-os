@@ -1,1 +1,1 @@
-export { InteractiveParticles } from "./InteractiveParticles";
+export { InteractiveParticles } from './InteractiveParticles';

@@ -1,24 +1,26 @@
-import { Vector3 } from "three";
-import { UniformDefinition, UniformTypes } from "visual/shaders/types";
+import { Vector3 } from 'three';
+import { UniformDefinition, UniformTypes } from 'visual/shaders/types';
 
 export const formatUniforms = (uniformParams: UniformDefinition[] = []) => {
   const defaultUniforms = [
-    { uniformName: "uTime", uniformType: UniformTypes.Float },
-    { uniformName: "uResolution", uniformType: UniformTypes.Vec3, type: "v3" },
+    { uniformName: 'uTime', uniformType: UniformTypes.Float },
+    { uniformName: 'uResolution', uniformType: UniformTypes.Vec3, type: 'v3' },
   ];
   const definitions: UniformDefinition[] = uniformParams.concat(
-    defaultUniforms
+    defaultUniforms,
   );
 
   const uniforms: any = {};
-  let uniformDeclarationText = ``;
+  let uniformDeclarationText = '';
 
-  definitions.forEach(({ uniformName, uniformType, value, type }) => {
+  definitions.forEach(({
+    uniformName, uniformType, value, type,
+  }) => {
     const uniformValue = {
-      value: value ? value : getDefaultValue(uniformType),
+      value: value || getDefaultValue(uniformType),
     };
     if (type) {
-      uniformValue["type"] = type;
+      uniformValue.type = type;
     }
     uniforms[uniformName] = uniformValue;
     uniformDeclarationText += `uniform ${uniformType} ${uniformName};

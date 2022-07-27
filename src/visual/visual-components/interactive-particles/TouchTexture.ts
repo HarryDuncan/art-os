@@ -1,16 +1,23 @@
-import { Texture } from "three";
-import { easeOutSine } from "./utils";
+import { Texture } from 'three';
+import { easeOutSine } from './utils';
 
 type TouchPoint = { x: number; y: number; age: number; force: number };
 
 export default class TouchTexture {
   size: number;
+
   maxAge: number;
+
   radius: number;
+
   trail: TouchPoint[];
+
   canvas: HTMLCanvasElement | null;
+
   ctx: CanvasRenderingContext2D | null;
+
   texture: Texture | undefined;
+
   constructor() {
     this.size = 800;
     this.maxAge = 120;
@@ -22,15 +29,15 @@ export default class TouchTexture {
   }
 
   initTexture() {
-    this.canvas = document.createElement("canvas");
+    this.canvas = document.createElement('canvas');
     this.canvas.width = this.canvas.height = this.size;
-    this.ctx = this.canvas.getContext("2d");
+    this.ctx = this.canvas.getContext('2d');
     if (this.ctx) {
-      this.ctx.fillStyle = "black";
+      this.ctx.fillStyle = 'black';
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
     this.texture = new Texture(this.canvas);
-    this.canvas.id = "touchTexture";
+    this.canvas.id = 'touchTexture';
     this.canvas.style.width = this.canvas.style.height = `${this.size}px`;
   }
 
@@ -53,7 +60,7 @@ export default class TouchTexture {
 
   clear() {
     if (this.ctx && this.canvas) {
-      this.ctx.fillStyle = "black";
+      this.ctx.fillStyle = 'black';
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
   }
@@ -68,7 +75,9 @@ export default class TouchTexture {
       force = Math.min(dd * 10000, 1);
     }
 
-    this.trail.push({ x: point.xAsScale, y: point.yAsScale, age: 0, force });
+    this.trail.push({
+      x: point.xAsScale, y: point.yAsScale, age: 0, force,
+    });
   }
 
   drawTouch(point) {
@@ -86,7 +95,7 @@ export default class TouchTexture {
         1 - (point.age - this.maxAge * 0.3) / (this.maxAge * 0.7),
         0,
         1,
-        1
+        1,
       );
     }
     const radius = this.size * this.radius * intensity;
@@ -97,10 +106,10 @@ export default class TouchTexture {
         radius * 0.25,
         pos.x,
         pos.y,
-        radius
+        radius,
       );
-      grd.addColorStop(0, `rgba(255, 255, 255, 0.2)`);
-      grd.addColorStop(1, "rgba(0, 0, 0, 0.0)");
+      grd.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
+      grd.addColorStop(1, 'rgba(0, 0, 0, 0.0)');
       this.ctx.beginPath();
       this.ctx.fillStyle = grd;
       this.ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);

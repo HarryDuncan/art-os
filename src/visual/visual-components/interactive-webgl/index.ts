@@ -1,1 +1,1 @@
-export { InteractiveWebGL } from "./InteractiveWebGL";
+export { InteractiveWebGL } from './InteractiveWebGL';

@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
 export const StaticBackgroundContainer = styled.div<{
   $backgroundUrl?: string;
@@ -9,10 +9,6 @@ export const StaticBackgroundContainer = styled.div<{
   width: 100vw;
   z-index: -2;
   top: 0;
-  background-image: ${({ $backgroundUrl }) =>
-    $backgroundUrl
-      ? $backgroundUrl
-      : `url(../assets/textures/HJDInverted.jpg)`};
-  background-color: ${({ $backgroundColor }) =>
-    $backgroundColor ? $backgroundColor : "white"};
+  background-image: ${({ $backgroundUrl }) => ($backgroundUrl || 'url(../assets/textures/HJDInverted.jpg)')};
+  background-color: ${({ $backgroundColor }) => ($backgroundColor || 'white')};
 `;

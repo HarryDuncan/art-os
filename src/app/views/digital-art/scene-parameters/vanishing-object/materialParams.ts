@@ -1,11 +1,11 @@
-import { Color, Vector2, Vector3 } from "three";
+import { Color, Vector2, Vector3 } from 'three';
 import {
   InteractiveParam,
   InteractiveScenes,
   VanishingObjectUniforms,
-} from "visual/components/interactive-shaders/types";
-import { vanishingObjectFragment } from "visual/shaders/fragment-shaders";
-import { vanishingObjectVertex } from "visual/shaders/vertex-shaders";
+} from 'visual/components/interactive-shaders/types';
+import { vanishingObjectFragment } from 'visual/shaders/fragment-shaders';
+import { vanishingObjectVertex } from 'visual/shaders/vertex-shaders';
 
 const vanishingObjectUniforms: VanishingObjectUniforms = {
   matcap: { value: null },

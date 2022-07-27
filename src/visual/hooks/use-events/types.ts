@@ -1,4 +1,4 @@
-import { EVENT_BIND_TYPES } from "./consts";
+import { EVENT_BIND_TYPES } from './consts';
 
 export interface IUseEventProps {
   events: EventParam[];

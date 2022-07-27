@@ -1,8 +1,6 @@
-import { WebGLRenderer } from "three";
+import { WebGLRenderer } from 'three';
 
-const MockRenderer = () => {
-  return {};
-};
+const MockRenderer = () => ({});
 
 export function mockRenderer() {
   return (WebGLRenderer as jest.Mock).mockImplementation(MockRenderer);

@@ -1,1 +1,1 @@
-export { vanishingObjectFragment } from "./vanishingObjectFrag";
+export { vanishingObjectFragment } from './vanishingObjectFrag';

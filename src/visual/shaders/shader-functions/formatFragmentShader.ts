@@ -1,5 +1,5 @@
-import * as FragmentShaders from "visual/shaders/fragment-shaders";
-import { FragmentShader } from "visual/shaders/types";
+import * as FragmentShaders from 'visual/shaders/fragment-shaders';
+import { FragmentShader } from 'visual/shaders/types';
 
 const hidef = `#ifdef GL_ES
 precision highp float;
@@ -15,7 +15,7 @@ const main = `
   }`;
 export const formatFragmentShader = (
   shaderName: string,
-  uniformText: string = ""
+  uniformText: string = '',
 ): FragmentShader => {
   const shaderText = FragmentShaders[shaderName].frag as string;
   return {

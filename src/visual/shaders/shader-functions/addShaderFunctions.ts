@@ -1,12 +1,12 @@
 export const addShaders = (shaders: string[]) => {
-  let formattedShader = ``;
+  let formattedShader = '';
 
   let includedFunctions: string[] = [];
   shaders.forEach((shader) => {
     const allFunctionsInShader = shader
-      .split("// **-")
+      .split('// **-')
       .filter(
-        (shaderFunction: string) => !includedFunctions.includes(shaderFunction)
+        (shaderFunction: string) => !includedFunctions.includes(shaderFunction),
       );
     includedFunctions = includedFunctions.concat(allFunctionsInShader);
 

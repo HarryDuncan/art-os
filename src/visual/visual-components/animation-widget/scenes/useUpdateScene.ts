@@ -1,10 +1,10 @@
-import { useCallback, useEffect } from "react";
-import { FunctionBasedScene } from "../types";
+import { useCallback, useEffect } from 'react';
+import { FunctionBasedScene } from '../types';
 
 export const useUpdateScene = (
   initializedScenes: FunctionBasedScene[],
   areScenesInitialized: boolean,
-  sceneIndex
+  sceneIndex,
 ) => {
   const updateScene = useCallback(() => {
     const currentIndex = sceneIndex.current;
@@ -15,6 +15,6 @@ export const useUpdateScene = (
   }, [initializedScenes, sceneIndex]);
 
   useEffect(() => {
-    document.addEventListener("scene:update", () => updateScene());
+    document.addEventListener('scene:update', () => updateScene());
   }, [areScenesInitialized, sceneIndex, updateScene]);
 };

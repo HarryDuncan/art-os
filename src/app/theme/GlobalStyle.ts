@@ -1,6 +1,7 @@
-import { createGlobalStyle } from "styled-components";
-import ttfFont from "./fonts/AnimationS.ttf";
-import woff from "./fonts/AnimationS.woff";
+import { createGlobalStyle } from 'styled-components';
+import ttfFont from './fonts/AnimationS.ttf';
+import woff from './fonts/AnimationS.woff';
+
 export const GlobalStyle = createGlobalStyle`
 
 @font-face {

@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { defaultState } from "./Context";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { defaultState } from './Context';
 
 const slice = createSlice({
-  name: "digitalArt",
+  name: 'digitalArt',
   initialState: defaultState,
   reducers: {
     selectPiece: (state, { payload }: PayloadAction<number>) => {

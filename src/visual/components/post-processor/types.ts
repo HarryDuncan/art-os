@@ -1,12 +1,9 @@
-import { Camera } from "three";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
+import { Camera } from 'three';
 
 export type PostProcessorCamera = Camera & {
   aspect: number;
 };
 
 export enum PostProcessorPasses {
-  BLOOM = "bloom",
+  BLOOM = 'bloom',
 }
-
-export type ExtendedEffectComposer = EffectComposer & {};

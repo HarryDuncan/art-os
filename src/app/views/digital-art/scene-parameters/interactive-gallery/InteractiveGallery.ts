@@ -1,10 +1,10 @@
-import { AssetType } from "visual/hooks/use-assets/types";
-import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
-import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
-import { InteractiveScenes } from "visual/components/interactive-shaders/types";
-import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
-import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
-import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
+import { AssetType } from 'visual/hooks/use-assets/types';
+import { INTERACTION_EVENTS } from 'visual/hooks/use-interactions/const';
+import { EventKey, InteractionKey } from 'visual/hooks/use-interactions/types';
+import { InteractiveScenes } from 'visual/components/interactive-shaders/types';
+import InteractiveMaterial from 'visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader';
+import { RendererTypes } from 'visual/hooks/use-three-js/renderer/types';
+import { defaultCameraParams } from 'visual/hooks/use-three-js/use-camera/useCamera';
 
 export const threeDGallery = {
   threeJsParams: {
@@ -26,8 +26,8 @@ export const threeDGallery = {
   ],
   assets: [
     {
-      name: "image",
-      url: "../assets/textures/zz.jpg",
+      name: 'image',
+      url: '../assets/textures/zz.jpg',
       assetType: AssetType.Texture,
     },
   ],
@@ -40,7 +40,7 @@ export const threeDGallery = {
           material.uniforms.uSize,
           1.0,
           { value: 0.5 },
-          { value: 1.5 }
+          { value: 1.5 },
         );
         TweenLite.to(material.uniforms.uRandom, 1.0, {
           value: 2.0,
@@ -49,7 +49,7 @@ export const threeDGallery = {
           material.uniforms.uDepth,
           1.0 * 1.5,
           { value: 40.0 },
-          { value: 4.0 }
+          { value: 4.0 },
         );
         material.isRunningThread = false;
       }

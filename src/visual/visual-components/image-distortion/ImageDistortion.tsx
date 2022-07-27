@@ -1,19 +1,19 @@
-import React, { useCallback, useEffect } from "react";
-import { RootContainer } from "../../components/root-container";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
-import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
-import { ImageDistortionParams } from "./types";
-import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
-import { useFormatWebGL } from "./useFormatMaterialParams";
-import { useThreeJs } from "visual/hooks/use-three-js/useThreeJs";
-import { useAssets } from "visual/hooks/use-assets/useAssets";
-import { useThread } from "visual/hooks/use-thread";
+import React, { useCallback, useEffect } from 'react';
+import { useInteractions } from 'visual/hooks/use-interactions/useInteractions';
+import { useInteractiveMaterial } from 'visual/hooks/use-interactive-material/useInteractiveMaterial';
+import { InteractiveShaderTypes } from 'visual/components/interactive-shaders/types';
+import { useThreeJs } from 'visual/hooks/use-three-js/useThreeJs';
+import { useAssets } from 'visual/hooks/use-assets/useAssets';
+import { useThread } from 'visual/hooks/use-thread';
+import { useFormatWebGL } from './useFormatMaterialParams';
+import { ImageDistortionParams } from './types';
+import { RootContainer } from '../../components/root-container';
 
 interface ImageDistortionProps {
   params: ImageDistortionParams;
 }
 
-export const ImageDistortion = ({ params }: ImageDistortionProps) => {
+export function ImageDistortion({ params }: ImageDistortionProps) {
   const {
     threeJsParams,
     interactionEvents,
@@ -22,8 +22,10 @@ export const ImageDistortion = ({ params }: ImageDistortionProps) => {
     materialFunctions,
   } = params;
 
-  const { scene, renderer, camera, currentFrameRef, container } = useThreeJs(
-    threeJsParams
+  const {
+    scene, renderer, camera, currentFrameRef, container,
+  } = useThreeJs(
+    threeJsParams,
   );
   const { areAssetsInitialized, initializedAssets } = useAssets(assets);
   const { update } = useThread(renderer, currentFrameRef, scene, camera);
@@ -31,7 +33,7 @@ export const ImageDistortion = ({ params }: ImageDistortionProps) => {
   const { uniforms, shaders, geometry } = useFormatWebGL(
     initializedAssets,
     areAssetsInitialized,
-    materialParams
+    materialParams,
   );
   const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
@@ -40,7 +42,7 @@ export const ImageDistortion = ({ params }: ImageDistortionProps) => {
     geometry,
     uniforms,
     shaders,
-    InteractiveShaderTypes.SHADER
+    InteractiveShaderTypes.SHADER,
   );
   const initializeMesh = useCallback(() => {
     if (interactiveMesh) {
@@ -59,4 +61,4 @@ export const ImageDistortion = ({ params }: ImageDistortionProps) => {
       <RootContainer containerRef={container} />
     </>
   );
-};
+}

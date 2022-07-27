@@ -1,18 +1,18 @@
-import React, { useCallback, useEffect } from "react";
-import { RootContainer } from "../../components/root-container";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
-import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
-import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { useSetUpScene } from "visual/hooks/useSetUpScene";
-import { useFormatParams } from "./useFormatParams";
-import { PostProcessorPasses } from "visual/components/post-processor/types";
-import { TextTrailParams } from "./types";
+import React, { useCallback, useEffect } from 'react';
+import { useInteractions } from 'visual/hooks/use-interactions/useInteractions';
+import { useInteractiveMaterial } from 'visual/hooks/use-interactive-material/useInteractiveMaterial';
+import PostProcessor from 'visual/components/post-processor/PostProcessor';
+import { useSetUpScene } from 'visual/hooks/useSetUpScene';
+import { PostProcessorPasses } from 'visual/components/post-processor/types';
+import { useFormatParams } from './useFormatParams';
+import { RootContainer } from '../../components/root-container';
+import { TextTrailParams } from './types';
 
 interface TextTrailProps {
   params: TextTrailParams;
 }
 
-export const TextTrail = ({ params }: TextTrailProps) => {
+export function TextTrail({ params }: TextTrailProps) {
   const {
     threeJsParams,
     interactionEvents,
@@ -35,7 +35,7 @@ export const TextTrail = ({ params }: TextTrailProps) => {
   const { geometry, uniforms, shaders } = useFormatParams(
     initializedAssets,
     areAssetsInitialized,
-    materialParams
+    materialParams,
   );
 
   const { interactiveNode } = useInteractions(interactionEvents);
@@ -44,7 +44,7 @@ export const TextTrail = ({ params }: TextTrailProps) => {
     materialFunctions,
     geometry,
     uniforms,
-    shaders
+    shaders,
   );
 
   const initializeMesh = useCallback(() => {
@@ -70,4 +70,4 @@ export const TextTrail = ({ params }: TextTrailProps) => {
       <RootContainer containerRef={container} />
     </>
   );
-};
+}

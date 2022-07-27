@@ -1,5 +1,7 @@
-import React, { useRef } from "react";
-import { CardFooter, CardImage, CardTitle, CardWrapper } from "./Card.styles";
+import React, { useRef } from 'react';
+import {
+  CardFooter, CardImage, CardTitle, CardWrapper,
+} from './Card.styles';
 
 interface ICardDetails {
   title: string;
@@ -10,7 +12,7 @@ interface ICardProps {
   onClick?: () => void;
 }
 
-export const Card = ({ cardDetails, onClick }: ICardProps) => {
+export function Card({ cardDetails, onClick }: ICardProps) {
   const imgElementRef = useRef<HTMLImageElement | null>(null);
   const cardClicked = () => {
     if (onClick) {
@@ -32,4 +34,4 @@ export const Card = ({ cardDetails, onClick }: ICardProps) => {
       </CardFooter>
     </CardWrapper>
   );
-};
+}

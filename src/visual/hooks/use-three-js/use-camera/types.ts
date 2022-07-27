@@ -18,6 +18,6 @@ export interface PerspectiveCameraProps {
   far: number;
 }
 export enum CameraType {
-  PERSPECTIVE_CAMERA = "perspectiveCamera",
-  ORTHOGRAPHIC_CAMERA = "orthographicCamera",
+  PERSPECTIVE_CAMERA = 'perspectiveCamera',
+  ORTHOGRAPHIC_CAMERA = 'orthographicCamera',
 }

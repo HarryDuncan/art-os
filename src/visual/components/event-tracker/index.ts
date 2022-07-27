@@ -1,1 +1,1 @@
-export { EventTracker } from "./EventTracker";
+export { EventTracker } from './EventTracker';

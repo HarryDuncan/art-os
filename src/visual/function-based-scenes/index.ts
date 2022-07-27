@@ -1,1 +1,1 @@
-export { GenericShaderScene } from "./generic-shader-scene";
+export { GenericShaderScene } from './generic-shader-scene';

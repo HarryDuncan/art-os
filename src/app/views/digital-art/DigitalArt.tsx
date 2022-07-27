@@ -1,12 +1,12 @@
-import React from "react";
-import { PageTitle } from "../../components/page-text";
-import { DigitalArtGallery } from "./digital-art-gallery/DigitalArtGallery";
-import { DigitalArtContainer, DigitalArtHeader } from "./StyledComponents";
-import { Provider as DigitalArtProvider } from "./context/Provider";
-import { useDigitalArtContext } from "./context/useDigitalArtContext";
-import { ViewPiece } from "./view-piece/ViewPiece";
+import React from 'react';
+import { PageTitle } from '../../components/page-text';
+import { DigitalArtGallery } from './digital-art-gallery/DigitalArtGallery';
+import { DigitalArtContainer, DigitalArtHeader } from './StyledComponents';
+import { Provider as DigitalArtProvider } from './context/Provider';
+import { useDigitalArtContext } from './context/useDigitalArtContext';
+import { ViewPiece } from './view-piece/ViewPiece';
 
-export const DigitalArt = () => {
+export function DigitalArt() {
   return (
     <DigitalArtProvider>
       <DigitalArtContainer>
@@ -17,11 +17,11 @@ export const DigitalArt = () => {
       </DigitalArtContainer>
     </DigitalArtProvider>
   );
-};
+}
 
-const DigitalArtContent = () => {
+function DigitalArtContent() {
   const { selectedToViewIndex } = useDigitalArtContext();
   return (
     <>{selectedToViewIndex !== null ? <ViewPiece /> : <DigitalArtGallery />}</>
   );
-};
+}

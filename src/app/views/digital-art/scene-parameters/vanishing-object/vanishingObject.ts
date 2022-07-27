@@ -1,11 +1,11 @@
-import { AssetType } from "visual/hooks/use-assets/types";
-import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
-import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
-import { vanishingObjectMaterialParams } from "./materialParams";
-import gsap from "gsap";
-import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
-import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
-import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
+import { AssetType } from 'visual/hooks/use-assets/types';
+import { INTERACTION_EVENTS } from 'visual/hooks/use-interactions/const';
+import { EventKey, InteractionKey } from 'visual/hooks/use-interactions/types';
+import gsap from 'gsap';
+import InteractiveMaterial from 'visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader';
+import { RendererTypes } from 'visual/hooks/use-three-js/renderer/types';
+import { defaultCameraParams } from 'visual/hooks/use-three-js/use-camera/useCamera';
+import { vanishingObjectMaterialParams } from './materialParams';
 
 export const vanishingObject = {
   threeJsParams: {
@@ -37,13 +37,13 @@ export const vanishingObject = {
   ],
   assets: [
     {
-      name: "geometry",
-      url: "../assets/models/ZeusBust.obj",
+      name: 'geometry',
+      url: '../assets/models/ZeusBust.obj',
       assetType: AssetType.Geometry,
     },
     {
-      name: "matcap",
-      url: "../assets/textures/obsidian.jpg",
+      name: 'matcap',
+      url: '../assets/textures/obsidian.jpg',
       assetType: AssetType.Texture,
     },
   ],
@@ -56,17 +56,17 @@ export const vanishingObject = {
         gsap.to(material.uniforms.progress, {
           value:
             material.uniforms.progress.value + material.uniforms.delta.value,
-          ease: "power4.out",
+          ease: 'power4.out',
           duration: 1.2,
           overwrite: true,
         });
 
         // Change direction
         if (
-          (material.uniforms?.progress.value > 1.0 &&
-            material.uniforms.delta.value > 0) ||
-          (material.uniforms.progress.value < 0 &&
-            material.uniforms.delta.value < 0)
+          (material.uniforms?.progress.value > 1.0
+            && material.uniforms.delta.value > 0)
+          || (material.uniforms.progress.value < 0
+            && material.uniforms.delta.value < 0)
         ) {
           material.isRunningThread = false;
         }

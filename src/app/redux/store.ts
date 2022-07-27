@@ -3,11 +3,11 @@ import {
   AnyAction,
   ThunkAction,
   ThunkDispatch,
-} from "@reduxjs/toolkit";
+} from '@reduxjs/toolkit';
 
-import { middleware } from "./middleware";
-import { IGlobalState, rootReducer } from "./reducer";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { middleware } from './middleware';
+import { IGlobalState, rootReducer } from './reducer';
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -24,6 +24,5 @@ export const useAppSelector: TypedUseSelectorHook<IGlobalState> = useSelector;
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(middleware),
 });

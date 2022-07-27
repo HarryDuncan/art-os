@@ -1,7 +1,7 @@
-import { FragmentShader } from "visual/shaders/types";
+import { FragmentShader } from 'visual/shaders/types';
 
 export const electricPulse: FragmentShader = {
-  tags: ["noUniforms"],
+  tags: ['noUniforms'],
   frag: `
 
 	#define time uTime*0.15

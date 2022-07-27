@@ -1,9 +1,9 @@
-import { useRef } from "react";
-import { FunctionBasedScene } from "./types";
+import { useRef } from 'react';
+import { FunctionBasedScene } from './types';
 
 export const useAnimationWidgetRefs = () => {
   const sceneArrayRef: React.MutableRefObject<FunctionBasedScene[]> = useRef(
-    []
+    [],
   );
   const sceneIndex: React.MutableRefObject<number> = useRef(0);
   const isRunningRef: React.MutableRefObject<boolean> = useRef(false);

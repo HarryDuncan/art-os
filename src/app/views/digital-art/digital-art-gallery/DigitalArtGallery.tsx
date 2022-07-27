@@ -1,11 +1,11 @@
-import React from "react";
-import { selectPiece } from "../context/slice";
-import { useDigitalArtContext } from "../context/useDigitalArtContext";
-import { GalleryContainer } from "../StyledComponents";
-import { Card } from "../../../components";
+import React from 'react';
+import { selectPiece } from '../context/slice';
+import { useDigitalArtContext } from '../context/useDigitalArtContext';
+import { GalleryContainer } from '../StyledComponents';
+import { Card } from '../../../components';
 
-const DIGITAL_ART_CARD_IMAGE_URL = "../card-images";
-export const DigitalArtGallery = () => {
+const DIGITAL_ART_CARD_IMAGE_URL = '../card-images';
+export function DigitalArtGallery() {
   const { dispatch, pieces } = useDigitalArtContext();
 
   const onCardClick = (index: number) => {
@@ -17,7 +17,7 @@ export const DigitalArtGallery = () => {
         <Card
           key={index}
           cardDetails={{
-            title: title,
+            title,
             imageUrl: `${DIGITAL_ART_CARD_IMAGE_URL}/${cardImageName}`,
           }}
           onClick={() => onCardClick(index)}
@@ -25,4 +25,4 @@ export const DigitalArtGallery = () => {
       ))}
     </GalleryContainer>
   );
-};
+}

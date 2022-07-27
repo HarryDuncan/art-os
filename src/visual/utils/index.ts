@@ -1,2 +1,2 @@
-export * from "./math";
-export * from "./objects";
+export * from './math';
+export * from './objects';

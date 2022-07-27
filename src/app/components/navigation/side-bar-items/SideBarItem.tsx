@@ -1,11 +1,11 @@
 // import { faExternalLink } from "@fortawesome/pro-light-svg-icons/faExternalLink";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { TIcon } from "app/components/icon";
-import React, { useMemo } from "react";
-import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
-import { SideBarIcon, SideBarLinkTitle } from "../side-bar/SideBar.styles";
-import { SideBarLink } from "./SideBarItem.styles";
+import React, { useMemo } from 'react';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
+import { SideBarIcon, SideBarLinkTitle } from '../side-bar/SideBar.styles';
+import { SideBarLink } from './SideBarItem.styles';
 
 export interface ISideBarItem {
   key: string;
@@ -16,19 +16,19 @@ export interface ISideBarItem {
   link?: string;
 }
 
-const SideBarItemContainer = ({
+function SideBarItemContainer({
   link,
   isExternal,
   children,
   isDisabled,
-}: React.PropsWithChildren<ISideBarItem>) => {
+}: React.PropsWithChildren<ISideBarItem>) {
   const isActive = useIsActive(isExternal, link);
   const sharedProps = useMemo(
     () => ({
       $isActive: isActive,
       $isDisabled: isDisabled,
     }),
-    [isActive, isDisabled]
+    [isActive, isDisabled],
   );
 
   if (isExternal) {
@@ -58,27 +58,27 @@ const SideBarItemContainer = ({
       {children}
     </SideBarLink>
   );
-};
+}
 
-const SideBarItem = (props: ISideBarItem) => {
+function SideBarItem(props: ISideBarItem) {
   const { isExternal, title } = props;
 
   return (
     <SideBarItemContainer {...props}>
       <SideBarLinkTitle>{title}</SideBarLinkTitle>
-      {isExternal && <SideBarIcon $isExternal={isExternal}></SideBarIcon>}
+      {isExternal && <SideBarIcon $isExternal={isExternal} />}
     </SideBarItemContainer>
   );
-};
+}
 
 function useIsActive(
   isExternal: boolean | undefined,
-  link: string | undefined
+  link: string | undefined,
 ) {
   const { pathname } = useLocation();
   if (isExternal) return false;
-  const currentPathRoot = pathname.split("/").filter(Boolean)[0];
-  const linkRoot = link?.split("/").filter(Boolean)[0];
+  const currentPathRoot = pathname.split('/').filter(Boolean)[0];
+  const linkRoot = link?.split('/').filter(Boolean)[0];
   return currentPathRoot === linkRoot;
 }
 

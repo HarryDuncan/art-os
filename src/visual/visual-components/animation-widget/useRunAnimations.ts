@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { AnimationWidgetScene } from "./types";
-import { useAnimationWidgetRefs } from "./useAnimationWidgetRefs";
-import { useThreeJs } from "visual/hooks/use-three-js/useThreeJs";
-import { useScenes } from "./scenes/useScenes";
-import { useSetActiveScene } from "./scenes/useSetActiveScene";
-import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
-import { useUpdateScene } from "./scenes/useUpdateScene";
-import { useChangeScenes } from "./scenes/useChangeScenes";
+import { useEffect } from 'react';
+import { useThreeJs } from 'visual/hooks/use-three-js/useThreeJs';
+import { useThreadWithPostProcessor } from 'visual/hooks/use-thread';
+import { AnimationWidgetScene } from './types';
+import { useAnimationWidgetRefs } from './useAnimationWidgetRefs';
+import { useScenes } from './scenes/useScenes';
+import { useSetActiveScene } from './scenes/useSetActiveScene';
+import { useUpdateScene } from './scenes/useUpdateScene';
+import { useChangeScenes } from './scenes/useChangeScenes';
 
 export const useRunAnimations = (sceneParams: AnimationWidgetScene[]) => {
   // Refs
@@ -25,13 +25,13 @@ export const useRunAnimations = (sceneParams: AnimationWidgetScene[]) => {
     initializedScenes,
     renderer,
     postProcessor,
-    isRunningRef
+    isRunningRef,
   );
 
   const { update } = useThreadWithPostProcessor(
     postProcessor,
     currentFrameRef,
-    clock
+    clock,
   );
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const useRunAnimations = (sceneParams: AnimationWidgetScene[]) => {
     initializedScenes,
     areScenesInitialized,
     sceneIndex,
-    postProcessor
+    postProcessor,
   );
   return { container, currentFrameRef };
 };

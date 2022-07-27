@@ -8,9 +8,9 @@ import {
   Vector3,
   Vector2,
   Mesh,
-} from "three";
-import { MeshSurfaceSampler } from "three/examples/jsm/math/MeshSurfaceSampler";
-import ParticleMaterial from "./materials/particle-material/ParticleMaterial";
+} from 'three';
+import { MeshSurfaceSampler } from 'three/examples/jsm/math/MeshSurfaceSampler';
+import ParticleMaterial from './materials/particle-material/ParticleMaterial';
 
 const MAX_PARTICLES = 20000;
 
@@ -41,7 +41,9 @@ interface IMagicObjectStore {
 }
 export default class ParticleSystem extends Object3D {
   model: any;
+
   init: any;
+
   mat: any;
 
   constructor(store: any) {
@@ -102,7 +104,7 @@ export default class ParticleSystem extends Object3D {
     const randoms: any[] = [];
 
     const sampler = new MeshSurfaceSampler(new Mesh(this.model))
-      .setWeightAttribute("uv")
+      .setWeightAttribute('uv')
       .build();
     const v3 = new Vector3();
     const n3 = new Vector3();
@@ -120,11 +122,11 @@ export default class ParticleSystem extends Object3D {
       randoms.push(Math.random());
     }
 
-    geom.setAttribute("position", new Float32BufferAttribute(vertices, 3));
-    geom.setAttribute("normal", new Float32BufferAttribute(normals, 3));
-    geom.setAttribute("scale", new Float32BufferAttribute(sizes, 1));
-    geom.setAttribute("aColor", new Float32BufferAttribute(colors, 3));
-    geom.setAttribute("aRandom", new Float32BufferAttribute(randoms, 1));
+    geom.setAttribute('position', new Float32BufferAttribute(vertices, 3));
+    geom.setAttribute('normal', new Float32BufferAttribute(normals, 3));
+    geom.setAttribute('scale', new Float32BufferAttribute(sizes, 1));
+    geom.setAttribute('aColor', new Float32BufferAttribute(colors, 3));
+    geom.setAttribute('aRandom', new Float32BufferAttribute(randoms, 1));
 
     const systemMesh = new Points(geom, this.mat);
     systemMesh.frustumCulled = false;

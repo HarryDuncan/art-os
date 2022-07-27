@@ -1,25 +1,29 @@
-import { Clock, ShaderMaterial } from "three";
-import { InteractionEventObject } from "visual/hooks/use-interactions/types";
-import { defaultInteractiveMaterialFunctions } from "../interactiveMaterialConstants";
-import { InteractiveMaterialFunctions, InteractiveShaders } from "../types";
+import { Clock, ShaderMaterial } from 'three';
+import { InteractionEventObject } from 'visual/hooks/use-interactions/types';
+import { defaultInteractiveMaterialFunctions } from '../interactiveMaterialConstants';
+import { InteractiveMaterialFunctions, InteractiveShaders } from '../types';
 
 export default class InteractiveShader extends ShaderMaterial {
   clock: Clock;
+
   isRunningThread: boolean;
+
   interactionEvents: InteractionEventObject[];
+
   materialFunctions: InteractiveMaterialFunctions;
+
   constructor(
     uniforms,
     shaders: InteractiveShaders,
     interactions: InteractionEventObject[],
-    materialFunctions: InteractiveMaterialFunctions = defaultInteractiveMaterialFunctions
+    materialFunctions: InteractiveMaterialFunctions = defaultInteractiveMaterialFunctions,
   ) {
     super({
-      uniforms: uniforms,
+      uniforms,
       vertexShader: shaders.vertexShader.vert,
       fragmentShader: shaders.fragmentShader.frag,
       depthWrite: true,
-      //@ts-ignore
+      // @ts-ignore
       derivatives: true,
     });
     this.isRunningThread = true;
@@ -30,22 +34,18 @@ export default class InteractiveShader extends ShaderMaterial {
 
     this.bindMaterialFunctions();
     interactions.forEach(({ eventKey }) => {
-      document.addEventListener(`${eventKey}`, (ev) =>
-        this.onGestureEvent(ev as CustomEvent)
-      );
+      document.addEventListener(`${eventKey}`, (ev) => this.onGestureEvent(ev as CustomEvent));
     });
   }
 
   bindMaterialFunctions() {
-    document.addEventListener("scene:update", () =>
-      this.materialFunctions.onTimeUpdate(this)
-    );
+    document.addEventListener('scene:update', () => this.materialFunctions.onTimeUpdate(this));
   }
 
   onGestureEvent(event: CustomEvent) {
     const { type, detail } = event;
     const currentAction = this.interactionEvents.find(
-      (interactionEvent) => interactionEvent.eventKey === type
+      (interactionEvent) => interactionEvent.eventKey === type,
     );
 
     if (currentAction?.eventFunction) {

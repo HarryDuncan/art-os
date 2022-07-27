@@ -1,12 +1,13 @@
-import { useContext } from "react";
-import ThemeContext from "styled-components/macro";
+import { useContext } from 'react';
+import ThemeContext from 'styled-components/macro';
 
 export const useThemeContext = () => {
-  //@ts-ignore
+  // @ts-ignore
   const context = useContext(ThemeContext);
-  if (!context)
+  if (!context) {
     throw new Error(
-      "No theme context found. Is there a wrapping ThemeProvider component?"
+      'No theme context found. Is there a wrapping ThemeProvider component?',
     );
+  }
   return context;
 };

@@ -1,18 +1,18 @@
-import React, { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
-import { useIdleTimer } from "react-idle-timer";
+import React, { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useIdleTimer } from 'react-idle-timer';
 import {
   SideBarLinkList,
   SideBarTitleContainer,
   StyledSideBar,
-} from "./SideBar.styles";
-import SideBarItem, { ISideBarItem } from "../side-bar-items/SideBarItem";
+} from './SideBar.styles';
+import SideBarItem, { ISideBarItem } from '../side-bar-items/SideBarItem';
 
 interface ISideBarProps {
   navItems: ISideBarItem[];
 }
 const IDLE_TIMER_TIMEOUT = 5000;
-const SideBar = ({ navItems }: ISideBarProps) => {
+function SideBar({ navItems }: ISideBarProps) {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
   const toggleSideBarVisibility = useCallback((visibility: boolean) => {
     setIsSidebarVisible(visibility);
@@ -27,7 +27,7 @@ const SideBar = ({ navItems }: ISideBarProps) => {
   return (
     <StyledSideBar $isVisible={isSidebarVisible}>
       <SideBarTitleContainer>
-        <Link to={"/"}>
+        <Link to="/">
           <h1>GLO</h1>
         </Link>
       </SideBarTitleContainer>
@@ -36,9 +36,9 @@ const SideBar = ({ navItems }: ISideBarProps) => {
       </SideBarLinkList>
     </StyledSideBar>
   );
-};
+}
 
-const SideBarItemList = ({ items }: { items: ISideBarItem[] }) => {
+function SideBarItemList({ items }: { items: ISideBarItem[] }) {
   return (
     <div>
       {items.map((link) => (
@@ -46,6 +46,6 @@ const SideBarItemList = ({ items }: { items: ISideBarItem[] }) => {
       ))}
     </div>
   );
-};
+}
 
 export default SideBar;

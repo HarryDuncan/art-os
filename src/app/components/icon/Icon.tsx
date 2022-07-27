@@ -12,14 +12,14 @@ export const Icon = Object.entries(icons).reduce<IconLibrary>(
     ...accumulator,
     [iconName]: getStyledIcon(Icon),
   }),
-  {} as IconLibrary
+  {} as IconLibrary,
 );
 
 function getStyledIcon(Icon: AssetValue) {
   return styled(Icon)<{ width?: string; height?: string } & ElementProps>`
     display: inline-block;
-    width: ${({ width }) => width ?? `1em`};
-    height: ${({ height }) => height ?? `1em`};
+    width: ${({ width }) => width ?? '1em'};
+    height: ${({ height }) => height ?? '1em'};
     &:not([fill='none']) {
       fill: currentColor;
     }

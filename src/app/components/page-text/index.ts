@@ -1,1 +1,1 @@
-export * from "./pageText.styles";
+export * from './pageText.styles';

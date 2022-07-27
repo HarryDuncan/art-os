@@ -1,4 +1,4 @@
-import { FragmentShader } from "visual/shaders/types";
+import { FragmentShader } from 'visual/shaders/types';
 
 export const matrixSea: FragmentShader = {
   tags: [],

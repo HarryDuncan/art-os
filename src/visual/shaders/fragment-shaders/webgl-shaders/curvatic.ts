@@ -1,5 +1,5 @@
 export const curvatic = {
-  tags: ["noUniforms"],
+  tags: ['noUniforms'],
   frag: `
 	#define speed  0.1;
 	float hash( float n )

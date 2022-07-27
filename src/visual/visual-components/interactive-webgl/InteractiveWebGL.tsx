@@ -1,18 +1,18 @@
-import React, { useCallback, useEffect } from "react";
-import { RootContainer } from "../../components/root-container";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
-import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
-import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { InteractiveObjectParams } from "./types";
-import { useSetUpScene } from "visual/hooks/useSetUpScene";
-import { useFormatWebGL } from "./useFormatWebGL";
-import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
+import React, { useCallback, useEffect } from 'react';
+import { useInteractions } from 'visual/hooks/use-interactions/useInteractions';
+import { useInteractiveMaterial } from 'visual/hooks/use-interactive-material/useInteractiveMaterial';
+import PostProcessor from 'visual/components/post-processor/PostProcessor';
+import { useSetUpScene } from 'visual/hooks/useSetUpScene';
+import { InteractiveShaderTypes } from 'visual/components/interactive-shaders/types';
+import { InteractiveObjectParams } from './types';
+import { useFormatWebGL } from './useFormatWebGL';
+import { RootContainer } from '../../components/root-container';
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;
 }
 
-export const InteractiveWebGL = ({ params }: InteractiveObjectProps) => {
+export function InteractiveWebGL({ params }: InteractiveObjectProps) {
   const {
     threeJsParams,
     interactionEvents,
@@ -35,7 +35,7 @@ export const InteractiveWebGL = ({ params }: InteractiveObjectProps) => {
   const { uniforms, shaders, geometry } = useFormatWebGL(
     initializedAssets,
     areAssetsInitialized,
-    materialParams
+    materialParams,
   );
   const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
@@ -44,7 +44,7 @@ export const InteractiveWebGL = ({ params }: InteractiveObjectProps) => {
     geometry,
     uniforms,
     shaders,
-    InteractiveShaderTypes.SHADER
+    InteractiveShaderTypes.SHADER,
   );
   const initializeMesh = useCallback(() => {
     if (interactiveMesh) {
@@ -68,4 +68,4 @@ export const InteractiveWebGL = ({ params }: InteractiveObjectProps) => {
       <RootContainer containerRef={container} />
     </>
   );
-};
+}

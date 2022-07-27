@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Containers
-import { DigitalArt } from "./views/digital-art/DigitalArt";
-import { Landing } from "./views/landing/Landing";
+import { Provider } from 'react-redux';
+import styled, { ThemeProvider } from 'styled-components/macro';
+import { DigitalArt } from './views/digital-art/DigitalArt';
+import { Landing } from './views/landing/Landing';
 // Components
-import { Navigation } from "./components/navigation/Navigation";
+import { Navigation } from './components/navigation/Navigation';
 
 // Redux
-import { store } from "./redux/store";
-import { Provider } from "react-redux";
+import { store } from './redux/store';
 
-import styled, { ThemeProvider } from "styled-components/macro";
-import { THEME } from "./theme/theme";
-import { GlobalStyle } from "./theme/GlobalStyle";
-import { Sandbox } from "./views/sandbox/sandbox";
+import { THEME } from './theme/theme';
+import { GlobalStyle } from './theme/GlobalStyle';
+import { Sandbox } from './views/sandbox/sandbox';
 
 export const AppContainer = styled.div`
   margin: 0;
@@ -25,7 +25,7 @@ export const AppContainer = styled.div`
   left: 0;
 `;
 
-export const App = () => {
+export function App() {
   // When a nav item is clicked this is where the actions take place
 
   return (
@@ -45,4 +45,4 @@ export const App = () => {
       </BrowserRouter>
     </ThemeProvider>
   );
-};
+}

@@ -1,18 +1,18 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from 'react';
 import {
   DataTexture,
   FloatType,
   NearestFilter,
   PlaneGeometry,
   RGBFormat,
-} from "three";
-import { Asset } from "visual/hooks/use-assets/types";
-import { ImageDistortionMaterialParam } from "./types";
+} from 'three';
+import { Asset } from 'visual/hooks/use-assets/types';
+import { ImageDistortionMaterialParam } from './types';
 
 export const useFormatWebGL = (
   assets: Asset[],
   areAssetsInitialized: boolean,
-  materialParams: ImageDistortionMaterialParam
+  materialParams: ImageDistortionMaterialParam,
 ) => {
   const { uniforms, shaders } = materialParams;
   const formatUniformsAndGeometry = useCallback(
@@ -21,12 +21,11 @@ export const useFormatWebGL = (
       formatAssetWithUniforms(unformattedUniforms, assets);
       return { geometry, uniforms: unformattedUniforms, shaders };
     },
-    [shaders]
+    [shaders],
   );
 
   return useMemo(() => {
-    if (!areAssetsInitialized)
-      return { geometry: undefined, uniforms: undefined, shaders: undefined };
+    if (!areAssetsInitialized) { return { geometry: undefined, uniforms: undefined, shaders: undefined }; }
     return formatUniformsAndGeometry(assets, uniforms);
   }, [areAssetsInitialized, formatUniformsAndGeometry, assets, uniforms]);
 };
@@ -72,8 +71,8 @@ export const updateGrid = (uniforms) => {
   const data = new Float32Array(3 * sizeSquared);
 
   for (let i = 0; i < sizeSquared; i++) {
-    let r = Math.random() * 255 - 125;
-    let r1 = Math.random() * 255 - 125;
+    const r = Math.random() * 255 - 125;
+    const r1 = Math.random() * 255 - 125;
 
     const stride = i * 3;
 

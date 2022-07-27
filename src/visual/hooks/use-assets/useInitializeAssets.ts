@@ -1,9 +1,9 @@
-import { useCallback } from "react";
-import { getFileTypeFromFilename } from "utils/getFileType";
-import { loadGeometry } from "visual/helpers/geometry/load-geometry/LoadGeometry";
-import { Asset, AssetType } from "./types";
-import { loadTexture } from "visual/helpers/texture/load-texture/loadTexture";
-import { loadImage } from "visual/helpers/image/load-image/LoadImage";
+import { useCallback } from 'react';
+import { getFileTypeFromFilename } from 'utils/getFileType';
+import { loadGeometry } from 'visual/helpers/geometry/load-geometry/LoadGeometry';
+import { loadTexture } from 'visual/helpers/texture/load-texture/loadTexture';
+import { loadImage } from 'visual/helpers/image/load-image/LoadImage';
+import { Asset, AssetType } from './types';
 
 export const useInitializeAssets = (assets: Asset[]) => {
   async function initializeAsset(asset: Asset) {
@@ -12,7 +12,7 @@ export const useInitializeAssets = (assets: Asset[]) => {
   }
   return useCallback(async () => {
     const loadedAssets = await Promise.all(
-      assets.map(async (asset) => initializeAsset(asset))
+      assets.map(async (asset) => initializeAsset(asset)),
     );
     return loadedAssets as Asset[];
   }, [assets]);

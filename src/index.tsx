@@ -1,8 +1,8 @@
-import React from "react";
-import { App } from "./app/App";
-import { createRoot } from "react-dom/client";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { App } from './app/App';
 
-const mainElement = document.createElement("div");
+const mainElement = document.createElement('div');
 document.body.appendChild(mainElement);
 
 const root = createRoot(mainElement); // createRoot(container!) if you use TypeScript

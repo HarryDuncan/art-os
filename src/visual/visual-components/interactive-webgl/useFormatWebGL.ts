@@ -1,19 +1,19 @@
-import { useCallback } from "react";
-import { PlaneGeometry, RepeatWrapping } from "three";
-import { Asset } from "visual/hooks/use-assets/types";
-import { WebGLShaderMaterialParams } from "./types";
-import { defaultVertex } from "visual/shaders/vertex-shaders";
-import { formatUniforms } from "visual/shaders/shader-functions/uniforms/formatUniforms";
-import { formatFragmentShader } from "visual/shaders/shader-functions/formatFragmentShader";
+import { useCallback } from 'react';
+import { PlaneGeometry, RepeatWrapping } from 'three';
+import { Asset } from 'visual/hooks/use-assets/types';
+import { defaultVertex } from 'visual/shaders/vertex-shaders';
+import { formatUniforms } from 'visual/shaders/shader-functions/uniforms/formatUniforms';
+import { formatFragmentShader } from 'visual/shaders/shader-functions/formatFragmentShader';
+import { WebGLShaderMaterialParams } from './types';
 
 export const useFormatWebGL = (
   initializedAssets: Asset[],
   areAssetsInitialized: boolean,
-  materialParams: WebGLShaderMaterialParams
+  materialParams: WebGLShaderMaterialParams,
 ) => {
   const { shaderName, uniformDefinition } = materialParams;
   const { uniforms, uniformText } = formatUniforms(
-    uniformDefinition ? uniformDefinition : []
+    uniformDefinition || [],
   );
   const fragmentShader = formatFragmentShader(shaderName, uniformText);
   const formatUniformsAndGeometry = useCallback(
@@ -27,7 +27,7 @@ export const useFormatWebGL = (
       formatAssetWithUniforms(unformattedUniforms, assets);
       return { geometry, uniforms: unformattedUniforms, shaders };
     },
-    [fragmentShader]
+    [fragmentShader],
   );
   return formatUniformsAndGeometry(initializedAssets, uniforms);
 };

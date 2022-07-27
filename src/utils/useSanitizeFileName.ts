@@ -1,3 +1,1 @@
-export const useSanitizeFileName = (fileName: string) => {
-  return fileName.replace(/ /g, "%20");
-};
+export const useSanitizeFileName = (fileName: string) => fileName.replace(/ /g, '%20');

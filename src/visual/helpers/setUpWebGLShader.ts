@@ -1,14 +1,16 @@
-import { Mesh, PlaneGeometry, RawShaderMaterial, ShaderMaterial } from "three";
-import { defaultVertex } from "visual/shaders/vertex-shaders";
-import { formatFragmentShader } from "visual/shaders/shader-functions/formatFragmentShader";
-import { UniformDefinition } from "visual/shaders/types";
-import { formatUniforms } from "visual/shaders/shader-functions/uniforms/formatUniforms";
+import {
+  Mesh, PlaneGeometry, RawShaderMaterial, ShaderMaterial,
+} from 'three';
+import { defaultVertex } from 'visual/shaders/vertex-shaders';
+import { formatFragmentShader } from 'visual/shaders/shader-functions/formatFragmentShader';
+import { UniformDefinition } from 'visual/shaders/types';
+import { formatUniforms } from 'visual/shaders/shader-functions/uniforms/formatUniforms';
 
 export type Shader = RawShaderMaterial & { derivatives: boolean };
 
 export const setUpWebGLShader = (
   shaderName: string,
-  uniformParams: UniformDefinition[] = []
+  uniformParams: UniformDefinition[] = [],
 ) => {
   const { uniforms, uniformText } = formatUniforms(uniformParams);
 
@@ -16,11 +18,11 @@ export const setUpWebGLShader = (
 
   const fragShader = formatFragmentShader(shaderName, uniformText);
   const material: Shader = new ShaderMaterial({
-    uniforms: uniforms,
+    uniforms,
     vertexShader: defaultVertex.vert,
     fragmentShader: fragShader.frag,
     depthWrite: true,
-    //@ts-ignore
+    // @ts-ignore
     derivatives: true,
   });
 

@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components/macro";
-import { SIDE_BAR_TRANSITION_SPEED } from "../side-bar/SideBar.styles";
+import styled, { css } from 'styled-components/macro';
+import { SIDE_BAR_TRANSITION_SPEED } from '../side-bar/SideBar.styles';
 
 const BORDER_WIDTH = 3;
 

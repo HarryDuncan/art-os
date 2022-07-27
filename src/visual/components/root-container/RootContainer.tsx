@@ -1,5 +1,5 @@
-import React from "react";
-import { Root } from "./RootContainer.styles";
+import React from 'react';
+import { Root } from './RootContainer.styles';
 
 interface IRootContainerProps {
   containerRef: React.MutableRefObject<any>;
@@ -8,10 +8,10 @@ interface IRootContainerProps {
   viewHeight?: string;
 }
 // Scene manager for displaying multiple scenes in a particular setting
-export const RootContainer = ({
+export function RootContainer({
   containerRef,
-  viewWidth = "100vw",
-  viewHeight = "100vh",
-}: IRootContainerProps) => {
+  viewWidth = '100vw',
+  viewHeight = '100vh',
+}: IRootContainerProps) {
   return <Root $height={viewHeight} $width={viewWidth} ref={containerRef} />;
-};
+}

@@ -1,9 +1,9 @@
-import { StaticBackgroundContainer } from "./StaticBackground.styles"
-import React from 'react'
+import React from 'react';
+import { StaticBackgroundContainer } from './StaticBackground.styles';
 
 interface StaticBackgroundProps {
 
 }
-export const StaticBackground = () => {
-    return <StaticBackgroundContainer   $backgroundUrl={`url(../assets/textures/MarshBg.jpg)`}  />
+export function StaticBackground() {
+  return <StaticBackgroundContainer $backgroundUrl="url(../assets/textures/MarshBg.jpg)" />;
 }

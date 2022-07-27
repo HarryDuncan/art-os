@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from "react";
+import React, { Component, ReactNode } from 'react';
 
 type Implementation<P> = (props: P) => ReactNode;
 
@@ -11,15 +11,11 @@ class MockClass<
   }
 }
 
-export const mockClassImplementation = <P,>(
+export const mockClassImplementation = <P, >(
   ClassToMock: jest.Constructable,
-  implementation: Implementation<P>
-) => {
-  return (ClassToMock as jest.MockedClass<
+  implementation: Implementation<P>,
+) => (ClassToMock as jest.MockedClass<
     typeof ClassToMock
-  >).mockImplementation((props: P) => {
-    return ((
-      <MockClass {...props} implementation={implementation} />
-    ) as unknown) as typeof ClassToMock;
-  });
-};
+  >).mockImplementation((props: P) => ((
+    <MockClass {...props} implementation={implementation} />
+    ) as unknown) as typeof ClassToMock);

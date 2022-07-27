@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 export const CardTitle = styled.h2`
   color: rgba(237, 235, 233, 0);

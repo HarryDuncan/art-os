@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { SIDE_BAR_WIDTH } from "../../components/navigation/side-bar/SideBar.styles";
+import styled from 'styled-components';
+import { SIDE_BAR_WIDTH } from '../../components/navigation/side-bar/SideBar.styles';
 
 export const LandingContainer = styled.div`
   width: 100vw;

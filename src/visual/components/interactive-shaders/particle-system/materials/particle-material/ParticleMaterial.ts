@@ -1,7 +1,7 @@
-import gsap from "gsap";
-import { Clock, RawShaderMaterial, Vector2 } from "three";
-import { vertex } from "./vertex";
-import { fragment } from "./fragment";
+import gsap from 'gsap';
+import { Clock, RawShaderMaterial, Vector2 } from 'three';
+import { vertex } from './vertex';
+import { fragment } from './fragment';
 
 const PARAMS = {
   progress: { value: 0.5 },
@@ -27,6 +27,7 @@ const PARAMS = {
 
 export default class ParticleMaterial extends RawShaderMaterial {
   clock: Clock;
+
   constructor(uniforms = {}) {
     super({
       vertexShader: vertex,
@@ -45,7 +46,7 @@ export default class ParticleMaterial extends RawShaderMaterial {
     // document.addEventListener("colorUpdate", (e) =>
     //   this.onUpdateColor(e.detail)
     // );
-    document.addEventListener("scene:update", () => this.onUpdate());
+    document.addEventListener('scene:update', () => this.onUpdate());
   }
 
   onUpdateColor({ color }) {
@@ -58,7 +59,7 @@ export default class ParticleMaterial extends RawShaderMaterial {
     this.uniforms.time.value += this.clock.getDelta();
     gsap.to(this.uniforms.speed, {
       value: this.uniforms.progress.value - this.uniforms.prevDirection.value,
-      ease: "power4.out",
+      ease: 'power4.out',
       duration: 1.2,
       overwrite: true,
     });

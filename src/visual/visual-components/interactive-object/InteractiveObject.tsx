@@ -1,18 +1,18 @@
-import React, { useCallback, useEffect } from "react";
-import { RootContainer } from "../../components/root-container";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
-import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
-import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { InteractiveObjectParams } from "./types";
-import { useSetUpScene } from "visual/hooks/useSetUpScene";
-import { useFormatMaterialParams } from "./useFormatMaterialParams";
-import { PostProcessorPasses } from "visual/components/post-processor/types";
+import React, { useCallback, useEffect } from 'react';
+import { useInteractions } from 'visual/hooks/use-interactions/useInteractions';
+import { useInteractiveMaterial } from 'visual/hooks/use-interactive-material/useInteractiveMaterial';
+import PostProcessor from 'visual/components/post-processor/PostProcessor';
+import { useSetUpScene } from 'visual/hooks/useSetUpScene';
+import { PostProcessorPasses } from 'visual/components/post-processor/types';
+import { InteractiveObjectParams } from './types';
+import { useFormatMaterialParams } from './useFormatMaterialParams';
+import { RootContainer } from '../../components/root-container';
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;
 }
 
-export const InteractiveObject = ({ params }: InteractiveObjectProps) => {
+export function InteractiveObject({ params }: InteractiveObjectProps) {
   const {
     threeJsParams,
     interactionEvents,
@@ -35,7 +35,7 @@ export const InteractiveObject = ({ params }: InteractiveObjectProps) => {
   const { geometry, uniforms, shaders } = useFormatMaterialParams(
     initializedAssets,
     areAssetsInitialized,
-    materialParams
+    materialParams,
   );
 
   const { interactiveNode } = useInteractions(interactionEvents);
@@ -44,7 +44,7 @@ export const InteractiveObject = ({ params }: InteractiveObjectProps) => {
     materialFunctions,
     geometry,
     uniforms,
-    shaders
+    shaders,
   );
 
   const initializeMesh = useCallback(() => {
@@ -70,4 +70,4 @@ export const InteractiveObject = ({ params }: InteractiveObjectProps) => {
       <RootContainer containerRef={container} />
     </>
   );
-};
+}

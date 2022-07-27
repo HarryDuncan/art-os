@@ -5,7 +5,7 @@ import {
   permuteVec4,
   taylorInvSqrtFloat,
   taylorInvSqrtVec4,
-} from "visual/shaders/shader-functions/maths/maths";
+} from 'visual/shaders/shader-functions/maths/maths';
 
 export const noise4D = `
 

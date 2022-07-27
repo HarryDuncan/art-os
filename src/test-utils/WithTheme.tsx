@@ -1,10 +1,10 @@
-import React from "react";
-import { THEME } from "app/theme";
-import { PropsWithChildren } from "react";
-import { ThemeProvider } from "styled-components/macro";
+import React, { PropsWithChildren } from 'react';
+import { THEME } from 'app/theme';
 
-export const WithTheme = ({
+import { ThemeProvider } from 'styled-components/macro';
+
+export function WithTheme({
   children,
-}: PropsWithChildren<Record<never, never>>) => (
-  <ThemeProvider theme={THEME}>{children}</ThemeProvider>
-);
+}: PropsWithChildren<Record<never, never>>) {
+  return <ThemeProvider theme={THEME}>{children}</ThemeProvider>;
+}

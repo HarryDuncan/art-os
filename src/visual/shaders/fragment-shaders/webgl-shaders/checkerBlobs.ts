@@ -1,5 +1,5 @@
 export const checkerBlobs = {
-  tags: ["noUniforms"],
+  tags: ['noUniforms'],
   frag: `void mainImage( out vec4 fragColor, in vec2 fragCoord )
     {
         float time = uTime * 1.;									// adjust time

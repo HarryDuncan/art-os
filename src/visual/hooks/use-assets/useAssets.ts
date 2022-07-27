@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { Asset } from "./types";
-import { useInitializeAssets } from "./useInitializeAssets";
+import { useEffect, useState } from 'react';
+import { Asset } from './types';
+import { useInitializeAssets } from './useInitializeAssets';
 
 export const useAssets = (assets: Asset[]) => {
   const [areAssetsInitialized, setAreAssetsInitialized] = useState(false);

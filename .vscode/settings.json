@@ -1,6 +1,6 @@
 {
-  "cSpell.words": ["gsap", "keypoint", "keypoints", "Milis", "webglshader"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "cSpell.words": ["gsap", "keypoint", "keypoints", "Milis", "webglshader"]
 }

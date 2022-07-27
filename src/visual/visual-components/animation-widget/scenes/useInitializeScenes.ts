@@ -1,15 +1,15 @@
-import * as Scenes from "visual/function-based-scenes";
-import { AnimationWidgetScene } from "../types";
-import { cloneDeep } from "lodash";
-import { useCallback } from "react";
-import { FunctionBasedScene } from "visual/function-based-scenes/types";
+import * as Scenes from 'visual/function-based-scenes';
+import { cloneDeep } from 'lodash';
+import { useCallback } from 'react';
+import { FunctionBasedScene } from 'visual/function-based-scenes/types';
+import { AnimationWidgetScene } from '../types';
 
 export const useInitializeScenes = (scenes: AnimationWidgetScene[]) => {
   async function initializeScene(unInitializedScene: AnimationWidgetScene) {
     const { name } = unInitializedScene;
     const initializedScene: FunctionBasedScene = cloneDeep(Scenes[name]);
     const { scene, camera, sceneParams } = await initializedScene.init(
-      unInitializedScene
+      unInitializedScene,
     );
     initializedScene.camera = camera;
     initializedScene.scene = scene;
@@ -20,7 +20,7 @@ export const useInitializeScenes = (scenes: AnimationWidgetScene[]) => {
 
   return useCallback(async () => {
     const loadedScenes = await Promise.all(
-      scenes.map(async (scene) => initializeScene(scene))
+      scenes.map(async (scene) => initializeScene(scene)),
     );
     return loadedScenes;
   }, [scenes]);

@@ -1,16 +1,16 @@
-import { MovementPosition } from "visual/hooks/use-pose-net/types";
+import { MovementPosition } from 'visual/hooks/use-pose-net/types';
 
 export const getPosenetDetailFromEvent = (
-  customEvent: any
+  customEvent: any,
 ): MovementPosition => {
   const {
     detail: { position, part, score },
     timeStamp,
   } = customEvent;
 
-  return { position, part, score, timeStamp };
+  return {
+    position, part, score, timeStamp,
+  };
 };
 
-export const getFeature = (poseData, featureKey) => {
-  return poseData.find((keypoint) => keypoint.part === featureKey);
-};
+export const getFeature = (poseData, featureKey) => poseData.find((keypoint) => keypoint.part === featureKey);

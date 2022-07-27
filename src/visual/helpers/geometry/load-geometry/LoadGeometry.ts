@@ -1,6 +1,6 @@
-import { FILE_TYPES } from "visual/constants";
-import { loadGLTF } from "./loadGLTF";
-import { loadObject } from "./loadObject";
+import { FILE_TYPES } from 'visual/constants';
+import { loadGLTF } from './loadGLTF';
+import { loadObject } from './loadObject';
 
 export const loadGeometry = async (path: string, fileType) => {
   switch (fileType) {
@@ -10,7 +10,7 @@ export const loadGeometry = async (path: string, fileType) => {
     case FILE_TYPES.MODELS.OBJ:
       const object = await loadObject(path);
       return object;
-    case "":
+    case '':
     default:
       return null;
   }

@@ -1,4 +1,4 @@
-type FragmentShaderTag = "interactive" | "mouse" | "noUniforms" | "uniforms";
+type FragmentShaderTag = 'interactive' | 'mouse' | 'noUniforms' | 'uniforms';
 
 export interface FragmentShader {
   frag: string;
@@ -11,9 +11,9 @@ export interface VertexShader {
 }
 
 export enum UniformTypes {
-  Float = "float",
-  sampler2D = "sampler2D",
-  Vec3 = "vec3",
+  Float = 'float',
+  sampler2D = 'sampler2D',
+  Vec3 = 'vec3',
 }
 
 export interface UniformDefinition {

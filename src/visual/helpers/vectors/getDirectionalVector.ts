@@ -1,6 +1,6 @@
-import { Vector2 } from "three";
-import { DIRECTIONS } from "./consts";
-import { DirectionKey } from "./types";
+import { Vector2 } from 'three';
+import { DIRECTIONS } from './consts';
+import { DirectionKey } from './types';
 
 export const getDirectionalVector = ({
   referenceVector,

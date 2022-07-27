@@ -1,1 +1,1 @@
-export * from "./getDirectionalVector";
+export * from './getDirectionalVector';

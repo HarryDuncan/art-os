@@ -1,3 +1,3 @@
-import { BufferGeometry } from "three";
+import { BufferGeometry } from 'three';
 
 export type Geometry = BufferGeometry;
