@@ -1,4 +1,4 @@
-import { RendererParams } from '../types';
+import { RendererParams } from "../types";
 
 export const getRendererSize = (rendererParams: RendererParams) => {
   const { size } = rendererParams;

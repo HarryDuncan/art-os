@@ -1,18 +1,18 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from "react";
 import {
   DataTexture,
   FloatType,
   NearestFilter,
   PlaneGeometry,
-  RGBFormat,
-} from 'three';
-import { Asset } from 'visual/hooks/use-assets/types';
-import { ImageDistortionMaterialParam } from './types';
+  RGBAFormat,
+} from "three";
+import { Asset } from "visual/hooks/use-assets/types";
+import { ImageDistortionMaterialParam } from "./types";
 
 export const useFormatWebGL = (
   assets: Asset[],
   areAssetsInitialized: boolean,
-  materialParams: ImageDistortionMaterialParam,
+  materialParams: ImageDistortionMaterialParam
 ) => {
   const { uniforms, shaders } = materialParams;
   const formatUniformsAndGeometry = useCallback(
@@ -21,11 +21,13 @@ export const useFormatWebGL = (
       formatAssetWithUniforms(unformattedUniforms, assets);
       return { geometry, uniforms: unformattedUniforms, shaders };
     },
-    [shaders],
+    [shaders]
   );
 
   return useMemo(() => {
-    if (!areAssetsInitialized) { return { geometry: undefined, uniforms: undefined, shaders: undefined }; }
+    if (!areAssetsInitialized) {
+      return { geometry: undefined, uniforms: undefined, shaders: undefined };
+    }
     return formatUniformsAndGeometry(assets, uniforms);
   }, [areAssetsInitialized, formatUniformsAndGeometry, assets, uniforms]);
 };
@@ -68,21 +70,22 @@ export const updateGrid = (uniforms) => {
   const height = size;
 
   const sizeSquared = width * height;
-  const data = new Float32Array(3 * sizeSquared);
+  const data = new Float32Array(4 * sizeSquared);
 
   for (let i = 0; i < sizeSquared; i++) {
     const r = Math.random() * 255 - 125;
     const r1 = Math.random() * 255 - 125;
 
-    const stride = i * 3;
+    const stride = i * 4;
 
     data[stride] = r;
     data[stride + 1] = r1;
     data[stride + 2] = r;
+    data[stride + 3] = 1;
   }
 
   // used the buffer to create a DataTexture
-  const texture = new DataTexture(data, width, height, RGBFormat, FloatType);
+  const texture = new DataTexture(data, width, height, RGBAFormat, FloatType);
   texture.magFilter = texture.minFilter = NearestFilter;
   uniforms.uDataTexture.value = texture;
   uniforms.uDataTexture.value.needsUpdate = true;

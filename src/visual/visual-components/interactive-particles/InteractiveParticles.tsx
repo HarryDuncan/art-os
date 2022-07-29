@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
-import { useInteractions } from 'visual/hooks/use-interactions/useInteractions';
-import PostProcessor from 'visual/components/post-processor/PostProcessor';
-import { StaticBackgroundContainer } from 'visual/components/static-background/StaticBackground.styles';
-import { useSetUpScene } from 'visual/hooks/useSetUpScene';
-import { useInteractiveMaterial } from 'visual/hooks/use-interactive-material/useInteractiveMaterial';
-import { InteractiveParticlesParams } from './types';
-import { RootContainer } from '../../components/root-container';
-import { useFormatParticleParams } from './use-format-particle-params/useFormatParticleParams';
+import React, { useCallback, useEffect } from "react";
+import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
+import PostProcessor from "visual/components/post-processor/PostProcessor";
+import { StaticBackgroundContainer } from "visual/components/static-background/StaticBackground.styles";
+import { useSetUpScene } from "visual/hooks/useSetUpScene";
+import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
+import { InteractiveParticlesParams } from "./types";
+import { RootContainer } from "../../components/root-container";
+import { useFormatParticleParams } from "./use-format-particle-params/useFormatParticleParams";
 
 interface InteractiveObjectProps {
   params: InteractiveParticlesParams;
@@ -35,6 +35,7 @@ export function InteractiveParticles({ params }: InteractiveObjectProps) {
     initializedAssets,
     areAssetsInitialized,
     materialParams,
+    renderer
   );
 
   const { interactiveNode } = useInteractions(interactionEvents);
@@ -43,7 +44,7 @@ export function InteractiveParticles({ params }: InteractiveObjectProps) {
     materialFunctions,
     geometry,
     uniforms,
-    shaders,
+    shaders
   );
 
   const initializeMesh = useCallback(() => {
@@ -66,11 +67,7 @@ export function InteractiveParticles({ params }: InteractiveObjectProps) {
   return (
     <>
       {interactiveNode}
-      <RootContainer
-        containerRef={container}
-        viewHeight="800px"
-        viewWidth="800px"
-      />
+      <RootContainer containerRef={container} />
       <StaticBackgroundContainer />
     </>
   );

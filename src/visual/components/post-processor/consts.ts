@@ -1,8 +1,8 @@
-import { LinearFilter, RGBFormat } from 'three';
+import { LinearFilter, RGBAFormat } from "three";
 
 export const defaultRenderTargetParameters = {
   minFilter: LinearFilter,
   magFilter: LinearFilter,
-  format: RGBFormat,
+  format: RGBAFormat,
   stencilBuffer: true,
 };

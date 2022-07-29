@@ -1,14 +1,14 @@
-import { AssetType } from 'visual/hooks/use-assets/types';
-import { INTERACTION_EVENTS } from 'visual/hooks/use-interactions/const';
-import { EventKey, InteractionKey } from 'visual/hooks/use-interactions/types';
-import { InteractiveScenes } from 'visual/components/interactive-shaders/types';
-import InteractiveMaterial from 'visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader';
-import { imageDistortionFrag } from 'visual/shaders/fragment-shaders';
-import { imageDistortionVertex } from 'visual/shaders/vertex-shaders/imageDistortionVertex';
-import { sRGBEncoding, Vector4 } from 'three';
-import { RendererTypes } from 'visual/hooks/use-three-js/renderer/types';
-import { defaultCameraParams } from 'visual/hooks/use-three-js/use-camera/useCamera';
-import { CameraType } from 'visual/hooks/use-three-js/use-camera/types';
+import { AssetType } from "visual/hooks/use-assets/types";
+import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
+import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
+import { InteractiveScenes } from "visual/components/interactive-shaders/types";
+import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
+import { imageDistortionFrag } from "visual/shaders/fragment-shaders";
+import { imageDistortionVertex } from "visual/shaders/vertex-shaders/imageDistortionVertex";
+import { sRGBEncoding, Vector4 } from "three";
+import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
+import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
+import { CameraType } from "visual/hooks/use-three-js/use-camera/types";
 
 export const imageDistortion = {
   threeJsParams: {
@@ -25,7 +25,7 @@ export const imageDistortion = {
   interactionEvents: [
     {
       eventKey: EventKey.Scale,
-      interactionKey: INTERACTION_EVENTS.POSENET.LEFT_EYE as InteractionKey,
+      interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
       eventFunction: (material: InteractiveMaterial, details) => {
         material.uniforms.uDataTexture.value.needsUpdate = true;
         updateDataTexture(material, details);
@@ -34,8 +34,8 @@ export const imageDistortion = {
   ],
   assets: [
     {
-      name: 'uTexture',
-      url: '../assets/textures/RGB.jpg',
+      name: "uTexture",
+      url: "../assets/textures/RGBGood.jpg",
       assetType: AssetType.Texture,
     },
   ],
@@ -45,7 +45,7 @@ export const imageDistortion = {
       uTime: { value: 0 },
       uResolution: { value: new Vector4() },
       uTexture: { value: null },
-      uGridSize: { value: 10 },
+      uGridSize: { value: 100 },
       uDataTexture: {
         value: null,
       },
@@ -66,11 +66,11 @@ export const imageDistortion = {
 const clamp = (number, min, max) => Math.max(min, Math.min(number, max));
 const updateDataTexture = (material, details) => {
   const { data } = material.uniforms.uDataTexture.value.image;
-
   const relaxation = 0.9;
-  for (let i = 0; i < data.length; i += 3) {
+  for (let i = 0; i < data.length; i += 4) {
     data[i] *= relaxation;
     data[i + 1] *= relaxation;
+    data[i + 2] *= relaxation;
   }
 
   const size = material.uniforms.uGridSize.value;
@@ -85,7 +85,7 @@ const updateDataTexture = (material, details) => {
       const maxDistSq = maxDist ** 2;
 
       if (distance < maxDistSq) {
-        const index = 3 * (i + size * j);
+        const index = 4 * (i + size * j);
 
         let power = maxDist / Math.sqrt(distance);
         power = clamp(power, 0, 10);
@@ -93,6 +93,7 @@ const updateDataTexture = (material, details) => {
         // power = 1;
         data[index] += 1 * 0.1 * power;
         data[index + 1] -= 1 * 0.1 * power;
+        data[index + 2] -= 1 * 0.1 * power;
       }
     }
   }

@@ -1,22 +1,36 @@
-import { Vector3 } from 'three';
-import { UniformDefinition, UniformTypes } from 'visual/shaders/types';
+import { Vector3 } from "three";
+import { UniformDefinition, UniformTypes } from "visual/shaders/types";
+
+type UniformObject = {
+  value: any;
+  type?: string;
+};
+
+const getDefaultValue = (uniformType: UniformTypes) => {
+  switch (uniformType) {
+    case UniformTypes.Float:
+      return 0.0;
+    case UniformTypes.Vec3:
+      return new Vector3();
+    default:
+      return null;
+  }
+};
 
 export const formatUniforms = (uniformParams: UniformDefinition[] = []) => {
   const defaultUniforms = [
-    { uniformName: 'uTime', uniformType: UniformTypes.Float },
-    { uniformName: 'uResolution', uniformType: UniformTypes.Vec3, type: 'v3' },
+    { uniformName: "uTime", uniformType: UniformTypes.Float },
+    { uniformName: "uResolution", uniformType: UniformTypes.Vec3, type: "v3" },
   ];
   const definitions: UniformDefinition[] = uniformParams.concat(
-    defaultUniforms,
+    defaultUniforms
   );
 
   const uniforms: any = {};
-  let uniformDeclarationText = '';
+  let uniformDeclarationText = "";
 
-  definitions.forEach(({
-    uniformName, uniformType, value, type,
-  }) => {
-    const uniformValue = {
+  definitions.forEach(({ uniformName, uniformType, value, type }) => {
+    const uniformValue: UniformObject = {
       value: value || getDefaultValue(uniformType),
     };
     if (type) {
@@ -33,15 +47,4 @@ export const formatUniforms = (uniformParams: UniformDefinition[] = []) => {
   }
 
   return { uniforms, uniformText: uniformDeclarationText };
-};
-
-const getDefaultValue = (uniformType: UniformTypes) => {
-  switch (uniformType) {
-    case UniformTypes.Float:
-      return 0.0;
-    case UniformTypes.Vec3:
-      return new Vector3();
-    default:
-      return null;
-  }
 };

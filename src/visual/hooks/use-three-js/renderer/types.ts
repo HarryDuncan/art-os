@@ -1,4 +1,4 @@
-import { TextureEncoding } from 'three';
+import { TextureEncoding } from "three";
 
 export interface RendererParams {
   rendererType: RendererTypes;
@@ -9,6 +9,6 @@ export interface RendererParams {
 }
 
 export enum RendererTypes {
-  WEBGL = 'webgl',
-  CSS = 'css',
+  WEBGL = "webgl",
+  CSS = "css",
 }

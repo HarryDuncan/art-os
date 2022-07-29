@@ -1,21 +1,22 @@
-import { AssetType } from 'visual/hooks/use-assets/types';
-import { INTERACTION_EVENTS } from 'visual/hooks/use-interactions/const';
-import { EventKey, InteractionKey } from 'visual/hooks/use-interactions/types';
-import InteractiveMaterial from 'visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader';
-import { TweenLite } from 'gsap/all';
-import { RendererTypes } from 'visual/hooks/use-three-js/renderer/types';
-import { defaultCameraParams } from 'visual/hooks/use-three-js/use-camera/useCamera';
-import { materialParams } from './materialParams';
+import { AssetType } from "visual/hooks/use-assets/types";
+import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
+import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
+import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
+import { TweenLite } from "gsap/all";
+import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
+import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
+import { materialParams } from "./materialParams";
+import { CameraType } from "visual/hooks/use-three-js/use-camera/types";
 
 export const interactiveParticles = {
   threeJsParams: {
     camera: {
       ...defaultCameraParams,
-      position: { x: 0, y: 0, z: 300 },
+      position: { x: 0, y: 0, z: 780 },
     },
     renderer: {
       rendererType: RendererTypes.WEBGL,
-      size: { width: 800, height: 800 },
+
       clearColor: 0x000000,
       alpha: 0,
     },
@@ -32,8 +33,8 @@ export const interactiveParticles = {
   ],
   assets: [
     {
-      name: 'image',
-      url: '../assets/textures/zz.jpg',
+      name: "image",
+      url: "../assets/textures/Marsh.jpg",
       assetType: AssetType.Texture,
     },
   ],
@@ -45,7 +46,7 @@ export const interactiveParticles = {
           material.uniforms.uSize,
           1.0,
           { value: 0.5 },
-          { value: 1.5 },
+          { value: 1.5 }
         );
         TweenLite.to(material.uniforms.uRandom, 1.0, {
           value: 2.0,
@@ -54,7 +55,7 @@ export const interactiveParticles = {
           material.uniforms.uDepth,
           1.0 * 1.5,
           { value: 40.0 },
-          { value: 4.0 },
+          { value: 4.0 }
         );
         material.isRunningThread = false;
       }
