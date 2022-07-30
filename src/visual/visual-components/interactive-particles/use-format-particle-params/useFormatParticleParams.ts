@@ -55,7 +55,7 @@ const setRendererSizeToImageSize = (
   renderer: WebGLRenderer
 ) => {
   const { width, height } = loadedTexture.image;
-  //renderer.setSize(width, height, true);
+  // renderer.setSize(width, height, true);
 };
 
 const getTextureFeatures = (loadedTexture: Texture) => {

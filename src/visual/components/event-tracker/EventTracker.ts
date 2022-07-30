@@ -40,8 +40,8 @@ export class EventTracker {
 
   constructor(
     interactionEventObjs: InteractionEventObject[],
-    threshold: number = 0.7,
-    maxStepTimeMilis: number = 1000,
+    threshold = 0.7,
+    maxStepTimeMilis = 1000,
   ) {
     this.scoreThreshold = threshold;
     this.events = interactionEventObjs.map(({ eventKey }) => eventKey);

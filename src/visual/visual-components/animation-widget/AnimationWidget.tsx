@@ -1,20 +1,20 @@
-import React, { FC, useEffect } from 'react';
-import { AnimationWidgetScene } from './types';
-import { useRunAnimations } from './useRunAnimations';
-import { RootContainer } from '../../components/root-container';
+import React, { FC, useEffect } from "react";
+import { AnimationWidgetScene } from "./types";
+import { useRunAnimations } from "./useRunAnimations";
+import { RootContainer } from "../../components/root-container";
 
-interface IAnimationWidgetProps {
+interface AnimationWidgetProps {
   scenes: AnimationWidgetScene[];
   viewHeight?: string;
   viewWidth?: string;
 }
 
 // Scene framework for displaying multiple function based scenes
-export const AnimationWidget: FC<IAnimationWidgetProps> = ({
+export function AnimationWidget({
   scenes,
-  viewWidth = '100vw',
-  viewHeight = '100vh',
-}) => {
+  viewWidth = "100vw",
+  viewHeight = "100vh",
+}: AnimationWidgetProps) {
   const { container, currentFrameRef } = useRunAnimations(scenes);
 
   useEffect(() => {
@@ -28,4 +28,4 @@ export const AnimationWidget: FC<IAnimationWidgetProps> = ({
       viewHeight={viewHeight}
     />
   );
-};
+}

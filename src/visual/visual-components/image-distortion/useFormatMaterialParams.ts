@@ -10,7 +10,7 @@ import { Asset } from "visual/hooks/use-assets/types";
 import { ImageDistortionMaterialParam } from "./types";
 
 export const useFormatWebGL = (
-  assets: Asset[],
+  loadedAssets: Asset[],
   areAssetsInitialized: boolean,
   materialParams: ImageDistortionMaterialParam
 ) => {
@@ -28,8 +28,8 @@ export const useFormatWebGL = (
     if (!areAssetsInitialized) {
       return { geometry: undefined, uniforms: undefined, shaders: undefined };
     }
-    return formatUniformsAndGeometry(assets, uniforms);
-  }, [areAssetsInitialized, formatUniformsAndGeometry, assets, uniforms]);
+    return formatUniformsAndGeometry(loadedAssets, uniforms);
+  }, [areAssetsInitialized, formatUniformsAndGeometry, loadedAssets, uniforms]);
 };
 
 function formatAssetWithUniforms(uniforms, assets: Asset[]) {
@@ -72,7 +72,7 @@ export const updateGrid = (uniforms) => {
   const sizeSquared = width * height;
   const data = new Float32Array(4 * sizeSquared);
 
-  for (let i = 0; i < sizeSquared; i++) {
+  for (let i = 0; i < sizeSquared; i += 1) {
     const r = Math.random() * 255 - 125;
     const r1 = Math.random() * 255 - 125;
 
@@ -86,7 +86,8 @@ export const updateGrid = (uniforms) => {
 
   // used the buffer to create a DataTexture
   const texture = new DataTexture(data, width, height, RGBAFormat, FloatType);
-  texture.magFilter = texture.minFilter = NearestFilter;
+  texture.magFilter = NearestFilter;
+  texture.minFilter = NearestFilter;
   uniforms.uDataTexture.value = texture;
   uniforms.uDataTexture.value.needsUpdate = true;
 };

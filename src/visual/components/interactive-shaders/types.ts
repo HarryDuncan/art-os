@@ -9,15 +9,15 @@ import InteractiveRawShader from './interactive-shader/InteractiveShader';
 
 export interface VanishingObjectUniforms {
   matcap: { value: Texture | null };
-  progress: { value: Number };
+  progress: { value: number };
   size: { value: Vector3 };
   color: { value: Color };
-  baseNoiseIteration: { value: Number };
-  noisePrecision: { value: Number };
-  noiseDiffusion: { value: Number };
-  lightningThickness: { value: Number };
-  lightningPower: { value: Number };
-  lightningDiffusion: { value: Number };
+  baseNoiseIteration: { value: number };
+  noisePrecision: { value: number };
+  noiseDiffusion: { value: number };
+  lightningThickness: { value: number };
+  lightningPower: { value: number };
+  lightningDiffusion: { value: number };
   particleDiffusion: { value: 1 };
   vanishDirection: { value: Vector2 };
   time: { value: number };

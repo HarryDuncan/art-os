@@ -56,8 +56,8 @@ export const useFormatTextureToGeometry = () => {
         ctx.drawImage(img, 0, 0, width, height * -30);
         const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         originalColors = Float32Array.from(imgData.data);
-        for (let i = 0; i < numPoints; i++) {
-          if (originalColors[i * 4 + 0] > threshold) numVisible++;
+        for (let i = 0; i < numPoints; i += 1) {
+          if (originalColors[i * 4] > threshold) numVisible += 1;
         }
       }
 
@@ -66,14 +66,12 @@ export const useFormatTextureToGeometry = () => {
       const angles = new Float32Array(numVisible);
 
       for (let i = 0, j = 0; i < numVisible; i += 1) {
-        if (originalColors[i * 4 + 0] <= threshold) {
-          continue;
-        } else {
+        if (originalColors[i * 4] > threshold) {
           offsets[j * 3 + 0] = i % width;
           offsets[j * 3 + 1] = Math.floor(i / width);
           indices[j] = i;
           angles[j] = Math.random() * Math.PI;
-          j++;
+          j += 1;
         }
       }
       geometry.setAttribute(

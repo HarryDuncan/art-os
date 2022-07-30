@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import * as tf from '@tensorflow/tfjs';
-import Webcam from 'react-webcam';
-import { EventTracker } from 'visual/components/event-tracker';
-import { InteractionEventObject } from './types';
-import { getModelType } from './functions/getModelType';
-import { runPosenet } from './useRunPosenet';
+import React, { useEffect, useRef, useState } from "react";
+import * as tf from "@tensorflow/tfjs";
+import Webcam from "react-webcam";
+import { EventTracker } from "visual/components/event-tracker";
+import { InteractionEventObject } from "./types";
+import { getModelType } from "./functions/getModelType";
+import { runPosenet } from "./useRunPosenet";
 
 export const useInteractions = (
-  interactionEventObjects: InteractionEventObject[],
+  interactionEventObjects: InteractionEventObject[]
 ) => {
   const modelType = getModelType(interactionEventObjects);
 
@@ -16,13 +16,13 @@ export const useInteractions = (
 
   useEffect(() => {
     if (isInitialized && webcamRef.current) {
-      if (modelType === 'posenet') {
+      if (modelType === "posenet") {
         runPosenet(webcamRef, interactionEventObjects);
       }
     }
   }, [isInitialized, webcamRef, modelType, interactionEventObjects]);
 
-  tf.ready().then((_) => {
+  tf.ready().then(() => {
     setIsInitialized(true);
   });
 
@@ -31,15 +31,15 @@ export const useInteractions = (
     <Webcam
       ref={webcamRef}
       style={{
-        position: 'absolute',
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        position: "absolute",
+        marginLeft: "auto",
+        marginRight: "auto",
         left: 0,
         right: 0,
-        textAlign: 'center',
+        textAlign: "center",
         width: 440,
         height: 400,
-        visibility: 'hidden',
+        visibility: "hidden",
       }}
     />
   );

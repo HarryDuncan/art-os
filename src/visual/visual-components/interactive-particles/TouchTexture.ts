@@ -1,8 +1,9 @@
-import { Texture } from 'three';
-import { easeOutSine } from './utils';
+import { Texture } from "three";
+import { easeOutSine } from "./utils";
 
 type TouchPoint = { x: number; y: number; age: number; force: number };
 
+const DEFAULT_TOUCH_TEXTURE_SIZE = 800;
 export default class TouchTexture {
   size: number;
 
@@ -29,28 +30,29 @@ export default class TouchTexture {
   }
 
   initTexture() {
-    this.canvas = document.createElement('canvas');
-    this.canvas.width = this.canvas.height = this.size;
-    this.ctx = this.canvas.getContext('2d');
+    this.canvas = document.createElement("canvas");
+    this.canvas.width = this.texture?.image.width ?? DEFAULT_TOUCH_TEXTURE_SIZE;
+    this.canvas.height = this.texture?.image.height ?? DEFAULT_TOUCH_TEXTURE_SIZE;
+    this.ctx = this.canvas.getContext("2d");
     if (this.ctx) {
-      this.ctx.fillStyle = 'black';
+      this.ctx.fillStyle = "black";
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
     this.texture = new Texture(this.canvas);
-    this.canvas.id = 'touchTexture';
+    this.canvas.id = "touchTexture";
     this.canvas.style.width = this.canvas.style.height = `${this.size}px`;
   }
 
   update() {
     this.clear();
     this.trail.forEach((point, i) => {
-      point.age++;
+      point.age += 1;
       if (point.age > this.maxAge) {
         this.trail.splice(i, 1);
       }
     });
 
-    this.trail.forEach((point, i) => {
+    this.trail.forEach((point) => {
       this.drawTouch(point);
     });
     if (this.texture) {
@@ -60,7 +62,7 @@ export default class TouchTexture {
 
   clear() {
     if (this.ctx && this.canvas) {
-      this.ctx.fillStyle = 'black';
+      this.ctx.fillStyle = "black";
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
   }
@@ -76,7 +78,10 @@ export default class TouchTexture {
     }
 
     this.trail.push({
-      x: point.xAsScale, y: point.yAsScale, age: 0, force,
+      x: point.xAsScale,
+      y: point.yAsScale,
+      age: 0,
+      force,
     });
   }
 
@@ -95,7 +100,7 @@ export default class TouchTexture {
         1 - (point.age - this.maxAge * 0.3) / (this.maxAge * 0.7),
         0,
         1,
-        1,
+        1
       );
     }
     const radius = this.size * this.radius * intensity;
@@ -106,10 +111,10 @@ export default class TouchTexture {
         radius * 0.25,
         pos.x,
         pos.y,
-        radius,
+        radius
       );
-      grd.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
-      grd.addColorStop(1, 'rgba(0, 0, 0, 0.0)');
+      grd.addColorStop(0, "rgba(255, 255, 255, 0.2)");
+      grd.addColorStop(1, "rgba(0, 0, 0, 0.0)");
       this.ctx.beginPath();
       this.ctx.fillStyle = grd;
       this.ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);

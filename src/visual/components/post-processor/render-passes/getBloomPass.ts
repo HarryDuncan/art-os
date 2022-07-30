@@ -1,11 +1,11 @@
-import { Vector2 } from 'three';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
-import { getWindowParams } from 'visual/helpers/getWindowParams';
+import { Vector2 } from "three";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
+import { getWindowParams } from "visual/helpers/getWindowParams";
 
 const BLOOM_PARAMS = {
-  strength: 2,
-  radius: 0.16,
-  threshold: 0.7,
+  strength: 1.8,
+  radius: 0.31,
+  threshold: 0.1,
 };
 export const getBloomPass = () => {
   const { strength, radius, threshold } = BLOOM_PARAMS;
@@ -15,7 +15,7 @@ export const getBloomPass = () => {
     new Vector2(width, height),
     strength * modifier,
     radius * modifier,
-    threshold * modifier,
+    threshold * modifier
   );
   return bloomPass;
 };

@@ -1,12 +1,11 @@
-import * as FragmentShaders from 'visual/shaders/fragment-shaders';
-import { FragmentShader } from 'visual/shaders/types';
+import * as FragmentShaders from "visual/shaders/fragment-shaders";
+import { FragmentShader } from "visual/shaders/types";
 
 const hidef = `#ifdef GL_ES
 precision highp float;
 #endif
 `;
 const main = `
-
   void main( void ){
     vec4 color = vec4(0.0,0.0,0.0,1.0);
     mainImage( color, vUv * uResolution.xy );
@@ -15,9 +14,9 @@ const main = `
   }`;
 export const formatFragmentShader = (
   shaderName: string,
-  uniformText: string = '',
+  uniformText = ""
 ): FragmentShader => {
-  const shaderText = FragmentShaders[shaderName].frag as string;
+  const shaderText = FragmentShaders[shaderName].frag;
   return {
     frag: `${hidef} ${uniformText} varying vec2 vUv; ${shaderText} ${main}`,
   };

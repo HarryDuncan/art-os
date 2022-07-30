@@ -1,3 +1,7 @@
+export enum CameraType {
+  PERSPECTIVE_CAMERA = "perspectiveCamera",
+  ORTHOGRAPHIC_CAMERA = "orthographicCamera",
+}
 export interface CameraParams {
   cameraType: CameraType;
   position: {
@@ -16,8 +20,4 @@ export interface PerspectiveCameraProps {
   aspect: number;
   near: number;
   far: number;
-}
-export enum CameraType {
-  PERSPECTIVE_CAMERA = 'perspectiveCamera',
-  ORTHOGRAPHIC_CAMERA = 'orthographicCamera',
 }

@@ -1,12 +1,12 @@
-import { Texture, Vector4 } from 'three';
+import { DataTexture, Texture, Vector4 } from "three";
 import {
   InteractiveMaterialFunctions,
   InteractiveScenes,
   InteractiveShaders,
-} from 'visual/components/interactive-shaders/types';
-import { Asset } from 'visual/hooks/use-assets/types';
-import { InteractionEventObject } from 'visual/hooks/use-interactions/types';
-import { ThreeJsParams } from 'visual/hooks/use-three-js/types';
+} from "visual/components/interactive-shaders/types";
+import { Asset } from "visual/hooks/use-assets/types";
+import { InteractionEventObject } from "visual/hooks/use-interactions/types";
+import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 
 export interface ImageDistortionParams {
   threeJsParams: ThreeJsParams;
@@ -23,10 +23,10 @@ export interface ImageDistortionMaterialParam {
 }
 
 interface ImageDistortionUniforms {
-  uTime: { value: Number };
+  uTime: { value: number };
   uResolution: { value: Vector4 };
   uTexture: { value: null | Texture };
   uDataTexture: {
-    value: null | any;
+    value: null | DataTexture;
   };
 }
