@@ -100,6 +100,9 @@ export class EventTracker {
       timeStamp,
       position
     );
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
     if (this.steps.length > 4) {
       const yMovement = getYDelta(this.steps);
       if (
@@ -117,6 +120,7 @@ export class EventTracker {
           this.events.includes(EventKey.SwipeUp)) &&
         this.canRegisterEvent
       ) {
+        event.stopPropagation();
         this.temporarilyPauseEventRegistering();
         ev(EventKey.SwipeUp);
       }
@@ -146,7 +150,9 @@ export class EventTracker {
   temporarilyPauseEventRegistering() {
     this.steps = [];
     this.canRegisterEvent = false;
+
     setTimeout(() => {
+      console.warn(this.canRegisterEvent);
       this.canRegisterEvent = true;
     }, EVENT_REREGISTER_DELAY);
   }

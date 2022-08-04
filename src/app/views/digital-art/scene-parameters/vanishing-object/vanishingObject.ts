@@ -12,7 +12,6 @@ export const vanishingObject = {
     camera: { ...defaultCameraParams, position: { x: 0, y: 30, z: 105 } },
     renderer: {
       rendererType: RendererTypes.WEBGL,
-      size: { width: 800, height: 800 },
       clearColor: 0x000000,
       alpha: 0,
     },
@@ -22,6 +21,7 @@ export const vanishingObject = {
       eventKey: EventKey.SwipeUp,
       interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
       eventFunction: (material: InteractiveMaterial) => {
+        console.error("changing direction");
         material.uniforms.delta.value *= -1;
         material.isRunningThread = true;
       },
@@ -30,6 +30,7 @@ export const vanishingObject = {
       eventKey: EventKey.SwipeDown,
       interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
       eventFunction: (material: InteractiveMaterial) => {
+        console.error("changing direction");
         material.uniforms.delta.value *= -1;
         material.isRunningThread = true;
       },
@@ -61,7 +62,6 @@ export const vanishingObject = {
           overwrite: true,
         });
 
-        // Change direction
         if (
           (material.uniforms?.progress.value > 1.0 &&
             material.uniforms.delta.value > 0) ||

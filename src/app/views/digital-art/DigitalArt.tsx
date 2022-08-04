@@ -23,6 +23,6 @@ export function DigitalArt() {
 
 function DigitalArtContent() {
   const { selectedToViewIndex } = useDigitalArtContext();
-  if (!selectedToViewIndex) return <DigitalArtGallery />;
+  if (selectedToViewIndex === null) return <DigitalArtGallery />;
   return <ViewPiece />;
 }

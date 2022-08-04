@@ -17,7 +17,7 @@ export class InteractiveScene extends Scene {
   constructor(
     interactions: InteractionEventObject[],
     materialFunctions: InteractiveSceneFunctions = defaultInteractiveSceneFunctions,
-    materialParams: any
+    materialParams: any = {}
   ) {
     super();
     this.isRunningThread = true;

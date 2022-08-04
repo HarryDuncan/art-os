@@ -1,7 +1,7 @@
-import { Clock, ShaderMaterial } from 'three';
-import { InteractionEventObject } from 'visual/hooks/use-interactions/types';
-import { defaultInteractiveMaterialFunctions } from '../interactiveMaterialConstants';
-import { InteractiveMaterialFunctions, InteractiveShaders } from '../types';
+import { Clock, ShaderMaterial } from "three";
+import { InteractionEventObject } from "visual/hooks/use-interactions/types";
+import { defaultInteractiveMaterialFunctions } from "../interactiveMaterialConstants";
+import { InteractiveMaterialFunctions, InteractiveShaders } from "../types";
 
 export default class InteractiveShader extends ShaderMaterial {
   clock: Clock;
@@ -16,7 +16,7 @@ export default class InteractiveShader extends ShaderMaterial {
     uniforms,
     shaders: InteractiveShaders,
     interactions: InteractionEventObject[],
-    materialFunctions: InteractiveMaterialFunctions = defaultInteractiveMaterialFunctions,
+    materialFunctions: InteractiveMaterialFunctions = defaultInteractiveMaterialFunctions
   ) {
     super({
       uniforms,
@@ -34,20 +34,24 @@ export default class InteractiveShader extends ShaderMaterial {
 
     this.bindMaterialFunctions();
     interactions.forEach(({ eventKey }) => {
-      document.addEventListener(`${eventKey}`, (ev) => this.onGestureEvent(ev as CustomEvent));
+      document.addEventListener(`${eventKey}`, (ev) =>
+        this.onGestureEvent(ev as CustomEvent)
+      );
     });
   }
 
   bindMaterialFunctions() {
-    document.addEventListener('scene:update', () => this.materialFunctions.onTimeUpdate(this));
+    document.addEventListener("scene:update", () =>
+      this.materialFunctions.onTimeUpdate(this)
+    );
   }
 
   onGestureEvent(event: CustomEvent) {
     const { type, detail } = event;
     const currentAction = this.interactionEvents.find(
-      (interactionEvent) => interactionEvent.eventKey === type,
+      (interactionEvent) => interactionEvent.eventKey === type
     );
-
+    console.warn("ttt");
     if (currentAction?.eventFunction) {
       currentAction.eventFunction(this, detail);
     }

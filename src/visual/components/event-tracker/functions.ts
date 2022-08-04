@@ -13,7 +13,7 @@ export const trackSteps = (
   score: number,
   timeStamp: number,
   position
-) => {
+): Step[] => {
   const filteredSteps = steps;
   if (
     score > scoreThreshold &&

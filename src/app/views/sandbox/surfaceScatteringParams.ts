@@ -14,6 +14,8 @@ import { imageDistortionVertex } from "visual/shaders/vertex-shaders/imageDistor
 import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
 import { InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
 
+const ROTATE_STEP = 0.01;
+
 export const surfaceScatteringParams = {
   threeJsParams: {
     camera: {
@@ -83,7 +85,7 @@ export const surfaceScatteringParams = {
         },
       } = scene;
       if (rotateGeometryTo.y !== Math.abs(currentGeometryRotation.y)) {
-        const step = 0.01 * rotationDirection.y;
+        const step = ROTATE_STEP * rotationDirection.y;
         const group = scene.children[0];
         group.rotation.y += step;
         scene.materialParams.currentGeometryRotation.y = Number(
@@ -91,7 +93,7 @@ export const surfaceScatteringParams = {
         );
       }
       if (rotateGeometryTo.x !== Math.abs(currentGeometryRotation.x)) {
-        const step = 0.01 * rotationDirection.x;
+        const step = ROTATE_STEP * rotationDirection.x;
         const group = scene.children[0];
         group.rotation.x += step;
         scene.materialParams.currentGeometryRotation.x = Number(
