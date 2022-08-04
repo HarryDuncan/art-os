@@ -13,14 +13,14 @@ export const useFormatTextureToGeometry = () => {
   const touch = useMemo(() => new TouchTexture(), []);
 
   const geometry = useMemo(() => {
-    const geometry = new InstancedBufferGeometry();
+    const bufferGeometry = new InstancedBufferGeometry();
     // positions
     const positions = new BufferAttribute(new Float32Array(4 * 3), 3);
     positions.setXYZ(0, -1, 1, 0.0);
     positions.setXYZ(1, 1, 1, 0.0);
     positions.setXYZ(2, -1, -1, 0.0);
     positions.setXYZ(3, 1, -1, 0.0);
-    geometry.setAttribute("position", positions);
+    bufferGeometry.setAttribute("position", positions);
 
     // uvs
     const uvs = new BufferAttribute(new Float32Array(4 * 2), 2);
@@ -28,13 +28,13 @@ export const useFormatTextureToGeometry = () => {
     uvs.setXYZ(1, 1.0, 0.0);
     uvs.setXYZ(2, 0.0, 1.0);
     uvs.setXYZ(3, 1.0, 1.0);
-    geometry.setAttribute("uv", uvs);
+    bufferGeometry.setAttribute("uv", uvs);
 
     // index
-    geometry.setIndex(
+    bufferGeometry.setIndex(
       new BufferAttribute(new Uint16Array([0, 2, 1, 2, 3, 1]), 1)
     );
-    return geometry;
+    return bufferGeometry;
   }, []);
 
   return useCallback(

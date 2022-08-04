@@ -4,7 +4,7 @@ import { getWindowParams } from "visual/helpers/getWindowParams";
 
 const BLOOM_PARAMS = {
   strength: 1.8,
-  radius: 0.31,
+  radius: 0.1,
   threshold: 0.1,
 };
 export const getBloomPass = () => {

@@ -34,8 +34,7 @@ export function InteractiveParticles({ params }: InteractiveObjectProps) {
   const { geometry, uniforms, shaders } = useFormatParticleParams(
     initializedAssets,
     areAssetsInitialized,
-    materialParams,
-    renderer
+    materialParams
   );
 
   const { interactiveNode } = useInteractions(interactionEvents);

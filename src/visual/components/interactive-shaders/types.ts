@@ -1,11 +1,10 @@
-import {
-  Color, Texture, Vector2, Vector3,
-} from 'three';
-import InteractiveMaterial from 'visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader';
-import { FragmentShader, VertexShader } from '../../shaders/types';
-import TouchTexture from '../../visual-components/interactive-particles/TouchTexture';
-import InteractiveShader from './interactive-shader/InteractiveShader';
-import InteractiveRawShader from './interactive-shader/InteractiveShader';
+import { Color, Texture, Vector2, Vector3 } from "three";
+import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
+import { FragmentShader, VertexShader } from "../../shaders/types";
+import TouchTexture from "../../visual-components/interactive-particles/TouchTexture";
+import PostProcessor from "../post-processor/PostProcessor";
+import InteractiveShader from "./interactive-shader/InteractiveShader";
+import InteractiveRawShader from "./interactive-raw-shader/InteractiveRawShader";
 
 export interface VanishingObjectUniforms {
   matcap: { value: Texture | null };
@@ -33,15 +32,15 @@ export type InteractiveUniform =
   | InteractiveParticlesUniforms;
 
 export enum InteractiveScenes {
-  VANISHING_OBJECT = 'vanishingObject',
-  INTERACTIVE_PARTICLES = 'interactiveParticles',
-  INTERACTIVE_WEBGL = 'interactiveWebGL',
-  IMAGE_DISTORTION = 'imageDistortion',
+  VANISHING_OBJECT = "vanishingObject",
+  INTERACTIVE_PARTICLES = "interactiveParticles",
+  INTERACTIVE_WEBGL = "interactiveWebGL",
+  IMAGE_DISTORTION = "imageDistortion",
 }
 
 export enum InteractiveShaderTypes {
-  RAW_SHADER = 'rawShader',
-  SHADER = 'shader',
+  RAW_SHADER = "rawShader",
+  SHADER = "shader",
 }
 export type InteractiveShaders = VanishingObjectShaders;
 
@@ -49,7 +48,7 @@ export interface InteractiveParam {
   sceneType: InteractiveScenes;
   uniforms: InteractiveUniform | null;
   shaders: InteractiveShaders | null;
-  postProcessor?: any;
+  postProcessor?: PostProcessor;
 }
 
 export interface InteractiveMaterialFunctions {

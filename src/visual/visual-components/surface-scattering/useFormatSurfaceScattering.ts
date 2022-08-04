@@ -103,7 +103,9 @@ const useLines = () =>
 
 export class LineWithCoordinates extends Line {
   coordinates: any;
+
   previous: any;
+
   constructor(
     geometry?: BufferGeometry | undefined,
     material?: LineBasicMaterial | undefined

@@ -33,6 +33,17 @@
     "implicit-arrow-linebreak": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "no-param-reassign": ["error", { "props": false }],
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "operator-linebreak": "off",
+    // turning off because gsl shaders doesn't currently have formatting
+    "no-tabs": "off",
+    "react/require-default-props": "off",
+    "consistent-return": "off",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "no-shadow": "warn",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "function-paren-newline": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-constructed-context-values": "off"
   }
 }

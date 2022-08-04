@@ -32,7 +32,8 @@ export default class TouchTexture {
   initTexture() {
     this.canvas = document.createElement("canvas");
     this.canvas.width = this.texture?.image.width ?? DEFAULT_TOUCH_TEXTURE_SIZE;
-    this.canvas.height = this.texture?.image.height ?? DEFAULT_TOUCH_TEXTURE_SIZE;
+    this.canvas.height =
+      this.texture?.image.height ?? DEFAULT_TOUCH_TEXTURE_SIZE;
     this.ctx = this.canvas.getContext("2d");
     if (this.ctx) {
       this.ctx.fillStyle = "black";
@@ -40,7 +41,8 @@ export default class TouchTexture {
     }
     this.texture = new Texture(this.canvas);
     this.canvas.id = "touchTexture";
-    this.canvas.style.width = this.canvas.style.height = `${this.size}px`;
+    this.canvas.style.width = `${this.size}px`;
+    this.canvas.style.height = `${this.size}px`;
   }
 
   update() {

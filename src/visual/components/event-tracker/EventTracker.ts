@@ -1,10 +1,10 @@
-import { ev } from 'visual/hooks/use-events/useEvents';
+import { ev } from "visual/hooks/use-events/useEvents";
 import {
   EventKey,
   InteractionEventObject,
-} from 'visual/hooks/use-interactions/types';
-import { getXDelta, getYDelta, trackSteps } from './functions';
-import { Step } from './types';
+} from "visual/hooks/use-interactions/types";
+import { getXDelta, getYDelta, trackSteps } from "./functions";
+import { Step } from "./types";
 
 const EVENT_REREGISTER_DELAY = 1500;
 const DEFAULT_Y_MOVEMENT = 250;
@@ -14,16 +14,16 @@ const getEventFunctionName = (eventKey: EventKey) => {
     case EventKey.SwipeLeft:
     case EventKey.SwipeRight:
     case EventKey.SwipeHorizontal:
-      return 'trackHorizontalMovement';
+      return "trackHorizontalMovement";
     case EventKey.SwipeUp:
     case EventKey.SwipeDown:
     case EventKey.SwipeVertical:
-      return 'trackVerticalMovement';
+      return "trackVerticalMovement";
     case EventKey.Scale:
-      return 'trackScale';
+      return "trackScale";
     case EventKey.Position:
     default:
-      return 'trackPosition';
+      return "trackPosition";
   }
 };
 
@@ -41,7 +41,7 @@ export class EventTracker {
   constructor(
     interactionEventObjs: InteractionEventObject[],
     threshold = 0.7,
-    maxStepTimeMilis = 1000,
+    maxStepTimeMilis = 1000
   ) {
     this.scoreThreshold = threshold;
     this.events = interactionEventObjs.map(({ eventKey }) => eventKey);
@@ -49,7 +49,9 @@ export class EventTracker {
     this.steps = [];
     this.canRegisterEvent = true;
     interactionEventObjs.forEach(({ eventKey, interactionKey }) => {
-      document.addEventListener(`:${interactionKey}`, (ev) => this[getEventFunctionName(eventKey)](ev as CustomEvent));
+      document.addEventListener(`:${interactionKey}`, (event) =>
+        this[getEventFunctionName(eventKey)](event as CustomEvent)
+      );
     });
   }
 
@@ -64,21 +66,21 @@ export class EventTracker {
       this.maxStepTimeMilis,
       score,
       timeStamp,
-      position,
+      position
     );
     if (this.steps.length > 4) {
       const xMovement = getXDelta(this.steps);
       if (
-        xMovement > 150
-        && (this.events.includes(EventKey.SwipeHorizontal)
-          || this.events.includes(EventKey.SwipeRight))
+        xMovement > 150 &&
+        (this.events.includes(EventKey.SwipeHorizontal) ||
+          this.events.includes(EventKey.SwipeRight))
       ) {
         ev(EventKey.SwipeRight);
       }
       if (
-        xMovement < -150
-        && (this.events.includes(EventKey.SwipeHorizontal)
-          || this.events.includes(EventKey.SwipeLeft))
+        xMovement < -150 &&
+        (this.events.includes(EventKey.SwipeHorizontal) ||
+          this.events.includes(EventKey.SwipeLeft))
       ) {
         ev(EventKey.SwipeLeft);
       }
@@ -96,24 +98,24 @@ export class EventTracker {
       this.maxStepTimeMilis,
       score,
       timeStamp,
-      position,
+      position
     );
     if (this.steps.length > 4) {
       const yMovement = getYDelta(this.steps);
       if (
-        yMovement < -DEFAULT_Y_MOVEMENT
-        && (this.events.includes(EventKey.SwipeVertical)
-          || this.events.includes(EventKey.SwipeDown))
-        && this.canRegisterEvent
+        yMovement < -DEFAULT_Y_MOVEMENT &&
+        (this.events.includes(EventKey.SwipeVertical) ||
+          this.events.includes(EventKey.SwipeDown)) &&
+        this.canRegisterEvent
       ) {
         this.temporarilyPauseEventRegistering();
         ev(EventKey.SwipeDown);
       }
       if (
-        yMovement > DEFAULT_Y_MOVEMENT
-        && (this.events.includes(EventKey.SwipeVertical)
-          || this.events.includes(EventKey.SwipeUp))
-        && this.canRegisterEvent
+        yMovement > DEFAULT_Y_MOVEMENT &&
+        (this.events.includes(EventKey.SwipeVertical) ||
+          this.events.includes(EventKey.SwipeUp)) &&
+        this.canRegisterEvent
       ) {
         this.temporarilyPauseEventRegistering();
         ev(EventKey.SwipeUp);

@@ -1,4 +1,3 @@
-import { materialParams } from "app/views/digital-art/scene-parameters/interactive-particles/materialParams";
 import { useMemo } from "react";
 import { InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
 

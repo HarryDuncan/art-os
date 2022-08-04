@@ -20,10 +20,10 @@ export const useChangeScenes = (
       sceneIndex.current = newIndex;
       const currentScene = initializedScenes[newIndex];
       if (currentScene.camera && currentScene.scene) {
-        postProccessor.current?.updateProcessorParams(
-          currentScene.camera,
-          currentScene.scene
-        );
+        postProccessor.current?.updateProcessorParams({
+          camera: currentScene.camera,
+          scene: currentScene.scene,
+        });
         setTimeout(() => {
           changeScene(newIndex);
         }, currentScene.sceneLength);

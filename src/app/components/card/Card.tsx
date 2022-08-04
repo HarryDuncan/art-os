@@ -7,10 +7,10 @@ interface ICardDetails {
 }
 interface ICardProps {
   cardDetails: ICardDetails;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
-export function Card({ cardDetails, onClick = () => {} }: ICardProps) {
+export function Card({ cardDetails, onClick }: ICardProps) {
   const imgElementRef = useRef<HTMLImageElement | null>(null);
   const cardClicked = () => {
     if (onClick) {

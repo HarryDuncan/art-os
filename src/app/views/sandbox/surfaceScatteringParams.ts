@@ -1,7 +1,6 @@
 import {
   BufferAttribute,
   Float32BufferAttribute,
-  Group,
   MathUtils,
   Vector3,
   Vector4,
@@ -12,10 +11,8 @@ import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { imageDistortionFrag } from "visual/shaders/fragment-shaders";
 import { imageDistortionVertex } from "visual/shaders/vertex-shaders/imageDistortionVertex";
-import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
 import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
 import { InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
-import { group } from "console";
 
 export const surfaceScatteringParams = {
   threeJsParams: {
@@ -50,10 +47,6 @@ export const surfaceScatteringParams = {
   materialFunctions: {
     onTimeUpdate: (scene: InteractiveScene) => {
       const delta = scene.clock.getDelta();
-      // const group = scene.children[0];
-      // group.rotation.x = Math.sin(delta * 0.003) * 0.1;
-      // group.rotation.y += 0.001;
-
       scene.materialParams.deltaOffset += delta;
 
       const {
@@ -89,7 +82,7 @@ export const surfaceScatteringParams = {
           rotationDirection,
         },
       } = scene;
-      if (rotateGeometryTo.y !== currentGeometryRotation.y) {
+      if (rotateGeometryTo.y !== Math.abs(currentGeometryRotation.y)) {
         const step = 0.01 * rotationDirection.y;
         const group = scene.children[0];
         group.rotation.y += step;
@@ -97,7 +90,7 @@ export const surfaceScatteringParams = {
           (scene.materialParams.currentGeometryRotation.y + step).toFixed(2)
         );
       }
-      if (rotateGeometryTo.x !== currentGeometryRotation.x) {
+      if (rotateGeometryTo.x !== Math.abs(currentGeometryRotation.x)) {
         const step = 0.01 * rotationDirection.x;
         const group = scene.children[0];
         group.rotation.x += step;
@@ -121,7 +114,7 @@ export const surfaceScatteringParams = {
           scene.materialParams.prevX = details.xAsScale;
         }
 
-        if (Math.abs(details.yAsScale - scene.materialParams.prevY) > 0.2) {
+        if (Math.abs(details.yAsScale - scene.materialParams.prevY) > 0.4) {
           const xAxisRotaton = getRotation(details.yAsScale);
 
           scene.materialParams.rotateGeometryTo.x = xAxisRotaton;
@@ -129,9 +122,6 @@ export const surfaceScatteringParams = {
             details.yAsScale < scene.materialParams.prevY ? 1 : -1;
           scene.materialParams.prevY = details.yAsScale;
         }
-
-        // console.log(details);
-        // console.log(scene);
       },
     },
   ],
@@ -143,18 +133,6 @@ const getRotation = (scale: number) => {
 };
 const clamp = (number, min, max) => Math.max(min, Math.min(number, max));
 
-const smoothRotate = (rotateTo: number, rotatedGroup: any) => {
-  let fps = 60; // fps/seconds
-  let tau = 2; // 2 seconds
-  const step = 1 / (tau * fps); // step per frame
-  const finalAngle = Math.PI / 2;
-  const angleStep = finalAngle * step;
-  let t = 0;
-  while (rotatedGroup.rotation.y !== rotateTo) {
-    console.log(rotateTo);
-    rotatedGroup.rotation.y += angleStep;
-  }
-};
 const nextDot = (line, sampler, sparkles) => {
   const p1 = new Vector3();
   let ok = false;
@@ -164,7 +142,7 @@ const nextDot = (line, sampler, sparkles) => {
       line.coordinates.push(p1.x, p1.y, p1.z);
       line.previous = p1.clone();
 
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 2; i += 1) {
         const spark = new Sparkle();
         spark.setup(p1, line.material.color);
         sparkles.push(spark);
@@ -177,8 +155,8 @@ const nextDot = (line, sampler, sparkles) => {
 };
 
 const updateSparklesGeometry = (sparkles, sparklesGeometry) => {
-  let tempSparklesArraySizes: number[] = [];
-  let tempSparklesArrayColors: any[] = [];
+  const tempSparklesArraySizes: number[] = [];
+  const tempSparklesArrayColors: any[] = [];
   sparkles.forEach((s: Sparkle) => {
     tempSparklesArraySizes.push(s.size);
     tempSparklesArrayColors.push(s.color.r, s.color.g, s.color.b);
@@ -194,9 +172,13 @@ const updateSparklesGeometry = (sparkles, sparklesGeometry) => {
 };
 class Sparkle extends Vector3 {
   v: Vector3;
+
   size: number;
+
   slowDown: number;
+
   color: any;
+
   constructor() {
     super();
     this.v = new Vector3();
@@ -223,6 +205,7 @@ class Sparkle extends Vector3 {
     this.slowDown = 0.4 + Math.random() * 0.58;
     this.color = color;
   }
+
   update() {
     if (this.v.x > 0.001 || this.v.y > 0.001 || this.v.z > 0.001) {
       this.add(this.v);

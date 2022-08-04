@@ -5,7 +5,6 @@ import InteractiveMaterial from "visual/components/interactive-shaders/interacti
 import { TweenLite } from "gsap/all";
 import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
 import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
-import { CameraType } from "visual/hooks/use-three-js/use-camera/types";
 import { materialParams } from "./materialParams";
 
 export const interactiveParticles = {

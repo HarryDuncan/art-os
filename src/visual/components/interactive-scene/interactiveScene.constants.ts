@@ -1,8 +1,7 @@
-import { InteractiveScene } from "./InteractiveScene";
 import { InteractiveSceneFunctions } from "./types";
 
 export const defaultInteractiveSceneFunctions: InteractiveSceneFunctions = {
-  onTimeUpdate: (scene: InteractiveScene) => {
+  onTimeUpdate: () => {
     console.warn("you havent set an onTimeUpdateFunction");
   },
 };

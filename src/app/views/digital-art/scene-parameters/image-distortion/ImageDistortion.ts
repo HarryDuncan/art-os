@@ -45,7 +45,7 @@ export const imageDistortion = {
       uTime: { value: 0 },
       uResolution: { value: new Vector4() },
       uTexture: { value: null },
-      uGridSize: { value: 100 },
+      uGridSize: { value: 10 },
       uDataTexture: {
         value: null,
       },
@@ -79,8 +79,8 @@ const updateDataTexture = (material, details) => {
   const maxDist = size * 0.15;
   const aspect = 1;
 
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
+  for (let i = 0; i < size; i += 1) {
+    for (let j = 0; j < size; j += 1) {
       const distance = (gridMouseX - i) ** 2 / aspect + (gridMouseY - j) ** 2;
       const maxDistSq = maxDist ** 2;
 

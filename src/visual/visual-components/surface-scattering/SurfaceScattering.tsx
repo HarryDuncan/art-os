@@ -5,9 +5,9 @@ import { RootContainer } from "visual/components/root-container";
 import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { useFormatSurfaceScattering } from "./useFormatSurfaceScattering";
 import { StaticBackground } from "visual/components/static-background/StaticBackground";
 import { PostProcessorPasses } from "visual/components/post-processor/types";
+import { useFormatSurfaceScattering } from "./useFormatSurfaceScattering";
 
 export function SurfaceScattering({ params }: any) {
   const {
@@ -58,7 +58,7 @@ export function SurfaceScattering({ params }: any) {
   return (
     <>
       {interactiveNode}
-      <RootContainer containerRef={container}></RootContainer>
+      <RootContainer containerRef={container} />
       <StaticBackground />
     </>
   );

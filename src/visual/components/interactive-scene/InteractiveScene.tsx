@@ -13,6 +13,7 @@ export class InteractiveScene extends Scene {
   materialFunctions: InteractiveSceneFunctions;
 
   materialParams: any;
+
   constructor(
     interactions: InteractionEventObject[],
     materialFunctions: InteractiveSceneFunctions = defaultInteractiveSceneFunctions,

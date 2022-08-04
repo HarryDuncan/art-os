@@ -1,10 +1,10 @@
-import React from 'react';
-import { selectPiece } from '../context/slice';
-import { useDigitalArtContext } from '../context/useDigitalArtContext';
-import { GalleryContainer } from '../StyledComponents';
-import { Card } from '../../../components';
+import React from "react";
+import { selectPiece } from "../context/slice";
+import { useDigitalArtContext } from "../context/useDigitalArtContext";
+import { GalleryContainer } from "../StyledComponents";
+import { Card } from "../../../components";
 
-const DIGITAL_ART_CARD_IMAGE_URL = '../card-images';
+const DIGITAL_ART_CARD_IMAGE_URL = "../card-images";
 export function DigitalArtGallery() {
   const { dispatch, pieces } = useDigitalArtContext();
 
@@ -15,7 +15,7 @@ export function DigitalArtGallery() {
     <GalleryContainer>
       {pieces.map(({ title, cardImageName }, index) => (
         <Card
-          key={index}
+          key={`${title}`}
           cardDetails={{
             title,
             imageUrl: `${DIGITAL_ART_CARD_IMAGE_URL}/${cardImageName}`,

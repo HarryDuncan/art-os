@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { useEffect } from "react";
 import { AnimationWidgetScene } from "./types";
 import { useRunAnimations } from "./useRunAnimations";
 import { RootContainer } from "../../components/root-container";

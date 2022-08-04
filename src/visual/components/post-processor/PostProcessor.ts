@@ -1,11 +1,12 @@
 import { Camera, Scene, WebGLRenderer, WebGLRenderTarget } from "three";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
-import { defaultRenderTargetParameters } from "./consts";
-import { getBloomPass } from "./render-passes/getBloomPass";
-import { PostProcessorCamera, PostProcessorPasses } from "./types";
 import { SMAAPass } from "three/examples/jsm/postprocessing/SMAAPass";
 import { getWindowParams } from "visual/helpers/getWindowParams";
+import { getBloomPass } from "./render-passes/getBloomPass";
+import { PostProcessorCamera, PostProcessorPasses } from "./types";
+import { defaultRenderTargetParameters } from "./consts";
+
 export default class PostProcessor extends EffectComposer {
   scene: Scene;
 
@@ -54,26 +55,34 @@ export default class PostProcessor extends EffectComposer {
     passes.forEach((renderPassType) => {
       switch (renderPassType) {
         case PostProcessorPasses.BLOOM:
-          const bloomPass = getBloomPass();
-          this.addPass(bloomPass);
-          const smaaPass = new SMAAPass(
-            width * pixelRatio,
-            height * pixelRatio
-          );
+          {
+            const bloomPass = getBloomPass();
+            this.addPass(bloomPass);
+            const smaaPass = new SMAAPass(
+              width * pixelRatio,
+              height * pixelRatio
+            );
 
-          this.addPass(smaaPass);
+            this.addPass(smaaPass);
+          }
+          break;
+        default:
+          break;
       }
     });
   }
 
-  updateProcessorParams(
-    camera: Camera,
-    scene: Scene,
-    passes?: PostProcessorPasses[]
-  ) {
+  updateProcessorParams({
+    camera,
+    scene,
+    passes = [],
+  }: {
+    camera: Camera;
+    scene: Scene;
+    passes?: PostProcessorPasses[];
+  }) {
     this.camera = camera as PostProcessorCamera;
     this.scene = scene;
-    const renderPass = new RenderPass(this.scene, this.camera);
-    this.addPass(renderPass);
+    this.addPasses(passes);
   }
 }

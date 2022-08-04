@@ -7,13 +7,15 @@
  * @param resolvedValue The value the mocked function should resolve to
  */
 export function mockResolvedValue<
-  FunctionToMock extends(...args: any[]) => any,
+  FunctionToMock extends (...args: any[]) => any,
   ResolvedValue extends jest.ResolvedValue<ReturnType<FunctionToMock>>
 >(functionToMock: FunctionToMock, resolvedValue: ResolvedValue): void {
   try {
-    (functionToMock as jest.MockedFunction<FunctionToMock>).mockResolvedValue(resolvedValue);
+    (functionToMock as jest.MockedFunction<FunctionToMock>).mockResolvedValue(
+      resolvedValue
+    );
   } catch (error) {
-    console.log(`Error with: ${functionToMock.name}`);
+    console.error(`Error with: ${functionToMock.name}`);
     console.error(error);
   }
 }

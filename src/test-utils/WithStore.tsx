@@ -1,16 +1,18 @@
-import React, { PropsWithChildren } from 'react';
-import { configureStore } from '@reduxjs/toolkit';
-import { middleware } from 'app/redux/middleware';
-import { IGlobalState, rootReducer } from 'app/redux/reducer';
+import React, { PropsWithChildren } from "react";
+import { configureStore } from "@reduxjs/toolkit";
+import { middleware } from "app/redux/middleware";
+import { IGlobalState, rootReducer } from "app/redux/reducer";
 
-import { Provider } from 'react-redux';
-import { WithTheme } from './WithTheme';
+import { Provider } from "react-redux";
+import { WithTheme } from "./WithTheme";
 
-export const mockStore = (state: IWithStoreState = {}) => configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(middleware),
-  preloadedState: state,
-});
+export const mockStore = (state: IWithStoreState = {}) =>
+  configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({ serializableCheck: false }).concat(middleware),
+    preloadedState: state,
+  });
 
 // Allows for passing partial store state for testing purposes
 type RecursivePartial<T> = {

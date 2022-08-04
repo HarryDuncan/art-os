@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { LinearFilter, RGBAFormat, Texture, WebGLRenderer } from "three";
+import { LinearFilter, RGBAFormat, Texture } from "three";
 import { InteractiveParam } from "visual/components/interactive-shaders/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { useFormatTextureToGeometry } from "./useFormatTextureToGeometry";
@@ -7,8 +7,7 @@ import { useFormatTextureToGeometry } from "./useFormatTextureToGeometry";
 export const useFormatParticleParams = (
   assets: Asset[],
   areAssetsInitialized: boolean,
-  materialParams: InteractiveParam,
-  renderer: WebGLRenderer
+  materialParams: InteractiveParam
 ) => {
   const { uniforms, shaders } = materialParams;
 
@@ -16,23 +15,19 @@ export const useFormatParticleParams = (
 
   const formatUniformsAndGeometry = useCallback(
     (
-      assets: Asset[],
+      unformattedAssets: Asset[],
       unformattedUniforms
     ): {
       geometry;
       uniforms;
       shaders;
     } => {
-      const loadedTextures = assets.flatMap((asset) => {
-        if (asset.data) {
-          return getTextureFeatures(asset.data as Texture);
+      const loadedTextures = unformattedAssets.flatMap((unformattedAssets) => {
+        if (unformattedAssets.data) {
+          return getTextureFeatures(unformattedAssets.data as Texture);
         }
         return [];
       });
-      setRendererSizeToImageSize(
-        loadedTextures[0].texture as Texture,
-        renderer
-      );
       const { uniforms, geometry } = formatTextureToGeometry(
         loadedTextures[0],
         unformattedUniforms
@@ -48,14 +43,6 @@ export const useFormatParticleParams = (
     }
     return formatUniformsAndGeometry(assets, uniforms);
   }, [areAssetsInitialized, formatUniformsAndGeometry, assets, uniforms]);
-};
-
-const setRendererSizeToImageSize = (
-  loadedTexture: Texture,
-  renderer: WebGLRenderer
-) => {
-  const { width, height } = loadedTexture.image;
-  // renderer.setSize(width, height, true);
 };
 
 const getTextureFeatures = (loadedTexture: Texture) => {

@@ -1,7 +1,9 @@
-import { InteractionEventObject, ModelType } from '../types';
+import { InteractionEventObject, ModelType } from "../types";
 
 export const getModelType = (
-  interactionEventObj: InteractionEventObject[],
-): ModelType =>
+  interactionEventObj: InteractionEventObject[]
+): ModelType => {
+  console.warn(interactionEventObj);
   // TODO - when we have other models
-  'posenet';
+  return "posenet";
+};
