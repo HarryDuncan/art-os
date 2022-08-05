@@ -1,6 +1,6 @@
-import { addShaders } from 'visual/shaders/shader-functions/addShaderFunctions';
-import { noise3D } from 'visual/shaders/shader-functions/noise/simplex/noise3D';
-import { noise4D } from 'visual/shaders/shader-functions/noise/simplex/noise4D';
+import { addShaderFunction } from "visual/shaders/shader-functions/addShaderFunctions";
+import { noise3D } from "visual/shaders/shader-functions/noise/simplex/noise3D";
+import { noise4D } from "visual/shaders/shader-functions/noise/simplex/noise4D";
 
 export const vanishingObjectFragment = {
   frag: `precision highp float;
@@ -9,7 +9,7 @@ export const vanishingObjectFragment = {
 #define S smoothstep
 #define saturate(t) clamp(t, 0., 1.)
 
-${addShaders([noise3D, noise4D])}
+${addShaderFunction([noise3D, noise4D])}
 
 
 uniform sampler2D matcap;

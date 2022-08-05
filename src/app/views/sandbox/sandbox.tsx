@@ -1,6 +1,6 @@
 import React from "react";
-import { SurfaceScattering } from "visual/visual-components";
-import { surfaceScatteringParams } from "./surfaceScatteringParams";
+import { ImageHover } from "visual/visual-components";
+import { imageHoverParams } from "./imageHoverParams";
 
 export function Sandbox() {
   const {
@@ -9,10 +9,10 @@ export function Sandbox() {
     assets,
     materialFunctions,
     materialParams,
-  } = surfaceScatteringParams;
+  } = imageHoverParams;
 
   return (
-    <SurfaceScattering
+    <ImageHover
       params={{
         threeJsParams,
         interactionEvents,

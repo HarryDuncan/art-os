@@ -7,7 +7,7 @@ export const defaultCameraParams: CameraParams = {
   position: {
     x: 0,
     y: 0,
-    z: 0,
+    z: 2,
   },
   perspectiveCameraProps: {
     fov: 45,

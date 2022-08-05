@@ -5,3 +5,4 @@ export { ThreeDGallery } from "./three-d-gallery";
 export { InteractiveWebGL } from "./interactive-webgl";
 export { ImageDistortion } from "./image-distortion";
 export { SurfaceScattering } from "./surface-scattering";
+export { ImageHover } from "./image-hover";

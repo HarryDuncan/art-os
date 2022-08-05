@@ -152,7 +152,6 @@ export class EventTracker {
     this.canRegisterEvent = false;
 
     setTimeout(() => {
-      console.warn(this.canRegisterEvent);
       this.canRegisterEvent = true;
     }, EVENT_REREGISTER_DELAY);
   }

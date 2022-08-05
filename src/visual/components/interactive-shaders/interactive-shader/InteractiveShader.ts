@@ -23,8 +23,13 @@ export default class InteractiveShader extends ShaderMaterial {
       vertexShader: shaders.vertexShader.vert,
       fragmentShader: shaders.fragmentShader.frag,
       depthWrite: true,
-      // @ts-ignore
-      derivatives: true,
+      extensions: {
+        derivatives: true,
+      },
+      defines: {
+        PI: Math.PI,
+        PR: window.devicePixelRatio.toFixed(1),
+      },
     });
     this.isRunningThread = true;
     this.uniforms = uniforms;
@@ -51,7 +56,6 @@ export default class InteractiveShader extends ShaderMaterial {
     const currentAction = this.interactionEvents.find(
       (interactionEvent) => interactionEvent.eventKey === type
     );
-    console.warn("ttt");
     if (currentAction?.eventFunction) {
       currentAction.eventFunction(this, detail);
     }

@@ -1,10 +1,10 @@
-import { addShaders } from 'visual/shaders/shader-functions/addShaderFunctions';
-import { noise3D } from 'visual/shaders/shader-functions/noise/simplex/noise3D';
-import { noise4D } from 'visual/shaders/shader-functions/noise/simplex/noise4D';
+import { addShaderFunction } from "visual/shaders/shader-functions/addShaderFunctions";
+import { noise3D } from "visual/shaders/shader-functions/noise/simplex/noise3D";
+import { noise4D } from "visual/shaders/shader-functions/noise/simplex/noise4D";
 
 export const vertex = `
 
-${addShaders([noise3D, noise4D])}
+${addShaderFunction([noise3D, noise4D])}
 vec3 snoiseVec3( vec3 x ){
 
     float s  = noise3D(vec3( x ));

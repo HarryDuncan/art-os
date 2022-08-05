@@ -32,6 +32,12 @@ export const defaultState: DigitalArtState = {
       componentId: "ImageDistortion",
       cardImageName: "imageDistortion.jpg",
     },
+    {
+      title: "Surface Scattering",
+      sceneId: "surfaceScattering",
+      componentId: "SurfaceScattering",
+      cardImageName: "surfaceScattering.jpg",
+    },
   ],
 };
 

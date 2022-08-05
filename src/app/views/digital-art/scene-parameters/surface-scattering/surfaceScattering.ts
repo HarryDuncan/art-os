@@ -16,7 +16,7 @@ import { InteractiveScene } from "visual/components/interactive-scene/Interactiv
 
 const ROTATE_STEP = 0.01;
 
-export const surfaceScatteringParams = {
+export const surfaceScattering = {
   threeJsParams: {
     camera: {
       ...defaultCameraParams,
