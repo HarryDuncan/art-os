@@ -45,6 +45,7 @@
     "function-paren-newline": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-no-constructed-context-values": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "react/function-component-definition": "off"
   }
 }

@@ -21,7 +21,6 @@ export const vanishingObject = {
       eventKey: EventKey.SwipeUp,
       interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
       eventFunction: (material: InteractiveMaterial) => {
-        console.error("changing direction");
         material.uniforms.delta.value *= -1;
         material.isRunningThread = true;
       },
@@ -30,7 +29,6 @@ export const vanishingObject = {
       eventKey: EventKey.SwipeDown,
       interactionKey: INTERACTION_EVENTS.POSENET.LEFT_WRIST as InteractionKey,
       eventFunction: (material: InteractiveMaterial) => {
-        console.error("changing direction");
         material.uniforms.delta.value *= -1;
         material.isRunningThread = true;
       },

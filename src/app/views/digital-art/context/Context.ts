@@ -38,6 +38,12 @@ export const defaultState: DigitalArtState = {
       componentId: "SurfaceScattering",
       cardImageName: "surfaceScattering.jpg",
     },
+    {
+      title: "Image Hover",
+      sceneId: "imageHoverConfig",
+      componentId: "ImageHover",
+      cardImageName: "imageHover.jpg",
+    },
   ],
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import * as VisualComponents from "visual/visual-components";
-import * as SceneParams from "../scene-parameters";
+import * as SceneParams from "../scene-configs";
 import { DigitalPiece } from "../context/Context";
 
 export const useViewPiece = (

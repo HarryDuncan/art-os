@@ -35,7 +35,6 @@ function formatAssetWithUniforms(uniforms, assets: Asset[]) {
 
 const getRatio = (texture: Texture) => {
   const { height, width } = texture.image;
-  console.log(height, width);
   const m = multiplyMatrixAndPoint(rotateMatrix(MathUtils.degToRad(0)), [
     width,
     height,

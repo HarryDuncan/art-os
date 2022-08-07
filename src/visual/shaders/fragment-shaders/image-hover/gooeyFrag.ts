@@ -4,8 +4,7 @@ import { noise3D } from "visual/shaders/shader-functions/noise/simplex/noise3D";
 export const gooeyFragment = {
   frag: `
   precision highp float;
-  #define PI 3.14159265359
-  #define PR 1.0
+ 
     uniform sampler2D uCoverImage;
     uniform sampler2D uRevealedImage;
     
@@ -76,7 +75,7 @@ export const gooeyFragment = {
       
       uv += vec2(0.5);
     
-      vec4 color = vec4(0.714, 0.0314, 0.005, 1.);
+      vec4 color = vec4(0.04, 0.007, 1.00, 1.);
     
       
       vec4 hover = texture2D(uRevealedImage, uv_h + vec2(nh) * progressHover * (1. - progress));

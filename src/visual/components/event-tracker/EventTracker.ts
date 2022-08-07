@@ -1,3 +1,4 @@
+import { clamp } from "lodash";
 import { ev } from "visual/hooks/use-events/useEvents";
 import {
   EventKey,
@@ -8,7 +9,8 @@ import { Step } from "./types";
 
 const EVENT_REREGISTER_DELAY = 1500;
 const DEFAULT_Y_MOVEMENT = 250;
-
+const SCALE_MINIMUM = 0;
+const SCALE_MAXIUM = 1;
 const getEventFunctionName = (eventKey: EventKey) => {
   switch (eventKey) {
     case EventKey.SwipeLeft:
@@ -140,8 +142,8 @@ export class EventTracker {
     } = event;
 
     ev(EventKey.Scale, {
-      xAsScale: (640 - position.x) / 640,
-      yAsScale: (480 - position.y) / 480,
+      xAsScale: clamp((640 - position.x) / 640, SCALE_MINIMUM, SCALE_MAXIUM),
+      yAsScale: clamp((480 - position.y) / 480, SCALE_MINIMUM, SCALE_MAXIUM),
     });
   }
 

@@ -33,14 +33,14 @@ export function SurfaceScattering({ params }: any) {
   );
   const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveScene = useInteractiveScene(
-    group,
     interactionEvents,
     materialFunctions,
     materialParams
   );
 
   const initializeScene = useCallback(() => {
-    if (!interactiveScene) return;
+    if (!interactiveScene || !group) return;
+    interactiveScene.add(group);
     postProcessor.current = new PostProcessor({
       renderer,
       scene: interactiveScene as Scene,
@@ -49,7 +49,7 @@ export function SurfaceScattering({ params }: any) {
     });
     renderer.render(interactiveScene as Scene, camera);
     update();
-  }, [postProcessor, renderer, interactiveScene, camera, update]);
+  }, [postProcessor, renderer, interactiveScene, camera, update, group]);
 
   useEffect(() => {
     initializeScene();

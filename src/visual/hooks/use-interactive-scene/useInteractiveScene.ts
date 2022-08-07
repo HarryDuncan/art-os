@@ -2,18 +2,16 @@ import { useMemo } from "react";
 import { InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
 
 export const useInteractiveScene = (
-  group,
   interactionEvents,
-  materialFunctions,
-  materialParams
+  sceneFunctions,
+  sceneParams
 ) =>
   useMemo(() => {
-    if (!group) return;
     const scene = new InteractiveScene(
       interactionEvents,
-      materialFunctions,
-      materialParams
+      sceneFunctions,
+      sceneParams
     );
-    scene.add(group);
+
     return scene;
-  }, [group, interactionEvents, materialFunctions, materialParams]);
+  }, [interactionEvents, sceneFunctions, sceneParams]);

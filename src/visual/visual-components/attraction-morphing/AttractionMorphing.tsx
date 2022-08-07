@@ -1,33 +1,36 @@
+import React, { useEffect, useCallback } from "react";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
-import React, { useCallback, useEffect } from "react";
-import { RootContainer } from "visual/components/root-container";
 import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
-import { StaticBackground } from "visual/components/static-background/StaticBackground";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { useFormatImageHover } from "./useFormatImageHover";
+import { useAttractionMorphingData } from "./useAttractionMorphingData";
+import { RootContainer } from "../../components/root-container";
+import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
+// interface ImageDistortionProps {
+//   params: ImageDistortionParams;
+// }
 
-export function ImageHover({ params }: any) {
+export const AttractionMorphing = ({ params }: any) => {
   const {
     threeJsParams,
     interactionEvents,
     assets,
     materialFunctions,
     materialParams,
+    sceneFunctions,
   } = params;
   const {
     areAssetsInitialized,
     initializedAssets,
     update,
-    scene,
     postProcessor,
     renderer,
     camera,
     container,
   } = useSetUpScene(threeJsParams, assets);
 
-  const { geometry, uniforms, shaders } = useFormatImageHover(
+  const { geometry, uniforms, shaders } = useAttractionMorphingData(
     initializedAssets,
     areAssetsInitialized,
     materialParams
@@ -42,6 +45,8 @@ export function ImageHover({ params }: any) {
     shaders,
     InteractiveShaderTypes.SHADER
   );
+
+  const scene = useInteractiveScene([], sceneFunctions, {});
   const initializeMesh = useCallback(() => {
     if (interactiveMesh) {
       scene.add(interactiveMesh);
@@ -63,7 +68,6 @@ export function ImageHover({ params }: any) {
     <>
       {interactiveNode}
       <RootContainer containerRef={container} />
-      <StaticBackground />
     </>
   );
-}
+};

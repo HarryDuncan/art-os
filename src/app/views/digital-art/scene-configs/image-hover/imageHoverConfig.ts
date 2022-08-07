@@ -5,10 +5,10 @@ import { InteractiveShader } from "visual/components/interactive-shaders/interac
 import { Vector2 } from "three";
 import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
 import { imageHoverVertex } from "visual/shaders/vertex-shaders";
-import { trippyFrag } from "visual/shaders/fragment-shaders";
+import { gooeyFragment } from "visual/shaders/fragment-shaders";
 import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";
 
-export const imageHoverParams = {
+export const imageHoverConfig = {
   threeJsParams: {
     camera: { ...defaultCameraParams, position: { x: 0, y: 0, z: 1 } },
   },
@@ -24,6 +24,7 @@ export const imageHoverParams = {
           x: window.innerWidth * details.xAsScale,
           y: window.innerHeight * (1 - details.yAsScale),
         };
+
         material.uniforms.uPosition.value = point;
       },
     },
@@ -31,12 +32,12 @@ export const imageHoverParams = {
   assets: [
     {
       name: "uCoverImage",
-      url: "../assets/textures/RGBGood.jpg",
+      url: "../assets/textures/BlockChainSquare.jpg",
       assetType: AssetType.Texture,
     },
     {
       name: "uRevealedImage",
-      url: "../assets/textures/Marsh.jpg",
+      url: "../assets/textures/HJDBg.jpg",
       assetType: AssetType.Texture,
     },
   ],
@@ -59,7 +60,7 @@ export const imageHoverParams = {
     },
     shaders: {
       vertexShader: imageHoverVertex,
-      fragmentShader: trippyFrag,
+      fragmentShader: gooeyFragment,
     },
   },
 

@@ -1,24 +1,26 @@
 import React from "react";
-import { ImageHover } from "visual/visual-components";
-import { imageHoverParams } from "./imageHoverParams";
+import { AttractionMorphing } from "visual/visual-components";
+import { attractionMorphingConfig } from "./attractionMorphingConfig";
 
 export function Sandbox() {
   const {
     threeJsParams,
     interactionEvents,
     assets,
-    materialFunctions,
     materialParams,
-  } = imageHoverParams;
+    materialFunctions,
+    sceneFunctions,
+  } = attractionMorphingConfig;
 
   return (
-    <ImageHover
+    <AttractionMorphing
       params={{
         threeJsParams,
         interactionEvents,
         assets,
-        materialFunctions,
         materialParams,
+        materialFunctions,
+        sceneFunctions,
       }}
     />
   );

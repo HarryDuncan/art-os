@@ -6,3 +6,4 @@ export { InteractiveWebGL } from "./interactive-webgl";
 export { ImageDistortion } from "./image-distortion";
 export { SurfaceScattering } from "./surface-scattering";
 export { ImageHover } from "./image-hover";
+export { AttractionMorphing } from "./attraction-morphing";
