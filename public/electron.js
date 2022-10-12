@@ -12,6 +12,7 @@ function createWindow() {
     width: 900,
     height: 680,
     webPreferences: { nodeIntegration: true },
+    autoHideMenuBar: true,
   });
   mainWindow.loadURL(
     isDev

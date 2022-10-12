@@ -1,11 +1,16 @@
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
-export const Root = styled.div<{ $height: string; $width: string }>`
+export const Root = styled.div<{
+  $height: string;
+  $width: string;
+  $backgroundColor?: string;
+}>`
   height: ${({ $height }) => $height};
   width: ${({ $width }) => $width};
   overflow: "hidden";
   margin: "0 auto";
-  backgroundcolor: "transparent";
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor ?? "transparent"};
   & canvas {
     margin: 0 auto;
   }

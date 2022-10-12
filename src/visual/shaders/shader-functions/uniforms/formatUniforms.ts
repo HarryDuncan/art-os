@@ -1,4 +1,4 @@
-import { Vector3 } from "three";
+import { Vector2, Vector3 } from "three";
 import { UniformDefinition, UniformTypes } from "visual/shaders/types";
 
 type UniformObject = {
@@ -12,6 +12,8 @@ const getDefaultValue = (uniformType: UniformTypes) => {
       return 0.0;
     case UniformTypes.Vec3:
       return new Vector3();
+    case UniformTypes.Vec2:
+      return new Vector2();
     default:
       return null;
   }

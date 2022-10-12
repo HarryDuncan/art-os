@@ -50,15 +50,15 @@ export const gooeyFragment = {
 
       float sqr = 100. * ((smoothstep(0., grd, uv.x) - smoothstep(1. - grd, 1., uv.x)) * (smoothstep(0., grd, uv.y) - smoothstep(1. - grd, 1., uv.y))) - 10.;
     
-      float c = circle(cpos, .04 * progressHover + progress * 0.8, 2.) * 50.;
+      float c = circle(cpos, .04 * progressHover + progress * 0.8, 2.) * 101.;
       float c2 = circle(cpos, .01 * progressHover + progress * 0.5, 2.);
     
-      float offX = uv.x + sin(uv.y + time * 2.);
-      float offY = uv.y - time * .2 - cos(time * 2.) * 0.1;
+      float offX = uv.x + sin(uv.y + time * 0.1);
+      float offY = uv.y - time * .2 - cos(time * 2.) ;
       float nc = (noise3D(vec3(offX, offY, time * .5) * 8.)) * progressHover;
-      float nh = (noise3D(vec3(offX, offY, time * .5 ) * 2.)) * .1;
+      float nh = (noise3D(vec3(offX, offY, time * .5 ) * 1.)) * .1;
     
-      c2 = smoothstep(.1, .8, c2 * 5. + nc * 3. - 1.);
+      c2 = smoothstep(.1, 0.8, c2 * 5. + nc * 3. - 1.);
     
       uv_h -= vec2(0.5);
       uv_h *= 1. - uProgressHover * 0.1;
@@ -75,7 +75,7 @@ export const gooeyFragment = {
       
       uv += vec2(0.5);
     
-      vec4 color = vec4(0.04, 0.007, 1.00, 1.);
+      vec4 color = vec4(1.0, 1.0, 1.00, 1.);
     
       
       vec4 hover = texture2D(uRevealedImage, uv_h + vec2(nh) * progressHover * (1. - progress));

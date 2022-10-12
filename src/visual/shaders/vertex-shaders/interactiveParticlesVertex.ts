@@ -65,8 +65,8 @@ export const interactiveParticlesVertex = {
         // touch
         float t = texture2D(uTouch, puv).r;
         displaced.z += t * 20.0 * rndz;
-        displaced.x += cos(angle) * t * 20.0 * rndz;
-        displaced.y += sin(angle) * t * 20.0 * rndz;
+        displaced.x += cos(angle) * t * 160.0 * rndz;
+        displaced.y += sin(angle) * t * 160.0 * rndz;
     
         // particle size
         float psize = (noise(vec2(uTime, pindex) * 0.5) + 2.0);

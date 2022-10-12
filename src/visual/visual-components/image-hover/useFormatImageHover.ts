@@ -39,6 +39,7 @@ const getRatio = (texture: Texture) => {
     width,
     height,
   ]);
+
   const originalRatio = {
     w: m[0] / width,
     h: m[1] / height,

@@ -27,9 +27,7 @@ function SideBar({ navItems }: ISideBarProps) {
   return (
     <StyledSideBar $isVisible={isSidebarVisible}>
       <SideBarTitleContainer>
-        <Link to="/">
-          <h1>Art-OS</h1>
-        </Link>
+        <Link to="/"></Link>
       </SideBarTitleContainer>
       <SideBarLinkList>
         <SideBarItemList items={navItems as ISideBarItem[]} />

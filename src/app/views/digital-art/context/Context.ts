@@ -44,6 +44,18 @@ export const defaultState: DigitalArtState = {
       componentId: "ImageHover",
       cardImageName: "imageHover.jpg",
     },
+    {
+      title: "Iran Piece",
+      sceneId: "iranPiece",
+      componentId: "ImageHover",
+      cardImageName: "imageHover.jpg",
+    },
+    {
+      title: "Deep Waves",
+      sceneId: "deepWaves",
+      componentId: "InteractiveWebGL",
+      cardImageName: "imageHover.jpg",
+    },
   ],
 };
 

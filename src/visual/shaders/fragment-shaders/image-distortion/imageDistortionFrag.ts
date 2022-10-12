@@ -10,7 +10,7 @@ export const imageDistortionFrag = {
     uniform vec4 uResolution;
     varying vec2 vUv;
     varying vec3 vPosition;
-    float PI = 3.141592653589793238;
+    
     void main()	{
         vec2 newUV = (vUv - vec2(0.5))*uResolution.zw + vec2(0.5);
         vec4 color = texture2D(uTexture,newUV);
