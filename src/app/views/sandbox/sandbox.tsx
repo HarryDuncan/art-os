@@ -10,6 +10,7 @@ export function Sandbox() {
     materialParams,
     materialFunctions,
     sceneFunctions,
+    visualComponentConfig,
   } = attractionMorphingConfig;
 
   return (
@@ -21,6 +22,7 @@ export function Sandbox() {
         materialParams,
         materialFunctions,
         sceneFunctions,
+        visualComponentConfig,
       }}
     />
   );

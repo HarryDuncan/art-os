@@ -1,0 +1,1 @@
+export { imageHoverConfig } from "./imageHoverConfig";

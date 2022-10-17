@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // Containers
-import { Provider } from 'react-redux';
-import styled, { ThemeProvider } from 'styled-components/macro';
-import { DigitalArt } from './views/digital-art/DigitalArt';
-import { Landing } from './views/landing/Landing';
+import { Provider } from "react-redux";
+import styled, { ThemeProvider } from "styled-components/macro";
+import { DigitalArt } from "./views/digital-art/DigitalArt";
+import { Landing } from "./views/landing/Landing";
 // Components
-import { Navigation } from './components/navigation/Navigation';
+import { Navigation } from "./components/navigation/Navigation";
 
 // Redux
-import { store } from './redux/store';
+import { store } from "./redux/store";
 
-import { THEME } from './theme/theme';
-import { GlobalStyle } from './theme/GlobalStyle';
-import { Sandbox } from './views/sandbox/sandbox';
+import { THEME } from "./theme/theme";
+import { GlobalStyle } from "./theme/GlobalStyle";
+import { Sandbox } from "./views/sandbox/sandbox";
 
 export const AppContainer = styled.div`
   margin: 0;
@@ -23,6 +23,7 @@ export const AppContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  overflow-x: hidden;
 `;
 
 export function App() {

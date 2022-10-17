@@ -1,4 +1,7 @@
 import { Clock, ShaderMaterial } from "three";
+import { AnimationProperties } from "visual/helpers/animation/animation.types";
+import { DEFAULT_SMOOTH_STEP_HELPER } from "visual/helpers/animation/smooth-step/smoothStep";
+import { EventConfig } from "visual/hooks/use-events/types";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
 import { defaultInteractiveMaterialFunctions } from "../interactiveMaterialConstants";
 import { InteractiveMaterialFunctions, InteractiveShaders } from "../types";
@@ -11,6 +14,8 @@ export default class InteractiveShader extends ShaderMaterial {
   interactionEvents: InteractionEventObject[];
 
   materialFunctions: InteractiveMaterialFunctions;
+
+  animationProperties: Partial<AnimationProperties>;
 
   constructor(
     uniforms,
@@ -36,8 +41,9 @@ export default class InteractiveShader extends ShaderMaterial {
     this.materialFunctions = materialFunctions;
     this.clock = new Clock();
     this.interactionEvents = interactions;
-
+    this.animationProperties = { smoothStep: DEFAULT_SMOOTH_STEP_HELPER };
     this.bindMaterialFunctions();
+
     interactions.forEach(({ eventKey }) => {
       document.addEventListener(`${eventKey}`, (ev) =>
         this.onGestureEvent(ev as CustomEvent)
@@ -63,6 +69,12 @@ export default class InteractiveShader extends ShaderMaterial {
 
   continueThread() {
     this.isRunningThread = !this.isRunningThread;
+  }
+
+  addEvents(eventConfig: EventConfig[]) {
+    eventConfig.forEach(({ eventKey, eventFunction }) => {
+      document.addEventListener(eventKey, (e) => eventFunction(this, e));
+    });
   }
 
   startThread() {

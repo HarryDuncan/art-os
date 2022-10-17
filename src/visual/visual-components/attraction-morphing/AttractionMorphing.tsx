@@ -4,9 +4,10 @@ import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
+import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
 import { useAttractionMorphingData } from "./useAttractionMorphingData";
 import { RootContainer } from "../../components/root-container";
-import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
+
 // interface ImageDistortionProps {
 //   params: ImageDistortionParams;
 // }
@@ -19,6 +20,7 @@ export const AttractionMorphing = ({ params }: any) => {
     materialFunctions,
     materialParams,
     sceneFunctions,
+    visualComponentConfig,
   } = params;
   const {
     areAssetsInitialized,
@@ -67,7 +69,7 @@ export const AttractionMorphing = ({ params }: any) => {
   return (
     <>
       {interactiveNode}
-      <RootContainer containerRef={container} />
+      <RootContainer containerRef={container} config={visualComponentConfig} />
     </>
   );
 };

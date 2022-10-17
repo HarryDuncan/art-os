@@ -3,6 +3,7 @@ import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
+import { useEventsWithShader } from "visual/hooks/use-events/useEvents";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import { InteractiveObjectParams } from "./types";
 import { useFormatWebGL } from "./useFormatWebGL";
@@ -13,13 +14,13 @@ interface InteractiveObjectProps {
 }
 
 export function InteractiveWebGL({ params }: InteractiveObjectProps) {
-  console.log(params);
   const {
     threeJsParams,
     interactionEvents,
     assets,
     materialParams,
     materialFunctions,
+    events,
   } = params;
 
   const {
@@ -38,6 +39,7 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     areAssetsInitialized,
     materialParams
   );
+
   const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
     interactionEvents,
@@ -47,6 +49,9 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     shaders,
     InteractiveShaderTypes.SHADER
   );
+
+  useEventsWithShader(interactiveMesh, events);
+
   const initializeMesh = useCallback(() => {
     if (interactiveMesh) {
       scene.add(interactiveMesh);

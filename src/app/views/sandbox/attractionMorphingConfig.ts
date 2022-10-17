@@ -30,11 +30,10 @@ export const attractionMorphingConfig = {
       },
     },
   ],
-
   assets: [
     {
       name: "geometry",
-      url: "../assets/models/ZeusBust.obj",
+      url: "../assets/models/AresBust.obj",
       assetType: AssetType.Geometry,
     },
     {
@@ -85,12 +84,13 @@ export const attractionMorphingConfig = {
       material.uniforms.uFrame.value += 1;
     },
   },
-
   sceneFunctions: {
     onTimeUpdate: (scene: InteractiveScene) => {
-      const delta = scene.clock.getDelta();
       const group = scene.children[0];
       group.rotation.y += 0.002;
     },
+  },
+  visualComponentConfig: {
+    backgroundColor: "black",
   },
 };

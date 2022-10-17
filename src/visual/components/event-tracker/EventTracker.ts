@@ -42,7 +42,7 @@ export class EventTracker {
 
   constructor(
     interactionEventObjs: InteractionEventObject[],
-    threshold = 0.7,
+    threshold = 0.9,
     maxStepTimeMilis = 1000
   ) {
     this.scoreThreshold = threshold;
@@ -131,9 +131,11 @@ export class EventTracker {
 
   trackPosition(event: CustomEvent) {
     const {
-      detail: { position },
+      detail: { position, score },
     } = event;
-    ev(EventKey.Position, position);
+    if (score > this.scoreThreshold) {
+      ev(EventKey.Position, position);
+    }
   }
 
   trackScale(event: CustomEvent) {

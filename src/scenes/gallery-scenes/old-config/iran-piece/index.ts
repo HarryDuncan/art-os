@@ -1,0 +1,1 @@
+export { iranPiece } from "./iranPiece";

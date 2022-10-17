@@ -1,10 +1,13 @@
-import { combineReducers, Reducer } from 'redux';
+import { combineReducers, Reducer } from "redux";
+import { reducer as visualReducer } from "./visual/slice";
 
 export type IGlobalState = ReturnType<typeof rootReducer>;
 
-const appReducer = combineReducers({});
+const appReducer = combineReducers({
+  visual: visualReducer,
+});
 
 export const rootReducer: Reducer<ReturnType<typeof appReducer>> = (
   state,
-  action,
+  action
 ) => appReducer(state, action);

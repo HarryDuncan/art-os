@@ -14,6 +14,8 @@ export class InteractiveScene extends Scene {
 
   materialParams: any;
 
+  animationProperties: any;
+
   constructor(
     interactions: InteractionEventObject[],
     materialFunctions: InteractiveSceneFunctions = defaultInteractiveSceneFunctions,
@@ -25,6 +27,7 @@ export class InteractiveScene extends Scene {
     this.clock = new Clock();
     this.interactionEvents = interactions;
     this.materialParams = materialParams;
+    this.animationProperties = {};
     this.bindMaterialFunctions();
     interactions.forEach(({ eventKey }) => {
       document.addEventListener(`${eventKey}`, (ev) =>

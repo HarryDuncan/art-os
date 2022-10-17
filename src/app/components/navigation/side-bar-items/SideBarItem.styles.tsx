@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components/macro';
-import { SIDE_BAR_TRANSITION_SPEED } from '../side-bar/SideBar.styles';
+import styled, { css } from "styled-components/macro";
+import { SIDE_BAR_TRANSITION_SPEED } from "../side-bar/SideBar.styles";
 
 const BORDER_WIDTH = 3;
 
@@ -52,6 +52,7 @@ export const SideBarLink = styled.a<{
   cursor: pointer;
   font-family: "HarryDuncan";
   font-size: 2rem;
+  padding-left: 1rem;
 
   && {
     color: ${({ theme }) => theme.colors.mono.text01};

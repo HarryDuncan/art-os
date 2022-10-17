@@ -45,7 +45,7 @@ export const deepWavesFrag = {
     void mainImage( out vec4 fragColor, in vec2 fragCoord )
     {
         float scale = 4.0;
-        float i= uTime;
+        float i= uTime * 0.05;
             vec2 uv = fragCoord.xy / uResolution.xy*scale - scale*.0;
         vec4 c = vec4(1.0,0.0,1.0,1.0);
         uv = rotate(uv,sin(length(uv.yx)+uPosition.x*.02+i));
@@ -56,9 +56,9 @@ export const deepWavesFrag = {
             sin(uv.y*6.0+cos(uv.x)*5.0)
         );
         m[0] = rotate(m[0],length(uv));
-        c.rb= mod(uv*m+i,1.0)*.5+.5;
+        c.rb= mod(uv*m+i*2.0,1.0)*.5+.5;
         c.rb = pow(c.rb,vec2(9.0));
-        c.rgb = hue(c,i).rgb;
+        c.rgb = hue(c,uColor).rgb;
             fragColor = c;
     }`,
 };

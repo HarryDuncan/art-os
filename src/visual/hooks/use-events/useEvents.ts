@@ -1,22 +1,21 @@
 import { useEffect } from "react";
-import { EVENT_BIND_TYPES } from "./consts";
-import { UseEventProps } from "./types";
+import { BufferGeometry, Mesh } from "three";
+import { InteractiveRawShader } from "visual/components/interactive-shaders/interactive-raw-shader";
+import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
+import { EventConfig } from "./types";
 
-export const useEvents = (eventParams: UseEventProps) =>
+export const useEventsWithShader = (
+  interactiveMesh:
+    | Mesh<BufferGeometry, InteractiveRawShader | InteractiveShader>
+    | undefined,
+  eventConfig: EventConfig[] = []
+) => {
   useEffect(() => {
-    eventParams.events.forEach(({ bindType, key, onEventFire, props }) => {
-      switch (bindType) {
-        case EVENT_BIND_TYPES.DOCUMENT:
-          document.addEventListener(key, (e) => onEventFire({ e, props }));
-          break;
-        case EVENT_BIND_TYPES.WINDOW:
-          window.addEventListener(key, (e) => onEventFire({ e, props }));
-          break;
-        default:
-          return null;
-      }
-    });
-  }, [eventParams]);
+    if (interactiveMesh) {
+      interactiveMesh.material.addEvents(eventConfig);
+    }
+  }, [interactiveMesh]);
+};
 
 export const ev = (eventName, data?) => {
   const e = new CustomEvent(eventName, { detail: data });

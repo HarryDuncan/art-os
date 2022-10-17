@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 import { EventTracker } from "visual/components/event-tracker";
@@ -9,7 +9,9 @@ import { runPosenet } from "./useRunPosenet";
 export const useInteractions = (
   interactionEventObjects: InteractionEventObject[]
 ) => {
-  const modelType = getModelType(interactionEventObjects);
+  const modelType = useMemo(() => getModelType(interactionEventObjects), [
+    interactionEventObjects,
+  ]);
 
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const webcamRef: React.MutableRefObject<Webcam | null> = useRef(null);

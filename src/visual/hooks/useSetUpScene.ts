@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { Asset } from './use-assets/types';
-import { useAssets } from './use-assets/useAssets';
-import { useThreadWithPostProcessor } from './use-thread';
-import { ThreeJsParams } from './use-three-js/types';
-import { useThreeJs } from './use-three-js/useThreeJs';
+import { useEffect } from "react";
+import { Asset } from "./use-assets/types";
+import { useAssets } from "./use-assets/useAssets";
+import { useThreadWithPostProcessor } from "./use-thread";
+import { ThreeJsParams } from "./use-three-js/types";
+import { useThreeJs } from "./use-three-js/useThreeJs";
 
 export const useSetUpScene = (
   threeJsParams: ThreeJsParams,
-  assets: Asset[] = [],
+  assets: Asset[] = []
 ) => {
   const {
     container,
@@ -22,7 +22,7 @@ export const useSetUpScene = (
   const { update, pause } = useThreadWithPostProcessor(
     postProcessor,
     currentFrameRef,
-    clock,
+    clock
   );
 
   useEffect(() => () => pause(), [pause]);

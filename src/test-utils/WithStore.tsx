@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { PropsWithChildren } from "react";
 import { configureStore } from "@reduxjs/toolkit";
 import { middleware } from "app/redux/middleware";
