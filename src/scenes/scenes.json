@@ -40,5 +40,11 @@
     "sceneId": "deepWaveScene",
     "componentId": "InteractiveWebGL",
     "cardImageName": "deepwaves.jpg"
+  },
+  {
+    "title": "Attraction Morphing",
+    "sceneId": "attractionMorphing",
+    "componentId": "AttractionMorphing",
+    "cardImageName": "AttractionMorphing.jpg"
   }
 ]

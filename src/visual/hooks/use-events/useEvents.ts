@@ -14,7 +14,7 @@ export const useEventsWithShader = (
     if (interactiveMesh) {
       interactiveMesh.material.addEvents(eventConfig);
     }
-  }, [interactiveMesh]);
+  }, [interactiveMesh, eventConfig]);
 };
 
 export const ev = (eventName, data?) => {
