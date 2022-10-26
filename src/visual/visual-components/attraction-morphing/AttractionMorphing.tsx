@@ -4,7 +4,7 @@ import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
+import { useInteractiveSceneOld } from "visual/hooks/use-interactive-scene/useInteractiveSceneOld";
 import { useAttractionMorphingData } from "./useAttractionMorphingData";
 import { RootContainer } from "../../components/root-container";
 
@@ -48,7 +48,7 @@ export const AttractionMorphing = ({ params }: any) => {
     InteractiveShaderTypes.SHADER
   );
 
-  const scene = useInteractiveScene([], sceneFunctions, {});
+  const scene = useInteractiveSceneOld([], sceneFunctions, {});
   const initializeMesh = useCallback(() => {
     if (interactiveMesh) {
       scene.add(interactiveMesh);

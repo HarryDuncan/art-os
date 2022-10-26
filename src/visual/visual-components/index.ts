@@ -7,3 +7,4 @@ export { ImageDistortion } from "./image-distortion";
 export { SurfaceScattering } from "./surface-scattering";
 export { ImageHover } from "./image-hover";
 export { AttractionMorphing } from "./attraction-morphing";
+export { InteractiveScene } from "./interactive-scene";

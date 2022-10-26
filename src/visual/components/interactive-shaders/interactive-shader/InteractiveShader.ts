@@ -1,4 +1,4 @@
-import { Clock, ShaderMaterial } from "three";
+import { AdditiveBlending, Clock, ShaderMaterial } from "three";
 import { AnimationProperties } from "visual/helpers/animation/animation.types";
 import { DEFAULT_SMOOTH_STEP_HELPER } from "visual/helpers/animation/smooth-step/smoothStep";
 import { EventConfig } from "visual/hooks/use-events/types";
@@ -27,7 +27,9 @@ export default class InteractiveShader extends ShaderMaterial {
       uniforms,
       vertexShader: shaders.vertexShader.vert,
       fragmentShader: shaders.fragmentShader.frag,
-      depthWrite: true,
+      depthTest: false,
+      depthWrite: false,
+      blending: AdditiveBlending,
       extensions: {
         derivatives: true,
       },

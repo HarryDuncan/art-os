@@ -21,7 +21,7 @@ export const useFormatSurfaceScattering = (
   const { lines, linesMaterials } = useLines();
   return useMemo(() => {
     let group: null | Group = null;
-    const materialParams: any = {
+    const sceneParams: any = {
       deltaOffset: 0,
       prevX: 0,
       prevY: 0,
@@ -38,7 +38,7 @@ export const useFormatSurfaceScattering = (
     if (geom) {
       geom.geometry.scale(0.25, 0.25, 0.25);
       const sampler = new MeshSurfaceSampler(geom).build();
-      materialParams.sampler = sampler;
+      sceneParams.sampler = sampler;
       group = new Group();
     }
 
@@ -56,7 +56,7 @@ export const useFormatSurfaceScattering = (
       group.add(points);
     }
 
-    return { group, materialParams };
+    return { group, sceneParams };
   }, [
     areAssetsInitialized,
     initializedAssets,

@@ -3,16 +3,12 @@ import {
   Float32BufferAttribute,
   MathUtils,
   Vector3,
-  Vector4,
 } from "three";
-import { InteractiveScenes } from "visual/components/interactive-shaders/types";
 import { AssetType } from "visual/hooks/use-assets/types";
 import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
 import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
-import { imageDistortionFrag } from "visual/shaders/fragment-shaders";
-import { imageDistortionVertex } from "visual/shaders/vertex-shaders/imageDistortionVertex";
 import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
-import { InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
+import { InteractiveThreeScene as InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
 
 const ROTATE_STEP = 0.01;
 
@@ -30,26 +26,11 @@ export const surfaceScattering = {
       assetType: AssetType.Geometry,
     },
   ],
-  materialParams: {
-    sceneType: InteractiveScenes.IMAGE_DISTORTION,
-    uniforms: {
-      uTime: { value: 0 },
-      uResolution: { value: new Vector4() },
-      uTexture: { value: null },
-      uGridSize: { value: 100 },
-      uDataTexture: {
-        value: null,
-      },
-    },
-    shaders: {
-      fragmentShader: imageDistortionFrag,
-      vertexShader: imageDistortionVertex,
-    },
-  },
+
   materialFunctions: {
     onTimeUpdate: (scene: InteractiveScene) => {
       const delta = scene.clock.getDelta();
-      scene.materialParams.deltaOffset += delta;
+      scene.sceneParams.deltaOffset += delta;
 
       const {
         lines,
@@ -57,9 +38,9 @@ export const surfaceScattering = {
         sparkles,
         sampler,
         sparklesGeometry,
-      } = scene.materialParams;
+      } = scene.sceneParams;
       if (deltaOffset > 0.05) {
-        scene.materialParams.deltaOffset = 0;
+        scene.sceneParams.deltaOffset = 0;
         lines.forEach((l) => {
           if (sparkles.length < 350000) {
             nextDot(l, sampler, sparkles);
@@ -78,7 +59,7 @@ export const surfaceScattering = {
       }
 
       const {
-        materialParams: {
+        sceneParams: {
           rotateGeometryTo,
           currentGeometryRotation,
           rotationDirection,
@@ -88,16 +69,16 @@ export const surfaceScattering = {
         const step = ROTATE_STEP * rotationDirection.y;
         const group = scene.children[0];
         group.rotation.y += step;
-        scene.materialParams.currentGeometryRotation.y = Number(
-          (scene.materialParams.currentGeometryRotation.y + step).toFixed(2)
+        scene.sceneParams.currentGeometryRotation.y = Number(
+          (scene.sceneParams.currentGeometryRotation.y + step).toFixed(2)
         );
       }
       if (rotateGeometryTo.x !== Math.abs(currentGeometryRotation.x)) {
         const step = ROTATE_STEP * rotationDirection.x;
         const group = scene.children[0];
         group.rotation.x += step;
-        scene.materialParams.currentGeometryRotation.x = Number(
-          (scene.materialParams.currentGeometryRotation.x + step).toFixed(2)
+        scene.sceneParams.currentGeometryRotation.x = Number(
+          (scene.sceneParams.currentGeometryRotation.x + step).toFixed(2)
         );
       }
     },
@@ -107,22 +88,22 @@ export const surfaceScattering = {
       eventKey: EventKey.Scale,
       interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
       eventFunction: (scene: InteractiveScene, details) => {
-        if (Math.abs(details.xAsScale - scene.materialParams.prevX) > 0.05) {
+        if (Math.abs(details.xAsScale - scene.sceneParams.prevX) > 0.05) {
           const yAxisRotation = getRotation(details.xAsScale);
 
-          scene.materialParams.rotateGeometryTo.y = yAxisRotation;
-          scene.materialParams.rotationDirection.y =
-            details.xAsScale < scene.materialParams.prevX ? -1 : 1;
-          scene.materialParams.prevX = details.xAsScale;
+          scene.sceneParams.rotateGeometryTo.y = yAxisRotation;
+          scene.sceneParams.rotationDirection.y =
+            details.xAsScale < scene.sceneParams.prevX ? -1 : 1;
+          scene.sceneParams.prevX = details.xAsScale;
         }
 
-        if (Math.abs(details.yAsScale - scene.materialParams.prevY) > 0.4) {
+        if (Math.abs(details.yAsScale - scene.sceneParams.prevY) > 0.4) {
           const xAxisRotaton = getRotation(details.yAsScale);
 
-          scene.materialParams.rotateGeometryTo.x = xAxisRotaton;
-          scene.materialParams.rotationDirection.x =
-            details.yAsScale < scene.materialParams.prevY ? 1 : -1;
-          scene.materialParams.prevY = details.yAsScale;
+          scene.sceneParams.rotateGeometryTo.x = xAxisRotaton;
+          scene.sceneParams.rotationDirection.x =
+            details.yAsScale < scene.sceneParams.prevY ? 1 : -1;
+          scene.sceneParams.prevY = details.yAsScale;
         }
       },
     },

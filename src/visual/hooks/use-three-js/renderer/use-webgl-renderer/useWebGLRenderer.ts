@@ -12,11 +12,13 @@ export const useWebGLRenderer = (
       powerPreference: "high-performance",
       antialias: true,
       alpha: true,
+      preserveDrawingBuffer: true,
     });
     renderer.setPixelRatio(window.devicePixelRatio);
     const { width, height } = getRendererSize(rendererParams);
     renderer.setSize(width, height);
-    renderer.setClearColor(0x000000, 0);
+    renderer.autoClear = false;
+    renderer.setClearColor(0x112233, 1);
     renderer.physicallyCorrectLights = true;
     renderer.outputEncoding = rendererParams.outputEncoding ?? LinearEncoding;
     return renderer;

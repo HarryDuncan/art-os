@@ -7,7 +7,7 @@ import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
 import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
 import { attractionMorphingFrag } from "visual/shaders/fragment-shaders";
 import { attractionMorphingVertex } from "visual/shaders/vertex-shaders";
-import { InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
+import { InteractiveThreeScene as InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
 
 export const attractionMorphing = () => ({
   threeJsParams: {

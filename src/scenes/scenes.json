@@ -46,5 +46,11 @@
     "sceneId": "attractionMorphing",
     "componentId": "AttractionMorphing",
     "cardImageName": "AttractionMorphing.jpg"
+  },
+  {
+    "title": "Particle Rain",
+    "sceneId": "particleRain",
+    "componentId": "InteractiveScene",
+    "cardImageName": "AttractionMorphing.jpg"
   }
 ]

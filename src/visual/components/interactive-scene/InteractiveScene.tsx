@@ -1,32 +1,36 @@
 import { Clock, Scene } from "three";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
 import { defaultInteractiveSceneFunctions } from "./interactiveScene.constants";
-import { InteractiveSceneFunctions } from "./types";
+import { InteractiveSceneFunctions, SceneObject } from "./types";
 
-export class InteractiveScene extends Scene {
+export class InteractiveThreeScene extends Scene {
   clock: Clock;
 
   isRunningThread: boolean;
 
   interactionEvents: InteractionEventObject[];
 
-  materialFunctions: InteractiveSceneFunctions;
+  sceneFunctions: InteractiveSceneFunctions;
 
-  materialParams: any;
+  sceneParams: any;
+
+  sceneObjects: SceneObject[];
 
   animationProperties: any;
 
   constructor(
     interactions: InteractionEventObject[],
-    materialFunctions: InteractiveSceneFunctions = defaultInteractiveSceneFunctions,
-    materialParams: any = {}
+    sceneFunctions: InteractiveSceneFunctions = defaultInteractiveSceneFunctions,
+    sceneParams: any = {},
+    sceneObjects: SceneObject[] = []
   ) {
     super();
     this.isRunningThread = true;
-    this.materialFunctions = materialFunctions;
+    this.sceneFunctions = sceneFunctions;
     this.clock = new Clock();
     this.interactionEvents = interactions;
-    this.materialParams = materialParams;
+    this.sceneParams = sceneParams;
+    this.sceneObjects = sceneObjects;
     this.animationProperties = {};
     this.bindMaterialFunctions();
     interactions.forEach(({ eventKey }) => {
@@ -38,7 +42,7 @@ export class InteractiveScene extends Scene {
 
   bindMaterialFunctions() {
     document.addEventListener("scene:update", () =>
-      this.materialFunctions.onTimeUpdate(this)
+      this.sceneFunctions.onTimeUpdate(this)
     );
   }
 

@@ -27,9 +27,11 @@ export interface VanishingObjectShaders {
   fragmentShader: FragmentShader;
   vertexShader: VertexShader;
 }
+
 export type InteractiveUniform =
   | VanishingObjectUniforms
-  | InteractiveParticlesUniforms;
+  | InteractiveParticlesUniforms
+  | Record<string, unknown>;
 
 export enum InteractiveScenes {
   VANISHING_OBJECT = "vanishingObject",

@@ -1,17 +1,23 @@
 import { useMemo } from "react";
-import { InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
+import { InteractiveThreeScene as InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
+import { SceneObject } from "visual/components/interactive-scene/types";
+import { InteractionEventObject } from "../use-interactions/types";
 
 export const useInteractiveScene = (
-  interactionEvents,
+  interactionEvents: InteractionEventObject[],
   sceneFunctions,
-  sceneParams
+  sceneParams = {},
+  sceneObjects: SceneObject[] = [],
+  isSceneDataInitialized = false
 ) =>
   useMemo(() => {
-    const scene = new InteractiveScene(
-      interactionEvents,
-      sceneFunctions,
-      sceneParams
-    );
-
+    const scene = isSceneDataInitialized
+      ? new InteractiveScene(
+          interactionEvents,
+          sceneFunctions,
+          sceneParams,
+          sceneObjects
+        )
+      : null;
     return scene;
-  }, [interactionEvents, sceneFunctions, sceneParams]);
+  }, [isSceneDataInitialized]);
