@@ -5,8 +5,8 @@ import {
   Vector3,
 } from "three";
 import { AssetType } from "visual/hooks/use-assets/types";
-import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
-import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
+import { INTERACTION_EVENTS } from "visual/helpers/interactions/const";
+import { EventKey, InteractionKey } from "visual/helpers/interactions/types";
 import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
 import { InteractiveThreeScene as InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
 

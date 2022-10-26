@@ -1,4 +1,4 @@
-import { InteractionEventObject, ModelType } from "../types";
+import { InteractionEventObject, ModelType } from "./types";
 
 export const getModelType = (
   interactionEventObj: InteractionEventObject[]

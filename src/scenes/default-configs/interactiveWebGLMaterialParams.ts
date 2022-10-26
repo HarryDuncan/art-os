@@ -1,6 +1,6 @@
 import { UniformTypes } from "visual/shaders/types";
 
-export const materialParams = {
+export const deepWavesMaterialParams = {
   shaderName: "deepWavesFrag",
   uniformDefinition: [
     { uniformName: "uPosition", uniformType: UniformTypes.Vec2 },

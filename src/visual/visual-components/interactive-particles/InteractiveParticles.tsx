@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect } from "react";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
+import { RootContainer } from "../../components/root-container";
 import { StaticBackgroundContainer } from "visual/components/static-background/StaticBackground.styles";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import { InteractiveParticlesParams } from "./types";
-import { RootContainer } from "../../components/root-container";
+
+import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 import { useFormatParticleParams } from "./use-format-particle-params/useFormatParticleParams";
 
 interface InteractiveObjectProps {
@@ -37,7 +38,6 @@ export function InteractiveParticles({ params }: InteractiveObjectProps) {
     materialParams
   );
 
-  const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveParticleMesh = useInteractiveMaterial(
     interactionEvents,
     materialFunctions,
@@ -65,7 +65,7 @@ export function InteractiveParticles({ params }: InteractiveObjectProps) {
 
   return (
     <>
-      {interactiveNode}
+      <InteractiveNode interactions={interactionEvents} />
       <RootContainer containerRef={container} />
       <StaticBackgroundContainer />
     </>

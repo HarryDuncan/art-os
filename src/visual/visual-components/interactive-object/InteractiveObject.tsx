@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
-import { useInteractions } from 'visual/hooks/use-interactions/useInteractions';
-import { useInteractiveMaterial } from 'visual/hooks/use-interactive-material/useInteractiveMaterial';
-import PostProcessor from 'visual/components/post-processor/PostProcessor';
-import { useSetUpScene } from 'visual/hooks/useSetUpScene';
-import { PostProcessorPasses } from 'visual/components/post-processor/types';
-import { InteractiveObjectParams } from './types';
-import { useFormatMaterialParams } from './useFormatMaterialParams';
-import { RootContainer } from '../../components/root-container';
+import React, { useCallback, useEffect } from "react";
+import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
+import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
+import PostProcessor from "visual/components/post-processor/PostProcessor";
+import { useSetUpScene } from "visual/hooks/useSetUpScene";
+import { PostProcessorPasses } from "visual/components/post-processor/types";
+import { InteractiveObjectParams } from "./types";
+import { useFormatMaterialParams } from "./useFormatMaterialParams";
+import { RootContainer } from "../../components/root-container";
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;
@@ -35,16 +35,15 @@ export function InteractiveObject({ params }: InteractiveObjectProps) {
   const { geometry, uniforms, shaders } = useFormatMaterialParams(
     initializedAssets,
     areAssetsInitialized,
-    materialParams,
+    materialParams
   );
 
-  const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
     interactionEvents,
     materialFunctions,
     geometry,
     uniforms,
-    shaders,
+    shaders
   );
 
   const initializeMesh = useCallback(() => {
@@ -66,7 +65,7 @@ export function InteractiveObject({ params }: InteractiveObjectProps) {
 
   return (
     <>
-      {interactiveNode}
+      <InteractiveNode interactions={interactionEvents} />
       <RootContainer containerRef={container} />
     </>
   );

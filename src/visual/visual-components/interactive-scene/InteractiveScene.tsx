@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { RootContainer } from "../../components/root-container";
 import { Asset } from "visual/hooks/use-assets/types";
+import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { useMeshes } from "visual/hooks/useMeshes";
@@ -38,8 +38,6 @@ export const InteractiveScene = ({ params }: any) => {
 
   const initializedMeshes = useMeshes(sceneData?.geometries);
 
-  const { interactiveNode } = useInteractions(interactionEvents);
-
   const scene = useInteractiveScene(
     interactionEvents,
     sceneFunctions,
@@ -67,7 +65,7 @@ export const InteractiveScene = ({ params }: any) => {
 
   return (
     <>
-      {interactiveNode}
+      <InteractiveNode interactions={interactionEvents} />
       <RootContainer containerRef={container} config={visualComponentConfig} />
     </>
   );

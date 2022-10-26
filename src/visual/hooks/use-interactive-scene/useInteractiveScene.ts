@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { InteractiveThreeScene as InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
 import { SceneObject } from "visual/components/interactive-scene/types";
-import { InteractionEventObject } from "../use-interactions/types";
+import { InteractionEventObject } from "../../helpers/interactions/types";
 
 export const useInteractiveScene = (
   interactionEvents: InteractionEventObject[],

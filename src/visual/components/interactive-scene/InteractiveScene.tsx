@@ -1,5 +1,5 @@
 import { Clock, Scene } from "three";
-import { InteractionEventObject } from "visual/hooks/use-interactions/types";
+import { InteractionEventObject } from "visual/helpers/interactions/types";
 import { defaultInteractiveSceneFunctions } from "./interactiveScene.constants";
 import { InteractiveSceneFunctions, SceneObject } from "./types";
 

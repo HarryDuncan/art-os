@@ -3,7 +3,7 @@ import { ev } from "visual/hooks/use-events/useEvents";
 import {
   EventKey,
   InteractionEventObject,
-} from "visual/hooks/use-interactions/types";
+} from "visual/helpers/interactions/types";
 import { getXDelta, getYDelta, trackSteps } from "./functions";
 import { Step } from "./types";
 

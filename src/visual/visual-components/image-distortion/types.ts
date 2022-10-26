@@ -5,7 +5,7 @@ import {
   InteractiveShaders,
 } from "visual/components/interactive-shaders/types";
 import { Asset } from "visual/hooks/use-assets/types";
-import { InteractionEventObject } from "visual/hooks/use-interactions/types";
+import { InteractionEventObject } from "visual/helpers/interactions/types";
 import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 
 export interface ImageDistortionParams {

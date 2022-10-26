@@ -24,8 +24,13 @@ export type MaterialParameters =
   | StandardMaterialTypes
   | InteractiveMaterialParameters;
 
+export enum MeshTypes {
+  MESH = "mesh",
+  POINTS = "points",
+}
 export type FormattedGeometry = {
   geometryType: FormattedGeometryType;
   geometry: Geometry;
   materialParameters: MaterialParameters;
+  meshType?: MeshTypes;
 };

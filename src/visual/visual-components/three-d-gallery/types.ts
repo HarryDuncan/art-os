@@ -1,5 +1,5 @@
-import { InteractionEventObject } from 'visual/hooks/use-interactions/types';
-import { ThreeJsParams } from 'visual/hooks/use-three-js/types';
+import { InteractionEventObject } from "visual/helpers/interactions/types";
+import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 
 export interface CardItem {
   id: number;
@@ -12,7 +12,7 @@ export interface ThreeDGalleryParams {
 }
 
 export enum GalleryShapeTypes {
-  SPHERE = 'sphere',
-  GRID = 'grid',
-  HELIX = 'helix',
+  SPHERE = "sphere",
+  GRID = "grid",
+  HELIX = "helix",
 }

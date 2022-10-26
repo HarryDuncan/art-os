@@ -52,5 +52,11 @@
     "sceneId": "particleRain",
     "componentId": "InteractiveScene",
     "cardImageName": "AttractionMorphing.jpg"
+  },
+  {
+    "title": "Layers",
+    "sceneId": "layersDemo",
+    "componentId": "InteractiveWebGL",
+    "cardImageName": "AttractionMorphing.jpg"
   }
 ]

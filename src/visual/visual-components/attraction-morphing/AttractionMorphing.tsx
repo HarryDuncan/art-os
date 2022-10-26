@@ -1,12 +1,12 @@
 import React, { useEffect, useCallback } from "react";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { useInteractiveSceneOld } from "visual/hooks/use-interactive-scene/useInteractiveSceneOld";
 import { useAttractionMorphingData } from "./useAttractionMorphingData";
 import { RootContainer } from "../../components/root-container";
+import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 
 // interface ImageDistortionProps {
 //   params: ImageDistortionParams;
@@ -38,7 +38,6 @@ export const AttractionMorphing = ({ params }: any) => {
     materialParams
   );
 
-  const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
     interactionEvents,
     materialFunctions,
@@ -68,7 +67,7 @@ export const AttractionMorphing = ({ params }: any) => {
 
   return (
     <>
-      {interactiveNode}
+      <InteractiveNode interactions={interactionEvents} />
       <RootContainer containerRef={container} config={visualComponentConfig} />
     </>
   );

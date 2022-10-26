@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
+import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import { useEventsWithShader } from "visual/hooks/use-events/useEvents";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
@@ -40,7 +40,6 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     materialParams
   );
 
-  const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
     interactionEvents,
     materialFunctions,
@@ -70,7 +69,7 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
 
   return (
     <>
-      {interactiveNode}
+      <InteractiveNode interactions={interactionEvents} />
       <RootContainer containerRef={container} />
     </>
   );

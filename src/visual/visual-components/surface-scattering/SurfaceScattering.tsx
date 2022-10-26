@@ -2,11 +2,11 @@ import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import React, { useCallback, useEffect } from "react";
 import { Scene } from "three";
 import { RootContainer } from "visual/components/root-container";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { useInteractiveSceneOld } from "visual/hooks/use-interactive-scene/useInteractiveSceneOld";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { StaticBackground } from "visual/components/static-background/StaticBackground";
 import { PostProcessorPasses } from "visual/components/post-processor/types";
+import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 import { useFormatSurfaceScattering } from "./useFormatSurfaceScattering";
 
 export function SurfaceScattering({ params }: any) {
@@ -30,7 +30,6 @@ export function SurfaceScattering({ params }: any) {
     initializedAssets,
     areAssetsInitialized
   );
-  const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveScene = useInteractiveSceneOld(
     interactionEvents,
     materialFunctions,
@@ -56,7 +55,7 @@ export function SurfaceScattering({ params }: any) {
 
   return (
     <>
-      {interactiveNode}
+      <InteractiveNode interactions={interactionEvents} />
       <RootContainer containerRef={container} />
       <StaticBackground />
     </>

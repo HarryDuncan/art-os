@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { InteractionEventObject } from "../use-interactions/types";
+import { InteractionEventObject } from "../../helpers/interactions/types";
 import {
   InteractiveMaterialFunctions,
   InteractiveShaderTypes,

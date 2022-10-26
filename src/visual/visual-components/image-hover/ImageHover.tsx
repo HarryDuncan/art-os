@@ -1,12 +1,12 @@
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import React, { useCallback, useEffect } from "react";
 import { RootContainer } from "visual/components/root-container";
-import { useInteractions } from "visual/hooks/use-interactions/useInteractions";
 import { StaticBackground } from "visual/components/static-background/StaticBackground";
 import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { useFormatImageHover } from "./useFormatImageHover";
+import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 
 export function ImageHover({ params }: any) {
   const {
@@ -33,7 +33,6 @@ export function ImageHover({ params }: any) {
     materialParams
   );
 
-  const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
     interactionEvents,
     materialFunctions,
@@ -61,7 +60,7 @@ export function ImageHover({ params }: any) {
 
   return (
     <>
-      {interactiveNode}
+      <InteractiveNode interactions={interactionEvents} />
       <RootContainer containerRef={container} />
       <StaticBackground />
     </>

@@ -2,7 +2,7 @@ import { AdditiveBlending, Clock, ShaderMaterial } from "three";
 import { AnimationProperties } from "visual/helpers/animation/animation.types";
 import { DEFAULT_SMOOTH_STEP_HELPER } from "visual/helpers/animation/smooth-step/smoothStep";
 import { EventConfig } from "visual/hooks/use-events/types";
-import { InteractionEventObject } from "visual/hooks/use-interactions/types";
+import { InteractionEventObject } from "visual/helpers/interactions/types";
 import { defaultInteractiveMaterialFunctions } from "../interactiveMaterialConstants";
 import { InteractiveMaterialFunctions, InteractiveShaders } from "../types";
 

@@ -43,6 +43,7 @@ export enum InteractiveScenes {
 export enum InteractiveShaderTypes {
   RAW_SHADER = "rawShader",
   SHADER = "shader",
+  NON_INTERACTIVE = "nonInteractive",
 }
 export type InteractiveShaders = VanishingObjectShaders;
 

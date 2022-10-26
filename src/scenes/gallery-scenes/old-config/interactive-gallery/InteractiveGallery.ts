@@ -1,6 +1,6 @@
 import { AssetType } from "visual/hooks/use-assets/types";
-import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
-import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
+import { INTERACTION_EVENTS } from "visual/helpers/interactions/const";
+import { EventKey, InteractionKey } from "visual/helpers/interactions/types";
 import { InteractiveScenes } from "visual/components/interactive-shaders/types";
 import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
 import { RendererTypes } from "visual/hooks/use-three-js/renderer/types";

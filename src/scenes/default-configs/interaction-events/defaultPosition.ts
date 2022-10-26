@@ -1,6 +1,6 @@
 import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
-import { INTERACTION_EVENTS } from "visual/hooks/use-interactions/const";
-import { EventKey, InteractionKey } from "visual/hooks/use-interactions/types";
+import { INTERACTION_EVENTS } from "visual/helpers/interactions/const";
+import { EventKey, InteractionKey } from "visual/helpers/interactions/types";
 
 export const defaultPosition = [
   {

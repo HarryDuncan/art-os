@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
-import { useInteractions } from 'visual/hooks/use-interactions/useInteractions';
-import { useInteractiveMaterial } from 'visual/hooks/use-interactive-material/useInteractiveMaterial';
-import PostProcessor from 'visual/components/post-processor/PostProcessor';
-import { useSetUpScene } from 'visual/hooks/useSetUpScene';
-import { PostProcessorPasses } from 'visual/components/post-processor/types';
-import { useFormatParams } from './useFormatParams';
-import { RootContainer } from '../../components/root-container';
-import { TextTrailParams } from './types';
+import React, { useCallback, useEffect } from "react";
+import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
+import PostProcessor from "visual/components/post-processor/PostProcessor";
+import { useSetUpScene } from "visual/hooks/useSetUpScene";
+import { PostProcessorPasses } from "visual/components/post-processor/types";
+import { useFormatParams } from "./useFormatParams";
+import { RootContainer } from "../../components/root-container";
+import { TextTrailParams } from "./types";
+import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 
 interface TextTrailProps {
   params: TextTrailParams;
@@ -35,16 +35,15 @@ export function TextTrail({ params }: TextTrailProps) {
   const { geometry, uniforms, shaders } = useFormatParams(
     initializedAssets,
     areAssetsInitialized,
-    materialParams,
+    materialParams
   );
 
-  const { interactiveNode } = useInteractions(interactionEvents);
   const interactiveMesh = useInteractiveMaterial(
     interactionEvents,
     materialFunctions,
     geometry,
     uniforms,
-    shaders,
+    shaders
   );
 
   const initializeMesh = useCallback(() => {
@@ -66,7 +65,7 @@ export function TextTrail({ params }: TextTrailProps) {
 
   return (
     <>
-      {interactiveNode}
+      <InteractiveNode interactions={interactionEvents} />
       <RootContainer containerRef={container} />
     </>
   );
