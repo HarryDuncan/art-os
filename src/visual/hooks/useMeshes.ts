@@ -26,7 +26,11 @@ export const useMeshes = (
   useMemo(() => {
     return geometries.flatMap(
       ({ geometry, geometryType, materialParameters, meshType }) => {
-        const material = getMaterial(materialParameters, geometryType);
+        const material = getMaterial(
+          materialParameters,
+          geometryType,
+          interactions
+        );
         return getMesh(geometry, material, meshType);
       }
     );
@@ -42,11 +46,12 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshTypes) => {
   }
 };
 
-const getMaterial = (materialParameters, geometryType) => {
+const getMaterial = (materialParameters, geometryType, interactions) => {
   switch (geometryType) {
     case FormattedGeometryType.interactive: {
       return getInteractiveMaterial(
-        materialParameters as InteractiveMaterialParameters
+        materialParameters as InteractiveMaterialParameters,
+        interactions
       );
     }
     case FormattedGeometryType.standard:
@@ -55,7 +60,8 @@ const getMaterial = (materialParameters, geometryType) => {
   }
 };
 const getInteractiveMaterial = (
-  materialParams: InteractiveMaterialParameters
+  materialParams: InteractiveMaterialParameters,
+  interactions: InteractionEventObject[]
 ) => {
   const {
     shaderType,
@@ -64,9 +70,9 @@ const getInteractiveMaterial = (
   } = materialParams as InteractiveMaterialParameters;
   switch (shaderType) {
     case InteractiveShaderTypes.RAW_SHADER:
-      return new InteractiveRawShader(uniforms, shaders, []);
+      return new InteractiveRawShader(uniforms, shaders, interactions);
     case InteractiveShaderTypes.SHADER:
-      return new InteractiveShader(uniforms, shaders, []);
+      return new InteractiveShader(uniforms, shaders, interactions);
     case InteractiveShaderTypes.NON_INTERACTIVE:
       return new ShaderMaterial({
         side: DoubleSide,

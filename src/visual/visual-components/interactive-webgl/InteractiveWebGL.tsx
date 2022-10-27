@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect } from "react";
-import { useInteractiveMaterial } from "visual/hooks/use-interactive-material/useInteractiveMaterial";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
-import { useEventsWithShader } from "visual/hooks/use-events/useEvents";
-import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import { InteractiveObjectParams } from "./types";
-import { useFormatWebGL } from "./useFormatWebGL";
 import { RootContainer } from "../../components/root-container";
+import { Layers } from "visual/components/layers/Layers";
+import { useSceneData } from "./useSceneData";
+import { useMeshes } from "visual/hooks/useMeshes";
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;
@@ -34,26 +33,17 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     container,
   } = useSetUpScene(threeJsParams, assets);
 
-  const { uniforms, shaders, geometry } = useFormatWebGL(
+  const sceneData = useSceneData(
     initializedAssets,
     areAssetsInitialized,
     materialParams
   );
 
-  const interactiveMesh = useInteractiveMaterial(
-    interactionEvents,
-    materialFunctions,
-    geometry,
-    uniforms,
-    shaders,
-    InteractiveShaderTypes.SHADER
-  );
-
-  useEventsWithShader(interactiveMesh, events);
+  const meshes = useMeshes(sceneData?.geometries, interactionEvents);
 
   const initializeMesh = useCallback(() => {
-    if (interactiveMesh) {
-      scene.add(interactiveMesh);
+    if (meshes) {
+      meshes.forEach((mesh) => scene.add(mesh));
       postProcessor.current = new PostProcessor({
         renderer,
         scene,
@@ -61,7 +51,7 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
       });
       update();
     }
-  }, [postProcessor, renderer, scene, camera, interactiveMesh, update]);
+  }, [postProcessor, renderer, scene, camera, meshes, update]);
 
   useEffect(() => {
     initializeMesh();
@@ -69,6 +59,7 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
 
   return (
     <>
+      <Layers />
       <InteractiveNode interactions={interactionEvents} />
       <RootContainer containerRef={container} />
     </>

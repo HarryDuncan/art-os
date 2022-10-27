@@ -14,6 +14,6 @@ export type SceneObject = {
 
 export type SceneData = {
   isSceneDataInitialized: boolean;
-  geometries: FormattedGeometry[];
-  sceneObjects: SceneObject[];
+  geometries?: FormattedGeometry[];
+  sceneObjects?: SceneObject[];
 };
