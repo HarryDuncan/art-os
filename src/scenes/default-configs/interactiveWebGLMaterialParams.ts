@@ -10,6 +10,6 @@ export const deepWavesMaterialParams = {
 export const getShaderParams = (shaderName) => ({
   shaderName,
   uniformDefinition: [
-    { uniformName: "uPosition", uniformType: UniformTypes.Vec2 },
+    { uniformName: "uPosition", uniformType: UniformTypes.Vec3 },
   ],
 });

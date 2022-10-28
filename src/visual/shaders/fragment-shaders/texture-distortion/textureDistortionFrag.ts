@@ -1,4 +1,4 @@
-export const imageDistortionFrag = {
+export const textureDistortionFrag = {
   frag: `
 
     uniform float uTime;

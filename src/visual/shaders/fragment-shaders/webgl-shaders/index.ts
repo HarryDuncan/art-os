@@ -9,3 +9,5 @@ export { zoomTest } from "./zoomTest";
 export { fractal } from "./fractal";
 export { lsd } from "./lsd";
 export { brownPlasma } from "./brownPlasma";
+export { clouds } from "./clouds";
+export { glossyBlobs } from "./glossyBlobs";

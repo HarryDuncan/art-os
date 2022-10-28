@@ -26,10 +26,7 @@ export const attractionMorphing = () => ({
           details.xAsScale * 2 - 1,
           details.yAsScale * 2 - 1
         );
-
-        const update = { uPosition: point };
-        console.log(material);
-        material.updateUniforms(update);
+        material.uniforms.uPosition.value = point;
       },
     },
   ],
@@ -45,44 +42,11 @@ export const attractionMorphing = () => ({
       assetType: AssetType.Texture,
     },
   ],
-  materialParams: {
-    uniforms: {
-      uTime: {
-        type: "f",
-        value: 0.0,
-      },
-      uFrame: {
-        type: "f",
-        value: 0.0,
-      },
-      uResolution: {
-        type: "v2",
-        value: new Vector2(
-          window.innerWidth,
-          window.innerHeight
-        ).multiplyScalar(window.devicePixelRatio),
-      },
-      matcap: { value: null },
-      uPosition: {
-        type: "v2",
-        value: new Vector2(50, 50),
-      },
-      uMouse: {
-        type: "v2",
-        value: new Vector2(
-          0.7 * window.innerWidth,
-          window.innerHeight
-        ).multiplyScalar(window.devicePixelRatio),
-      },
-    },
-  },
   materialFunctions: {
     onTimeUpdate: (material: InteractiveMaterial) => {
       const delta = material.clock.getDelta();
-      const currentTime = material.uniforms.uTime.value + delta;
-      const currentFrame = material.uniforms.uFrame.value + 1;
-      const update = { uTime: currentTime, uFrame: currentFrame };
-      material.updateUniforms(update);
+      material.uniforms.uTime.value += delta;
+      material.uniforms.uFrame.value += 1;
     },
   },
   formatSceneData: formatSceneData,

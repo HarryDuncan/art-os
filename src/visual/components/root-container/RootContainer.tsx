@@ -11,10 +11,7 @@ interface IRootContainerProps {
 }
 // Scene manager for displaying multiple scenes in a particular setting
 export function RootContainer({ containerRef, config }: IRootContainerProps) {
-  const {
-    visualComponentConfig,
-    visualData: { interactionEvents },
-  } = useAppSelector((state) => state.visual);
+  const { visualComponentConfig } = useAppSelector((state) => state.visual);
   const componentConfig = { ...visualComponentConfig, ...config };
   const { viewHeight, viewWidth, backgroundColor } = componentConfig;
   return (

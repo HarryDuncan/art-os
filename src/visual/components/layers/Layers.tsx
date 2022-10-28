@@ -17,8 +17,8 @@ export const Layers = () => {
                 key={layer.layerName}
               />
             );
-          default:
           case LayerTypes.OVERLAY:
+          default:
             return <LayerOverlay key={layer.layerName} />;
         }
       })}

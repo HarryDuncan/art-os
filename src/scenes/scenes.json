@@ -6,6 +6,18 @@
     "cardImageName": "deepwaves.jpg"
   },
   {
+    "title": "Gooey Shader",
+    "sceneId": "gooeyShader",
+    "componentId": "InteractiveScene",
+    "cardImageName": "ImageHover.jpg"
+  },
+  {
+    "title": "Texture Distortion",
+    "sceneId": "textureDistortion",
+    "componentId": "InteractiveScene",
+    "cardImageName": "textureDistortion.jpg"
+  },
+  {
     "title": "Attraction Morphing",
     "sceneId": "attractionMorphing",
     "componentId": "InteractiveScene",
