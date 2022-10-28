@@ -26,7 +26,7 @@ export const slice = createSlice({
       const layers = payload.layers ?? [];
       return {
         ...state,
-        ...payload,
+        visualData: payload,
         layers,
       };
     },

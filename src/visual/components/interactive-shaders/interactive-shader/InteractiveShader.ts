@@ -3,8 +3,9 @@ import { AnimationProperties } from "visual/helpers/animation/animation.types";
 import { DEFAULT_SMOOTH_STEP_HELPER } from "visual/helpers/animation/smooth-step/smoothStep";
 import { EventConfig } from "visual/hooks/use-events/types";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
-import { defaultInteractiveMaterialFunctions } from "../interactiveMaterialConstants";
 import { InteractiveMaterialFunctions, InteractiveShaders } from "../types";
+import { UPDATE_TIME_UNIFORM } from "scenes/default-configs/material-functions";
+import { updateUniforms } from "utils/updateUniforms";
 
 export default class InteractiveShader extends ShaderMaterial {
   clock: Clock;
@@ -21,15 +22,13 @@ export default class InteractiveShader extends ShaderMaterial {
     uniforms,
     shaders: InteractiveShaders,
     interactions: InteractionEventObject[],
-    materialFunctions: InteractiveMaterialFunctions = defaultInteractiveMaterialFunctions
+    materialFunctions: InteractiveMaterialFunctions = UPDATE_TIME_UNIFORM
   ) {
     super({
       uniforms,
       vertexShader: shaders.vertexShader.vert,
       fragmentShader: shaders.fragmentShader.frag,
-      depthTest: false,
-      depthWrite: false,
-      blending: AdditiveBlending,
+      depthWrite: true,
       extensions: {
         derivatives: true,
       },
@@ -39,7 +38,7 @@ export default class InteractiveShader extends ShaderMaterial {
       },
     });
     this.isRunningThread = true;
-    this.uniforms = uniforms;
+
     this.materialFunctions = materialFunctions;
     this.clock = new Clock();
     this.interactionEvents = interactions;
@@ -83,5 +82,10 @@ export default class InteractiveShader extends ShaderMaterial {
     setTimeout(() => {
       this.isRunningThread = true;
     }, 100);
+  }
+
+  updateUniforms(update) {
+    this.uniforms = updateUniforms(this.uniforms, update);
+    this.uniformsNeedUpdate = true;
   }
 }

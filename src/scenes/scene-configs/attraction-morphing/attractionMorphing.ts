@@ -3,10 +3,11 @@ import { InteractiveShader } from "visual/components/interactive-shaders/interac
 import { AssetType } from "visual/hooks/use-assets/types";
 import InteractiveMaterial from "visual/components/interactive-shaders/interactive-shader/InteractiveShader";
 import { INTERACTION_EVENTS } from "visual/helpers/interactions/const";
-import { EventKey, InteractionKey } from "visual/helpers/interactions/types";
-import { defaultCameraParams } from "visual/hooks/use-three-js/use-camera/useCamera";
-import { attractionMorphingFrag } from "visual/shaders/fragment-shaders";
-import { attractionMorphingVertex } from "visual/shaders/vertex-shaders";
+import {
+  Binding,
+  EventKey,
+  InteractionKey,
+} from "visual/helpers/interactions/types";
 import { InteractiveThreeScene as InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
 import { formatSceneData } from "./formatSceneData";
 
@@ -19,12 +20,16 @@ export const attractionMorphing = () => ({
     {
       eventKey: EventKey.Scale,
       interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
+      binding: Binding.InteractiveMesh,
       eventFunction: (material: InteractiveShader, details) => {
-        const point = {
-          x: details.xAsScale * 2 - 1,
-          y: details.yAsScale * 2 - 1,
-        };
-        material.uniforms.uPosition.value = point;
+        const point = new Vector2(
+          details.xAsScale * 2 - 1,
+          details.yAsScale * 2 - 1
+        );
+
+        const update = { uPosition: point };
+        console.log(material);
+        material.updateUniforms(update);
       },
     },
   ],
@@ -60,7 +65,7 @@ export const attractionMorphing = () => ({
       matcap: { value: null },
       uPosition: {
         type: "v2",
-        value: new Vector2(0, 0),
+        value: new Vector2(50, 50),
       },
       uMouse: {
         type: "v2",
@@ -70,16 +75,14 @@ export const attractionMorphing = () => ({
         ).multiplyScalar(window.devicePixelRatio),
       },
     },
-    shaders: {
-      vertexShader: attractionMorphingVertex,
-      fragmentShader: attractionMorphingFrag,
-    },
   },
   materialFunctions: {
     onTimeUpdate: (material: InteractiveMaterial) => {
       const delta = material.clock.getDelta();
-      material.uniforms.uTime.value += delta;
-      material.uniforms.uFrame.value += 1;
+      const currentTime = material.uniforms.uTime.value + delta;
+      const currentFrame = material.uniforms.uFrame.value + 1;
+      const update = { uTime: currentTime, uFrame: currentFrame };
+      material.updateUniforms(update);
     },
   },
   formatSceneData: formatSceneData,

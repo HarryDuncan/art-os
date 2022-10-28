@@ -53,5 +53,5 @@ const useInteractions = () => {
   return useMemo(() => {
     if (interactionEvents) return interactionEvents;
     return [];
-  }, []);
+  }, [interactionEvents]);
 };

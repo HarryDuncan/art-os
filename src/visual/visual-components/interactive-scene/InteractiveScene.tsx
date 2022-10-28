@@ -37,7 +37,7 @@ export const InteractiveScene = ({ params }: any) => {
     formatSceneData
   );
 
-  const initializedMeshes = useMeshes(sceneData?.geometries, []);
+  const initializedMeshes = useMeshes(sceneData?.geometries, interactionEvents);
 
   const scene = useInteractiveScene(
     interactionEvents,

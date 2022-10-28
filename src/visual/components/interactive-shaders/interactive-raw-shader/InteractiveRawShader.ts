@@ -3,8 +3,8 @@ import { AnimationProperties } from "visual/helpers/animation/animation.types";
 import { DEFAULT_SMOOTH_STEP_HELPER } from "visual/helpers/animation/smooth-step/smoothStep";
 import { EventConfig } from "visual/hooks/use-events/types";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
-import { defaultInteractiveMaterialFunctions } from "../interactiveMaterialConstants";
 import { InteractiveMaterialFunctions, InteractiveShaders } from "../types";
+import { UPDATE_TIME_UNIFORM } from "scenes/default-configs/material-functions";
 
 export default class InteractiveRawShader extends RawShaderMaterial {
   clock: Clock;
@@ -21,7 +21,7 @@ export default class InteractiveRawShader extends RawShaderMaterial {
     uniforms,
     shaders: InteractiveShaders,
     interactions: InteractionEventObject[],
-    materialFunctions: InteractiveMaterialFunctions = defaultInteractiveMaterialFunctions
+    materialFunctions: InteractiveMaterialFunctions = UPDATE_TIME_UNIFORM
   ) {
     super({
       vertexShader: shaders.vertexShader.vert,

@@ -17,7 +17,8 @@ import {
   InteractiveMaterialParameters,
   MeshTypes,
 } from "visual/helpers/geometry/three-geometry/types";
-import { InteractionEventObject } from "../helpers/interactions/types";
+import { getBoundInteractions } from "visual/helpers/interactions/getBoundInteractions";
+import { Binding, InteractionEventObject } from "../helpers/interactions/types";
 
 export const useMeshes = (
   geometries: FormattedGeometry[] = [],
@@ -82,19 +83,23 @@ const getInteractiveMaterial = (
     shaders,
     uniforms,
   } = materialParams as InteractiveMaterialParameters;
+  const boundInteractions = getBoundInteractions(
+    interactions,
+    Binding.InteractiveMesh
+  );
   switch (shaderType) {
     case InteractiveShaderTypes.RAW_SHADER:
       return new InteractiveRawShader(
         uniforms,
         shaders,
-        interactions,
+        boundInteractions,
         materialFunctions
       );
     case InteractiveShaderTypes.SHADER:
       return new InteractiveShader(
         uniforms,
         shaders,
-        interactions,
+        boundInteractions,
         materialFunctions
       );
 

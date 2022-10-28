@@ -19,6 +19,7 @@ export const formatSceneData = (
   const formattedUniforms = {
     ...uniforms,
   };
+  console.log(materialParams);
   formattedUniforms.matcap = { value: matcapValue };
   const geometry = geom.clone();
   geometry.computeBoundingBox();

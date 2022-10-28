@@ -3,7 +3,14 @@ import { KEYPOINT_FEATURES } from "./const";
 export interface InteractionEventObject {
   interactionKey: InteractionKey;
   eventKey: EventKey;
+  binding: Binding;
+  meshIdBinding?: string;
   eventFunction?: (materialReference, eventDetails) => void;
+}
+
+export enum Binding {
+  InteractiveMesh = "interactiveMesh",
+  InteractiveScene = "interactiveScene",
 }
 
 export type InteractionKey = KeypointFeatureKey;
