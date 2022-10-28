@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import { getFileTypeFromFilename } from "utils/getFileType";
+import { loadImage } from "visual/helpers/assets/image/load-image/LoadImage";
+import { loadTexture } from "visual/helpers/assets/texture/load-texture/loadTexture";
 import { loadGeometry } from "visual/helpers/geometry/load-geometry/LoadGeometry";
-import { loadTexture } from "visual/helpers/texture/load-texture/loadTexture";
-import { loadImage } from "visual/helpers/image/load-image/LoadImage";
+
 import { Asset, AssetType } from "./types";
 
 export const useInitializeAssets = (assets: Asset[]) => {

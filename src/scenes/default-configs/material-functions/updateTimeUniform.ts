@@ -1,4 +1,4 @@
-import { InteractiveMaterialType } from "scenes/gallery-scenes/types";
+import { InteractiveMaterialType } from "scenes/types";
 
 export const UPDATE_TIME_UNIFORM = {
   onTimeUpdate: (material: InteractiveMaterialType) => {

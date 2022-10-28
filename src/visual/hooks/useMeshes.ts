@@ -1,8 +1,8 @@
+import { useAppSelector } from "app/redux/store";
 import { useMemo } from "react";
 import {
   AdditiveBlending,
   DoubleSide,
-  Material,
   Mesh,
   Points,
   ShaderMaterial,
@@ -22,19 +22,26 @@ import { InteractionEventObject } from "../helpers/interactions/types";
 export const useMeshes = (
   geometries: FormattedGeometry[] = [],
   interactions: InteractionEventObject[] = []
-) =>
-  useMemo(() => {
+) => {
+  const {
+    visualData: { materialFunctions },
+  } = useAppSelector((state) => state.visual);
+  return useMemo(() => {
     return geometries.flatMap(
       ({ geometry, geometryType, materialParameters, meshType }) => {
         const material = getMaterial(
           materialParameters,
           geometryType,
-          interactions
+          interactions,
+          materialFunctions
         );
-        return getMesh(geometry, material, meshType);
+        const mesh = getMesh(geometry, material, meshType);
+        // TODO - add events to mesh
+        return mesh;
       }
     );
   }, [geometries]);
+};
 
 const getMesh = (geometry: Geometry, material, meshType?: MeshTypes) => {
   switch (meshType) {
@@ -46,12 +53,18 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshTypes) => {
   }
 };
 
-const getMaterial = (materialParameters, geometryType, interactions) => {
+const getMaterial = (
+  materialParameters,
+  geometryType,
+  interactions,
+  materialFunctions
+) => {
   switch (geometryType) {
     case FormattedGeometryType.interactive: {
       return getInteractiveMaterial(
         materialParameters as InteractiveMaterialParameters,
-        interactions
+        interactions,
+        materialFunctions
       );
     }
     case FormattedGeometryType.standard:
@@ -61,7 +74,8 @@ const getMaterial = (materialParameters, geometryType, interactions) => {
 };
 const getInteractiveMaterial = (
   materialParams: InteractiveMaterialParameters,
-  interactions: InteractionEventObject[]
+  interactions: InteractionEventObject[],
+  materialFunctions
 ) => {
   const {
     shaderType,
@@ -70,10 +84,22 @@ const getInteractiveMaterial = (
   } = materialParams as InteractiveMaterialParameters;
   switch (shaderType) {
     case InteractiveShaderTypes.RAW_SHADER:
-      return new InteractiveRawShader(uniforms, shaders, interactions);
+      return new InteractiveRawShader(
+        uniforms,
+        shaders,
+        interactions,
+        materialFunctions
+      );
     case InteractiveShaderTypes.SHADER:
-      return new InteractiveShader(uniforms, shaders, interactions);
+      return new InteractiveShader(
+        uniforms,
+        shaders,
+        interactions,
+        materialFunctions
+      );
+
     case InteractiveShaderTypes.NON_INTERACTIVE:
+    default:
       return new ShaderMaterial({
         side: DoubleSide,
         // @ts-ignore

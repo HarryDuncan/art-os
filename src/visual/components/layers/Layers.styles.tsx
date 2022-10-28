@@ -7,6 +7,15 @@ export const LayersContainer = styled.div`
   position: absolute;
 `;
 
+export const LayerOverlay = styled.div`
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background-color: black;
+  opacity: 0.4;
+  z-index: 2;
+  top: 0;
+`;
 export const LayerImg = styled.img<{
   $height?: number;
   $width?: number;

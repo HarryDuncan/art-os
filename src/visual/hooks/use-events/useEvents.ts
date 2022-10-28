@@ -4,7 +4,7 @@ import { InteractiveRawShader } from "visual/components/interactive-shaders/inte
 import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
 import { EventConfig } from "./types";
 
-export const useEventsWithShader = (
+export const useEventsWithMesh = (
   interactiveMesh:
     | Mesh<BufferGeometry, InteractiveRawShader | InteractiveShader>
     | undefined,

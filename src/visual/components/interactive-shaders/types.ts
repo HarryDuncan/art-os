@@ -1,7 +1,7 @@
 import { Color, Texture, Vector2, Vector3 } from "three";
 import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
 import { FragmentShader, VertexShader } from "../../shaders/types";
-import TouchTexture from "../../visual-components/interactive-particles/TouchTexture";
+// import TouchTexture from "../../visual-components/interactive-particles/TouchTexture";
 import PostProcessor from "../post-processor/PostProcessor";
 import InteractiveShader from "./interactive-shader/InteractiveShader";
 import InteractiveRawShader from "./interactive-raw-shader/InteractiveRawShader";
@@ -66,7 +66,7 @@ export interface InteractiveParticlesUniforms {
   uTextureSize: { value: Vector2 };
   uTexture: { value: null | Texture };
   uTouch: { value: null | Texture };
-  uTouchRef: { value: null | TouchTexture };
+  //  uTouchRef: { value: null | TouchTexture };
 }
 
 export type InteractiveShaderMaterial =

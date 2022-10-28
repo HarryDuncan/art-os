@@ -1,4 +1,4 @@
-import Particle from "scenes/gallery-scenes/split-config/particle-rain/classes/Particle";
+import Particle from "scenes/scene-configs/particle-rain/classes/Particle";
 import { FormattedGeometry } from "visual/helpers/geometry/three-geometry/types";
 import { InteractiveThreeScene as InteractiveScene } from "./InteractiveScene";
 

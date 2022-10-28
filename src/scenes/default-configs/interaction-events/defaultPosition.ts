@@ -7,7 +7,8 @@ export const defaultPosition = [
     eventKey: EventKey.Position,
     interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
     eventFunction: (material: InteractiveShader, details) => {
-      // material.uniforms.uPosition.value = details;
+      console.log(details);
+      material.uniforms.uPosition.value = details;
     },
   },
 ];

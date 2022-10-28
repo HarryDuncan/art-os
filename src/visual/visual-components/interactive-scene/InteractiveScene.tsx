@@ -7,6 +7,7 @@ import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInter
 import { SceneData } from "visual/components/interactive-scene/types";
 import { useMeshes } from "visual/hooks/useMeshes";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
+import { EMPTY_SCENE_DATA } from "consts";
 
 export const InteractiveScene = ({ params }: any) => {
   const {
@@ -17,7 +18,7 @@ export const InteractiveScene = ({ params }: any) => {
     materialParams,
     sceneFunctions,
     visualComponentConfig,
-    formattingFunction,
+    formatSceneData,
   } = params;
   const {
     areAssetsInitialized,
@@ -29,14 +30,14 @@ export const InteractiveScene = ({ params }: any) => {
     container,
   } = useSetUpScene(threeJsParams, assets);
 
-  const { sceneData } = useSceneData(
+  const sceneData = useSceneData(
     initializedAssets,
     areAssetsInitialized,
     materialParams,
-    formattingFunction
+    formatSceneData
   );
 
-  const initializedMeshes = useMeshes(sceneData?.geometries);
+  const initializedMeshes = useMeshes(sceneData?.geometries, []);
 
   const scene = useInteractiveScene(
     interactionEvents,
@@ -64,10 +65,7 @@ export const InteractiveScene = ({ params }: any) => {
   }, [initializeMeshes]);
 
   return (
-    <>
-      <InteractiveNode interactions={interactionEvents} />
-      <RootContainer containerRef={container} config={visualComponentConfig} />
-    </>
+    <RootContainer containerRef={container} config={visualComponentConfig} />
   );
 };
 
@@ -75,16 +73,11 @@ const useSceneData = (
   initializedAssets: Asset[],
   areAssetsInitialized: boolean,
   materialParams,
-  formatAssets
-): { sceneData: SceneData | null; uniforms; shaders } => {
+  formatSceneData: (assets: Asset[], materialParams) => SceneData
+): SceneData => {
   return useMemo(() => {
-    if (!areAssetsInitialized || !materialParams)
-      return { sceneData: null, uniforms: null, shaders: null };
-
-    const { sceneData, uniforms, shaders } = formatAssets(
-      initializedAssets,
-      materialParams
-    );
-    return { sceneData, uniforms, shaders };
+    if (!areAssetsInitialized) return EMPTY_SCENE_DATA;
+    const sceneData = formatSceneData(initializedAssets, materialParams);
+    return sceneData;
   }, [areAssetsInitialized]);
 };

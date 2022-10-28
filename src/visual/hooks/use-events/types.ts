@@ -1,4 +1,4 @@
-import { InteractiveMaterialType } from "scenes/gallery-scenes/types";
+import { InteractiveMaterialType } from "scenes/types";
 import { EVENT_BIND_TYPES } from "./consts";
 
 export interface EventConfig {

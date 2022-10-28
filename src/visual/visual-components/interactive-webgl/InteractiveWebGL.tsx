@@ -1,10 +1,8 @@
 import React, { useCallback, useEffect } from "react";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import { InteractiveObjectParams } from "./types";
 import { RootContainer } from "../../components/root-container";
-import { Layers } from "visual/components/layers/Layers";
 import { useSceneData } from "./useSceneData";
 import { useMeshes } from "visual/hooks/useMeshes";
 
@@ -18,7 +16,6 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     interactionEvents,
     assets,
     materialParams,
-    materialFunctions,
     events,
   } = params;
 
@@ -42,6 +39,7 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
   const meshes = useMeshes(sceneData?.geometries, interactionEvents);
 
   const initializeMesh = useCallback(() => {
+    // is post processor hasn't been set - is null
     if (meshes) {
       meshes.forEach((mesh) => scene.add(mesh));
       postProcessor.current = new PostProcessor({
@@ -57,11 +55,5 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     initializeMesh();
   }, [initializeMesh]);
 
-  return (
-    <>
-      <Layers />
-      <InteractiveNode interactions={interactionEvents} />
-      <RootContainer containerRef={container} />
-    </>
-  );
+  return <RootContainer containerRef={container} />;
 }

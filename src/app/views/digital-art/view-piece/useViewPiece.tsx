@@ -1,29 +1,32 @@
 import React, { useMemo } from "react";
 import * as VisualComponents from "visual/visual-components";
-import { useGalleryScenes } from "scenes/gallery-scenes/useGalleryScenes";
+import { useGalleryScenes } from "scenes/useGalleryScenes";
 import { DigitalPiece } from "../context/Context";
+import { useAppDispatch } from "app/redux/store";
+import { setVisualData } from "app/redux/visual/actions";
 
 export const useViewPiece = (
   digitalPieces: DigitalPiece[],
   index: number | null
 ) => {
-  if (index === null) return { component: null };
-  const { sceneId, title, componentId } = digitalPieces[index];
   const getGalleryScene = useGalleryScenes();
-  const currentSceneParams = useMemo(() => getGalleryScene(sceneId), [
-    sceneId,
-    getGalleryScene,
-  ]);
-  const SceneComponent = VisualComponents[componentId] as React.ElementType;
-  if (!SceneComponent) {
-    alert(`invalid scene component "${componentId}" - check component id`);
+  const dispatch = useAppDispatch();
+  return useMemo(() => {
+    if (index === null) return { component: null };
+    const { sceneId, title, componentId } = digitalPieces[index];
+    const currentSceneParams = getGalleryScene(sceneId);
+    const SceneComponent = VisualComponents[componentId] as React.ElementType;
+    dispatch(setVisualData(currentSceneParams));
+    if (!SceneComponent) {
+      alert(`invalid scene component "${componentId}" - check component id`);
+      return {
+        component: <></>,
+        title,
+      };
+    }
     return {
-      component: <></>,
+      component: <SceneComponent params={currentSceneParams} />,
       title,
     };
-  }
-  return {
-    component: <SceneComponent params={currentSceneParams} />,
-    title,
-  };
+  }, [index]);
 };

@@ -11,5 +11,5 @@ export interface InteractiveSceneParams {
   materialParams: any;
   sceneFunctions: any;
   visualComponentConfig: VisualComponentConfig;
-  formattingFunction: any;
+  formatSceneData: any;
 }
