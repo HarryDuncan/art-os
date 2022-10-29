@@ -11,3 +11,7 @@ export { lsd } from "./lsd";
 export { brownPlasma } from "./brownPlasma";
 export { clouds } from "./clouds";
 export { glossyBlobs } from "./glossyBlobs";
+export { eldrich } from "./eldrich";
+export { strangeTendrils } from "./strangeTendrils";
+export { dalchi } from "./dalchi";
+export { wind } from "./wind";

@@ -12,7 +12,7 @@ export const LayerOverlay = styled.div`
   width: 100vw;
   position: absolute;
   background-color: black;
-  opacity: 0.4;
+  opacity: 0.3;
   z-index: 2;
   top: 0;
 `;
@@ -21,6 +21,6 @@ export const LayerImg = styled.img<{
   $width?: number;
   $position?: { x: number; y: number };
 }>`
-  height: ${({ $height }) => ($height ? `${$height}vh` : "100vh")};
-  width: ${({ $width }) => ($width ? `${$width}vw` : "100vw")};
+  height: ${({ $height }) => ($height ? `${$height}vh` : "100%")};
+  width: ${({ $width }) => ($width ? `${$width}vw` : "100%")};
 `;

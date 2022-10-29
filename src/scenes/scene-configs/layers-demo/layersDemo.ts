@@ -3,7 +3,7 @@ import { getShaderParams } from "scenes/default-configs/interactiveWebGLMaterial
 import { Layers } from "./layers";
 
 export const layersDemo = () => ({
-  materialParams: getShaderParams("glossyBlobs"),
+  materialParams: getShaderParams("wind"),
   interactions: defaultPosition,
   layers: Layers,
 });
