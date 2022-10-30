@@ -23,16 +23,17 @@
     "componentId": "InteractiveScene",
     "cardImageName": "AttractionMorphing.jpg"
   },
-  {
-    "title": "Particle Rain",
-    "sceneId": "particleRain",
-    "componentId": "InteractiveScene",
-    "cardImageName": "AttractionMorphing.jpg"
-  },
+
   {
     "title": "Layers",
     "sceneId": "layersDemo",
     "componentId": "InteractiveWebGL",
-    "cardImageName": "AttractionMorphing.jpg"
+    "cardImageName": "LayersDemo.jpg"
+  },
+  {
+    "title": "DeepWaves Installation",
+    "sceneId": "deepWavesInstallation",
+    "componentId": "InteractiveScene",
+    "cardImageName": "LayersDemo.jpg"
   }
 ]

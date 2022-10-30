@@ -13,9 +13,12 @@ export enum Binding {
   InteractiveScene = "interactiveScene",
 }
 
-export type InteractionKey = KeypointFeatureKey;
+export type InteractionKey = KeypointFeatureKey | BodySegInteractionKeys;
 
-export type ModelType = "posenet";
+export enum ModelTypes {
+  POSENET = "posenet",
+  BODYSEG = "bodySegmentation",
+}
 
 export enum EventKey {
   SwipeLeft = "SWIPE_LEFT",
@@ -26,6 +29,11 @@ export enum EventKey {
   SwipeVertical = "SWIPE_VERTICAL",
   Scale = "SCALE",
   Position = "POSITION",
+  MultiplePositions = "MULTIPLE_POSITIONS",
+}
+
+export enum BodySegInteractionKeys {
+  PersonPosition = "personPosition",
 }
 
 // <------------------ POSENET --------------------->

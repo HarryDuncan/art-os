@@ -11,7 +11,7 @@ import { EMPTY_SCENE_DATA } from "consts";
 export const InteractiveScene = ({ params }: any) => {
   const {
     threeJsParams,
-    interactionEvents,
+    interactions,
     assets,
     materialParams,
     sceneFunctions,
@@ -35,10 +35,10 @@ export const InteractiveScene = ({ params }: any) => {
     formatSceneData
   );
 
-  const initializedMeshes = useMeshes(sceneData?.geometries, interactionEvents);
+  const initializedMeshes = useMeshes(sceneData?.geometries, interactions);
 
   const scene = useInteractiveScene(
-    interactionEvents,
+    interactions,
     sceneFunctions,
     {},
     sceneData?.sceneObjects ?? [],

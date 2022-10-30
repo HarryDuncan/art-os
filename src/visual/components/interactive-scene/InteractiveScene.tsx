@@ -8,7 +8,7 @@ export class InteractiveThreeScene extends Scene {
 
   isRunningThread: boolean;
 
-  interactionEvents: InteractionEventObject[];
+  interactions: InteractionEventObject[];
 
   sceneFunctions: InteractiveSceneFunctions;
 
@@ -28,7 +28,7 @@ export class InteractiveThreeScene extends Scene {
     this.isRunningThread = true;
     this.sceneFunctions = sceneFunctions;
     this.clock = new Clock();
-    this.interactionEvents = interactions;
+    this.interactions = interactions;
     this.sceneParams = sceneParams;
     this.sceneObjects = sceneObjects;
     this.animationProperties = {};
@@ -48,7 +48,7 @@ export class InteractiveThreeScene extends Scene {
 
   onGestureEvent(event: CustomEvent) {
     const { type, detail } = event;
-    const currentAction = this.interactionEvents.find(
+    const currentAction = this.interactions.find(
       (interactionEvent) => interactionEvent.eventKey === type
     );
 

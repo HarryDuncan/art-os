@@ -16,7 +16,7 @@ export const textureDistortion = () => ({
       cameraType: CameraType.ORTHOGRAPHIC_CAMERA,
     },
   },
-  interactionEvents: [
+  interactions: [
     {
       eventKey: EventKey.Scale,
       binding: Binding.InteractiveMesh,

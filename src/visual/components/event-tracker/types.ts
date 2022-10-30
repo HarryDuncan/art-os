@@ -1,5 +1,5 @@
-import { KeypointPosition } from 'visual/hooks/use-pose-net/types';
-import { POSENET_SWIPE_EVENT } from './consts';
+import { KeypointPosition } from "visual/helpers/interactions/types";
+import { POSENET_SWIPE_EVENT } from "./consts";
 
 export type PoseNetAdvancedEvent = typeof POSENET_SWIPE_EVENT;
 export type AdvancedEventKey = keyof PoseNetAdvancedEvent;

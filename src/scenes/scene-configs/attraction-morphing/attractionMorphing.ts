@@ -16,7 +16,7 @@ export const attractionMorphing = () => ({
     camera: { position: { x: 0, y: 10, z: 30 } },
   },
 
-  interactionEvents: [
+  interactions: [
     {
       eventKey: EventKey.Scale,
       interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,

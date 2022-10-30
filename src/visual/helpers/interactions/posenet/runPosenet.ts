@@ -1,6 +1,7 @@
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import { ev } from "../../../hooks/use-events/useEvents";
+import { MODEL_READ_INTERVAL } from "../const";
 import { InteractionEventObject, KeypointFeatureKey } from "../types";
 
 export const runPosenet = (
@@ -19,7 +20,7 @@ export const runPosenet = (
 
     setInterval(() => {
       detect(net);
-    }, 100);
+    }, MODEL_READ_INTERVAL);
   };
 
   const detect = async (net: posenet.PoseNet) => {

@@ -1,4 +1,4 @@
-import { MovementPosition } from "visual/hooks/use-pose-net/types";
+import { MovementPosition } from "../types";
 
 export const getPosenetDetailFromEvent = (
   customEvent: any

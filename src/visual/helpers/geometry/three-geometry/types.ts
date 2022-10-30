@@ -8,6 +8,7 @@ import {
 export enum FormattedGeometryType {
   interactive = "interactive",
   standard = "standard",
+  standardShader = "standardShader",
 }
 
 export type InteractiveMaterialParameters = {

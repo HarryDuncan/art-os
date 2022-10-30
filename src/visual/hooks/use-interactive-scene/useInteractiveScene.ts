@@ -8,7 +8,7 @@ import {
 } from "../../helpers/interactions/types";
 
 export const useInteractiveScene = (
-  interactionEvents: InteractionEventObject[],
+  interactions: InteractionEventObject[],
   sceneFunctions,
   sceneParams = {},
   sceneObjects: SceneObject[] = [],
@@ -16,7 +16,7 @@ export const useInteractiveScene = (
 ) =>
   useMemo(() => {
     const boundInteractions = getBoundInteractions(
-      interactionEvents,
+      interactions,
       Binding.InteractiveScene
     );
     const scene = isSceneDataInitialized

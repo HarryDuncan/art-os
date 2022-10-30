@@ -11,7 +11,7 @@ export default class InteractiveShader extends ShaderMaterial {
 
   isRunningThread: boolean;
 
-  interactionEvents: InteractionEventObject[];
+  interactions: InteractionEventObject[];
 
   materialFunctions: InteractiveMaterialFunctions;
 
@@ -40,7 +40,7 @@ export default class InteractiveShader extends ShaderMaterial {
 
     this.materialFunctions = materialFunctions;
     this.clock = new Clock();
-    this.interactionEvents = interactions;
+    this.interactions = interactions;
     this.animationProperties = { smoothStep: DEFAULT_SMOOTH_STEP_HELPER };
     this.bindMaterialFunctions();
 
@@ -59,7 +59,7 @@ export default class InteractiveShader extends ShaderMaterial {
 
   onGestureEvent(event: CustomEvent) {
     const { type, detail } = event;
-    const currentAction = this.interactionEvents.find(
+    const currentAction = this.interactions.find(
       (interactionEvent) => interactionEvent.eventKey === type
     );
     if (currentAction?.eventFunction) {

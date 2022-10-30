@@ -10,7 +10,7 @@ export const useDefaultConfig = () =>
       materialFunctions: UPDATE_TIME_UNIFORM,
       assets: [],
       events: [],
-      interactionEvents: defaultPosition,
+      interactions: defaultPosition,
     }),
     []
   );

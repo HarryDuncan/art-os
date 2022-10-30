@@ -11,7 +11,7 @@ interface InteractiveObjectProps {
 }
 
 export function InteractiveWebGL({ params }: InteractiveObjectProps) {
-  const { threeJsParams, interactionEvents, assets, materialParams } = params;
+  const { threeJsParams, interactions, assets, materialParams } = params;
 
   const {
     areAssetsInitialized,
@@ -30,7 +30,7 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     materialParams
   );
 
-  const meshes = useMeshes(sceneData?.geometries, interactionEvents);
+  const meshes = useMeshes(sceneData?.geometries, interactions);
 
   const initializeMesh = useCallback(() => {
     // is post processor hasn't been set - is null

@@ -12,7 +12,7 @@ export const gooeyShader = () => ({
   threeJsParams: {
     camera: { position: { x: 0, y: 0, z: 2 } },
   },
-  interactionEvents: [
+  interactions: [
     {
       eventKey: EventKey.Scale,
       binding: Binding.InteractiveMesh,

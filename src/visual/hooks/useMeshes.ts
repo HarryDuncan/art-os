@@ -68,6 +68,18 @@ const getMaterial = (
         materialFunctions
       );
     }
+    case FormattedGeometryType.standardShader: {
+      const { shaders, uniforms } = materialParameters;
+      return new ShaderMaterial({
+        side: DoubleSide,
+        // @ts-ignore
+        uniforms,
+        vertexShader: shaders.vertexShader.vert,
+        fragmentShader: shaders.fragmentShader.frag,
+        depthTest: false,
+        depthWrite: true,
+      });
+    }
     case FormattedGeometryType.standard:
     default:
       return materialParameters;
@@ -105,17 +117,5 @@ const getInteractiveMaterial = (
 
     case InteractiveShaderTypes.NON_INTERACTIVE:
     default:
-      return new ShaderMaterial({
-        side: DoubleSide,
-        // @ts-ignore
-        uniforms,
-        // wireframe: true,
-        // transparent: true,
-        blending: AdditiveBlending,
-        vertexShader: shaders.vertexShader.vert,
-        fragmentShader: shaders.fragmentShader.frag,
-        depthTest: false,
-        depthWrite: false,
-      });
   }
 };

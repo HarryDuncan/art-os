@@ -5,7 +5,9 @@
   "version": "0.2.7",
   "private": true,
   "dependencies": {
+    "@mediapipe/selfie_segmentation": "^0.1.1632777926",
     "@reduxjs/toolkit": "^1.8.1",
+    "@tensorflow-models/body-segmentation": "^1.0.1",
     "@tensorflow-models/posenet": "^2.2.2",
     "@tensorflow/tfjs": "^3.18.0",
     "@testing-library/react": "^13.2.0",

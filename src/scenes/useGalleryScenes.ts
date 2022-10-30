@@ -9,7 +9,7 @@ export const useGalleryScenes = () => {
     materialFunctions,
     assets,
     events,
-    interactionEvents,
+    interactions,
   } = useDefaultConfig();
   return useCallback((sceneId: string) => {
     const sceneParams = Scenes[sceneId]();
@@ -17,7 +17,7 @@ export const useGalleryScenes = () => {
       materialFunctions,
       assets,
       events,
-      interactionEvents,
+      interactions,
       ...sceneParams,
       threeJsParams: deepMergeObjects(
         threeJsParams,

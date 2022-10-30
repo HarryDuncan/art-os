@@ -51,7 +51,7 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
     isSceneDataInitialized: true,
     geometries: [
       {
-        geometryType: FormattedGeometryType.interactive,
+        geometryType: FormattedGeometryType.standardShader,
         geometry,
         materialParameters: {
           shaderType: InteractiveShaderTypes.SHADER,

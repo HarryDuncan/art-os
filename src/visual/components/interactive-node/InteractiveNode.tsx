@@ -3,19 +3,25 @@ import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 import { EventTracker } from "visual/components/event-tracker";
 import { runPosenet } from "visual/helpers/interactions/posenet/runPosenet";
-import { getModelType } from "visual/helpers/interactions/getModelType";
 import { useAppSelector } from "app/redux/store";
+import { ModelTypes } from "visual/helpers/interactions/types";
+import { runBodySeg } from "visual/helpers/interactions/body-seg/runBodySeg";
 
 export const InteractiveNode = () => {
   const interactions = useInteractions();
-  const modelType = useMemo(() => getModelType(interactions), [interactions]);
+  const modelType = useModelType();
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const webcamRef: React.MutableRefObject<Webcam | null> = useRef(null);
 
   useEffect(() => {
     if (isInitialized && webcamRef.current && interactions.length) {
-      if (modelType === "posenet") {
-        runPosenet(webcamRef, interactions);
+      switch (modelType) {
+        case ModelTypes.BODYSEG:
+          runBodySeg(webcamRef, interactions);
+          break;
+        case ModelTypes.POSENET:
+        default:
+          runPosenet(webcamRef, interactions);
       }
     }
   }, [isInitialized, webcamRef, modelType, interactions]);
@@ -36,8 +42,8 @@ export const InteractiveNode = () => {
           left: 0,
           right: 0,
           textAlign: "center",
-          width: 440,
-          height: 400,
+          width: 250,
+          height: 190,
           visibility: "hidden",
         }}
       />
@@ -48,10 +54,18 @@ export const InteractiveNode = () => {
 
 const useInteractions = () => {
   const {
-    visualData: { interactionEvents },
+    visualData: { interactions },
   } = useAppSelector((state) => state.visual);
   return useMemo(() => {
-    if (interactionEvents) return interactionEvents;
+    if (interactions) return interactions;
     return [];
-  }, [interactionEvents]);
+  }, [interactions]);
+};
+
+const useModelType = (): ModelTypes => {
+  const {
+    defaultModelType,
+    visualData: { modelType },
+  } = useAppSelector((state) => state.visual);
+  return modelType ?? defaultModelType;
 };
