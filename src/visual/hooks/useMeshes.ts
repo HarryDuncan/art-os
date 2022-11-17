@@ -29,7 +29,14 @@ export const useMeshes = (
   } = useAppSelector((state) => state.visual);
   return useMemo(() => {
     return geometries.flatMap(
-      ({ geometry, geometryType, materialParameters, meshType }) => {
+      ({
+        geometry,
+        geometryType,
+        materialParameters,
+        meshType,
+        position,
+        rotation,
+      }) => {
         const material = getMaterial(
           materialParameters,
           geometryType,
@@ -37,6 +44,15 @@ export const useMeshes = (
           materialFunctions
         );
         const mesh = getMesh(geometry, material, meshType);
+        if (position) {
+          const { x, y, z } = position;
+          mesh.position.set(x, y, z);
+        }
+        if (rotation) {
+          const { x, y, z } = rotation;
+          mesh.rotation.set(x, y, z);
+        }
+
         // TODO - add events to mesh
         return mesh;
       }
@@ -71,13 +87,12 @@ const getMaterial = (
     case FormattedGeometryType.standardShader: {
       const { shaders, uniforms } = materialParameters;
       return new ShaderMaterial({
-        side: DoubleSide,
         // @ts-ignore
         uniforms,
         vertexShader: shaders.vertexShader.vert,
         fragmentShader: shaders.fragmentShader.frag,
-        depthTest: false,
-        depthWrite: true,
+        depthWrite: false,
+        depthTest: true,
       });
     }
     case FormattedGeometryType.standard:

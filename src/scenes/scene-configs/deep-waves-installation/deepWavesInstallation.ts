@@ -1,3 +1,4 @@
+import { VIDEO } from "app/constants";
 import { Euler, Vector3 } from "three";
 import { InteractiveThreeScene } from "visual/components/interactive-scene/InteractiveScene";
 import {
@@ -17,13 +18,33 @@ export const deepWavesInstallation = () => ({
   formatSceneData,
   assets: [
     {
-      name: "geometry",
+      name: "geometry1",
       url: "../assets/models/AresBust.obj",
       assetType: AssetType.Geometry,
     },
     {
-      name: "matcap",
-      url: "../assets/textures/obsidian.jpg",
+      name: "matcap1",
+      url: "../assets/textures/redobsidian.jpg",
+      assetType: AssetType.Texture,
+    },
+    {
+      name: "geometry2",
+      url: "../assets/models/AphroditeBust.obj",
+      assetType: AssetType.Geometry,
+    },
+    {
+      name: "matcap2",
+      url: "../assets/textures/greenobsidian.jpg",
+      assetType: AssetType.Texture,
+    },
+    {
+      name: "geometry3",
+      url: "../assets/models/ZeusBust.obj",
+      assetType: AssetType.Geometry,
+    },
+    {
+      name: "matcap3",
+      url: "../assets/textures/blueobsidian.jpg",
       assetType: AssetType.Texture,
     },
   ],
@@ -37,14 +58,19 @@ export const deepWavesInstallation = () => ({
           if (!detail) return;
           const child = scene.children[index] ?? null;
           if (!child) return;
-          console.log(detail.x);
-          child.lookAt(new Vector3(detail.y, 0, fullScale(detail.x, 640)));
+          var newDir = new Vector3(detail.y, 0, fullScale(detail.x, 640));
+          var pos = new Vector3();
+          pos.addVectors(newDir, child.position);
+          child.lookAt(pos);
         });
       },
     },
   ],
   sceneFunctions: {
     onTimeUpdate: (scene: InteractiveThreeScene) => {},
+  },
+  video: {
+    src: `${VIDEO}seq.mp4`,
   },
 });
 

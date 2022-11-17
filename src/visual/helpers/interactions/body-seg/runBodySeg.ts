@@ -60,24 +60,24 @@ export const runBodySeg = (
         segmentationThreshold: foregroundThreshold,
       });
       const coloredPartImage = await bodySeg.toBinaryMask(segmentation);
-      const opacity = 0.7;
-      const flipHorizontal = false;
-      const maskBlurAmount = 0;
+      // const opacity = 0.7;
+      // const flipHorizontal = false;
+      // const maskBlurAmount = 0;
 
-      // // Draw the colored part image on top of the original image onto a canvas.
-      // // The colored part image will be drawn semi-transparent, with an opacity of
-      // // 0.7, allowing for the original image to be visible under.
-      // bodySeg.drawMask(
-      //   canvas,
-      //   video,
-      //   coloredPartImage,
-      //   opacity,
-      //   maskBlurAmount,
-      //   flipHorizontal
-      // );
+      // // // Draw the colored part image on top of the original image onto a canvas.
+      // // // The colored part image will be drawn semi-transparent, with an opacity of
+      // // // 0.7, allowing for the original image to be visible under.
+      // // bodySeg.drawMask(
+      // //   canvas,
+      // //   video,
+      // //   coloredPartImage,
+      // //   opacity,
+      // //   maskBlurAmount,
+      // //   flipHorizontal
+      // // );
       const coords = getCoordsFromSeg(coloredPartImage);
 
-      ev(`:${BodySegInteractionKeys.PersonPosition}`, [coords]);
+      ev(`:${BodySegInteractionKeys.PersonPosition}`, [coords, coords, coords]);
     }
   };
 

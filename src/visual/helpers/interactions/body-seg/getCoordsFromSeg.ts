@@ -17,7 +17,7 @@ export const getCoordsFromSeg = (image) => {
   };
   const { data } = image;
 
-  for (let i = 3; i < data.length; i += 4 * PIXEL_SKIP + WIDTH * 4) {
+  for (let i = 3; i < data.length; i += 4 * PIXEL_SKIP + WIDTH * 8) {
     if (data[i] !== 255) {
       const x = (i / 4) % 640;
       const y = i / 4 / 480;
