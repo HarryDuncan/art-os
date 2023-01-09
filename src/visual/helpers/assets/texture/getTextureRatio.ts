@@ -1,7 +1,6 @@
 import { MathUtils, Texture, Vector2 } from "three";
 
-export const getTextureRatio = (texture: Texture) => {
-  const { height, width } = texture.image;
+export const getRatio = (height: number, width: number) => {
   const m = multiplyMatrixAndPoint(rotateMatrix(MathUtils.degToRad(0)), [
     width,
     height,
@@ -18,6 +17,10 @@ export const getTextureRatio = (texture: Texture) => {
     originalRatio.w * coverRatio,
     originalRatio.h * coverRatio
   );
+};
+export const getTextureRatio = (texture: Texture) => {
+  const { height, width } = texture.image;
+  return getRatio(height, width);
 };
 
 const multiplyMatrixAndPoint = (matrix, point) => {

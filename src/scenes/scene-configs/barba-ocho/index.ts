@@ -1,0 +1,1 @@
+export { barbaOcho } from "./barbaOcho";

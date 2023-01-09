@@ -7,6 +7,7 @@ import { SceneData } from "visual/components/interactive-scene/types";
 import { useMeshes } from "visual/hooks/useMeshes";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { EMPTY_SCENE_DATA } from "consts";
+import { useEventsWithMesh } from "visual/hooks/use-events/useEvents";
 
 export const InteractiveScene = ({ params }: any) => {
   const {
@@ -17,6 +18,7 @@ export const InteractiveScene = ({ params }: any) => {
     sceneFunctions,
     visualComponentConfig,
     formatSceneData,
+    events,
   } = params;
   const {
     areAssetsInitialized,
@@ -44,7 +46,7 @@ export const InteractiveScene = ({ params }: any) => {
     sceneData?.sceneObjects ?? [],
     sceneData?.isSceneDataInitialized ?? false
   );
-
+  useAddEvent(initializedMeshes, events);
   const initializeMeshes = useCallback(() => {
     if (initializedMeshes && initializedMeshes.length && scene) {
       initializedMeshes.forEach((mesh) => scene.add(mesh));
@@ -78,4 +80,8 @@ const useSceneData = (
     const sceneData = formatSceneData(initializedAssets, materialParams);
     return sceneData;
   }, [areAssetsInitialized]);
+};
+
+const useAddEvent = (initializedMeshes, events) => {
+  useEventsWithMesh(initializedMeshes[0], events);
 };

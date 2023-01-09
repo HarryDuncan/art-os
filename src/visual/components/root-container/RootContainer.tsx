@@ -27,7 +27,7 @@ export function RootContainer({ containerRef, config }: IRootContainerProps) {
         $height={viewHeight}
         $width={viewWidth}
         ref={containerRef}
-        $backgroundColor={video ? "transparent" : backgroundColor}
+        $backgroundColor={"black"}
       />
       <VideoBackground videoSrc={video?.src} />
     </>

@@ -9,6 +9,9 @@ import { Asset, AssetType } from "./types";
 export const useInitializeAssets = (assets: Asset[]) => {
   async function initializeAsset(asset: Asset) {
     const loadedAsset = await loadAsset(asset);
+    if (!loadedAsset) {
+      console.warn(`asset ${asset.url} not properly loaded`);
+    }
     return { ...asset, data: loadedAsset };
   }
   return useCallback(async () => {
@@ -25,6 +28,7 @@ const loadAsset = async (asset: Asset) => {
   switch (assetType) {
     case AssetType.Geometry: {
       const geometry = await loadGeometry(path, fileType);
+
       return geometry;
     }
     case AssetType.Texture: {
@@ -34,6 +38,10 @@ const loadAsset = async (asset: Asset) => {
     case AssetType.Image: {
       const image = await loadImage(path);
       return image;
+    }
+    case AssetType.Video: {
+      // todo - check if url actually exists
+      return "";
     }
     default: {
       return null;

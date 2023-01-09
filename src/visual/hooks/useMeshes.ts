@@ -91,7 +91,7 @@ const getMaterial = (
         uniforms,
         vertexShader: shaders.vertexShader.vert,
         fragmentShader: shaders.fragmentShader.frag,
-        depthWrite: false,
+        depthWrite: true,
         depthTest: true,
       });
     }

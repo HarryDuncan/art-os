@@ -48,6 +48,7 @@
     "class-methods-use-this": "off",
     "react/function-component-definition": "off",
     "import/order": "off",
-    "indent": "off"
+    "indent": "off",
+    "arrow-body-style": "off"
   }
 }

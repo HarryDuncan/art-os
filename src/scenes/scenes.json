@@ -31,9 +31,21 @@
     "cardImageName": "LayersDemo.jpg"
   },
   {
-    "title": "DeepWaves Installation",
-    "sceneId": "deepWavesInstallation",
+    "title": "Barba Ocho",
+    "sceneId": "barbaOcho",
     "componentId": "InteractiveScene",
-    "cardImageName": "LayersDemo.jpg"
+    "cardImageName": "barbaOcho.jpg"
+  },
+  {
+    "title": "Louder Than Words",
+    "sceneId": "louderThanWords",
+    "componentId": "InteractiveScene",
+    "cardImageName": "louderThanWords.jpg"
+  },
+  {
+    "title": "Vivienn Westwood",
+    "sceneId": "viv",
+    "componentId": "InteractiveScene",
+    "cardImageName": "westwood.jpg"
   }
 ]
