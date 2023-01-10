@@ -6,5 +6,5 @@ export { gooeyShader } from "./gooey-shader";
 export { textureDistortion } from "./texture-distortion";
 export { deepWavesInstallation } from "./deep-waves-installation";
 export { barbaOcho } from "./barba-ocho";
-export { louderThanWords } from "./louder-than-words";
 export { viv } from "./viv";
+export { ltw } from "./ltw";

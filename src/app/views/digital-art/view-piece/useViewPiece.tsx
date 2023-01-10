@@ -14,9 +14,9 @@ export const useViewPiece = (
   return useMemo(() => {
     if (index === null) return { component: null };
     const { sceneId, title, componentId } = digitalPieces[index];
-    const currentSceneParams = getGalleryScene(sceneId);
+    const sceneProps = getGalleryScene(sceneId);
     const SceneComponent = VisualComponents[componentId] as React.ElementType;
-    dispatch(setVisualData(currentSceneParams));
+    dispatch(setVisualData(sceneProps));
     if (!SceneComponent) {
       alert(`invalid scene component "${componentId}" - check component id`);
       return {
@@ -25,7 +25,7 @@ export const useViewPiece = (
       };
     }
     return {
-      component: <SceneComponent params={currentSceneParams} />,
+      component: <SceneComponent {...sceneProps} />,
       title,
     };
   }, [index]);

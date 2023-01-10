@@ -14,10 +14,10 @@ import {
   Sphere,
   GradientTexture,
 } from "@react-three/drei";
-import useSlerp from "./useSlerp";
-import useRenderTarget from "./useRenderTarget";
+import useSlerp from "../hooks/useSlerp";
+import useRenderTarget from "../hooks/useRenderTarget";
 import { mirrorsData as diamondsData } from "./data";
-import useLayers from "./useLayers";
+import useLayers from "../hooks/useLayers";
 import { useCounter } from "visual/hooks/useCounter";
 import { useRandomObjectProperties } from "visual/hooks/useRandomObjectProperties";
 

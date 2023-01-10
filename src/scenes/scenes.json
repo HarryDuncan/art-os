@@ -37,15 +37,15 @@
     "cardImageName": "barbaOcho.jpg"
   },
   {
-    "title": "Louder Than Words",
-    "sceneId": "louderThanWords",
-    "componentId": "InteractiveScene",
-    "cardImageName": "louderThanWords.jpg"
-  },
-  {
     "title": "Vivienn Westwood",
     "sceneId": "viv",
     "componentId": "InteractiveScene",
     "cardImageName": "westwood.jpg"
+  },
+  {
+    "title": "LTW",
+    "sceneId": "ltw",
+    "componentId": "ReactFiberScene",
+    "cardImageName": "LTW.jpg"
   }
 ]

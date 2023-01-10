@@ -7,7 +7,6 @@ function useLayers(layers = [0]) {
   useEffect(() => {
     if (ref.current.layers) {
       ref.current.layers.disableAll();
-
       layers.sort().forEach((layer) => {
         ref.current.layers.enable(layer);
       });

@@ -1,6 +1,5 @@
 // @ts-nocheck
-import React, { useMemo, Suspense } from "react";
-import * as THREE from "three";
+import React, { Suspense } from "react";
 import { Canvas, useFrame } from "react-three-fiber";
 import {
   Text,
@@ -14,12 +13,13 @@ import {
   Sphere,
   GradientTexture,
 } from "@react-three/drei";
-import useSlerp from "./useSlerp";
-import useRenderTarget from "./useRenderTarget";
-import { mirrorsData as diamondsData } from "./data";
-import useLayers from "./useLayers";
+import { Background } from "./components/background";
+import useSlerp from "./hooks/useSlerp";
+import useRenderTarget from "./hooks/useRenderTarget";
+import useLayers from "./hooks/useLayers";
 import { useCounter } from "visual/hooks/useCounter";
 import { useRandomObjectProperties } from "visual/hooks/useRandomObjectProperties";
+import { ReactFiberSceneProps } from "./types";
 
 const TEXT_PROPS = {
   fontSize: 5,
@@ -92,7 +92,6 @@ function Diamonds({ layers, ...props }) {
   const { nodes } = useGLTF("../diamond.glb");
 
   const data = useRandomObjectProperties(7, BOUNDS);
-  console.log(data);
   return (
     <group name="diamonds" {...props}>
       {nodes &&
@@ -111,31 +110,17 @@ function Diamonds({ layers, ...props }) {
   );
 }
 
-function Background({ layers, ...props }) {
-  const ref = useLayers(layers);
-  // EA783E_6D4830_905837_FCDC6C;
-  // EA783E_6D4830_905837_FCDC6C
-  const [matcapTexture] = useMatcapTexture("89204B_17080D_DA4377_F780B5");
-
-  return (
-    <Octahedron ref={ref} name="background" args={[20, 4, 4]} {...props}>
-      <meshMatcapMaterial
-        matcap={matcapTexture}
-        side={THREE.BackSide}
-        color="#FFFFFF"
-      />
-    </Octahedron>
-  );
-}
-const ReactFiberSceneInner = () => {
+const ReactFiberSceneInner = ({
+  sceneProps,
+}: {
+  sceneProps: ReactFiberSceneProps;
+}) => {
   const [cubeCamera, renderTarget] = useRenderTarget();
   const colorMap = useTexture("../assets/textures/LTW.jpg");
-  // console.log(thinFilmFresnelMap);
   const group = useSlerp();
-
   return (
     <>
-      <Background layers={[0, 11]} position={[0, 0, -5]} />
+      <Background props={sceneProps.background} />
       <cubeCamera
         layers={[11]}
         name="cubeCamera"
@@ -158,11 +143,12 @@ const ReactFiberSceneInner = () => {
   );
 };
 const Loader = () => <p>Loading</p>;
-export const ReactFiberScene = () => {
+
+export const ReactFiberScene = (sceneProps: ReactFiberSceneProps) => {
   return (
     <Suspense fallback={<Loader />}>
-      <Canvas shadows={true} camera={{ position: [0, 0, 5], fov: 70 }}>
-        <ReactFiberSceneInner />
+      <Canvas shadows={true} camera={sceneProps.camera}>
+        <ReactFiberSceneInner sceneProps={sceneProps} />
         <ambientLight intensity={0.4} />
       </Canvas>
     </Suspense>
