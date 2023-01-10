@@ -5,7 +5,7 @@ import { MatcapBackground } from "./MatcapBackground";
 
 export const Background = ({ props }: { props: BackgroundProps }) => {
   switch (props.type) {
-    case BACKGROUND_TYPES.MatcapBackground:
+    case BACKGROUND_TYPES.MATCAPBACKGROUND:
     default:
       const { texture, position, layers } = props;
       return (

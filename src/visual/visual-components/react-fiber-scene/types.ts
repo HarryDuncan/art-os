@@ -1,18 +1,22 @@
-import { BACKGROUND_TYPES } from "./reactFiberScene.constants";
+import { Vector3 } from "three";
+import { BACKGROUND_TYPES, LIGHT_TYPES } from "./reactFiberScene.constants";
 
 export type ReactFiberSceneProps = {
   background: BackgroundProps;
-  light: LightProps;
+  light: LightProps[];
   camera: CameraProps;
 };
 
 export type BackgroundProps = {
   type: BACKGROUND_TYPES;
-  position: number[];
+  position: Vector3;
   layers: number[];
   texture: string;
 };
 
-export type LightProps = {};
+export type CameraProps = { position: Vector3; fov: number };
 
-export type CameraProps = { position: number[]; fov: number };
+export type LightProps = {
+  type: LIGHT_TYPES;
+  intensity: number;
+};

@@ -20,6 +20,7 @@ import useLayers from "./hooks/useLayers";
 import { useCounter } from "visual/hooks/useCounter";
 import { useRandomObjectProperties } from "visual/hooks/useRandomObjectProperties";
 import { ReactFiberSceneProps } from "./types";
+import { ReactFiberNode } from "./components/ReactFiberNode";
 
 const TEXT_PROPS = {
   fontSize: 5,
@@ -147,10 +148,12 @@ const Loader = () => <p>Loading</p>;
 export const ReactFiberScene = (sceneProps: ReactFiberSceneProps) => {
   return (
     <Suspense fallback={<Loader />}>
-      <Canvas shadows={true} camera={sceneProps.camera}>
+      <ReactFiberNode
+        cameraProps={sceneProps.camera}
+        lightProps={sceneProps.light}
+      >
         <ReactFiberSceneInner sceneProps={sceneProps} />
-        <ambientLight intensity={0.4} />
-      </Canvas>
+      </ReactFiberNode>
     </Suspense>
   );
 };

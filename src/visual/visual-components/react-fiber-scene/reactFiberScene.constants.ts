@@ -1,3 +1,7 @@
 export enum BACKGROUND_TYPES {
-  MatcapBackground = "MATCAPBACKGROUND",
+  MATCAPBACKGROUND = "MATCAPBACKGROUND",
+}
+
+export enum LIGHT_TYPES {
+  AMBIENT = "AMBIENT",
 }

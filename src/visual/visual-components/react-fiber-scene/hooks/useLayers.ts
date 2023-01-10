@@ -1,8 +1,7 @@
-// @ts-nocheck
 import { useEffect, useRef } from "react";
 
 function useLayers(layers = [0]) {
-  const ref = useRef<any>();
+  const ref = useRef<any>(null);
 
   useEffect(() => {
     if (ref.current.layers) {
