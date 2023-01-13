@@ -12,8 +12,8 @@ import InteractiveRawShader from "visual/components/interactive-shaders/interact
 import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import {
-  FormattedGeometry,
-  FormattedGeometryType,
+  MeshConfig,
+  MATERIAL_TYPES,
   InteractiveMaterialParameters,
   MeshTypes,
 } from "visual/helpers/geometry/three-geometry/types";
@@ -24,19 +24,19 @@ import {
 } from "../../helpers/interactions/types";
 
 export const useMeshes = (
-  geometries: FormattedGeometry[] = [],
+  meshConfigs: MeshConfig[] = [],
   interactions: InteractionEventObject[] = []
 ) => {
   const {
     visualData: { materialFunctions },
   } = useAppSelector((state) => state.visual);
   return useMemo(() => {
-    return geometries.flatMap(
+    return meshConfigs.flatMap(
       (
         {
           geometry,
           name,
-          geometryType,
+          materialType,
           materialParameters,
           meshType,
           position,
@@ -46,26 +46,17 @@ export const useMeshes = (
       ) => {
         const material = getMaterial(
           materialParameters,
-          geometryType,
+          materialType,
           interactions,
           materialFunctions
         );
         const mesh = getMesh(geometry, material, meshType);
-        mesh.name = name ?? `mesh-${index}`;
-        if (position) {
-          const { x, y, z } = position;
-          mesh.position.set(x, y, z);
-        }
-        if (rotation) {
-          const { x, y, z } = rotation;
-          mesh.rotation.set(x, y, z);
-        }
-
+        formatMesh(mesh, position, rotation, name ?? `mesh-${index}`);
         // TODO - add events to mesh
         return mesh;
       }
     );
-  }, [geometries]);
+  }, [meshConfigs]);
 };
 
 const getMesh = (geometry: Geometry, material, meshType?: MeshTypes) => {
@@ -80,19 +71,19 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshTypes) => {
 
 const getMaterial = (
   materialParameters,
-  geometryType,
+  materialType,
   interactions,
   materialFunctions
 ) => {
-  switch (geometryType) {
-    case FormattedGeometryType.interactive: {
+  switch (materialType) {
+    case MATERIAL_TYPES.interactive: {
       return getInteractiveMaterial(
         materialParameters as InteractiveMaterialParameters,
         interactions,
         materialFunctions
       );
     }
-    case FormattedGeometryType.standardShader: {
+    case MATERIAL_TYPES.standardShader: {
       const { shaders, uniforms } = materialParameters;
       return new ShaderMaterial({
         // @ts-ignore
@@ -103,7 +94,7 @@ const getMaterial = (
         depthTest: true,
       });
     }
-    case FormattedGeometryType.standard:
+    case MATERIAL_TYPES.standard:
     default:
       return materialParameters;
   }
@@ -140,5 +131,17 @@ const getInteractiveMaterial = (
 
     case InteractiveShaderTypes.NON_INTERACTIVE:
     default:
+  }
+};
+
+const formatMesh = (mesh, position, rotation, name) => {
+  mesh.name = name;
+  if (position) {
+    const { x, y, z } = position;
+    mesh.position.set(x, y, z);
+  }
+  if (rotation) {
+    const { x, y, z } = rotation;
+    mesh.rotation.set(x, y, z);
   }
 };

@@ -5,7 +5,7 @@ import { InteractiveShaderTypes } from "visual/components/interactive-shaders/ty
 import { getGeometriesFromAssets } from "visual/helpers/assets/getGeometriesFromAssets";
 import { formatMatcapTextureUniforms } from "visual/helpers/assets/texture/formatMatcapTextureUniforms";
 import { formatImportedGeometry } from "visual/helpers/geometry/formatImportedGeometry";
-import { FormattedGeometryType } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { attractionMorphingFrag } from "visual/shaders/fragment-shaders";
 import { attractionMorphingVertex } from "visual/shaders/vertex-shaders";
@@ -48,7 +48,7 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
   );
   const sceneData = {
     isSceneDataInitialized: true,
-    geometries: geometries.flatMap((geometry, index) => {
+    meshConfigs: geometries.flatMap((geometry, index) => {
       const matcap = matcaps[index];
       if (!matcap) return [];
       const uniforms = formatMatcapTextureUniforms(
@@ -58,7 +58,7 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
       const position = formatPosition(index);
       const rotation = formatRotation(index);
       return {
-        geometryType: FormattedGeometryType.standardShader,
+        materialType: MATERIAL_TYPES.standardShader,
         geometry,
         position,
         rotation,

@@ -1,5 +1,5 @@
 import Particle from "scenes/scene-configs/particle-rain/classes/Particle";
-import { FormattedGeometry } from "visual/helpers/geometry/three-geometry/types";
+import { MeshConfig } from "visual/helpers/geometry/three-geometry/types";
 import { InteractiveThreeScene as InteractiveScene } from "./InteractiveScene";
 
 export type InteractiveSceneFunctions = {
@@ -14,6 +14,6 @@ export type SceneObject = {
 
 export type SceneData = {
   isSceneDataInitialized: boolean;
-  geometries?: FormattedGeometry[];
+  meshConfigs?: MeshConfig[];
   sceneObjects?: SceneObject[];
 };

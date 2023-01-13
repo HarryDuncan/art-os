@@ -5,10 +5,10 @@ import {
   InteractiveUniform,
 } from "visual/components/interactive-shaders/types";
 
-export enum FormattedGeometryType {
+export enum MATERIAL_TYPES {
   interactive = "interactive",
-  standard = "standard",
   standardShader = "standardShader",
+  standard = "standard",
 }
 
 export type InteractiveMaterialParameters = {
@@ -29,8 +29,8 @@ export enum MeshTypes {
   MESH = "mesh",
   POINTS = "points",
 }
-export type FormattedGeometry = {
-  geometryType: FormattedGeometryType;
+export type MeshConfig = {
+  materialType: MATERIAL_TYPES;
   geometry: Geometry;
   materialParameters: MaterialParameters;
   position?: { x: number; y: number; z: number };

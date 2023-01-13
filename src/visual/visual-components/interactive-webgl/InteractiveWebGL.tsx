@@ -30,7 +30,7 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     materialParams
   );
 
-  const meshes = useMeshes(sceneData?.geometries, interactions);
+  const meshes = useMeshes(sceneData?.meshConfigs, interactions);
 
   const initializeMesh = useCallback(() => {
     // is post processor hasn't been set - is null

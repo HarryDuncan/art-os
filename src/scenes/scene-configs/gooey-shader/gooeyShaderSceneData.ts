@@ -2,7 +2,7 @@ import { PlaneGeometry, Vector2, Texture } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import { getTextureRatio } from "visual/helpers/assets/texture/getTextureRatio";
-import { FormattedGeometryType } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { gooeyFragment } from "visual/shaders/fragment-shaders";
 import { imageHoverVertex } from "visual/shaders/vertex-shaders";
@@ -38,9 +38,9 @@ export const getGooeyShaderSceneData = (assets: Asset[]): SceneData => {
   const geometry = new PlaneGeometry(2, 2);
   return {
     isSceneDataInitialized: true,
-    geometries: [
+    meshConfigs: [
       {
-        geometryType: FormattedGeometryType.interactive,
+        materialType: MATERIAL_TYPES.interactive,
         geometry,
         materialParameters: {
           shaders: {

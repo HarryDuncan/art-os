@@ -9,7 +9,7 @@ import {
 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
-import { FormattedGeometryType } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import Particle from "../classes/Particle";
 import { materialParams as particleRainMaterialParams } from "../particleRainMaterialParams";
@@ -39,9 +39,9 @@ export const formatParticles = (
   return {
     sceneData: {
       isSceneDataInitialized: true,
-      geometries: [
+      meshConfigs: [
         {
-          geometryType: FormattedGeometryType.interactive,
+          materialType: MATERIAL_TYPES.interactive,
           geometry,
           materialParameters: {
             shaderType: InteractiveShaderTypes.SHADER,
@@ -50,7 +50,7 @@ export const formatParticles = (
           },
         },
         {
-          geometryType: FormattedGeometryType.standard,
+          materialType: MATERIAL_TYPES.standard,
           geometry: plane,
           materialParameters: {
             material: new MeshBasicMaterial({

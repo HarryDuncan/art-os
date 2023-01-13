@@ -3,7 +3,7 @@ import { Vector2, Vector3 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import { getGeometryFromAsset } from "visual/helpers/assets/getGeometryFromAsset";
-import { FormattedGeometryType } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { attractionMorphingFrag } from "visual/shaders/fragment-shaders";
 import { attractionMorphingVertex } from "visual/shaders/vertex-shaders";
@@ -49,9 +49,9 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
   geometry.scale(0.3, 0.3, 0.3);
   return {
     isSceneDataInitialized: true,
-    geometries: [
+    meshConfigs: [
       {
-        geometryType: FormattedGeometryType.interactive,
+        materialType: MATERIAL_TYPES.interactive,
         geometry,
         materialParameters: {
           shaderType: InteractiveShaderTypes.SHADER,
