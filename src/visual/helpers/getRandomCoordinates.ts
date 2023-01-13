@@ -1,12 +1,18 @@
+import { Bounds3D } from "visual/visual-components/react-fiber-scene/types";
+
 export const getRandomCoordinates = (
   numberOfCoodinates: number,
-  lowerBoundX: number,
-  upperBoundX: number,
-  lowerBoundY: number,
-  upperBoundY: number,
-  lowerBoundZ: number,
-  upperBoundZ: number
+  boundingBox: Bounds3D
 ) => {
+  const {
+    lowerBoundX,
+    upperBoundX,
+    lowerBoundY,
+    upperBoundY,
+    lowerBoundZ,
+    upperBoundZ,
+  } = boundingBox;
+
   // Check that the bounds are valid
   if (
     lowerBoundX >= upperBoundX ||

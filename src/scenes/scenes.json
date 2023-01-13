@@ -45,7 +45,7 @@
   {
     "title": "LTW",
     "sceneId": "ltw",
-    "componentId": "ReactFiberScene",
+    "componentId": "InteractiveScene",
     "cardImageName": "LTW.jpg"
   }
 ]

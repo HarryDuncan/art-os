@@ -21,6 +21,7 @@ import { useCounter } from "visual/hooks/useCounter";
 import { useRandomObjectProperties } from "visual/hooks/useRandomObjectProperties";
 import { ReactFiberSceneProps } from "./types";
 import { ReactFiberNode } from "./components/ReactFiberNode";
+import { SceneContainer } from "./components/SceneContainer";
 
 const TEXT_PROPS = {
   fontSize: 5,
@@ -111,38 +112,6 @@ function Diamonds({ layers, ...props }) {
   );
 }
 
-const ReactFiberSceneInner = ({
-  sceneProps,
-}: {
-  sceneProps: ReactFiberSceneProps;
-}) => {
-  const [cubeCamera, renderTarget] = useRenderTarget();
-  const colorMap = useTexture("../assets/textures/LTW.jpg");
-  const group = useSlerp();
-  return (
-    <>
-      <Background props={sceneProps.background} />
-      <cubeCamera
-        layers={[11]}
-        name="cubeCamera"
-        ref={cubeCamera}
-        args={[0.1, 100, renderTarget]}
-        position={[0, 0, -12]}
-      />
-      <group name="sceneContainer" ref={group}>
-        <Diamonds layers={[0, 11]} map={colorMap} />
-        <group name="text" position={[0, 0, -5]}>
-          <Title
-            layers={[0]}
-            name="title"
-            texture={renderTarget.texture}
-            map={colorMap}
-          />
-        </group>
-      </group>
-    </>
-  );
-};
 const Loader = () => <p>Loading</p>;
 
 export const ReactFiberScene = (sceneProps: ReactFiberSceneProps) => {
@@ -152,17 +121,11 @@ export const ReactFiberScene = (sceneProps: ReactFiberSceneProps) => {
         cameraProps={sceneProps.camera}
         lightProps={sceneProps.light}
       >
-        <ReactFiberSceneInner sceneProps={sceneProps} />
+        <SceneContainer
+          background={sceneProps.background}
+          objects={sceneProps.objects}
+        />
       </ReactFiberNode>
     </Suspense>
   );
-};
-
-const BOUNDS = {
-  lowerBoundX: -5,
-  upperBoundX: 5,
-  lowerBoundY: -2,
-  upperBoundY: 4,
-  lowerBoundZ: -0,
-  upperBoundZ: 2,
 };

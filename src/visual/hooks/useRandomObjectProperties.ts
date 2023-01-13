@@ -1,17 +1,11 @@
 import { useMemo } from "react";
 import { getRandomCoordinates } from "visual/helpers/getRandomCoordinates";
 import { xyzToArray } from "visual/helpers/xyzToArray";
+import { Bounds3D } from "visual/visual-components/react-fiber-scene/types";
 
 export const useRandomObjectProperties = (
   numberOfObjects: number,
-  bounds: {
-    lowerBoundX: number;
-    upperBoundX: number;
-    lowerBoundY: number;
-    upperBoundY: number;
-    lowerBoundZ: number;
-    upperBoundZ: number;
-  }
+  bounds: Bounds3D
 ) => {
   const {
     lowerBoundX,
@@ -22,25 +16,9 @@ export const useRandomObjectProperties = (
     upperBoundZ,
   } = bounds;
   return useMemo(() => {
-    const coords = getRandomCoordinates(
-      numberOfObjects,
-      lowerBoundX,
-      upperBoundX,
-      lowerBoundY,
-      upperBoundY,
-      lowerBoundZ,
-      upperBoundZ
-    );
+    const coords = getRandomCoordinates(numberOfObjects, bounds);
 
-    const rotation = getRandomCoordinates(
-      numberOfObjects,
-      lowerBoundX,
-      upperBoundX,
-      lowerBoundY,
-      upperBoundY,
-      lowerBoundZ,
-      upperBoundZ
-    );
+    const rotation = getRandomCoordinates(numberOfObjects, bounds);
     const randomObjects: { position: number[]; rotation: number[] }[] = [];
     for (let i = 0; i < numberOfObjects; i += 1) {
       randomObjects.push({

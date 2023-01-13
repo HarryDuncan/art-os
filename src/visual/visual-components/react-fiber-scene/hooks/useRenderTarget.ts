@@ -1,6 +1,7 @@
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "react-three-fiber";
+import { CubeCamera } from "three";
 
 function useRenderTarget(settings = {}) {
   const renderTarget = useMemo(() => {
@@ -15,7 +16,7 @@ function useRenderTarget(settings = {}) {
     });
   }, [settings]);
 
-  const cubeCamera = useRef();
+  const cubeCamera = useRef<CubeCamera>();
 
   useFrame(({ gl, scene }) => {
     if (!cubeCamera.current) return;
@@ -23,7 +24,7 @@ function useRenderTarget(settings = {}) {
     cubeCamera.current.update(gl, scene);
   });
 
-  return [cubeCamera, renderTarget];
+  return { cubeCamera, renderTarget };
 }
 
 export default useRenderTarget;
