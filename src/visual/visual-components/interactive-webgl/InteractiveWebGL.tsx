@@ -4,7 +4,7 @@ import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import { InteractiveObjectParams } from "./types";
 import { RootContainer } from "../../components/root-container";
 import { useSceneData } from "./useSceneData";
-import { useMeshes } from "visual/hooks/useMeshes";
+import { useMeshes } from "visual/hooks/use-meshes/useMeshes";
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;

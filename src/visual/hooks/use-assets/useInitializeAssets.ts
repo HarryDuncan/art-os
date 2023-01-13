@@ -28,7 +28,6 @@ const loadAsset = async (asset: Asset) => {
   switch (assetType) {
     case AssetType.Geometry: {
       const geometry = await loadGeometry(path, fileType);
-
       return geometry;
     }
     case AssetType.Texture: {

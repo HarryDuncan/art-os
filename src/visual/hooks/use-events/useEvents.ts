@@ -11,7 +11,7 @@ export const useEventsWithMesh = (
   eventConfig: EventConfig[] = []
 ) => {
   useEffect(() => {
-    if (interactiveMesh) {
+    if (interactiveMesh && interactiveMesh.material.addEvents) {
       interactiveMesh.material.addEvents(eventConfig);
     }
   }, [interactiveMesh, eventConfig]);

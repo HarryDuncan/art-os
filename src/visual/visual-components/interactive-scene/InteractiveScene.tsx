@@ -4,22 +4,35 @@ import { RootContainer } from "../../components/root-container";
 import { Asset } from "visual/hooks/use-assets/types";
 import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
 import { SceneData } from "visual/components/interactive-scene/types";
-import { useMeshes } from "visual/hooks/useMeshes";
+import { useMeshes } from "visual/hooks/use-meshes/useMeshes";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { EMPTY_SCENE_DATA } from "consts";
 import { useEventsWithMesh } from "visual/hooks/use-events/useEvents";
+import { defaultFormatSceneData } from "scenes/default-configs/defaultFormatSceneData";
+import { ThreeJsParams } from "visual/hooks/use-three-js/types";
+import { InteractionEventObject } from "visual/helpers/interactions/types";
 
-export const InteractiveScene = ({ params }: any) => {
-  const {
-    threeJsParams,
-    interactions,
-    assets,
-    materialParams,
-    sceneFunctions,
-    visualComponentConfig,
-    formatSceneData,
-    events,
-  } = params;
+interface InteractiveSceneProps {
+  threeJsParams: ThreeJsParams;
+  interactions: InteractionEventObject[];
+  assets: Asset[];
+  materialParams;
+  sceneFunctions;
+  visualComponentConfig;
+  formatSceneData: (assets: Asset[], materialParams) => SceneData;
+  events;
+}
+
+export const InteractiveScene = ({
+  threeJsParams,
+  interactions,
+  assets,
+  materialParams,
+  sceneFunctions,
+  visualComponentConfig,
+  formatSceneData = defaultFormatSceneData,
+  events,
+}: InteractiveSceneProps) => {
   const {
     areAssetsInitialized,
     initializedAssets,
@@ -50,6 +63,7 @@ export const InteractiveScene = ({ params }: any) => {
   const initializeMeshes = useCallback(() => {
     if (initializedMeshes && initializedMeshes.length && scene) {
       initializedMeshes.forEach((mesh) => scene.add(mesh));
+      console.log(scene);
       postProcessor.current = new PostProcessor({
         renderer,
         scene,

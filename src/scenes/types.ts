@@ -2,7 +2,7 @@ import InteractiveMaterial from "visual/components/interactive-shaders/interacti
 
 export type InteractiveMaterialType = InteractiveMaterial;
 
-export type SceneData = {
+export type SceneConfig = {
   title: string;
   sceneId: string;
   componentId: string;

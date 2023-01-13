@@ -36,4 +36,5 @@ export type FormattedGeometry = {
   position?: { x: number; y: number; z: number };
   rotation?: { x: number; y: number; z: number };
   meshType?: MeshTypes;
+  name?: string;
 };

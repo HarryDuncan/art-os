@@ -18,7 +18,10 @@ import {
   MeshTypes,
 } from "visual/helpers/geometry/three-geometry/types";
 import { getBoundInteractions } from "visual/helpers/interactions/getBoundInteractions";
-import { Binding, InteractionEventObject } from "../helpers/interactions/types";
+import {
+  Binding,
+  InteractionEventObject,
+} from "../../helpers/interactions/types";
 
 export const useMeshes = (
   geometries: FormattedGeometry[] = [],
@@ -29,14 +32,18 @@ export const useMeshes = (
   } = useAppSelector((state) => state.visual);
   return useMemo(() => {
     return geometries.flatMap(
-      ({
-        geometry,
-        geometryType,
-        materialParameters,
-        meshType,
-        position,
-        rotation,
-      }) => {
+      (
+        {
+          geometry,
+          name,
+          geometryType,
+          materialParameters,
+          meshType,
+          position,
+          rotation,
+        },
+        index
+      ) => {
         const material = getMaterial(
           materialParameters,
           geometryType,
@@ -44,6 +51,7 @@ export const useMeshes = (
           materialFunctions
         );
         const mesh = getMesh(geometry, material, meshType);
+        mesh.name = name ?? `mesh-${index}`;
         if (position) {
           const { x, y, z } = position;
           mesh.position.set(x, y, z);

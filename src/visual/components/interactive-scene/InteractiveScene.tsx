@@ -1,5 +1,6 @@
 import { Clock, Scene } from "three";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
+import { AnimationManager } from "../animation-manager/AnimationManager";
 import { defaultInteractiveSceneFunctions } from "./interactiveScene.constants";
 import { InteractiveSceneFunctions, SceneObject } from "./types";
 
@@ -18,6 +19,8 @@ export class InteractiveThreeScene extends Scene {
 
   animationProperties: any;
 
+  animationManager: AnimationManager;
+
   constructor(
     interactions: InteractionEventObject[],
     sceneFunctions: InteractiveSceneFunctions = defaultInteractiveSceneFunctions,
@@ -33,6 +36,7 @@ export class InteractiveThreeScene extends Scene {
     this.sceneObjects = sceneObjects;
     this.animationProperties = {};
     this.bindMaterialFunctions();
+    this.animationManager = new AnimationManager();
     interactions.forEach(({ eventKey }) => {
       document.addEventListener(`${eventKey}`, (ev) =>
         this.onGestureEvent(ev as CustomEvent)

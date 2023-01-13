@@ -6,7 +6,12 @@ export const getGeometriesFromAssets = (assets: Asset[]) => {
   const geometries = assets.flatMap((asset) =>
     asset.name.indexOf("geometry") !== -1 ? asset : []
   );
-  if (!geometries) return [];
+  if (!geometries || !geometries.length) {
+    console.warn(
+      'no geometries were found - assets must have "geometry in name'
+    );
+    return [];
+  }
   return geometries.flatMap((geometry) => {
     const geometryType = getFileTypeFromFilename(geometry?.url);
     switch (geometryType) {

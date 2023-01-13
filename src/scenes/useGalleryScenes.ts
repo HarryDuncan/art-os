@@ -3,7 +3,7 @@ import { useDefaultConfig } from "scenes/default-configs/useDefaultConfig";
 import { deepMergeObjects } from "utils/deepMergeObjects";
 import * as Scenes from "./scene-configs";
 import scenes from "./scenes.json";
-import { SceneData } from "./types";
+import { SceneConfig } from "./types";
 
 export const useGalleryScenes = () => {
   const {
@@ -41,7 +41,7 @@ export const useGalleryScenes = () => {
   }, []);
 };
 
-const getSceneData = (sceneId): SceneData | undefined => {
+const getSceneData = (sceneId): SceneConfig | undefined => {
   const sceneData = scenes.find((scene) => scene.sceneId === sceneId);
   return sceneData;
 };

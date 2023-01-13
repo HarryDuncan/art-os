@@ -1,29 +1,31 @@
-import { Vector3 } from "three";
-import {
-  BACKGROUND_TYPES,
-  LIGHT_TYPES,
-  OBJECT_TYPES,
-} from "visual/visual-components/react-fiber-scene/reactFiberScene.constants";
-import {
-  GTLFObject,
-  ReactFiberSceneProps,
-} from "visual/visual-components/react-fiber-scene/types";
+import { InteractiveThreeScene } from "visual/components/interactive-scene/InteractiveScene";
+import { AssetType } from "visual/hooks/use-assets/types";
+import { formatSceneData } from "./formatSceneData";
 
-export const ltw = (): ReactFiberSceneProps => {
+export const ltw = () => {
   return {
-    background: {
-      type: BACKGROUND_TYPES.MATCAPBACKGROUND,
-      position: new Vector3(0, 0, -5),
-      layers: [0, 11],
-      texture: "89204B_17080D_DA4377_F780B5",
+    threeJsParams: {
+      camera: { position: { x: 0, y: 0, z: 10 } },
     },
-    light: [{ type: LIGHT_TYPES.AMBIENT, intensity: 0.4 }],
-    camera: { position: new Vector3(0, 0, 5), fov: 70 },
-    objects: [
+    assets: [
       {
-        objectType: OBJECT_TYPES.GTLF_GROUP,
-        objectUrl: "../assets/models/ltw/logo.glb",
-      } as GTLFObject,
+        name: "logo-geometry",
+        url: "../assets/models/ltw/3dLogo.obj",
+        assetType: AssetType.Geometry,
+      },
+      {
+        name: "matcap1",
+        url: "../assets/textures/matcaps/pearl.jpg",
+        assetType: AssetType.Texture,
+      },
     ],
+    sceneFunctions: {
+      onTimeUpdate: (scene: InteractiveThreeScene) => {
+        console.log(scene);
+        const mesh = scene.children[0];
+        mesh.rotation.z += 0.01;
+      },
+    },
+    formatSceneData,
   };
 };
