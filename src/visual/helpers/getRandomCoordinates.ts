@@ -1,4 +1,4 @@
-import { Bounds3D } from "visual/visual-components/react-fiber-scene/types";
+import { Bounds3D } from "visual/hooks/useRandomObjectProperties";
 
 export const getRandomCoordinates = (
   numberOfCoodinates: number,

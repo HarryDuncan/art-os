@@ -1,15 +1,13 @@
 import { DEFAULT_POSITION } from "consts/threejs";
-import { Vector2, Vector3 } from "three";
+import { Texture, Vector2, Vector3 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
-import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
+import { LIGHT_TYPES } from "visual/components/three-js-components/lights/lights.types";
+import { COMPONENT_TYPES } from "visual/components/three-js-components/three-js-components.types";
 import { getGeometriesFromAssets } from "visual/helpers/assets/getGeometriesFromAssets";
-import { formatMatcapTextureUniforms } from "visual/helpers/assets/texture/formatMatcapTextureUniforms";
 import { formatImportedGeometry } from "visual/helpers/geometry/formatImportedGeometry";
 import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
 import { vector3DegreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
 import { Asset } from "visual/hooks/use-assets/types";
-import { attractionMorphingFrag } from "visual/shaders/fragment-shaders";
-import { attractionMorphingVertex } from "visual/shaders/vertex-shaders";
 
 const GEOMETRY_UNIFORMS = {
   uTime: {
@@ -54,23 +52,38 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
     meshConfigs: geometries.flatMap((geometry, index) => {
       const matcap = matcaps[index];
       if (!matcap) return [];
-      const uniforms = formatMatcapTextureUniforms(
-        GEOMETRY_UNIFORMS,
-        matcap.data
-      );
+
       const position = formatPosition(index);
       const rotation = formatRotation(index);
       return {
-        materialType: MATERIAL_TYPES.standard,
+        materialType: MATERIAL_TYPES.matcap,
         geometry: geometry.geometry,
         name: geometry.name,
         position,
         rotation,
-        materialParameters: ,
+        materialParameters: {
+          matcap: (matcap.data as Texture) ?? null,
+        },
       };
     }),
+    sceneComponents: [
+      { name: "marching-cubes", componentType: COMPONENT_TYPES.MARCHING_CUBES },
+    ],
+    lights: [
+      {
+        name: "ambient-light",
+        lightType: LIGHT_TYPES.AMBIENT,
+      },
+      {
+        name: "point-light",
+        lightType: LIGHT_TYPES.POINT_LIGHT,
+      },
+      {
+        name: "directional-light",
+        lightType: LIGHT_TYPES.DIRECTIONAL_LIGHT,
+      },
+    ],
   };
-  console.log(sceneData);
   return sceneData;
 };
 

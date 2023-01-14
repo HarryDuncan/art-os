@@ -1,7 +1,15 @@
 import { useMemo } from "react";
 import { getRandomCoordinates } from "visual/helpers/getRandomCoordinates";
 import { xyzToArray } from "visual/helpers/xyzToArray";
-import { Bounds3D } from "visual/visual-components/react-fiber-scene/types";
+
+export type Bounds3D = {
+  lowerBoundX: number;
+  upperBoundX: number;
+  lowerBoundY: number;
+  upperBoundY: number;
+  lowerBoundZ: number;
+  upperBoundZ: number;
+};
 
 export const useRandomObjectProperties = (
   numberOfObjects: number,

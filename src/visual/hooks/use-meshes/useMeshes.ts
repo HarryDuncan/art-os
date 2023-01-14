@@ -3,7 +3,9 @@ import { useMemo } from "react";
 import {
   AdditiveBlending,
   DoubleSide,
+  FrontSide,
   Mesh,
+  MeshMatcapMaterial,
   Points,
   ShaderMaterial,
 } from "three";
@@ -94,6 +96,12 @@ const getMaterial = (
         depthTest: true,
       });
     }
+    case MATERIAL_TYPES.matcap:
+      const { matcap } = materialParameters;
+      return new MeshMatcapMaterial({
+        matcap,
+        side: DoubleSide,
+      });
     case MATERIAL_TYPES.standard:
     default:
       return materialParameters;

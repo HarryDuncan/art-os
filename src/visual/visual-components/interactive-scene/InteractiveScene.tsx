@@ -11,6 +11,8 @@ import { useEventsWithMesh } from "visual/hooks/use-events/useEvents";
 import { defaultFormatSceneData } from "scenes/default-configs/defaultFormatSceneData";
 import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
+import { useSceneComponents } from "visual/hooks/useSceneComponents";
+import { useLights } from "visual/hooks/useLights";
 
 interface InteractiveSceneProps {
   threeJsParams: ThreeJsParams;
@@ -51,7 +53,8 @@ export const InteractiveScene = ({
   );
 
   const initializedMeshes = useMeshes(sceneData?.meshConfigs, interactions);
-
+  const sceneComponents = useSceneComponents(sceneData.sceneComponents);
+  const lights = useLights(sceneData.lights);
   const scene = useInteractiveScene(
     interactions,
     sceneFunctions,
@@ -63,7 +66,8 @@ export const InteractiveScene = ({
   const initializeMeshes = useCallback(() => {
     if (initializedMeshes && initializedMeshes.length && scene) {
       initializedMeshes.forEach((mesh) => scene.add(mesh));
-      console.log(scene);
+      lights.forEach((light) => scene.add(light));
+      sceneComponents.forEach((component) => scene.add(component));
       postProcessor.current = new PostProcessor({
         renderer,
         scene,

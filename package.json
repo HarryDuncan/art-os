@@ -6,7 +6,6 @@
   "private": true,
   "dependencies": {
     "@mediapipe/selfie_segmentation": "^0.1.1632777926",
-    "@react-three/drei": "^9.46.4",
     "@reduxjs/toolkit": "^1.8.1",
     "@tensorflow-models/body-segmentation": "^1.0.1",
     "@tensorflow-models/posenet": "^2.2.2",
@@ -31,7 +30,6 @@
     "react-redux": "^7.2.8",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-three-fiber": "^6.0.13",
     "react-webcam": "^7.0.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",

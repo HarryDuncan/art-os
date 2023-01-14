@@ -1,3 +1,4 @@
+import { Texture } from "three";
 import { Geometry } from "types/threeJs.types";
 import {
   InteractiveShaders,
@@ -9,6 +10,7 @@ export enum MATERIAL_TYPES {
   interactive = "interactive",
   standardShader = "standardShader",
   standard = "standard",
+  matcap = "matcap",
 }
 
 export type InteractiveMaterialParameters = {
@@ -21,9 +23,14 @@ export type StandardMaterialTypes = {
   material?: any;
 };
 
+export type MatcapMaterialParameters = {
+  matcap: Texture | null;
+};
+
 export type MaterialParameters =
   | StandardMaterialTypes
-  | InteractiveMaterialParameters;
+  | InteractiveMaterialParameters
+  | MatcapMaterialParameters;
 
 export enum MeshTypes {
   MESH = "mesh",

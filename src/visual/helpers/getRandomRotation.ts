@@ -1,4 +1,4 @@
-import { Bounds3D } from "visual/visual-components/react-fiber-scene/types";
+import { Bounds3D } from "visual/hooks/useRandomObjectProperties";
 import { getRandomCoordinates } from "./getRandomCoordinates";
 import { xyzToArray } from "./xyzToArray";
 

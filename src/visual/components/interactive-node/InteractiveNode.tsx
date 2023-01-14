@@ -12,7 +12,6 @@ export const InteractiveNode = () => {
   const modelType = useModelType();
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const webcamRef: React.MutableRefObject<Webcam | null> = useRef(null);
-
   useEffect(() => {
     if (isInitialized && webcamRef.current && interactions.length) {
       switch (modelType) {
