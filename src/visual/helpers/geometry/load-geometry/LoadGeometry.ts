@@ -1,4 +1,4 @@
-import { FILE_TYPES } from "visual/constants";
+import { FILE_TYPES } from "consts";
 import { loadGLTF } from "./loadGLTF";
 import { loadObject } from "./loadObject";
 

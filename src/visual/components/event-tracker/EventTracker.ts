@@ -23,6 +23,8 @@ const getEventFunctionName = (eventKey: EventKey) => {
       return "trackVerticalMovement";
     case EventKey.Scale:
       return "trackScale";
+    case EventKey.MultiplePositions:
+      return "trackMultiplePositions";
     case EventKey.Position:
     default:
       return "trackPosition";
@@ -136,6 +138,12 @@ export class EventTracker {
     if (score > this.scoreThreshold) {
       ev(EventKey.Position, position);
     }
+  }
+
+  // Used with body seg model
+  trackMultiplePositions(event: CustomEvent) {
+    const { detail } = event;
+    ev(EventKey.MultiplePositions, detail);
   }
 
   trackScale(event: CustomEvent) {

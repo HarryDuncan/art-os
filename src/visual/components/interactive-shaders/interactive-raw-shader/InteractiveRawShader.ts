@@ -3,15 +3,15 @@ import { AnimationProperties } from "visual/helpers/animation/animation.types";
 import { DEFAULT_SMOOTH_STEP_HELPER } from "visual/helpers/animation/smooth-step/smoothStep";
 import { EventConfig } from "visual/hooks/use-events/types";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
-import { defaultInteractiveMaterialFunctions } from "../interactiveMaterialConstants";
 import { InteractiveMaterialFunctions, InteractiveShaders } from "../types";
+import { UPDATE_TIME_UNIFORM } from "scenes/default-configs/material-functions";
 
 export default class InteractiveRawShader extends RawShaderMaterial {
   clock: Clock;
 
   isRunningThread: boolean;
 
-  interactionEvents: InteractionEventObject[];
+  interactions: InteractionEventObject[];
 
   materialFunctions: InteractiveMaterialFunctions;
 
@@ -21,7 +21,7 @@ export default class InteractiveRawShader extends RawShaderMaterial {
     uniforms,
     shaders: InteractiveShaders,
     interactions: InteractionEventObject[],
-    materialFunctions: InteractiveMaterialFunctions = defaultInteractiveMaterialFunctions
+    materialFunctions: InteractiveMaterialFunctions = UPDATE_TIME_UNIFORM
   ) {
     super({
       vertexShader: shaders.vertexShader.vert,
@@ -37,7 +37,7 @@ export default class InteractiveRawShader extends RawShaderMaterial {
     this.uniforms = uniforms;
     this.materialFunctions = materialFunctions;
     this.clock = new Clock();
-    this.interactionEvents = interactions;
+    this.interactions = interactions;
     this.animationProperties = { smoothStep: DEFAULT_SMOOTH_STEP_HELPER };
     this.bindMaterialFunctions();
     interactions.forEach(({ eventKey }) => {
@@ -55,7 +55,7 @@ export default class InteractiveRawShader extends RawShaderMaterial {
 
   onGestureEvent(event: CustomEvent) {
     const { type, detail } = event;
-    const currentAction = this.interactionEvents.find(
+    const currentAction = this.interactions.find(
       (interactionEvent) => interactionEvent.eventKey === type
     );
 

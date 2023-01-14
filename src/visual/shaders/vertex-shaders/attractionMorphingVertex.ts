@@ -5,15 +5,13 @@ export const attractionMorphingVertex = {
     uniform vec2 uMouse;
     uniform float uTime;
     uniform float uFrame;
-    uniform vec3 uPosition;
+    uniform vec2 uPosition;
     
     // Common varyings
     varying vec3 v_position;
     varying vec3 vNormal;
 
-    /*
-     * The main program
-     */
+
     void main() {
         // Define the attractor position using spherical coordinates
         float r = 15.0;

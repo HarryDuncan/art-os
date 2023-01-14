@@ -7,6 +7,7 @@ export const ViewPieceContainer = styled.div`
   position: fixed;
   z-index: -2;
   top: 0;
+  cursor: none;
 `;
 export const ViewPieceHeader = styled.div`
   display: flex;

@@ -5,11 +5,11 @@ import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 
 export interface InteractiveSceneParams {
   threeJsParams: ThreeJsParams;
-  interactionEvents: InteractionEventObject[];
+  interactions: InteractionEventObject[];
   assets: Asset[];
   materialFunctions: any;
   materialParams: any;
   sceneFunctions: any;
   visualComponentConfig: VisualComponentConfig;
-  formattingFunction: any;
+  formatSceneData: any;
 }

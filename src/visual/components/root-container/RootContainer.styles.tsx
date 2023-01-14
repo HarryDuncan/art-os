@@ -15,3 +15,5 @@ export const Root = styled.div<{
     margin: 0 auto;
   }
 `;
+
+// background-image: ${({ $backgroundUrl }) => ($backgroundUrl || 'url()')};

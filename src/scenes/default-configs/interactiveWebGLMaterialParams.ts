@@ -7,3 +7,9 @@ export const deepWavesMaterialParams = {
     { uniformName: "uColor", uniformType: UniformTypes.Float },
   ],
 };
+export const getShaderParams = (shaderName) => ({
+  shaderName,
+  uniformDefinition: [
+    { uniformName: "uPosition", uniformType: UniformTypes.Vec3 },
+  ],
+});

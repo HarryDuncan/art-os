@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
 import { useIdleTimer } from "react-idle-timer";
 import {
   SideBarLinkList,
@@ -27,7 +26,7 @@ function SideBar({ navItems }: ISideBarProps) {
   return (
     <StyledSideBar $isVisible={isSidebarVisible}>
       <SideBarTitleContainer>
-        <Link to="/">Art OS</Link>
+        {/* <Link to="/">Art OS</Link> */}
       </SideBarTitleContainer>
       <SideBarLinkList>
         <SideBarItemList items={navItems as ISideBarItem[]} />

@@ -1,62 +1,57 @@
 [
   {
-    "title": "Vanishing Object",
-    "sceneId": "vanishingObject",
-    "componentId": "InteractiveObject",
-    "cardImageName": "vanishingObject.jpg"
-  },
-  {
-    "title": "Interactive Particles",
-    "sceneId": "interactiveParticles",
-    "componentId": "InteractiveParticles",
-    "cardImageName": "interactiveParticles.jpg"
-  },
-  {
-    "title": "Image Distortion",
-    "sceneId": "imageDistortion",
-    "componentId": "ImageDistortion",
-    "cardImageName": "imageDistortion.jpg"
-  },
-  {
-    "title": "Surface Scattering",
-    "sceneId": "surfaceScattering",
-    "componentId": "SurfaceScattering",
-    "cardImageName": "surfaceScattering.jpg"
-  },
-  {
-    "title": "Image Hover",
-    "sceneId": "imageHoverConfig",
-    "componentId": "ImageHover",
-    "cardImageName": "imageHover.jpg"
-  },
-  {
-    "title": "Iran Piece",
-    "sceneId": "iranPiece",
-    "componentId": "ImageHover",
-    "cardImageName": "iran.jpg"
-  },
-  {
     "title": "Deep Waves",
     "sceneId": "deepWaveScene",
     "componentId": "InteractiveWebGL",
     "cardImageName": "deepwaves.jpg"
   },
   {
-    "title": "Attraction Morphing",
-    "sceneId": "attractionMorphing",
-    "componentId": "AttractionMorphing",
-    "cardImageName": "AttractionMorphing.jpg"
+    "title": "Gooey Shader",
+    "sceneId": "gooeyShader",
+    "componentId": "InteractiveScene",
+    "cardImageName": "ImageHover.jpg"
   },
   {
-    "title": "Particle Rain",
-    "sceneId": "particleRain",
+    "title": "Texture Distortion",
+    "sceneId": "textureDistortion",
+    "componentId": "InteractiveScene",
+    "cardImageName": "textureDistortion.jpg"
+  },
+  {
+    "title": "Attraction Morphing",
+    "sceneId": "attractionMorphing",
     "componentId": "InteractiveScene",
     "cardImageName": "AttractionMorphing.jpg"
   },
+
   {
     "title": "Layers",
     "sceneId": "layersDemo",
     "componentId": "InteractiveWebGL",
-    "cardImageName": "AttractionMorphing.jpg"
+    "cardImageName": "LayersDemo.jpg"
+  },
+  {
+    "title": "Barba Ocho",
+    "sceneId": "barbaOcho",
+    "componentId": "InteractiveScene",
+    "cardImageName": "barbaOcho.jpg"
+  },
+  {
+    "title": "Vivienn Westwood",
+    "sceneId": "viv",
+    "componentId": "InteractiveScene",
+    "cardImageName": "westwood.jpg"
+  },
+  {
+    "title": "LTW",
+    "sceneId": "ltw",
+    "componentId": "InteractiveScene",
+    "cardImageName": "LTW.jpg"
+  },
+  {
+    "title": "LTW 2",
+    "sceneId": "ltw2",
+    "componentId": "InteractiveScene",
+    "cardImageName": "LTW.jpg"
   }
 ]

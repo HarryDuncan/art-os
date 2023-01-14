@@ -5,6 +5,7 @@ export enum AssetType {
   Geometry = "geometry",
   Texture = "texture",
   Image = "image",
+  Video = "video",
 }
 
 export type Model = GLTF | Group;

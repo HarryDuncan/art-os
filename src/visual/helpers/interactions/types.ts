@@ -3,12 +3,22 @@ import { KEYPOINT_FEATURES } from "./const";
 export interface InteractionEventObject {
   interactionKey: InteractionKey;
   eventKey: EventKey;
+  binding: Binding;
+  meshIdBinding?: string;
   eventFunction?: (materialReference, eventDetails) => void;
 }
 
-export type InteractionKey = KeypointFeatureKey;
+export enum Binding {
+  InteractiveMesh = "interactiveMesh",
+  InteractiveScene = "interactiveScene",
+}
 
-export type ModelType = "posenet";
+export type InteractionKey = KeypointFeatureKey | BodySegInteractionKeys;
+
+export enum ModelTypes {
+  POSENET = "posenet",
+  BODYSEG = "bodySegmentation",
+}
 
 export enum EventKey {
   SwipeLeft = "SWIPE_LEFT",
@@ -19,6 +29,11 @@ export enum EventKey {
   SwipeVertical = "SWIPE_VERTICAL",
   Scale = "SCALE",
   Position = "POSITION",
+  MultiplePositions = "MULTIPLE_POSITIONS",
+}
+
+export enum BodySegInteractionKeys {
+  PersonPosition = "personPosition",
 }
 
 // <------------------ POSENET --------------------->

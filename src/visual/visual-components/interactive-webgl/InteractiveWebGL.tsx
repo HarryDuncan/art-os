@@ -1,26 +1,17 @@
 import React, { useCallback, useEffect } from "react";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { InteractiveNode } from "visual/components/interactive-node/InteractiveNode";
 import { useSetUpScene } from "visual/hooks/useSetUpScene";
 import { InteractiveObjectParams } from "./types";
 import { RootContainer } from "../../components/root-container";
-import { Layers } from "visual/components/layers/Layers";
 import { useSceneData } from "./useSceneData";
-import { useMeshes } from "visual/hooks/useMeshes";
+import { useMeshes } from "visual/hooks/use-meshes/useMeshes";
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;
 }
 
 export function InteractiveWebGL({ params }: InteractiveObjectProps) {
-  const {
-    threeJsParams,
-    interactionEvents,
-    assets,
-    materialParams,
-    materialFunctions,
-    events,
-  } = params;
+  const { threeJsParams, interactions, assets, materialParams } = params;
 
   const {
     areAssetsInitialized,
@@ -39,9 +30,10 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     materialParams
   );
 
-  const meshes = useMeshes(sceneData?.geometries, interactionEvents);
+  const meshes = useMeshes(sceneData?.meshConfigs, interactions);
 
   const initializeMesh = useCallback(() => {
+    // is post processor hasn't been set - is null
     if (meshes) {
       meshes.forEach((mesh) => scene.add(mesh));
       postProcessor.current = new PostProcessor({
@@ -57,11 +49,5 @@ export function InteractiveWebGL({ params }: InteractiveObjectProps) {
     initializeMesh();
   }, [initializeMesh]);
 
-  return (
-    <>
-      <Layers />
-      <InteractiveNode interactions={interactionEvents} />
-      <RootContainer containerRef={container} />
-    </>
-  );
+  return <RootContainer containerRef={container} />;
 }

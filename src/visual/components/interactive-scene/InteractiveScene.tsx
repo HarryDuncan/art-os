@@ -1,5 +1,7 @@
 import { Clock, Scene } from "three";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
+import { AnimationManager } from "../animation-manager/AnimationManager";
+import { CustomAnimation } from "../animation-manager/animationManager.types";
 import { defaultInteractiveSceneFunctions } from "./interactiveScene.constants";
 import { InteractiveSceneFunctions, SceneObject } from "./types";
 
@@ -8,7 +10,7 @@ export class InteractiveThreeScene extends Scene {
 
   isRunningThread: boolean;
 
-  interactionEvents: InteractionEventObject[];
+  interactions: InteractionEventObject[];
 
   sceneFunctions: InteractiveSceneFunctions;
 
@@ -17,6 +19,8 @@ export class InteractiveThreeScene extends Scene {
   sceneObjects: SceneObject[];
 
   animationProperties: any;
+
+  animationManager: AnimationManager;
 
   constructor(
     interactions: InteractionEventObject[],
@@ -28,11 +32,12 @@ export class InteractiveThreeScene extends Scene {
     this.isRunningThread = true;
     this.sceneFunctions = sceneFunctions;
     this.clock = new Clock();
-    this.interactionEvents = interactions;
+    this.interactions = interactions;
     this.sceneParams = sceneParams;
     this.sceneObjects = sceneObjects;
     this.animationProperties = {};
     this.bindMaterialFunctions();
+    this.animationManager = new AnimationManager();
     interactions.forEach(({ eventKey }) => {
       document.addEventListener(`${eventKey}`, (ev) =>
         this.onGestureEvent(ev as CustomEvent)
@@ -48,12 +53,16 @@ export class InteractiveThreeScene extends Scene {
 
   onGestureEvent(event: CustomEvent) {
     const { type, detail } = event;
-    const currentAction = this.interactionEvents.find(
+    const currentAction = this.interactions.find(
       (interactionEvent) => interactionEvent.eventKey === type
     );
 
     if (currentAction?.eventFunction) {
       currentAction.eventFunction(this, detail);
     }
+  }
+
+  addAnimations(animations: CustomAnimation[]) {
+    this.animationManager.initializeAnimations(animations);
   }
 }

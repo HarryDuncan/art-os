@@ -1,0 +1,24 @@
+syntax = "proto3";
+package visualInputNode;
+
+
+
+/* Visual Input Node Service */
+
+service VisualInputNodeService {
+
+// <------------------- Initialization -------------------------------->
+  rpc InitializeVisualInputNode (InitializeVisualInputNodeRequest) returns (InitializeVisualInputNodeResponse);
+}
+
+
+message InitializeVisualInputNodeRequest {
+
+}
+
+
+// Returns the playlists and directories
+message InitializeVisualInputNodeResponse {
+  bool isInitialized = 1;
+
+}

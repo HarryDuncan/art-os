@@ -12,7 +12,7 @@ export function DigitalArt() {
   return (
     <DigitalArtProvider>
       <DigitalArtContainer>
-        <DigitalArtHeader $isVisible={isHeaderVisible}></DigitalArtHeader>
+        <DigitalArtHeader $isVisible={false}></DigitalArtHeader>
         <DigitalArtContent />
       </DigitalArtContainer>
     </DigitalArtProvider>

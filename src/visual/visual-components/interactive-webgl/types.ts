@@ -12,7 +12,7 @@ export interface WebGLShaderMaterialParams {
 
 export interface InteractiveObjectParams {
   threeJsParams: ThreeJsParams;
-  interactionEvents: InteractionEventObject[];
+  interactions: InteractionEventObject[];
   assets: Asset[];
   materialParams: WebGLShaderMaterialParams;
   materialFunctions: InteractiveMaterialFunctions;

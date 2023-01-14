@@ -5,3 +5,4 @@ export { surfaceScatteringVertex } from "./surfaceScatteringVertex";
 export { imageHoverVertex } from "./imageHoverVertex";
 export { attractionMorphingVertex } from "./attractionMorphingVertex";
 export { particleRainVertex } from "./particleRainVertex";
+export { textureDistortionVertex } from "./textureDistortionVertex";
