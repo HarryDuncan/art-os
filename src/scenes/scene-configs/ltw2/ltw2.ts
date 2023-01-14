@@ -4,7 +4,7 @@ import { AssetType } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
 import { animateRotation } from "visual/helpers/animation/fastAndSlowRotation";
 
-export const ltw = () => {
+export const ltw2 = () => {
   return {
     threeJsParams: {
       camera: { position: { x: 0, y: 0, z: 10 } },
@@ -31,7 +31,7 @@ export const ltw = () => {
         const mesh = scene.children[0];
         const time = scene.clock.getElapsedTime() * 0.8;
         const marchingCube = getMeshByName(scene, "marching-cubes");
-        updateCubes(marchingCube, time, 15);
+        updateCubes(marchingCube, time, 10);
         scene.animationManager.startAnimation("logo-rotate", { object: mesh });
       },
     },
@@ -60,7 +60,7 @@ const updateCubes = (object, time, numblobs) => {
     const bally =
       Math.abs(Math.cos(i + 1.12 * time * Math.cos(1.22 + 0.1424 * i))) * 0.77; // dip into the floor
     const ballz =
-      Math.cos(i + 1.32 * time * 0.1 * Math.sin(0.92 + 0.53 * i)) * 0.27 + 0.5;
+      Math.cos(i + 1.32 * time * 0.1 * Math.sin(0.92 + 0.53 * i)) * 0.27 + 0.2;
 
     object.addBall(ballx, bally, ballz, strength, subtract);
   }

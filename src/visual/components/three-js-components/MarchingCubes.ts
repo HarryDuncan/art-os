@@ -4,7 +4,7 @@ import { MarchingCubesConfig } from "./three-js-components.types";
 
 export const MarchingCubes = ({ name }: MarchingCubesConfig) => {
   const params = {
-    resolution: 150,
+    resolution: 120,
     material: new MeshPhongMaterial({ specular: 0x111111, shininess: 250 }),
   };
   const marchingCubeEffect = new ThreeJsMarchingCubes(

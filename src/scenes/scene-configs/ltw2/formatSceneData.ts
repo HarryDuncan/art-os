@@ -9,6 +9,35 @@ import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
 import { vector3DegreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
 import { Asset } from "visual/hooks/use-assets/types";
 
+const GEOMETRY_UNIFORMS = {
+  uTime: {
+    type: "f",
+    value: 0.0,
+  },
+  uFrame: {
+    type: "f",
+    value: 0.0,
+  },
+  uResolution: {
+    type: "v2",
+    value: new Vector2(window.innerWidth, window.innerHeight).multiplyScalar(
+      window.devicePixelRatio
+    ),
+  },
+  matcap: { value: null },
+  uPosition: {
+    type: "v2",
+    value: new Vector2(50, 50),
+  },
+  uMouse: {
+    type: "v2",
+    value: new Vector2(
+      0.7 * window.innerWidth,
+      window.innerHeight
+    ).multiplyScalar(window.devicePixelRatio),
+  },
+};
+
 export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
   const geometries = getGeometriesFromAssets(loadedAssets).map((geometry) => ({
     geometry: formatImportedGeometry(geometry),

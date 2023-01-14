@@ -13,6 +13,7 @@ import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
 import { useSceneComponents } from "visual/hooks/useSceneComponents";
 import { useLights } from "visual/hooks/useLights";
+import { setSceneProperties } from "visual/helpers/scene/setSceneProperties";
 
 interface InteractiveSceneProps {
   threeJsParams: ThreeJsParams;
@@ -23,6 +24,7 @@ interface InteractiveSceneProps {
   visualComponentConfig;
   formatSceneData: (assets: Asset[], materialParams) => SceneData;
   events;
+  animations?;
 }
 
 export const InteractiveScene = ({
@@ -34,6 +36,7 @@ export const InteractiveScene = ({
   visualComponentConfig,
   formatSceneData = defaultFormatSceneData,
   events,
+  animations = [],
 }: InteractiveSceneProps) => {
   const {
     areAssetsInitialized,
@@ -63,11 +66,14 @@ export const InteractiveScene = ({
     sceneData?.isSceneDataInitialized ?? false
   );
   useAddEvent(initializedMeshes, events);
-  const initializeMeshes = useCallback(() => {
+
+  const initializeSceneWithData = useCallback(() => {
     if (initializedMeshes && initializedMeshes.length && scene) {
       initializedMeshes.forEach((mesh) => scene.add(mesh));
       lights.forEach((light) => scene.add(light));
+      setSceneProperties(sceneData.sceneProperties, scene);
       sceneComponents.forEach((component) => scene.add(component));
+      scene.addAnimations(animations);
       postProcessor.current = new PostProcessor({
         renderer,
         scene,
@@ -79,8 +85,8 @@ export const InteractiveScene = ({
   }, [scene, initializedMeshes, update, postProcessor, renderer, camera]);
 
   useEffect(() => {
-    initializeMeshes();
-  }, [initializeMeshes]);
+    initializeSceneWithData();
+  }, [initializeSceneWithData]);
 
   return (
     <RootContainer containerRef={container} config={visualComponentConfig} />

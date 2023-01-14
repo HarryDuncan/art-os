@@ -47,5 +47,11 @@
     "sceneId": "ltw",
     "componentId": "InteractiveScene",
     "cardImageName": "LTW.jpg"
+  },
+  {
+    "title": "LTW 2",
+    "sceneId": "ltw2",
+    "componentId": "InteractiveScene",
+    "cardImageName": "LTW.jpg"
   }
 ]

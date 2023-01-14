@@ -1,6 +1,7 @@
 import { Clock, Scene } from "three";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
 import { AnimationManager } from "../animation-manager/AnimationManager";
+import { CustomAnimation } from "../animation-manager/animationManager.types";
 import { defaultInteractiveSceneFunctions } from "./interactiveScene.constants";
 import { InteractiveSceneFunctions, SceneObject } from "./types";
 
@@ -59,5 +60,9 @@ export class InteractiveThreeScene extends Scene {
     if (currentAction?.eventFunction) {
       currentAction.eventFunction(this, detail);
     }
+  }
+
+  addAnimations(animations: CustomAnimation[]) {
+    this.animationManager.initializeAnimations(animations);
   }
 }
