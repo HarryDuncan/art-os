@@ -1,6 +1,6 @@
 import { InteractiveThreeScene } from "visual/components/interactive-scene/InteractiveScene";
 import { getMeshByName } from "visual/helpers/scene/getMeshByName";
-import { AssetType } from "visual/hooks/use-assets/types";
+import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
 import { animateRotation } from "visual/helpers/animation/fastAndSlowRotation";
 
@@ -13,17 +13,17 @@ export const ltw = () => {
       {
         name: "logo-geometry",
         url: "../assets/models/ltw/3dLogo.obj",
-        assetType: AssetType.Geometry,
+        assetType: ASSET_TYPES.Geometry,
       },
       {
         name: "matcap1",
         url: "../assets/textures/matcaps/pearl.jpg",
-        assetType: AssetType.Texture,
+        assetType: ASSET_TYPES.Texture,
       },
       {
         name: "matcap2",
         url: "../assets/textures/backgrounds/blue-mag.jpg",
-        assetType: AssetType.Texture,
+        assetType: ASSET_TYPES.Texture,
       },
     ],
     sceneFunctions: {

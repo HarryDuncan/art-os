@@ -1,10 +1,11 @@
 import { useCallback } from "react";
 import { getFileTypeFromFilename } from "utils/getFileType";
 import { loadImage } from "visual/helpers/assets/image/load-image/LoadImage";
+import { loadFont } from "visual/helpers/assets/loadFont";
 import { loadTexture } from "visual/helpers/assets/texture/load-texture/loadTexture";
 import { loadGeometry } from "visual/helpers/geometry/load-geometry/LoadGeometry";
 
-import { Asset, AssetType } from "./types";
+import { Asset, ASSET_TYPES } from "./types";
 
 export const useInitializeAssets = (assets: Asset[]) => {
   async function initializeAsset(asset: Asset) {
@@ -26,21 +27,25 @@ const loadAsset = async (asset: Asset) => {
   const { assetType, url: path } = asset;
   const fileType = getFileTypeFromFilename(path);
   switch (assetType) {
-    case AssetType.Geometry: {
+    case ASSET_TYPES.Geometry: {
       const geometry = await loadGeometry(path, fileType);
       return geometry;
     }
-    case AssetType.Texture: {
+    case ASSET_TYPES.Texture: {
       const texture = await loadTexture(path);
       return texture;
     }
-    case AssetType.Image: {
+    case ASSET_TYPES.Image: {
       const image = await loadImage(path);
       return image;
     }
-    case AssetType.Video: {
+    case ASSET_TYPES.Video: {
       // todo - check if url actually exists
       return "";
+    }
+    case ASSET_TYPES.FONT: {
+      const loadedFont = await loadFont(path);
+      return loadedFont;
     }
     default: {
       return null;

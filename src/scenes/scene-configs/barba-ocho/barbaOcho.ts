@@ -5,7 +5,7 @@ import {
   EventKey,
   InteractionKey,
 } from "visual/helpers/interactions/types";
-import { AssetType } from "visual/hooks/use-assets/types";
+import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { getBarbaOchoSceneData } from "./barbaOchoSceneData";
 import { events } from "./events";
 
@@ -33,67 +33,67 @@ export const barbaOcho = () => ({
     {
       name: "uRevealedImage",
       url: "../assets/textures/PROMO.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uShape",
       url: "../assets/textures/barbaOcho.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage",
       url: "../assets/textures/b1.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage2",
       url: "../assets/textures/b2.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage2",
       url: "../assets/textures/b3.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage2",
       url: "../assets/textures/b4.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage2",
       url: "../assets/textures/b11.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage2",
       url: "../assets/textures/b6.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage2",
       url: "../assets/textures/b7.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage244",
       url: "../assets/textures/b8.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage244",
       url: "../assets/textures/b9.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage24",
       url: "../assets/textures/b10.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage5",
       url: "../assets/textures/b5.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
   ],
   materialFunctions: {

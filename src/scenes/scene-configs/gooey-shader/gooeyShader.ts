@@ -5,7 +5,7 @@ import {
   EventKey,
   InteractionKey,
 } from "visual/helpers/interactions/types";
-import { AssetType } from "visual/hooks/use-assets/types";
+import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { getGooeyShaderSceneData } from "./gooeyShaderSceneData";
 
 export const gooeyShader = () => ({
@@ -32,12 +32,12 @@ export const gooeyShader = () => ({
     {
       name: "uCoverImage",
       url: "../assets/textures/BlockChainSquare.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uRevealedImage",
       url: "../assets/textures/HJDBg.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
   ],
 

@@ -6,7 +6,7 @@ import {
   EventKey,
   InteractionKey,
 } from "visual/helpers/interactions/types";
-import { AssetType } from "visual/hooks/use-assets/types";
+import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { CameraType } from "visual/hooks/use-three-js/use-camera/types";
 import { getSceneData } from "./getSceneData";
 
@@ -31,7 +31,7 @@ export const textureDistortion = () => ({
     {
       name: "uTexture",
       url: "../assets/textures/RGBGood.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
   ],
   materialFunctions: {

@@ -1,8 +1,8 @@
 import { MeshPhongMaterial } from "three";
 import { MarchingCubes as ThreeJsMarchingCubes } from "three/examples/jsm/objects/MarchingCubes.js";
-import { MarchingCubesConfig } from "./three-js-components.types";
+import { MarchingCubesProps } from "./threeJsComponents.types";
 
-export const MarchingCubes = ({ name }: MarchingCubesConfig) => {
+export const MarchingCubes = ({ name }: MarchingCubesProps) => {
   const params = {
     resolution: 120,
     material: new MeshPhongMaterial({ specular: 0x111111, shininess: 250 }),

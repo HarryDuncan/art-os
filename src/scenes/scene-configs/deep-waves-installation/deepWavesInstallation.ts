@@ -7,7 +7,7 @@ import {
   EventKey,
   ModelTypes,
 } from "visual/helpers/interactions/types";
-import { AssetType } from "visual/hooks/use-assets/types";
+import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
 
 export const deepWavesInstallation = () => ({
@@ -20,32 +20,32 @@ export const deepWavesInstallation = () => ({
     {
       name: "geometry1",
       url: "../assets/models/AresBust.obj",
-      assetType: AssetType.Geometry,
+      assetType: ASSET_TYPES.Geometry,
     },
     {
       name: "matcap1",
       url: "../assets/textures/redobsidian.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "geometry2",
       url: "../assets/models/AphroditeBust.obj",
-      assetType: AssetType.Geometry,
+      assetType: ASSET_TYPES.Geometry,
     },
     {
       name: "matcap2",
       url: "../assets/textures/greenobsidian.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "geometry3",
       url: "../assets/models/ZeusBust.obj",
-      assetType: AssetType.Geometry,
+      assetType: ASSET_TYPES.Geometry,
     },
     {
       name: "matcap3",
       url: "../assets/textures/blueobsidian.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
   ],
   interactions: [

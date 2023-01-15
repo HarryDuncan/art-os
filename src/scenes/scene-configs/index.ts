@@ -8,3 +8,4 @@ export { deepWavesInstallation } from "./deep-waves-installation";
 export { barbaOcho } from "./barba-ocho";
 export { viv } from "./viv";
 export { ltw } from "./ltw";
+export { ltw2 } from "./ltw2";

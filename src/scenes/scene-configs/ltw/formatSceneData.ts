@@ -2,7 +2,10 @@ import { DEFAULT_POSITION } from "consts/threejs";
 import { Texture, Vector2, Vector3 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { LIGHT_TYPES } from "visual/components/three-js-components/lights/lights.types";
-import { COMPONENT_TYPES } from "visual/components/three-js-components/three-js-components.types";
+import {
+  COMPONENT_TYPES,
+  MarchingCubesProps,
+} from "visual/components/three-js-components/components/threeJsComponents.types";
 import { getGeometriesFromAssets } from "visual/helpers/assets/getGeometriesFromAssets";
 import { formatImportedGeometry } from "visual/helpers/geometry/formatImportedGeometry";
 import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
@@ -42,7 +45,10 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
       background: backgroundMatcap.data as Texture,
     },
     sceneComponents: [
-      { name: "marching-cubes", componentType: COMPONENT_TYPES.MARCHING_CUBES },
+      {
+        componentType: COMPONENT_TYPES.MARCHING_CUBES,
+        componentProps: { name: "marching-cubes" } as MarchingCubesProps,
+      },
     ],
     lights: [
       {

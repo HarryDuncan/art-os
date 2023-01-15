@@ -68,7 +68,7 @@ export const InteractiveScene = ({
   useAddEvent(initializedMeshes, events);
 
   const initializeSceneWithData = useCallback(() => {
-    if (initializedMeshes && initializedMeshes.length && scene) {
+    if (scene) {
       initializedMeshes.forEach((mesh) => scene.add(mesh));
       lights.forEach((light) => scene.add(light));
       setSceneProperties(sceneData.sceneProperties, scene);

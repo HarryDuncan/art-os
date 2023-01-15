@@ -5,7 +5,7 @@ import {
   EventKey,
   InteractionKey,
 } from "visual/helpers/interactions/types";
-import { AssetType } from "visual/hooks/use-assets/types";
+import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { getVivSceneData } from "./getVivSceneData";
 
 export const viv = () => ({
@@ -37,17 +37,17 @@ export const viv = () => ({
     {
       name: "uRevealedImage",
       url: "../assets/textures/viv/tartan.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uShape",
       url: "../assets/textures/viv/icon.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
     {
       name: "uCoverImage",
       url: "../assets/textures/viv/viv.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
   ],
   materialFunctions: {

@@ -1,9 +1,12 @@
 import Particle from "scenes/scene-configs/particle-rain/classes/Particle";
 import { Texture } from "three";
 import { MeshConfig } from "visual/helpers/geometry/three-geometry/types";
-import { MarchingCubes } from "../three-js-components";
+import { MarchingCubes } from "../three-js-components/components";
 import { LightConfigs } from "../three-js-components/lights/lights.types";
-import { COMPONENT_TYPES } from "../three-js-components/three-js-components.types";
+import {
+  ComponentProps,
+  COMPONENT_TYPES,
+} from "../three-js-components/components/threeJsComponents.types";
 import { InteractiveThreeScene as InteractiveScene } from "./InteractiveScene";
 
 export type InteractiveSceneFunctions = {
@@ -17,8 +20,8 @@ export type SceneObject = {
 };
 
 export type SceneComponentConfig = {
-  name: string;
   componentType: COMPONENT_TYPES;
+  componentProps: ComponentProps;
 };
 
 export type SceneProperties = {

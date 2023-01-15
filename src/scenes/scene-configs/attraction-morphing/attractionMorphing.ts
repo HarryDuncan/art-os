@@ -1,6 +1,6 @@
 import { Vector2 } from "three";
 import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
-import { AssetType } from "visual/hooks/use-assets/types";
+import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import InteractiveMaterial from "visual/components/interactive-shaders/interactive-shader/InteractiveShader";
 import { INTERACTION_EVENTS } from "visual/helpers/interactions/const";
 import {
@@ -34,12 +34,12 @@ export const attractionMorphing = () => ({
     {
       name: "geometry",
       url: "../assets/models/AresBust.obj",
-      assetType: AssetType.Geometry,
+      assetType: ASSET_TYPES.Geometry,
     },
     {
       name: "matcap",
       url: "../assets/textures/obsidian.jpg",
-      assetType: AssetType.Texture,
+      assetType: ASSET_TYPES.Texture,
     },
   ],
   materialFunctions: {
