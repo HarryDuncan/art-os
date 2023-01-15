@@ -1,5 +1,5 @@
 import { DEFAULT_POSITION } from "consts/threejs";
-import { Texture, Vector3 } from "three";
+import { BoxGeometry, PlaneGeometry, Texture, Vector3 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { LIGHT_TYPES } from "visual/components/three-js-components/lights/lights.types";
 import {
@@ -16,22 +16,35 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
   //   geometry: formatImportedGeometry(geometry),
   //   name: geometry.name,
   // }));
-  // const matcaps = loadedAssets.flatMap((asset) =>
-  //   asset.name.indexOf("matcap") !== -1 ? asset : []
-  // );
-
+  const matcaps = loadedAssets.flatMap((asset) =>
+    asset.name.indexOf("matcap") !== -1 ? asset : []
+  );
+  const backgroundMatcap = matcaps[1];
   const sceneData: SceneData = {
     isSceneDataInitialized: true,
     meshConfigs: [],
-    sceneProperties: {},
+    sceneProperties: {
+      background: backgroundMatcap.data as Texture,
+    },
     sceneComponents: [
       {
         componentType: COMPONENT_TYPES.TEXT,
         componentProps: {
-          font: loadedAssets[0].data,
+          font: "../assets/AnimationS.woff",
           text: "Harry J Dee",
           name: "title",
+          materialProps: {
+            matcap: matcaps[0].data,
+          },
         } as TextProps,
+      },
+
+      {
+        componentType: COMPONENT_TYPES.MIRROR,
+        componentProps: {
+          name: "mirror1",
+          geometry: new PlaneGeometry(10, 10),
+        },
       },
     ],
     lights: [

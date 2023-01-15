@@ -1,18 +1,18 @@
 import React, { useCallback, useEffect, useMemo } from "react";
-import { useSetUpScene } from "visual/hooks/useSetUpScene";
+import { useSetUpScene } from "visual/hooks/scene-data/useSetUpScene";
 import { RootContainer } from "../../components/root-container";
 import { Asset } from "visual/hooks/use-assets/types";
 import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
 import { SceneData } from "visual/components/interactive-scene/types";
-import { useMeshes } from "visual/hooks/use-meshes/useMeshes";
+import { useMeshes } from "visual/hooks/scene-data/useMeshes";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { EMPTY_SCENE_DATA } from "consts";
 import { useEventsWithMesh } from "visual/hooks/use-events/useEvents";
 import { defaultFormatSceneData } from "scenes/default-configs/defaultFormatSceneData";
 import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
-import { useSceneComponents } from "visual/hooks/useSceneComponents";
-import { useLights } from "visual/hooks/useLights";
+import { useSceneComponents } from "visual/hooks/scene-data/useSceneComponents";
+import { useLights } from "visual/hooks/scene-data/useLights";
 import { setSceneProperties } from "visual/helpers/scene/setSceneProperties";
 
 interface InteractiveSceneProps {

@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from "react";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { useSetUpScene } from "visual/hooks/useSetUpScene";
+import { useSetUpScene } from "visual/hooks/scene-data/useSetUpScene";
 import { InteractiveObjectParams } from "./types";
 import { RootContainer } from "../../components/root-container";
 import { useSceneData } from "./useSceneData";
-import { useMeshes } from "visual/hooks/use-meshes/useMeshes";
+import { useMeshes } from "visual/hooks/scene-data/useMeshes";
 
 interface InteractiveObjectProps {
   params: InteractiveObjectParams;

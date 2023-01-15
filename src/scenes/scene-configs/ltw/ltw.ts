@@ -29,9 +29,9 @@ export const ltw = () => {
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveThreeScene) => {
         const mesh = scene.children[0];
-        const time = scene.clock.getElapsedTime() * 0.8;
+        const time = scene.clock.getElapsedTime() * 0.3;
         const marchingCube = getMeshByName(scene, "marching-cubes");
-        updateCubes(marchingCube, time, 15);
+        updateCubes(marchingCube, time, 10);
         scene.animationManager.startAnimation("logo-rotate", { object: mesh });
       },
     },

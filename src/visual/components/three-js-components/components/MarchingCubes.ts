@@ -16,6 +16,7 @@ export const MarchingCubes = ({ name }: MarchingCubesProps) => {
   );
   marchingCubeEffect.position.set(0, 0, 0);
   marchingCubeEffect.scale.set(7, 7, 7);
+  marchingCubeEffect.isolation = 100;
   marchingCubeEffect.enableUvs = false;
   marchingCubeEffect.enableColors = false;
   marchingCubeEffect.name = name;
