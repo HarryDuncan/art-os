@@ -1,6 +1,9 @@
 import { InteractiveThreeScene } from "visual/components/interactive-scene/InteractiveScene";
+import { animateAndPause } from "visual/helpers/animation/animateAndPause";
+import { chainAnimation } from "visual/helpers/animation/chain-animation/chainAnimation";
 import { animateRotation } from "visual/helpers/animation/fastAndSlowRotation";
 import { getMeshByName } from "visual/helpers/scene/getMeshByName";
+import { getMeshesByIdentifier } from "visual/helpers/scene/getMeshesByIdentifier";
 import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
 
@@ -23,17 +26,17 @@ export const ltw2 = () => {
     ],
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveThreeScene) => {
-        console.log(scene);
-        const text = getMeshByName(scene, "title");
-        scene.animationManager.startAnimation("logo-rotate", { object: text });
+        const text = getMeshesByIdentifier(scene, "title");
+
+        scene.animationManager.startAnimation("text-rotate", text);
       },
     },
     interactions: [],
     formatSceneData,
     animations: [
       {
-        animationId: "logo-rotate",
-        animationFunction: animateRotation,
+        animationId: "text-rotate",
+        animationFunction: chainAnimation,
       },
     ],
   };

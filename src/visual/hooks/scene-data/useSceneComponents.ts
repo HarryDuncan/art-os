@@ -25,15 +25,16 @@ export const useSceneComponents = (
         case COMPONENT_TYPES.TEXT: {
           const {
             name,
-            font,
+            fontUrl,
             text,
             materialProps,
+            position,
           } = componentProps as TextProps;
-          return Text({ name, text, font, materialProps });
+          return Text({ name, text, fontUrl, materialProps, position });
         }
         case COMPONENT_TYPES.MIRROR: {
-          const { name, geometry } = componentProps as MirrorProps;
-          return Mirror({ name, geometry });
+          const { name, geometry, position } = componentProps as MirrorProps;
+          return Mirror({ name, geometry, position });
         }
         default:
           console.warn("component not set up for this component type");

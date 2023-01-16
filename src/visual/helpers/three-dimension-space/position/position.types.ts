@@ -8,3 +8,9 @@ export interface ThreeDPosition {
   y: number;
   z: number;
 }
+
+export enum AXIS {
+  X = "X",
+  Y = "Y",
+  Z = "Z",
+}
