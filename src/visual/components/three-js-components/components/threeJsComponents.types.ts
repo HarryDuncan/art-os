@@ -1,4 +1,4 @@
-import { Vector3 } from "three";
+import { ColorRepresentation, Vector3 } from "three";
 import { Geometry } from "types/threeJs.types";
 
 export interface ThreeJSComponentProps {
@@ -17,6 +17,7 @@ export interface TextProps extends ThreeJSComponentProps {
 export interface MirrorProps extends ThreeJSComponentProps {
   geometry: Geometry;
   position: Vector3;
+  color?: ColorRepresentation;
 }
 export type ComponentProps = TextProps | MarchingCubesProps | MirrorProps;
 

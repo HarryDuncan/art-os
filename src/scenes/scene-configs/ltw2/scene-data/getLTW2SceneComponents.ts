@@ -27,10 +27,10 @@ export const getLTW2SceneComponents = (
 
 const getMirrors = (): SceneComponentConfig[] => {
   const allowedBoundingBoxes: BoundingBox[] = [
-    createBoundingBox({ x: 0, y: 0, z: 0 }, 16, 16, 16),
+    createBoundingBox({ x: 0, y: 0, z: 0 }, 10, 10, 10),
   ];
   const notAllowedBoundingBoxes: BoundingBox[] = [
-    createBoundingBox({ x: 0, y: 0, z: 3 }, 8, 5, 8),
+    createBoundingBox({ x: 0, y: 0, z: 3 }, 8, 5, 10),
   ];
   const textBBox = createBoundingBox(
     DEFAULT_POSITION,
@@ -64,7 +64,6 @@ const getText = (matcaps: Asset[]) => {
     TEXT_BBOX_SCHEMA.depth
   );
   const textPositions = getEquidistantCoordinates(15, textBBox, AXIS.Y);
-  console.log(textPositions);
   return textPositions.map((position, index) => ({
     componentType: COMPONENT_TYPES.TEXT,
     componentProps: {

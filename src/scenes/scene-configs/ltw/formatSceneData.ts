@@ -14,7 +14,7 @@ import { Asset } from "visual/hooks/use-assets/types";
 
 export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
   const geometries = getGeometriesFromAssets(loadedAssets).map((geometry) => ({
-    geometry: formatImportedGeometry(geometry),
+    geometry: formatImportedGeometry(geometry.geometry),
     name: geometry.name,
   }));
   const matcaps = loadedAssets.flatMap((asset) =>

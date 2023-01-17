@@ -2,7 +2,9 @@ import { InteractiveThreeScene } from "visual/components/interactive-scene/Inter
 import { getMeshByName } from "visual/helpers/scene/getMeshByName";
 import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
-import { animateRotation } from "visual/helpers/animation/fastAndSlowRotation";
+import { animateRotation } from "visual/helpers/animation/rotation/fastAndSlowRotation";
+import { chainAnimation } from "visual/helpers/animation/chainAnimation";
+import { LOGO_ANIMATION_CONFIG } from "./ltw.constants";
 
 export const ltw = () => {
   return {
@@ -28,11 +30,14 @@ export const ltw = () => {
     ],
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveThreeScene) => {
-        const mesh = scene.children[0];
         const time = scene.clock.getElapsedTime() * 0.3;
         const marchingCube = getMeshByName(scene, "marching-cubes");
         updateCubes(marchingCube, time, 10);
-        scene.animationManager.startAnimation("logo-rotate", { object: mesh });
+        scene.animationManager.startAnimation("logo-rotate", {
+          scene,
+          targetIdentifier: "logo-geometry",
+          animationConfig: LOGO_ANIMATION_CONFIG,
+        });
       },
     },
     interactions: [],
@@ -40,7 +45,7 @@ export const ltw = () => {
     animations: [
       {
         animationId: "logo-rotate",
-        animationFunction: animateRotation,
+        animationFunction: chainAnimation,
       },
     ],
   };

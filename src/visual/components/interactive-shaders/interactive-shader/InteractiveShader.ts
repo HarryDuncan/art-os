@@ -15,8 +15,6 @@ export default class InteractiveShader extends ShaderMaterial {
 
   materialFunctions: InteractiveMaterialFunctions;
 
-  animationProperties: Partial<AnimationProperties>;
-
   constructor(
     uniforms,
     shaders: InteractiveShaders,
@@ -41,7 +39,6 @@ export default class InteractiveShader extends ShaderMaterial {
     this.materialFunctions = materialFunctions;
     this.clock = new Clock();
     this.interactions = interactions;
-    this.animationProperties = { smoothStep: DEFAULT_SMOOTH_STEP_HELPER };
     this.bindMaterialFunctions();
 
     interactions.forEach(({ eventKey }) => {

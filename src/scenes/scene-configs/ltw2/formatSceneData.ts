@@ -1,4 +1,3 @@
-import { DEFAULT_POSITION } from "consts/threejs";
 import { BoxGeometry, PlaneGeometry, Texture, Vector3 } from "three";
 import {
   SceneComponentConfig,
@@ -17,12 +16,15 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
   const backgroundMatcap = matcaps[1];
 
   const sceneComponents = getLTW2SceneComponents(loadedAssets);
+
+  const sceneProperties = backgroundMatcap
+    ? {
+        background: backgroundMatcap.data as Texture,
+      }
+    : undefined;
   const sceneData: SceneData = {
     isSceneDataInitialized: true,
     meshConfigs: [],
-    sceneProperties: {
-      background: backgroundMatcap.data as Texture,
-    },
 
     lights: [
       {
@@ -39,5 +41,5 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
       },
     ],
   };
-  return { ...sceneData, sceneComponents };
+  return { ...sceneData, sceneComponents, sceneProperties };
 };

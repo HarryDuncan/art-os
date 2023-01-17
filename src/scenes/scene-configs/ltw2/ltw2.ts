@@ -1,11 +1,9 @@
 import { InteractiveThreeScene } from "visual/components/interactive-scene/InteractiveScene";
-import { animateAndPause } from "visual/helpers/animation/animateAndPause";
-import { chainAnimation } from "visual/helpers/animation/chain-animation/chainAnimation";
-import { animateRotation } from "visual/helpers/animation/fastAndSlowRotation";
-import { getMeshByName } from "visual/helpers/scene/getMeshByName";
+import { chainAnimation } from "visual/helpers/animation/chainAnimation";
 import { getMeshesByIdentifier } from "visual/helpers/scene/getMeshesByIdentifier";
 import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
+import { TEXT_ANIMATION_CONFIG } from "./ltw2.constants";
 
 export const ltw2 = () => {
   return {
@@ -18,17 +16,14 @@ export const ltw2 = () => {
         url: "../assets/textures/matcaps/irredescent.jpg",
         assetType: ASSET_TYPES.Texture,
       },
-      {
-        name: "matcap2",
-        url: "../assets/textures/backgrounds/orange-grad.jpg",
-        assetType: ASSET_TYPES.Texture,
-      },
     ],
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveThreeScene) => {
-        const text = getMeshesByIdentifier(scene, "title");
-
-        scene.animationManager.startAnimation("text-rotate", text);
+        scene.animationManager.startAnimation("text-rotate", {
+          scene,
+          targetIdentifier: "title",
+          animationConfig: TEXT_ANIMATION_CONFIG,
+        });
       },
     },
     interactions: [],

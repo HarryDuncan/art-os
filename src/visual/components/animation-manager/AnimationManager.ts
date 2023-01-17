@@ -1,4 +1,7 @@
-import { CustomAnimation } from "./animationManager.types";
+import {
+  AnimationFunctionProps,
+  CustomAnimation,
+} from "./animationManager.types";
 
 export class AnimationManager {
   animations: CustomAnimation[];
@@ -23,7 +26,7 @@ export class AnimationManager {
   }
   startAnimation(
     animationId: string,
-    animationFunctionProps: Record<string, unknown>
+    animationFunctionProps: AnimationFunctionProps
   ) {
     const animation = this.animations.find(
       (animation) => animation.animationId === animationId
@@ -33,9 +36,8 @@ export class AnimationManager {
       return;
     } else {
       if (!animation.isRunning) {
-        console.log("tt");
         animation.isRunning = true;
-        animation.animationFunction(animationFunctionProps);
+        animation.animationFunction(animationId, animationFunctionProps);
       }
     }
   }

@@ -20,12 +20,14 @@ export const Text = ({
   textObject.color = 0xffffff;
   textObject.depthOffset = 30;
   textObject.anchorX = "center";
+  textObject.anchorY = "top";
   textObject.curveRadius = 43;
   textObject.geometry.computeBoundingBox();
   textObject.geometry.computeBoundingBox();
   let center = textObject.geometry.boundingBox.getCenter(new Vector3());
+
   textObject.geometry.applyMatrix4(
-    new Matrix4().makeTranslation(-center.x, -center.y, -center.z)
+    new Matrix4().makeTranslation(-center.x * 2, -center.y * 2, -center.z * 2)
   );
   if (materialProps) {
     const material = getMaterial(materialProps, MATERIAL_TYPES.matcap);

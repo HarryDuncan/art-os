@@ -1,26 +1,29 @@
 import { getFileTypeFromFilename } from "utils/getFileType";
 import { FILE_TYPES } from "consts";
 import { Asset } from "visual/hooks/use-assets/types";
-
+export type AssetGeometry = {
+  geometry: any;
+  name: string;
+};
 export const getGeometriesFromAssets = (assets: Asset[]) => {
-  const geometries = assets.flatMap((asset) =>
+  const geometryAssets = assets.flatMap((asset) =>
     asset.name.indexOf("geometry") !== -1 ? asset : []
   );
-  if (!geometries || !geometries.length) {
+  if (!geometryAssets || !geometryAssets.length) {
     console.warn(
-      'no geometries were found - assets must have "geometry in name'
+      'no geometryAssets were found - assets must have "geometry in name'
     );
     return [];
   }
-  return geometries.flatMap((geometry) => {
+  return geometryAssets.flatMap((geometry) => {
     const materialType = getFileTypeFromFilename(geometry?.url);
     switch (materialType) {
       case FILE_TYPES.MODELS.GLTF:
-        return geometry;
+        return { geometry, name: geometry.name };
       case FILE_TYPES.MODELS.OBJ:
-        return getGeometryFromObj(geometry);
+        return { geometry: getGeometryFromObj(geometry), name: geometry.name };
       default:
-        return geometry;
+        return { geometry, name: geometry.name };
     }
   });
 };
