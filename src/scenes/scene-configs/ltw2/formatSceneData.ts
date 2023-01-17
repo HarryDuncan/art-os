@@ -15,7 +15,7 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
   );
   const backgroundMatcap = matcaps[1];
 
-  const sceneComponents = getLTW2SceneComponents(loadedAssets);
+  const { sceneComponents, meshConfigs } = getLTW2SceneComponents(loadedAssets);
 
   const sceneProperties = backgroundMatcap
     ? {
@@ -41,5 +41,5 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
       },
     ],
   };
-  return { ...sceneData, sceneComponents, sceneProperties };
+  return { ...sceneData, sceneComponents, sceneProperties, meshConfigs };
 };

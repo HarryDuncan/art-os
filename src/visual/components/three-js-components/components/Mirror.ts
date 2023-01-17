@@ -8,7 +8,7 @@ export const Mirror = ({ name, geometry, position }: MirrorProps) => {
     clipBias: 0.003,
     textureWidth: window.innerWidth * window.devicePixelRatio,
     textureHeight: window.innerHeight * window.devicePixelRatio,
-    color: new Color(0x151716),
+    color: new Color(0x19191a),
   });
   mirror.name = name;
   mirror.position.set(position.x, position.y, position.z);

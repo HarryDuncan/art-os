@@ -1,11 +1,9 @@
 import { AnimationFunctionProps } from "visual/components/animation-manager/animationManager.types";
 import { getMeshesByIdentifier } from "visual/helpers/scene/getMeshesByIdentifier";
 import { degreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
-import { AXIS } from "visual/helpers/three-dimension-space/position/position.types";
 import { easeOut } from "visual/utils";
 import { stepAndWrap } from "visual/utils/stepAndWrap";
 import {
-  AnimationConfig,
   AnimationProperties,
   ANIMATION_TYPES,
   RotationAnimationConfig,
@@ -14,7 +12,7 @@ import {
 import { rotateMeshAlongAxis } from "./rotation/rotateMeshAlongAxis";
 import { spinMeshAlongAxis } from "./rotation/spinMeshAlongAxis";
 
-export const chainAnimation = (
+export const animateAll = (
   animationId: string,
   props: AnimationFunctionProps
 ) => {
@@ -30,13 +28,13 @@ export const chainAnimation = (
     );
   }
   let startTime: number;
-  let currentItemIndex = 0;
 
   function step(timestamp: number) {
-    const object = animatedObjects[currentItemIndex];
     if (!startTime) startTime = timestamp;
     const progress = timestamp - startTime;
-    performAnimation(animationType, object, progress, animationProperties);
+    animatedObjects.forEach((object) => {
+      performAnimation(animationType, object, progress, animationProperties);
+    });
     if (
       progress < animationProperties.animationDurationMilis ||
       animationProperties.animationDurationMilis === -1
@@ -44,11 +42,6 @@ export const chainAnimation = (
       requestAnimationFrame(step);
     } else {
       startTime = 0;
-      currentItemIndex = stepAndWrap(
-        0,
-        animatedObjects.length - 1,
-        currentItemIndex
-      );
       if (animationProperties.repeatAnimation) {
         setTimeout(() => {
           requestAnimationFrame(step);

@@ -1,9 +1,14 @@
 import { InteractiveThreeScene } from "visual/components/interactive-scene/InteractiveScene";
+import { animateAll } from "visual/helpers/animation/animateAll";
 import { chainAnimation } from "visual/helpers/animation/chainAnimation";
-import { getMeshesByIdentifier } from "visual/helpers/scene/getMeshesByIdentifier";
 import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
-import { TEXT_ANIMATION_CONFIG } from "./ltw2.constants";
+import {
+  MIRROR_ANIMATION_CONFIG,
+  TEXT_ANIMATION_CONFIG,
+  CONFIGS,
+  CONFIG_INDEX,
+} from "./ltw2.constants";
 
 export const ltw2 = () => {
   return {
@@ -16,6 +21,16 @@ export const ltw2 = () => {
         url: "../assets/textures/matcaps/irredescent.jpg",
         assetType: ASSET_TYPES.Texture,
       },
+      {
+        name: "matcap-bg",
+        url: `../assets/textures/backgrounds/${CONFIGS[CONFIG_INDEX].background}.jpg`,
+        assetType: ASSET_TYPES.Texture,
+      },
+      {
+        name: "geometry-model",
+        url: "../assets/models/abstract-models/abstractCube.obj",
+        assetType: ASSET_TYPES.Geometry,
+      },
     ],
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveThreeScene) => {
@@ -23,6 +38,16 @@ export const ltw2 = () => {
           scene,
           targetIdentifier: "title",
           animationConfig: TEXT_ANIMATION_CONFIG,
+        });
+        scene.animationManager.startAnimation("mirror-rotate", {
+          scene,
+          targetIdentifier: "mirror",
+          animationConfig: MIRROR_ANIMATION_CONFIG,
+        });
+        scene.animationManager.startAnimation("geometry-rotate", {
+          scene,
+          targetIdentifier: "geometry",
+          animationConfig: MIRROR_ANIMATION_CONFIG,
         });
       },
     },
@@ -33,6 +58,11 @@ export const ltw2 = () => {
         animationId: "text-rotate",
         animationFunction: chainAnimation,
       },
+      {
+        animationId: "mirror-rotate",
+        animationFunction: animateAll,
+      },
+      { animationId: "geometry-rotate", animationFunction: animateAll },
     ],
   };
 };

@@ -7,27 +7,41 @@ import {
 } from "visual/components/three-js-components/components/threeJsComponents.types";
 import { getMatcaps } from "visual/helpers/assets/getMatcaps";
 import { coordinatesToVector3 } from "visual/helpers/conversion/coordinatesToVector3";
+import { MeshConfig } from "visual/helpers/geometry/three-geometry/types";
 import { createBoundingBox } from "visual/helpers/three-dimension-space/createBoundingBox";
 import { getEquidistantCoordinates } from "visual/helpers/three-dimension-space/position/getEquidistantCoordinates";
 import { getRandomCoordinatesInBoundingBoxes } from "visual/helpers/three-dimension-space/position/getRandomCoordsBoundingBoxes";
+import { generateRandomlySpreadCoordinates } from "visual/helpers/three-dimension-space/position/getRandomlySpreadCoordinates";
 import {
   AXIS,
   BoundingBox,
 } from "visual/helpers/three-dimension-space/position/position.types";
 import { Asset } from "visual/hooks/use-assets/types";
+import {
+  CONFIGS,
+  CONFIG_INDEX,
+  MIRROR_HEIGHT,
+  MIRROR_WIDTH,
+  TEXT_BBOX_SCHEMA,
+} from "../ltw2.constants";
+import { getMeshConfigs } from "./getMeshConfigs";
 
 export const getLTW2SceneComponents = (
   loadedAssets: Asset[]
-): SceneComponentConfig[] => {
+): { sceneComponents: SceneComponentConfig[]; meshConfigs: MeshConfig[] } => {
   const matcaps = getMatcaps(loadedAssets);
-  const mirrors = getMirrors();
+  const { mirrors, mirrorExclusionZones } = getMirrors();
+  const meshConfigs = getMeshConfigs(loadedAssets, mirrorExclusionZones);
   const text = getText(matcaps);
-  return [...text, ...mirrors];
+  return { sceneComponents: [...text, ...mirrors], meshConfigs };
 };
 
-const getMirrors = (): SceneComponentConfig[] => {
+const getMirrors = (): {
+  mirrors: SceneComponentConfig[];
+  mirrorExclusionZones: BoundingBox[];
+} => {
   const allowedBoundingBoxes: BoundingBox[] = [
-    createBoundingBox({ x: 0, y: 0, z: 0 }, 10, 10, 10),
+    createBoundingBox({ x: 0, y: 0, z: -5 }, 13, 8, 7),
   ];
   const notAllowedBoundingBoxes: BoundingBox[] = [
     createBoundingBox({ x: 0, y: 0, z: 3 }, 8, 5, 10),
@@ -39,23 +53,27 @@ const getMirrors = (): SceneComponentConfig[] => {
     TEXT_BBOX_SCHEMA.depth
   );
   notAllowedBoundingBoxes.push(textBBox);
-  const coordinates = getRandomCoordinatesInBoundingBoxes(
+  const coordinates = generateRandomlySpreadCoordinates(
+    4,
     allowedBoundingBoxes,
     notAllowedBoundingBoxes,
-    5
+    7
   );
+
   const mirrors = coordinates.map((position, index) => ({
     componentType: COMPONENT_TYPES.MIRROR,
     componentProps: {
       name: `mirror-${index}`,
-      geometry: new PlaneGeometry(5, 5),
+      geometry: new PlaneGeometry(MIRROR_WIDTH, MIRROR_HEIGHT),
       position: coordinatesToVector3(position),
     },
   }));
-
-  return mirrors;
+  const mirrorExclusionZones = coordinates.map((coordinate) =>
+    createBoundingBox(coordinate, MIRROR_WIDTH, MIRROR_HEIGHT, 1)
+  );
+  return { mirrors, mirrorExclusionZones };
 };
-const TEXT_BBOX_SCHEMA = { height: 20, width: 10, depth: 0 };
+
 const getText = (matcaps: Asset[]) => {
   const textBBox = createBoundingBox(
     DEFAULT_POSITION,
@@ -68,7 +86,7 @@ const getText = (matcaps: Asset[]) => {
     componentType: COMPONENT_TYPES.TEXT,
     componentProps: {
       fontUrl: "../assets/AnimationS.woff",
-      text: "Harry J Dee",
+      text: CONFIGS[CONFIG_INDEX].text,
       name: `title-${index}`,
       materialProps: {
         matcap: matcaps[0].data,
