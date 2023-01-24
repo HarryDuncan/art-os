@@ -18,7 +18,7 @@ export const barbaOcho = () => ({
       eventKey: EventKey.Scale,
       binding: Binding.InteractiveMesh,
       interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
-      eventFunction: (material: InteractiveShader, details) => {
+      eventFunction: (material: InteractiveShader, _details) => {
         const point = {
           x: window.innerWidth * 0.5,
           y: window.innerHeight * 0.4,

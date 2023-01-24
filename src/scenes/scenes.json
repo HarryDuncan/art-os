@@ -53,5 +53,11 @@
     "sceneId": "ltw2",
     "componentId": "InteractiveScene",
     "cardImageName": "LTW2.jpg"
+  },
+  {
+    "title": "Cool Attraction Morphing",
+    "sceneId": "attractionMorphing2",
+    "componentId": "InteractiveScene",
+    "cardImageName": "LTW2.jpg"
   }
 ]

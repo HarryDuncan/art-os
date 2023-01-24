@@ -21,7 +21,7 @@ export const getRandomCoordinatesInBoundingBoxes = (
         boundingBox.min.z,
     };
     let isExcluded = false;
-    for (const excludingBox of excludingBoxes) {
+    excludingBoxes.forEach((excludingBox) => {
       if (
         coordinate.x > excludingBox.min.x &&
         coordinate.x < excludingBox.max.x &&
@@ -31,9 +31,9 @@ export const getRandomCoordinatesInBoundingBoxes = (
         coordinate.z < excludingBox.max.z
       ) {
         isExcluded = true;
-        break;
       }
-    }
+    });
+
     if (!isExcluded) {
       coordinates.push(coordinate);
     }

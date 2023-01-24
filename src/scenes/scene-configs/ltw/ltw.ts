@@ -2,7 +2,6 @@ import { InteractiveThreeScene } from "visual/components/interactive-scene/Inter
 import { getMeshByName } from "visual/helpers/scene/getMeshByName";
 import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
-import { animateRotation } from "visual/helpers/animation/rotation/fastAndSlowRotation";
 import { chainAnimation } from "visual/helpers/animation/chainAnimation";
 import { LOGO_ANIMATION_CONFIG } from "./ltw.constants";
 
@@ -58,7 +57,7 @@ const updateCubes = (object, time, numblobs) => {
   const subtract = 12;
   const strength = 1.2 / ((Math.sqrt(numblobs) - 1) / 4 + 1);
 
-  for (let i = 0; i < numblobs; i++) {
+  for (let i = 0; i < numblobs; i += 1) {
     const ballx =
       Math.sin(i + 1.26 * time * (1.03 + 0.5 * Math.cos(0.21 * i))) * 0.27 +
       0.5;

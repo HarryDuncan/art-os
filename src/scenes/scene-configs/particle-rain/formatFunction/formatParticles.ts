@@ -9,7 +9,7 @@ import {
 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
-import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import Particle from "../classes/Particle";
 import { materialParams as particleRainMaterialParams } from "../particleRainMaterialParams";
@@ -28,7 +28,7 @@ export const formatParticles = (
     size: { value: 0.5 },
     resolution: { value: new Vector4() },
   };
-  const shaders = Object.assign({}, materialParams.shaders);
+  const shaders = { ...materialParams.shaders };
 
   // format geometries
   const { particles, positions, rands } = populateParticles(initializedAssets);
@@ -142,7 +142,7 @@ const drawImage = (image: Asset) => {
     ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
     const imageData = ctx.getImageData(0, 0, imageWidth, imageHeight);
 
-    for (let i = 0; i < imageData.data.length; i = i + 4) {
+    for (let i = 0; i < imageData.data.length; i += 4) {
       const x = (i / 4) % imageWidth;
       const y = Math.floor(i / 4 / imageWidth);
       drawnImage[x][y] = imageData.data[i] / 255;

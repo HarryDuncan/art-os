@@ -5,7 +5,7 @@ import { PlaneGeometry, RepeatWrapping } from "three";
 import { defaultVertex } from "visual/shaders/vertex-shaders";
 import { formatUniforms } from "visual/shaders/shader-functions/uniforms/formatUniforms";
 import { formatFragmentShader } from "visual/shaders/shader-functions/formatFragmentShader";
-import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import { SceneData } from "visual/components/interactive-scene/types";
 

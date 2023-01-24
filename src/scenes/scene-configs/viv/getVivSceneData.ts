@@ -3,7 +3,7 @@ import { SceneData } from "visual/components/interactive-scene/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import { formatAssetToUniform } from "visual/helpers/assets/formatAssetToUniform";
 import { getTextureRatio } from "visual/helpers/assets/texture/getTextureRatio";
-import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { singleShapeFrag } from "visual/shaders/fragment-shaders";
 import { imageHoverVertex } from "visual/shaders/vertex-shaders";
@@ -16,9 +16,9 @@ const formatAssetsWithUniforms = (uniforms, assets: Asset[]) => {
   updatedUniforms.uCoverImageRatio.value = getTextureRatio(
     assets[1].data as Texture
   );
-  updatedUniforms.uOverlayTextures.value = assets.flatMap(({ data }, index) =>
-    index > 1 ? data : []
-  );
+  updatedUniforms.uOverlayTextures.value = assets.flatMap(({ data }, index) => {
+    return index > 1 ? data : [];
+  });
   return uniforms;
 };
 

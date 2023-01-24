@@ -45,3 +45,13 @@ export type MeshConfig = {
   meshType?: MeshTypes;
   name?: string;
 };
+
+export type AssetGeometry = {
+  geometry: any;
+  name: string;
+};
+
+export type GeometryConfig = {
+  scale: number;
+  name?: string;
+};

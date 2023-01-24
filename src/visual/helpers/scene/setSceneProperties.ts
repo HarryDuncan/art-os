@@ -1,6 +1,5 @@
 import { Scene } from "three";
 import { SceneProperties } from "visual/components/interactive-scene/types";
-import { InteractiveScenes } from "visual/components/interactive-shaders/types";
 
 export const setSceneProperties = (
   sceneProperties: SceneProperties | undefined,
@@ -8,7 +7,7 @@ export const setSceneProperties = (
 ) => {
   if (!sceneProperties) return;
   if (sceneProperties.background !== null) {
-    //@ts-ignore
+    // @ts-ignore
     scene.background = sceneProperties.background;
   }
 };

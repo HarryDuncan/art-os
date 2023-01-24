@@ -28,7 +28,7 @@ export const ltw2 = () => {
       },
       {
         name: "geometry-model",
-        url: "../assets/models/abstract-models/abstractCube.obj",
+        url: "../assets/models/ltw/ltwShapeReduced.obj",
         assetType: ASSET_TYPES.Geometry,
       },
     ],

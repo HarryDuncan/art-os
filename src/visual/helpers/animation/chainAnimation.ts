@@ -1,11 +1,9 @@
 import { AnimationFunctionProps } from "visual/components/animation-manager/animationManager.types";
 import { getMeshesByIdentifier } from "visual/helpers/scene/getMeshesByIdentifier";
 import { degreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
-import { AXIS } from "visual/helpers/three-dimension-space/position/position.types";
 import { easeOut } from "visual/utils";
 import { stepAndWrap } from "visual/utils/stepAndWrap";
 import {
-  AnimationConfig,
   AnimationProperties,
   ANIMATION_TYPES,
   RotationAnimationConfig,
@@ -79,7 +77,8 @@ const performAnimation = (
         rotateMeshAlongAxis(object, rotationAxis, rotation);
       }
       break;
-    case ANIMATION_TYPES.SPIN: {
+    case ANIMATION_TYPES.SPIN:
+    default: {
       const { rotationAxis, speed } = animationConfig as SpinAnimationConfig;
       spinMeshAlongAxis(object, rotationAxis, speed);
     }

@@ -1,18 +1,12 @@
-import { BoxGeometry, PlaneGeometry, Texture, Vector3 } from "three";
-import {
-  SceneComponentConfig,
-  SceneData,
-} from "visual/components/interactive-scene/types";
+import { Texture } from "three";
+import { SceneData } from "visual/components/interactive-scene/types";
 import { LIGHT_TYPES } from "visual/components/three-js-components/lights/lights.types";
+import { getMatcaps } from "visual/helpers/assets/texture/getMatcaps";
 import { Asset } from "visual/hooks/use-assets/types";
 import { getLTW2SceneComponents } from "./scene-data/getLTW2SceneComponents";
 
 export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
-  console.log(loadedAssets);
-
-  const matcaps = loadedAssets.flatMap((asset) =>
-    asset.name.indexOf("matcap") !== -1 ? asset : []
-  );
+  const matcaps = getMatcaps(loadedAssets);
   const backgroundMatcap = matcaps[1];
 
   const { sceneComponents, meshConfigs } = getLTW2SceneComponents(loadedAssets);

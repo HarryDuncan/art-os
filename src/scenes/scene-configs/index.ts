@@ -9,3 +9,4 @@ export { barbaOcho } from "./barba-ocho";
 export { viv } from "./viv";
 export { ltw } from "./ltw";
 export { ltw2 } from "./ltw2";
+export { attractionMorphing2 } from "./attraction-morphing-2";

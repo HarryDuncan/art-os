@@ -1,21 +1,21 @@
 import { Vector2 } from "three";
 import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
-import { ASSET_TYPES } from "visual/hooks/use-assets/types";
-import InteractiveMaterial from "visual/components/interactive-shaders/interactive-shader/InteractiveShader";
 import { INTERACTION_EVENTS } from "visual/helpers/interactions/const";
 import {
   Binding,
   EventKey,
   InteractionKey,
 } from "visual/helpers/interactions/types";
+import { ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { InteractiveThreeScene as InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
-import { formatSceneData } from "./formatSceneData";
+import { formatSceneData } from "./scene-data/formatSceneData";
+import InteractiveMaterial from "visual/components/interactive-shaders/interactive-shader/InteractiveShader";
+import { animateAll } from "visual/helpers/animation/animateAll";
 
-export const attractionMorphing = () => ({
+export const attractionMorphing2 = () => ({
   threeJsParams: {
     camera: { position: { x: 0, y: 10, z: 30 } },
   },
-
   interactions: [
     {
       eventKey: EventKey.Scale,
@@ -38,7 +38,7 @@ export const attractionMorphing = () => ({
     },
     {
       name: "matcap",
-      url: "../assets/textures/obsidian.jpg",
+      url: "../assets/textures/matcaps/green.jpg",
       assetType: ASSET_TYPES.Texture,
     },
   ],
@@ -51,14 +51,14 @@ export const attractionMorphing = () => ({
   },
   formatSceneData,
   sceneFunctions: {
-    onTimeUpdate: (scene: InteractiveScene) => {
-      const group = scene.children[0];
-      if (group) {
-        group.rotation.y += 0.002;
-      }
+    onTimeUpdate: (_scene: InteractiveScene) => {
+      console.warn("not set");
     },
   },
   visualComponentConfig: {
     backgroundColor: "white",
   },
+  animations: [
+    { animationId: "geometry-rotate", animationFunction: animateAll },
+  ],
 });

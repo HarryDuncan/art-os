@@ -1,7 +1,7 @@
 import { InteractiveRawShader } from "visual/components/interactive-shaders/interactive-raw-shader";
 import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
-import { InteractiveMaterialParameters } from "../geometry/three-geometry/types";
+import { InteractiveMaterialParameters } from "../assets/geometry/types";
 import { getBoundInteractions } from "../interactions/getBoundInteractions";
 import { Binding, InteractionEventObject } from "../interactions/types";
 

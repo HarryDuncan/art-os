@@ -1,35 +1,31 @@
 import { DEFAULT_POSITION } from "consts/threejs";
-import { Texture, Vector2, Vector3 } from "three";
+import { Texture, Vector3 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { LIGHT_TYPES } from "visual/components/three-js-components/lights/lights.types";
 import {
   COMPONENT_TYPES,
   MarchingCubesProps,
 } from "visual/components/three-js-components/components/threeJsComponents.types";
-import { getGeometriesFromAssets } from "visual/helpers/assets/getGeometriesFromAssets";
-import { formatImportedGeometry } from "visual/helpers/geometry/formatImportedGeometry";
-import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
+
+import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { vector3DegreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
 import { Asset } from "visual/hooks/use-assets/types";
+import { formatGeometriesFromAsset } from "visual/helpers/assets/geometry/formatGeometryFromAsset";
+import { getMatcaps } from "visual/helpers/assets/texture/getMatcaps";
 
 export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
-  const geometries = getGeometriesFromAssets(loadedAssets).map((geometry) => ({
-    geometry: formatImportedGeometry(geometry.geometry),
-    name: geometry.name,
-  }));
-  const matcaps = loadedAssets.flatMap((asset) =>
-    asset.name.indexOf("matcap") !== -1 ? asset : []
-  );
+  const geometries = formatGeometriesFromAsset(loadedAssets);
+  const matcaps = getMatcaps(loadedAssets);
   const backgroundMatcap = matcaps[1];
   const sceneData: SceneData = {
     isSceneDataInitialized: true,
-    meshConfigs: geometries.flatMap((geometry, index) => {
+    meshConfigs: geometries.flatMap((geometry) => {
       const matcap = matcaps[0];
 
       if (!matcap) return [];
 
-      const position = formatPosition(index);
-      const rotation = formatRotation(index);
+      const position = formatPosition();
+      const rotation = formatRotation();
       return {
         materialType: MATERIAL_TYPES.matcap,
         geometry: geometry.geometry,
@@ -68,12 +64,12 @@ export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
   return sceneData;
 };
 
-const formatRotation = (index: number) => {
+const formatRotation = () => {
   const rotation = new Vector3(90, 0, 0);
   const eulerRotation = vector3DegreesToEuler(rotation);
   return eulerRotation;
 };
-const formatPosition = (index: number) => {
+const formatPosition = () => {
   const position = { ...DEFAULT_POSITION };
   return position;
 };

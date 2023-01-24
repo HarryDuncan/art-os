@@ -1,5 +1,5 @@
 import { VIDEO } from "app/constants";
-import { Euler, Vector3 } from "three";
+import { Vector3 } from "three";
 import { InteractiveThreeScene } from "visual/components/interactive-scene/InteractiveScene";
 import {
   Binding,
@@ -58,8 +58,8 @@ export const deepWavesInstallation = () => ({
           if (!detail) return;
           const child = scene.children[index] ?? null;
           if (!child) return;
-          var newDir = new Vector3(detail.y, 0, fullScale(detail.x, 640));
-          var pos = new Vector3();
+          const newDir = new Vector3(detail.y, 0, fullScale(detail.x, 640));
+          const pos = new Vector3();
           pos.addVectors(newDir, child.position);
           child.lookAt(pos);
         });
@@ -67,7 +67,9 @@ export const deepWavesInstallation = () => ({
     },
   ],
   sceneFunctions: {
-    onTimeUpdate: (scene: InteractiveThreeScene) => {},
+    onTimeUpdate: (_scene: InteractiveThreeScene) => {
+      console.warn("not set");
+    },
   },
   video: {
     src: `${VIDEO}seq.mp4`,

@@ -9,6 +9,7 @@ export const spinMeshAlongAxis = (object, axis: AXIS, speed: number) => {
       object.rotation.y += speed;
       break;
     case AXIS.Z:
+    default:
       object.rotation.z += speed;
       break;
   }

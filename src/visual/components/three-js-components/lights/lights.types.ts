@@ -16,7 +16,9 @@ export interface AmbientLightProps extends LightProps {
 export interface PointLightConfig extends LightProps {
   position?: Vector3;
 }
-export interface DirectionalLightProps extends LightProps {}
+export interface DirectionalLightProps extends LightProps {
+  position?: Vector3;
+}
 export interface LightConfigs {
   name: string;
   lightType: LIGHT_TYPES;

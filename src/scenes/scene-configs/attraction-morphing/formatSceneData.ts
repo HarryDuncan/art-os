@@ -1,15 +1,15 @@
-import { useCallback, useMemo } from "react";
 import { Vector2, Vector3 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
-import { getGeometryFromAsset } from "visual/helpers/assets/getGeometryFromAsset";
-import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
+import { formatGeometriesFromAsset } from "visual/helpers/assets/geometry/formatGeometryFromAsset";
+
+import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { attractionMorphingFrag } from "visual/shaders/fragment-shaders";
 import { attractionMorphingVertex } from "visual/shaders/vertex-shaders";
 
 export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
-  const geom = getGeometryFromAsset(loadedAssets);
+  const geom = formatGeometriesFromAsset(loadedAssets)[0].geometry;
   const matcapValue = loadedAssets.find((asset) => asset.name === "matcap")
     ?.data;
 

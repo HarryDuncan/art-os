@@ -4,5 +4,6 @@ import { AmbientLightProps } from "./lights.types";
 export const AmbientLight = ({ name }: AmbientLightProps) => {
   const ambientLight = new ThreeAmbientLight(0x0016db);
   ambientLight.intensity = 0.4;
+  ambientLight.name = name;
   return ambientLight;
 };

@@ -20,7 +20,7 @@ export const useViewPiece = (
     if (!SceneComponent) {
       alert(`invalid scene component "${componentId}" - check component id`);
       return {
-        component: <></>,
+        component: null,
         title,
       };
     }

@@ -1,5 +1,5 @@
 import { InteractiveThreeScene } from "visual/components/interactive-scene/InteractiveScene";
-import Particle from "./classes/Particle";
+// import Particle from "./classes/Particle";
 import { BufferAttribute } from "three";
 
 const settings = {
@@ -45,11 +45,11 @@ export const sceneFunctions = {
   },
 };
 
-const updateParticles = (particles: Particle[]) => {
-  particles.forEach((p) => {
-    p.gravity = -settings.gravity - Math.random() * settings.randomness;
-    p.slowGravity = p.gravity * settings.gravityDifference;
-    // p.gravity*=settings.speedScale;
-    // p.slowGravity*=settings.speedScale;
-  });
-};
+// const updateParticles = (particles: Particle[]) => {
+//   particles.forEach((p) => {
+//     p.gravity = -settings.gravity - Math.random() * settings.randomness;
+//     p.slowGravity = p.gravity * settings.gravityDifference;
+//     // p.gravity*=settings.speedScale;
+//     // p.slowGravity*=settings.speedScale;
+//   });
+// };

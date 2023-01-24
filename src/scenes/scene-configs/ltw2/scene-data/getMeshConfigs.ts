@@ -1,11 +1,11 @@
 import { DEFAULT_POSITION } from "consts/threejs";
 import { Texture } from "three";
-import { getGeometriesFromAssets } from "visual/helpers/assets/getGeometriesFromAssets";
-import { formatImportedGeometry } from "visual/helpers/geometry/formatImportedGeometry";
+import { formatGeometriesFromAsset } from "visual/helpers/assets/geometry/formatGeometryFromAsset";
 import {
   MATERIAL_TYPES,
   MeshConfig,
-} from "visual/helpers/geometry/three-geometry/types";
+} from "visual/helpers/assets/geometry/types";
+import { getMatcaps } from "visual/helpers/assets/texture/getMatcaps";
 import { createBoundingBox } from "visual/helpers/three-dimension-space/createBoundingBox";
 import { getRandomCoordinatesInBoundingBoxes } from "visual/helpers/three-dimension-space/position/getRandomCoordsBoundingBoxes";
 import { BoundingBox } from "visual/helpers/three-dimension-space/position/position.types";
@@ -16,10 +16,10 @@ export const getMeshConfigs = (
   loadedAssets: Asset[],
   mirrorExclusionZones: BoundingBox[]
 ): MeshConfig[] => {
-  const geometries = getGeometriesFromAssets(loadedAssets).map((geometry) => ({
-    geometry: formatImportedGeometry(geometry.geometry, 0.007),
-    name: geometry.name,
-  }));
+  const geometryConfig = {
+    scale: 0.03,
+  };
+  const geometries = formatGeometriesFromAsset(loadedAssets, geometryConfig);
 
   const textBBox = createBoundingBox(
     DEFAULT_POSITION,
@@ -35,12 +35,10 @@ export const getMeshConfigs = (
   const coordinates = getRandomCoordinatesInBoundingBoxes(
     allowedBoundingBoxes,
     mirrorExclusionZones,
-    4
+    2
   );
 
-  const matcaps = loadedAssets.flatMap((asset) =>
-    asset.name.indexOf("matcap") !== -1 ? asset : []
-  );
+  const matcaps = getMatcaps(loadedAssets);
   return coordinates.map((coordinates, index) => ({
     materialType: MATERIAL_TYPES.matcap,
     geometry: geometries[0].geometry,

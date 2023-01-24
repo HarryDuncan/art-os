@@ -5,7 +5,11 @@ export interface ThreeJSComponentProps {
   name: string;
 }
 
-export interface MarchingCubesProps extends ThreeJSComponentProps {}
+export interface MarchingCubesProps extends ThreeJSComponentProps {
+  parameters?: {
+    resolution: number;
+  };
+}
 
 export interface TextProps extends ThreeJSComponentProps {
   text: string;
@@ -19,10 +23,20 @@ export interface MirrorProps extends ThreeJSComponentProps {
   position: Vector3;
   color?: ColorRepresentation;
 }
-export type ComponentProps = TextProps | MarchingCubesProps | MirrorProps;
+
+export interface SphericalBackgroundProps extends ThreeJSComponentProps {
+  position: Vector3;
+  radius: number;
+}
+export type ComponentProps =
+  | TextProps
+  | MarchingCubesProps
+  | MirrorProps
+  | SphericalBackgroundProps;
 
 export enum COMPONENT_TYPES {
   MARCHING_CUBES = "MARCHING_CUBES",
   TEXT = "TEXT",
   MIRROR = "MIRROR",
+  SPHERICAL_BACKGROUND = "SHPERICAL_BACKGROUND",
 }

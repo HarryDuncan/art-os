@@ -13,16 +13,14 @@ export const rotateMeshAlongAxis = (mesh: Mesh, axis: AXIS, angle: number) => {
   );
   switch (axis) {
     case AXIS.X:
-      const currentX = mesh.rotation.x;
-      mesh.rotateX(angle - currentX);
+      mesh.rotateX(angle - mesh.rotation.x);
       break;
     case AXIS.Y:
-      const currentY = mesh.rotation.y;
-      mesh.rotateY(angle - currentY);
+      mesh.rotateY(angle - mesh.rotation.y);
       break;
     case AXIS.Z:
-      const currentZ = mesh.rotation.z;
-      mesh.rotateZ(angle - currentZ);
+    default:
+      mesh.rotateZ(angle - mesh.rotation.z);
   }
   mesh.geometry.applyMatrix4(
     new Matrix4().makeTranslation(center.x, center.y, center.z)

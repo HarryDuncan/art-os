@@ -9,6 +9,7 @@ export class AnimationManager {
   constructor() {
     this.animations = [];
   }
+
   initializeAnimations(animations: CustomAnimation[]) {
     animations.forEach((animation) => {
       if (
@@ -24,22 +25,28 @@ export class AnimationManager {
       }
     });
   }
+
   startAnimation(
     animationId: string,
     animationFunctionProps: AnimationFunctionProps
   ) {
     const animation = this.animations.find(
-      (animation) => animation.animationId === animationId
+      (configuredAnimation) => configuredAnimation.animationId === animationId
     );
     if (!animation) {
       console.warn(`animation: ${animationId} has not been initialized`);
-      return;
-    } else {
-      if (!animation.isRunning) {
-        animation.isRunning = true;
-        animation.animationFunction(animationId, animationFunctionProps);
-      }
+    } else if (animation?.isRunning === false) {
+      animation.isRunning = true;
+      animation.animationFunction(animationId, animationFunctionProps);
     }
   }
-  stopAnimation() {}
+
+  stopAnimation(animationId: string) {
+    const animation = this.animations.find(
+      (configuredAnimation) => configuredAnimation.animationId === animationId
+    );
+    if (animation) {
+      animation.isRunning = false;
+    }
+  }
 }

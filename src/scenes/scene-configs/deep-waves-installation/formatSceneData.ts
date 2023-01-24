@@ -2,13 +2,13 @@ import { DEFAULT_POSITION } from "consts/threejs";
 import { Vector2 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
-import { getGeometriesFromAssets } from "visual/helpers/assets/getGeometriesFromAssets";
 import { formatMatcapTextureUniforms } from "visual/helpers/assets/texture/formatMatcapTextureUniforms";
-import { formatImportedGeometry } from "visual/helpers/geometry/formatImportedGeometry";
-import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { attractionMorphingFrag } from "visual/shaders/fragment-shaders";
 import { attractionMorphingVertex } from "visual/shaders/vertex-shaders";
+import { formatGeometriesFromAsset } from "visual/helpers/assets/geometry/formatGeometryFromAsset";
+import { getMatcaps } from "visual/helpers/assets/texture/getMatcaps";
 
 const GEOMETRY_UNIFORMS = {
   uTime: {
@@ -40,15 +40,11 @@ const GEOMETRY_UNIFORMS = {
 };
 
 export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
-  const geometries = getGeometriesFromAssets(loadedAssets).map((geometry) =>
-    formatImportedGeometry(geometry)
-  );
-  const matcaps = loadedAssets.flatMap((asset) =>
-    asset.name.indexOf("matcap") !== -1 ? asset : []
-  );
+  const geometries = formatGeometriesFromAsset(loadedAssets);
+  const matcaps = getMatcaps(loadedAssets);
   const sceneData = {
     isSceneDataInitialized: true,
-    meshConfigs: geometries.flatMap((geometry, index) => {
+    meshConfigs: geometries.flatMap(({ geometry }, index) => {
       const matcap = matcaps[index];
       if (!matcap) return [];
       const uniforms = formatMatcapTextureUniforms(

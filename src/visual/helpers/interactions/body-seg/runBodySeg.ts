@@ -1,6 +1,6 @@
 // @ts-nocheck
 import Webcam from "react-webcam";
-import { BodySegInteractionKeys, InteractionEventObject } from "../types";
+import { BodySegInteractionKeys } from "../types";
 import * as bodySeg from "@tensorflow-models/body-segmentation";
 import { getCoordsFromSeg } from "./getCoordsFromSeg";
 import { MODEL_READ_INTERVAL } from "../const";
@@ -15,10 +15,9 @@ export const BODY_PIX_CONFIG = {
   visualization: "binaryMask",
 };
 let canvas = null;
-let ctx = "";
+
 export const runBodySeg = (
-  webcamRef: React.MutableRefObject<Webcam | null>,
-  interactionEventObjects: InteractionEventObject[]
+  webcamRef: React.MutableRefObject<Webcam | null>
 ) => {
   const runBodySegModel = async () => {
     canvas = document.createElement("canvas");

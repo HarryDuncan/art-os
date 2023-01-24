@@ -8,7 +8,7 @@ import {
 } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
-import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { formatAssetWithUniforms } from "visual/helpers/uniforms/formatAssetsWithUniforms";
 import { Asset } from "visual/hooks/use-assets/types";
 import { textureDistortionFrag } from "visual/shaders/fragment-shaders";
@@ -29,7 +29,7 @@ export const getSceneData = (assets: Asset[]): SceneData => {
             fragmentShader: textureDistortionFrag,
           },
           shaderType: InteractiveShaderTypes.SHADER,
-          uniforms: uniforms,
+          uniforms,
         },
       },
     ],

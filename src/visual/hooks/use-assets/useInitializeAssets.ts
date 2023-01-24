@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { getFileTypeFromFilename } from "utils/getFileType";
 import { loadImage } from "visual/helpers/assets/image/load-image/LoadImage";
-import { loadFont } from "visual/helpers/assets/loadFont";
+import { loadFont } from "visual/helpers/assets/fonts/loadFont";
 import { loadTexture } from "visual/helpers/assets/texture/load-texture/loadTexture";
-import { loadGeometry } from "visual/helpers/geometry/load-geometry/LoadGeometry";
+import { loadGeometry } from "visual/helpers/assets/geometry/load-geometry/LoadGeometry";
 
 import { Asset, ASSET_TYPES } from "./types";
 

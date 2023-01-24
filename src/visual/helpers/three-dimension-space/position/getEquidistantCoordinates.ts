@@ -7,7 +7,7 @@ export const getEquidistantCoordinates = (
 ): ThreeDPosition[] => {
   let interval: number;
   switch (axis) {
-    case AXIS.X:
+    case AXIS.X: {
       const maxX = boundingBox.max.x;
       const minX = boundingBox.min.x;
       interval = (maxX - minX) / (numCoordinates + 1);
@@ -16,7 +16,8 @@ export const getEquidistantCoordinates = (
         y: 0,
         z: 0,
       }));
-    case AXIS.Y:
+    }
+    case AXIS.Y: {
       const maxY = boundingBox.max.y;
       const minY = boundingBox.min.y;
       interval = (maxY - minY) / (numCoordinates + 1);
@@ -25,7 +26,9 @@ export const getEquidistantCoordinates = (
         y: minY + interval * index,
         z: 0,
       }));
+    }
     case AXIS.Z:
+    default: {
       const maxZ = boundingBox.max.z;
       const minZ = boundingBox.min.z;
       interval = (maxZ - minZ) / (numCoordinates + 1);
@@ -34,5 +37,6 @@ export const getEquidistantCoordinates = (
         y: 0,
         z: minZ + interval * index,
       }));
+    }
   }
 };

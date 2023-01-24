@@ -1,6 +1,6 @@
-import { Matrix4, Mesh, MeshPhongMaterial, Vector3 } from "three";
+import { Matrix4, Vector3 } from "three";
 import { Text as TroikaText } from "troika-three-text";
-import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { getMaterial } from "visual/helpers/materials/getMaterial";
 import { TextProps } from "./threeJsComponents.types";
 
@@ -24,7 +24,7 @@ export const Text = ({
   textObject.curveRadius = 43;
   textObject.geometry.computeBoundingBox();
   textObject.geometry.computeBoundingBox();
-  let center = textObject.geometry.boundingBox.getCenter(new Vector3());
+  const center = textObject.geometry.boundingBox.getCenter(new Vector3());
 
   textObject.geometry.applyMatrix4(
     new Matrix4().makeTranslation(-center.x * 2, -center.y * 2, -center.z * 2)

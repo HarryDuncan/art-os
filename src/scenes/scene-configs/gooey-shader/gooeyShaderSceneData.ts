@@ -2,7 +2,7 @@ import { PlaneGeometry, Vector2, Texture } from "three";
 import { SceneData } from "visual/components/interactive-scene/types";
 import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
 import { getTextureRatio } from "visual/helpers/assets/texture/getTextureRatio";
-import { MATERIAL_TYPES } from "visual/helpers/geometry/three-geometry/types";
+import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { Asset } from "visual/hooks/use-assets/types";
 import { gooeyFragment } from "visual/shaders/fragment-shaders";
 import { imageHoverVertex } from "visual/shaders/vertex-shaders";

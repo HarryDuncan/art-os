@@ -5,12 +5,11 @@ import {
   COMPONENT_TYPES,
   TextProps,
 } from "visual/components/three-js-components/components/threeJsComponents.types";
-import { getMatcaps } from "visual/helpers/assets/getMatcaps";
+import { getMatcaps } from "visual/helpers/assets/texture/getMatcaps";
 import { coordinatesToVector3 } from "visual/helpers/conversion/coordinatesToVector3";
-import { MeshConfig } from "visual/helpers/geometry/three-geometry/types";
+import { MeshConfig } from "visual/helpers/assets/geometry/types";
 import { createBoundingBox } from "visual/helpers/three-dimension-space/createBoundingBox";
 import { getEquidistantCoordinates } from "visual/helpers/three-dimension-space/position/getEquidistantCoordinates";
-import { getRandomCoordinatesInBoundingBoxes } from "visual/helpers/three-dimension-space/position/getRandomCoordsBoundingBoxes";
 import { generateRandomlySpreadCoordinates } from "visual/helpers/three-dimension-space/position/getRandomlySpreadCoordinates";
 import {
   AXIS,

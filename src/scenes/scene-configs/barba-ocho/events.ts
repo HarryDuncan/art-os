@@ -6,7 +6,6 @@ export const events = [
     eventKey: EVENT_TYPES.KEYPRESS,
     eventFunction: (material: InteractiveMaterialType, event) => {
       const { charCode } = event;
-      console.log(charCode);
       if (charCode === KEY_CODES.x) {
         material.uniforms.uSpace.value += 0.3;
       }

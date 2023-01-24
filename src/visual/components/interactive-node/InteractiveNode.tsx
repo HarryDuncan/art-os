@@ -16,7 +16,7 @@ export const InteractiveNode = () => {
     if (isInitialized && webcamRef.current && interactions.length) {
       switch (modelType) {
         case ModelTypes.BODYSEG:
-          runBodySeg(webcamRef, interactions);
+          runBodySeg(webcamRef);
           break;
         case ModelTypes.POSENET:
         default:
@@ -29,7 +29,8 @@ export const InteractiveNode = () => {
     setIsInitialized(true);
   });
 
-  const eventTracker = new EventTracker(interactions, 0.7);
+  // @ts-ignore
+  new EventTracker(interactions, 0.7);
   if (interactions.length) {
     return (
       <Webcam

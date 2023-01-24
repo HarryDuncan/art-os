@@ -12,7 +12,6 @@ export const generateRandomlySpreadCoordinates = (
   // While there are fewer points than desired
   while (points.length < numCoordinates) {
     // Select a random point within a certain distance of the existing points
-    let newPoint: ThreeDPosition;
     let found = false;
     while (!found) {
       // Select a random allowed bounding box
@@ -21,7 +20,7 @@ export const generateRandomlySpreadCoordinates = (
           Math.floor(Math.random() * allowedBoundingBoxes.length)
         ];
       // Generate a random point within the bounding box
-      newPoint = {
+      const newPoint = {
         x:
           Math.random() * (boundingBox.max.x - boundingBox.min.x) +
           boundingBox.min.x,
@@ -35,16 +34,15 @@ export const generateRandomlySpreadCoordinates = (
 
       // Check if it is at least the minimum distance away from all existing points
       let tooClose = false;
-      for (let point of points) {
+      points.forEach((point) => {
         if (distance(newPoint, point) < minDistance) {
           tooClose = true;
-          break;
         }
-      }
+      });
 
       // Check if it is in an exclusion bounding box
       let inExclusion = false;
-      for (let boundingBox of exclusionBoundingBoxes) {
+      exclusionBoundingBoxes.forEach((boundingBox) => {
         if (
           newPoint.x >= boundingBox.min.x &&
           newPoint.x <= boundingBox.max.x &&
@@ -54,9 +52,8 @@ export const generateRandomlySpreadCoordinates = (
           newPoint.z <= boundingBox.max.z
         ) {
           inExclusion = true;
-          break;
         }
-      }
+      });
 
       // If it is far enough away and not in an exclusion bounding box, add it to the list of points
       if (!tooClose && !inExclusion) {

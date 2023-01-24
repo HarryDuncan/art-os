@@ -12,7 +12,6 @@ export const defaultPosition = [
     binding: Binding.InteractiveMesh,
     interactionKey: INTERACTION_EVENTS.POSENET.RIGHT_WRIST as InteractionKey,
     eventFunction: (material: InteractiveShader, details) => {
-      console.log(details);
       material.uniforms.uPosition.value = details;
     },
   },

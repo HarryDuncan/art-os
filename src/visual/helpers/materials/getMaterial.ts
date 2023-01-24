@@ -2,7 +2,7 @@ import { DoubleSide, MeshMatcapMaterial, ShaderMaterial } from "three";
 import {
   InteractiveMaterialParameters,
   MATERIAL_TYPES,
-} from "../geometry/three-geometry/types";
+} from "../assets/geometry/types";
 import { InteractionEventObject } from "../interactions/types";
 import { getInteractiveMaterial } from "./getInteractiveMaterial";
 
@@ -10,7 +10,7 @@ export const getMaterial = (
   materialParameters,
   materialType: MATERIAL_TYPES,
   interactions: InteractionEventObject[] = [],
-  materialFunctions?
+  materialFunctions = {}
 ) => {
   switch (materialType) {
     case MATERIAL_TYPES.interactive: {
@@ -31,12 +31,13 @@ export const getMaterial = (
         depthTest: true,
       });
     }
-    case MATERIAL_TYPES.matcap:
+    case MATERIAL_TYPES.matcap: {
       const { matcap } = materialParameters;
       return new MeshMatcapMaterial({
         matcap,
         side: DoubleSide,
       });
+    }
     case MATERIAL_TYPES.standard:
     default:
       return materialParameters;

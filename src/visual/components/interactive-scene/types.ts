@@ -1,6 +1,6 @@
 import Particle from "scenes/scene-configs/particle-rain/classes/Particle";
 import { Texture } from "three";
-import { MeshConfig } from "visual/helpers/geometry/three-geometry/types";
+import { MeshConfig } from "visual/helpers/assets/geometry/types";
 import { MarchingCubes } from "../three-js-components/components";
 import { LightConfigs } from "../three-js-components/lights/lights.types";
 import {
