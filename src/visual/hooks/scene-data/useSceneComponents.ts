@@ -19,8 +19,8 @@ export const useSceneComponents = (
     return componentConfigs.flatMap(({ componentType, componentProps }) => {
       switch (componentType) {
         case COMPONENT_TYPES.MARCHING_CUBES: {
-          const { name } = componentProps as MarchingCubesProps;
-          return MarchingCubes({ name });
+          const { name, parameters } = componentProps as MarchingCubesProps;
+          return MarchingCubes({ name, parameters });
         }
         case COMPONENT_TYPES.TEXT: {
           const {

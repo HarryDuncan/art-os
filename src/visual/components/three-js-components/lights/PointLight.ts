@@ -1,8 +1,12 @@
 import { PointLight as ThreePointLight } from "three";
-import { PointLightConfig } from "./lights.types";
+import { DEFAULT_LIGHT_COLOR } from "./lights.constants";
+import { LightProps } from "./lights.types";
 
-export const PointLight = ({ name }: PointLightConfig) => {
-  const pointLight = new ThreePointLight(0xff3300);
+export interface PointLightProps extends LightProps {
+  name: string;
+}
+export const PointLight = ({ name, color }: PointLightProps) => {
+  const pointLight = new ThreePointLight(color ?? DEFAULT_LIGHT_COLOR);
   pointLight.position.set(0, 0, 100);
   pointLight.name = name;
   return pointLight;

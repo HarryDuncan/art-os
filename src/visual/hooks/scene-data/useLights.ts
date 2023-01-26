@@ -11,14 +11,23 @@ import {
 
 export const useLights = (lightConfigs: LightConfigs[] = []) =>
   useMemo(() => {
-    return lightConfigs.flatMap(({ name, lightType }) => {
+    return lightConfigs.flatMap(({ name, lightType, props }) => {
       switch (lightType) {
-        case LIGHT_TYPES.AMBIENT:
-          return AmbientLight({ name });
-        case LIGHT_TYPES.POINT_LIGHT:
-          return PointLight({ name });
-        case LIGHT_TYPES.DIRECTIONAL_LIGHT:
-          return DirectionalLight({ name });
+        case LIGHT_TYPES.AMBIENT: {
+          const { color } = props ?? {};
+          return AmbientLight({ name, color });
+        }
+
+        case LIGHT_TYPES.POINT_LIGHT: {
+          const { color } = props ?? {};
+          return PointLight({ name, color });
+        }
+
+        case LIGHT_TYPES.DIRECTIONAL_LIGHT: {
+          const { color } = props ?? {};
+          return DirectionalLight({ name, color });
+        }
+
         default:
           console.warn("no light has been configured for this light type");
           return [];

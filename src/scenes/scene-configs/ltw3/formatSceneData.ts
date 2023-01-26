@@ -15,7 +15,7 @@ import { getMatcaps } from "visual/helpers/assets/texture/getMatcaps";
 import { CONFIGS, CONFIG_INDEX } from "./ltw.constants";
 
 export const formatSceneData = (loadedAssets: Asset[]): SceneData => {
-  const geometries = formatGeometriesFromAsset(loadedAssets);
+  const geometries = formatGeometriesFromAsset(loadedAssets, { scale: 0.03 });
   const matcaps = getMatcaps(loadedAssets);
   const backgroundMatcap = matcaps[1];
   const sceneData: SceneData = {

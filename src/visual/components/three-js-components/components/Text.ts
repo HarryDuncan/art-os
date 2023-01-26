@@ -16,7 +16,7 @@ export const Text = ({
   textObject.text = text;
   textObject.fontSize = 1.5;
   textObject.position.set(position.x, position.y, position.z);
-  textObject.font = fontUrl ?? "../assets/AnimationS.woff";
+  textObject.font = fontUrl ?? "../assets/fonts/AnimationS.woff";
   textObject.color = 0xffffff;
   textObject.depthOffset = 30;
   textObject.anchorX = "center";

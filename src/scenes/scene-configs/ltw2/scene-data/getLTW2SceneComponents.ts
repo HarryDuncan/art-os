@@ -84,7 +84,7 @@ const getText = (matcaps: Asset[]) => {
   return textPositions.map((position, index) => ({
     componentType: COMPONENT_TYPES.TEXT,
     componentProps: {
-      fontUrl: "../assets/AnimationS.woff",
+      fontUrl: "../assets/fonts/AnimationS.woff",
       text: CONFIGS[CONFIG_INDEX].text,
       name: `title-${index}`,
       materialProps: {

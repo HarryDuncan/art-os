@@ -3,26 +3,27 @@ import { ANIMATION_TYPES } from "visual/helpers/animation/animation.types";
 import { AXIS } from "visual/helpers/three-dimension-space/position/position.types";
 
 export const LOGO_ANIMATION_CONFIG = {
-  animationType: ANIMATION_TYPES.ROTATE,
+  animationType: ANIMATION_TYPES.SPIN,
   animationProperties: {
-    animationDurationMilis: 2000,
-    animationPauseMilis: 1000,
-    repeatAnimation: true,
+    speed: 0.05,
     rotationAxis: AXIS.Z,
+    animationDurationMilis: -1,
+    animationPauseMilis: -1,
+    repeatAnimation: true,
   },
 };
 
-export const CONFIG_INDEX = 3;
+export const CONFIG_INDEX = 0;
 
 export const CONFIGS = [
   {
     background: "blue-mag",
-    directionalLightColor: "",
-    ambientLightColor: "",
-    pointLightColor: "",
+    directionalLightColor: "#cc10b3",
+    ambientLightColor: "#ad0a74",
+    pointLightColor: "#cc10b3",
     marchingCubeMaterial: new MeshPhongMaterial({
-      specular: 0x111111,
-      shininess: 250,
+      specular: 0xcc10b3,
+      shininess: 10,
     }),
   },
   {

@@ -1,4 +1,4 @@
-import { ColorRepresentation, Vector3 } from "three";
+import { ColorRepresentation, MeshPhongMaterial, Vector3 } from "three";
 import { Geometry } from "types/threeJs.types";
 
 export interface ThreeJSComponentProps {
@@ -8,6 +8,7 @@ export interface ThreeJSComponentProps {
 export interface MarchingCubesProps extends ThreeJSComponentProps {
   parameters?: {
     resolution: number;
+    material: MeshPhongMaterial;
   };
 }
 

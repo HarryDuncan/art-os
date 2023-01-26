@@ -6,20 +6,15 @@ export enum LIGHT_TYPES {
   DIRECTIONAL_LIGHT = "DIRECTIONAL_LIGHT",
 }
 export interface LightProps {
-  name: string;
   color?: string;
+  position?: Vector3;
 }
 export interface AmbientLightProps extends LightProps {
   intensity?: number;
 }
 
-export interface PointLightConfig extends LightProps {
-  position?: Vector3;
-}
-export interface DirectionalLightProps extends LightProps {
-  position?: Vector3;
-}
 export interface LightConfigs {
   name: string;
   lightType: LIGHT_TYPES;
+  props?: AmbientLightProps;
 }

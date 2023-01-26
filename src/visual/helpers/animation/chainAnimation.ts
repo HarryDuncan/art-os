@@ -49,7 +49,7 @@ export const chainAnimation = (
       );
       if (animationProperties.repeatAnimation) {
         setTimeout(() => {
-          requestAnimationFrame(step);
+          step(timestamp);
         }, animationProperties.animationPauseMilis);
       }
     }

@@ -27,6 +27,11 @@ export const ltw2 = () => {
         assetType: ASSET_TYPES.Texture,
       },
       {
+        name: "matcap-ob",
+        url: `../assets/textures/matcaps/dark-blue.jpg`,
+        assetType: ASSET_TYPES.Texture,
+      },
+      {
         name: "geometry-model",
         url: "../assets/models/ltw/ltwShapeReduced.obj",
         assetType: ASSET_TYPES.Geometry,

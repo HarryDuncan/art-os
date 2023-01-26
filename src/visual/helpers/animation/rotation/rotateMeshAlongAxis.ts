@@ -1,4 +1,4 @@
-import { Matrix4, Mesh, Vector3 } from "three";
+import { Mesh } from "three";
 import { AXIS } from "visual/helpers/three-dimension-space/position/position.types";
 
 export const rotateMeshAlongAxis = (mesh: Mesh, axis: AXIS, angle: number) => {
@@ -7,10 +7,7 @@ export const rotateMeshAlongAxis = (mesh: Mesh, axis: AXIS, angle: number) => {
     console.warn("no bounding box");
     return;
   }
-  const center = mesh.geometry.boundingBox.getCenter(new Vector3());
-  mesh.geometry.applyMatrix4(
-    new Matrix4().makeTranslation(-center.x, -center.y, -center.z)
-  );
+
   switch (axis) {
     case AXIS.X:
       mesh.rotateX(angle - mesh.rotation.x);
@@ -22,7 +19,4 @@ export const rotateMeshAlongAxis = (mesh: Mesh, axis: AXIS, angle: number) => {
     default:
       mesh.rotateZ(angle - mesh.rotation.z);
   }
-  mesh.geometry.applyMatrix4(
-    new Matrix4().makeTranslation(center.x, center.y, center.z)
-  );
 };

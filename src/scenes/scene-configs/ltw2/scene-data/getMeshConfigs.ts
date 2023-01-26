@@ -17,7 +17,7 @@ export const getMeshConfigs = (
   mirrorExclusionZones: BoundingBox[]
 ): MeshConfig[] => {
   const geometryConfig = {
-    scale: 0.03,
+    scale: 0.02,
   };
   const geometries = formatGeometriesFromAsset(loadedAssets, geometryConfig);
 
@@ -28,9 +28,9 @@ export const getMeshConfigs = (
     TEXT_BBOX_SCHEMA.depth
   );
   mirrorExclusionZones.push(textBBox);
-  mirrorExclusionZones.push(createBoundingBox({ x: 0, y: 0, z: 3 }, 6, 5, 12));
+  mirrorExclusionZones.push(createBoundingBox({ x: 0, y: 0, z: 3 }, 6, 5, 17));
   const allowedBoundingBoxes: BoundingBox[] = [
-    createBoundingBox({ x: 0, y: 0, z: 0 }, 13, 10, 10),
+    createBoundingBox({ x: 0, y: 0, z: -1 }, 14, 10, 10),
   ];
   const coordinates = getRandomCoordinatesInBoundingBoxes(
     allowedBoundingBoxes,
@@ -45,7 +45,7 @@ export const getMeshConfigs = (
     name: `${geometries[0].name}-${index}`,
     position: coordinates,
     materialParameters: {
-      matcap: (matcaps[0].data as Texture) ?? null,
+      matcap: (matcaps[2].data as Texture) ?? null,
     },
   }));
 };

@@ -5,7 +5,7 @@ import { formatSceneData } from "./formatSceneData";
 import { chainAnimation } from "visual/helpers/animation/chainAnimation";
 import { CONFIGS, CONFIG_INDEX, LOGO_ANIMATION_CONFIG } from "./ltw.constants";
 
-export const ltw = () => {
+export const ltw3 = () => {
   return {
     threeJsParams: {
       camera: { position: { x: 0, y: 0, z: 10 } },
@@ -18,7 +18,7 @@ export const ltw = () => {
       },
       {
         name: "matcap1",
-        url: "../assets/textures/matcaps/pearl.jpg",
+        url: "../assets/textures/matcaps/warehousepink.jpg",
         assetType: ASSET_TYPES.Texture,
       },
       {

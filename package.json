@@ -1,6 +1,6 @@
 {
-  "name": "glo-desktop",
-  "description": "GLO desktop app",
+  "name": "art-os",
+  "description": "Art-OS Desktop App",
   "author": "Harry Duncan",
   "version": "0.2.7",
   "private": true,
@@ -61,6 +61,9 @@
     "wait-on": "3.3.0"
   },
   "build": {
+    "extends": null,
+    "appId": "com.art-os.app",
+    "productName": "Art OS",
     "publish": {
       "provider": "github"
     }
@@ -73,7 +76,7 @@
     "react-test": "react-scripts test --env=jsdom",
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder",
-    "release": "yarn react-build && electron-builder --publish=always",
+    "release": "yarn react-build && electron-builder --publish=never",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "test": "react-scripts test"
