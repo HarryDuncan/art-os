@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { useSetUpScene } from "visual/hooks/scene-data/useSetUpScene";
 import { InteractiveObjectParams } from "./types";
-import { RootContainer } from "../../components/root-container";
+import { RootContainer } from "../../components/container/root-container";
 import { useSceneData } from "./useSceneData";
 import { useMeshes } from "visual/hooks/scene-data/useMeshes";
 

@@ -1,5 +1,5 @@
 import { Vector2, Vector3 } from "three";
-import { UniformDefinition, UniformTypes } from "visual/shaders/types";
+import { UniformDefinition, UniformTypes } from "visual/shaders/shaders.types";
 
 type UniformObject = {
   value: any;

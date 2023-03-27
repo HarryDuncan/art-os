@@ -16,6 +16,7 @@ import { store } from "./redux/store";
 import { THEME } from "./theme/theme";
 import { GlobalStyle } from "./theme/GlobalStyle";
 import { Sandbox } from "./views/sandbox/sandbox";
+import { AppendContainer } from "./components/AppendContainer";
 
 export const AppContainer = styled.div`
   margin: 0;
@@ -23,7 +24,7 @@ export const AppContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 `;
 
 export function App() {
@@ -41,6 +42,7 @@ export function App() {
               <Route exact path="/sandbox" component={Sandbox} />
               <Route exact path="/" component={Landing} />
             </Switch>
+            <AppendContainer />
           </AppContainer>
         </Provider>
       </BrowserRouter>

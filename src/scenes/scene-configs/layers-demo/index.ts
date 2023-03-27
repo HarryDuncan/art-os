@@ -1,1 +1,0 @@
-export { layersDemo } from "./layersDemo";

@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { OrthographicCamera, PerspectiveCamera } from "three";
-import { CameraParams, CameraType } from "./types";
+import { CameraParams, CameraType, CAMERA_TYPES } from "./types";
 
 export const defaultCameraParams: CameraParams = {
-  cameraType: CameraType.PERSPECTIVE_CAMERA,
+  cameraType: CAMERA_TYPES.PERSPECTIVE_CAMERA as CameraType,
   position: {
     x: 0,
     y: 0,
@@ -33,7 +33,7 @@ export const useCamera = (cameraParams: CameraParams = defaultCameraParams) =>
 
 const getCamera = (cameraParams: CameraParams) => {
   switch (cameraParams.cameraType) {
-    case CameraType.ORTHOGRAPHIC_CAMERA: {
+    case CAMERA_TYPES.ORTHOGRAPHIC_CAMERA: {
       const {
         orthographicCameraProps: { frustumSize },
       } = cameraParams;
@@ -48,7 +48,7 @@ const getCamera = (cameraParams: CameraParams) => {
       );
       return camera;
     }
-    case CameraType.PERSPECTIVE_CAMERA:
+    case CAMERA_TYPES.PERSPECTIVE_CAMERA:
     default: {
       const {
         perspectiveCameraProps: { fov, aspect, near, far },

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { InteractiveThreeScene as InteractiveScene } from "visual/components/interactive-scene/InteractiveScene";
-import { SceneObject } from "visual/components/interactive-scene/types";
+import { InteractiveThreeScene as InteractiveScene } from "visual/components/interactive/scene/InteractiveScene";
+import { SceneObject } from "visual/components/interactive/scene/types";
 import { getBoundInteractions } from "visual/helpers/interactions/getBoundInteractions";
 import {
   Binding,

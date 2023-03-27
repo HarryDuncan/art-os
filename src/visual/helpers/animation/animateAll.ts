@@ -1,9 +1,10 @@
 import { AnimationFunctionProps } from "visual/components/animation-manager/animationManager.types";
-import { getMeshesByIdentifier } from "visual/helpers/scene/getMeshesByIdentifier";
+import { getMeshesByIdentifier } from "visual/helpers/scene/object-finding/getMeshesByIdentifier";
 import { degreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
 import { easeOut } from "visual/utils";
 import {
   AnimationProperties,
+  AnimationType,
   ANIMATION_TYPES,
   RotationAnimationConfig,
   SpinAnimationConfig,
@@ -53,7 +54,7 @@ export const animateAll = (
 };
 
 const performAnimation = (
-  animationType: ANIMATION_TYPES,
+  animationType: AnimationType,
   object,
   progress,
   animationConfig: AnimationProperties

@@ -18,15 +18,14 @@ export const useCounter = (
 
         // Otherwise, increment by n
         return prevCount + n;
-      } else {
-        // If the previous count is less than or equal to the lower bound, change current direction to up
-        if (prevCount <= lowerBound) {
-          setCurrentDirection("up");
-        }
-
-        // Otherwise, decrement by n
-        return prevCount - n;
       }
+      // If the previous count is less than or equal to the lower bound, change current direction to up
+      if (prevCount <= lowerBound) {
+        setCurrentDirection("up");
+      }
+
+      // Otherwise, decrement by n
+      return prevCount - n;
     });
   }, [n, currentDirection, lowerBound, upperBound]);
 

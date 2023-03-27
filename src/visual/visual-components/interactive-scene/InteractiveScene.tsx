@@ -1,19 +1,19 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useSetUpScene } from "visual/hooks/scene-data/useSetUpScene";
-import { RootContainer } from "../../components/root-container";
+import { RootContainer } from "../../components/container/root-container";
 import { Asset } from "visual/hooks/use-assets/types";
 import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
-import { SceneData } from "visual/components/interactive-scene/types";
+import { SceneData } from "visual/components/interactive/scene/types";
 import { useMeshes } from "visual/hooks/scene-data/useMeshes";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { EMPTY_SCENE_DATA } from "consts";
-import { useEventsWithMesh } from "visual/hooks/use-events/useEvents";
 import { defaultFormatSceneData } from "scenes/default-configs/defaultFormatSceneData";
 import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
 import { useSceneComponents } from "visual/hooks/scene-data/useSceneComponents";
 import { useLights } from "visual/hooks/scene-data/useLights";
 import { setSceneProperties } from "visual/helpers/scene/setSceneProperties";
+import { useEvents } from "visual/hooks/use-events/useEvents";
 
 interface InteractiveSceneProps {
   threeJsParams: ThreeJsParams;
@@ -65,7 +65,7 @@ export const InteractiveScene = ({
     sceneData?.sceneObjects ?? [],
     sceneData?.isSceneDataInitialized ?? false
   );
-  useAddEvent(initializedMeshes, events);
+  useEvents(scene, events);
 
   const initializeSceneWithData = useCallback(() => {
     if (scene) {
@@ -104,8 +104,4 @@ const useSceneData = (
     const sceneData = formatSceneData(initializedAssets, materialParams);
     return sceneData;
   }, [areAssetsInitialized]);
-};
-
-const useAddEvent = (initializedMeshes, events) => {
-  useEventsWithMesh(initializedMeshes[0], events);
 };

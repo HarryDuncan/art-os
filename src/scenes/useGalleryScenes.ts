@@ -1,3 +1,4 @@
+import { useAppSelector } from "app/redux/store";
 import { useCallback } from "react";
 import { useDefaultConfig } from "scenes/default-configs/useDefaultConfig";
 import { deepMergeObjects } from "utils/deepMergeObjects";
@@ -13,13 +14,15 @@ export const useGalleryScenes = () => {
     events,
     interactions,
   } = useDefaultConfig();
+
+  const { sceneConfig } = useAppSelector((state) => state.sceneData);
   return useCallback((sceneId: string) => {
     const sceneData = getSceneData(sceneId);
     if (!sceneData) {
       console.error("incorrect scene id");
       return {};
     }
-    const sceneParams = Scenes[sceneId]();
+    const sceneParams = Scenes[sceneId](sceneConfig);
     if (sceneData.sceneId) {
       switch (sceneData.componentId) {
         case "ReactFiberScene":

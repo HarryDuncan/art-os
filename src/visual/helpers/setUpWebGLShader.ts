@@ -1,7 +1,7 @@
 import { Mesh, PlaneGeometry, RawShaderMaterial, ShaderMaterial } from "three";
 import { defaultVertex } from "visual/shaders/vertex-shaders";
 import { formatFragmentShader } from "visual/shaders/shader-functions/formatFragmentShader";
-import { UniformDefinition } from "visual/shaders/types";
+import { UniformDefinition } from "visual/shaders/shaders.types";
 import { formatUniforms } from "visual/shaders/shader-functions/uniforms/formatUniforms";
 
 export type Shader = RawShaderMaterial & { derivatives: boolean };

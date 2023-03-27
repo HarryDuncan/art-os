@@ -2,7 +2,7 @@ import { getFileTypeFromFilename } from "utils/getFileType";
 import { FILE_TYPES } from "consts";
 import { Asset } from "visual/hooks/use-assets/types";
 import { Vector3 } from "three";
-import { GeometryConfig } from "./types";
+import { GeometryConfig } from "./geometry.types";
 
 export const formatGeometriesFromAsset = (
   assets: Asset[],
@@ -42,4 +42,10 @@ export const formatImportedGeometry = (geometry, scale = 0.15) => {
   return formattedGeometry;
 };
 
-const getGeometryFromObj = (object) => object.data.children[0].geometry;
+const getGeometryFromObj = (object) => {
+  if (object.data.children[0]) {
+    return object.data.children[0].geometry;
+  }
+  console.warn(`geometry not valid ${object.name}`);
+  return null;
+};

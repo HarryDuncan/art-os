@@ -4,7 +4,7 @@ import { BodySegInteractionKeys } from "../types";
 import * as bodySeg from "@tensorflow-models/body-segmentation";
 import { getCoordsFromSeg } from "./getCoordsFromSeg";
 import { MODEL_READ_INTERVAL } from "../const";
-import { ev } from "visual/hooks/use-events/useEvents";
+import { ev } from "visual/hooks/use-events/useEventsWithMeshes";
 
 const foregroundThreshold = 0.5;
 export const BODY_PIX_CONFIG = {

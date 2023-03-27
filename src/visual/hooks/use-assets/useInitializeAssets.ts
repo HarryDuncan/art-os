@@ -4,7 +4,6 @@ import { loadImage } from "visual/helpers/assets/image/load-image/LoadImage";
 import { loadFont } from "visual/helpers/assets/fonts/loadFont";
 import { loadTexture } from "visual/helpers/assets/texture/load-texture/loadTexture";
 import { loadGeometry } from "visual/helpers/assets/geometry/load-geometry/LoadGeometry";
-
 import { Asset, ASSET_TYPES } from "./types";
 
 export const useInitializeAssets = (assets: Asset[]) => {

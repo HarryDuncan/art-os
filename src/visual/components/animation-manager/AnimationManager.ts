@@ -1,3 +1,4 @@
+import { setUpAnimationConfig } from "visual/helpers/animation/setUpAnimationConfig";
 import {
   AnimationFunctionProps,
   CustomAnimation,
@@ -36,8 +37,14 @@ export class AnimationManager {
     if (!animation) {
       console.warn(`animation: ${animationId} has not been initialized`);
     } else if (animation?.isRunning === false) {
+      const animationConfig = setUpAnimationConfig(
+        animationFunctionProps.animationConfig
+      );
       animation.isRunning = true;
-      animation.animationFunction(animationId, animationFunctionProps);
+      animation.animationFunction(animationId, {
+        ...animationFunctionProps,
+        animationConfig,
+      });
     }
   }
 

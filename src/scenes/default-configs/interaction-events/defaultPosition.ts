@@ -1,4 +1,4 @@
-import { InteractiveShader } from "visual/components/interactive-shaders/interactive-shader";
+import { InteractiveShader } from "visual/components/interactive/shaders/interactive-shader";
 import { INTERACTION_EVENTS } from "visual/helpers/interactions/const";
 import {
   Binding,

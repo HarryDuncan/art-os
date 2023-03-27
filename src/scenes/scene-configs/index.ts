@@ -1,13 +1,3 @@
-export { deepWaveScene } from "./deep-waves-scene";
-export { attractionMorphing } from "./attraction-morphing";
-export { particleRain } from "./particle-rain";
-export { layersDemo } from "./layers-demo";
-export { gooeyShader } from "./gooey-shader";
-export { textureDistortion } from "./texture-distortion";
-export { deepWavesInstallation } from "./deep-waves-installation";
-export { barbaOcho } from "./barba-ocho";
-export { viv } from "./viv";
-export { ltw } from "./ltw";
-export { ltw2 } from "./ltw2";
-export { ltw3 } from "./ltw3";
-export { attractionMorphing2 } from "./attraction-morphing-2";
+export { hjd } from "./hjd";
+export { hjd2 } from "./hjd-2";
+export { compute } from "./compute-installation";

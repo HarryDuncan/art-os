@@ -1,7 +1,9 @@
 import { Matrix4, Vector3 } from "three";
 import { Text as TroikaText } from "troika-three-text";
-import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
 import { getMaterial } from "visual/helpers/materials/getMaterial";
+import { MATERIAL_TYPES } from "visual/helpers/materials/materials.constants";
+import { MaterialType } from "visual/helpers/materials/materials.types";
+
 import { TextProps } from "./threeJsComponents.types";
 
 export const Text = ({
@@ -30,7 +32,10 @@ export const Text = ({
     new Matrix4().makeTranslation(-center.x * 2, -center.y * 2, -center.z * 2)
   );
   if (materialProps) {
-    const material = getMaterial(materialProps, MATERIAL_TYPES.matcap);
+    const material = getMaterial(
+      materialProps,
+      MATERIAL_TYPES.MATCAP as MaterialType
+    );
     textObject.material = material;
   }
   // Update the rendering:

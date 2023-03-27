@@ -1,16 +1,19 @@
+import { MathUtils } from "three";
 import { AnimationFunctionProps } from "visual/components/animation-manager/animationManager.types";
-import { getMeshesByIdentifier } from "visual/helpers/scene/getMeshesByIdentifier";
-import { degreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
 import { easeOut } from "visual/utils";
 import { stepAndWrap } from "visual/utils/stepAndWrap";
+import { getSceneElementByName } from "../scene/getSceneElementByName";
 import {
   AnimationProperties,
+  AnimationType,
   ANIMATION_TYPES,
   RotationAnimationConfig,
   SpinAnimationConfig,
+  TraversalAnimationConfig,
 } from "./animation.types";
 import { rotateMeshAlongAxis } from "./rotation/rotateMeshAlongAxis";
 import { spinMeshAlongAxis } from "./rotation/spinMeshAlongAxis";
+import { traverseThroughtArray } from "./traversal/traverseThroughArray";
 
 export const chainAnimation = (
   animationId: string,
@@ -21,7 +24,7 @@ export const chainAnimation = (
     targetIdentifier,
     animationConfig: { animationProperties, animationType },
   } = props;
-  const animatedObjects = getMeshesByIdentifier(scene, targetIdentifier);
+  const animatedObjects = getSceneElementByName(scene, targetIdentifier);
   if (!animatedObjects.length) {
     console.warn(
       `${animationId} can't run. No meshes selected with ${targetIdentifier}`
@@ -29,7 +32,6 @@ export const chainAnimation = (
   }
   let startTime: number;
   let currentItemIndex = 0;
-
   function step(timestamp: number) {
     const object = animatedObjects[currentItemIndex];
     if (!startTime) startTime = timestamp;
@@ -49,7 +51,7 @@ export const chainAnimation = (
       );
       if (animationProperties.repeatAnimation) {
         setTimeout(() => {
-          step(timestamp);
+          step(timestamp + animationProperties.animationPauseMilis);
         }, animationProperties.animationPauseMilis);
       }
     }
@@ -59,19 +61,35 @@ export const chainAnimation = (
 };
 
 const performAnimation = (
-  animationType: ANIMATION_TYPES,
+  animationType: AnimationType,
   object,
   progress,
   animationConfig: AnimationProperties
 ) => {
   switch (animationType) {
+    case ANIMATION_TYPES.TRAVERSE:
+      {
+        const {
+          curve,
+          animationDurationMilis,
+        } = animationConfig as TraversalAnimationConfig;
+        if (curve) {
+          const currentProg = easeOut(progress / animationDurationMilis) * 100;
+          const { x, y, z } = traverseThroughtArray(
+            curve,
+            Number(currentProg.toFixed(0))
+          );
+          object.position.set(x, y, z);
+        }
+      }
+      break;
     case ANIMATION_TYPES.ROTATE:
       {
         const {
           animationDurationMilis,
           rotationAxis,
         } = animationConfig as RotationAnimationConfig;
-        const rotation = degreesToEuler(
+        const rotation = MathUtils.degToRad(
           easeOut(progress / animationDurationMilis) * 360
         );
         rotateMeshAlongAxis(object, rotationAxis, rotation);

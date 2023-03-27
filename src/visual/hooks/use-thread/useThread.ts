@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { WebGLRenderer } from "three";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
-import { ev } from "../use-events/useEvents";
+import { ev } from "../use-events/useEventsWithMeshes";
 
 export const useThread = (
   renderer: WebGLRenderer | CSS3DRenderer | undefined,

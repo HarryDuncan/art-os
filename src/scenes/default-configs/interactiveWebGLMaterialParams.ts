@@ -1,4 +1,4 @@
-import { UniformTypes } from "visual/shaders/types";
+import { UniformTypes } from "visual/shaders/shaders.types";
 
 export const deepWavesMaterialParams = {
   shaderName: "deepWavesFrag",

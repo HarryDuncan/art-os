@@ -5,9 +5,11 @@ import { PlaneGeometry, RepeatWrapping } from "three";
 import { defaultVertex } from "visual/shaders/vertex-shaders";
 import { formatUniforms } from "visual/shaders/shader-functions/uniforms/formatUniforms";
 import { formatFragmentShader } from "visual/shaders/shader-functions/formatFragmentShader";
-import { MATERIAL_TYPES } from "visual/helpers/assets/geometry/types";
-import { InteractiveShaderTypes } from "visual/components/interactive-shaders/types";
-import { SceneData } from "visual/components/interactive-scene/types";
+import { SceneData } from "visual/components/interactive/scene/types";
+import { MATERIAL_TYPES } from "visual/helpers/materials/materials.constants";
+import { MaterialType } from "visual/helpers/materials/materials.types";
+import { INTERACTIVE_SHADER_TYPES } from "visual/components/interactive/shaders/shaders.constants";
+import { InteractiveShaderType } from "visual/components/interactive/shaders/shaders.types";
 
 export const useSceneData = (
   initializedAssets: Asset[],
@@ -35,10 +37,10 @@ const formatToWebGL = (
     isSceneDataInitialized: true,
     meshConfigs: [
       {
-        materialType: MATERIAL_TYPES.interactive,
+        materialType: MATERIAL_TYPES.INTERACTIVE_SHADER as MaterialType,
         geometry,
         materialParameters: {
-          shaderType: InteractiveShaderTypes.SHADER,
+          shaderType: INTERACTIVE_SHADER_TYPES.SHADER as InteractiveShaderType,
           shaders: {
             vertexShader: defaultVertex,
             fragmentShader,

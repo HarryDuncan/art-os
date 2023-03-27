@@ -1,4 +1,4 @@
-import InteractiveMaterial from "visual/components/interactive-shaders/interactive-raw-shader/InteractiveRawShader";
+import InteractiveMaterial from "visual/components/interactive/shaders/interactive-shader/InteractiveShader";
 
 export type InteractiveMaterialType = InteractiveMaterial;
 

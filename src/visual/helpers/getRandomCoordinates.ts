@@ -26,7 +26,7 @@ export const getRandomCoordinates = (
 
   // Generate the coordinates
   const coordinates: { x: number; y: number; z: number }[] = [];
-  for (let i = 0; i < numberOfCoodinates; i++) {
+  for (let i = 0; i < numberOfCoodinates; i += 1) {
     const x = Math.random() * (upperBoundX - lowerBoundX) + lowerBoundX;
     const y = Math.random() * (upperBoundY - lowerBoundY) + lowerBoundY;
     const z = Math.random() * (upperBoundZ - lowerBoundZ) + lowerBoundZ;

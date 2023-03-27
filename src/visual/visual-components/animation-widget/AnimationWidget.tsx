@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { AnimationWidgetScene } from "./types";
 import { useRunAnimations } from "./useRunAnimations";
-import { RootContainer } from "../../components/root-container";
+import { RootContainer } from "../../components/container/root-container";
 
 interface AnimationWidgetProps {
   scenes: AnimationWidgetScene[];

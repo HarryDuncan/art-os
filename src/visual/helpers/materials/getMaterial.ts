@@ -1,27 +1,44 @@
-import { DoubleSide, MeshMatcapMaterial, ShaderMaterial } from "three";
 import {
-  InteractiveMaterialParameters,
-  MATERIAL_TYPES,
-} from "../assets/geometry/types";
+  DoubleSide,
+  MeshLambertMaterial,
+  MeshMatcapMaterial,
+  MeshStandardMaterial,
+  ShaderMaterial,
+  VideoTexture,
+} from "three";
 import { InteractionEventObject } from "../interactions/types";
-import { getInteractiveMaterial } from "./getInteractiveMaterial";
+import { setUpEnvMap } from "./env-map/setUpEnvMap";
+import { getInteractiveMaterial } from "./interactive-material/getInteractiveMaterial";
+import { MATERIAL_TYPES } from "./materials.constants";
+import {
+  EnvMapMaterialParameters,
+  InteractiveMaterialParameters,
+  MatcapMaterialParameters,
+  MaterialParameterTypes,
+  MaterialType,
+  StandardShaderMaterialParameters,
+  VideoMaterialParameters,
+} from "./materials.types";
 
 export const getMaterial = (
-  materialParameters,
-  materialType: MATERIAL_TYPES,
+  materialParameters: MaterialParameterTypes,
+  materialType: MaterialType,
   interactions: InteractionEventObject[] = [],
   materialFunctions = {}
 ) => {
   switch (materialType) {
-    case MATERIAL_TYPES.interactive: {
+    case MATERIAL_TYPES.INTERACTIVE_SHADER: {
       return getInteractiveMaterial(
         materialParameters as InteractiveMaterialParameters,
         interactions,
         materialFunctions
       );
     }
-    case MATERIAL_TYPES.standardShader: {
-      const { shaders, uniforms } = materialParameters;
+    case MATERIAL_TYPES.STANDARD_SHADER: {
+      const {
+        shaders,
+        uniforms,
+      } = materialParameters as StandardShaderMaterialParameters;
       return new ShaderMaterial({
         // @ts-ignore
         uniforms,
@@ -31,15 +48,43 @@ export const getMaterial = (
         depthTest: true,
       });
     }
-    case MATERIAL_TYPES.matcap: {
-      const { matcap } = materialParameters;
+    case MATERIAL_TYPES.MATCAP: {
+      const { matcap } = materialParameters as MatcapMaterialParameters;
       return new MeshMatcapMaterial({
         matcap,
         side: DoubleSide,
       });
     }
-    case MATERIAL_TYPES.standard:
+    case MATERIAL_TYPES.ENV_MAP: {
+      const {
+        // @ts-ignore
+        material: { imageUrl, envMapType },
+      } = materialParameters as EnvMapMaterialParameters;
+
+      const envMap = setUpEnvMap(imageUrl, envMapType);
+      return new MeshStandardMaterial({
+        envMap,
+        roughness: 0.1,
+        metalness: 1.0,
+      });
+    }
+    case MATERIAL_TYPES.STANDARD:
+      return new MeshStandardMaterial({});
+    case MATERIAL_TYPES.VIDEO: {
+      const { videoId } = materialParameters as VideoMaterialParameters;
+      const video = document.getElementById(videoId);
+      if (video) {
+        const texture = new VideoTexture(video as HTMLVideoElement);
+        const parameters = { color: 0xffffff, map: texture };
+        return new MeshLambertMaterial(parameters);
+      }
+      console.warn("no video element found");
+      return new MeshStandardMaterial({});
+    }
+
+    case MATERIAL_TYPES.MATERIAL:
     default:
-      return materialParameters;
+      // @ts-ignore
+      return materialParameters.material;
   }
 };

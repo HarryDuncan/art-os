@@ -1,7 +1,8 @@
-export enum CameraType {
-  PERSPECTIVE_CAMERA = "perspectiveCamera",
-  ORTHOGRAPHIC_CAMERA = "orthographicCamera",
-}
+export const CAMERA_TYPES = {
+  PERSPECTIVE_CAMERA: "perspectiveCamera",
+  ORTHOGRAPHIC_CAMERA: "orthographicCamera",
+};
+export type CameraType = keyof typeof CAMERA_TYPES;
 export interface CameraParams {
   cameraType: CameraType;
   position: {

@@ -7,6 +7,7 @@ export const rotateMeshAlongAxis = (mesh: Mesh, axis: AXIS, angle: number) => {
     console.warn("no bounding box");
     return;
   }
+  // TODO - update with this
 
   switch (axis) {
     case AXIS.X:

@@ -2,7 +2,10 @@ import { useAppSelector } from "app/redux/store";
 import { useMemo } from "react";
 import { Mesh, Points } from "three";
 import { Geometry } from "types/threeJs.types";
-import { MeshConfig, MeshTypes } from "visual/helpers/assets/geometry/types";
+import {
+  MeshConfig,
+  MeshTypes,
+} from "visual/helpers/assets/geometry/geometry.types";
 import { getMaterial } from "visual/helpers/materials/getMaterial";
 import { InteractionEventObject } from "../../helpers/interactions/types";
 

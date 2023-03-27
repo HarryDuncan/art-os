@@ -1,69 +1,21 @@
 [
   {
-    "title": "Deep Waves",
-    "sceneId": "deepWaveScene",
-    "componentId": "InteractiveWebGL",
-    "cardImageName": "deepwaves.jpg"
+    "title": "HJD",
+    "sceneId": "hjd",
+    "componentId": "InteractiveScene",
+    "cardImageName": "hjd1.jpg"
   },
   {
-    "title": "Gooey Shader",
-    "sceneId": "gooeyShader",
+    "title": "HJD 2",
+    "sceneId": "hjd2",
     "componentId": "InteractiveScene",
-    "cardImageName": "ImageHover.jpg"
-  },
-  {
-    "title": "Texture Distortion",
-    "sceneId": "textureDistortion",
-    "componentId": "InteractiveScene",
-    "cardImageName": "textureDistortion.jpg"
-  },
-  {
-    "title": "Attraction Morphing",
-    "sceneId": "attractionMorphing",
-    "componentId": "InteractiveScene",
-    "cardImageName": "AttractionMorphing.jpg"
+    "cardImageName": "hjd2.jpg"
   },
 
   {
-    "title": "Layers",
-    "sceneId": "layersDemo",
-    "componentId": "InteractiveWebGL",
-    "cardImageName": "LayersDemo.jpg"
-  },
-  {
-    "title": "Barba Ocho",
-    "sceneId": "barbaOcho",
-    "componentId": "InteractiveScene",
-    "cardImageName": "barbaOcho.jpg"
-  },
-  {
-    "title": "Vivienn Westwood",
-    "sceneId": "viv",
-    "componentId": "InteractiveScene",
-    "cardImageName": "westwood.jpg"
-  },
-  {
-    "title": "LTW",
-    "sceneId": "ltw",
-    "componentId": "InteractiveScene",
-    "cardImageName": "LTW.jpg"
-  },
-  {
-    "title": "LTW 2",
-    "sceneId": "ltw2",
-    "componentId": "InteractiveScene",
-    "cardImageName": "LTW2.jpg"
-  },
-  {
-    "title": "Cool Attraction Morphing",
-    "sceneId": "ltw3",
-    "componentId": "InteractiveScene",
-    "cardImageName": "LTW2.jpg"
-  },
-  {
-    "title": "Cool Attraction Morphing",
-    "sceneId": "attractionMorphing2",
-    "componentId": "InteractiveScene",
-    "cardImageName": "LTW2.jpg"
+    "title": "Compute",
+    "sceneId": "compute",
+    "componentId": "InteractiveSceneContainer",
+    "cardImageName": "hjd2.jpg"
   }
 ]

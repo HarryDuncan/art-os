@@ -1,0 +1,23 @@
+[
+  {
+    "meshComponents": {
+      "nymph": {
+        "rotation": { "x": 180, "y": 200, "z": 0 },
+        "size": 0.2,
+        "materialConfig": {
+          "material": {
+            "materialType": "INTERACTIVE_SHADER",
+            "materialParameters": {
+              "shaderType": "shader",
+              "shaders": {
+                "vertex": "interactiveParticlesVertex",
+                "fragment": "interactiveParticlesFragment"
+              },
+              "uniforms": {}
+            }
+          }
+        }
+      }
+    }
+  }
+]

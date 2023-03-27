@@ -1,5 +1,5 @@
 import * as FragmentShaders from "visual/shaders/fragment-shaders";
-import { FragmentShader } from "visual/shaders/types";
+import { FragmentShader } from "visual/shaders/shaders.types";
 
 const hidef = `#ifdef GL_ES
 precision highp float;
