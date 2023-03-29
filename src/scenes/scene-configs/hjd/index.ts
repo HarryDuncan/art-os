@@ -1,1 +1,0 @@
-export { hjd } from "./hjd";

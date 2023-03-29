@@ -1,3 +1,4 @@
+import { Material } from "three";
 import { Geometry } from "types/threeJs.types";
 import {
   InteractiveMaterialParameters,
@@ -23,8 +24,7 @@ export interface FormattedGeometry {
   name?: string;
 }
 export type MeshConfig = FormattedGeometry & {
-  materialType: MaterialType;
-  materialParameters: MaterialParameters;
+  material: Material;
   meshType?: MeshTypes;
 };
 

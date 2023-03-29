@@ -1,0 +1,66 @@
+[
+  {
+    "meshComponentConfigs": {
+      "nymph": {
+        "rotation": { "x": 180, "y": 200, "z": 0 },
+        "size": 2,
+        "materialConfig": {
+          "materialType": "INTERACTIVE_SHADER",
+          "material": {
+            "materialParameters": {
+              "shaderType": "shader",
+              "shaders": {
+                "vertex": "interactiveParticlesVertex",
+                "fragment": "interactiveParticlesFragment"
+              },
+              "uniforms": {}
+            }
+          }
+        }
+      },
+      "compute": {
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "y": 1.9 },
+        "size": 2.2,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "name": {
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "x": 0, "y": 1.5 },
+        "size": 0.8,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "opening": {
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "y": -0 },
+        "size": 0.8,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "dates": {
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "y": -0.5 },
+        "size": 0.8,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      }
+    },
+    "globalMaterialConfigs": [
+      {
+        "id": "compute-background",
+        "materialParams": {
+          "color": "#000000",
+          "specular": "#bfbfbf",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      }
+    ]
+  }
+]

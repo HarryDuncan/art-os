@@ -17,6 +17,7 @@ import { THEME } from "./theme/theme";
 import { GlobalStyle } from "./theme/GlobalStyle";
 import { Sandbox } from "./views/sandbox/sandbox";
 import { AppendContainer } from "./components/AppendContainer";
+import { useVisualInputNode } from "grpc/visual-input-node/useVisualInputNode";
 
 export const AppContainer = styled.div`
   margin: 0;
@@ -29,7 +30,7 @@ export const AppContainer = styled.div`
 
 export function App() {
   // When a nav item is clicked this is where the actions take place
-
+  useVisualInputNode();
   return (
     <ThemeProvider theme={THEME}>
       <GlobalStyle />

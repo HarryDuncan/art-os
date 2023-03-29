@@ -6,7 +6,6 @@ import {
   MeshConfig,
   MeshTypes,
 } from "visual/helpers/assets/geometry/geometry.types";
-import { getMaterial } from "visual/helpers/materials/getMaterial";
 import { InteractionEventObject } from "../../helpers/interactions/types";
 
 export const useMeshes = (
@@ -18,24 +17,7 @@ export const useMeshes = (
   } = useAppSelector((state) => state.visual);
   return useMemo(() => {
     return meshConfigs.flatMap(
-      (
-        {
-          geometry,
-          name,
-          materialType,
-          materialParameters,
-          meshType,
-          position,
-          rotation,
-        },
-        index
-      ) => {
-        const material = getMaterial(
-          materialParameters,
-          materialType,
-          interactions,
-          materialFunctions
-        );
+      ({ geometry, name, material, meshType, position, rotation }, index) => {
         const mesh = getMesh(geometry, material, meshType);
         formatMesh(mesh, position, rotation, name ?? `mesh-${index}`);
         // TODO - add events to mesh

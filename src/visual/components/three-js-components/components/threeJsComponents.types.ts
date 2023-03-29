@@ -1,6 +1,5 @@
-import { ColorRepresentation, Vector2, Vector3 } from "three";
+import { ColorRepresentation, Material, Vector2, Vector3 } from "three";
 import { Geometry } from "types/threeJs.types";
-import { MaterialParameterTypes } from "visual/helpers/materials/materials.types";
 
 export interface ThreeJSComponentProps {
   name: string;
@@ -11,7 +10,7 @@ export interface MarchingCubesProps extends ThreeJSComponentProps {
   parameters?: {
     resolution: number;
   };
-  material?: MaterialParameterTypes;
+  material?: Material;
 }
 
 export interface TextProps extends ThreeJSComponentProps {
@@ -29,17 +28,17 @@ export interface MirrorProps extends ThreeJSComponentProps {
 export interface SphericalBackgroundProps extends ThreeJSComponentProps {
   rotation?: Vector3;
   radius: number;
-  material?: MaterialParameterTypes;
+  material?: Material;
 }
 
 export interface PlaneProps extends ThreeJSComponentProps {
   size?: Vector2;
-  material?: MaterialParameterTypes;
+  material?: Material;
 }
 
 export interface CubeProps extends ThreeJSComponentProps {
   size?: Vector3;
-  material?: MaterialParameterTypes;
+  material?: Material;
 }
 export type ComponentProps =
   | TextProps

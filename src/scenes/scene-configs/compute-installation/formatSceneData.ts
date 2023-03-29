@@ -55,6 +55,7 @@ const getMeshConfigs = (assets) => {
   const formattedGeometries = formatToMeshConfig(assets, computeConfig[0]);
   const meshConfigs = addMaterialsToMeshConfig(
     formattedGeometries,
+    [],
     computeConfig[0]
   );
   return meshConfigs;

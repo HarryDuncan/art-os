@@ -5,6 +5,7 @@ import { ENV_MAP_TYPES, MATERIAL_TYPES } from "./materials.constants";
 
 export type MaterialType = keyof typeof MATERIAL_TYPES;
 export type EnvMapType = keyof typeof ENV_MAP_TYPES;
+
 export interface MaterialParameters {
   name?: string;
   materialType?: MaterialType;
@@ -34,6 +35,11 @@ export type EnvMapMaterialParameters = MaterialParameters & {
 
 export type VideoMaterialParameters = MaterialParameters & {
   videoId: string;
+};
+export type PhongMaterialParams = MaterialParameters & {
+  color: string;
+  specular?: number;
+  shininess: number;
 };
 export type MaterialParameterTypes =
   | MatcapMaterialParameters

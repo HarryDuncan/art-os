@@ -1,0 +1,18 @@
+# syntax=docker/dockerfile:1
+
+FROM python:3
+WORKDIR /visualInputNode
+
+ COPY requirements.txt requirements.txt
+ RUN pip install -r requirements.txt
+ RUN pip install ipython numpy matplotlib pyyaml
+
+
+# Run Program
+WORKDIR /visualInputNode
+
+
+COPY . .
+
+ENTRYPOINT [ "python3" ]
+CMD [ "visualInputNode.py"]

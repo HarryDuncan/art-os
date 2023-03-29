@@ -1,0 +1,1 @@
+export { computeLanding } from "./computeLanding";

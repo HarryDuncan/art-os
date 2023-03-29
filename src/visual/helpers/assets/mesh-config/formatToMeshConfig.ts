@@ -1,6 +1,6 @@
 import { DEFAULT_POSITION } from "consts/threejs";
 import { Vector3 } from "three";
-import { getMeshComponentConfigs } from "visual/helpers/config-helpers/getMeshConfigConfig";
+import { getMeshComponentConfig } from "visual/helpers/config-helpers/getMeshComponentConfig";
 import { vector3DegreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
 import { formatGeometriesFromAsset } from "../geometry/formatGeometryFromAsset";
 import { FormattedGeometry } from "../geometry/geometry.types";
@@ -9,7 +9,7 @@ export const formatToMeshConfig = (
   loadedAssets,
   config
 ): FormattedGeometry[] => {
-  const meshComponentConfig = getMeshComponentConfigs(config);
+  const meshComponentConfig = getMeshComponentConfig(config);
   const geometries = formatGeometriesFromAsset(loadedAssets);
   return geometries.flatMap((geometry) => {
     if (isGeometryVisible(geometry, meshComponentConfig)) {

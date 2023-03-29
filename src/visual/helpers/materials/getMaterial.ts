@@ -1,7 +1,9 @@
 import {
   DoubleSide,
+  Material,
   MeshLambertMaterial,
   MeshMatcapMaterial,
+  MeshPhongMaterial,
   MeshStandardMaterial,
   ShaderMaterial,
   VideoTexture,
@@ -16,6 +18,7 @@ import {
   MatcapMaterialParameters,
   MaterialParameterTypes,
   MaterialType,
+  PhongMaterialParams,
   StandardShaderMaterialParameters,
   VideoMaterialParameters,
 } from "./materials.types";
@@ -68,8 +71,7 @@ export const getMaterial = (
         metalness: 1.0,
       });
     }
-    case MATERIAL_TYPES.STANDARD:
-      return new MeshStandardMaterial({});
+
     case MATERIAL_TYPES.VIDEO: {
       const { videoId } = materialParameters as VideoMaterialParameters;
       const video = document.getElementById(videoId);
@@ -83,8 +85,17 @@ export const getMaterial = (
     }
 
     case MATERIAL_TYPES.MATERIAL:
+      return materialParameters as Material;
+    case MATERIAL_TYPES.PHONG: {
+      const {
+        color,
+        specular,
+        shininess,
+      } = materialParameters as PhongMaterialParams;
+      return new MeshPhongMaterial({ color, specular, shininess });
+    }
+    case MATERIAL_TYPES.STANDARD:
     default:
-      // @ts-ignore
-      return materialParameters.material;
+      return new MeshStandardMaterial({});
   }
 };

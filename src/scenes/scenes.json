@@ -1,13 +1,7 @@
 [
   {
-    "title": "HJD",
-    "sceneId": "hjd",
-    "componentId": "InteractiveScene",
-    "cardImageName": "hjd1.jpg"
-  },
-  {
-    "title": "HJD 2",
-    "sceneId": "hjd2",
+    "title": "Compute Landing",
+    "sceneId": "computeLanding",
     "componentId": "InteractiveScene",
     "cardImageName": "hjd2.jpg"
   },
