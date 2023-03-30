@@ -15,6 +15,9 @@ export const useThread = (
       return;
     }
     ev("scene:update");
+    if (scene.orbitControls) {
+      scene.orbitControls.update();
+    }
     renderer.render(scene, camera);
     currentFrameRef.current = requestAnimationFrame(update);
   }, [currentFrameRef, renderer, scene, camera]);

@@ -1,4 +1,5 @@
 import { BoundingBox, ThreeDPosition } from "./position.types";
+const MAX_FIND_TIME = 10000;
 
 export const generateRandomlySpreadCoordinates = (
   numCoordinates: number,
@@ -8,12 +9,21 @@ export const generateRandomlySpreadCoordinates = (
 ): ThreeDPosition[] => {
   // Create an empty list to store the generated points
   const points: ThreeDPosition[] = [];
+  const now = new Date();
+  const startTime = now.getTime();
 
   // While there are fewer points than desired
   while (points.length < numCoordinates) {
     // Select a random point within a certain distance of the existing points
+    const now = new Date();
+    if (now.getTime() - startTime > MAX_FIND_TIME) {
+      break;
+    }
     let found = false;
     while (!found) {
+      if (now.getTime() - startTime > MAX_FIND_TIME) {
+        break;
+      }
       // Select a random allowed bounding box
       const boundingBox =
         allowedBoundingBoxes[

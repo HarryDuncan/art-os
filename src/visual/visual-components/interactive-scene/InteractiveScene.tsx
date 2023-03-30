@@ -14,6 +14,7 @@ import { useSceneComponents } from "visual/hooks/scene-data/useSceneComponents";
 import { useLights } from "visual/hooks/scene-data/useLights";
 import { setSceneProperties } from "visual/helpers/scene/setSceneProperties";
 import { useEvents } from "visual/hooks/use-events/useEvents";
+import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
 
 interface InteractiveSceneProps {
   threeJsParams: ThreeJsParams;
@@ -41,10 +42,12 @@ export const InteractiveScene = ({
   const {
     areAssetsInitialized,
     initializedAssets,
-    update,
+    currentFrameRef,
+    clock,
     postProcessor,
     renderer,
     camera,
+    orbitControls,
     container,
   } = useSetUpScene(threeJsParams, assets);
 
@@ -66,6 +69,14 @@ export const InteractiveScene = ({
     sceneData?.isSceneDataInitialized ?? false
   );
   useEvents(scene, events);
+  const { update, pause } = useThreadWithPostProcessor(
+    postProcessor,
+    currentFrameRef,
+    clock,
+    scene
+  );
+
+  useEffect(() => () => pause(), [pause]);
 
   const initializeSceneWithData = useCallback(() => {
     if (scene) {
@@ -80,6 +91,7 @@ export const InteractiveScene = ({
         camera,
         passes: [],
       });
+      scene.addOrbitControls(orbitControls);
       update();
     }
   }, [scene, initializedMeshes, update, postProcessor, renderer, camera]);

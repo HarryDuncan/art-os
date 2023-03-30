@@ -1,8 +1,4 @@
-import {
-  DEFAULT_LIGHTS,
-  DEFAULT_POSITION,
-  DEFAULT_VECTOR_POSITION,
-} from "consts/threejs";
+import { DEFAULT_LIGHTS } from "consts/threejs";
 import { Texture } from "three";
 import { SceneData } from "visual/components/interactive";
 import {
@@ -13,17 +9,16 @@ import {
 import { addMaterialsToMeshConfig } from "visual/helpers/assets/mesh-config/addMaterialsToMeshConfig";
 import { formatToMeshConfig } from "visual/helpers/assets/mesh-config/formatToMeshConfig";
 import { getMaterialsFromConfig } from "visual/helpers/config-helpers/getMaterialsFromConfig";
+import { getRandomRotation } from "visual/helpers/getRandomRotation";
 import {
   DEFAULT_MATERIAL,
-  ENV_MAP_TYPES,
   MATERIAL_TYPES,
 } from "visual/helpers/materials/materials.constants";
-import {
-  EnvMapMaterialParameters,
-  EnvMapType,
-  MaterialType,
-} from "visual/helpers/materials/materials.types";
-import { Asset, AssetTag, ASSET_TAG } from "visual/hooks/use-assets/types";
+import { MaterialType } from "visual/helpers/materials/materials.types";
+import { createBoundingBox } from "visual/helpers/three-dimension-space/createBoundingBox";
+import { generateRandomlySpreadCoordinates } from "visual/helpers/three-dimension-space/position/getRandomlySpreadCoordinates";
+import { BoundingBox } from "visual/helpers/three-dimension-space/position/position.types";
+import { Asset, ASSET_TAG } from "visual/hooks/use-assets/types";
 import { hasCommonValues } from "visual/utils/hasCommonElement";
 
 import computeConfig from "./config.json";
@@ -31,10 +26,10 @@ import computeConfig from "./config.json";
 export const formatSceneData = (assets, context, dispatch): SceneData => {
   const materials = formatGlobalMaterials(assets);
   const meshConfigs = getMeshConfigs(assets, materials);
-  console.log(materials);
+  const formattedMeshConfigs = setOnesAndZeros(meshConfigs);
   return {
     isSceneDataInitialized: true,
-    meshConfigs,
+    meshConfigs: formattedMeshConfigs,
     sceneComponents: [
       {
         componentType: COMPONENT_TYPES.PLANE as ThreeJsComponentType,
@@ -101,4 +96,48 @@ const getMaterialById = (materialId, materials) => {
   if (selectedMaterial) return selectedMaterial;
   console.warn(`Material:${materialId} not found`);
   return DEFAULT_MATERIAL;
+};
+
+const setOnesAndZeros = (formattedMeshConfigs) => {
+  const one = formattedMeshConfigs.find((mesh) => mesh.name === "one-geometry");
+  const zero = formattedMeshConfigs.find(
+    (mesh) => mesh.name === "zero-geometry"
+  );
+  const filteredMeshConfigs = formattedMeshConfigs.filter(
+    (mesh) => mesh.name !== "one-geometry" && mesh.name !== "zero-geometry"
+  );
+
+  const allowedBoundingBoxes: BoundingBox[] = [
+    createBoundingBox({ x: 0, y: 0, z: -2 }, 4, 4, 2),
+  ];
+  const notAllowedBoundingBoxes: BoundingBox[] = [
+    createBoundingBox({ x: 0, y: 0, z: -3.5 }, 2, 2, 8),
+  ];
+  const AMOUNT = 16;
+  const coordinates = generateRandomlySpreadCoordinates(
+    AMOUNT,
+    allowedBoundingBoxes,
+    notAllowedBoundingBoxes,
+    1
+  );
+  const onesAndZeros = coordinates.map((coordinate, index) => {
+    const nonRandomizedAxes = { y: true, x: true };
+    const rotation = getRandomRotation(1, nonRandomizedAxes)[0];
+    if (index % 2 == 1) {
+      return {
+        ...one,
+        position: coordinate,
+        name: "binary",
+        rotation: { ...rotation, x: one.rotation.x },
+      };
+    }
+    return {
+      ...zero,
+      position: coordinate,
+      name: "binary",
+      rotation: { ...rotation, x: zero.rotation.x },
+    };
+  });
+
+  return [...filteredMeshConfigs, ...onesAndZeros];
 };

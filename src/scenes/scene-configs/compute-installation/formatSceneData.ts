@@ -28,23 +28,23 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
     isSceneDataInitialized: true,
     meshConfigs,
     sceneComponents: [
-      {
-        componentType: COMPONENT_TYPES.MARCHING_CUBES as ThreeJsComponentType,
-        componentProps: {
-          name: "marching-cubes-home",
-          parameters: {
-            resolution: 120,
-          },
-          position: DEFAULT_VECTOR_POSITION,
-          material: {
-            material: {
-              imageUrl: "../assets/textures/cube-mapping/sculpture",
-              envMapType: ENV_MAP_TYPES.REFLECTION as EnvMapType,
-            } as EnvMapMaterialParameters,
-            materialType: MATERIAL_TYPES.ENV_MAP as MaterialType,
-          },
-        },
-      },
+      // {
+      //   componentType: COMPONENT_TYPES.MARCHING_CUBES as ThreeJsComponentType,
+      //   componentProps: {
+      //     name: "marching-cubes-home",
+      //     parameters: {
+      //       resolution: 120,
+      //     },
+      //     position: DEFAULT_VECTOR_POSITION,
+      //     material: {
+      //       material: {
+      //         imageUrl: "../assets/textures/cube-mapping/sculpture",
+      //         envMapType: ENV_MAP_TYPES.REFLECTION as EnvMapType,
+      //       } as EnvMapMaterialParameters,
+      //       materialType: MATERIAL_TYPES.ENV_MAP as MaterialType,
+      //     },
+      //   },
+      // },
     ],
     lights: DEFAULT_LIGHTS,
     sceneObjects: [],

@@ -1,9 +1,10 @@
 import { InteractiveThreeScene } from "visual/components/interactive/scene/InteractiveScene";
 import { animateMarchingCube } from "visual/components/three-js-components/components/marching-cubes/marchingCubeAnimation";
+import { animateAll } from "visual/helpers/animation/animateAll";
 
 import { ASSET_TAG, ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
-const computeConfig = import("./config.json");
+import computeConfig from "./config.json";
 
 const infoText = [
   {
@@ -26,6 +27,16 @@ const infoText = [
     url: "../assets/models/hjd/exhibition-dates.obj",
     assetType: ASSET_TYPES.Geometry,
   },
+  {
+    name: "zero-geometry",
+    url: "../assets/models/hjd/zero.obj",
+    assetType: ASSET_TYPES.Geometry,
+  },
+  {
+    name: "one-geometry",
+    url: "../assets/models/hjd/one.obj",
+    assetType: ASSET_TYPES.Geometry,
+  },
 ];
 
 const materials = [
@@ -42,6 +53,9 @@ export const computeLanding = (sceneConfig) => {
   return {
     threeJsParams: {
       camera: { position: { x: 0, y: 0, z: 5 } },
+      controls: {
+        hasOrbitControls: true,
+      },
     },
     assets: [
       {
@@ -55,12 +69,21 @@ export const computeLanding = (sceneConfig) => {
 
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveThreeScene) => {
-        animateMarchingCube(scene);
+        scene.animationManager.startAnimation("binary-rotate", {
+          scene,
+          targetIdentifier: "binary",
+          animationConfig: computeConfig[0].animationConfig[0],
+        });
       },
     },
     interactions: [],
 
     formatSceneData,
-    animations: [],
+    animations: [
+      {
+        animationId: "binary-rotate",
+        animationFunction: animateAll,
+      },
+    ],
   };
 };

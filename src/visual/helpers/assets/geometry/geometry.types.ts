@@ -1,9 +1,8 @@
-import { Material } from "three";
+import { Material, Vector3 } from "three";
 import { Geometry } from "types/threeJs.types";
 import {
   InteractiveMaterialParameters,
   MatcapMaterialParameters,
-  MaterialType,
   StandardMaterialTypes,
 } from "visual/helpers/materials/materials.types";
 
@@ -12,20 +11,20 @@ export type MaterialParameters =
   | InteractiveMaterialParameters
   | MatcapMaterialParameters;
 
-export enum MeshTypes {
-  MESH = "mesh",
-  POINTS = "points",
-}
-
+export const MESH_TYPES = {
+  MESH: "MESH",
+  POINTS: "POINTS",
+};
+export type MeshType = keyof typeof MESH_TYPES;
 export interface FormattedGeometry {
   geometry: Geometry;
   position?: { x: number; y: number; z: number };
-  rotation?: { x: number; y: number; z: number };
+  rotation?: Vector3;
   name?: string;
 }
 export type MeshConfig = FormattedGeometry & {
   material: Material;
-  meshType?: MeshTypes;
+  meshType?: MeshType;
 };
 
 export type AssetGeometry = {

@@ -14,6 +14,7 @@ import { setSceneProperties } from "visual/helpers/scene/setSceneProperties";
 import { useEvents } from "visual/hooks/use-events/useEvents";
 import { InteractiveSceneProps } from "./interactiveSceneContainer.types";
 import { useAppDispatch, useAppSelector } from "app/redux/store";
+import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
 
 export const InteractiveSceneContainer = ({
   threeJsParams,
@@ -28,11 +29,13 @@ export const InteractiveSceneContainer = ({
   const {
     areAssetsInitialized,
     initializedAssets,
-    update,
+    currentFrameRef,
+    clock,
     postProcessor,
     renderer,
     camera,
     container,
+    orbitControls,
   } = useSetUpScene(threeJsParams, assets);
 
   const sceneData = useSceneData(
@@ -53,6 +56,15 @@ export const InteractiveSceneContainer = ({
   );
   useEvents(scene, events);
 
+  const { update, pause } = useThreadWithPostProcessor(
+    postProcessor,
+    currentFrameRef,
+    clock,
+    scene
+  );
+
+  useEffect(() => () => pause(), [pause]);
+
   const initializeSceneWithData = useCallback(() => {
     if (scene) {
       initializedMeshes.forEach((mesh) => scene.add(mesh));
@@ -60,6 +72,7 @@ export const InteractiveSceneContainer = ({
       setSceneProperties(sceneData.sceneProperties, scene);
       sceneComponents.forEach((component) => scene.add(component));
       scene.addAnimations(animations);
+      scene.addOrbitControls(orbitControls);
       postProcessor.current = new PostProcessor({
         renderer,
         scene,

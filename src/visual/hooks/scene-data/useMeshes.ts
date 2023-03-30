@@ -4,7 +4,8 @@ import { Mesh, Points } from "three";
 import { Geometry } from "types/threeJs.types";
 import {
   MeshConfig,
-  MeshTypes,
+  MeshType,
+  MESH_TYPES,
 } from "visual/helpers/assets/geometry/geometry.types";
 import { InteractionEventObject } from "../../helpers/interactions/types";
 
@@ -27,11 +28,11 @@ export const useMeshes = (
   }, [meshConfigs]);
 };
 
-const getMesh = (geometry: Geometry, material, meshType?: MeshTypes) => {
+const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
   switch (meshType) {
-    case MeshTypes.POINTS:
+    case MESH_TYPES.POINTS:
       return new Points(geometry, material);
-    case MeshTypes.MESH:
+    case MESH_TYPES.MESH:
     default:
       return new Mesh(geometry, material);
   }
@@ -45,6 +46,7 @@ const formatMesh = (mesh, position, rotation, name) => {
   }
   if (rotation) {
     const { x, y, z } = rotation;
+    console.log(x, y, z);
     mesh.rotation.set(x, y, z);
   }
 };

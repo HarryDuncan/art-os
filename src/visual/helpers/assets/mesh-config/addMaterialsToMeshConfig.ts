@@ -28,20 +28,18 @@ export const addMaterialsToMeshConfig = (
 const getMaterialConfig = (geometry, config) => {
   const id = getGeometryId(geometry.name);
   const meshComponentConfig = getMeshComponentConfigById(id, config);
-  return meshComponentConfig.materialConfig;
+  return meshComponentConfig?.materialConfig;
 };
 
 const getMaterialParameters = (materialConfig, globalMaterials) => {
   if (!materialConfig) {
     console.warn(`materialConfig does not exist`);
-  }
-  if (materialConfig.material) {
+  } else if (materialConfig.material) {
     return {
       materialParameters: materialConfig.material,
       materialType: materialConfig.type,
     };
-  }
-  if (materialConfig.materialById) {
+  } else if (materialConfig.materialById) {
     const selectedMaterial = globalMaterials.find(
       (material) => String(material.id) === String(materialConfig.materialById)
     );

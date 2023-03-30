@@ -6,10 +6,14 @@ import { ev } from "../use-events/useEventsWithMeshes";
 export const useThreadWithPostProcessor = (
   postProcessor: React.MutableRefObject<PostProcessor | null>,
   currentFrameRef: React.MutableRefObject<number>,
-  clock: Clock
+  clock: Clock,
+  scene?
 ) => {
   const update = useCallback(() => {
     ev("scene:update");
+    if (scene.orbitControls) {
+      scene.orbitControls.update();
+    }
     postProcessor.current?.render(clock.getDelta());
     currentFrameRef.current = requestAnimationFrame(update);
   }, [currentFrameRef, postProcessor, clock]);

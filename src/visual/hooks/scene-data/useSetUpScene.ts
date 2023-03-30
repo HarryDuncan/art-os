@@ -17,15 +17,9 @@ export const useSetUpScene = (
     currentFrameRef,
     postProcessor,
     clock,
+    orbitControls,
   } = useThreeJs(threeJsParams);
   const { initializedAssets, areAssetsInitialized } = useAssets(assets);
-  const { update, pause } = useThreadWithPostProcessor(
-    postProcessor,
-    currentFrameRef,
-    clock
-  );
-
-  useEffect(() => () => pause(), [pause]);
 
   return {
     container,
@@ -35,8 +29,8 @@ export const useSetUpScene = (
     postProcessor,
     initializedAssets,
     areAssetsInitialized,
-    update,
-    pause,
+    currentFrameRef,
     clock,
+    orbitControls,
   };
 };

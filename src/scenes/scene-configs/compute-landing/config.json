@@ -3,6 +3,7 @@
     "meshComponentConfigs": {
       "nymph": {
         "rotation": { "x": 180, "y": 200, "z": 0 },
+        "position": { "x": -1, "y": -0.5 },
         "size": 2,
         "materialConfig": {
           "materialType": "INTERACTIVE_SHADER",
@@ -20,7 +21,7 @@
       },
       "compute": {
         "rotation": { "x": 90, "y": 0, "z": -0 },
-        "position": { "y": 1.9 },
+        "position": { "y": 1 },
         "size": 2.2,
         "materialConfig": {
           "materialById": "compute-text"
@@ -28,7 +29,7 @@
       },
       "name": {
         "rotation": { "x": 90, "y": 0, "z": -0 },
-        "position": { "x": 0, "y": 1.5 },
+        "position": { "x": 0, "y": 0.7 },
         "size": 0.8,
         "materialConfig": {
           "materialById": "compute-text"
@@ -49,6 +50,20 @@
         "materialConfig": {
           "materialById": "compute-text"
         }
+      },
+      "one": {
+        "size": 2.8,
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "zero": {
+        "size": 2.8,
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
       }
     },
     "globalMaterialConfigs": [
@@ -60,6 +75,18 @@
           "shininess": 50
         },
         "materialType": "PHONG"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationType": "SPIN",
+        "animationProperties": {
+          "speed": 0.02,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
       }
     ]
   }
