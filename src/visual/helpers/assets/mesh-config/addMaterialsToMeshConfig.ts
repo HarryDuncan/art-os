@@ -4,7 +4,7 @@ import {
   DEFAULT_MATERIAL,
   MATERIAL_TYPES,
 } from "visual/helpers/materials/materials.constants";
-import { getGeometryId } from "./formatToMeshConfig";
+import { getGeometryId } from "./formatMeshGeometry";
 
 export const addMaterialsToMeshConfig = (
   formattedGeometries,

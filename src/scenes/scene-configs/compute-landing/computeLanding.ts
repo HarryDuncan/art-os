@@ -5,6 +5,10 @@ import { animateAll } from "visual/helpers/animation/animateAll";
 import { ASSET_TAG, ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
 import computeConfig from "./config.json";
+import {
+  AnimationConfig,
+  AnimationType,
+} from "visual/helpers/animation/animation.types";
 
 const infoText = [
   {
@@ -72,7 +76,8 @@ export const computeLanding = (sceneConfig) => {
         scene.animationManager.startAnimation("binary-rotate", {
           scene,
           targetIdentifier: "binary",
-          animationConfig: computeConfig[0].animationConfig[0],
+          animationConfig: computeConfig[0]
+            .animationConfig[0] as AnimationConfig,
         });
       },
     },

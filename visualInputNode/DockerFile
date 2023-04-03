@@ -4,15 +4,12 @@ FROM python:3
 WORKDIR /visualInputNode
 
  COPY requirements.txt requirements.txt
+ RUN pip install --upgrade pip setuptools
  RUN pip install -r requirements.txt
- RUN pip install ipython numpy matplotlib pyyaml
 
 
-# Run Program
 WORKDIR /visualInputNode
 
-
 COPY . .
-
-ENTRYPOINT [ "python3" ]
-CMD [ "visualInputNode.py"]
+RUN chmod +x visualInputNode.py
+CMD ["python3", "visualInputNode.py"]

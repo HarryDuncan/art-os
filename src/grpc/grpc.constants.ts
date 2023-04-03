@@ -1,3 +1,3 @@
 export const PORT_NUMBERS = {
-  VISUAL_INPUT_NODE: 8080,
+  VISUAL_INPUT_NODE: 8000,
 };

@@ -7,13 +7,10 @@ services:
     ports:
       - "8000:8000"
   server:
-    privileged: true
     build:
       context: ./visualInputNode
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-      - "8888:8888"
-
     depends_on:
       - proxy

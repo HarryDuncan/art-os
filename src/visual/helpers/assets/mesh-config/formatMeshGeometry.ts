@@ -5,7 +5,7 @@ import { vector3DegreesToEuler } from "visual/helpers/three-dimension-space/degr
 import { formatGeometriesFromAsset } from "../geometry/formatGeometryFromAsset";
 import { FormattedGeometry } from "../geometry/geometry.types";
 
-export const formatToMeshConfig = (
+export const formatMeshGeometry = (
   loadedAssets,
   config
 ): FormattedGeometry[] => {
@@ -50,7 +50,7 @@ const formatPosition = (name: string, config) => {
   position.x = config[geometryId]?.position?.x ?? 0;
   position.y = config[geometryId]?.position?.y ?? 0;
   position.z = config[geometryId]?.position?.z ?? 0;
-  return position;
+  return new Vector3(position.x, position.y, position.z);
 };
 
 const setScale = (geometry, config) => {

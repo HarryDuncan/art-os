@@ -6,8 +6,7 @@ import {
   PlaneProps,
   ThreeJsComponentType,
 } from "visual/components/three-js-components/components/threeJsComponents.types";
-import { addMaterialsToMeshConfig } from "visual/helpers/assets/mesh-config/addMaterialsToMeshConfig";
-import { formatToMeshConfig } from "visual/helpers/assets/mesh-config/formatToMeshConfig";
+import { getMeshConfigs } from "visual/helpers/assets/mesh-config/getMeshConfigs";
 import { getMaterialsFromConfig } from "visual/helpers/config-helpers/getMaterialsFromConfig";
 import { getRandomRotation } from "visual/helpers/getRandomRotation";
 import {
@@ -24,8 +23,9 @@ import { hasCommonValues } from "visual/utils/hasCommonElement";
 import computeConfig from "./config.json";
 
 export const formatSceneData = (assets, context, dispatch): SceneData => {
+  const config = computeConfig[0];
   const materials = formatGlobalMaterials(assets);
-  const meshConfigs = getMeshConfigs(assets, materials);
+  const meshConfigs = getMeshConfigs(assets, materials, config);
   const formattedMeshConfigs = setOnesAndZeros(meshConfigs);
   return {
     isSceneDataInitialized: true,
@@ -43,16 +43,6 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
     lights: DEFAULT_LIGHTS,
     sceneObjects: [],
   };
-};
-
-const getMeshConfigs = (assets, materials) => {
-  const formattedGeometries = formatToMeshConfig(assets, computeConfig[0]);
-  const meshConfigs = addMaterialsToMeshConfig(
-    formattedGeometries,
-    materials,
-    computeConfig[0]
-  );
-  return meshConfigs;
 };
 
 const formatGlobalMaterials = (assets: Asset[]) => {
@@ -123,7 +113,7 @@ const setOnesAndZeros = (formattedMeshConfigs) => {
   const onesAndZeros = coordinates.map((coordinate, index) => {
     const nonRandomizedAxes = { y: true, x: true };
     const rotation = getRandomRotation(1, nonRandomizedAxes)[0];
-    if (index % 2 == 1) {
+    if (index % 2 === 1) {
       return {
         ...one,
         position: coordinate,

@@ -18,7 +18,7 @@ export const MESH_TYPES = {
 export type MeshType = keyof typeof MESH_TYPES;
 export interface FormattedGeometry {
   geometry: Geometry;
-  position?: { x: number; y: number; z: number };
+  position?: Vector3;
   rotation?: Vector3;
   name?: string;
 }

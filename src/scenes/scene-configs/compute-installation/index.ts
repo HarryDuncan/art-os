@@ -1,1 +1,0 @@
-export { compute } from "./compute";

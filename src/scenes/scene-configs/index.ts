@@ -1,2 +1,2 @@
-export { compute } from "./compute-installation";
+// export { compute } from "./compute-installation";
 export { computeLanding } from "./compute-landing";
