@@ -46,7 +46,6 @@ const formatMesh = (mesh, position, rotation, name) => {
   }
   if (rotation) {
     const { x, y, z } = rotation;
-    console.log(x, y, z);
     mesh.rotation.set(x, y, z);
   }
 };

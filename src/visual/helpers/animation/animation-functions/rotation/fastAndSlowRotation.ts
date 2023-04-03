@@ -1,4 +1,4 @@
-import { degreesToEuler } from "../../three-dimension-space/degreesToEuler";
+import { degreesToEuler } from "../../../three-dimension-space/degreesToEuler";
 
 const ANIMATION_DURATION = 2000;
 const ANIMATION_PAUSE = 1000;

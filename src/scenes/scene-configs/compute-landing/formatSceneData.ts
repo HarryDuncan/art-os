@@ -26,7 +26,8 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
   const config = computeConfig[0];
   const materials = formatGlobalMaterials(assets);
   const meshConfigs = getMeshConfigs(assets, materials, config);
-  const formattedMeshConfigs = setOnesAndZeros(meshConfigs);
+  const formattedMeshConfigs = setUpMeshConfigs(meshConfigs);
+  console.log(formattedMeshConfigs);
   return {
     isSceneDataInitialized: true,
     meshConfigs: formattedMeshConfigs,
@@ -35,7 +36,7 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
         componentType: COMPONENT_TYPES.PLANE as ThreeJsComponentType,
         componentProps: {
           name: "bg",
-          position: { x: -5, y: -5, z: -5 },
+          position: { x: -5, y: -5, z: -6 },
           material: getMaterialById("computeBackground", materials),
         } as PlaneProps,
       },
@@ -88,6 +89,11 @@ const getMaterialById = (materialId, materials) => {
   return DEFAULT_MATERIAL;
 };
 
+const setUpMeshConfigs = (formattedMeshConfigs) => {
+  const withBinary = setOnesAndZeros(formattedMeshConfigs);
+  // const withLines = setLines(withBinary);
+  return withBinary;
+};
 const setOnesAndZeros = (formattedMeshConfigs) => {
   const one = formattedMeshConfigs.find((mesh) => mesh.name === "one-geometry");
   const zero = formattedMeshConfigs.find(
@@ -98,10 +104,10 @@ const setOnesAndZeros = (formattedMeshConfigs) => {
   );
 
   const allowedBoundingBoxes: BoundingBox[] = [
-    createBoundingBox({ x: 0, y: 0, z: -2 }, 4, 4, 2),
+    createBoundingBox({ x: 0, y: 0, z: -2 }, 4.2, 4.2, 2),
   ];
   const notAllowedBoundingBoxes: BoundingBox[] = [
-    createBoundingBox({ x: 0, y: 0, z: -3.5 }, 2, 2, 8),
+    createBoundingBox({ x: 0, y: 0, z: -2 }, 2.2, 2.2, 15),
   ];
   const AMOUNT = 16;
   const coordinates = generateRandomlySpreadCoordinates(
@@ -130,4 +136,16 @@ const setOnesAndZeros = (formattedMeshConfigs) => {
   });
 
   return [...filteredMeshConfigs, ...onesAndZeros];
+};
+
+const setLines = (formattedMeshConfigs) => {
+  // const lines = formattedMeshConfigs.filter(
+  //   (config) => config.name.indexOf("hjdcurve") !== -1
+  // );
+  const otherMeshes = formattedMeshConfigs.filter(
+    (config) => config.name.indexOf("hjdcurve") === -1
+  );
+
+  console.log(otherMeshes);
+  return [...otherMeshes];
 };

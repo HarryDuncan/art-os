@@ -11,7 +11,7 @@ export const useThreadWithPostProcessor = (
 ) => {
   const update = useCallback(() => {
     ev("scene:update");
-    if (scene.orbitControls) {
+    if (scene?.orbitControls) {
       scene.orbitControls.update();
     }
     postProcessor.current?.render(clock.getDelta());

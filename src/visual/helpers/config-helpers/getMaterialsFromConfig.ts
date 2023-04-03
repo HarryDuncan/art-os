@@ -1,14 +1,18 @@
 import { getMaterial } from "../materials/getMaterial";
 
 export const getMaterialsFromConfig = (config) => {
-  const { globalMaterials } = config;
-  if (globalMaterials) {
-    const materials = globalMaterials.flatMap((material) => {
+  const { globalMaterialConfigs } = config;
+  if (globalMaterialConfigs) {
+    const materials = globalMaterialConfigs.flatMap((material) => {
       const formattedMaterial = getMaterial(
-        material.materialParameters,
+        material.materialParams,
         material.materialType
       );
-      return { formattedMaterial, id: material.id };
+      return {
+        materialParameters: formattedMaterial,
+        id: material.id,
+        materialType: material.materialType,
+      };
     });
     return materials;
   }

@@ -1,16 +1,6 @@
 import { AnimationFunctionProps } from "visual/components/animation-manager/animationManager.types";
 import { getMeshesByIdentifier } from "visual/helpers/scene/object-finding/getMeshesByIdentifier";
-import { degreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
-import { easeOut } from "visual/utils";
-import {
-  AnimationProperties,
-  AnimationType,
-  ANIMATION_TYPES,
-  RotationAnimationConfig,
-  SpinAnimationConfig,
-} from "./animation.types";
-import { rotateMeshAlongAxis } from "./rotation/rotateMeshAlongAxis";
-import { spinMeshAlongAxis } from "./rotation/spinMeshAlongAxis";
+import { performAnimation } from "./performAnimation";
 
 export const animateAll = (
   animationId: string,
@@ -51,31 +41,4 @@ export const animateAll = (
   }
 
   requestAnimationFrame(step);
-};
-
-const performAnimation = (
-  animationType: AnimationType,
-  object,
-  progress,
-  animationConfig: AnimationProperties
-) => {
-  switch (animationType) {
-    case ANIMATION_TYPES.ROTATE:
-      {
-        const {
-          animationDurationMilis,
-          rotationAxis,
-        } = animationConfig as RotationAnimationConfig;
-        const rotation = degreesToEuler(
-          easeOut(progress / animationDurationMilis) * 360
-        );
-        rotateMeshAlongAxis(object, rotationAxis, rotation);
-      }
-      break;
-    case ANIMATION_TYPES.SPIN:
-    default: {
-      const { rotationAxis, speed } = animationConfig as SpinAnimationConfig;
-      spinMeshAlongAxis(object, rotationAxis, speed);
-    }
-  }
 };

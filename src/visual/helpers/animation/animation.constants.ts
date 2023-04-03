@@ -21,3 +21,14 @@ export const DEFAULT_SPIN_CONFIG = {
     repeatAnimation: true,
   },
 };
+
+export const TRIGONOMETRIC_TYPES = {
+  COS: "cos",
+  SIN: "sin",
+  TAN: "tan",
+};
+
+export const OBJECT_UPDATE_PROPERTY = {
+  POSITION: "position",
+  ROTATION: "rotation",
+};

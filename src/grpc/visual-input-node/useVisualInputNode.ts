@@ -4,11 +4,7 @@ import { InitializeVisualInputNodeRequest } from "grpc/protos/visualInputNode_pb
 
 export const useVisualInputNode = () => {
   const client = new VisualInputNodeServiceClient(
-    `http://localhost:${PORT_NUMBERS.VISUAL_INPUT_NODE}/`,
-    null,
-    {
-      "Access-Control-Request-Method": "POST",
-    }
+    `http://localhost:${PORT_NUMBERS.VISUAL_INPUT_NODE}/`
   );
 
   const request = new InitializeVisualInputNodeRequest();

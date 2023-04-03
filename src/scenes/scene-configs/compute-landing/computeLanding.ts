@@ -1,6 +1,6 @@
 import { InteractiveThreeScene } from "visual/components/interactive/scene/InteractiveScene";
 import { animateMarchingCube } from "visual/components/three-js-components/components/marching-cubes/marchingCubeAnimation";
-import { animateAll } from "visual/helpers/animation/animateAll";
+import { animateAll } from "visual/helpers/animation/animation-functions/animateAll";
 
 import { ASSET_TAG, ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
@@ -42,7 +42,36 @@ const infoText = [
     assetType: ASSET_TYPES.Geometry,
   },
 ];
+const models = [
+  {
+    name: "nymph-geometry",
+    url: "../assets/models/nymph1.obj",
+    assetType: ASSET_TYPES.Geometry,
+  },
+];
 
+const lines = [
+  {
+    name: "hjdcurves1-geometry",
+    url: "../assets/models/hjd-lines/line-1.obj",
+    assetType: ASSET_TYPES.Geometry,
+  },
+  {
+    name: "hjdcurves2-geometry",
+    url: "../assets/models/hjd-lines/line-2.obj",
+    assetType: ASSET_TYPES.Geometry,
+  },
+  {
+    name: "hjdcurves3-geometry",
+    url: "../assets/models/hjd-lines/line-3.obj",
+    assetType: ASSET_TYPES.Geometry,
+  },
+  {
+    name: "hjdcurves4-geometry",
+    url: "../assets/models/hjd-lines/line-4.obj",
+    assetType: ASSET_TYPES.Geometry,
+  },
+];
 const materials = [
   {
     name: "matcap-text",
@@ -61,15 +90,7 @@ export const computeLanding = (sceneConfig) => {
         hasOrbitControls: true,
       },
     },
-    assets: [
-      {
-        name: "nymph-geometry",
-        url: "../assets/models/nymph1.obj",
-        assetType: ASSET_TYPES.Geometry,
-      },
-      ...infoText,
-      ...materials,
-    ],
+    assets: [...models, ...lines, ...infoText, ...materials],
 
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveThreeScene) => {
@@ -87,6 +108,10 @@ export const computeLanding = (sceneConfig) => {
     animations: [
       {
         animationId: "binary-rotate",
+        animationFunction: animateAll,
+      },
+      {
+        animationId: "move-lights",
         animationFunction: animateAll,
       },
     ],
