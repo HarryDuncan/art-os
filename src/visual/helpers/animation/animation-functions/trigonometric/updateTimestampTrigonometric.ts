@@ -1,18 +1,10 @@
-import { TRIGONOMETRIC_TYPES } from "../../animation.constants";
-import { TrigonometricType } from "../../animation.types";
+import { TRIG_FUNCTION_TYPES } from "../../animation.constants";
+import { TrigFunctionType } from "../../animation.types";
+import { oscillate } from "./oscilate";
 
 export const updateTimeStamp = (
   timestamp: number,
-  trigFunction: TrigonometricType
+  trigFunction: TrigFunctionType
 ): number => {
-  switch (trigFunction) {
-    case TRIGONOMETRIC_TYPES.SIN:
-      return Math.sin(timestamp);
-    case TRIGONOMETRIC_TYPES.COS:
-      return Math.cos(timestamp);
-    case TRIGONOMETRIC_TYPES.TAN:
-      return Math.tan(timestamp);
-    default:
-      throw new Error(`Unsupported trig function: ${trigFunction}`);
-  }
+  return oscillate(timestamp, trigFunction, 5000);
 };

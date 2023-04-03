@@ -22,10 +22,10 @@ export const DEFAULT_SPIN_CONFIG = {
   },
 };
 
-export const TRIGONOMETRIC_TYPES = {
-  COS: "cos",
-  SIN: "sin",
-  TAN: "tan",
+export const TRIG_FUNCTION_TYPES = {
+  COS: "COS",
+  SIN: "SIN",
+  TAN: "TAN",
 };
 
 export const OBJECT_UPDATE_PROPERTY = {

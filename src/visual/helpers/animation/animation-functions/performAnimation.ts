@@ -12,6 +12,9 @@ import { traverseThroughtArray } from "./traversal/traverseThroughArray";
 import { MathUtils } from "three";
 import { rotateMeshAlongAxis } from "./rotation/rotateMeshAlongAxis";
 import { spinMeshAlongAxis } from "./rotation/spinMeshAlongAxis";
+import { updateTimeStamp } from "./trigonometric/updateTimestampTrigonometric";
+import { updateObject } from "./update-object/updateObject";
+import { OBJECT_UPDATE_PROPERTY } from "../animation.constants";
 
 export const performAnimation = (
   animationType: AnimationType,
@@ -49,7 +52,11 @@ export const performAnimation = (
       }
       break;
     case ANIMATION_TYPES.TRIG: {
-      //  const { }= animationConfig as TrigonometricAnimationConfig
+      const {
+        trigFunctionType,
+      } = animationConfig as TrigonometricAnimationConfig;
+      const updatedValue = updateTimeStamp(progress, trigFunctionType);
+      updateObject(object, updatedValue, OBJECT_UPDATE_PROPERTY.POSITION);
     }
     case ANIMATION_TYPES.SPIN:
     default: {

@@ -1,9 +1,9 @@
-import { AXIS, BoundingBox, ThreeDPosition } from "./position.types";
+import { AXIS, Axis, BoundingBox, ThreeDPosition } from "./position.types";
 
 export const getEquidistantCoordinates = (
   numCoordinates: number,
   boundingBox: BoundingBox,
-  axis: AXIS
+  axis: Axis
 ): ThreeDPosition[] => {
   let interval: number;
   switch (axis) {

@@ -1,6 +1,9 @@
-import { AXIS } from "visual/helpers/three-dimension-space/position/position.types";
+import {
+  AXIS,
+  Axis,
+} from "visual/helpers/three-dimension-space/position/position.types";
 
-export const spinMeshAlongAxis = (object, axis: AXIS, speed: number) => {
+export const spinMeshAlongAxis = (object, axis: Axis, speed: number) => {
   switch (axis) {
     case AXIS.X:
       object.rotation.x += speed;

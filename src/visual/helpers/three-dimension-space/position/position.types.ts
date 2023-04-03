@@ -9,8 +9,10 @@ export interface ThreeDPosition {
   z: number;
 }
 
-export enum AXIS {
-  X = "X",
-  Y = "Y",
-  Z = "Z",
-}
+export const AXIS = {
+  X: "X",
+  Y: "Y",
+  Z: "Z",
+};
+
+export type Axis = keyof typeof AXIS;

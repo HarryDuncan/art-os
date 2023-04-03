@@ -136,6 +136,15 @@
           "animationPauseMilis": -1,
           "repeatAnimation": true
         }
+      },
+      {
+        "animationType": "TRIG",
+        "animationProperties": {
+          "trigFunctionType": "COS",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
       }
     ]
   },

@@ -1,8 +1,8 @@
 import { Vector3 } from "three";
-import { AXIS } from "../three-dimension-space/position/position.types";
+import { Axis } from "../three-dimension-space/position/position.types";
 import {
   OBJECT_UPDATE_PROPERTY,
-  TRIGONOMETRIC_TYPES,
+  TRIG_FUNCTION_TYPES,
 } from "./animation.constants";
 
 export const ANIMATION_TYPES = {
@@ -19,11 +19,11 @@ export interface AnimationPropertiesConfig {
 }
 
 export interface SpinAnimationConfig extends AnimationPropertiesConfig {
-  rotationAxis: AXIS;
+  rotationAxis: Axis;
   speed: number;
 }
 export interface RotationAnimationConfig extends AnimationPropertiesConfig {
-  rotationAxis: AXIS;
+  rotationAxis: Axis;
 }
 
 export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
@@ -33,18 +33,20 @@ export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
   curve?: any;
 }
 
-export type TrigonometricType = keyof typeof TRIGONOMETRIC_TYPES;
+export type TrigFunctionType = keyof typeof TRIG_FUNCTION_TYPES;
 export type ObjectUpdateProperty = keyof typeof OBJECT_UPDATE_PROPERTY;
+
 export interface TrigonometricAnimationConfig
   extends AnimationPropertiesConfig {
-  type: TrigonometricType;
+  trigFunctionType: TrigFunctionType;
   objectUpdateProperty: ObjectUpdateProperty;
 }
 
 export type AnimationProperties =
   | RotationAnimationConfig
   | SpinAnimationConfig
-  | TraversalAnimationConfig;
+  | TraversalAnimationConfig
+  | TrigonometricAnimationConfig;
 
 export interface AnimationConfig {
   animationType: AnimationType;

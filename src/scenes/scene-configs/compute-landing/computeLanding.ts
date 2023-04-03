@@ -100,6 +100,12 @@ export const computeLanding = (sceneConfig) => {
           animationConfig: computeConfig[0]
             .animationConfig[0] as AnimationConfig,
         });
+        scene.animationManager.startAnimation("move-lights", {
+          scene,
+          targetIdentifier: "lights",
+          animationConfig: computeConfig[0]
+            .animationConfig[1] as AnimationConfig,
+        });
       },
     },
     interactions: [],

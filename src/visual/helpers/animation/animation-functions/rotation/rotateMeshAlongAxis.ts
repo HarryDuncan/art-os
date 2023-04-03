@@ -1,7 +1,10 @@
 import { Mesh } from "three";
-import { AXIS } from "visual/helpers/three-dimension-space/position/position.types";
+import {
+  AXIS,
+  Axis,
+} from "visual/helpers/three-dimension-space/position/position.types";
 
-export const rotateMeshAlongAxis = (mesh: Mesh, axis: AXIS, angle: number) => {
+export const rotateMeshAlongAxis = (mesh: Mesh, axis: Axis, angle: number) => {
   mesh.geometry.computeBoundingBox();
   if (!mesh.geometry || !mesh.geometry.boundingBox) {
     console.warn("no bounding box");

@@ -1,6 +1,6 @@
 import { AnimationFunctionProps } from "visual/components/animation-manager/animationManager.types";
-import { getMeshesByIdentifier } from "visual/helpers/scene/object-finding/getMeshesByIdentifier";
 import { performAnimation } from "./performAnimation";
+import { getSceneElementByName } from "visual/helpers/scene/getSceneElementByName";
 
 export const animateAll = (
   animationId: string,
@@ -11,7 +11,7 @@ export const animateAll = (
     targetIdentifier,
     animationConfig: { animationProperties, animationType },
   } = props;
-  const animatedObjects = getMeshesByIdentifier(scene, targetIdentifier);
+  const animatedObjects = getSceneElementByName(scene, targetIdentifier);
   if (!animatedObjects.length) {
     console.warn(
       `${animationId} can't run. No meshes selected with ${targetIdentifier}`
@@ -39,6 +39,5 @@ export const animateAll = (
       }
     }
   }
-
   requestAnimationFrame(step);
 };
