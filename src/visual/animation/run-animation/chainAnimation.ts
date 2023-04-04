@@ -26,6 +26,7 @@ export const chainAnimation = (
         animatedObjects.length - 1,
         currentItemIndex
       );
+      console.log("finished");
       if (animationProperties.repeatAnimation) {
         setTimeout(() => {
           step(timestamp + animationProperties.animationPauseMilis);

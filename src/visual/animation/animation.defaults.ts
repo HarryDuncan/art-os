@@ -1,6 +1,7 @@
 import { AXIS } from "visual/helpers/three-dimension-space/position/position.types";
 import { ANIMATION_TYPES } from "./animation.constants";
 
+export const DEFAULT_ANIMATION_DURATION_MILIS = 1000;
 export const DEFAULT_ROTATION_CONFIG = {
   animationType: ANIMATION_TYPES.ROTATE,
   animationProperties: {

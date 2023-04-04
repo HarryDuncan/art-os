@@ -149,9 +149,11 @@
       {
         "animationType": "TRAVERSE",
         "animationProperties": {
-          "startPosition": { "x": -3, "y": -3, "z": 10 },
-          "endPosition": { "z": 5 },
-          "curveSize": 0
+          "startPosition": { "x": -3, "y": -1, "z": 10 },
+          "endPosition": { "z": 4 },
+          "curveSize": 0,
+          "repeatAnimation": false,
+          "animationDurationMilis": 4000
         }
       }
     ],

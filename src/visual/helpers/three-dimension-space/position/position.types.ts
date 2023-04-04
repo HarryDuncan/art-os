@@ -9,6 +9,7 @@ export interface ThreeDPosition {
   z: number;
 }
 
+export type PositionConfig = Partial<ThreeDPosition>;
 export const AXIS = {
   X: "X",
   Y: "Y",

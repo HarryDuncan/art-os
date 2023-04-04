@@ -3,6 +3,7 @@ import { CustomAnimationConfig } from "../animation.types";
 import { runAnimation } from "../run-animation/runAnimation";
 import { setUpAnimationConfig } from "./setUpAnimationConfig";
 import { GENERIC_TARGET_IDENTIFIERS } from "../animation.constants";
+import { runCameraAnimation } from "../run-animation/runCameraAnimation";
 
 export class AnimationManager {
   sceneElementAnimations: CustomAnimationConfig[];
@@ -58,7 +59,23 @@ export class AnimationManager {
     }
   }
 
-  startCameraAnimation(camera: Camera) {}
+  startCameraAnimation(camera: Camera) {
+    // TODO - set up methods for multiple camera animations
+    const animation = this.cameraElementAnimations[0];
+    if (!animation) {
+      console.warn(`no camera animations configured`);
+    }
+    if (animation.isRunning === false) {
+      const { animationConfig, animationFunctionType } = animation;
+      const initializedAnimationConfig = setUpAnimationConfig(animationConfig);
+      animation.isRunning = true;
+      runCameraAnimation(
+        camera,
+        animationFunctionType,
+        initializedAnimationConfig
+      );
+    }
+  }
 
   stopAnimation(animationId: string) {
     const animation = this.sceneElementAnimations.find(
