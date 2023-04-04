@@ -1,13 +1,22 @@
 import { PointLight as ThreePointLight } from "three";
 import { DEFAULT_LIGHT_COLOR } from "./lights.constants";
-import { LightProps } from "./lights.types";
+import { DEFAULT_VECTOR_POSITION } from "consts/threejs";
+import { setObjectPosition } from "visual/helpers/three-dimension-space/position/setObjectPosition";
+import { PointLightConfig } from "./lights.types";
+import { DEFAULT_LIGHT_INTENSITY } from "./lights.defaults";
 
-export interface PointLightProps extends LightProps {
+interface PointLightParameters extends PointLightConfig {
   name: string;
 }
-export const PointLight = ({ name, color }: PointLightProps) => {
+export const PointLight = ({
+  name,
+  color,
+  intensity = DEFAULT_LIGHT_INTENSITY,
+  position = DEFAULT_VECTOR_POSITION,
+}: PointLightParameters) => {
   const pointLight = new ThreePointLight(color ?? DEFAULT_LIGHT_COLOR);
-  pointLight.position.set(0, 0, 100);
+  setObjectPosition(pointLight, position);
   pointLight.name = name;
+  pointLight.intensity = intensity;
   return pointLight;
 };

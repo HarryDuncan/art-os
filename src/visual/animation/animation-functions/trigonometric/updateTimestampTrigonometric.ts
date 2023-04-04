@@ -1,4 +1,3 @@
-import { TRIG_FUNCTION_TYPES } from "../../animation.constants";
 import { TrigFunctionType } from "../../animation.types";
 import { oscillate } from "./oscilate";
 

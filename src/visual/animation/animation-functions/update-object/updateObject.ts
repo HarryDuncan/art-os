@@ -12,6 +12,6 @@ export const updateObject = (object, updatedValue, objectParameter) => {
   switch (objectParameter) {
     case OBJECT_PARAMETER.POSITION:
     default:
-      updateObjectPosition(object, updatedValue, AXIS.Y as Axis);
+      updateObjectPosition(object, updatedValue, AXIS.X as Axis);
   }
 };

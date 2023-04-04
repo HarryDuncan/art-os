@@ -19,13 +19,13 @@ export const useLights = (lightConfigs: LightConfigs[] = []) =>
         }
 
         case LIGHT_TYPES.POINT_LIGHT: {
-          const { color } = props ?? {};
-          return PointLight({ name, color });
+          const { color, position } = props ?? {};
+          return PointLight({ name, color, position });
         }
 
         case LIGHT_TYPES.DIRECTIONAL_LIGHT: {
-          const { color } = props ?? {};
-          return DirectionalLight({ name, color });
+          const { color, position } = props ?? {};
+          return DirectionalLight({ name, color, position });
         }
 
         default:

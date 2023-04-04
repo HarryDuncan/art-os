@@ -59,7 +59,8 @@ export const performAnimation = (
         const {
           trigFunctionType,
         } = animationConfig as TrigonometricAnimationConfig;
-        const updatedValue = updateTimeStamp(progress, trigFunctionType);
+        const updatedValue = updateTimeStamp(progress, trigFunctionType) * 2;
+        console.log(updatedValue);
         updateObject(object, updatedValue, OBJECT_UPDATE_PROPERTY.POSITION);
       }
       break;

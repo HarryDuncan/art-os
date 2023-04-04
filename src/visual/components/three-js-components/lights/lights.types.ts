@@ -7,16 +7,25 @@ export const LIGHT_TYPES = {
 };
 
 export type LightType = keyof typeof LIGHT_TYPES;
-export interface LightProps {
+
+export interface LightConfigProperties {
   color?: string;
   position?: Vector3;
-}
-export interface AmbientLightProps extends LightProps {
   intensity?: number;
 }
+export interface AmbientLightConfig extends LightConfigProperties {}
+
+export interface PointLightConfig extends LightConfigProperties {}
+
+export interface DirectionalLightConfig extends LightConfigProperties {}
+
+export type LightParameters =
+  | AmbientLightConfig
+  | DirectionalLightConfig
+  | PointLightConfig;
 
 export interface LightConfigs {
   name: string;
   lightType: LightType;
-  props?: AmbientLightProps;
+  props?: LightParameters;
 }

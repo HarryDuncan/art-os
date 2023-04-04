@@ -1,13 +1,19 @@
 import { DirectionalLight as ThreeDirectionalLight } from "three";
 import { DEFAULT_LIGHT_COLOR } from "./lights.constants";
-import { LightProps } from "./lights.types";
+import { DirectionalLightConfig } from "./lights.types";
+import { setObjectPosition } from "visual/helpers/three-dimension-space/position/setObjectPosition";
+import { DEFAULT_VECTOR_POSITION } from "consts/threejs";
 
-export interface DirectionalLightProps extends LightProps {
+interface DirectionalLightParameters extends DirectionalLightConfig {
   name: string;
 }
-export const DirectionalLight = ({ name, color }: DirectionalLightProps) => {
+export const DirectionalLight = ({
+  name,
+  color,
+  position = DEFAULT_VECTOR_POSITION,
+}: DirectionalLightParameters) => {
   const light = new ThreeDirectionalLight(color ?? DEFAULT_LIGHT_COLOR);
-  light.position.set(-0, 0, 1);
+  setObjectPosition(light, position);
   light.intensity = 1;
   light.name = name;
   return light;

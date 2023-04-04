@@ -145,6 +145,31 @@
           "animationPauseMilis": -1,
           "repeatAnimation": true
         }
+      },
+      {
+        "animationType": "TRAVERSE",
+        "animationProperties": {
+          "startPosition": { "x": -3, "y": -3, "z": 10 },
+          "endPosition": { "z": 5 },
+          "curveSize": 0
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 0, "z": 10 } }
+      },
+      {
+        "name": "directional-light",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 0, "z": 5 } }
       }
     ]
   },

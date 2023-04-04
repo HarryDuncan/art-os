@@ -1,4 +1,3 @@
-import { DEFAULT_LIGHTS } from "consts/threejs";
 import { Texture } from "three";
 import { SceneData } from "visual/components/interactive";
 import {
@@ -19,7 +18,7 @@ import { generateRandomlySpreadCoordinates } from "visual/helpers/three-dimensio
 import { BoundingBox } from "visual/helpers/three-dimension-space/position/position.types";
 import { Asset, ASSET_TAG } from "visual/hooks/use-assets/types";
 import { hasCommonValues } from "visual/utils/hasCommonElement";
-
+import { getLightsFromConfig } from "visual/helpers/config-helpers/getLightsFromConfig";
 import computeConfig from "./config.json";
 
 export const formatSceneData = (assets, context, dispatch): SceneData => {
@@ -27,7 +26,8 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
   const materials = formatGlobalMaterials(assets);
   const meshConfigs = getMeshConfigs(assets, materials, config);
   const formattedMeshConfigs = setUpMeshConfigs(meshConfigs);
-  console.log(formattedMeshConfigs);
+  const lights = getLightsFromConfig(config);
+
   return {
     isSceneDataInitialized: true,
     meshConfigs: formattedMeshConfigs,
@@ -41,7 +41,7 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
         } as PlaneProps,
       },
     ],
-    lights: DEFAULT_LIGHTS,
+    lights,
     sceneObjects: [],
   };
 };

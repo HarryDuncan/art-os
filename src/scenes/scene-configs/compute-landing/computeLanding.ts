@@ -112,7 +112,7 @@ export const computeLanding = (sceneConfig) => {
       {
         animationId: "move-lights",
         targetIdentifier: GENERIC_TARGET_IDENTIFIERS.LIGHTS,
-        animationFunction: ANIMATION_FUNCTION_TYPES.CHAIN,
+        animationFunction: ANIMATION_FUNCTION_TYPES.ALL,
         animationConfig: computeConfig[0].animationConfig[1] as AnimationConfig,
       },
       // {
