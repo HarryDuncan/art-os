@@ -1,9 +1,6 @@
-import { calculateCurve } from "./animation-functions/traversal/calculateBeizier";
-import {
-  AnimationConfig,
-  ANIMATION_TYPES,
-  TraversalAnimationConfig,
-} from "./animation.types";
+import { calculateCurve } from "../animation-functions/traversal/calculateBeizier";
+import { ANIMATION_TYPES } from "../animation.constants";
+import { AnimationConfig, TraversalAnimationConfig } from "../animation.types";
 
 export const setUpAnimationConfig = (animationConfig: AnimationConfig) => {
   const { animationProperties } = animationConfig;

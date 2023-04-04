@@ -1,24 +1,12 @@
-import { AnimationFunctionProps } from "visual/components/animation-manager/animationManager.types";
 import { performAnimation } from "./performAnimation";
-import { getSceneElementByName } from "visual/helpers/scene/getSceneElementByName";
+import { AnimationConfig } from "../animation.types";
 
 export const animateAll = (
-  animationId: string,
-  props: AnimationFunctionProps
+  animationConfig: AnimationConfig,
+  animatedObjects
 ) => {
-  const {
-    scene,
-    targetIdentifier,
-    animationConfig: { animationProperties, animationType },
-  } = props;
-  const animatedObjects = getSceneElementByName(scene, targetIdentifier);
-  if (!animatedObjects.length) {
-    console.warn(
-      `${animationId} can't run. No meshes selected with ${targetIdentifier}`
-    );
-  }
+  const { animationProperties, animationType } = animationConfig;
   let startTime: number;
-
   function step(timestamp: number) {
     if (!startTime) startTime = timestamp;
     const progress = timestamp - startTime;

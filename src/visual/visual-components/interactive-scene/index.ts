@@ -1,1 +1,0 @@
-export { InteractiveScene } from "./InteractiveScene";

@@ -1,14 +1,15 @@
 import { InteractiveThreeScene } from "visual/components/interactive/scene/InteractiveScene";
-import { animateMarchingCube } from "visual/components/three-js-components/components/marching-cubes/marchingCubeAnimation";
-import { animateAll } from "visual/helpers/animation/animation-functions/animateAll";
-
 import { ASSET_TAG, ASSET_TYPES } from "visual/hooks/use-assets/types";
 import { formatSceneData } from "./formatSceneData";
 import computeConfig from "./config.json";
 import {
+  ANIMATION_FUNCTION_TYPES,
+  GENERIC_TARGET_IDENTIFIERS,
+} from "visual/animation/animation.constants";
+import {
   AnimationConfig,
-  AnimationType,
-} from "visual/helpers/animation/animation.types";
+  CustomAnimationConfig,
+} from "visual/animation/animation.types";
 
 const infoText = [
   {
@@ -94,18 +95,8 @@ export const computeLanding = (sceneConfig) => {
 
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveThreeScene) => {
-        scene.animationManager.startAnimation("binary-rotate", {
-          scene,
-          targetIdentifier: "binary",
-          animationConfig: computeConfig[0]
-            .animationConfig[0] as AnimationConfig,
-        });
-        scene.animationManager.startAnimation("move-lights", {
-          scene,
-          targetIdentifier: "lights",
-          animationConfig: computeConfig[0]
-            .animationConfig[1] as AnimationConfig,
-        });
+        scene.animationManager.startAnimation(scene, "binary-rotate");
+        scene.animationManager.startAnimation(scene, "move-lights");
       },
     },
     interactions: [],
@@ -114,12 +105,19 @@ export const computeLanding = (sceneConfig) => {
     animations: [
       {
         animationId: "binary-rotate",
-        animationFunction: animateAll,
+        targetIdentifier: "binary",
+        animationFunctionType: ANIMATION_FUNCTION_TYPES.ALL,
+        animationConfig: computeConfig[0].animationConfig[0] as AnimationConfig,
       },
       {
         animationId: "move-lights",
-        animationFunction: animateAll,
+        targetIdentifier: GENERIC_TARGET_IDENTIFIERS.LIGHTS,
+        animationFunction: ANIMATION_FUNCTION_TYPES.CHAIN,
+        animationConfig: computeConfig[0].animationConfig[1] as AnimationConfig,
       },
-    ],
+      // {
+      //   animationId: "camera-fly",
+      // },
+    ] as CustomAnimationConfig[],
   };
 };

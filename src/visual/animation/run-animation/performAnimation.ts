@@ -1,6 +1,6 @@
+import { MathUtils } from "three";
 import { easeOut } from "visual/utils";
 import {
-  ANIMATION_TYPES,
   AnimationProperties,
   AnimationType,
   RotationAnimationConfig,
@@ -8,13 +8,16 @@ import {
   TraversalAnimationConfig,
   TrigonometricAnimationConfig,
 } from "../animation.types";
-import { traverseThroughtArray } from "./traversal/traverseThroughArray";
-import { MathUtils } from "three";
-import { rotateMeshAlongAxis } from "./rotation/rotateMeshAlongAxis";
-import { spinMeshAlongAxis } from "./rotation/spinMeshAlongAxis";
-import { updateTimeStamp } from "./trigonometric/updateTimestampTrigonometric";
-import { updateObject } from "./update-object/updateObject";
-import { OBJECT_UPDATE_PROPERTY } from "../animation.constants";
+
+import {
+  ANIMATION_TYPES,
+  OBJECT_UPDATE_PROPERTY,
+} from "../animation.constants";
+import { traverseThroughtArray } from "../animation-functions/traversal/traverseThroughArray";
+import { rotateMeshAlongAxis } from "../animation-functions/rotation/rotateMeshAlongAxis";
+import { updateTimeStamp } from "../animation-functions/trigonometric/updateTimestampTrigonometric";
+import { updateObject } from "../animation-functions/update-object/updateObject";
+import { spinMeshAlongAxis } from "../animation-functions/rotation/spinMeshAlongAxis";
 
 export const performAnimation = (
   animationType: AnimationType,
@@ -51,13 +54,15 @@ export const performAnimation = (
         rotateMeshAlongAxis(object, rotationAxis, rotation);
       }
       break;
-    case ANIMATION_TYPES.TRIG: {
-      const {
-        trigFunctionType,
-      } = animationConfig as TrigonometricAnimationConfig;
-      const updatedValue = updateTimeStamp(progress, trigFunctionType);
-      updateObject(object, updatedValue, OBJECT_UPDATE_PROPERTY.POSITION);
-    }
+    case ANIMATION_TYPES.TRIG:
+      {
+        const {
+          trigFunctionType,
+        } = animationConfig as TrigonometricAnimationConfig;
+        const updatedValue = updateTimeStamp(progress, trigFunctionType);
+        updateObject(object, updatedValue, OBJECT_UPDATE_PROPERTY.POSITION);
+      }
+      break;
     case ANIMATION_TYPES.SPIN:
     default: {
       const { rotationAxis, speed } = animationConfig as SpinAnimationConfig;

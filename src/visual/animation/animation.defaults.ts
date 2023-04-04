@@ -1,5 +1,5 @@
-import { AXIS } from "../three-dimension-space/position/position.types";
-import { ANIMATION_TYPES } from "./animation.types";
+import { AXIS } from "visual/helpers/three-dimension-space/position/position.types";
+import { ANIMATION_TYPES } from "./animation.constants";
 
 export const DEFAULT_ROTATION_CONFIG = {
   animationType: ANIMATION_TYPES.ROTATE,
@@ -20,15 +20,4 @@ export const DEFAULT_SPIN_CONFIG = {
     animationPauseMilis: 10,
     repeatAnimation: true,
   },
-};
-
-export const TRIG_FUNCTION_TYPES = {
-  COS: "COS",
-  SIN: "SIN",
-  TAN: "TAN",
-};
-
-export const OBJECT_UPDATE_PROPERTY = {
-  POSITION: "position",
-  ROTATION: "rotation",
 };

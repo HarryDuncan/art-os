@@ -1,17 +1,16 @@
-import { setUpAnimationConfig } from "visual/helpers/animation/setUpAnimationConfig";
-import {
-  AnimationFunctionProps,
-  CustomAnimation,
-} from "./animationManager.types";
+import { Scene } from "three";
+import { CustomAnimationConfig } from "../animation.types";
+import { runAnimation } from "../run-animation/runAnimation";
+import { setUpAnimationConfig } from "./setUpAnimationConfig";
 
 export class AnimationManager {
-  animations: CustomAnimation[];
+  animations: CustomAnimationConfig[];
 
   constructor() {
     this.animations = [];
   }
 
-  initializeAnimations(animations: CustomAnimation[]) {
+  initializeAnimations(animations: CustomAnimationConfig[]) {
     animations.forEach((animation) => {
       if (
         this.animations.findIndex(
@@ -27,24 +26,27 @@ export class AnimationManager {
     });
   }
 
-  startAnimation(
-    animationId: string,
-    animationFunctionProps: AnimationFunctionProps
-  ) {
+  startAnimation(scene: Scene, animationId: string) {
     const animation = this.animations.find(
       (configuredAnimation) => configuredAnimation.animationId === animationId
     );
     if (!animation) {
       console.warn(`animation: ${animationId} has not been initialized`);
     } else if (animation?.isRunning === false) {
-      const animationConfig = setUpAnimationConfig(
-        animationFunctionProps.animationConfig
-      );
-      animation.isRunning = true;
-      animation.animationFunction(animationId, {
-        ...animationFunctionProps,
+      const {
         animationConfig,
-      });
+        targetIdentifier,
+        animationFunctionType,
+      } = animation;
+      const initializedAnimationConfig = setUpAnimationConfig(animationConfig);
+      animation.isRunning = true;
+      runAnimation(
+        scene,
+        animationFunctionType,
+        targetIdentifier,
+        initializedAnimationConfig,
+        animationId
+      );
     }
   }
 

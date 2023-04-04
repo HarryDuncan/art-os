@@ -1,11 +1,12 @@
-const LIGHTS = "lights";
+import { GENERIC_TARGET_IDENTIFIERS } from "visual/animation/animation.constants";
+
 export const getLightsByIdentifier = (scene, identifier) => {
-  console.log(scene);
   const selectedLights = scene.children.filter(
     (child) =>
       child.isLight &&
       !child.isAmbientLight &&
-      (identifier === LIGHTS || child.name.indexOf(identifier) !== -1)
+      (identifier === GENERIC_TARGET_IDENTIFIERS.LIGHTS ||
+        child.name.indexOf(identifier) !== -1)
   );
   return selectedLights;
 };

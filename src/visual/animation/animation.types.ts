@@ -1,17 +1,20 @@
-import { Vector3 } from "three";
-import { Axis } from "../three-dimension-space/position/position.types";
+import { Scene, Vector3 } from "three";
 import {
+  ANIMATION_FUNCTION_TYPES,
+  ANIMATION_TYPES,
   OBJECT_UPDATE_PROPERTY,
   TRIG_FUNCTION_TYPES,
 } from "./animation.constants";
+import { Axis } from "visual/helpers/three-dimension-space/position/position.types";
 
-export const ANIMATION_TYPES = {
-  ROTATE: "ROTATE",
-  SPIN: "SPIN",
-  TRAVERSE: "TRAVERSE",
-  TRIG: "TRIG",
+export type CustomAnimationConfig = {
+  animationId: string;
+  animationFunctionType: AnimationFunctionType;
+  targetIdentifier: string;
+  animationConfig: AnimationConfig;
+  isRunning?: boolean;
 };
-export type AnimationType = keyof typeof ANIMATION_TYPES;
+
 export interface AnimationPropertiesConfig {
   animationDurationMilis: number;
   repeatAnimation: boolean;
@@ -35,6 +38,7 @@ export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
 
 export type TrigFunctionType = keyof typeof TRIG_FUNCTION_TYPES;
 export type ObjectUpdateProperty = keyof typeof OBJECT_UPDATE_PROPERTY;
+export type AnimationFunctionType = keyof typeof ANIMATION_FUNCTION_TYPES;
 
 export interface TrigonometricAnimationConfig
   extends AnimationPropertiesConfig {
@@ -47,6 +51,8 @@ export type AnimationProperties =
   | SpinAnimationConfig
   | TraversalAnimationConfig
   | TrigonometricAnimationConfig;
+
+export type AnimationType = keyof typeof ANIMATION_TYPES;
 
 export interface AnimationConfig {
   animationType: AnimationType;

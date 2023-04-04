@@ -1,23 +1,12 @@
-import { AnimationFunctionProps } from "visual/components/animation-manager/animationManager.types";
 import { stepAndWrap } from "visual/utils/stepAndWrap";
-import { getSceneElementByName } from "../../scene/getSceneElementByName";
 import { performAnimation } from "./performAnimation";
+import { AnimationConfig } from "../animation.types";
 
 export const chainAnimation = (
-  animationId: string,
-  props: AnimationFunctionProps
+  animationConfig: AnimationConfig,
+  animatedObjects
 ) => {
-  const {
-    scene,
-    targetIdentifier,
-    animationConfig: { animationProperties, animationType },
-  } = props;
-  const animatedObjects = getSceneElementByName(scene, targetIdentifier);
-  if (!animatedObjects.length) {
-    console.warn(
-      `${animationId} can't run. No meshes selected with ${targetIdentifier}`
-    );
-  }
+  const { animationProperties, animationType } = animationConfig;
   let startTime: number;
   let currentItemIndex = 0;
   function step(timestamp: number) {

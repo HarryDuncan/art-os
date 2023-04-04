@@ -2,10 +2,11 @@ import { Clock, Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
 import { EventConfig } from "visual/hooks/use-events/events.types";
-import { AnimationManager } from "../../animation-manager/AnimationManager";
-import { CustomAnimation } from "../../animation-manager/animationManager.types";
+import { AnimationManager } from "../../../animation/animation-manager/AnimationManager";
+
 import { defaultInteractiveSceneFunctions } from "./interactiveScene.constants";
 import { InteractiveSceneFunctions, SceneObject } from "./types";
+import { CustomAnimationConfig } from "visual/animation/animation.types";
 
 export class InteractiveThreeScene extends Scene {
   clock: Clock;
@@ -73,12 +74,12 @@ export class InteractiveThreeScene extends Scene {
     });
   }
 
-  addAnimations(animations: CustomAnimation[]) {
+  addAnimations(animations: CustomAnimationConfig[]) {
     this.animationManager.initializeAnimations(animations);
   }
 
   addOrbitControls(orbitControls: OrbitControls | null) {
-    if (!!orbitControls) {
+    if (orbitControls) {
       this.orbitControls = orbitControls;
     }
   }
