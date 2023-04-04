@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import { DEFAULT_LIGHTS } from "visual/components/three-js-components/lights/lights.defaults";
+import { DEFAULT_LIGHTS } from "visual/scene-elements/lights/lights.defaults";
 
 export const getLightsFromConfig = (config) => {
   const { lightConfig } = config;

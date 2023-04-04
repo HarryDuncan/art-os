@@ -1,3 +1,3 @@
 export { MarchingCubes } from "./marching-cubes/MarchingCubes";
-export { Text } from "./Text";
+export { TextComponent } from "./Text";
 export { Mirror } from "./Mirror";

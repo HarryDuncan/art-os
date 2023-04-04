@@ -7,7 +7,7 @@ import {
   MeshType,
   MESH_TYPES,
 } from "visual/helpers/assets/geometry/geometry.types";
-import { InteractionEventObject } from "../../helpers/interactions/types";
+import { InteractionEventObject } from "../helpers/interactions/types";
 
 export const useMeshes = (
   meshConfigs: MeshConfig[] = [],

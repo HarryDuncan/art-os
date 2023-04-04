@@ -1,7 +1,7 @@
 import { BoxGeometry, Mesh } from "three";
 import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.constants";
-import { setUpMaterial } from "../helpers/setUpMaterial";
 import { CubeProps } from "./threeJsComponents.types";
+import { setUpMaterial } from "visual/helpers/materials/setUpMaterial";
 
 export const Cube = ({
   name,

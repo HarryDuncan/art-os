@@ -1,10 +1,6 @@
 import { Texture } from "three";
 import { SceneData } from "visual/components/interactive";
-import {
-  COMPONENT_TYPES,
-  PlaneProps,
-  ThreeJsComponentType,
-} from "visual/components/three-js-components/components/threeJsComponents.types";
+
 import { getMeshConfigs } from "visual/helpers/assets/mesh-config/getMeshConfigs";
 import { getMaterialsFromConfig } from "visual/helpers/config-helpers/getMaterialsFromConfig";
 import { getRandomRotation } from "visual/helpers/getRandomRotation";
@@ -20,6 +16,11 @@ import { Asset, ASSET_TAG } from "visual/hooks/use-assets/types";
 import { hasCommonValues } from "visual/utils/hasCommonElement";
 import { getLightsFromConfig } from "visual/helpers/config-helpers/getLightsFromConfig";
 import computeConfig from "./config.json";
+import {
+  COMPONENT_TYPES,
+  PlaneProps,
+  ThreeJsComponentType,
+} from "visual/scene-elements/components/threeJsComponents.types";
 
 export const formatSceneData = (assets, context, dispatch): SceneData => {
   const config = computeConfig[0];

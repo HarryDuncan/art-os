@@ -6,7 +6,7 @@ import { MaterialType } from "visual/helpers/materials/materials.types";
 
 import { TextProps } from "./threeJsComponents.types";
 
-export const Text = ({
+export const TextComponent = ({
   name,
   text,
   fontUrl,

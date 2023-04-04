@@ -1,13 +1,10 @@
 import { useMemo } from "react";
-import {
-  DirectionalLight,
-  PointLight,
-} from "visual/components/three-js-components/lights";
-import { AmbientLight } from "visual/components/three-js-components/lights/AmbientLight";
+import { DirectionalLight, PointLight } from "visual/scene-elements/lights";
+import { AmbientLight } from "visual/scene-elements/lights/AmbientLight";
 import {
   LightConfigs,
   LIGHT_TYPES,
-} from "visual/components/three-js-components/lights/lights.types";
+} from "visual/scene-elements/lights/lights.types";
 
 export const useLights = (lightConfigs: LightConfigs[] = []) =>
   useMemo(() => {

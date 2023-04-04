@@ -1,14 +1,6 @@
 import { useMemo } from "react";
 import { SceneComponentConfig } from "visual/components/interactive/scene/types";
 import {
-  MarchingCubes,
-  Mirror,
-} from "visual/components/three-js-components/components";
-import { Cube } from "visual/components/three-js-components/components/Cube";
-import { Plane } from "visual/components/three-js-components/components/Plane";
-import { SphericalBackground } from "visual/components/three-js-components/components/SphericalBackground";
-import { Text } from "visual/components/three-js-components/components/Text";
-import {
   COMPONENT_TYPES,
   CubeProps,
   MarchingCubesProps,
@@ -16,7 +8,13 @@ import {
   PlaneProps,
   SphericalBackgroundProps,
   TextProps,
-} from "visual/components/three-js-components/components/threeJsComponents.types";
+} from "./threeJsComponents.types";
+import { MarchingCubes } from "./marching-cubes/MarchingCubes";
+import { TextComponent } from "./Text";
+import { Mirror } from "./Mirror";
+import { SphericalBackground } from "./SphericalBackground";
+import { Plane } from "./Plane";
+import { Cube } from "./Cube";
 
 export const useSceneComponents = (
   componentConfigs: SceneComponentConfig[] = []
@@ -41,7 +39,13 @@ export const useSceneComponents = (
             materialProps,
             position,
           } = componentProps as TextProps;
-          return Text({ name, text, fontUrl, materialProps, position });
+          return TextComponent({
+            name,
+            text,
+            fontUrl,
+            materialProps,
+            position,
+          });
         }
         case COMPONENT_TYPES.MIRROR: {
           const { name, geometry, position } = componentProps as MirrorProps;
