@@ -6,44 +6,50 @@ import { ENV_MAP_TYPES, MATERIAL_TYPES } from "./materials.constants";
 export type MaterialType = keyof typeof MATERIAL_TYPES;
 export type EnvMapType = keyof typeof ENV_MAP_TYPES;
 
-export interface MaterialParameters {
+export interface MaterialProps {
   name?: string;
-  materialType?: MaterialType;
 }
 
-export type StandardShaderMaterialParameters = MaterialParameters & {
+export type StandardShaderMaterialProps = MaterialProps & {
   shaders: Shaders;
   uniforms: Uniform;
 };
 
-export type InteractiveMaterialParameters = StandardShaderMaterialParameters & {
+export type InteractiveMaterialProps = StandardShaderMaterialProps & {
   shaderType: InteractiveShaderType;
 };
 
-export type StandardMaterialTypes = MaterialParameters & {
+export type StandardMaterialTypes = MaterialProps & {
   material?: any;
 };
 
-export type MatcapMaterialParameters = MaterialParameters & {
+export type MatcapMaterialProps = MaterialProps & {
   matcap: Texture | null;
 };
 
-export type EnvMapMaterialParameters = MaterialParameters & {
+export type EnvMapMaterialProps = MaterialProps & {
   envMapType: EnvMapType;
   imageUrl: string;
 };
 
-export type VideoMaterialParameters = MaterialParameters & {
+export type VideoMaterialProps = MaterialProps & {
   videoId: string;
 };
-export type PhongMaterialParams = MaterialParameters & {
+export type PhongMaterialProps = MaterialProps & {
   color: string;
   specular?: number;
   shininess: number;
 };
-export type MaterialParameterTypes =
-  | MatcapMaterialParameters
+export type MaterialConfigProps =
+  | MatcapMaterialProps
   | StandardMaterialTypes
-  | InteractiveMaterialParameters
-  | VideoMaterialParameters
-  | EnvMapMaterialParameters;
+  | InteractiveMaterialProps
+  | VideoMaterialProps
+  | EnvMapMaterialProps;
+
+export interface MaterialConfig {
+  id: string;
+  materialType: MaterialType;
+  materialProps: MaterialConfigProps;
+  materialById?: string;
+}

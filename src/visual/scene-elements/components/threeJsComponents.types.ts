@@ -16,7 +16,7 @@ export interface MarchingCubesProps extends ThreeJSComponentProps {
 export interface TextProps extends ThreeJSComponentProps {
   text: string;
   fontUrl: string;
-  materialProps?: any;
+  material?: Material;
 }
 
 export interface MirrorProps extends ThreeJSComponentProps {

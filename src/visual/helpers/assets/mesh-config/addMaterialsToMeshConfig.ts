@@ -1,23 +1,18 @@
-import { getMeshComponentConfigById } from "visual/helpers/config-helpers/getMeshComponentConfigById";
+import { getMeshComponentConfigById } from "scenes/config-helpers/getMeshComponentConfigById";
 import { getMaterial } from "visual/helpers/materials/getMaterial";
-import {
-  DEFAULT_MATERIAL,
-  MATERIAL_TYPES,
-} from "visual/helpers/materials/materials.constants";
 import { getGeometryId } from "./formatMeshGeometry";
+import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
+import { MaterialConfig } from "visual/helpers/materials/materials.types";
+import { Material } from "three";
+import { SceneDataConfig } from "scenes/config-helpers/config.types";
 
 export const addMaterialsToMeshConfig = (
   formattedGeometries,
-  materials,
-  config
+  materials: Material[],
+  config: SceneDataConfig
 ) => {
   return formattedGeometries.map((geometry) => {
-    const materialConfig = getMaterialConfig(geometry, config);
-    const { materialParameters, materialType } = getMaterialParameters(
-      materialConfig,
-      materials
-    );
-    const material = getMaterial(materialParameters, materialType);
+    const material = getGeometryMaterial(geometry, materials, config);
     return {
       ...geometry,
       material,
@@ -25,33 +20,41 @@ export const addMaterialsToMeshConfig = (
   });
 };
 
-const getMaterialConfig = (geometry, config) => {
-  const id = getGeometryId(geometry.name);
-  const meshComponentConfig = getMeshComponentConfigById(id, config);
-  return meshComponentConfig?.materialConfig;
-};
-
-const getMaterialParameters = (materialConfig, globalMaterials) => {
-  if (!materialConfig) {
-    console.warn(`materialConfig does not exist`);
-  } else if (materialConfig.material) {
-    return {
-      materialParameters: materialConfig.material,
-      materialType: materialConfig.type,
-    };
-  } else if (materialConfig.materialById) {
+const getGeometryMaterial = (
+  geometry,
+  globalMaterials: Material[],
+  config
+): Material => {
+  const geometryMaterialConfig = getGeometryMaterialConfig(geometry, config);
+  if (!geometryMaterialConfig) {
+    console.warn(`materialConfig does not exist for ${geometry.name}`);
+    return DEFAULT_MATERIAL;
+  }
+  const {
+    materialById,
+    materialType,
+    materialProps,
+    id,
+  } = geometryMaterialConfig;
+  if (materialById) {
     const selectedMaterial = globalMaterials.find(
-      (material) => String(material.id) === String(materialConfig.materialById)
+      (material) => String(material.name) === String(materialById)
     );
     if (selectedMaterial) {
       return selectedMaterial;
     }
     console.warn(
-      `could not select material by id ${materialConfig.materialById}`
+      `could not select material by id ${geometryMaterialConfig.materialById} for ${geometry.name}`
     );
+    return DEFAULT_MATERIAL;
   }
-  return {
-    materialParameters: DEFAULT_MATERIAL,
-    materialType: MATERIAL_TYPES.STANDARD,
-  };
+  const material = getMaterial(materialType, materialProps);
+  material.name = id;
+  return material;
+};
+
+const getGeometryMaterialConfig = (geometry, config): MaterialConfig => {
+  const id = getGeometryId(geometry.name);
+  const meshComponentConfig = getMeshComponentConfigById(id, config);
+  return meshComponentConfig?.materialConfig;
 };

@@ -13,26 +13,26 @@ import { setUpEnvMap } from "./env-map/setUpEnvMap";
 import { getInteractiveMaterial } from "./interactive-material/getInteractiveMaterial";
 import { MATERIAL_TYPES } from "./materials.constants";
 import {
-  EnvMapMaterialParameters,
-  InteractiveMaterialParameters,
-  MatcapMaterialParameters,
-  MaterialParameterTypes,
+  EnvMapMaterialProps,
+  InteractiveMaterialProps,
+  MatcapMaterialProps,
+  MaterialConfigProps,
   MaterialType,
-  PhongMaterialParams,
-  StandardShaderMaterialParameters,
-  VideoMaterialParameters,
+  PhongMaterialProps,
+  StandardShaderMaterialProps,
+  VideoMaterialProps,
 } from "./materials.types";
 
 export const getMaterial = (
-  materialParameters: MaterialParameterTypes,
   materialType: MaterialType,
+  materialProps: MaterialConfigProps,
   interactions: InteractionEventObject[] = [],
   materialFunctions = {}
-) => {
+): Material => {
   switch (materialType) {
     case MATERIAL_TYPES.INTERACTIVE_SHADER: {
       return getInteractiveMaterial(
-        materialParameters as InteractiveMaterialParameters,
+        materialProps as InteractiveMaterialProps,
         interactions,
         materialFunctions
       );
@@ -41,7 +41,7 @@ export const getMaterial = (
       const {
         shaders,
         uniforms,
-      } = materialParameters as StandardShaderMaterialParameters;
+      } = materialProps as StandardShaderMaterialProps;
       return new ShaderMaterial({
         // @ts-ignore
         uniforms,
@@ -52,7 +52,7 @@ export const getMaterial = (
       });
     }
     case MATERIAL_TYPES.MATCAP: {
-      const { matcap } = materialParameters as MatcapMaterialParameters;
+      const { matcap } = materialProps as MatcapMaterialProps;
       return new MeshMatcapMaterial({
         matcap,
         side: DoubleSide,
@@ -62,7 +62,7 @@ export const getMaterial = (
       const {
         // @ts-ignore
         material: { imageUrl, envMapType },
-      } = materialParameters as EnvMapMaterialParameters;
+      } = materialProps as EnvMapMaterialProps;
 
       const envMap = setUpEnvMap(imageUrl, envMapType);
       return new MeshStandardMaterial({
@@ -73,7 +73,7 @@ export const getMaterial = (
     }
 
     case MATERIAL_TYPES.VIDEO: {
-      const { videoId } = materialParameters as VideoMaterialParameters;
+      const { videoId } = materialProps as VideoMaterialProps;
       const video = document.getElementById(videoId);
       if (video) {
         const texture = new VideoTexture(video as HTMLVideoElement);
@@ -83,15 +83,12 @@ export const getMaterial = (
       console.warn("no video element found");
       return new MeshStandardMaterial({});
     }
-
-    case MATERIAL_TYPES.MATERIAL:
-      return materialParameters as Material;
     case MATERIAL_TYPES.PHONG: {
       const {
         color,
         specular,
         shininess,
-      } = materialParameters as PhongMaterialParams;
+      } = materialProps as PhongMaterialProps;
       return new MeshPhongMaterial({ color, specular, shininess });
     }
     case MATERIAL_TYPES.STANDARD:

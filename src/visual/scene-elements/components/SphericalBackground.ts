@@ -1,8 +1,7 @@
-import { BackSide, Mesh, MeshMatcapMaterial, SphereGeometry } from "three";
-import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.constants";
+import { Mesh, SphereGeometry } from "three";
 import { DEFAULT_ROTATION } from "visual/helpers/three-dimension-space/threeDSpace.constants";
 import { SphericalBackgroundProps } from "./threeJsComponents.types";
-import { setUpMaterial } from "visual/helpers/materials/setUpMaterial";
+import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
 
 export const SphericalBackground = ({
   name,
@@ -12,9 +11,7 @@ export const SphericalBackground = ({
   material = DEFAULT_MATERIAL,
 }: SphericalBackgroundProps) => {
   const sphereGeometry = new SphereGeometry(radius, 32, 16);
-  const sphereMaterial = setUpMaterial(material) as MeshMatcapMaterial;
-  sphereMaterial.side = BackSide;
-  const sphere = new Mesh(sphereGeometry, sphereMaterial);
+  const sphere = new Mesh(sphereGeometry, material);
   sphere.name = name;
   const { x, y, z } = position;
   sphere.position.set(x, y, z);

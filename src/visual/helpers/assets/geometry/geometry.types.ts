@@ -1,21 +1,12 @@
 import { Material, Vector3 } from "three";
 import { Geometry } from "types/threeJs.types";
-import {
-  InteractiveMaterialParameters,
-  MatcapMaterialParameters,
-  StandardMaterialTypes,
-} from "visual/helpers/materials/materials.types";
-
-export type MaterialParameters =
-  | StandardMaterialTypes
-  | InteractiveMaterialParameters
-  | MatcapMaterialParameters;
 
 export const MESH_TYPES = {
   MESH: "MESH",
   POINTS: "POINTS",
 };
 export type MeshType = keyof typeof MESH_TYPES;
+
 export interface FormattedGeometry {
   geometry: Geometry;
   position?: Vector3;

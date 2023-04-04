@@ -1,7 +1,6 @@
 import { BoxGeometry, Mesh } from "three";
-import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.constants";
 import { CubeProps } from "./threeJsComponents.types";
-import { setUpMaterial } from "visual/helpers/materials/setUpMaterial";
+import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
 
 export const Cube = ({
   name,
@@ -14,8 +13,7 @@ export const Cube = ({
     size?.y ?? 40,
     size?.z ?? 40
   );
-  const cubeMaterial = setUpMaterial(material);
-  const cube = new Mesh(cubeGeometry, cubeMaterial);
+  const cube = new Mesh(cubeGeometry, material);
   cube.name = name;
   const { x, y, z } = position;
   cube.position.set(x, y, z);

@@ -1,30 +1,23 @@
-import { Texture } from "three";
 import { SceneData } from "visual/components/interactive";
-
 import { getMeshConfigs } from "visual/helpers/assets/mesh-config/getMeshConfigs";
-import { getMaterialsFromConfig } from "visual/helpers/config-helpers/getMaterialsFromConfig";
 import { getRandomRotation } from "visual/helpers/getRandomRotation";
-import {
-  DEFAULT_MATERIAL,
-  MATERIAL_TYPES,
-} from "visual/helpers/materials/materials.constants";
-import { MaterialType } from "visual/helpers/materials/materials.types";
 import { createBoundingBox } from "visual/helpers/three-dimension-space/createBoundingBox";
 import { generateRandomlySpreadCoordinates } from "visual/helpers/three-dimension-space/position/getRandomlySpreadCoordinates";
 import { BoundingBox } from "visual/helpers/three-dimension-space/position/position.types";
-import { Asset, ASSET_TAG } from "visual/hooks/use-assets/types";
-import { hasCommonValues } from "visual/utils/hasCommonElement";
-import { getLightsFromConfig } from "visual/helpers/config-helpers/getLightsFromConfig";
+import { getLightsFromConfig } from "scenes/config-helpers/getLightsFromConfig";
 import computeConfig from "./config.json";
 import {
   COMPONENT_TYPES,
   PlaneProps,
   ThreeJsComponentType,
 } from "visual/scene-elements/components/threeJsComponents.types";
+import { getMaterialById } from "visual/helpers/materials/getMaterialById";
+import { SceneDataConfig } from "scenes/config-helpers/config.types";
+import { formatGlobalMaterials } from "scenes/config-helpers/formatGlobalMaterials";
 
 export const formatSceneData = (assets, context, dispatch): SceneData => {
-  const config = computeConfig[0];
-  const materials = formatGlobalMaterials(assets);
+  const config = computeConfig[0] as SceneDataConfig;
+  const materials = formatGlobalMaterials(assets, config);
   const meshConfigs = getMeshConfigs(assets, materials, config);
   const formattedMeshConfigs = setUpMeshConfigs(meshConfigs);
   const lights = getLightsFromConfig(config);
@@ -45,49 +38,6 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
     lights,
     sceneObjects: [],
   };
-};
-
-const formatGlobalMaterials = (assets: Asset[]) => {
-  const assetBasedMaterials = sortMaterialsFromAssets(assets).flatMap(
-    (asset: Asset) => {
-      const materialAssetTags = asset.assetTag?.flatMap((tag) =>
-        !!ASSET_TAG.MATERIAL[tag] ? tag : []
-      );
-      if (materialAssetTags) {
-        switch (materialAssetTags[0] as MaterialType) {
-          case ASSET_TAG.MATERIAL.MATCAP:
-            return {
-              materialParameters: {
-                matcap: asset.data as Texture,
-              },
-              id: asset.id,
-              materialType: MATERIAL_TYPES.MATCAP,
-            };
-          default:
-            return [];
-        }
-      }
-      return [];
-    }
-  );
-  const globalMaterials = getMaterialsFromConfig(computeConfig[0]);
-  return [...assetBasedMaterials, ...globalMaterials];
-};
-const sortMaterialsFromAssets = (assets: Asset[]) => {
-  const materialTags = Object.values(ASSET_TAG.MATERIAL);
-  const materialAssets = assets.flatMap((asset) =>
-    hasCommonValues(asset.assetTag ?? [], materialTags) ? asset : []
-  );
-  return materialAssets;
-};
-
-const getMaterialById = (materialId, materials) => {
-  const selectedMaterial = materials.find(
-    (material) => material.id === materialId
-  );
-  if (selectedMaterial) return selectedMaterial;
-  console.warn(`Material:${materialId} not found`);
-  return DEFAULT_MATERIAL;
 };
 
 const setUpMeshConfigs = (formattedMeshConfigs) => {

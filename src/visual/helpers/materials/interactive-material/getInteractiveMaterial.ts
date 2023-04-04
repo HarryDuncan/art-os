@@ -5,10 +5,10 @@ import {
 import { INTERACTIVE_SHADER_TYPES } from "visual/components/interactive/shaders/shaders.constants";
 import { getBoundInteractions } from "../../interactions/getBoundInteractions";
 import { Binding, InteractionEventObject } from "../../interactions/types";
-import { InteractiveMaterialParameters } from "../materials.types";
+import { InteractiveMaterialProps } from "../materials.types";
 
 export const getInteractiveMaterial = (
-  materialParams: InteractiveMaterialParameters,
+  materialParams: InteractiveMaterialProps,
   interactions: InteractionEventObject[],
   materialFunctions
 ) => {
@@ -16,7 +16,7 @@ export const getInteractiveMaterial = (
     shaderType,
     shaders,
     uniforms,
-  } = materialParams as InteractiveMaterialParameters;
+  } = materialParams as InteractiveMaterialProps;
   const boundInteractions = getBoundInteractions(
     interactions,
     Binding.InteractiveMesh
@@ -30,14 +30,12 @@ export const getInteractiveMaterial = (
         materialFunctions
       );
     case INTERACTIVE_SHADER_TYPES.SHADER:
+    default:
       return new InteractiveShader(
         uniforms,
         shaders,
         boundInteractions,
         materialFunctions
       );
-
-    case INTERACTIVE_SHADER_TYPES.NON_INTERACTIVE:
-    default:
   }
 };

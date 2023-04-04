@@ -8,15 +8,13 @@
         "hidden": true,
         "materialConfig": {
           "materialType": "INTERACTIVE_SHADER",
-          "material": {
-            "materialParameters": {
-              "shaderType": "shader",
-              "shaders": {
-                "vertex": "interactiveParticlesVertex",
-                "fragment": "interactiveParticlesFragment"
-              },
-              "uniforms": {}
-            }
+          "materialProps": {
+            "shaderType": "shader",
+            "shaders": {
+              "vertex": "interactiveParticlesVertex",
+              "fragment": "interactiveParticlesFragment"
+            },
+            "uniforms": {}
           }
         }
       },
@@ -100,7 +98,7 @@
     "globalMaterialConfigs": [
       {
         "id": "compute-background",
-        "materialParams": {
+        "materialProps": {
           "color": "#111111",
           "specular": "#bfbfbf",
           "shininess": 50
@@ -109,7 +107,7 @@
       },
       {
         "id": "phong-color-one",
-        "materialParams": {
+        "materialProps": {
           "color": "#1902b0",
           "specular": "#0000ff",
           "shininess": 50
@@ -118,7 +116,7 @@
       },
       {
         "id": "phong-color-two",
-        "materialParams": {
+        "materialProps": {
           "color": "#c70606",
           "specular": "#ff0303",
           "shininess": 50
@@ -276,7 +274,7 @@
     "globalMaterialConfigs": [
       {
         "id": "compute-background",
-        "materialParams": {
+        "materialProps": {
           "color": "#000000",
           "specular": "#bfbfbf",
           "shininess": 50
@@ -285,7 +283,7 @@
       },
       {
         "id": "phong-color-one",
-        "materialParams": {
+        "materialProps": {
           "color": "#1902b0",
           "specular": "#0000ff",
           "shininess": 50
@@ -294,7 +292,7 @@
       },
       {
         "id": "phong-color-two",
-        "materialParams": {
+        "materialProps": {
           "color": "#c70606",
           "specular": "#ff0303",
           "shininess": 50
