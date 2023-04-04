@@ -84,6 +84,7 @@ const materials = [
 ];
 
 export const computeLanding = (sceneConfig) => {
+  const { animationConfig } = computeConfig[0];
   return {
     threeJsParams: {
       camera: { position: { x: 0, y: 0, z: 5 } },
@@ -107,17 +108,20 @@ export const computeLanding = (sceneConfig) => {
         animationId: "binary-rotate",
         targetIdentifier: "binary",
         animationFunctionType: ANIMATION_FUNCTION_TYPES.ALL,
-        animationConfig: computeConfig[0].animationConfig[0] as AnimationConfig,
+        animationConfig: animationConfig[0] as AnimationConfig,
       },
       {
         animationId: "move-lights",
         targetIdentifier: GENERIC_TARGET_IDENTIFIERS.LIGHTS,
         animationFunction: ANIMATION_FUNCTION_TYPES.ALL,
-        animationConfig: computeConfig[0].animationConfig[1] as AnimationConfig,
+        animationConfig: animationConfig[1] as AnimationConfig,
       },
-      // {
-      //   animationId: "camera-fly",
-      // },
+      {
+        animationId: "camera-fly",
+        targetIdentifier: GENERIC_TARGET_IDENTIFIERS.CAMERA,
+        animationFunction: ANIMATION_FUNCTION_TYPES.ALL,
+        animationConfig: animationConfig[2] as AnimationConfig,
+      },
     ] as CustomAnimationConfig[],
   };
 };

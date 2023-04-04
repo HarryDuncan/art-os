@@ -1,19 +1,23 @@
-import { Scene } from "three";
+import { Camera, Scene } from "three";
 import { CustomAnimationConfig } from "../animation.types";
 import { runAnimation } from "../run-animation/runAnimation";
 import { setUpAnimationConfig } from "./setUpAnimationConfig";
+import { GENERIC_TARGET_IDENTIFIERS } from "../animation.constants";
 
 export class AnimationManager {
-  animations: CustomAnimationConfig[];
+  sceneElementAnimations: CustomAnimationConfig[];
+
+  cameraElementAnimations: CustomAnimationConfig[];
 
   constructor() {
-    this.animations = [];
+    this.sceneElementAnimations = [];
+    this.cameraElementAnimations = [];
   }
 
   initializeAnimations(animations: CustomAnimationConfig[]) {
     animations.forEach((animation) => {
       if (
-        this.animations.findIndex(
+        this.sceneElementAnimations.findIndex(
           (setAnimation) => setAnimation.animationId === animation.animationId
         ) !== -1
       ) {
@@ -21,13 +25,17 @@ export class AnimationManager {
           `an animation with this animation id ${animation.animationId} already exists`
         );
       } else {
-        this.animations.push({ ...animation, isRunning: false });
+        if (animation.targetIdentifier === GENERIC_TARGET_IDENTIFIERS.CAMERA) {
+          this.cameraElementAnimations.push({ ...animation, isRunning: false });
+        } else {
+          this.sceneElementAnimations.push({ ...animation, isRunning: false });
+        }
       }
     });
   }
 
   startAnimation(scene: Scene, animationId: string) {
-    const animation = this.animations.find(
+    const animation = this.sceneElementAnimations.find(
       (configuredAnimation) => configuredAnimation.animationId === animationId
     );
     if (!animation) {
@@ -50,8 +58,10 @@ export class AnimationManager {
     }
   }
 
+  startCameraAnimation(camera: Camera) {}
+
   stopAnimation(animationId: string) {
-    const animation = this.animations.find(
+    const animation = this.sceneElementAnimations.find(
       (configuredAnimation) => configuredAnimation.animationId === animationId
     );
     if (animation) {

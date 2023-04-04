@@ -60,7 +60,8 @@ export const InteractiveSceneContainer = ({
     postProcessor,
     currentFrameRef,
     clock,
-    scene
+    scene,
+    camera
   );
 
   useEffect(() => () => pause(), [pause]);
