@@ -101,7 +101,7 @@
       {
         "id": "compute-background",
         "materialParams": {
-          "color": "#000000",
+          "color": "#111111",
           "specular": "#bfbfbf",
           "shininess": 50
         },

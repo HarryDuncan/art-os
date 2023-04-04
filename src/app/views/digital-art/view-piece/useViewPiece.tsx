@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import * as VisualComponents from "visual/visual-components";
+import * as VisualComponents from "visual/containers";
 import { useGalleryScenes } from "scenes/useGalleryScenes";
 import { DigitalPiece } from "../context/Context";
 import { useAppDispatch } from "app/redux/store";

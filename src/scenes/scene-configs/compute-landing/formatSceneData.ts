@@ -37,7 +37,7 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
         componentProps: {
           name: "bg",
           position: { x: -5, y: -5, z: -6 },
-          material: getMaterialById("computeBackground", materials),
+          material: getMaterialById("compute-background", materials),
         } as PlaneProps,
       },
     ],
@@ -136,16 +136,4 @@ const setOnesAndZeros = (formattedMeshConfigs) => {
   });
 
   return [...filteredMeshConfigs, ...onesAndZeros];
-};
-
-const setLines = (formattedMeshConfigs) => {
-  // const lines = formattedMeshConfigs.filter(
-  //   (config) => config.name.indexOf("hjdcurve") !== -1
-  // );
-  const otherMeshes = formattedMeshConfigs.filter(
-    (config) => config.name.indexOf("hjdcurve") === -1
-  );
-
-  console.log(otherMeshes);
-  return [...otherMeshes];
 };
