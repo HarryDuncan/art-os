@@ -21,23 +21,23 @@ export const getSceneComponents = (
     switch (componentType) {
       case COMPONENT_TYPES.MARCHING_CUBES: {
         const {
-          name,
+          id,
           parameters,
           material,
           position,
         } = componentProps as MarchingCubesProps;
-        return MarchingCubes({ name, parameters, material, position });
+        return MarchingCubes({ id, parameters, material, position });
       }
       case COMPONENT_TYPES.TEXT: {
         const {
-          name,
+          id,
           fontUrl,
           text,
           material,
           position,
         } = componentProps as TextProps;
         return TextComponent({
-          name,
+          id,
           text,
           fontUrl,
           material,
@@ -45,19 +45,19 @@ export const getSceneComponents = (
         });
       }
       case COMPONENT_TYPES.MIRROR: {
-        const { name, geometry, position } = componentProps as MirrorProps;
-        return Mirror({ name, geometry, position });
+        const { id, geometry, position } = componentProps as MirrorProps;
+        return Mirror({ id, geometry, position });
       }
       case COMPONENT_TYPES.SPHERICAL_BACKGROUND: {
         const {
-          name,
+          id,
           position,
           radius,
           rotation,
           material,
         } = componentProps as SphericalBackgroundProps;
         return SphericalBackground({
-          name,
+          id,
           position,
           radius,
           rotation,
@@ -65,12 +65,12 @@ export const getSceneComponents = (
         });
       }
       case COMPONENT_TYPES.PLANE: {
-        const { name, material, position, size } = componentProps as PlaneProps;
-        return Plane({ name, position, size, material });
+        const { id, material, position, size } = componentProps as PlaneProps;
+        return Plane({ id, position, size, material });
       }
       case COMPONENT_TYPES.CUBE: {
-        const { name, material, position, size } = componentProps as CubeProps;
-        return Cube({ name, position, size, material });
+        const { id, material, position, size } = componentProps as CubeProps;
+        return Cube({ id, position, size, material });
       }
 
       default:

@@ -4,15 +4,15 @@ import { SphericalBackgroundProps } from "./threeJsComponents.types";
 import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
 
 export const SphericalBackground = ({
-  name,
+  id,
   position,
   radius,
   rotation = DEFAULT_ROTATION,
   material = DEFAULT_MATERIAL,
-}: SphericalBackgroundProps) => {
+}: SphericalBackgroundProps & { id: string }) => {
   const sphereGeometry = new SphereGeometry(radius, 32, 16);
   const sphere = new Mesh(sphereGeometry, material);
-  sphere.name = name;
+  sphere.name = id;
   const { x, y, z } = position;
   sphere.position.set(x, y, z);
   setRotation(sphere, rotation);

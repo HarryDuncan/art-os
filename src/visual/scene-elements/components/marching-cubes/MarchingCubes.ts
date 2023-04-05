@@ -4,10 +4,10 @@ import { MarchingCubesProps } from "../threeJsComponents.types";
 import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
 
 export const MarchingCubes = ({
-  name,
+  id,
   parameters,
   material = DEFAULT_MATERIAL,
-}: MarchingCubesProps) => {
+}: MarchingCubesProps & { id: string }) => {
   const resolution = parameters?.resolution ?? DEFAULT_RESOLUTION;
   const marchingCubeEffect = new ThreeJsMarchingCubes(
     resolution,
@@ -22,6 +22,6 @@ export const MarchingCubes = ({
   marchingCubeEffect.isolation = 30;
   marchingCubeEffect.enableUvs = false;
   marchingCubeEffect.enableColors = false;
-  marchingCubeEffect.name = `marching-cubes-${name}`;
+  marchingCubeEffect.name = `marching-cubes-${id}`;
   return marchingCubeEffect;
 };

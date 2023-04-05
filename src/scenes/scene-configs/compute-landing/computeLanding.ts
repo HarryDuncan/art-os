@@ -32,7 +32,7 @@ const infoText = [
   },
   {
     name: "dates-geometry",
-    url: "../assets/models/hjd/exhibition-dates.obj",
+    url: "../assets/models/hjd/justDates.obj",
     assetType: ASSET_TYPES.Geometry,
   },
   {
@@ -85,7 +85,13 @@ const materials = [
     assetTag: [ASSET_TAG.MATERIAL.MATCAP],
   },
 ];
-
+const video = [
+  {
+    name: "bg-video",
+    url: "../assets/video/BackgroundVid.mp4",
+    assetType: ASSET_TYPES.Video,
+  },
+];
 export const computeLanding = (sceneConfig) => {
   const { animationConfig } = computeConfig[CONFIG_INDEX];
   return {
@@ -95,7 +101,7 @@ export const computeLanding = (sceneConfig) => {
         hasOrbitControls: true,
       },
     },
-    assets: [...models, ...lines, ...infoText, ...materials],
+    assets: [...models, ...lines, ...infoText, ...materials, ...video],
 
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveThreeScene) => {

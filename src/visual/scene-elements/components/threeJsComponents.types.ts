@@ -2,7 +2,6 @@ import { ColorRepresentation, Material, Vector2, Vector3 } from "three";
 import { Geometry } from "types/threeJs.types";
 
 export interface ThreeJSComponentProps {
-  name: string;
   position: Vector3;
 }
 
@@ -21,7 +20,6 @@ export interface TextProps extends ThreeJSComponentProps {
 
 export interface MirrorProps extends ThreeJSComponentProps {
   geometry: Geometry;
-
   color?: ColorRepresentation;
 }
 

@@ -10,6 +10,7 @@ import { SceneDataConfig } from "scenes/config-helpers/config.types";
 import { formatGlobalMaterials } from "scenes/config-helpers/material/formatGlobalMaterials";
 import { CONFIG_INDEX } from "../constants";
 import { formatSceneComponentConfigs } from "scenes/config-helpers/components/formatSceneComponentConfigs";
+import { initializeVideos } from "visual/helpers/assets/animated-texture/setUpVideos";
 
 export const formatSceneData = (assets, context, dispatch): SceneData => {
   const config = computeConfig[CONFIG_INDEX] as SceneDataConfig;
@@ -17,8 +18,8 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
   const meshConfigs = getMeshConfigs(assets, materials, config);
   const formattedMeshConfigs = setUpMeshConfigs(meshConfigs);
   const lights = getLightsFromConfig(config);
+  initializeVideos(assets);
   const sceneComponents = formatSceneComponentConfigs(config, materials);
-  console.log(sceneComponents);
   return {
     isSceneDataInitialized: true,
     meshConfigs: formattedMeshConfigs,
@@ -55,24 +56,27 @@ const setOnesAndZeros = (formattedMeshConfigs) => {
     notAllowedBoundingBoxes,
     1
   );
-  const onesAndZeros = coordinates.map((coordinate, index) => {
-    const nonRandomizedAxes = { y: true, x: true };
-    const rotation = getRandomRotation(1, nonRandomizedAxes)[0];
-    if (index % 2 === 1) {
+  if (one && zero) {
+    const onesAndZeros = coordinates.map((coordinate, index) => {
+      const nonRandomizedAxes = { y: true, x: true };
+      const rotation = getRandomRotation(1, nonRandomizedAxes)[0];
+      if (index % 2 === 1) {
+        return {
+          ...one,
+          position: coordinate,
+          name: "binary",
+          rotation: { ...rotation, x: one.rotation.x },
+        };
+      }
       return {
-        ...one,
+        ...zero,
         position: coordinate,
         name: "binary",
-        rotation: { ...rotation, x: one.rotation.x },
+        rotation: { ...rotation, x: zero.rotation.x },
       };
-    }
-    return {
-      ...zero,
-      position: coordinate,
-      name: "binary",
-      rotation: { ...rotation, x: zero.rotation.x },
-    };
-  });
+    });
+    return [...filteredMeshConfigs, ...onesAndZeros];
+  }
 
-  return [...filteredMeshConfigs, ...onesAndZeros];
+  return [...filteredMeshConfigs];
 };

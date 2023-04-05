@@ -71,7 +71,6 @@ export const getMaterial = (
         metalness: 1.0,
       });
     }
-
     case MATERIAL_TYPES.VIDEO: {
       const { videoId } = materialProps as VideoMaterialProps;
       const video = document.getElementById(videoId);

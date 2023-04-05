@@ -5,6 +5,7 @@ import computeConfig from "./config.json";
 import { SceneDataConfig } from "scenes/config-helpers/config.types";
 import { getMaterialsFromConfig } from "scenes/config-helpers/material/getMaterialsFromConfig";
 import { CONFIG_INDEX } from "../constants";
+import { getMeshByName } from "visual/helpers/scene/object-finding/getMeshByName";
 
 export const events = [
   {
@@ -16,6 +17,11 @@ export const events = [
         case KEY_CODES.space:
           const curves = getMeshesByIdentifier(scene, "curve");
           swapColors(curves);
+          const mesh = getMeshByName(scene, "nymph-geometry");
+          if (mesh) {
+            swapColors([mesh]);
+            mesh.rotateY(70);
+          }
           break;
         default:
           console.log(charCode);

@@ -35,6 +35,7 @@
         }
       },
       "opening": {
+        "hidden": true,
         "rotation": { "x": 90, "y": 0, "z": -0 },
         "position": { "y": 0 },
         "size": 1,
@@ -186,6 +187,18 @@
         "lightType": "DIRECTIONAL_LIGHT",
         "props": { "color": "#ffffff", "position": { "y": 0, "z": 5 } }
       }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": -5, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "compute-background"
+        }
+      }
     ]
   },
   {
@@ -215,16 +228,17 @@
         "rotation": { "x": 90, "y": 0, "z": -0 },
         "materialConfig": {
           "materialById": "compute-text"
-        }
+        },
+        "hidden": true
       },
       "zero": {
         "size": 2.8,
         "rotation": { "x": 90, "y": 0, "z": -0 },
         "materialConfig": {
           "materialById": "compute-text"
-        }
+        },
+        "hidden": true
       },
-
       "hjdcurves1": {
         "position": { "x": -0.5, "z": -3 },
         "rotation": { "x": 90, "y": -30, "z": -20 },
@@ -233,16 +247,16 @@
         }
       },
       "hjdcurves2": {
-        "size": 1.3,
-        "position": { "x": 1.5, "z": -3 },
-        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "size": 1.6,
+        "position": { "x": 1.5, "z": -3.2 },
+        "rotation": { "x": 110, "y": -10, "z": 10 },
         "materialConfig": {
           "materialById": "phong-color-two"
         }
       },
       "hjdcurves3": {
-        "position": { "x": 0.5, "z": -3 },
-        "rotation": { "x": 90, "y": 30, "z": -0 },
+        "position": { "x": 0.5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 40, "z": -0 },
         "materialConfig": {
           "materialById": "phong-color-one"
         }
@@ -326,6 +340,422 @@
             "animationDurationMilis": -1,
             "animationPauseMilis": -1,
             "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "camera-fly",
+        "targetIdentifier": "CAMERA",
+        "animationFunction": "ALL",
+        "animationConfig": {
+          "animationType": "TRAVERSE",
+          "animationProperties": {
+            "startPosition": { "x": -3, "y": -1, "z": 6 },
+            "endPosition": { "z": 5, "x": 2 },
+            "curveSize": 0,
+            "repeatAnimation": false,
+            "animationDurationMilis": 7000
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 0, "z": 10 } }
+      },
+      {
+        "name": "directional-light",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 0, "z": 5 } }
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": -5, "y": -5, "z": -25 }
+        },
+        "materialConfig": {
+          "materialType": "VIDEO",
+          "materialProps": {
+            "videoId": "bg-video"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "meshComponentConfigs": {
+      "nymph": {
+        "rotation": { "x": 180, "y": 200, "z": 0 },
+        "position": { "x": -1, "y": -0.5 },
+        "size": 2,
+        "hidden": true,
+        "materialConfig": {
+          "materialType": "INTERACTIVE_SHADER",
+          "materialProps": {
+            "shaderType": "shader",
+            "shaders": {
+              "vertex": "interactiveParticlesVertex",
+              "fragment": "interactiveParticlesFragment"
+            },
+            "uniforms": {}
+          }
+        }
+      },
+      "compute": {
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "y": 0.8 },
+        "size": 2.5,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "name": {
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "x": 0, "y": 0.5 },
+        "size": 1,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "opening": {
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "y": -0.7 },
+        "size": 1,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "dates": {
+        "hidden": true,
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "y": -0.7 },
+        "size": 1,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "one": {
+        "size": 2.8,
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "zero": {
+        "size": 2.8,
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+
+      "hjdcurves1": {
+        "position": { "x": -0.5, "z": -3 },
+        "rotation": { "x": 90, "y": -30, "z": -20 },
+        "materialConfig": {
+          "materialById": "phong-color-one"
+        }
+      },
+      "hjdcurves2": {
+        "size": 1.6,
+        "position": { "x": 1.5, "z": -3.2 },
+        "rotation": { "x": 110, "y": -10, "z": 10 },
+        "materialConfig": {
+          "materialById": "phong-color-two"
+        }
+      },
+      "hjdcurves3": {
+        "position": { "x": 0.5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 40, "z": -0 },
+        "materialConfig": {
+          "materialById": "phong-color-one"
+        }
+      },
+      "hjdcurves4": {
+        "position": { "x": -1.5, "z": -3 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "phong-color-two"
+        }
+      }
+    },
+    "globalMaterialConfigs": [
+      {
+        "id": "compute-background",
+        "materialProps": {
+          "color": "#111111",
+          "specular": "#bfbfbf",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-one",
+        "materialProps": {
+          "color": "#1902b0",
+          "specular": "#0000ff",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-two",
+        "materialProps": {
+          "color": "#047526",
+          "specular": "#00ff30",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "binary",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.02,
+            "rotationAxis": "Z",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "move-lights",
+        "targetIdentifier": "LIGHTS",
+        "animationFunction": "ALL",
+        "animationConfig": {
+          "animationType": "TRIG",
+          "animationProperties": {
+            "trigFunctionType": "COS",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "camera-fly",
+        "targetIdentifier": "CAMERA",
+        "animationFunction": "ALL",
+        "animationConfig": {
+          "animationType": "TRAVERSE",
+          "animationProperties": {
+            "startPosition": { "x": 1, "y": 9, "z": 2 },
+            "endPosition": { "z": 4, "x": -1, "y": -0.5 },
+            "curveSize": 0,
+            "repeatAnimation": false,
+            "animationDurationMilis": 7000
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 0, "z": 10 } }
+      },
+      {
+        "name": "directional-light",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 0, "z": 5 } }
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": -5, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "compute-background"
+        }
+      }
+    ]
+  },
+  {
+    "meshComponentConfigs": {
+      "nymph": {
+        "rotation": { "x": 180, "y": 200, "z": 0 },
+        "position": { "x": -1, "y": -0.5 },
+        "size": 2,
+        "hidden": true,
+        "materialConfig": {
+          "materialType": "INTERACTIVE_SHADER",
+          "materialProps": {
+            "shaderType": "shader",
+            "shaders": {
+              "vertex": "interactiveParticlesVertex",
+              "fragment": "interactiveParticlesFragment"
+            },
+            "uniforms": {}
+          }
+        }
+      },
+      "compute": {
+        "rotation": { "x": 90, "y": 0, "z": -100 },
+        "position": { "y": 0.8 },
+        "size": 2.5,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "name": {
+        "rotation": { "x": 90, "y": 0, "z": -100 },
+        "position": { "x": 0, "y": 0.5 },
+        "size": 1,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "opening": {
+        "hidden": true,
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "y": 0 },
+        "size": 1,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "dates": {
+        "hidden": true,
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "position": { "y": -0.7 },
+        "size": 1,
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "one": {
+        "hidden": true,
+        "size": 2.8,
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+      "zero": {
+        "hidden": true,
+        "size": 2.8,
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "compute-text"
+        }
+      },
+
+      "hjdcurves1": {
+        "hidden": true,
+        "position": { "x": -0.5, "z": -3 },
+        "rotation": { "x": 90, "y": -30, "z": -20 },
+        "materialConfig": {
+          "materialById": "phong-color-one"
+        }
+      },
+      "hjdcurves2": {
+        "hidden": true,
+        "size": 1.6,
+        "position": { "x": 1.5, "z": -3.2 },
+        "rotation": { "x": 110, "y": -10, "z": 10 },
+        "materialConfig": {
+          "materialById": "phong-color-two"
+        }
+      },
+      "hjdcurves3": {
+        "hidden": true,
+        "position": { "x": 0.5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 40, "z": -0 },
+        "materialConfig": {
+          "materialById": "phong-color-one"
+        }
+      },
+      "hjdcurves4": {
+        "hidden": true,
+        "position": { "x": -1.5, "z": -3 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "phong-color-two"
+        }
+      }
+    },
+    "globalMaterialConfigs": [
+      {
+        "id": "compute-background",
+        "materialProps": {
+          "color": "#111111",
+          "specular": "#bfbfbf",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-one",
+        "materialProps": {
+          "color": "#1902b0",
+          "specular": "#0000ff",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-two",
+        "materialProps": {
+          "color": "#047526",
+          "specular": "#00ff30",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.01,
+            "rotationAxis": "Z",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      },
+
+      {
+        "animationId": "camera-fly",
+        "targetIdentifier": "CAMERA",
+        "animationFunction": "ALL",
+        "animationConfig": {
+          "animationType": "TRAVERSE",
+          "animationProperties": {
+            "startPosition": {},
+            "endPosition": { "z": 5 },
+            "curveSize": 0,
+            "repeatAnimation": false,
+            "animationDurationMilis": 3000
           }
         }
       }

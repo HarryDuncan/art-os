@@ -4,12 +4,12 @@ import { TextProps } from "./threeJsComponents.types";
 import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
 
 export const TextComponent = ({
-  name,
+  id,
   text,
   fontUrl,
   material = DEFAULT_MATERIAL,
   position,
-}: TextProps) => {
+}: TextProps & { id: string }) => {
   const textObject = new TroikaText();
 
   textObject.text = text;
@@ -31,7 +31,7 @@ export const TextComponent = ({
 
   textObject.material = material;
   // Update the rendering:
-  textObject.name = name;
+  textObject.name = id;
   textObject.sync();
   return textObject;
 };

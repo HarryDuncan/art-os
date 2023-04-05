@@ -5,7 +5,7 @@ export const getMeshesByIdentifier = (
   identifier
 ) => {
   const selectedMeshes = scene.children.flatMap((child) => {
-    if (child.name.indexOf(identifier) !== -1) {
+    if (child.name && child.name.indexOf(identifier) !== -1) {
       return child;
     }
     return [];

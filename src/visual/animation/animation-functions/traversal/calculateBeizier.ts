@@ -19,7 +19,7 @@ export const calculateCurve = (
 
   // Calculate points on Bezier curve
   const points: Vector3[] = [];
-  for (let t = 0; t <= 1; t += 0.01) {
+  for (let t = 0; t <= 1; t += 0.0001) {
     const x =
       Math.pow(1 - t, 3) * start.x +
       3 * Math.pow(1 - t, 2) * t * controlPoint1.x +

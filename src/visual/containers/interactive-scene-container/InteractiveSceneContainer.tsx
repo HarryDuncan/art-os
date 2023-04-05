@@ -44,7 +44,6 @@ export const InteractiveSceneContainer = ({
   );
 
   const initializedMeshes = useMeshes(sceneData?.meshConfigs, interactions);
-  const sceneComponents = sceneData?.sceneComponents ?? [];
   const lights = useLights(sceneData.lights);
   const scene = useInteractiveScene(
     interactions,
@@ -70,7 +69,7 @@ export const InteractiveSceneContainer = ({
       initializedMeshes.forEach((mesh) => scene.add(mesh));
       lights.forEach((light) => scene.add(light));
       setSceneProperties(sceneData.sceneProperties, scene);
-      sceneComponents.forEach((component) => scene.add(component));
+      sceneData?.sceneComponents?.forEach((component) => scene.add(component));
       scene.addAnimations(animations);
       scene.addOrbitControls(orbitControls);
       postProcessor.current = new PostProcessor({

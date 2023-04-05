@@ -1,1 +1,1 @@
-export const CONFIG_INDEX = 1;
+export const CONFIG_INDEX = 0;
