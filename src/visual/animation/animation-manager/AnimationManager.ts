@@ -58,6 +58,9 @@ export class AnimationManager {
       );
     }
   }
+  hasCameraAnimations() {
+    return this.cameraElementAnimations.length > 0;
+  }
 
   startCameraAnimation(camera: Camera) {
     // TODO - set up methods for multiple camera animations

@@ -14,9 +14,10 @@ import {
 import { getMaterialById } from "visual/helpers/materials/getMaterialById";
 import { SceneDataConfig } from "scenes/config-helpers/config.types";
 import { formatGlobalMaterials } from "scenes/config-helpers/formatGlobalMaterials";
+import { CONFIG_INDEX } from "../constants";
 
 export const formatSceneData = (assets, context, dispatch): SceneData => {
-  const config = computeConfig[0] as SceneDataConfig;
+  const config = computeConfig[CONFIG_INDEX] as SceneDataConfig;
   const materials = formatGlobalMaterials(assets, config);
   const meshConfigs = getMeshConfigs(assets, materials, config);
   const formattedMeshConfigs = setUpMeshConfigs(meshConfigs);

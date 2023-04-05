@@ -16,7 +16,7 @@ export const useThreadWithPostProcessor = (
     if (scene?.orbitControls) {
       scene.orbitControls.update();
     }
-    if (scene?.animationManager.cameraElementAnimations) {
+    if (scene?.animationManager.hasCameraAnimations()) {
       scene.animationManager.startCameraAnimation(camera);
     }
     postProcessor.current?.render(clock.getDelta());

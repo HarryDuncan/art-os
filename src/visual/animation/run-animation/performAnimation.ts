@@ -33,14 +33,11 @@ export const performAnimation = (
           animationDurationMilis,
         } = animationConfig as TraversalAnimationConfig;
         if (curve) {
-          //         console.log(object);
           const currentProg = easeOut(progress / animationDurationMilis) * 100;
           const { x, y, z } = traverseThroughtArray(
             curve,
             Number(currentProg.toFixed(0))
           );
-          // console.log(currentProg);
-          // console.log(x, y, z);
           object.position.set(x, y, z);
         }
       }
@@ -62,7 +59,7 @@ export const performAnimation = (
         const {
           trigFunctionType,
         } = animationConfig as TrigonometricAnimationConfig;
-        const updatedValue = updateTimeStamp(progress, trigFunctionType) * 2;
+        const updatedValue = updateTimeStamp(progress, trigFunctionType);
         updateObject(object, updatedValue, OBJECT_UPDATE_PROPERTY.POSITION);
       }
       break;
