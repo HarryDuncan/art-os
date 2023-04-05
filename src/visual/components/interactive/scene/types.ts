@@ -1,4 +1,4 @@
-import { Texture } from "three";
+import { Object3D, Texture } from "three";
 import { MeshConfig } from "visual/helpers/assets/geometry/geometry.types";
 
 import { LightConfigs } from "../../../scene-elements/lights/lights.types";
@@ -9,6 +9,7 @@ import {
   ThreeJsComponentType,
 } from "visual/scene-elements/components/threeJsComponents.types";
 import { MarchingCubes } from "three/examples/jsm/objects/MarchingCubes";
+import { MaterialConfig } from "visual/helpers/materials/materials.types";
 
 export type InteractiveSceneFunctions = {
   onTimeUpdate: (material: InteractiveScene) => void;
@@ -21,8 +22,10 @@ export type SceneObject = {
 };
 
 export type SceneComponentConfig = {
+  id: string;
   componentType: ThreeJsComponentType;
   componentProps: ComponentProps;
+  materialConfig: MaterialConfig;
 };
 
 export type SceneProperties = {
@@ -31,7 +34,7 @@ export type SceneProperties = {
 export type SceneData = {
   isSceneDataInitialized: boolean;
   meshConfigs?: MeshConfig[];
-  sceneComponents?: SceneComponentConfig[];
+  sceneComponents?: Object3D[];
   lights?: LightConfigs[];
   sceneObjects?: SceneObject[];
   sceneProperties?: SceneProperties;

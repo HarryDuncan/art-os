@@ -1,20 +1,15 @@
 import { SceneData } from "visual/components/interactive";
-import { getMeshConfigs } from "visual/helpers/assets/mesh-config/getMeshConfigs";
+import { getMeshConfigs } from "scenes/config-helpers/mesh/getMeshConfigs";
 import { getRandomRotation } from "visual/helpers/getRandomRotation";
 import { createBoundingBox } from "visual/helpers/three-dimension-space/createBoundingBox";
 import { generateRandomlySpreadCoordinates } from "visual/helpers/three-dimension-space/position/getRandomlySpreadCoordinates";
 import { BoundingBox } from "visual/helpers/three-dimension-space/position/position.types";
-import { getLightsFromConfig } from "scenes/config-helpers/getLightsFromConfig";
+import { getLightsFromConfig } from "scenes/config-helpers/lights/getLightsFromConfig";
 import computeConfig from "./config.json";
-import {
-  COMPONENT_TYPES,
-  PlaneProps,
-  ThreeJsComponentType,
-} from "visual/scene-elements/components/threeJsComponents.types";
-import { getMaterialById } from "visual/helpers/materials/getMaterialById";
 import { SceneDataConfig } from "scenes/config-helpers/config.types";
-import { formatGlobalMaterials } from "scenes/config-helpers/formatGlobalMaterials";
+import { formatGlobalMaterials } from "scenes/config-helpers/material/formatGlobalMaterials";
 import { CONFIG_INDEX } from "../constants";
+import { formatSceneComponentConfigs } from "scenes/config-helpers/components/formatSceneComponentConfigs";
 
 export const formatSceneData = (assets, context, dispatch): SceneData => {
   const config = computeConfig[CONFIG_INDEX] as SceneDataConfig;
@@ -22,20 +17,12 @@ export const formatSceneData = (assets, context, dispatch): SceneData => {
   const meshConfigs = getMeshConfigs(assets, materials, config);
   const formattedMeshConfigs = setUpMeshConfigs(meshConfigs);
   const lights = getLightsFromConfig(config);
-
+  const sceneComponents = formatSceneComponentConfigs(config, materials);
+  console.log(sceneComponents);
   return {
     isSceneDataInitialized: true,
     meshConfigs: formattedMeshConfigs,
-    sceneComponents: [
-      {
-        componentType: COMPONENT_TYPES.PLANE as ThreeJsComponentType,
-        componentProps: {
-          name: "bg",
-          position: { x: -5, y: -5, z: -6 },
-          material: getMaterialById("compute-background", materials),
-        } as PlaneProps,
-      },
-    ],
+    sceneComponents,
     lights,
     sceneObjects: [],
   };

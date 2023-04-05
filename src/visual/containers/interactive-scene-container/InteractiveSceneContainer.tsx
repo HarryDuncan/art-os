@@ -8,7 +8,6 @@ import { useMeshes } from "visual/scene-elements/useMeshes";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { EMPTY_SCENE_DATA } from "consts";
 import { defaultFormatWithContext } from "scenes/default-configs/defaultFormatSceneData";
-import { useSceneComponents } from "visual/scene-elements/components/useSceneComponents";
 import { useLights } from "visual/scene-elements/lights/useLights";
 import { setSceneProperties } from "visual/helpers/scene/setSceneProperties";
 import { useEvents } from "visual/hooks/use-events/useEvents";
@@ -45,7 +44,7 @@ export const InteractiveSceneContainer = ({
   );
 
   const initializedMeshes = useMeshes(sceneData?.meshConfigs, interactions);
-  const sceneComponents = useSceneComponents(sceneData.sceneComponents);
+  const sceneComponents = sceneData?.sceneComponents ?? [];
   const lights = useLights(sceneData.lights);
   const scene = useInteractiveScene(
     interactions,

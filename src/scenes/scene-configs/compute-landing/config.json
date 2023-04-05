@@ -313,6 +313,21 @@
             "repeatAnimation": true
           }
         }
+      },
+      {
+        "animationId": "statue-rotate",
+        "targetIdentifier": "nymph",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.002,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
       }
     ],
     "lightConfig": [
@@ -330,6 +345,18 @@
         "name": "directional-light",
         "lightType": "DIRECTIONAL_LIGHT",
         "props": { "color": "#ffffff", "position": { "y": 0, "z": 5 } }
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": -5, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "compute-background"
+        }
       }
     ]
   }

@@ -1,4 +1,4 @@
-import { SceneDataConfig } from "./config.types";
+import { SceneDataConfig } from "../config.types";
 import { materialConfigToMaterial } from "./materialConfigToMaterial";
 
 export const getMaterialsFromConfig = (config: SceneDataConfig) => {

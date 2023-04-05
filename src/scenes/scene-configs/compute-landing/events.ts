@@ -3,7 +3,7 @@ import { EVENT_TYPES, KEY_CODES } from "visual/hooks/use-events/consts";
 import { EventConfig } from "visual/hooks/use-events/events.types";
 import computeConfig from "./config.json";
 import { SceneDataConfig } from "scenes/config-helpers/config.types";
-import { getMaterialsFromConfig } from "scenes/config-helpers/getMaterialsFromConfig";
+import { getMaterialsFromConfig } from "scenes/config-helpers/material/getMaterialsFromConfig";
 import { CONFIG_INDEX } from "../constants";
 
 export const events = [

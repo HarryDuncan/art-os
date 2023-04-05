@@ -1,10 +1,10 @@
-import { getMeshComponentConfigById } from "scenes/config-helpers/getMeshComponentConfigById";
 import { getMaterial } from "visual/helpers/materials/getMaterial";
 import { getGeometryId } from "./formatMeshGeometry";
 import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
 import { MaterialConfig } from "visual/helpers/materials/materials.types";
 import { Material } from "three";
 import { SceneDataConfig } from "scenes/config-helpers/config.types";
+import { getMeshComponentConfigById } from "./getMeshComponentConfigById";
 
 export const addMaterialsToMeshConfig = (
   formattedGeometries,
@@ -53,8 +53,12 @@ const getGeometryMaterial = (
   return material;
 };
 
-const getGeometryMaterialConfig = (geometry, config): MaterialConfig => {
+const getGeometryMaterialConfig = (
+  geometry,
+  config: SceneDataConfig
+): MaterialConfig => {
   const id = getGeometryId(geometry.name);
   const meshComponentConfig = getMeshComponentConfigById(id, config);
+  // @ts-ignore
   return meshComponentConfig?.materialConfig;
 };
