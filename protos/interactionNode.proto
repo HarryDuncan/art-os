@@ -1,0 +1,24 @@
+syntax = "proto3";
+package interactionNode;
+
+
+
+/* Visual Input Node Service */
+
+service InteractionNodeService {
+
+// <------------------- Initialization -------------------------------->
+  rpc InitializeInteractionNode (InitializeInteractionNodeRequest) returns (InitializeInteractionNodeResponse);
+}
+
+
+message InitializeInteractionNodeRequest {
+
+}
+
+
+// Returns the playlists and directories
+message InitializeInteractionNodeResponse {
+  bool isInitialized = 1;
+
+}

@@ -27,9 +27,9 @@ static_resources:
                         - "*"
                       routes:
                         - match:
-                            prefix: "/visualInputNode.VisualInputNodeService"
+                            prefix: "/interactionNode.InteractionNodeService"
                           route:
-                            cluster: visual-input-node_service
+                            cluster: interaction-node_service
                             max_stream_duration:
                               grpc_timeout_header_max: 0s
                       cors:
@@ -42,8 +42,8 @@ static_resources:
                   - name: envoy.grpc_json_transcoder
                     typed_config:
                       "@type": type.googleapis.com/envoy.extensions.filters.http.grpc_json_transcoder.v3.GrpcJsonTranscoder
-                      proto_descriptor: "etc/envoy/protos/visualInputNode.pb"
-                      services: ["visualInputNode.VisualInputNodeService"]
+                      proto_descriptor: "etc/envoy/protos/interactionNode.pb"
+                      services: ["interactionNode.InteractionNodeService"]
                       match_incoming_request_route: true
                   - name: envoy.filters.network.cors
                     typed_config:
@@ -56,7 +56,7 @@ static_resources:
                       "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
   clusters:
-    - name: visual-input-node_service
+    - name: interaction-node_service
       connect_timeout:
         seconds: 5
       type: LOGICAL_DNS

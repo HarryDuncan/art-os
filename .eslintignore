@@ -4,4 +4,4 @@
 **/*.ttf
 **/*.woff
 **/*.woff2
-src/grpc/protos/*
+*/protos/*

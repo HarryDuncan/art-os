@@ -1,0 +1,4 @@
+tensorflow==2.8.0
+tensorflow==2.8.0 
+tf_bodypix==0.4.2 
+tfjs_graph_converter==1.6.3

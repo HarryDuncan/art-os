@@ -8,17 +8,17 @@ import numpy as np
 
 # GRPC
 import grpc
-import visualInputNode_pb2
-import visualInputNode_pb2_grpc
+import interactionNode_pb2 as pb2
+import interactionNode_pb2_grpc as pb2_grpc
 
 
-class VisualInputNode(visualInputNode_pb2_grpc.VisualInputNodeServiceServicer):
+class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
 
     def __init__(self):
         print('initialized')
 
-    def InitializeVisualInputNode(self, request, context):
-        return visualInputNode_pb2.InitializeVisualInputNodeResponse(isInitialized=True)
+    def InitializeInteractionNode(self, request, context):
+        return pb2.InitializeInteractionNodeResponse(isInitialized=True)
 
  
 
@@ -28,7 +28,7 @@ class VisualInputNode(visualInputNode_pb2_grpc.VisualInputNodeServiceServicer):
 ## GRPC CONNECTION: Connects visualInputNode to envoy proxy
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    visualInputNode_pb2_grpc.add_VisualInputNodeServiceServicer_to_server(VisualInputNode(), server)
+    pb2_grpc.add_InteractionNodeServiceServicer_to_server(InteractionNode(), server)
     server.add_insecure_port('[::]:8080')
     server.start()
     server.wait_for_termination()
