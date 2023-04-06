@@ -5,6 +5,7 @@ import { useAppSelector } from "app/redux/store";
 import { useSceneConfig } from "./useSceneConfig";
 import { useAssets } from "utils/assets/use-assets/useAssets";
 import * as setUpScenes from "./set-up-scene-parameters";
+import { useInteractions } from "interaction-node/useInteractions";
 
 export const useSceneData = () => {
   const { configId } = useAppSelector((state) => state.sceneData);
@@ -15,6 +16,7 @@ export const useSceneData = () => {
   const { areAssetsInitialized, initializedAssets } = useAssets(
     configData.assets ?? []
   );
+  const interactions = useInteractions(configData.interactionConfig);
 
   // TODO - rename to parameters
   const {
@@ -22,7 +24,6 @@ export const useSceneData = () => {
     materialFunctions,
     assets,
     events,
-    interactions,
   } = useDefaultConfig();
 
   return useMemo(() => {

@@ -1,4 +1,4 @@
-import { Object3D, Texture } from "three";
+import { Mesh, Object3D, Texture } from "three";
 
 import { LightConfigs } from "../../../scene-elements/lights/lights.types";
 
@@ -33,7 +33,7 @@ export type SceneProperties = {
 };
 export type SceneData = {
   isSceneDataInitialized: boolean;
-  meshConfigs?: MeshConfig[];
+  meshes?: Object3D[];
   sceneComponents?: Object3D[];
   lights?: LightConfigs[];
   sceneObjects?: SceneObject[];

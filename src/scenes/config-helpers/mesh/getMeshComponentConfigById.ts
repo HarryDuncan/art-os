@@ -1,16 +1,15 @@
 import { SceneDataConfig } from "../config.types";
-import { getMeshComponentConfig } from "./getMeshComponentConfig";
 
 export const getMeshComponentConfigById = (
   id: string,
   config: SceneDataConfig
 ) => {
-  const meshComponentConfig = getMeshComponentConfig(config);
-  if (!meshComponentConfig) {
+  const { meshComponentConfigs } = config;
+  if (!meshComponentConfigs) {
     console.warn("no mesh component config for this config");
     return null;
   }
-  const configById = meshComponentConfig[id];
+  const configById = meshComponentConfigs.find((config) => config.id === id);
   if (!configById) {
     console.warn(`no config for ${id}`);
   }

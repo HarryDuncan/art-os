@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo } from "react";
 import { useSetUpScene } from "visual/hooks/scene-data/useSetUpScene";
 import { RootContainer } from "../root/root-container";
 import { useInteractiveScene } from "visual/hooks/use-interactive-scene/useInteractiveScene";
-import { useMeshes } from "visual/scene-elements/useMeshes";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { useLights } from "visual/scene-elements/lights/useLights";
 import { setSceneProperties } from "visual/helpers/scene/setSceneProperties";
@@ -28,7 +27,6 @@ export const InteractiveSceneContainer = ({
     orbitControls,
   } = useSetUpScene(threeJsParams);
 
-  const initializedMeshes = useMeshes(sceneData?.meshConfigs, interactions);
   const lights = useLights(sceneData.lights);
   const scene = useInteractiveScene(
     interactions,
@@ -51,7 +49,7 @@ export const InteractiveSceneContainer = ({
 
   const initializeSceneWithData = useCallback(() => {
     if (scene) {
-      initializedMeshes.forEach((mesh) => scene.add(mesh));
+      sceneData.meshes?.forEach((mesh) => scene.add(mesh));
       lights.forEach((light) => scene.add(light));
       setSceneProperties(sceneData.sceneProperties, scene);
       sceneData?.sceneComponents?.forEach((component) => scene.add(component));
@@ -65,7 +63,7 @@ export const InteractiveSceneContainer = ({
       });
       update();
     }
-  }, [scene, initializedMeshes, update, postProcessor, renderer, camera]);
+  }, [scene, update, postProcessor, renderer, camera]);
 
   useEffect(() => {
     initializeSceneWithData();
