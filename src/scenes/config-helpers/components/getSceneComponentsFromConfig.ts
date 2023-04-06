@@ -17,11 +17,10 @@ import {
 export const getSceneComponents = (
   componentConfigs: SceneComponentConfig[] = []
 ) =>
-  componentConfigs.flatMap(({ componentType, componentProps }) => {
+  componentConfigs.flatMap(({ id, componentType, componentProps }) => {
     switch (componentType) {
       case COMPONENT_TYPES.MARCHING_CUBES: {
         const {
-          id,
           parameters,
           material,
           position,
@@ -30,7 +29,6 @@ export const getSceneComponents = (
       }
       case COMPONENT_TYPES.TEXT: {
         const {
-          id,
           fontUrl,
           text,
           material,
@@ -45,12 +43,11 @@ export const getSceneComponents = (
         });
       }
       case COMPONENT_TYPES.MIRROR: {
-        const { id, geometry, position } = componentProps as MirrorProps;
+        const { geometry, position } = componentProps as MirrorProps;
         return Mirror({ id, geometry, position });
       }
       case COMPONENT_TYPES.SPHERICAL_BACKGROUND: {
         const {
-          id,
           position,
           radius,
           rotation,
@@ -65,11 +62,11 @@ export const getSceneComponents = (
         });
       }
       case COMPONENT_TYPES.PLANE: {
-        const { id, material, position, size } = componentProps as PlaneProps;
+        const { material, position, size } = componentProps as PlaneProps;
         return Plane({ id, position, size, material });
       }
       case COMPONENT_TYPES.CUBE: {
-        const { id, material, position, size } = componentProps as CubeProps;
+        const { material, position, size } = componentProps as CubeProps;
         return Cube({ id, position, size, material });
       }
 

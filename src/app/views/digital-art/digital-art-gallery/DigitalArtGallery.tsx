@@ -1,19 +1,16 @@
 import React from "react";
-import { selectPiece } from "../context/slice";
-import { useDigitalArtContext } from "../context/useDigitalArtContext";
 import { GalleryContainer } from "../StyledComponents";
 import { Card } from "../../../components";
-
+import { useOnCardClick } from "./useOnCardClick";
+import { useAppSelector } from "app/redux/store";
 const DIGITAL_ART_CARD_IMAGE_URL = "../card-images";
-export function DigitalArtGallery() {
-  const { dispatch, pieces } = useDigitalArtContext();
 
-  const onCardClick = (index: number) => {
-    dispatch(selectPiece(index));
-  };
+export function DigitalArtGallery() {
+  const { configuredScenes } = useAppSelector((state) => state.sceneData);
+  const onCardClick = useOnCardClick();
   return (
     <GalleryContainer>
-      {pieces.map(({ title, cardImageName }, index) => (
+      {configuredScenes.map(({ title, cardImageName }, index) => (
         <Card
           key={`${title}`}
           cardDetails={{

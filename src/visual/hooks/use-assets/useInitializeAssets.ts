@@ -26,19 +26,19 @@ const loadAsset = async (asset: Asset) => {
   const { assetType, url: path } = asset;
   const fileType = getFileTypeFromFilename(path);
   switch (assetType) {
-    case ASSET_TYPES.Geometry: {
+    case ASSET_TYPES.GEOMETRY: {
       const geometry = await loadGeometry(path, fileType);
       return geometry;
     }
-    case ASSET_TYPES.Texture: {
+    case ASSET_TYPES.TEXTURE: {
       const texture = await loadTexture(path);
       return texture;
     }
-    case ASSET_TYPES.Image: {
+    case ASSET_TYPES.IMAGE: {
       const image = await loadImage(path);
       return image;
     }
-    case ASSET_TYPES.Video: {
+    case ASSET_TYPES.VIDEO: {
       // todo - check if url actually exists
       return "";
     }

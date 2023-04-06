@@ -11,14 +11,13 @@ interface IRootContainerProps {
   config?: Partial<VisualComponentConfig>;
 }
 // Scene manager for displaying multiple scenes in a particular setting
-export const RootContainer = ({
-  containerRef,
-  config,
-}: IRootContainerProps) => {
+export const RootContainer = ({ containerRef }: IRootContainerProps) => {
   const { visualComponentConfig, visualData } = useAppSelector(
     (state) => state.visual
   );
-  const componentConfig = { ...visualComponentConfig, ...config };
+
+  // todo - set component config from app selector
+  const componentConfig = { ...visualComponentConfig };
   const { viewHeight, viewWidth, backgroundColor } = componentConfig;
   const { video } = visualData;
 

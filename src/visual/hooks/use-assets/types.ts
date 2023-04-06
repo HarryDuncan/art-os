@@ -3,10 +3,10 @@ import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { MATERIAL_TYPES } from "visual/helpers/materials/materials.constants";
 
 export const ASSET_TYPES = {
-  Geometry: "geometry",
-  Texture: "texture",
-  Image: "image",
-  Video: "video",
+  GEOMETRY: "GEOMETRY",
+  TEXTURE: "TEXTURE",
+  IMAGE: "IMAGE",
+  VIDEO: "VIDEO",
   FONT: "FONT",
 };
 export const ASSET_TAG = {

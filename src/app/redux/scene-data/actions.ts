@@ -1,3 +1,2 @@
 import { slice } from "./slice";
-
-export const { setSceneData } = slice.actions;
+export const { setSelectedConfigId } = slice.actions;

@@ -1,0 +1,135 @@
+[
+  {
+    "assets": [
+      {
+        "name": "nymph-geometry",
+        "url": "../assets/models/nymph1.obj",
+        "assetType": "GEOMETRY"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "nymph",
+        "rotation": { "x": 180, "y": 200, "z": 0 },
+        "position": { "x": -1, "y": -0.5 },
+        "size": 2,
+        "hidden": true,
+        "materialConfig": {
+          "materialType": "INTERACTIVE_SHADER",
+          "materialProps": {
+            "shaderType": "shader",
+            "shaders": {
+              "vertex": "interactiveParticlesVertex",
+              "fragment": "interactiveParticlesFragment"
+            },
+            "uniforms": {}
+          }
+        }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "compute-background",
+        "materialProps": {
+          "color": "#111111",
+          "specular": "#bfbfbf",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-one",
+        "materialProps": {
+          "color": "#1902b0",
+          "specular": "#0000ff",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-two",
+        "materialProps": {
+          "color": "#c70606",
+          "specular": "#ff0303",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "binary",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.02,
+            "rotationAxis": "Z",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "move-lights",
+        "targetIdentifier": "LIGHTS",
+        "animationFunction": "ALL",
+        "animationConfig": {
+          "animationType": "TRIG",
+          "animationProperties": {
+            "trigFunctionType": "COS",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "camera-fly",
+        "targetIdentifier": "CAMERA",
+        "animationFunction": "ALL",
+        "animationConfig": {
+          "animationType": "TRAVERSE",
+          "animationProperties": {
+            "startPosition": { "x": -3, "y": -1, "z": 10 },
+            "endPosition": { "z": 4 },
+            "curveSize": 0,
+            "repeatAnimation": false,
+            "animationDurationMilis": 4000
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 0, "z": 10 } }
+      },
+      {
+        "name": "directional-light",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 0, "z": 5 } }
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": -5, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "compute-background"
+        }
+      }
+    ]
+  }
+]

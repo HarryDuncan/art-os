@@ -5,15 +5,11 @@ import { createBoundingBox } from "visual/helpers/three-dimension-space/createBo
 import { generateRandomlySpreadCoordinates } from "visual/helpers/three-dimension-space/position/getRandomlySpreadCoordinates";
 import { BoundingBox } from "visual/helpers/three-dimension-space/position/position.types";
 import { getLightsFromConfig } from "scenes/config-helpers/lights/getLightsFromConfig";
-import computeConfig from "./config.json";
-import { SceneDataConfig } from "scenes/config-helpers/config.types";
 import { formatGlobalMaterials } from "scenes/config-helpers/material/formatGlobalMaterials";
-import { CONFIG_INDEX } from "../constants";
 import { formatSceneComponentConfigs } from "scenes/config-helpers/components/formatSceneComponentConfigs";
 import { initializeVideos } from "visual/helpers/assets/animated-texture/setUpVideos";
 
-export const formatSceneData = (assets, context, dispatch): SceneData => {
-  const config = computeConfig[CONFIG_INDEX] as SceneDataConfig;
+export const formatSceneData = (config, assets): SceneData => {
   const materials = formatGlobalMaterials(assets, config);
   const meshConfigs = getMeshConfigs(assets, materials, config);
   const formattedMeshConfigs = setUpMeshConfigs(meshConfigs);
