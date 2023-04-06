@@ -1,4 +1,4 @@
-import { Asset } from "visual/hooks/use-assets/types";
+import { Asset } from "utils/assets/use-assets/types";
 import { addMaterialsToMeshConfig } from "./addMaterialsToMeshConfig";
 import { formatMeshGeometry } from "./formatMeshGeometry";
 import { Material } from "three";

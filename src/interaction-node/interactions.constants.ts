@@ -1,0 +1,3 @@
+export const INTERACTION_ALGORITHIMS = {
+  BODY_PIX: "BODY_PIX",
+};

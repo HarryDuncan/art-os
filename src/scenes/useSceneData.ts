@@ -3,7 +3,7 @@ import { useDefaultConfig } from "scenes/default-configs/useDefaultConfig";
 import { deepMergeObjects } from "utils/deepMergeObjects";
 import { useAppSelector } from "app/redux/store";
 import { useSceneConfig } from "./useSceneConfig";
-import { useAssets } from "visual/hooks/use-assets/useAssets";
+import { useAssets } from "utils/assets/use-assets/useAssets";
 import * as setUpScenes from "./set-up-scene-parameters";
 
 export const useSceneData = () => {

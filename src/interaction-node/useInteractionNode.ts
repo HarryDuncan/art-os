@@ -1,4 +1,4 @@
-import { PORT_NUMBERS } from "interaction-node/grpc.constants";
+import { PORT_NUMBERS } from "utils/grpc/grpc.constants";
 import { InteractionNodeServiceClient } from "./protos/InteractionNodeServiceClientPb";
 import { InitializeInteractionNodeRequest } from "./protos/interactionNode_pb";
 import { useAppDispatch, useAppSelector } from "app/redux/store";

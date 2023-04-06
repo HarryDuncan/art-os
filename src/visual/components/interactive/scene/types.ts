@@ -1,5 +1,4 @@
 import { Object3D, Texture } from "three";
-import { MeshConfig } from "visual/helpers/assets/geometry/geometry.types";
 
 import { LightConfigs } from "../../../scene-elements/lights/lights.types";
 
@@ -10,6 +9,7 @@ import {
 } from "visual/scene-elements/components/threeJsComponents.types";
 import { MarchingCubes } from "three/examples/jsm/objects/MarchingCubes";
 import { MaterialConfig } from "visual/helpers/materials/materials.types";
+import { MeshConfig } from "utils/assets/geometry/geometry.types";
 
 export type InteractiveSceneFunctions = {
   onTimeUpdate: (material: InteractiveScene) => void;

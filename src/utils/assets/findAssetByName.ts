@@ -1,4 +1,4 @@
-import { Asset } from "visual/hooks/use-assets/types";
+import { Asset } from "utils/assets/use-assets/types";
 
 export const findAssetByName = (assets: Asset[], assetName: string) => {
   const selectedAsset = assets.find(({ name }) => name === assetName);

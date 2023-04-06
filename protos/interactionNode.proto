@@ -22,3 +22,8 @@ message InitializeInteractionNodeResponse {
   bool isInitialized = 1;
 
 }
+
+
+message InitializeAlgorithimRequest {
+  
+}

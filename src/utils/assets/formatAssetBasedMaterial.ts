@@ -1,8 +1,8 @@
-import { ASSET_TAG, Asset } from "visual/hooks/use-assets/types";
-import { MaterialType } from "../materials/materials.types";
+import { ASSET_TAG, Asset } from "utils/assets/use-assets/types";
 import { Material, Texture } from "three";
 import { hasCommonValues } from "visual/utils/hasCommonElement";
-import { getMaterial } from "../materials/getMaterial";
+import { getMaterial } from "visual/helpers/materials/getMaterial";
+import { MaterialType } from "visual/helpers/materials/materials.types";
 
 export const formatAssetBasedMaterial = (assets: Asset[]) =>
   sortMaterialsFromAssets(assets).flatMap((asset: Asset) => {

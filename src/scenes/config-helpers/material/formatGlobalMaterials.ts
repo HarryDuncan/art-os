@@ -1,4 +1,4 @@
-import { Asset } from "visual/hooks/use-assets/types";
+import { Asset } from "utils/assets/use-assets/types";
 import { SceneDataConfig } from "../config.types";
 import { formatAssetBasedMaterial } from "visual/helpers/assets/formatAssetBasedMaterial";
 import { getMaterialsFromConfig } from "./getMaterialsFromConfig";

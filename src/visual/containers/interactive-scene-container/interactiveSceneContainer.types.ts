@@ -1,4 +1,4 @@
-import { Asset } from "visual/hooks/use-assets/types";
+import { Asset } from "utils/assets/use-assets/types";
 import { InteractionEventObject } from "visual/helpers/interactions/types";
 import { ThreeJsParams } from "visual/hooks/use-three-js/types";
 import { SceneData } from "visual/components/interactive/scene/types";
