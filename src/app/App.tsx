@@ -11,8 +11,8 @@ import { Landing } from "./views/landing/Landing";
 import { Navigation } from "./components/navigation/Navigation";
 // Redux
 import { store } from "./redux/store";
-import { THEME } from "./theme/theme";
-import { GlobalStyle } from "./theme/GlobalStyle";
+import { THEME } from "theme/theme";
+import { GlobalStyle } from "theme/GlobalStyle";
 import { Sandbox } from "./views/sandbox/sandbox";
 import { AppendContainer } from "./components/AppendContainer";
 import { useInteractionNode } from "interaction-node/useInteractionNode";
