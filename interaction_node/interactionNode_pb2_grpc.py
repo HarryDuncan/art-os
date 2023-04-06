@@ -21,6 +21,11 @@ class InteractionNodeServiceStub(object):
                 request_serializer=interactionNode__pb2.InitializeInteractionNodeRequest.SerializeToString,
                 response_deserializer=interactionNode__pb2.InitializeInteractionNodeResponse.FromString,
                 )
+        self.InitalizeAlgorithim = channel.unary_unary(
+                '/interactionNode.InteractionNodeService/InitalizeAlgorithim',
+                request_serializer=interactionNode__pb2.InitializeAlgorithmRequest.SerializeToString,
+                response_deserializer=interactionNode__pb2.InitalizeAlgorithimResponse.FromString,
+                )
 
 
 class InteractionNodeServiceServicer(object):
@@ -35,6 +40,12 @@ class InteractionNodeServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def InitalizeAlgorithim(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_InteractionNodeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -42,6 +53,11 @@ def add_InteractionNodeServiceServicer_to_server(servicer, server):
                     servicer.InitializeInteractionNode,
                     request_deserializer=interactionNode__pb2.InitializeInteractionNodeRequest.FromString,
                     response_serializer=interactionNode__pb2.InitializeInteractionNodeResponse.SerializeToString,
+            ),
+            'InitalizeAlgorithim': grpc.unary_unary_rpc_method_handler(
+                    servicer.InitalizeAlgorithim,
+                    request_deserializer=interactionNode__pb2.InitializeAlgorithmRequest.FromString,
+                    response_serializer=interactionNode__pb2.InitalizeAlgorithimResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -69,5 +85,22 @@ class InteractionNodeService(object):
         return grpc.experimental.unary_unary(request, target, '/interactionNode.InteractionNodeService/InitializeInteractionNode',
             interactionNode__pb2.InitializeInteractionNodeRequest.SerializeToString,
             interactionNode__pb2.InitializeInteractionNodeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def InitalizeAlgorithim(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/interactionNode.InteractionNodeService/InitalizeAlgorithim',
+            interactionNode__pb2.InitializeAlgorithmRequest.SerializeToString,
+            interactionNode__pb2.InitalizeAlgorithimResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

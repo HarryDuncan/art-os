@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15interactionNode.proto\x12\x0finteractionNode\"\"\n InitializeInteractionNodeRequest\":\n!InitializeInteractionNodeResponse\x12\x15\n\risInitialized\x18\x01 \x01(\x08\x32\x9d\x01\n\x16InteractionNodeService\x12\x82\x01\n\x19InitializeInteractionNode\x12\x31.interactionNode.InitializeInteractionNodeRequest\x1a\x32.interactionNode.InitializeInteractionNodeResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15interactionNode.proto\x12\x0finteractionNode\"\"\n InitializeInteractionNodeRequest\":\n!InitializeInteractionNodeResponse\x12\x15\n\risInitialized\x18\x01 \x01(\x08\"]\n\x1aInitializeAlgorithmRequest\x12\x16\n\x0e\x61lgorithm_type\x18\x01 \x01(\t\x12\x1b\n\x13\x64\x61ta_transform_type\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\t\"?\n\x1bInitalizeAlgorithimResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x0cisIntialized\x18\x02 \x01(\x08\x32\x8f\x02\n\x16InteractionNodeService\x12\x82\x01\n\x19InitializeInteractionNode\x12\x31.interactionNode.InitializeInteractionNodeRequest\x1a\x32.interactionNode.InitializeInteractionNodeResponse\x12p\n\x13InitalizeAlgorithim\x12+.interactionNode.InitializeAlgorithmRequest\x1a,.interactionNode.InitalizeAlgorithimResponseb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'interactionNode_pb2', globals())
@@ -24,6 +24,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _INITIALIZEINTERACTIONNODEREQUEST._serialized_end=76
   _INITIALIZEINTERACTIONNODERESPONSE._serialized_start=78
   _INITIALIZEINTERACTIONNODERESPONSE._serialized_end=136
-  _INTERACTIONNODESERVICE._serialized_start=139
-  _INTERACTIONNODESERVICE._serialized_end=296
+  _INITIALIZEALGORITHMREQUEST._serialized_start=138
+  _INITIALIZEALGORITHMREQUEST._serialized_end=231
+  _INITALIZEALGORITHIMRESPONSE._serialized_start=233
+  _INITALIZEALGORITHIMRESPONSE._serialized_end=296
+  _INTERACTIONNODESERVICE._serialized_start=299
+  _INTERACTIONNODESERVICE._serialized_end=570
 # @@protoc_insertion_point(module_scope)

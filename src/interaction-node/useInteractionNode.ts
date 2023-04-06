@@ -1,23 +1,21 @@
 import { PORT_NUMBERS } from "utils/grpc/grpc.constants";
 import { InteractionNodeServiceClient } from "./protos/InteractionNodeServiceClientPb";
 import { InitializeInteractionNodeRequest } from "./protos/interactionNode_pb";
-import { useAppDispatch, useAppSelector } from "app/redux/store";
+import { useAppDispatch } from "app/redux/store";
 import { getResponseValue } from "utils/grpc/getResponseValue";
 import { mapResponseToObject } from "utils/grpc/mapResponseToObject";
 import { setInitialization } from "app/redux/interaction-node/actions";
 import { useEffect } from "react";
+import { INTERACTION_NODE_CLIENT } from "./interactions.constants";
 
 const initializeResponseObj = {
   isInitialized: false,
 };
 export const useInteractionNode = () => {
-  const { isInitialized } = useAppSelector((state) => state.interactionNode);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const client = new InteractionNodeServiceClient(
-      `http://localhost:${PORT_NUMBERS.VISUAL_INPUT_NODE}/`
-    );
+    const client = INTERACTION_NODE_CLIENT;
     const request = new InitializeInteractionNodeRequest();
     client.initializeInteractionNode(request, {}, (err, response) => {
       if (err) {

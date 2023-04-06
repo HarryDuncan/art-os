@@ -11,4 +11,6 @@ export type SceneDataConfig = {
   animationConfig: CustomAnimationConfig[];
   lightConfig: LightConfigs[];
   sceneComponentConfigs?: SceneComponentConfig[];
+  // TOOD - type config
+  interactionConfig?: any;
 };

@@ -82,5 +82,48 @@ export class InteractionNodeServiceClient {
     this.methodDescriptorInitializeInteractionNode);
   }
 
+  methodDescriptorInitalizeAlgorithim = new grpcWeb.MethodDescriptor(
+    '/interactionNode.InteractionNodeService/InitalizeAlgorithim',
+    grpcWeb.MethodType.UNARY,
+    protos_interactionNode_pb.InitializeAlgorithmRequest,
+    protos_interactionNode_pb.InitalizeAlgorithimResponse,
+    (request: protos_interactionNode_pb.InitializeAlgorithmRequest) => {
+      return request.serializeBinary();
+    },
+    protos_interactionNode_pb.InitalizeAlgorithimResponse.deserializeBinary
+  );
+
+  initalizeAlgorithim(
+    request: protos_interactionNode_pb.InitializeAlgorithmRequest,
+    metadata: grpcWeb.Metadata | null): Promise<protos_interactionNode_pb.InitalizeAlgorithimResponse>;
+
+  initalizeAlgorithim(
+    request: protos_interactionNode_pb.InitializeAlgorithmRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.InitalizeAlgorithimResponse) => void): grpcWeb.ClientReadableStream<protos_interactionNode_pb.InitalizeAlgorithimResponse>;
+
+  initalizeAlgorithim(
+    request: protos_interactionNode_pb.InitializeAlgorithmRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.InitalizeAlgorithimResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/interactionNode.InteractionNodeService/InitalizeAlgorithim',
+        request,
+        metadata || {},
+        this.methodDescriptorInitalizeAlgorithim,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/interactionNode.InteractionNodeService/InitalizeAlgorithim',
+    request,
+    metadata || {},
+    this.methodDescriptorInitalizeAlgorithim);
+  }
+
 }
 

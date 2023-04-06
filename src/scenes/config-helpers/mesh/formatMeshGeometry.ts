@@ -2,8 +2,8 @@ import { DEFAULT_POSITION } from "consts/threejs";
 import { Vector3 } from "three";
 import { getMeshComponentConfig } from "scenes/config-helpers/mesh/getMeshComponentConfig";
 import { vector3DegreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
-import { formatGeometriesFromAsset } from "../../../visual/helpers/assets/geometry/formatGeometryFromAsset";
-import { FormattedGeometry } from "../../../visual/helpers/assets/geometry/geometry.types";
+import { FormattedGeometry } from "utils/assets/geometry/geometry.types";
+import { formatGeometriesFromAsset } from "utils/assets/geometry/formatGeometryFromAsset";
 
 export const formatMeshGeometry = (
   loadedAssets,

@@ -130,6 +130,12 @@
           "materialById": "compute-background"
         }
       }
+    ],
+    "interactionConfig": [
+      {
+        "algorithimType": "BODY_PIX",
+        "dataTransformType": "PERSON_POSITION"
+      }
     ]
   }
 ]

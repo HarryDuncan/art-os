@@ -5,3 +5,7 @@ grpcio==1.53.0
 grpcio-tools==1.53.0
 protobuf>=4.21.
 grpcio-reflection==1.53.0
+tensorflow==2.8.0
+tensorflow_gpu==2.8.0 
+tf_bodypix==0.4.2 
+tfjs_graph_converter==1.6.3

@@ -7,7 +7,7 @@ import { BoundingBox } from "visual/helpers/three-dimension-space/position/posit
 import { getLightsFromConfig } from "scenes/config-helpers/lights/getLightsFromConfig";
 import { formatGlobalMaterials } from "scenes/config-helpers/material/formatGlobalMaterials";
 import { formatSceneComponentConfigs } from "scenes/config-helpers/components/formatSceneComponentConfigs";
-import { initializeVideos } from "visual/helpers/assets/animated-texture/setUpVideos";
+import { initializeVideos } from "utils/assets/animated-texture/setUpVideos";
 
 export const formatSceneData = (config, assets): SceneData => {
   const materials = formatGlobalMaterials(assets, config);

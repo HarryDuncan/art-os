@@ -9,6 +9,8 @@ service InteractionNodeService {
 
 // <------------------- Initialization -------------------------------->
   rpc InitializeInteractionNode (InitializeInteractionNodeRequest) returns (InitializeInteractionNodeResponse);
+
+  rpc InitalizeAlgorithim (InitializeAlgorithmRequest) returns (InitalizeAlgorithimResponse);
 }
 
 
@@ -24,6 +26,13 @@ message InitializeInteractionNodeResponse {
 }
 
 
-message InitializeAlgorithimRequest {
-  
+message InitializeAlgorithmRequest {
+  string algorithm_type = 1;
+  string data_transform_type = 2;
+  string id = 3;
+}
+
+message InitalizeAlgorithimResponse {
+  string id = 1;
+  bool isIntialized = 2;
 }

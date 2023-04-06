@@ -7,7 +7,7 @@ import { MaterialType } from "visual/helpers/materials/materials.types";
 export const formatAssetBasedMaterial = (assets: Asset[]) =>
   sortMaterialsFromAssets(assets).flatMap((asset: Asset) => {
     const materialAssetTags = asset.assetTag?.flatMap((tag) =>
-      !!ASSET_TAG.MATERIAL[tag] ? tag : []
+      ASSET_TAG.MATERIAL[tag] ? tag : []
     );
     if (materialAssetTags) {
       const materialTag = materialAssetTags[0] as MaterialType;
