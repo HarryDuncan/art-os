@@ -9,6 +9,13 @@ import grpc
 import interactionNode_pb2 as pb2
 import interactionNode_pb2_grpc as pb2_grpc
 
+import sys
+import os
+
+app_home = os.environ['APP_HOME']
+sys.path.insert(1, os.path.abspath(os.path.join(app_home, 'dependencies/tf_bodypix')))
+
+print(app_home)
 # ALGOS
 import body_seg.body_seg as BodySeg
 

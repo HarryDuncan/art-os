@@ -1,4 +1,4 @@
-import computeConfig from "config/computeConfig.json";
+import computeConfig from "config/scenes/computeConfig.json";
 import { SceneDataConfig } from "./config-helpers/config.types";
 import { useMemo } from "react";
 
