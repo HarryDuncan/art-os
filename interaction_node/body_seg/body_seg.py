@@ -8,9 +8,11 @@ import numpy as np
 class BodySeg():
      
     def __init__(self):
-         self.selected_model_config = BodyPixModelPaths.MOBILENET_FLOAT_50_STRIDE_16
+        self.selected_model_config = BodyPixModelPaths.MOBILENET_FLOAT_50_STRIDE_16
+        self.isRunning = False
 
     def run_algorithm(self):
+         self.isRunning = True
          bodypix_model = load_model(download_model(self.selected_model_config))
          cap = cv2.VideoCapture('udp://127.0.0.1:1235')
          while cap.isOpened():
@@ -18,8 +20,8 @@ class BodySeg():
              result = bodypix_model.predict_single(frame)
              mask = result.get_mask(threshold=0.5).numpy().astype(np.uint8)
              masked_image = cv2.bitwise_and(frame, frame, mask=mask)
-             cv2.imshow('BodyPix', masked_image )
-             if cv2.waitKey(10) & 0xFF == ord('q'):
+             print(masked_image)
+             if self.isRunning == False:
                  break
          cap.release()
          cap.destroyAllWindows()

@@ -25,6 +25,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     libwebp-dev \
     wget \
     qtbase5-dev \
+    libgtk2.0-dev \
+    pkg-config \
     qtchooser \
     qt5-qmake \
     qtbase5-dev-tools \
