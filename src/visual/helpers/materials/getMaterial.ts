@@ -10,7 +10,7 @@ import {
 } from "three";
 import { InteractionEventObject } from "../interactions/types";
 import { setUpEnvMap } from "./env-map/setUpEnvMap";
-import { getInteractiveMaterial } from "./interactive-material/getInteractiveMaterial";
+
 import { MATERIAL_TYPES } from "./materials.constants";
 import {
   EnvMapMaterialProps,
@@ -31,11 +31,12 @@ export const getMaterial = (
 ): Material => {
   switch (materialType) {
     case MATERIAL_TYPES.INTERACTIVE_SHADER: {
-      return getInteractiveMaterial(
-        materialProps as InteractiveMaterialProps,
-        interactions,
-        materialFunctions
-      );
+      // return getInteractiveMaterial(
+      //   materialProps as InteractiveMaterialProps,
+      //   interactions,
+      //   materialFunctions
+      // );
+      return new MeshStandardMaterial({});
     }
     case MATERIAL_TYPES.STANDARD_SHADER: {
       const {

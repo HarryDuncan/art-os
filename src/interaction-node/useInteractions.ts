@@ -1,10 +1,12 @@
-import { useInitializeAlgorithim } from "./interaction-node-requests/useInitializeAlgorithim";
+import { useEffect } from "react";
+import { useInitializeAlgorithm } from "./interaction-node-requests/useInitializeAlgorithm";
 
 export const useInteractions = (interactionsConfig) => {
-  const initializeAlgorithim = useInitializeAlgorithim();
-  if (interactionsConfig.length) {
-    const request = interactionsConfig[0];
-    initializeAlgorithim(request);
-  }
-  return [];
+  const initializeAlgorithm = useInitializeAlgorithm();
+  useEffect(() => {
+    if (interactionsConfig.length) {
+      const request = interactionsConfig[0];
+      initializeAlgorithm(request);
+    }
+  }, []);
 };

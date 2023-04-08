@@ -8,6 +8,7 @@ import { setSceneProperties } from "visual/helpers/scene/setSceneProperties";
 import { useEvents } from "visual/hooks/use-events/useEvents";
 import { InteractiveSceneProps } from "./interactiveSceneContainer.types";
 import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
+import { useRunAlgorithm } from "interaction-node/interaction-node-requests/useRunAlgorithm";
 
 export const InteractiveSceneContainer = ({
   threeJsParams,
@@ -45,6 +46,8 @@ export const InteractiveSceneContainer = ({
     camera
   );
 
+  const run = useRunAlgorithm();
+
   useEffect(() => () => pause(), [pause]);
 
   const initializeSceneWithData = useCallback(() => {
@@ -67,6 +70,7 @@ export const InteractiveSceneContainer = ({
 
   useEffect(() => {
     initializeSceneWithData();
+    run();
   }, [initializeSceneWithData]);
 
   return <RootContainer containerRef={container} />;

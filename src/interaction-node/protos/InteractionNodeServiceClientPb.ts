@@ -82,47 +82,90 @@ export class InteractionNodeServiceClient {
     this.methodDescriptorInitializeInteractionNode);
   }
 
-  methodDescriptorInitalizeAlgorithim = new grpcWeb.MethodDescriptor(
-    '/interactionNode.InteractionNodeService/InitalizeAlgorithim',
+  methodDescriptorInitalizeAlgorithm = new grpcWeb.MethodDescriptor(
+    '/interactionNode.InteractionNodeService/InitalizeAlgorithm',
     grpcWeb.MethodType.UNARY,
     protos_interactionNode_pb.InitializeAlgorithmRequest,
-    protos_interactionNode_pb.InitalizeAlgorithimResponse,
+    protos_interactionNode_pb.InitializeAlgorithmResponse,
     (request: protos_interactionNode_pb.InitializeAlgorithmRequest) => {
       return request.serializeBinary();
     },
-    protos_interactionNode_pb.InitalizeAlgorithimResponse.deserializeBinary
+    protos_interactionNode_pb.InitializeAlgorithmResponse.deserializeBinary
   );
 
-  initalizeAlgorithim(
+  initalizeAlgorithm(
     request: protos_interactionNode_pb.InitializeAlgorithmRequest,
-    metadata: grpcWeb.Metadata | null): Promise<protos_interactionNode_pb.InitalizeAlgorithimResponse>;
+    metadata: grpcWeb.Metadata | null): Promise<protos_interactionNode_pb.InitializeAlgorithmResponse>;
 
-  initalizeAlgorithim(
+  initalizeAlgorithm(
     request: protos_interactionNode_pb.InitializeAlgorithmRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: protos_interactionNode_pb.InitalizeAlgorithimResponse) => void): grpcWeb.ClientReadableStream<protos_interactionNode_pb.InitalizeAlgorithimResponse>;
+               response: protos_interactionNode_pb.InitializeAlgorithmResponse) => void): grpcWeb.ClientReadableStream<protos_interactionNode_pb.InitializeAlgorithmResponse>;
 
-  initalizeAlgorithim(
+  initalizeAlgorithm(
     request: protos_interactionNode_pb.InitializeAlgorithmRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: protos_interactionNode_pb.InitalizeAlgorithimResponse) => void) {
+               response: protos_interactionNode_pb.InitializeAlgorithmResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/interactionNode.InteractionNodeService/InitalizeAlgorithim',
+          '/interactionNode.InteractionNodeService/InitalizeAlgorithm',
         request,
         metadata || {},
-        this.methodDescriptorInitalizeAlgorithim,
+        this.methodDescriptorInitalizeAlgorithm,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/interactionNode.InteractionNodeService/InitalizeAlgorithim',
+      '/interactionNode.InteractionNodeService/InitalizeAlgorithm',
     request,
     metadata || {},
-    this.methodDescriptorInitalizeAlgorithim);
+    this.methodDescriptorInitalizeAlgorithm);
+  }
+
+  methodDescriptorRunAlgorithm = new grpcWeb.MethodDescriptor(
+    '/interactionNode.InteractionNodeService/RunAlgorithm',
+    grpcWeb.MethodType.UNARY,
+    protos_interactionNode_pb.RunAlgorithmRequest,
+    protos_interactionNode_pb.RunAlgorithmResponse,
+    (request: protos_interactionNode_pb.RunAlgorithmRequest) => {
+      return request.serializeBinary();
+    },
+    protos_interactionNode_pb.RunAlgorithmResponse.deserializeBinary
+  );
+
+  runAlgorithm(
+    request: protos_interactionNode_pb.RunAlgorithmRequest,
+    metadata: grpcWeb.Metadata | null): Promise<protos_interactionNode_pb.RunAlgorithmResponse>;
+
+  runAlgorithm(
+    request: protos_interactionNode_pb.RunAlgorithmRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.RunAlgorithmResponse) => void): grpcWeb.ClientReadableStream<protos_interactionNode_pb.RunAlgorithmResponse>;
+
+  runAlgorithm(
+    request: protos_interactionNode_pb.RunAlgorithmRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.RunAlgorithmResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/interactionNode.InteractionNodeService/RunAlgorithm',
+        request,
+        metadata || {},
+        this.methodDescriptorRunAlgorithm,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/interactionNode.InteractionNodeService/RunAlgorithm',
+    request,
+    metadata || {},
+    this.methodDescriptorRunAlgorithm);
   }
 
 }

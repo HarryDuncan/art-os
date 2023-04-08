@@ -133,7 +133,7 @@
     ],
     "interactionConfig": [
       {
-        "algorithimType": "BODY_PIX",
+        "algorithmType": "BODY_PIX",
         "dataTransformType": "PERSON_POSITION"
       }
     ]

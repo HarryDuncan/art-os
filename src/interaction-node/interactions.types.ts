@@ -3,10 +3,10 @@ import {
   INTERACTION_ALGORITHIMS,
 } from "./interactions.constants";
 
-export type AlgorithimType = keyof typeof INTERACTION_ALGORITHIMS;
+export type AlgorithmType = keyof typeof INTERACTION_ALGORITHIMS;
 export type DataTransformType = keyof typeof DATA_TRANSFORM_TYPE;
 
-export type IntializeAlgorithimConfig = {
-  algorithimType: AlgorithimType;
+export type IntializeAlgorithmConfig = {
+  algorithmType: AlgorithmType;
   dataTransformType: DataTransformType;
 };

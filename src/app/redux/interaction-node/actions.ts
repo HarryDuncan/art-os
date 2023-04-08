@@ -1,3 +1,3 @@
 import { slice } from "./slice";
 
-export const { setInitialization } = slice.actions;
+export const { setInitialization, setAlgorithm } = slice.actions;

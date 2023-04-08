@@ -60,25 +60,72 @@ export namespace InitializeAlgorithmRequest {
   }
 }
 
-export class InitalizeAlgorithimResponse extends jspb.Message {
+export class InitializeAlgorithmResponse extends jspb.Message {
   getId(): string;
-  setId(value: string): InitalizeAlgorithimResponse;
+  setId(value: string): InitializeAlgorithmResponse;
 
-  getIsintialized(): boolean;
-  setIsintialized(value: boolean): InitalizeAlgorithimResponse;
+  getIsinitialized(): boolean;
+  setIsinitialized(value: boolean): InitializeAlgorithmResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): InitalizeAlgorithimResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: InitalizeAlgorithimResponse): InitalizeAlgorithimResponse.AsObject;
-  static serializeBinaryToWriter(message: InitalizeAlgorithimResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): InitalizeAlgorithimResponse;
-  static deserializeBinaryFromReader(message: InitalizeAlgorithimResponse, reader: jspb.BinaryReader): InitalizeAlgorithimResponse;
+  toObject(includeInstance?: boolean): InitializeAlgorithmResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: InitializeAlgorithmResponse): InitializeAlgorithmResponse.AsObject;
+  static serializeBinaryToWriter(message: InitializeAlgorithmResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InitializeAlgorithmResponse;
+  static deserializeBinaryFromReader(message: InitializeAlgorithmResponse, reader: jspb.BinaryReader): InitializeAlgorithmResponse;
 }
 
-export namespace InitalizeAlgorithimResponse {
+export namespace InitializeAlgorithmResponse {
   export type AsObject = {
     id: string,
-    isintialized: boolean,
+    isinitialized: boolean,
+  }
+}
+
+export class RunAlgorithmRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RunAlgorithmRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RunAlgorithmRequest): RunAlgorithmRequest.AsObject;
+  static serializeBinaryToWriter(message: RunAlgorithmRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RunAlgorithmRequest;
+  static deserializeBinaryFromReader(message: RunAlgorithmRequest, reader: jspb.BinaryReader): RunAlgorithmRequest;
+}
+
+export namespace RunAlgorithmRequest {
+  export type AsObject = {
+  }
+}
+
+export class RunAlgorithmResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): RunAlgorithmResponse;
+
+  getIsrunning(): boolean;
+  setIsrunning(value: boolean): RunAlgorithmResponse;
+
+  getErrormessage(): string;
+  setErrormessage(value: string): RunAlgorithmResponse;
+  hasErrormessage(): boolean;
+  clearErrormessage(): RunAlgorithmResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RunAlgorithmResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RunAlgorithmResponse): RunAlgorithmResponse.AsObject;
+  static serializeBinaryToWriter(message: RunAlgorithmResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RunAlgorithmResponse;
+  static deserializeBinaryFromReader(message: RunAlgorithmResponse, reader: jspb.BinaryReader): RunAlgorithmResponse;
+}
+
+export namespace RunAlgorithmResponse {
+  export type AsObject = {
+    id: string,
+    isrunning: boolean,
+    errormessage?: string,
+  }
+
+  export enum ErrormessageCase { 
+    _ERRORMESSAGE_NOT_SET = 0,
+    ERRORMESSAGE = 3,
   }
 }
 
