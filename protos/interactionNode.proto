@@ -10,16 +10,16 @@ service InteractionNodeService {
 // <------------------- Initialization -------------------------------->
   rpc InitializeInteractionNode (InitializeInteractionNodeRequest) returns (InitializeInteractionNodeResponse);
 
-  rpc InitalizeAlgorithim (InitializeAlgorithmRequest) returns (InitalizeAlgorithimResponse);
+  rpc InitalizeAlgorithm (InitializeAlgorithmRequest) returns (InitializeAlgorithmResponse);
+
+  rpc RunAlgorithm (RunAlgorithmRequest) returns (RunAlgorithmResponse);
+
 }
+
 
 
 message InitializeInteractionNodeRequest {
-
 }
-
-
-// Returns the playlists and directories
 message InitializeInteractionNodeResponse {
   bool isInitialized = 1;
 
@@ -31,8 +31,16 @@ message InitializeAlgorithmRequest {
   string data_transform_type = 2;
   string id = 3;
 }
-
-message InitalizeAlgorithimResponse {
+message InitializeAlgorithmResponse {
   string id = 1;
-  bool isIntialized = 2;
+  bool isInitialized = 2;
+}
+
+message RunAlgorithmRequest {
+  
+}
+message RunAlgorithmResponse {
+  string id = 1;
+  bool isRunning = 2;
+  optional string errorMessage = 3;
 }

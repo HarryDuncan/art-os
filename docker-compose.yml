@@ -10,7 +10,9 @@ services:
     build:
       context: ./interaction_node
       dockerfile: Dockerfile
+
     ports:
-      - "8080:8080"
+      - "1995:1995"
+
     depends_on:
       - proxy

@@ -3,9 +3,37 @@
 FROM python:3.10.5
 ENV APP_HOME /interaction_node
 WORKDIR $APP_HOME
- 
-RUN apt-get update && apt-get install -y python3-opencv
-    
+
+
+
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+    cmake \
+    gcc g++ \
+    libopencv-dev \
+    python3-opencv \
+    libavcodec-dev \
+    libswscale-dev \
+    libavformat-dev \
+    libgstreamer-plugins-base1.0-dev \
+    libgstreamer1.0-dev \
+    libpng-dev \
+    libopencv-dev \
+    libjpeg-dev \
+    libopenexr-dev \
+    libtiff-dev \
+    libwebp-dev \
+    wget \
+    qtbase5-dev \
+    qtchooser \
+    qt5-qmake \
+    qtbase5-dev-tools \
+    libtbb-dev \
+    libgphoto2-dev \
+    ffmpeg \
+    usbutils \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN pip install --upgrade pip setuptools
 
@@ -29,5 +57,5 @@ WORKDIR /interaction_node
 RUN chmod +x interaction_node.py
 ENV APP_HOME=$APP_HOME
 WORKDIR /interaction_node
-# RUN ["python", "body_seg/body_seg.py"]
-CMD ["python", "interaction_node.py"]
+
+CMD ["python", "-u", "interaction_node.py"]

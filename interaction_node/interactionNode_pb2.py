@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15interactionNode.proto\x12\x0finteractionNode\"\"\n InitializeInteractionNodeRequest\":\n!InitializeInteractionNodeResponse\x12\x15\n\risInitialized\x18\x01 \x01(\x08\"]\n\x1aInitializeAlgorithmRequest\x12\x16\n\x0e\x61lgorithm_type\x18\x01 \x01(\t\x12\x1b\n\x13\x64\x61ta_transform_type\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\t\"?\n\x1bInitalizeAlgorithimResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x0cisIntialized\x18\x02 \x01(\x08\x32\x8f\x02\n\x16InteractionNodeService\x12\x82\x01\n\x19InitializeInteractionNode\x12\x31.interactionNode.InitializeInteractionNodeRequest\x1a\x32.interactionNode.InitializeInteractionNodeResponse\x12p\n\x13InitalizeAlgorithim\x12+.interactionNode.InitializeAlgorithmRequest\x1a,.interactionNode.InitalizeAlgorithimResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15interactionNode.proto\x12\x0finteractionNode\"\"\n InitializeInteractionNodeRequest\":\n!InitializeInteractionNodeResponse\x12\x15\n\risInitialized\x18\x01 \x01(\x08\"]\n\x1aInitializeAlgorithmRequest\x12\x16\n\x0e\x61lgorithm_type\x18\x01 \x01(\t\x12\x1b\n\x13\x64\x61ta_transform_type\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\t\"@\n\x1bInitializeAlgorithmResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\risInitialized\x18\x02 \x01(\x08\"\x15\n\x13RunAlgorithmRequest\"a\n\x14RunAlgorithmResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\tisRunning\x18\x02 \x01(\x08\x12\x19\n\x0c\x65rrorMessage\x18\x03 \x01(\tH\x00\x88\x01\x01\x42\x0f\n\r_errorMessage2\xeb\x02\n\x16InteractionNodeService\x12\x82\x01\n\x19InitializeInteractionNode\x12\x31.interactionNode.InitializeInteractionNodeRequest\x1a\x32.interactionNode.InitializeInteractionNodeResponse\x12o\n\x12InitalizeAlgorithm\x12+.interactionNode.InitializeAlgorithmRequest\x1a,.interactionNode.InitializeAlgorithmResponse\x12[\n\x0cRunAlgorithm\x12$.interactionNode.RunAlgorithmRequest\x1a%.interactionNode.RunAlgorithmResponseb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'interactionNode_pb2', globals())
@@ -26,8 +26,12 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _INITIALIZEINTERACTIONNODERESPONSE._serialized_end=136
   _INITIALIZEALGORITHMREQUEST._serialized_start=138
   _INITIALIZEALGORITHMREQUEST._serialized_end=231
-  _INITALIZEALGORITHIMRESPONSE._serialized_start=233
-  _INITALIZEALGORITHIMRESPONSE._serialized_end=296
-  _INTERACTIONNODESERVICE._serialized_start=299
-  _INTERACTIONNODESERVICE._serialized_end=570
+  _INITIALIZEALGORITHMRESPONSE._serialized_start=233
+  _INITIALIZEALGORITHMRESPONSE._serialized_end=297
+  _RUNALGORITHMREQUEST._serialized_start=299
+  _RUNALGORITHMREQUEST._serialized_end=320
+  _RUNALGORITHMRESPONSE._serialized_start=322
+  _RUNALGORITHMRESPONSE._serialized_end=419
+  _INTERACTIONNODESERVICE._serialized_start=422
+  _INTERACTIONNODESERVICE._serialized_end=785
 # @@protoc_insertion_point(module_scope)
