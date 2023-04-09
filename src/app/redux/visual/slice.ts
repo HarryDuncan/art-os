@@ -3,20 +3,18 @@ import defaultComponentConfiguration from "config/visualComponentConfig.json";
 import defaultEventConfiguration from "config/eventsConfig.json";
 import { EventConfig, VisualComponentConfig } from "./types";
 import { Layer } from "visual/components/layers/types";
-import { ModelTypes } from "visual/helpers/interactions/types";
 
 export type VisualState = {
   visualComponentConfig: VisualComponentConfig;
   eventConfiguration: EventConfig;
   layers: Layer[];
-  defaultModelType: ModelTypes;
+
   visualData: any;
 };
 
 export const INITIAL_STATE: VisualState = {
   visualComponentConfig: defaultComponentConfiguration,
   eventConfiguration: defaultEventConfiguration,
-  defaultModelType: ModelTypes.POSENET,
   layers: [],
   visualData: {},
 };

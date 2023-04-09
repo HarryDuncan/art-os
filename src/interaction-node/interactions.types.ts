@@ -1,4 +1,4 @@
-import { InteractiveThreeScene } from "visual/components/interactive";
+import { InteractiveScene } from "visual/components/interactive-scene";
 import {
   DATA_TRANSFORM_TYPE,
   INTERACTION_ALGORITHIMS,
@@ -19,5 +19,5 @@ export type InteractionConfig = IntializeAlgorithmConfig & {
 export type InteractionEventConfig = {
   key: string;
   // TOOD - TYPE DETAILS
-  onEvent: (scene: InteractiveThreeScene, details: any) => void;
+  onEvent: (scene: InteractiveScene, details: any) => void;
 };

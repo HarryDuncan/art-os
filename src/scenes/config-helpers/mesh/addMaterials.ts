@@ -1,10 +1,10 @@
-import { getMaterial } from "visual/helpers/materials/getMaterial";
-import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
 import { Material } from "three";
 import {
   MeshComponentConfig,
   SceneDataConfig,
 } from "scenes/config-helpers/config.types";
+import { DEFAULT_MATERIAL } from "visual/materials/materials.defaults";
+import { getMaterial } from "visual/materials/getMaterial";
 
 export const addMaterials = (
   meshes,

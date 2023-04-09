@@ -1,9 +1,6 @@
-import { InteractiveThreeScene } from "visual/components/interactive";
+import { InteractiveScene } from "visual/components/interactive-scene";
 
-export const getMeshesByIdentifier = (
-  scene: InteractiveThreeScene,
-  identifier
-) => {
+export const getMeshesByIdentifier = (scene: InteractiveScene, identifier) => {
   const selectedMeshes = scene.children.flatMap((child) => {
     if (child.name && child.name.indexOf(identifier) !== -1) {
       return child;

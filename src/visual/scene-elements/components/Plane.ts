@@ -1,6 +1,6 @@
 import { Mesh, PlaneBufferGeometry } from "three";
 import { PlaneProps } from "./threeJsComponents.types";
-import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
+import { DEFAULT_MATERIAL } from "visual/materials/materials.defaults";
 
 export const Plane = ({
   id,

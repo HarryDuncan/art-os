@@ -1,6 +1,6 @@
 import { Group, Texture } from "three";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
-import { MATERIAL_TYPES } from "visual/helpers/materials/materials.constants";
+import { MATERIAL_TYPES } from "visual/materials/materials.constants";
 
 export const ASSET_TYPES = {
   GEOMETRY: "GEOMETRY",

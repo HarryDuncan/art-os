@@ -1,18 +1,18 @@
 import React, { useCallback } from "react";
-import { Camera, Clock, Scene } from "three";
+import { Camera, Clock } from "three";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
-import { ev } from "../use-events/useEventsWithMeshes";
-import { InteractiveThreeScene } from "visual/components/interactive";
+import { InteractiveScene } from "visual/components/interactive-scene";
+import { sceneUpdateEvent } from "visual/engine/engineEvents";
 
 export const useThreadWithPostProcessor = (
   postProcessor: React.MutableRefObject<PostProcessor | null>,
   currentFrameRef: React.MutableRefObject<number>,
   clock: Clock,
-  scene: InteractiveThreeScene | null,
+  scene: InteractiveScene | null,
   camera: Camera
 ) => {
   const update = useCallback(() => {
-    ev("scene:update");
+    sceneUpdateEvent();
     if (scene?.orbitControls) {
       scene.orbitControls.update();
     }

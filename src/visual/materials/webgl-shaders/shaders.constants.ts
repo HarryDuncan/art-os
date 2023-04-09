@@ -1,0 +1,4 @@
+export const SHADER_TYPES = {
+  VERTEX: "VERTEX",
+  FRAGMENT: "FRAGMENT",
+};

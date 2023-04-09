@@ -1,1 +1,0 @@
-export { vanishingObjectFragment } from './vanishingObjectFrag';

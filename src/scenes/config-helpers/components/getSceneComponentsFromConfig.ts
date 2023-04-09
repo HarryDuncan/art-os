@@ -1,4 +1,4 @@
-import { SceneComponentConfig } from "visual/components/interactive/scene/types";
+import { SceneComponentConfig } from "visual/components/interactive-scene";
 import { Mirror, TextComponent } from "visual/scene-elements/components";
 import { Cube } from "visual/scene-elements/components/Cube";
 import { Plane } from "visual/scene-elements/components/Plane";

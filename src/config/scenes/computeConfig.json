@@ -15,12 +15,11 @@
         "position": { "x": -1, "y": -0.5 },
         "size": 2,
         "materialConfig": {
-          "materialType": "INTERACTIVE_SHADER",
+          "materialType": "SHADER",
           "materialProps": {
-            "shaderType": "shader",
-            "shaders": {
-              "vertex": "interactiveParticlesVertex",
-              "fragment": "interactiveParticlesFragment"
+            "shaderConfig": {
+              "vertexShaderId": "interactiveParticlesVertex",
+              "fragmentShaderId": "interactiveParticlesFragment"
             },
             "uniforms": {}
           }

@@ -1,11 +1,11 @@
-import { InteractiveThreeScene } from "visual/components/interactive";
+import { InteractiveScene } from "visual/components/interactive-scene";
 import { getMeshByName } from "visual/helpers/scene/object-finding/getMeshByName";
 
 export const formatInteractionEvents = (interactionConfigs) => {
   return interactionConfigs.map((interactionConfig) => {
     const interactionEvent = {
       key: interactionConfig.eventKey,
-      onEvent: (scene: InteractiveThreeScene, eventDetails) => {
+      onEvent: (scene: InteractiveScene, eventDetails) => {
         const { sceneX, sceneY } = interactionCoordinatesRelativeToScene(
           eventDetails
         );

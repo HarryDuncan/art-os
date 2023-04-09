@@ -1,9 +1,11 @@
 import { CustomAnimationConfig } from "visual/animation/animation.types";
-import { SceneComponentConfig } from "visual/components/interactive";
-import { MaterialConfig } from "visual/helpers/materials/materials.types";
+
 import { Asset } from "utils/assets/use-assets/types";
 import { LightConfigs } from "visual/scene-elements/lights/lights.types";
 import { ThreeDPosition } from "visual/helpers/three-dimension-space/position/position.types";
+import { MaterialConfig } from "visual/materials/materials.types";
+import { SceneComponentConfig } from "visual/components/interactive-scene";
+import { InteractionConfig } from "interaction-node/interactions.types";
 
 export type MeshComponentConfig = {
   id: string;
@@ -20,6 +22,5 @@ export type SceneDataConfig = {
   animationConfig: CustomAnimationConfig[];
   lightConfig: LightConfigs[];
   sceneComponentConfigs?: SceneComponentConfig[];
-  // TOOD - type config
-  interactionConfig?: any;
+  interactionConfig?: InteractionConfig[];
 };

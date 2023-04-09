@@ -1,7 +1,7 @@
-import { getMaterial } from "visual/helpers/materials/getMaterial";
-import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
 import { Material } from "three";
-import { SceneComponentConfig } from "visual/components/interactive";
+import { SceneComponentConfig } from "visual/components/interactive-scene";
+import { getMaterial } from "visual/materials/getMaterial";
+import { DEFAULT_MATERIAL } from "visual/materials/materials.defaults";
 
 export const addMaterialsToComponents = (
   componentConfigs: SceneComponentConfig[],

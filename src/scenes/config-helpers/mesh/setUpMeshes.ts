@@ -1,6 +1,5 @@
 import { Mesh, Points } from "three";
 import { Geometry } from "types/threeJs.types";
-import { InteractionEventObject } from "../../../visual/helpers/interactions/types";
 import {
   MESH_TYPES,
   MeshConfig,

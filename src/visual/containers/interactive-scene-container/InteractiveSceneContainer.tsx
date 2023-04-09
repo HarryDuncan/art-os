@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { useSetUpScene } from "visual/hooks/scene-data/useSetUpScene";
 import { RootContainer } from "../root/root-container";
-import { useInteractiveScene } from "visual/components/interactive/scene/useInteractiveScene";
 import PostProcessor from "visual/components/post-processor/PostProcessor";
 import { useLights } from "visual/scene-elements/lights/useLights";
 import { setSceneProperties } from "visual/helpers/scene/setSceneProperties";
@@ -9,6 +8,7 @@ import { useEvents } from "visual/hooks/use-events/useEvents";
 import { InteractiveSceneProps } from "./interactiveSceneContainer.types";
 import { useThreadWithPostProcessor } from "visual/hooks/use-thread";
 import { useRunAlgorithm } from "interaction-node/interaction-node-requests/useRunAlgorithm";
+import { useInteractiveScene } from "visual/components/interactive-scene/useInteractiveScene";
 
 export const InteractiveSceneContainer = ({
   threeJsParams,

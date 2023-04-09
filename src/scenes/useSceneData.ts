@@ -19,12 +19,7 @@ export const useSceneData = () => {
   const setInteractions = useInteractions(configData.interactionConfig);
 
   // TODO - rename to parameters
-  const {
-    threeJsParams,
-    materialFunctions,
-    assets,
-    events,
-  } = useDefaultConfig();
+  const { threeJsParams, assets, events } = useDefaultConfig();
 
   return useMemo(() => {
     if (configId === null) return null;
@@ -32,7 +27,6 @@ export const useSceneData = () => {
       const sceneParams = setUpScenes[configId](configData, initializedAssets);
       setInteractions(sceneParams.interactionEvents ?? []);
       return {
-        materialFunctions,
         assets,
         events,
         ...sceneParams,

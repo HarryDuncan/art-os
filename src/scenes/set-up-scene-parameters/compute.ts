@@ -1,8 +1,9 @@
 import { CustomAnimationConfig } from "visual/animation/animation.types";
-import { InteractiveThreeScene } from "visual/components/interactive";
+
 import { formatSceneData } from "./formatSceneData";
 import { startSceneElementAnimations } from "visual/animation/animation-manager/startSceneElementAnimations";
 import { formatInteractionEvents } from "./formatInteractionEvents";
+import { InteractiveScene } from "visual/components/interactive-scene";
 
 export const compute = (config, assets) => {
   const sceneData = formatSceneData(config, assets);
@@ -17,7 +18,7 @@ export const compute = (config, assets) => {
       },
     },
     sceneFunctions: {
-      onTimeUpdate: (scene: InteractiveThreeScene) => {
+      onTimeUpdate: (scene: InteractiveScene) => {
         startSceneElementAnimations(scene);
       },
     },
