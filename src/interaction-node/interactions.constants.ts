@@ -12,3 +12,8 @@ export const INTERACTION_NODE_CLIENT = new InteractionNodeServiceClient(
 export const DATA_TRANSFORM_TYPE = {
   PERSON_POSITION: "PERSON_POSITION",
 };
+
+export const EVENT_BINDING_TYPE = {
+  SCENE: "SCENE",
+  MATERIAL: "MATERIAL",
+};

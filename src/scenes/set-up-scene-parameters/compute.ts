@@ -3,16 +3,23 @@ import { CustomAnimationConfig } from "visual/animation/animation.types";
 import { formatSceneData } from "./formatSceneData";
 import { startSceneElementAnimations } from "visual/animation/animation-manager/startSceneElementAnimations";
 import { formatInteractionEvents } from "./formatInteractionEvents";
-import { InteractiveScene } from "visual/components/interactive-scene";
+import {
+  InteractiveScene,
+  SceneData,
+} from "visual/components/interactive-scene";
+import { getMeshByName } from "visual/helpers/scene/object-finding/getMeshByName";
+import { RawShaderMaterial } from "three";
+import { InteractionEventConfig } from "interaction-node/interactions.types";
+import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
 
 export const compute = (config, assets) => {
-  const sceneData = formatSceneData(config, assets);
   const { animationConfig, interactionConfig } = config;
   const interactionEvents = formatInteractionEvents(interactionConfig);
-
+  const sceneData = formatSceneData(config, assets);
+  addInteractionEventsToSceneData(sceneData, interactionEvents);
   return {
     threeJsParams: {
-      camera: { position: { x: 0, y: 0, z: -5 } },
+      camera: { position: { x: 0, y: 0, z: 45 } },
       controls: {
         hasOrbitControls: true,
       },
@@ -27,4 +34,30 @@ export const compute = (config, assets) => {
     animations: animationConfig as CustomAnimationConfig[],
     events: [],
   };
+};
+
+const updateMaterialTimeUniform = (scene: InteractiveScene, meshId) => {
+  const mesh = getMeshByName(scene, meshId);
+  if (mesh) {
+    const material = mesh.material as RawShaderMaterial;
+    const clock = scene.clock;
+    material.uniforms.uTime.value = clock.getElapsedTime();
+  }
+};
+
+const addInteractionEventsToSceneData = (
+  sceneData: SceneData,
+  interactionEvents: InteractionEventConfig[]
+) => {
+  const materialEvents = interactionEvents.filter(
+    (interactionEvent) =>
+      interactionEvent.bindingType === EVENT_BINDING_TYPE.MATERIAL
+  );
+  if (!materialEvents.length) return;
+  sceneData.meshes?.forEach((mesh) => {
+    if (mesh.name === "nymph") {
+      //@ts-ignore
+      mesh.material.addInteractionsEvents(materialEvents);
+    }
+  });
 };

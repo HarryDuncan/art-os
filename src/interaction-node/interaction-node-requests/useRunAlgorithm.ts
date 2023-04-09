@@ -25,7 +25,7 @@ export const useRunAlgorithm = () => {
       const point = response.getPoint();
       // @ts-ignore
       const pointData = { x: point.array[0], y: point.array[1] };
-      //  console.log(pointData);
+
       dispatchInteractionEvent("update:position", pointData);
     });
 

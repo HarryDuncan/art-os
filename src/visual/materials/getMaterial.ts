@@ -12,6 +12,7 @@ import { setUpEnvMap } from "./env-map/setUpEnvMap";
 import { MATERIAL_TYPES } from "./materials.constants";
 import {
   EnvMapMaterialProps,
+  InteractiveShaderProps,
   MatcapMaterialProps,
   MaterialConfigProps,
   MaterialType,
@@ -20,17 +21,38 @@ import {
   VideoMaterialProps,
 } from "./materials.types";
 import { configureShaders } from "./webgl-shaders/shader-setup/configureShaders";
+import InteractiveShaderMaterial from "./interactive/InteractiveShaderMaterial";
 
 export const getMaterial = (
   materialType: MaterialType,
   materialProps: MaterialConfigProps
 ): Material => {
   switch (materialType) {
+    case MATERIAL_TYPES.INTERACTIVE_SHADER: {
+      const {
+        shaderConfig,
+        uniforms,
+      } = materialProps as InteractiveShaderProps;
+      const {
+        vertexShader,
+        fragmentShader,
+        configuredUniforms,
+      } = configureShaders(shaderConfig, uniforms);
+      return new InteractiveShaderMaterial(
+        configuredUniforms,
+        vertexShader,
+        fragmentShader
+      );
+    }
     case MATERIAL_TYPES.SHADER: {
       const { shaderConfig, uniforms } = materialProps as ShaderMaterialProps;
-      const { vertexShader, fragmentShader } = configureShaders(shaderConfig);
+      const {
+        vertexShader,
+        fragmentShader,
+        configuredUniforms,
+      } = configureShaders(shaderConfig, uniforms);
       return new ShaderMaterial({
-        uniforms,
+        uniforms: configuredUniforms,
         vertexShader,
         fragmentShader,
         depthWrite: true,

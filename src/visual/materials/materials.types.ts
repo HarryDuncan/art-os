@@ -8,6 +8,7 @@ export type EnvMapType = keyof typeof ENV_MAP_TYPES;
 export interface MaterialProps {
   name?: string;
 }
+export type InteractiveShaderProps = ShaderMaterialProps;
 
 export type ShaderMaterialProps = MaterialProps & {
   shaderConfig: ShaderConfig;

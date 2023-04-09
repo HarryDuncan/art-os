@@ -93,10 +93,14 @@ def get_coords_from_seg(image):
     #         y = i // 4 // WIDTH
 
             
-    center_x = get_center(coor_obj['left'] or 0, coor_obj['right'] or 0)
+    center_x = get_center(coor_obj['left'] or 0, coor_obj['right'] or 0) 
     center_y = get_center(coor_obj['top'] or 0, coor_obj['bottom'] or 0)
-    return {'x': center_x, 'y': center_y}
-    
+    return {'x': getPositionAsPercentage(WIDTH, center_x), 'y': getPositionAsPercentage(HEIGHT, center_y)}
+
 def get_center(point_one, point_two):
     return (point_one + point_two) / 2
+
+def getPositionAsPercentage(axis, value):
+    return 1 - value / axis
+
 

@@ -1,30 +1,41 @@
+import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
+import {
+  InteractionConfig,
+  InteractionEventConfig,
+  Interactive,
+} from "interaction-node/interactions.types";
+import { ShaderMaterial, Vector2 } from "three";
 import { InteractiveScene } from "visual/components/interactive-scene";
 import { getMeshByName } from "visual/helpers/scene/object-finding/getMeshByName";
+import InteractiveShaderMaterial from "visual/materials/interactive/InteractiveShaderMaterial";
 
-export const formatInteractionEvents = (interactionConfigs) => {
-  return interactionConfigs.map((interactionConfig) => {
-    const interactionEvent = {
+export const formatInteractionEvents = (
+  interactionConfigs: InteractionConfig[]
+) => {
+  return interactionConfigs.map((interactionConfig: InteractionConfig) => {
+    const interactionEvent: Partial<InteractionEventConfig> = {
       key: interactionConfig.eventKey,
-      onEvent: (scene: InteractiveScene, eventDetails) => {
-        const { sceneX, sceneY } = interactionCoordinatesRelativeToScene(
+      bindingType: interactionConfig.bindingType,
+    };
+    if (interactionConfig.bindingType === EVENT_BINDING_TYPE.MATERIAL) {
+      interactionEvent.onEvent = (interactive: Interactive, eventDetails) => {
+        updateMaterialTimeUniform(
+          interactive as InteractiveShaderMaterial,
           eventDetails
         );
-        const nymphMesh = getMeshByName(scene, "nymph");
-        nymphMesh?.position.set(sceneX, sceneY, 0);
-      },
-    };
-    return interactionEvent;
+      };
+    }
+    return interactionEvent as InteractionEventConfig;
   });
 };
 
-const interactionCoordinatesRelativeToScene = (coords) => {
-  const sceneWidth = 6;
-  const sceneHeight = 4;
-  const cameraWidth = 640;
-  const cameraHeight = 480;
-  const percentageWidth = 1 - coords.x / cameraWidth;
-  const percentageHeight = 1 - coords.y / cameraHeight;
-  const sceneX = -sceneWidth / 2 + percentageWidth * sceneWidth;
-  const sceneY = -sceneHeight / 2 + percentageHeight * sceneHeight;
-  return { sceneX, sceneY };
+const updateMaterialTimeUniform = (
+  material: InteractiveShaderMaterial,
+  eventDetails
+) => {
+  material.uniforms.uPosition.value = new Vector2(
+    eventDetails.x,
+    eventDetails.y
+  );
+  material.uniforms.uTime.value += 0.01;
 };

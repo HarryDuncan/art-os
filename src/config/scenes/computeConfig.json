@@ -11,16 +11,27 @@
       {
         "id": "nymph",
         "geometryId": "nymph-geometry",
-        "rotation": { "x": 180, "y": 200, "z": 0 },
-        "position": { "x": -1, "y": -0.5 },
-        "size": 2,
+        "rotation": { "z": 0 },
+        "position": { "x": 0, "y": 0 },
+        "size": 30,
         "materialConfig": {
-          "materialType": "SHADER",
+          "materialType": "INTERACTIVE_SHADER",
           "materialProps": {
             "shaderConfig": {
               "shaderId": "interactiveParticles"
             },
-            "uniforms": {}
+            "uniforms": {
+              "uTime": { "value": 0 },
+              "uRandom": { "value": 1.0 },
+              "uDepth": { "value": 2.0 },
+              "uSize": { "value": 0.0 },
+              "uResolution": { "value": null },
+              "uPosition": { "value": null },
+              "uTextureSize": { "value": null },
+              "uTexture": { "value": null },
+              "uTouch": { "value": null },
+              "uTouchRef": { "value": null }
+            }
           }
         }
       }
@@ -69,35 +80,6 @@
             "repeatAnimation": true
           }
         }
-      },
-      {
-        "animationId": "move-lights",
-        "targetIdentifier": "LIGHTS",
-        "animationFunction": "ALL",
-        "animationConfig": {
-          "animationType": "TRIG",
-          "animationProperties": {
-            "trigFunctionType": "COS",
-            "animationDurationMilis": -1,
-            "animationPauseMilis": -1,
-            "repeatAnimation": true
-          }
-        }
-      },
-      {
-        "animationId": "camera-fly",
-        "targetIdentifier": "CAMERA",
-        "animationFunction": "ALL",
-        "animationConfig": {
-          "animationType": "TRAVERSE",
-          "animationProperties": {
-            "startPosition": { "x": -3, "y": -1, "z": 10 },
-            "endPosition": { "z": 10 },
-            "curveSize": 0,
-            "repeatAnimation": false,
-            "animationDurationMilis": 4000
-          }
-        }
       }
     ],
     "lightConfig": [
@@ -133,7 +115,8 @@
       {
         "algorithmType": "BODY_PIX",
         "dataTransformType": "PERSON_POSITION",
-        "eventKey": "update:position"
+        "eventKey": "update:position",
+        "bindingType": "MATERIAL"
       }
     ]
   }

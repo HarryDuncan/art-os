@@ -52,9 +52,9 @@ export class InteractiveScene extends Scene {
   addInteractionEvents(interactionEvents: InteractionEventConfig[]) {
     interactionEvents.forEach(({ key, onEvent }) => {
       document.addEventListener(key, (e) => {
-        // TODO - TYPE THIs
+        // TODO - TYPE e
         const { detail } = e as any;
-        onEvent(this, detail);
+        onEvent(this as InteractiveScene, detail);
       });
     });
   }
