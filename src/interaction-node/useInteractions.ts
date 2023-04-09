@@ -2,8 +2,12 @@ import { useCallback, useEffect } from "react";
 import { useInitializeAlgorithm } from "./interaction-node-requests/useInitializeAlgorithm";
 import { useAppDispatch } from "app/redux/store";
 import { setInteractionEvents } from "app/redux/interaction-node/actions";
+import {
+  InteractionConfig,
+  InteractionEventConfig,
+} from "./interactions.types";
 
-export const useInteractions = (interactionsConfig) => {
+export const useInteractions = (interactionsConfig: InteractionConfig[]) => {
   const initializeAlgorithm = useInitializeAlgorithm();
   useEffect(() => {
     if (interactionsConfig.length) {
@@ -13,7 +17,7 @@ export const useInteractions = (interactionsConfig) => {
   }, []);
 
   const dispatch = useAppDispatch();
-  return useCallback((interactionEvents) => {
+  return useCallback((interactionEvents: InteractionEventConfig[]) => {
     dispatch(setInteractionEvents({ interactionEvents }));
   }, []);
 };

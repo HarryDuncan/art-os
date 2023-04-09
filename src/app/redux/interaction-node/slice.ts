@@ -1,10 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { InteractionEventConfig } from "interaction-node/interactions.types";
 
 export type InteractionNodeState = {
   isInitialized: boolean;
   isAlgorithmInitialized: boolean;
   algorithmType: any;
-  interactionEvents: any;
+  interactionEvents: InteractionEventConfig[];
 };
 
 export const INITIAL_STATE: InteractionNodeState = {

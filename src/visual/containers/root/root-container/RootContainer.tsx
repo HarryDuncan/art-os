@@ -1,7 +1,6 @@
 import React from "react";
 import { useAppSelector } from "app/redux/store";
 import { VisualComponentConfig } from "app/redux/visual/types";
-import { InteractiveNode } from "../../../components/interactive/node/InteractiveNode";
 import { Layers } from "../../../components/layers/Layers";
 import { Root } from "./RootContainer.styles";
 import { VideoBackground } from "../video-background/VideoBackground";
@@ -24,7 +23,6 @@ export const RootContainer = ({ containerRef }: IRootContainerProps) => {
   return (
     <>
       <Layers />
-      <InteractiveNode />
       <Root
         $height={viewHeight}
         $width={viewWidth}

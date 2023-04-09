@@ -5,6 +5,7 @@ import { AnimationManager } from "../../../animation/animation-manager/Animation
 import { defaultInteractiveSceneFunctions } from "./interactiveScene.constants";
 import { InteractiveSceneFunctions } from "./types";
 import { CustomAnimationConfig } from "visual/animation/animation.types";
+import { InteractionEventConfig } from "interaction-node/interactions.types";
 
 export class InteractiveThreeScene extends Scene {
   clock: Clock;
@@ -48,10 +49,11 @@ export class InteractiveThreeScene extends Scene {
     //   currentAction.eventFunction(this, detail);
     // }
   }
-  addInteractionEvents(interactionEvents) {
+  addInteractionEvents(interactionEvents: InteractionEventConfig[]) {
     interactionEvents.forEach(({ key, onEvent }) => {
       document.addEventListener(key, (e) => {
-        const { detail } = e;
+        // TODO - TYPE THIs
+        const { detail } = e as any;
         onEvent(this, detail);
       });
     });
