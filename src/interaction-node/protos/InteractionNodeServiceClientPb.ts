@@ -127,7 +127,7 @@ export class InteractionNodeServiceClient {
 
   methodDescriptorRunAlgorithm = new grpcWeb.MethodDescriptor(
     '/interactionNode.InteractionNodeService/RunAlgorithm',
-    grpcWeb.MethodType.UNARY,
+    grpcWeb.MethodType.SERVER_STREAMING,
     protos_interactionNode_pb.RunAlgorithmRequest,
     protos_interactionNode_pb.RunAlgorithmResponse,
     (request: protos_interactionNode_pb.RunAlgorithmRequest) => {
@@ -138,34 +138,13 @@ export class InteractionNodeServiceClient {
 
   runAlgorithm(
     request: protos_interactionNode_pb.RunAlgorithmRequest,
-    metadata: grpcWeb.Metadata | null): Promise<protos_interactionNode_pb.RunAlgorithmResponse>;
-
-  runAlgorithm(
-    request: protos_interactionNode_pb.RunAlgorithmRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback: (err: grpcWeb.RpcError,
-               response: protos_interactionNode_pb.RunAlgorithmResponse) => void): grpcWeb.ClientReadableStream<protos_interactionNode_pb.RunAlgorithmResponse>;
-
-  runAlgorithm(
-    request: protos_interactionNode_pb.RunAlgorithmRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback?: (err: grpcWeb.RpcError,
-               response: protos_interactionNode_pb.RunAlgorithmResponse) => void) {
-    if (callback !== undefined) {
-      return this.client_.rpcCall(
-        this.hostname_ +
-          '/interactionNode.InteractionNodeService/RunAlgorithm',
-        request,
-        metadata || {},
-        this.methodDescriptorRunAlgorithm,
-        callback);
-    }
-    return this.client_.unaryCall(
-    this.hostname_ +
-      '/interactionNode.InteractionNodeService/RunAlgorithm',
-    request,
-    metadata || {},
-    this.methodDescriptorRunAlgorithm);
+    metadata?: grpcWeb.Metadata): grpcWeb.ClientReadableStream<protos_interactionNode_pb.RunAlgorithmResponse> {
+    return this.client_.serverStreaming(
+      this.hostname_ +
+        '/interactionNode.InteractionNodeService/RunAlgorithm',
+      request,
+      metadata || {},
+      this.methodDescriptorRunAlgorithm);
   }
 
 }

@@ -12,8 +12,9 @@ service InteractionNodeService {
 
   rpc InitalizeAlgorithm (InitializeAlgorithmRequest) returns (InitializeAlgorithmResponse);
 
-  rpc RunAlgorithm (RunAlgorithmRequest) returns (RunAlgorithmResponse);
+  rpc RunAlgorithm (RunAlgorithmRequest) returns (stream RunAlgorithmResponse);
 
+  
 }
 
 
@@ -40,7 +41,11 @@ message RunAlgorithmRequest {
   
 }
 message RunAlgorithmResponse {
-  string id = 1;
-  bool isRunning = 2;
-  optional string errorMessage = 3;
+  message Locations {
+    double x = 1;
+    double y = 2;
+  }
+  Locations point = 1;
+  optional string errorMessage = 2;
 }
+

@@ -97,11 +97,10 @@ export namespace RunAlgorithmRequest {
 }
 
 export class RunAlgorithmResponse extends jspb.Message {
-  getId(): string;
-  setId(value: string): RunAlgorithmResponse;
-
-  getIsrunning(): boolean;
-  setIsrunning(value: boolean): RunAlgorithmResponse;
+  getPoint(): RunAlgorithmResponse.Locations | undefined;
+  setPoint(value?: RunAlgorithmResponse.Locations): RunAlgorithmResponse;
+  hasPoint(): boolean;
+  clearPoint(): RunAlgorithmResponse;
 
   getErrormessage(): string;
   setErrormessage(value: string): RunAlgorithmResponse;
@@ -118,14 +117,36 @@ export class RunAlgorithmResponse extends jspb.Message {
 
 export namespace RunAlgorithmResponse {
   export type AsObject = {
-    id: string,
-    isrunning: boolean,
+    point?: RunAlgorithmResponse.Locations.AsObject,
     errormessage?: string,
   }
 
+  export class Locations extends jspb.Message {
+    getX(): number;
+    setX(value: number): Locations;
+
+    getY(): number;
+    setY(value: number): Locations;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Locations.AsObject;
+    static toObject(includeInstance: boolean, msg: Locations): Locations.AsObject;
+    static serializeBinaryToWriter(message: Locations, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Locations;
+    static deserializeBinaryFromReader(message: Locations, reader: jspb.BinaryReader): Locations;
+  }
+
+  export namespace Locations {
+    export type AsObject = {
+      x: number,
+      y: number,
+    }
+  }
+
+
   export enum ErrormessageCase { 
     _ERRORMESSAGE_NOT_SET = 0,
-    ERRORMESSAGE = 3,
+    ERRORMESSAGE = 2,
   }
 }
 

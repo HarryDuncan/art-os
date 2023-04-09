@@ -26,7 +26,7 @@ class InteractionNodeServiceStub(object):
                 request_serializer=interactionNode__pb2.InitializeAlgorithmRequest.SerializeToString,
                 response_deserializer=interactionNode__pb2.InitializeAlgorithmResponse.FromString,
                 )
-        self.RunAlgorithm = channel.unary_unary(
+        self.RunAlgorithm = channel.unary_stream(
                 '/interactionNode.InteractionNodeService/RunAlgorithm',
                 request_serializer=interactionNode__pb2.RunAlgorithmRequest.SerializeToString,
                 response_deserializer=interactionNode__pb2.RunAlgorithmResponse.FromString,
@@ -70,7 +70,7 @@ def add_InteractionNodeServiceServicer_to_server(servicer, server):
                     request_deserializer=interactionNode__pb2.InitializeAlgorithmRequest.FromString,
                     response_serializer=interactionNode__pb2.InitializeAlgorithmResponse.SerializeToString,
             ),
-            'RunAlgorithm': grpc.unary_unary_rpc_method_handler(
+            'RunAlgorithm': grpc.unary_stream_rpc_method_handler(
                     servicer.RunAlgorithm,
                     request_deserializer=interactionNode__pb2.RunAlgorithmRequest.FromString,
                     response_serializer=interactionNode__pb2.RunAlgorithmResponse.SerializeToString,
@@ -132,7 +132,7 @@ class InteractionNodeService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/interactionNode.InteractionNodeService/RunAlgorithm',
+        return grpc.experimental.unary_stream(request, target, '/interactionNode.InteractionNodeService/RunAlgorithm',
             interactionNode__pb2.RunAlgorithmRequest.SerializeToString,
             interactionNode__pb2.RunAlgorithmResponse.FromString,
             options, channel_credentials,

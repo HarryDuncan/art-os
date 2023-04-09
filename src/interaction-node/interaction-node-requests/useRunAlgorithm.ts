@@ -18,13 +18,23 @@ export const useRunAlgorithm = () => {
     }
     const request = new RunAlgorithmRequest();
     const client = INTERACTION_NODE_CLIENT;
-    client.runAlgorithm(request, null, (err, response) => {
-      if (err) {
-        console.error(err);
-      }
-      const values = getResponseValue(response);
+    const stream = client.runAlgorithm(request);
+    stream.on("data", (response) => {
+      // handle each response message here
+      const point = response.getPoint();
       // @ts-ignore
-      console.log(values);
+      const pointData = { x: point.array[0], y: point.array[1] };
+      console.log(pointData);
+    });
+
+    stream.on("error", (error) => {
+      // handle any errors here
+      console.error("Error:", error);
+    });
+
+    stream.on("end", () => {
+      // handle the end of the stream here
+      console.log("Stream ended");
     });
   }, [isInitialized]);
 };

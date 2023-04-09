@@ -48,6 +48,9 @@ export const InteractiveSceneContainer = ({
 
   const run = useRunAlgorithm();
 
+  useEffect(() => {
+    run();
+  }, [run]);
   useEffect(() => () => pause(), [pause]);
 
   const initializeSceneWithData = useCallback(() => {
@@ -70,7 +73,6 @@ export const InteractiveSceneContainer = ({
 
   useEffect(() => {
     initializeSceneWithData();
-    run();
   }, [initializeSceneWithData]);
 
   return <RootContainer containerRef={container} />;
