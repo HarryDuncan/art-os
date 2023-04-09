@@ -16,7 +16,7 @@ export const useSceneData = () => {
   const { areAssetsInitialized, initializedAssets } = useAssets(
     configData.assets ?? []
   );
-  const interactions = useInteractions(configData.interactionConfig);
+  const setInteractions = useInteractions(configData.interactionConfig);
 
   // TODO - rename to parameters
   const {
@@ -30,12 +30,11 @@ export const useSceneData = () => {
     if (configId === null) return null;
     if (areAssetsInitialized) {
       const sceneParams = setUpScenes[configId](configData, initializedAssets);
-      console.log(sceneParams);
+      setInteractions(sceneParams.interactionEvents ?? []);
       return {
         materialFunctions,
         assets,
         events,
-        interactions,
         ...sceneParams,
         threeJsParams: deepMergeObjects(
           threeJsParams,

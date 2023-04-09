@@ -1,57 +1,38 @@
 import { Clock, Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { InteractionEventObject } from "visual/helpers/interactions/types";
 import { EventConfig } from "visual/hooks/use-events/events.types";
 import { AnimationManager } from "../../../animation/animation-manager/AnimationManager";
-
 import { defaultInteractiveSceneFunctions } from "./interactiveScene.constants";
-import { InteractiveSceneFunctions, SceneObject } from "./types";
+import { InteractiveSceneFunctions } from "./types";
 import { CustomAnimationConfig } from "visual/animation/animation.types";
 
 export class InteractiveThreeScene extends Scene {
   clock: Clock;
 
-  isRunningThread: boolean;
-
-  interactions: InteractionEventObject[];
-
   sceneFunctions: InteractiveSceneFunctions;
-
-  sceneParams: any;
-
-  sceneObjects: SceneObject[];
-
-  animationProperties: any;
 
   animationManager: AnimationManager;
 
   orbitControls: OrbitControls | null;
 
   constructor(
-    interactions: InteractionEventObject[],
-    sceneFunctions: InteractiveSceneFunctions = defaultInteractiveSceneFunctions,
-    sceneParams: any = {},
-    sceneObjects: SceneObject[] = []
+    sceneFunctions: InteractiveSceneFunctions = defaultInteractiveSceneFunctions
   ) {
     super();
-    this.isRunningThread = true;
     this.sceneFunctions = sceneFunctions;
     this.clock = new Clock();
-    this.interactions = interactions;
-    this.sceneParams = sceneParams;
-    this.sceneObjects = sceneObjects;
-    this.animationProperties = {};
-    this.bindMaterialFunctions();
+    this.bindMainFunctionFunctions();
     this.orbitControls = null;
     this.animationManager = new AnimationManager();
-    interactions.forEach(({ eventKey }) => {
-      document.addEventListener(`${eventKey}`, (ev) =>
-        this.onGestureEvent(ev as CustomEvent)
-      );
-    });
+
+    // interactions.forEach(({ eventKey }) => {
+    //   document.addEventListener(`${eventKey}`, (ev) =>
+    //     this.onGestureEvent(ev as CustomEvent)
+    //   );
+    // });
   }
 
-  bindMaterialFunctions() {
+  bindMainFunctionFunctions() {
     document.addEventListener("scene:update", () =>
       this.sceneFunctions.onTimeUpdate(this)
     );
@@ -59,13 +40,21 @@ export class InteractiveThreeScene extends Scene {
 
   onGestureEvent(event: CustomEvent) {
     const { type, detail } = event;
-    const currentAction = this.interactions.find(
-      (interactionEvent) => interactionEvent.eventKey === type
-    );
+    // const currentAction = this.interactions.find(
+    //   (interactionEvent) => interactionEvent.eventKey === type
+    // );
 
-    if (currentAction?.eventFunction) {
-      currentAction.eventFunction(this, detail);
-    }
+    // if (currentAction?.eventFunction) {
+    //   currentAction.eventFunction(this, detail);
+    // }
+  }
+  addInteractionEvents(interactionEvents) {
+    interactionEvents.forEach(({ key, onEvent }) => {
+      document.addEventListener(key, (e) => {
+        const { detail } = e;
+        onEvent(this, detail);
+      });
+    });
   }
 
   addEvents(eventConfig: EventConfig[]) {

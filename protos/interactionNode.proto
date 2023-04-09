@@ -14,6 +14,7 @@ service InteractionNodeService {
 
   rpc RunAlgorithm (RunAlgorithmRequest) returns (stream RunAlgorithmResponse);
 
+  rpc StopAlgorithm (StopAlgorithmRequest) returns (StopAlgorithmResponse)
   
 }
 
@@ -49,3 +50,11 @@ message RunAlgorithmResponse {
   optional string errorMessage = 2;
 }
 
+
+message StopAlgorithmRequest {
+
+}
+
+message StopAlgorithmResponse {
+  
+}

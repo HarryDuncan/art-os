@@ -28,15 +28,19 @@ class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
 
     def InitalizeAlgorithm(self, request, context):
         initialized = False
-        if(request.algorithm_type == "BODY_PIX"):
-            self.currentAlgorithm = BodySeg.BodySeg()
+        if self.isRunning == False:
+            if(request.algorithm_type == "BODY_PIX"):
+                self.currentAlgorithm = BodySeg.BodySeg()
+                initialized = True
+        else:
             initialized = True
         return pb2.InitializeAlgorithmResponse(id='1',isInitialized=initialized )
 
     def RunAlgorithm(self, request, context):
         if(self.currentAlgorithm != None):
-            self.currentAlgorithm.run_algorithm()
-            self.isRunning = True
+            if(self.isRunning == False):
+                self.currentAlgorithm.run_algorithm()
+                self.isRunning = True
             while self.isRunning == True:
                 coords = self.currentAlgorithm.get_coords()
                 if(coords == None):

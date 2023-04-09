@@ -75,7 +75,6 @@ def get_coords_from_seg(image):
         'top': None,
         'bottom': None,
     }
-    data = image
     for y in range(0,HEIGHT,20):
         for x in range(0,WIDTH, 16):
         # Get the pixel value at (x, y)

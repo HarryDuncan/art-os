@@ -4,12 +4,14 @@ export type InteractionNodeState = {
   isInitialized: boolean;
   isAlgorithmInitialized: boolean;
   algorithmType: any;
+  interactionEvents: any;
 };
 
 export const INITIAL_STATE: InteractionNodeState = {
   isInitialized: false,
   isAlgorithmInitialized: false,
   algorithmType: null,
+  interactionEvents: [],
 };
 
 export const slice = createSlice({
@@ -30,6 +32,15 @@ export const slice = createSlice({
       {
         payload,
       }: PayloadAction<{ algorithmType: any; isAlgorithmInitialized: boolean }>
+    ) => {
+      return {
+        ...state,
+        ...payload,
+      };
+    },
+    setInteractionEvents: (
+      state,
+      { payload }: PayloadAction<{ interactionEvents: any }>
     ) => {
       return {
         ...state,

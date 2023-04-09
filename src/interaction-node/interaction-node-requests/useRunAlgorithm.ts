@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "app/redux/store";
+import { dispatchInteractionEvent } from "interaction-node/dispatched-event";
 import { INTERACTION_NODE_CLIENT } from "interaction-node/interactions.constants";
 import { RunAlgorithmRequest } from "interaction-node/protos/interactionNode_pb";
 import { useCallback } from "react";
@@ -24,7 +25,8 @@ export const useRunAlgorithm = () => {
       const point = response.getPoint();
       // @ts-ignore
       const pointData = { x: point.array[0], y: point.array[1] };
-      console.log(pointData);
+      //  console.log(pointData);
+      dispatchInteractionEvent("update:position", pointData);
     });
 
     stream.on("error", (error) => {
