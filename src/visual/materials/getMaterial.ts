@@ -27,17 +27,15 @@ export const getMaterial = (
 ): Material => {
   switch (materialType) {
     case MATERIAL_TYPES.SHADER: {
-      console.log("getting shader material");
       const { shaderConfig, uniforms } = materialProps as ShaderMaterialProps;
       const { vertexShader, fragmentShader } = configureShaders(shaderConfig);
-      return new MeshStandardMaterial({});
-      // return new ShaderMaterial({
-      //   uniforms,
-      //   vertexShader,
-      //   fragmentShader,
-      //   depthWrite: true,
-      //   depthTest: true,
-      // });
+      return new ShaderMaterial({
+        uniforms,
+        vertexShader,
+        fragmentShader,
+        depthWrite: true,
+        depthTest: true,
+      });
     }
     case MATERIAL_TYPES.MATCAP: {
       const { matcap } = materialProps as MatcapMaterialProps;

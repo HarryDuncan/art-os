@@ -3,7 +3,7 @@ import * as Shaders from "../shaders";
 
 export const importShader = (shaderId: string, shaderType?: ShaderType) => {
   try {
-    const { fragmentShader, vertexShader } = Shaders[shaderId].frag;
+    const { fragmentShader, vertexShader } = Shaders[shaderId];
     return { fragmentShader, vertexShader };
   } catch {
     console.error(`${shaderId} not a valid fragment`);

@@ -1,7 +1,7 @@
 import { fragmentShader } from "./fragmentShader";
 import { vertexShader } from "./vertexShader";
 
-export const interactiveParticlesShaders = {
+export const interactiveParticles = {
   fragmentShader,
   vertexShader,
 };

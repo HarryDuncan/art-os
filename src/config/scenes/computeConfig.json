@@ -18,8 +18,7 @@
           "materialType": "SHADER",
           "materialProps": {
             "shaderConfig": {
-              "vertexShaderId": "interactiveParticlesVertex",
-              "fragmentShaderId": "interactiveParticlesFragment"
+              "shaderId": "interactiveParticles"
             },
             "uniforms": {}
           }

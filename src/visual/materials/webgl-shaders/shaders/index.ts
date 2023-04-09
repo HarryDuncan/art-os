@@ -1,1 +1,1 @@
-export { interactiveParticlesShaders } from "./interactive-particles/interactiveParticle.shader";
+export { interactiveParticles } from "./interactive-particles/interactiveParticle.shader";
