@@ -101,6 +101,6 @@ def get_center(point_one, point_two):
     return (point_one + point_two) / 2
 
 def getPositionAsPercentage(axis, value):
-    return 1 - value / axis
+    return round(1 - value / axis, 2)
 
 

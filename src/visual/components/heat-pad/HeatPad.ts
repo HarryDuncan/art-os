@@ -3,7 +3,7 @@ import { easeOutSine } from "visual/utils";
 
 type TouchPoint = { x: number; y: number; age: number; force: number };
 
-export default class TouchTexture {
+export default class HeatPad {
   maxAge: number;
 
   radius: number;

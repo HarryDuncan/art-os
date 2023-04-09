@@ -4,9 +4,7 @@ import {
   InteractionEventConfig,
   Interactive,
 } from "interaction-node/interactions.types";
-import { ShaderMaterial, Vector2 } from "three";
-import { InteractiveScene } from "visual/components/interactive-scene";
-import { getMeshByName } from "visual/helpers/scene/object-finding/getMeshByName";
+import { Vector2 } from "three";
 import InteractiveShaderMaterial from "visual/materials/interactive/InteractiveShaderMaterial";
 
 export const formatInteractionEvents = (
@@ -33,9 +31,18 @@ const updateMaterialTimeUniform = (
   material: InteractiveShaderMaterial,
   eventDetails
 ) => {
-  material.uniforms.uPosition.value = new Vector2(
-    eventDetails.x,
-    eventDetails.y
-  );
-  material.uniforms.uTime.value += 0.01;
+  const x = getValueFromPercentage(eventDetails.x, -2, 2);
+  const y = getValueFromPercentage(eventDetails.y, -1, 1);
+  material.uniforms.uPosition.value = new Vector2(x, y);
+  material.uniforms.uTime.value += material.clock.getDelta();
+};
+
+const getValueFromPercentage = (
+  percentage: number,
+  startValue: number,
+  endValue: number
+): number => {
+  const difference = endValue - startValue;
+  const value = startValue + difference * percentage;
+  return value;
 };

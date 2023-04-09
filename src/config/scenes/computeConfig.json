@@ -5,6 +5,11 @@
         "name": "nymph-geometry",
         "url": "../assets/models/nymph1.obj",
         "assetType": "GEOMETRY"
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/compute/spark1.png",
+        "assetType": "TEXTURE"
       }
     ],
     "meshComponentConfigs": [
@@ -13,7 +18,8 @@
         "geometryId": "nymph-geometry",
         "rotation": { "z": 0 },
         "position": { "x": 0, "y": 0 },
-        "size": 30,
+        "size": 10,
+        "meshType": "POINTS",
         "materialConfig": {
           "materialType": "INTERACTIVE_SHADER",
           "materialProps": {
@@ -30,7 +36,8 @@
               "uTextureSize": { "value": null },
               "uTexture": { "value": null },
               "uTouch": { "value": null },
-              "uTouchRef": { "value": null }
+              "uTouchRef": { "value": null },
+              "uTextureOne": { "value": null }
             }
           }
         }
@@ -87,16 +94,6 @@
         "name": "ambient-light",
         "lightType": "AMBIENT",
         "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 0, "z": 10 } }
-      },
-      {
-        "name": "directional-light",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 0, "z": 5 } }
       }
     ],
     "sceneComponentConfigs": [

@@ -22,9 +22,10 @@ export type SceneProperties = {
   background?: Texture;
 };
 export type SceneData = {
-  isSceneDataInitialized: boolean;
   meshes?: Object3D[];
   sceneComponents?: Object3D[];
   lights?: LightConfigs[];
   sceneProperties?: SceneProperties;
+  // TODO -type
+  interactionComponents?: any;
 };

@@ -11,7 +11,6 @@ export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
     ({ geometry, name, material, meshType, position, rotation }, index) => {
       const mesh = getMesh(geometry, material, meshType);
       formatMesh(mesh, position, rotation, name ?? `mesh-${index}`);
-      // TODO - add events to mesh
       return mesh;
     }
   );

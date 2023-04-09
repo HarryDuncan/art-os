@@ -1,7 +1,10 @@
 import { DEFAULT_POSITION } from "consts/threejs";
 import { Vector3 } from "three";
 import { vector3DegreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
-import { FormattedGeometry } from "utils/assets/geometry/geometry.types";
+import {
+  FormattedGeometry,
+  MESH_TYPES,
+} from "utils/assets/geometry/geometry.types";
 import { formatGeometriesFromAsset } from "utils/assets/geometry/formatGeometryFromAsset";
 import { SceneDataConfig } from "../config.types";
 import { Asset } from "utils/assets/use-assets/types";
@@ -23,6 +26,7 @@ export const geometryToMesh = (
     return {
       geometry: geometry.geometry.center(),
       name: meshConfig.id,
+      meshType: meshConfig.meshType ?? MESH_TYPES.MESH,
       position,
       rotation,
     };

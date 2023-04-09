@@ -1,5 +1,4 @@
 import { CustomAnimationConfig } from "visual/animation/animation.types";
-
 import { formatSceneData } from "./formatSceneData";
 import { startSceneElementAnimations } from "visual/animation/animation-manager/startSceneElementAnimations";
 import { formatInteractionEvents } from "./formatInteractionEvents";
@@ -11,15 +10,21 @@ import { getMeshByName } from "visual/helpers/scene/object-finding/getMeshByName
 import { RawShaderMaterial } from "three";
 import { InteractionEventConfig } from "interaction-node/interactions.types";
 import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
+import { TextureLoader } from "three";
 
 export const compute = (config, assets) => {
   const { animationConfig, interactionConfig } = config;
   const interactionEvents = formatInteractionEvents(interactionConfig);
   const sceneData = formatSceneData(config, assets);
-  addInteractionEventsToSceneData(sceneData, interactionEvents);
+  addInteractionEventsToSceneData(
+    sceneData,
+    interactionEvents,
+    sceneData.interactionComponents,
+    assets
+  );
   return {
     threeJsParams: {
-      camera: { position: { x: 0, y: 0, z: 45 } },
+      camera: { position: { x: 0, y: 0, z: 30 } },
       controls: {
         hasOrbitControls: true,
       },
@@ -47,7 +52,9 @@ const updateMaterialTimeUniform = (scene: InteractiveScene, meshId) => {
 
 const addInteractionEventsToSceneData = (
   sceneData: SceneData,
-  interactionEvents: InteractionEventConfig[]
+  interactionEvents: InteractionEventConfig[],
+  interactionComponents: any,
+  assets
 ) => {
   const materialEvents = interactionEvents.filter(
     (interactionEvent) =>
@@ -56,8 +63,14 @@ const addInteractionEventsToSceneData = (
   if (!materialEvents.length) return;
   sceneData.meshes?.forEach((mesh) => {
     if (mesh.name === "nymph") {
-      //@ts-ignore
+      // @ts-ignore
       mesh.material.addInteractionsEvents(materialEvents);
+      // @ts-ignore
+      mesh.material.uniforms.uTouch.value = interactionComponents[0];
+      // @ts-ignore
+      mesh.material.uniforms.uTextureOne.value = new TextureLoader().load(
+        "../assets/textures/compute/spark1.png"
+      );
     }
   });
 };
