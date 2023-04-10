@@ -24,7 +24,7 @@ export const compute = (config, assets) => {
   );
   return {
     threeJsParams: {
-      camera: { position: { x: 0, y: 0, z: 30 } },
+      camera: { position: { x: 0, y: 0, z: 70 } },
       controls: {
         hasOrbitControls: true,
       },
@@ -66,10 +66,16 @@ const addInteractionEventsToSceneData = (
       // @ts-ignore
       mesh.material.addInteractionsEvents(materialEvents);
       // @ts-ignore
-      mesh.material.uniforms.uTouch.value = interactionComponents[0];
+      mesh.material.uniforms.uTouchRef.value = interactionComponents[0];
+      // @ts-ignore
+      mesh.material.uniforms.uTouch.value = interactionComponents[0].texture;
       // @ts-ignore
       mesh.material.uniforms.uTextureOne.value = new TextureLoader().load(
         "../assets/textures/compute/1.png"
+      );
+      // @ts-ignore
+      mesh.material.uniforms.uTextureZero.value = new TextureLoader().load(
+        "../assets/textures/compute/0.png"
       );
     }
   });

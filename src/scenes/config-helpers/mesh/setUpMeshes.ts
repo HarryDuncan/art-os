@@ -27,12 +27,18 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
     case MESH_TYPES.POINTS:
       const positionsLength = geometry.getAttribute("position").array.length;
 
-      const pointIds = new Float32Array(positionsLength);
-      pointIds.forEach((value, index) => {
+      const pointIds = new Float32Array(positionsLength / 3);
+      pointIds.forEach((_value, index) => {
         pointIds[index] = Number(index.toFixed(1));
       });
-      geometry.setAttribute("pointId", new BufferAttribute(pointIds, 1));
-      console.log(geometry);
+
+      const angles = new Float32Array(positionsLength / 3);
+      angles.forEach((_value, index) => {
+        angles[index] = Math.random() * Math.PI;
+      });
+
+      geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
+      geometry.setAttribute("angle", new BufferAttribute(angles, 1, false));
       return new Points(geometry, material);
     case MESH_TYPES.MESH:
     default:

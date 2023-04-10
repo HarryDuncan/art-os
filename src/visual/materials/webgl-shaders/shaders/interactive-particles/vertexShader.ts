@@ -1,64 +1,83 @@
 export const vertexShader = `
 attribute float size;
 attribute vec3 color;
-attribute float pointId;
+attribute float pointIndex;
+attribute float angle;
+
 
 uniform float uTime;
 uniform vec2 uPosition;
+uniform vec2  uTextureSize;
+uniform sampler2D uTouch;
+
 varying vec3 vColor;
 varying float vPointId;
 
+varying vec2 vPUv;
+varying vec2 vUv;
+varying float vReduced;
+
+float random(float n) {
+    return fract(sin(n) * 43758.5453123);
+}
+
+float rand(vec2 n) {
+    return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+}
+
+float noise(vec2 p){
+    vec2 ip = floor(p);
+    vec2 u = fract(p);
+    u = u*u*(3.0-2.0*u);
+
+    float res = mix(
+        mix(rand(ip),rand(ip+vec2(1.0,0.0)),u.x),
+        mix(rand(ip+vec2(0.0,1.0)),rand(ip+vec2(1.0,1.0)),u.x),u.y);
+    return res*res;
+}
+
 void main() {
+  vUv = uv;
+  vReduced = 65.0;
+  vec2 puv = position.xy / uTextureSize;
+  vPUv = puv;
+
   vColor = vec3(1.0,1.0,0.5);
-  vPointId = pointId;
-  // Transform the position of the point using the modelViewMatrix and projectionMatrix
-  vec3 warpVector = vec3(uPosition.xy, 0) - position;
-  float warpDistance = length(warpVector);
-  vec3 warpDirection = warpVector / warpDistance;
-
-  float warpAmount = 0.5; // Example scaling factor
-  vec3 warpOffset = warpDirection * warpAmount;
-  vec3 warpedPosition = position + warpOffset;
+  vPointId = pointIndex;
 
 
-  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+ if(mod(pointIndex, vReduced) == 0.0){
+    gl_PointSize = 32.0;
+  }else{
+    gl_PointSize = 0.0;
+  }
+  
+ 
+  // displacement
+  vec3 displaced = position;
+  
+  vec3 effect = vec3(uPosition, 1.0);
+
+  vec3 effectDistanceVector =  effect - displaced;
+  float effectDistanceLength = length(effectDistanceVector);
+  float effectStrength =  10.0 * 0.3;
+  if(effectDistanceLength >= 20.0){
+    displaced.x += cos(angle) * effectStrength;
+    displaced.y += sin(angle) * effectStrength;
+    
+  }
 
   
-  if(mod(pointId, 2.0) == 0.0){
-    gl_PointSize = 0.0;
-  }else if(mod(pointId, 3.0) == 0.0){
-      gl_PointSize = 0.0;
-  }else if(mod(pointId, 4.0) == 0.0){
-    gl_PointSize = 0.0;
-  }else if(mod(pointId, 5.0) == 0.0){
-      gl_PointSize = 0.0;
-  }else if(mod(pointId, 7.0) == 0.0){
-    gl_PointSize = 0.0;
-  }else{
-        gl_PointSize = 16.0;
-  }
- 
-  vec4 transformed = projectionMatrix * mvPosition;
+
+
+  vec4 mvPosition = modelViewMatrix * vec4(displaced, 1.0);
+
+  vec4 transformed = projectionMatrix *  mvPosition ;
   gl_Position = transformed;
 }
 `;
 
 // `;
-
-// // float rand(vec2 n) {
-// //     return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
-// // }
-
-// // float noise(vec2 p){
-// //     vec2 ip = floor(p);
-// //     vec2 u = fract(p);
-// //     u = u*u*(3.0-2.0*u);
-
-// //     float res = mix(
-// //         mix(rand(ip),rand(ip+vec2(1.0,0.0)),u.x),
-// //         mix(rand(ip+vec2(0.0,1.0)),rand(ip+vec2(1.0,1.0)),u.x),u.y);
-// //     return res*res;
-// // }
 
 // // uniform mat4 modelViewMatrix;
 // // uniform mat4 projectionMatrix;
@@ -68,10 +87,6 @@ void main() {
 
 // // varying vec2 vPUv;
 // // varying vec2 vUv;
-
-// // float random(float n) {
-// //     return fract(sin(n) * 43758.5453123);
-// // }
 
 // // void main() {
 // //     vUv = uv;
@@ -87,9 +102,9 @@ void main() {
 // //     // displacement
 // //
 // //     // randomise
-// //     displaced.xy += vec2(random(pindex) - 0.5, random(offset.x + pindex) - 0.5) * uRandom;
-// //     float rndz = (random(pindex) + noise(vec2(pindex * 0.1, uTime * 0.1)));
-// //     displaced.z += rndz * (random(pindex) * 2.0 * uDepth);
+// //     displaced.xy += vec2(random(pointIndex) - 0.5, random(offset.x + pointIndex) - 0.5) * uRandom;
+// //     float rndz = (random(pointIndex) + noise(vec2(pointIndex * 0.1, uTime * 0.1)));
+// //     displaced.z += rndz * (random(pointIndex) * 2.0 * uDepth);
 // //     // center
 // //     displaced.xy -= uTextureSize * 0.5;
 
@@ -100,7 +115,7 @@ void main() {
 // //     displaced.y += sin(angle) * t * 160.0 * rndz;
 
 // //     // particle size
-// //     float psize = (noise(vec2(uTime, pindex) * 0.5) + 2.0);
+// //     float psize = (noise(vec2(uTime, pointIndex) * 0.5) + 2.0);
 // //     float siz = 0.0;
 // //     if( grey < 0.8 )
 // //     {
@@ -115,4 +130,138 @@ void main() {
 // //     vec4 finalPosition = projectionMatrix * mvPosition;
 
 // //     gl_Position = finalPosition;
-// // }`;
+// // // }`;
+
+//    // touch
+//      float t = texture2D(uTouch, puv).r;
+//    displaced.z += t * 20.0 * rndz;
+//     displaced.x += cos(angle) * t * 160.0 * rndz;
+//     displaced.y += sin(angle) * t * 160.0 * rndz;
+
+export const interactiveParticleFragment = {
+  frag: `precision highp float;
+  #define C(c) U.x-=.5; O+= char(U,64+c)
+
+    uniform sampler2D uTexture;
+
+    varying vec2 vPUv;
+    varying vec2 vUv;
+    uniform float uTime;
+
+ 
+
+    void main() {
+      
+        vec4 color = vec4(0.0);
+        vec2 uv = vUv;
+        vec2 puv = vPUv;
+
+        // pixel color
+        vec4 colA = texture2D(uTexture, puv);
+
+        // greyscale
+        float grey = colA.r * 0.21 + colA.g * 0.71 + colA.b * 0.07;
+        vec4 colB = vec4(0.9,  colA.g,  cos(uTime * 0.2) + colA.b, 1.0);
+
+        // circle
+        float border = 0.3;
+        float radius = 0.5;
+        float dist = radius - distance(uv, vec2(0.5));
+        float t = smoothstep(0.0, border, dist);
+
+        // final color
+        color = colB;
+        color.a = t * 2.1;
+
+        gl_FragColor = color;
+    }`,
+};
+
+export const interactiveParticlesVertex = {
+  vert: `
+    float rand(vec2 n) { 
+        return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+    }
+    
+    float noise(vec2 p){
+        vec2 ip = floor(p);
+        vec2 u = fract(p);
+        u = u*u*(3.0-2.0*u);
+        
+        float res = mix(
+            mix(rand(ip),rand(ip+vec2(1.0,0.0)),u.x),
+            mix(rand(ip+vec2(0.0,1.0)),rand(ip+vec2(1.0,1.0)),u.x),u.y);
+        return res*res;
+    }
+    
+    
+    precision highp float;
+    attribute float pointIndex;
+    attribute vec3 position;
+    attribute vec3 offset;
+    attribute vec2 uv;
+    attribute float angle;
+    
+    uniform mat4 modelViewMatrix;
+    uniform mat4 projectionMatrix;
+    
+    uniform float uTime;
+    uniform float uRandom;
+    uniform float uDepth;
+    uniform float uSize;
+    uniform vec2 uTextureSize;
+    uniform sampler2D uTexture;
+    uniform sampler2D uTouch;
+    
+    varying vec2 vPUv;
+    varying vec2 vUv;
+    
+    
+    float random(float n) {
+        return fract(sin(n) * 43758.5453123);
+    }
+    
+    void main() {
+        vUv = uv;
+    
+        // particle uv
+        vec2 puv = offset.xy / uTextureSize;
+        vPUv = puv;
+    
+        // pixel color
+        vec4 colA = texture2D(uTexture, puv);
+        float grey = colA.r * 0.2 + colA.g * 0.71 + colA.b * 0.07;
+    
+        // displacement
+        vec3 displaced = offset;
+        // randomise
+        displaced.xy += vec2(random(pointIndex) - 0.5, random(offset.x + pointIndex) - 0.5) * uRandom;
+        float rndz = (random(pointIndex) + noise(vec2(pointIndex * 0.1, uTime * 0.1)));
+        displaced.z += rndz * (random(pointIndex) * 2.0 * uDepth);
+        // center
+        displaced.xy -= uTextureSize * 0.5;
+    
+        // touch
+        float t = texture2D(uTouch, puv).r;
+        displaced.z += t * 20.0 * rndz;
+        displaced.x += cos(angle) * t * 160.0 * rndz;
+        displaced.y += sin(angle) * t * 160.0 * rndz;
+    
+        // particle size
+        float psize = (noise(vec2(uTime, pointIndex) * 0.5) + 2.0);
+        float siz = 0.0;
+        if( grey < 0.8 )
+        {
+            siz = 0.4 ;
+        };
+        psize *= min(grey, siz);
+        psize *= uSize;
+    
+        // final position
+        vec4 mvPosition = modelViewMatrix * vec4(displaced, 1.0);
+        mvPosition.xyz += position * psize;
+        vec4 finalPosition = projectionMatrix * mvPosition;
+    
+        gl_Position = finalPosition;
+    }`,
+};

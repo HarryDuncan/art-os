@@ -31,8 +31,9 @@ const updateMaterialTimeUniform = (
   material: InteractiveShaderMaterial,
   eventDetails
 ) => {
-  const x = getValueFromPercentage(eventDetails.x, -2, 2);
-  const y = getValueFromPercentage(eventDetails.y, -1, 1);
+  const x = getValueFromPercentage(eventDetails.x, -30, 30);
+  const y = getValueFromPercentage(eventDetails.y, -10, 10);
+  console.log(`x :${x}, y : ${y}`);
   material.uniforms.uPosition.value = new Vector2(x, y);
   material.uniforms.uTime.value += material.clock.getDelta();
 };

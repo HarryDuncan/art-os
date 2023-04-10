@@ -37,7 +37,8 @@
               "uTexture": { "value": null },
               "uTouch": { "value": null },
               "uTouchRef": { "value": null },
-              "uTextureOne": { "value": null }
+              "uTextureOne": { "value": null },
+              "uTextureZero": { "value": null }
             }
           }
         }
@@ -80,7 +81,7 @@
         "animationConfig": {
           "animationType": "SPIN",
           "animationProperties": {
-            "speed": 0.002,
+            "speed": 0.0001,
             "rotationAxis": "Y",
             "animationDurationMilis": -1,
             "animationPauseMilis": -1,
@@ -96,18 +97,7 @@
         "props": { "intensity": 1.0 }
       }
     ],
-    "sceneComponentConfigs": [
-      {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "position": { "x": -5, "y": -5, "z": -6 }
-        },
-        "materialConfig": {
-          "materialById": "compute-background"
-        }
-      }
-    ],
+    "sceneComponentConfigs": [],
     "interactionConfig": [
       {
         "algorithmType": "BODY_PIX",

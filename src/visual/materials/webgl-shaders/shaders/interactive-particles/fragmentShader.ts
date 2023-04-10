@@ -1,27 +1,26 @@
 export const fragmentShader = `
 varying vec3 vColor;
-varying float vPointId;
+varying float vReduced;
 uniform float uTime;
 uniform sampler2D uTextureOne;
+uniform sampler2D uTextureZero;
 
+varying float vPointId;
 void main() {
     
-    if(mod(vPointId, 1.0) == 0.0){
-       discard;
-    }else if(mod(vPointId, 3.0) == 0.0){
-        discard;
-    }else if(mod(vPointId, 4.0) == 0.0){
-        discard;
-    }else if(mod(vPointId, 5.0) == 0.0){
-        discard;
-    }else if(mod(vPointId, 7.0) == 0.0){
-        discard;
-    }else{
- 
-        gl_FragColor =  vec4(sin(uTime), 0.5, 0.5, 1.0);
-        gl_FragColor =  gl_FragColor * texture2D(uTextureOne, gl_PointCoord);
-      
-    }
+  
+        if(mod(vPointId, vReduced) == 0.0 ){
+            gl_FragColor =  vec4(sin(uTime), 0.5, 0.5, 1.0);
+            if(mod(vPointId, 2.0) == 0.0 ){
+                gl_FragColor =  gl_FragColor * texture2D(uTextureOne, gl_PointCoord);
+            }else{
+                gl_FragColor =  gl_FragColor * texture2D(uTextureZero, gl_PointCoord);
+            }
+        }else{
+            discard;
+        }
+       
+
    
 }`;
 

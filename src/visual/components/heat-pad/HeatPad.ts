@@ -1,3 +1,4 @@
+import { CoordinatesAsPercentage } from "scenes/set-up-scene-parameters/formatInteractionEvents";
 import { Texture } from "three";
 import { easeOutSine } from "visual/utils";
 
@@ -62,19 +63,20 @@ export default class HeatPad {
     }
   }
 
-  addTouch(point) {
+  addTouch(point: CoordinatesAsPercentage) {
     let force = 0;
     const last = this.trail[this.trail.length - 1];
+    const { x, y } = point;
     if (last) {
-      const dx = last.x - point.xAsScale;
-      const dy = last.y - point.yAsScale;
+      const dx = last.x - x;
+      const dy = last.y - y;
       const dd = dx * dx + dy * dy;
       force = Math.min(dd * 10000, 1);
     }
 
     this.trail.push({
-      x: point.xAsScale,
-      y: point.yAsScale,
+      x: point.x,
+      y: point.y,
       age: 0,
       force,
     });
