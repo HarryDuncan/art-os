@@ -69,7 +69,7 @@ const addInteractionEventsToSceneData = (
       mesh.material.uniforms.uTouch.value = interactionComponents[0];
       // @ts-ignore
       mesh.material.uniforms.uTextureOne.value = new TextureLoader().load(
-        "../assets/textures/compute/spark1.png"
+        "../assets/textures/compute/1.png"
       );
     }
   });

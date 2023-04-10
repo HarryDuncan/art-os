@@ -1,8 +1,16 @@
-export const vertexShader = ` 
+export const vertexShader = `
+attribute float size;
+attribute vec3 color;
+attribute float pointId;
+
 uniform float uTime;
 uniform vec2 uPosition;
 varying vec3 vColor;
+varying float vPointId;
+
 void main() {
+  vColor = vec3(1.0,1.0,0.5);
+  vPointId = pointId;
   // Transform the position of the point using the modelViewMatrix and projectionMatrix
   vec3 warpVector = vec3(uPosition.xy, 0) - position;
   float warpDistance = length(warpVector);
@@ -12,8 +20,25 @@ void main() {
   vec3 warpOffset = warpDirection * warpAmount;
   vec3 warpedPosition = position + warpOffset;
 
-  gl_PointSize = 1.0;
-  vec4 transformed = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+
+  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+
+  
+  if(mod(pointId, 2.0) == 0.0){
+    gl_PointSize = 0.0;
+  }else if(mod(pointId, 3.0) == 0.0){
+      gl_PointSize = 0.0;
+  }else if(mod(pointId, 4.0) == 0.0){
+    gl_PointSize = 0.0;
+  }else if(mod(pointId, 5.0) == 0.0){
+      gl_PointSize = 0.0;
+  }else if(mod(pointId, 7.0) == 0.0){
+    gl_PointSize = 0.0;
+  }else{
+        gl_PointSize = 16.0;
+  }
+ 
+  vec4 transformed = projectionMatrix * mvPosition;
   gl_Position = transformed;
 }
 `;

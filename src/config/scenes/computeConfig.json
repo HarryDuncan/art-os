@@ -3,12 +3,12 @@
     "assets": [
       {
         "name": "nymph-geometry",
-        "url": "../assets/models/nymph1.obj",
+        "url": "../assets/models/NymphFixed.obj",
         "assetType": "GEOMETRY"
       },
       {
         "name": "1-texture",
-        "url": "../assets/textures/compute/spark1.png",
+        "url": "../assets/textures/compute/1.png",
         "assetType": "TEXTURE"
       }
     ],
@@ -18,7 +18,7 @@
         "geometryId": "nymph-geometry",
         "rotation": { "z": 0 },
         "position": { "x": 0, "y": 0 },
-        "size": 10,
+        "size": 100,
         "meshType": "POINTS",
         "materialConfig": {
           "materialType": "INTERACTIVE_SHADER",
@@ -75,13 +75,13 @@
     "animationConfig": [
       {
         "animationId": "binary-rotate",
-        "targetIdentifier": "binary",
+        "targetIdentifier": "nymph",
         "animationFunctionType": "ALL",
         "animationConfig": {
           "animationType": "SPIN",
           "animationProperties": {
-            "speed": 0.02,
-            "rotationAxis": "Z",
+            "speed": 0.002,
+            "rotationAxis": "Y",
             "animationDurationMilis": -1,
             "animationPauseMilis": -1,
             "repeatAnimation": true

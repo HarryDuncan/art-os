@@ -2,8 +2,11 @@ import { InteractionEventConfig } from "interaction-node/interactions.types";
 import {
   AdditiveBlending,
   Clock,
+  CustomBlending,
+  OneMinusSrcAlphaFactor,
   RawShaderMaterial,
   ShaderMaterial,
+  SrcAlphaFactor,
 } from "three";
 
 // import { UPDATE_TIME_UNIFORM } from "scenes/default-configs/material-functions";
@@ -16,7 +19,9 @@ export default class InteractiveShaderMaterial extends ShaderMaterial {
       uniforms,
       vertexShader,
       fragmentShader,
-      blending: AdditiveBlending,
+      blending: CustomBlending,
+      blendSrc: SrcAlphaFactor,
+      blendDst: OneMinusSrcAlphaFactor,
       depthTest: false,
       transparent: true,
     });
