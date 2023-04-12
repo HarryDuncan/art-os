@@ -150,3 +150,31 @@ export namespace RunAlgorithmResponse {
   }
 }
 
+export class StopAlgorithmRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StopAlgorithmRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StopAlgorithmRequest): StopAlgorithmRequest.AsObject;
+  static serializeBinaryToWriter(message: StopAlgorithmRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StopAlgorithmRequest;
+  static deserializeBinaryFromReader(message: StopAlgorithmRequest, reader: jspb.BinaryReader): StopAlgorithmRequest;
+}
+
+export namespace StopAlgorithmRequest {
+  export type AsObject = {
+  }
+}
+
+export class StopAlgorithmResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StopAlgorithmResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StopAlgorithmResponse): StopAlgorithmResponse.AsObject;
+  static serializeBinaryToWriter(message: StopAlgorithmResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StopAlgorithmResponse;
+  static deserializeBinaryFromReader(message: StopAlgorithmResponse, reader: jspb.BinaryReader): StopAlgorithmResponse;
+}
+
+export namespace StopAlgorithmResponse {
+  export type AsObject = {
+  }
+}
+

@@ -11,6 +11,7 @@ import { RawShaderMaterial } from "three";
 import { InteractionEventConfig } from "interaction-node/interactions.types";
 import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
 import { TextureLoader } from "three";
+import { eulerToDegrees } from "visual/helpers/conversion/euelerToDegrees";
 
 export const compute = (config, assets) => {
   const { animationConfig, interactionConfig } = config;
@@ -32,6 +33,7 @@ export const compute = (config, assets) => {
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveScene) => {
         startSceneElementAnimations(scene);
+        updateRotationUniform(scene, "nymph");
       },
     },
     interactionEvents,
@@ -41,12 +43,11 @@ export const compute = (config, assets) => {
   };
 };
 
-const updateMaterialTimeUniform = (scene: InteractiveScene, meshId) => {
+const updateRotationUniform = (scene: InteractiveScene, meshId) => {
   const mesh = getMeshByName(scene, meshId);
   if (mesh) {
     const material = mesh.material as RawShaderMaterial;
-    const clock = scene.clock;
-    material.uniforms.uTime.value = clock.getElapsedTime();
+    material.uniforms.uRotation.value = mesh.rotation.y;
   }
 };
 

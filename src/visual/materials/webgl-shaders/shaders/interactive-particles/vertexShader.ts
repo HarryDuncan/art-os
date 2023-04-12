@@ -9,6 +9,7 @@ uniform float uTime;
 uniform vec2 uPosition;
 uniform vec2  uTextureSize;
 uniform sampler2D uTouch;
+uniform float uRotation;
 
 varying vec3 vColor;
 varying float vPointId;
@@ -38,7 +39,7 @@ float noise(vec2 p){
 
 void main() {
   vUv = uv;
-  vReduced = 65.0;
+  vReduced = 25.0;
   vec2 puv = position.xy / uTextureSize;
   vPUv = puv;
 
@@ -47,7 +48,7 @@ void main() {
 
 
  if(mod(pointIndex, vReduced) == 0.0){
-    gl_PointSize = 32.0;
+    gl_PointSize = 16.0;
   }else{
     gl_PointSize = 0.0;
   }
@@ -55,18 +56,19 @@ void main() {
  
   // displacement
   vec3 displaced = position;
-  
-  vec3 effect = vec3(uPosition, 1.0);
 
-  vec3 effectDistanceVector =  effect - displaced;
-  float effectDistanceLength = length(effectDistanceVector);
-  float effectStrength =  10.0 * 0.3;
-  if(effectDistanceLength >= 20.0){
-    displaced.x += cos(angle) * effectStrength;
-    displaced.y += sin(angle) * effectStrength;
-    
+  // uPosition will be set to 2000 is there is no detections made
+  if(uPosition.x > -2000.0){
+    vec3 effect = vec3(uPosition, 1.0);
+    vec3 effectDistanceVector =  effect - displaced;
+    float effectDistanceLength = length(effectDistanceVector);
+    float effectStrength =  10.0 * 0.9;
+    if(effectDistanceLength <= 10.0){
+      displaced.x += cos(angle) * effectStrength;
+      displaced.y += sin(angle) * effectStrength;
+    }
   }
-
+  
   
 
 

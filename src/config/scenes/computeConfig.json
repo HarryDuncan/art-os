@@ -7,9 +7,24 @@
         "assetType": "GEOMETRY"
       },
       {
-        "name": "1-texture",
-        "url": "../assets/textures/compute/1.png",
-        "assetType": "TEXTURE"
+        "name": "hjdcurves1-geometry",
+        "url": "../assets/models/hjd-lines/line-1.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "hjdcurves2-geometry",
+        "url": "../assets/models/hjd-lines/line-2.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "hjdcurves3-geometry",
+        "url": "../assets/models/hjd-lines/line-3.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "hjdcurves4-geometry",
+        "url": "../assets/models/hjd-lines/line-4.obj",
+        "assetType": "GEOMETRY"
       }
     ],
     "meshComponentConfigs": [
@@ -38,9 +53,50 @@
               "uTouch": { "value": null },
               "uTouchRef": { "value": null },
               "uTextureOne": { "value": null },
-              "uTextureZero": { "value": null }
+              "uTextureZero": { "value": null },
+              "uRotation": { "value": 0 }
             }
           }
+        }
+      },
+      {
+        "id": "hjdcurves1",
+        "geometryId": "hjdcurves1-geometry",
+        "size": 50,
+        "position": { "x": -0.5, "z": -3 },
+        "rotation": { "x": 90, "y": -30, "z": -20 },
+        "materialConfig": {
+          "materialById": "phong-color-one"
+        }
+      },
+      {
+        "id": "hjdcurves2",
+        "geometryId": "hjdcurves2-geometry",
+        "size": 50,
+        "position": { "x": 1.5, "z": -3.2 },
+        "rotation": { "x": 110, "y": -10, "z": 10 },
+        "materialConfig": {
+          "materialById": "phong-color-two"
+        }
+      },
+      {
+        "id": "hjdcurves3",
+        "geometryId": "hjdcurves3-geometry",
+        "size": 50,
+        "position": { "x": 0.5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 40, "z": -0 },
+        "materialConfig": {
+          "materialById": "phong-color-one"
+        }
+      },
+      {
+        "id": "hjdcurves4",
+        "geometryId": "hjdcurves4-geometry",
+        "size": 50,
+        "position": { "x": -1.5, "z": -3 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "phong-color-two"
         }
       }
     ],
@@ -81,7 +137,7 @@
         "animationConfig": {
           "animationType": "SPIN",
           "animationProperties": {
-            "speed": 0.0001,
+            "speed": 0.002,
             "rotationAxis": "Y",
             "animationDurationMilis": -1,
             "animationPauseMilis": -1,
@@ -95,6 +151,16 @@
         "name": "ambient-light",
         "lightType": "AMBIENT",
         "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
       }
     ],
     "sceneComponentConfigs": [],

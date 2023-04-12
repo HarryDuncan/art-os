@@ -43,6 +43,7 @@ export const formatImportedGeometry = (geometry, scale = 0.15) => {
 };
 
 const getGeometryFromObj = (object) => {
+  console.log(object);
   if (object.data.children[0]) {
     return object.data.children[0].geometry;
   }

@@ -11,6 +11,7 @@ export const getMeshesFromConfig = (
   config: SceneDataConfig
 ): Object3D[] => {
   const meshParameters = geometryToMesh(assets, config);
+  console.log(meshParameters);
   const meshParametersWithMaterials = addMaterials(
     meshParameters,
     materials,

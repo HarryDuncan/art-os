@@ -42,7 +42,7 @@ class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
                 self.currentAlgorithm.run_algorithm()
                 self.isRunning = True
             while self.isRunning == True:
-                coords = self.currentAlgorithm.get_coords()
+                coords = self.currentAlgorithm.get_movement_value()
                 if(coords == None):
                     coords = {'x' : 0, 'y' : 0}
                 response = pb2.RunAlgorithmResponse(point=coords)
