@@ -46,7 +46,7 @@ message RunAlgorithmResponse {
     double x = 1;
     double y = 2;
   }
-  Locations point = 1;
+  repeated Locations points = 1;
   optional string errorMessage = 2;
 }
 

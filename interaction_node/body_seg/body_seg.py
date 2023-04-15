@@ -3,85 +3,90 @@ import multiprocessing
 from tf_bodypix.api import download_model, load_model, BodyPixModelPaths
 import tensorflow as tf
 import cv2
-from matplotlib import pyplot as plt
 import numpy as np
 
-def run_stream(model_config, isRunning, queue):
-    
+
+
+def run_stream(model_config, isRunning, queue, num_clusters):
     bodypix_model = load_model(download_model(model_config))
     cap = cv2.VideoCapture('udp://127.0.0.1:1235', )
-    left_face = np.array([110, 64, 170])
+    torso = np.array([175, 240, 91])
+    print('this is ran once')
+    count = 0
     while cap.isOpened():
-        ret, frame = cap.read()
-        result = bodypix_model.predict_single(frame)
-        mask = result.get_mask(threshold=0.75).numpy().astype(np.uint8)
-        coloured_mask = result.get_colored_part_mask(mask=mask)
-        s = np.array(list(zip(*np.where(np.all(coloured_mask==left_face, axis=-1)))))
-        detected = bool(s.size > 0)
-        centroid = s.mean(axis=0)
-        
-        coords = centroid_to_scale(centroid, detected)
-        queue.put(coords)
+        ret,frame = cap.read()
       
-        # clusters = detect_clusters(coloured_mask)
-        # print(clusters)
-        # print('on process {}'.format(coords))
+        result = bodypix_model.predict_single(frame)
+        mask = result.get_mask(threshold=0.5).numpy().astype(np.uint8)
+        coloured_mask = result.get_colored_part_mask(mask=mask)
+        selected_coordinates = np.array(list(zip(*np.where(np.all(coloured_mask==torso, axis=-1)))))
+        detected = bool(selected_coordinates.size > 0)
+        # process = multiprocessing.Process(target=run_stream, args=())
+        # process = multiprocessing.Process(target=run_stream, args=())
+        
+        if detected == True:
+            # pass in half of selected coordinates
+        
+            centroid = selected_coordinates.mean(axis=0)
+            coords = centroid_to_scale(centroid, detected)
+            queue.put(np.array([coords]))
+            # get_clusters_birch(selected_coordinates)
+            # clusters = get_clusters(selected_coordinates)
+            # queue.put(clusters)
+        count += 1
         if isRunning == False:
             break
     cap.release()
 
+
+# def processSegmentOfFrame(frameData, queue):
+#     print(frameData)
 
 class BodySeg():
      
     def __init__(self):
         self.selected_model_config = BodyPixModelPaths.MOBILENET_FLOAT_50_STRIDE_16
         self.isRunning = False
-        self.current_coords = {'x': -2, 'y': -2}
-        self.x_buffer = []
-        self.y_buffer = []
-        self.sum_x = 0
-        self.sum_y = 0
-        self.window_size = 15
+        self.cluster_buffer_data = []
+        self.window_size = 8
         self.queue = None
-        self.process = None
-        
+        self.num_clusters = 2
+        self.processMain = None
+        self.process1 = None
+        self.process2 = None
 
     def run_algorithm(self):
         self.isRunning = True
         self.queue = multiprocessing.Queue()
-        self.process = multiprocessing.Process(target=run_stream, args=(self.selected_model_config, self.isRunning, self.queue))
+        self.process = multiprocessing.Process(target=run_stream, args=(self.selected_model_config, self.isRunning, self.queue,self.num_clusters))
         self.process.start()
        
-
-
-    def get_coords(self):
+    def get_cluster_coords(self):
         return self.queue.get()
     
-    def get_movement_trail(self):
-        latest_point = self.get_coords()
-        x = latest_point['x']
-        y = latest_point['y']
-        if len(self.x_buffer) == self.window_size:
-            self.sum_x -= self.x_buffer.pop(0)
-        if len(self.y_buffer) == self.window_size:
-            self.sum_y -= self.y_buffer.pop(0)
-        self.x_buffer.append(x)
-        self.y_buffer.append(y)
-        self.sum_x += x
-        self.sum_y += y
+    def get_smoothed_cluster_coords(self):
+        clusters = self.get_cluster_coords()
+        cluster_buffer_data = self.cluster_buffer_data
+        smoothed_cluster_centroids = []
+        for i in range(len(clusters)):
+            current_cluster_centroid = clusters[i]
+            current_cluster_buffer_data = {
+                'x' : [],
+                'y' : [],
+                'sum_x' : 0,
+                'sum_y' : 0
+            }
+            if(i+1 <= len(cluster_buffer_data)):
+                current_cluster_buffer_data = cluster_buffer_data[i]
+            updated_cluster_buffer = update_cluster_buffer(current_cluster_centroid, current_cluster_buffer_data, self.window_size)
+            if(i+1 <= len(cluster_buffer_data)):
+                self.cluster_buffer_data[i] = updated_cluster_buffer
+            else:
+                self.cluster_buffer_data.append(updated_cluster_buffer)
+            smoothed_cluster_centroids.append(get_movement_value(updated_cluster_buffer))
+        return smoothed_cluster_centroids
 
-
-
-    
-    def get_movement_value(self):
-        self.get_movement_trail()
-        x = -2
-        y = -2
-        if len(self.x_buffer) > 0:
-            x = self.sum_x / len(self.x_buffer)
-        if len(self.y_buffer) > 0:
-            y = self.sum_y / len(self.y_buffer)
-        return {'x' : x, 'y' : y}
+   
         
         
 
@@ -90,7 +95,7 @@ PIXEL_SKIP = 1
 WIDTH = 640
 HEIGHT = 480
 
-def centroid_to_scale(centroid, detected):
+def centroid_to_scale(centroid, detected = True):
      if detected == False:
          return {'x': 2, 'y' : 2}
      return {'x': getPositionAsPercentage(WIDTH,centroid[1], True), 'y': getPositionAsPercentage(HEIGHT, centroid[0], True)}
@@ -105,79 +110,83 @@ def getPositionAsPercentage(axis, value, detected):
     return round(1 - value / axis, 2)
 
 
-# def detect_clusters(frame):
+def update_cluster_buffer(latest_point, cluster_buffer, window_size):
+    x = latest_point['x']
+    y = latest_point['y']
+    if len( cluster_buffer['x']) == window_size:
+        cluster_buffer['sum_x'] -= cluster_buffer['x'].pop(0)
+    if len(cluster_buffer['y']) == window_size:
+        cluster_buffer['sum_y'] -= cluster_buffer['y'].pop(0)
+    cluster_buffer['x'].append(x)
+    cluster_buffer['y'].append(y)
+    cluster_buffer['sum_x'] += x
+    cluster_buffer['sum_y'] += y
+    return cluster_buffer
+
+def get_movement_value(cluster_data):
+        x = -2
+        y = -2
+        if len(cluster_data['x']) > 0:
+            x =  cluster_data['sum_x'] / len(cluster_data['x'])
+        if len( cluster_data['y']) > 0:
+            y = cluster_data['sum_y'] / len( cluster_data['y'])
+        return {'x' : x, 'y' : y}
+
+def get_clusters(frame_data):
+    points = frame_data[::40, :]
+    total_points = points.size
+    num_clusters = 2
+    if total_points > num_clusters * 2:
+        spaced_elements = np.linspace(0, len(points)-1, num_clusters, dtype=int)
+        centroids = points[spaced_elements]
+        # loop until convergence
+        while True:
+            # calculate the distance from each point to each centroid
+            distances = np.linalg.norm(points[:, np.newaxis, :] - centroids, axis=2)
+            # assign each point to the nearest centroid
+            labels = np.argmin(distances, axis=1)
+            # calculate the new centroids
+            new_centroids = np.array([np.mean(points[labels == i], axis=0) for i in range(num_clusters)])
+
+            # check if the centroids have converged
+            if np.allclose(new_centroids, centroids):
+                break
+
+            # update the centroids
+            centroids = new_centroids 
+
+        scaled_centroids = []
+        for i in range(centroids.shape[0]):
+            scaled_centroids.append(centroid_to_scale(centroids[i]))
+        return scaled_centroids
+    return []
 
 
 
 
-    # def get_coords_from_seg(image):
-    # if image is None:
-    #     return
+ # def get_movement_trail(self):
+    #     latest_point = self.get_coords()
+    #     x = latest_point['x']
+    #     y = latest_point['y']
+    #     if len(self.x_buffer) == self.window_size:
+    #         self.sum_x -= self.x_buffer.pop(0)
+    #     if len(self.y_buffer) == self.window_size:
+    #         self.sum_y -= self.y_buffer.pop(0)
+    #     self.x_buffer.append(x)
+    #     self.y_buffer.append(y)
+    #     self.sum_x += x
+    #     self.sum_y += y
+
     
-    # coor_obj = {
-    #     'left': None,
-    #     'right': None,
-    #     'top': None,
-    #     'bottom': None,
-    # }
-    # detected = False
- 
-    # for y in range(0,HEIGHT,20):
-    #     for x in range(0,WIDTH, 16):
-    #     # Get the pixel value at (x, y)
-    #         b, g, r = image[y, x]
-    #         if b == 110 and g == 64 and r == 170:
-    #             detected = True
-    #             coor_obj['left'] = min(x, coor_obj['left'] or x)
-    #             coor_obj['right'] = max(x, coor_obj['right'] or x)
-    #             coor_obj['top'] = min(y, coor_obj['top'] or y)
-    #             coor_obj['bottom'] = max(y, coor_obj['bottom'] or y)
-               
-        
+def get_clusters_birch(frame_data):
+    points = frame_data[::40, :]
+    # Create the Birch object with desired parameters
+    birch = Birch(n_clusters=3, threshold=5.0, branching_factor=200)
 
-            
-    # center_x = get_center(coor_obj['left'] or 0, coor_obj['right'] or 0) 
-    # center_y = get_center(coor_obj['top'] or 0, coor_obj['bottom'] or 0)
-    # return {'x': getPositionAsPercentage(WIDTH, center_x, detected), 'y': getPositionAsPercentage(HEIGHT, center_y, detected)}
+    # Fit the data to the Birch model
+    birch.fit(points)
 
-    # # Convert frame to a NumPy array
-    # arr_reduced = frame[::20, ::16]
-    # img = np.array( arr_reduced )
-    # color = ( 255,  94, 99)
-
-    # # Create a mask for the color of interest
-    # mask = np.all(img == color, axis=2)
-    # # Initialize a list to store the coordinates of the clusters
-    # cluster_coords = []
-    # detected = False
-    # # Loop over each pixel in the mask
-    # for y in range(0, int(HEIGHT // 20)):
-    #     for x in range(0, int(WIDTH // 16)):       
-    #         # Check if the pixel is part of a cluster
-    #         if mask[y, x]:
-    #             # Initialize variables to track the boundaries of the cluster
-    #             top, bottom, left, right = y, y, x, x
-
-    #             # Expand the boundaries of the cluster in all directions
-    #             while top >= 0 and np.any(mask[top, :]):
-    #                 top -= 1
-    #             while bottom < HEIGHT // 20 and np.any(mask[bottom, :]):
-    #                 bottom += 1
-    #             while left >= 0 and np.any(mask[:, left]):
-    #                 left -= 1
-    #             while right < WIDTH  // 16 and np.any(mask[:, right]):
-    #                 right += 1
-
-    #             # Calculate the central coordinates of the cluster
-    #             center_x = (left + right) // 2
-    #             center_y = (top + bottom) // 2
-    #             detected = True
-    #             x_coord  = getPositionAsPercentage(WIDTH // 16, center_x, detected), 
-    #             y_coord = getPositionAsPercentage(HEIGHT // 20, center_y, detected)
-    #             # Add the coordinates to the list of clusters
-    #             cluster_coords.append({"x" : x_coord, "y" : y_coord})
-
-    #             # Set the mask for the cluster to zero to prevent double counting
-    #             mask[top:bottom, left:right] = 0
-
-    # return cluster_coords
+    # Get the centroid coordinates for each cluster
+    centroid_coords = birch.subcluster_centers_ 
+    print(centroid_coords)
+    print(centroid_coords.size)

@@ -6,7 +6,7 @@ attribute float angle;
 
 
 uniform float uTime;
-uniform vec2 uPosition;
+uniform vec3 uPosition;
 uniform vec2  uTextureSize;
 uniform sampler2D uTouch;
 uniform float uRotation;
@@ -59,13 +59,20 @@ void main() {
 
   // uPosition will be set to 2000 is there is no detections made
   if(uPosition.x > -2000.0){
-    vec3 effect = vec3(uPosition, 1.0);
+    vec3 effect = vec3(uPosition);
     vec3 effectDistanceVector =  effect - displaced;
     float effectDistanceLength = length(effectDistanceVector);
-    float effectStrength =  10.0 * 0.9;
-    if(effectDistanceLength <= 10.0){
+    float effectStrength =  5.0 * 0.9;
+    if(effectDistanceLength <= 8.0){
+      float rand = random(uTime);
       displaced.x += cos(angle) * effectStrength;
       displaced.y += sin(angle) * effectStrength;
+      displaced.z += sin(rand) * uPosition.z;
+      if(mod(pointIndex, 80.0) == 0.0){
+        gl_PointSize = 16.0;
+      }else{
+        gl_PointSize = 0.0;
+      }
     }
   }
   

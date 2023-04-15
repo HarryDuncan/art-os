@@ -1,9 +1,6 @@
 # System Imports
 from concurrent import futures
 import logging
-import multiprocessing
-import sys
-import time
 import numpy as np
 
 # GRPC
@@ -42,13 +39,11 @@ class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
                 self.currentAlgorithm.run_algorithm()
                 self.isRunning = True
             while self.isRunning == True:
-                coords = self.currentAlgorithm.get_movement_value()
-                if(coords == None):
-                    coords = {'x' : 0, 'y' : 0}
-                response = pb2.RunAlgorithmResponse(point=coords)
+                coords = self.currentAlgorithm.get_smoothed_cluster_coords()
+                response = pb2.RunAlgorithmResponse(points=coords)
                 yield response
         else:
-            return pb2.RunAlgorithmResponse(point={'x' : 0, 'y' : 0},errorMessage='error' )
+            return pb2.RunAlgorithmResponse(points=[],errorMessage='error' )
 
         
     

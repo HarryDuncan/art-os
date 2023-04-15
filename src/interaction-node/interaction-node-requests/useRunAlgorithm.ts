@@ -22,9 +22,8 @@ export const useRunAlgorithm = () => {
     const stream = client.runAlgorithm(request);
     stream.on("data", (response) => {
       // handle each response message here
-      const point = response.getPoint();
-      // @ts-ignore
-      const pointData = { x: point.array[0], y: point.array[1] };
+      const points = response.getPointsList();
+      const pointData = getPoints(points);
 
       dispatchInteractionEvent("update:position", pointData);
     });
@@ -39,4 +38,8 @@ export const useRunAlgorithm = () => {
       console.log("Stream ended");
     });
   }, [isInitialized]);
+};
+
+const getPoints = (pointsArray) => {
+  return pointsArray.map(({ array }) => ({ x: array[0], y: array[1] }));
 };

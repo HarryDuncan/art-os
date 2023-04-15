@@ -97,10 +97,10 @@ export namespace RunAlgorithmRequest {
 }
 
 export class RunAlgorithmResponse extends jspb.Message {
-  getPoint(): RunAlgorithmResponse.Locations | undefined;
-  setPoint(value?: RunAlgorithmResponse.Locations): RunAlgorithmResponse;
-  hasPoint(): boolean;
-  clearPoint(): RunAlgorithmResponse;
+  getPointsList(): Array<RunAlgorithmResponse.Locations>;
+  setPointsList(value: Array<RunAlgorithmResponse.Locations>): RunAlgorithmResponse;
+  clearPointsList(): RunAlgorithmResponse;
+  addPoints(value?: RunAlgorithmResponse.Locations, index?: number): RunAlgorithmResponse.Locations;
 
   getErrormessage(): string;
   setErrormessage(value: string): RunAlgorithmResponse;
@@ -117,7 +117,7 @@ export class RunAlgorithmResponse extends jspb.Message {
 
 export namespace RunAlgorithmResponse {
   export type AsObject = {
-    point?: RunAlgorithmResponse.Locations.AsObject,
+    pointsList: Array<RunAlgorithmResponse.Locations.AsObject>,
     errormessage?: string,
   }
 

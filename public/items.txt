@@ -12,16 +12,16 @@
    rightLowerLegFront :(217, 194, 49), 
    leftFeet :(194, 219, 64),
    torsoFront :(175, 240, 91), 
-    :(135, 245, 87), 
-    :(96, 247, 96),  
-    :(64, 243, 115),
-    :(40, 234, 141), 
-    :(28, 219, 169), 
-    :(26, 199, 194), 
-    :(33, 176, 213),
-    :(47, 150, 224), 
-    :(65, 125, 224), 
-    :(84, 101, 214), 
-    :(99, 81, 195)
+   torsoBack :(135, 245, 87), 
+   rightUpperArmFront :(96, 247, 96),  
+   rightUpperArmBack :(64, 243, 115),
+   rightLowerArmBack :(40, 234, 141), 
+   leftLowerArmFront :(28, 219, 169), 
+   leftUpperArmFront :(26, 199, 194), 
+   leftUpperArmBack :(33, 176, 213),
+   leftLowerArmBack :(47, 150, 224), 
+   rightHand :(65, 125, 224), 
+   rightLowerArmFront :(84, 101, 214), 
+   leftHand :(99, 81, 195)
    
 }

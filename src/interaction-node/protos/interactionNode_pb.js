@@ -146,7 +146,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.interactionNode.RunAlgorithmResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.interactionNode.RunAlgorithmResponse.repeatedFields_, null);
 };
 goog.inherits(proto.interactionNode.RunAlgorithmResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -902,6 +902,13 @@ proto.interactionNode.RunAlgorithmRequest.serializeBinaryToWriter = function(mes
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.interactionNode.RunAlgorithmResponse.repeatedFields_ = [1];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -933,7 +940,8 @@ proto.interactionNode.RunAlgorithmResponse.prototype.toObject = function(opt_inc
  */
 proto.interactionNode.RunAlgorithmResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    point: (f = msg.getPoint()) && proto.interactionNode.RunAlgorithmResponse.Locations.toObject(includeInstance, f),
+    pointsList: jspb.Message.toObjectList(msg.getPointsList(),
+    proto.interactionNode.RunAlgorithmResponse.Locations.toObject, includeInstance),
     errormessage: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -974,7 +982,7 @@ proto.interactionNode.RunAlgorithmResponse.deserializeBinaryFromReader = functio
     case 1:
       var value = new proto.interactionNode.RunAlgorithmResponse.Locations;
       reader.readMessage(value,proto.interactionNode.RunAlgorithmResponse.Locations.deserializeBinaryFromReader);
-      msg.setPoint(value);
+      msg.addPoints(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -1009,9 +1017,9 @@ proto.interactionNode.RunAlgorithmResponse.prototype.serializeBinary = function(
  */
 proto.interactionNode.RunAlgorithmResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPoint();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getPointsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
       1,
       f,
       proto.interactionNode.RunAlgorithmResponse.Locations.serializeBinaryToWriter
@@ -1188,39 +1196,40 @@ proto.interactionNode.RunAlgorithmResponse.Locations.prototype.setY = function(v
 
 
 /**
- * optional Locations point = 1;
- * @return {?proto.interactionNode.RunAlgorithmResponse.Locations}
+ * repeated Locations points = 1;
+ * @return {!Array<!proto.interactionNode.RunAlgorithmResponse.Locations>}
  */
-proto.interactionNode.RunAlgorithmResponse.prototype.getPoint = function() {
-  return /** @type{?proto.interactionNode.RunAlgorithmResponse.Locations} */ (
-    jspb.Message.getWrapperField(this, proto.interactionNode.RunAlgorithmResponse.Locations, 1));
+proto.interactionNode.RunAlgorithmResponse.prototype.getPointsList = function() {
+  return /** @type{!Array<!proto.interactionNode.RunAlgorithmResponse.Locations>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.interactionNode.RunAlgorithmResponse.Locations, 1));
 };
 
 
 /**
- * @param {?proto.interactionNode.RunAlgorithmResponse.Locations|undefined} value
+ * @param {!Array<!proto.interactionNode.RunAlgorithmResponse.Locations>} value
  * @return {!proto.interactionNode.RunAlgorithmResponse} returns this
 */
-proto.interactionNode.RunAlgorithmResponse.prototype.setPoint = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+proto.interactionNode.RunAlgorithmResponse.prototype.setPointsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * Clears the message field making it undefined.
+ * @param {!proto.interactionNode.RunAlgorithmResponse.Locations=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.interactionNode.RunAlgorithmResponse.Locations}
+ */
+proto.interactionNode.RunAlgorithmResponse.prototype.addPoints = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.interactionNode.RunAlgorithmResponse.Locations, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
  * @return {!proto.interactionNode.RunAlgorithmResponse} returns this
  */
-proto.interactionNode.RunAlgorithmResponse.prototype.clearPoint = function() {
-  return this.setPoint(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.interactionNode.RunAlgorithmResponse.prototype.hasPoint = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.interactionNode.RunAlgorithmResponse.prototype.clearPointsList = function() {
+  return this.setPointsList([]);
 };
 
 

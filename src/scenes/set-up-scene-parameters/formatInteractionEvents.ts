@@ -4,7 +4,7 @@ import {
   InteractionEventConfig,
   Interactive,
 } from "interaction-node/interactions.types";
-import { Vector2 } from "three";
+import { Vector2, Vector3 } from "three";
 import InteractiveShaderMaterial from "visual/materials/interactive/InteractiveShaderMaterial";
 import { eulerToDegrees } from "visual/helpers/conversion/euelerToDegrees";
 
@@ -32,17 +32,18 @@ const updateMaterialTimeUniform = (
   material: InteractiveShaderMaterial,
   eventDetails
 ) => {
-  if (eventDetails.x === 2) {
-    material.uniforms.uPosition.value = new Vector2(-2000, -2000);
+  console.log(eventDetails);
+  if (eventDetails.length === 0) {
+    material.uniforms.uPosition.value = new Vector3(-2000, -2000, -2000);
   } else {
-    const x = getValueFromPercentage(eventDetails.x, -20, 20);
-    const y = getValueFromPercentage(eventDetails.y, -30, 40);
+    const x = getValueFromPercentage(eventDetails[0].x, -20, 20);
+    const y = getValueFromPercentage(eventDetails[0].y, -30, 40);
 
     const multipler = Math.cos(material.uniforms.uRotation.value);
 
-    material.uniforms.uPosition.value = new Vector2(x * multipler, y);
-
-    console.log(`x :${x}, y : ${y}`);
+    material.uniforms.uPosition.value = new Vector3(x, y, multipler);
+    console.log(eventDetails[0]);
+    // console.log(`x :${x}, y : ${y}`);
   }
 
   material.uniforms.uTime.value += material.clock.getDelta();

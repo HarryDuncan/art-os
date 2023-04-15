@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15interactionNode.proto\x12\x0finteractionNode\"\"\n InitializeInteractionNodeRequest\":\n!InitializeInteractionNodeResponse\x12\x15\n\risInitialized\x18\x01 \x01(\x08\"]\n\x1aInitializeAlgorithmRequest\x12\x16\n\x0e\x61lgorithm_type\x18\x01 \x01(\t\x12\x1b\n\x13\x64\x61ta_transform_type\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\t\"@\n\x1bInitializeAlgorithmResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\risInitialized\x18\x02 \x01(\x08\"\x15\n\x13RunAlgorithmRequest\"\xa5\x01\n\x14RunAlgorithmResponse\x12>\n\x05point\x18\x01 \x01(\x0b\x32/.interactionNode.RunAlgorithmResponse.Locations\x12\x19\n\x0c\x65rrorMessage\x18\x02 \x01(\tH\x00\x88\x01\x01\x1a!\n\tLocations\x12\t\n\x01x\x18\x01 \x01(\x01\x12\t\n\x01y\x18\x02 \x01(\x01\x42\x0f\n\r_errorMessage\"\x16\n\x14StopAlgorithmRequest\"\x17\n\x15StopAlgorithmResponse2\xcd\x03\n\x16InteractionNodeService\x12\x82\x01\n\x19InitializeInteractionNode\x12\x31.interactionNode.InitializeInteractionNodeRequest\x1a\x32.interactionNode.InitializeInteractionNodeResponse\x12o\n\x12InitalizeAlgorithm\x12+.interactionNode.InitializeAlgorithmRequest\x1a,.interactionNode.InitializeAlgorithmResponse\x12]\n\x0cRunAlgorithm\x12$.interactionNode.RunAlgorithmRequest\x1a%.interactionNode.RunAlgorithmResponse0\x01\x12^\n\rStopAlgorithm\x12%.interactionNode.StopAlgorithmRequest\x1a&.interactionNode.StopAlgorithmResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15interactionNode.proto\x12\x0finteractionNode\"\"\n InitializeInteractionNodeRequest\":\n!InitializeInteractionNodeResponse\x12\x15\n\risInitialized\x18\x01 \x01(\x08\"]\n\x1aInitializeAlgorithmRequest\x12\x16\n\x0e\x61lgorithm_type\x18\x01 \x01(\t\x12\x1b\n\x13\x64\x61ta_transform_type\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\t\"@\n\x1bInitializeAlgorithmResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\risInitialized\x18\x02 \x01(\x08\"\x15\n\x13RunAlgorithmRequest\"\xa6\x01\n\x14RunAlgorithmResponse\x12?\n\x06points\x18\x01 \x03(\x0b\x32/.interactionNode.RunAlgorithmResponse.Locations\x12\x19\n\x0c\x65rrorMessage\x18\x02 \x01(\tH\x00\x88\x01\x01\x1a!\n\tLocations\x12\t\n\x01x\x18\x01 \x01(\x01\x12\t\n\x01y\x18\x02 \x01(\x01\x42\x0f\n\r_errorMessage\"\x16\n\x14StopAlgorithmRequest\"\x17\n\x15StopAlgorithmResponse2\xcd\x03\n\x16InteractionNodeService\x12\x82\x01\n\x19InitializeInteractionNode\x12\x31.interactionNode.InitializeInteractionNodeRequest\x1a\x32.interactionNode.InitializeInteractionNodeResponse\x12o\n\x12InitalizeAlgorithm\x12+.interactionNode.InitializeAlgorithmRequest\x1a,.interactionNode.InitializeAlgorithmResponse\x12]\n\x0cRunAlgorithm\x12$.interactionNode.RunAlgorithmRequest\x1a%.interactionNode.RunAlgorithmResponse0\x01\x12^\n\rStopAlgorithm\x12%.interactionNode.StopAlgorithmRequest\x1a&.interactionNode.StopAlgorithmResponseb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'interactionNode_pb2', globals())
@@ -31,13 +31,13 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _RUNALGORITHMREQUEST._serialized_start=299
   _RUNALGORITHMREQUEST._serialized_end=320
   _RUNALGORITHMRESPONSE._serialized_start=323
-  _RUNALGORITHMRESPONSE._serialized_end=488
-  _RUNALGORITHMRESPONSE_LOCATIONS._serialized_start=438
-  _RUNALGORITHMRESPONSE_LOCATIONS._serialized_end=471
-  _STOPALGORITHMREQUEST._serialized_start=490
-  _STOPALGORITHMREQUEST._serialized_end=512
-  _STOPALGORITHMRESPONSE._serialized_start=514
-  _STOPALGORITHMRESPONSE._serialized_end=537
-  _INTERACTIONNODESERVICE._serialized_start=540
-  _INTERACTIONNODESERVICE._serialized_end=1001
+  _RUNALGORITHMRESPONSE._serialized_end=489
+  _RUNALGORITHMRESPONSE_LOCATIONS._serialized_start=439
+  _RUNALGORITHMRESPONSE_LOCATIONS._serialized_end=472
+  _STOPALGORITHMREQUEST._serialized_start=491
+  _STOPALGORITHMREQUEST._serialized_end=513
+  _STOPALGORITHMRESPONSE._serialized_start=515
+  _STOPALGORITHMRESPONSE._serialized_end=538
+  _INTERACTIONNODESERVICE._serialized_start=541
+  _INTERACTIONNODESERVICE._serialized_end=1002
 # @@protoc_insertion_point(module_scope)

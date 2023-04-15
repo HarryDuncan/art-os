@@ -43,7 +43,8 @@ RUN pip install --upgrade pip setuptools
 COPY requirements /requirements
 
 # Install requirements
-RUN for file in /requirements/*; do pip install --no-cache-dir -r "$file"; done
+RUN pip install -r /requirements/grpc-requirements.txt
+RUN pip install -r /requirements/ai-requirements.txt
 
 
 
