@@ -4,17 +4,21 @@ varying float vReduced;
 uniform float uTime;
 uniform sampler2D uTextureOne;
 uniform sampler2D uTextureZero;
-
+varying float vAffected;
 varying float vPointId;
 void main() {
     
-  
+    
         if(mod(vPointId, vReduced) == 0.0 ){
-            gl_FragColor =  vec4(sin(uTime), 0.5, 0.5, 1.0);
+            vec4 pointColor =  vec4(1.0, 0.0, 0.0, 1.0);
+            if(vAffected == 1.0){
+                pointColor =  vec4(0.0, 0.3, 0.5, 1.0);
+            }
+            
             if(mod(vPointId, 2.0) == 0.0 ){
-                gl_FragColor =  gl_FragColor * texture2D(uTextureOne, gl_PointCoord);
+                gl_FragColor =  pointColor * texture2D(uTextureOne, gl_PointCoord);
             }else{
-                gl_FragColor =  gl_FragColor * texture2D(uTextureZero, gl_PointCoord);
+                gl_FragColor =  pointColor * texture2D(uTextureZero, gl_PointCoord);
             }
         }else{
             discard;

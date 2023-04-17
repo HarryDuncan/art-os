@@ -1,6 +1,6 @@
 {
-   leftFace : [110, 64, 170],
-   rightFace : (143, 61, 178),
+   leftFace : [110, 64, 170], - works
+   rightFace : (143, 61, 178) - works,
    rightUpperLegFront : (178, 60, 178),
    rightLowerLegBack :(210, 62, 167),    
    rightUpperLegBack :(238, 67, 149), 
@@ -11,7 +11,7 @@
    rightFeet :(239, 167, 47), 
    rightLowerLegFront :(217, 194, 49), 
    leftFeet :(194, 219, 64),
-   torsoFront :(175, 240, 91), 
+   torsoFront :(175, 240, 91), - works
    torsoBack :(135, 245, 87), 
    rightUpperArmFront :(96, 247, 96),  
    rightUpperArmBack :(64, 243, 115),

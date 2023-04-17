@@ -52,7 +52,7 @@ COPY . .
 
 # Because we have to use an old version of protobuf - it doesn't have builder py
 # so we need to copy it into the site packages for protobuf to work for grpc and tensorflow
-COPY /body_seg/builder.py ../../usr/local/lib/python3.10/site-packages/google/protobuf/internal/
+COPY /detection/builder.py ../../usr/local/lib/python3.10/site-packages/google/protobuf/internal/
 
 WORKDIR /interaction_node
 

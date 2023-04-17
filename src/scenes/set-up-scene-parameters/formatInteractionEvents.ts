@@ -1,12 +1,12 @@
+import { TweenLite } from "gsap";
 import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
 import {
   InteractionConfig,
   InteractionEventConfig,
   Interactive,
 } from "interaction-node/interactions.types";
-import { Vector2, Vector3 } from "three";
+import { Vector3 } from "three";
 import InteractiveShaderMaterial from "visual/materials/interactive/InteractiveShaderMaterial";
-import { eulerToDegrees } from "visual/helpers/conversion/euelerToDegrees";
 
 export const formatInteractionEvents = (
   interactionConfigs: InteractionConfig[]
@@ -32,18 +32,17 @@ const updateMaterialTimeUniform = (
   material: InteractiveShaderMaterial,
   eventDetails
 ) => {
-  console.log(eventDetails);
-  if (eventDetails.length === 0) {
-    material.uniforms.uPosition.value = new Vector3(-2000, -2000, -2000);
+  // console.log(eventDetails);
+  if (eventDetails.length === 0 || eventDetails[0].x === -2) {
+    material.uniforms.uPower.value -= 0.01;
   } else {
-    const x = getValueFromPercentage(eventDetails[0].x, -20, 20);
-    const y = getValueFromPercentage(eventDetails[0].y, -30, 40);
+    const x = getValueFromPercentage(eventDetails[0].x, -2, 2);
+    const y = getValueFromPercentage(eventDetails[0].y, -10, 10);
+    const pos = new Vector3(x, y, 0.0);
 
-    const multipler = Math.cos(material.uniforms.uRotation.value);
-
-    material.uniforms.uPosition.value = new Vector3(x, y, multipler);
-    console.log(eventDetails[0]);
-    // console.log(`x :${x}, y : ${y}`);
+    material.uniforms.uPower.value = 1.0;
+    console.log(pos);
+    slideTo(pos, material);
   }
 
   material.uniforms.uTime.value += material.clock.getDelta();
@@ -56,5 +55,36 @@ const getValueFromPercentage = (
 ): number => {
   const difference = endValue - startValue;
   const value = startValue + difference * percentage;
-  return value;
+  return Number(value.toFixed(2));
+};
+
+const slideTo = (targetPosition: Vector3, material) => {
+  const startPos = material.uniforms.startPos.value;
+  if (!!startPos) {
+    return;
+  } else {
+    const currentPos = material.uniforms.uPosition.value;
+    material.uniforms.startPos.value = currentPos;
+    material.uniforms.targetPosition.value = targetPosition;
+    const startPos = material.uniforms.startPos.value;
+    let startTime: number;
+    const duration = 800;
+    const stepValue = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const t = progress / duration;
+      const x = startPos.x + (targetPosition.x - startPos.x) * t;
+      const y = startPos.y + (targetPosition.y - startPos.y) * t;
+      const z = 0;
+      material.uniforms.uPosition.value = new Vector3(x, y, z);
+      if (progress < duration) {
+        requestAnimationFrame(stepValue);
+      } else {
+        material.uniforms.startPos.value = null;
+        startTime = 0;
+      }
+    };
+
+    requestAnimationFrame(stepValue);
+  }
 };

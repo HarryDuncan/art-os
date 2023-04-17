@@ -9,14 +9,17 @@ uniform float uTime;
 uniform vec3 uPosition;
 uniform vec2  uTextureSize;
 uniform sampler2D uTouch;
-uniform float uRotation;
-
+uniform vec3 uRotation;
+uniform vec3 uModelDimensions;
+uniform vec4 uEffectTranslation;
+uniform float uPower;
 varying vec3 vColor;
 varying float vPointId;
 
 varying vec2 vPUv;
 varying vec2 vUv;
 varying float vReduced;
+varying float vAffected;
 
 float random(float n) {
     return fract(sin(n) * 43758.5453123);
@@ -37,43 +40,72 @@ float noise(vec2 p){
     return res*res;
 }
 
+vec3 translatePoint(vec3 pointToTranslate){
+  // get the effect position relative to the model
+  float xToZRatio = uModelDimensions.z / uModelDimensions.x;
+  float zToXRatio = uModelDimensions.x / uModelDimensions.z;
+
+  float xModelRadius = 3.5;
+  float zModelRadius = 4.5;
+  
+  float mX1 = pointToTranslate.x * uEffectTranslation.x;
+  float mZ1 = pointToTranslate.z * uEffectTranslation.x;
+  
+  float mX2 = ( -pointToTranslate.x - zModelRadius) * uEffectTranslation.y;
+  float mZ2 = (xModelRadius + (xModelRadius -  pointToTranslate.x)) * uEffectTranslation.y;
+
+  float mX3 = -pointToTranslate.x * uEffectTranslation.z;
+  float mZ3 = 2.0 * zModelRadius * uEffectTranslation.z;
+
+  float mX4 = ( -pointToTranslate.x - zModelRadius) * uEffectTranslation.w;
+  float mZ4 = (xModelRadius - ( pointToTranslate.x - xModelRadius))* uEffectTranslation.w;
+
+  float xEffectPos = mX1 + mX2 + mX3 + mX4;
+  float zEffectPos = mZ1 + mZ2 + mZ3 + mZ4;
+  return vec3(xEffectPos, pointToTranslate.y, zEffectPos);
+  }
+
 void main() {
   vUv = uv;
-  vReduced = 25.0;
+  vReduced = 1.0;
   vec2 puv = position.xy / uTextureSize;
   vPUv = puv;
 
   vColor = vec3(1.0,1.0,0.5);
   vPointId = pointIndex;
-
-
- if(mod(pointIndex, vReduced) == 0.0){
-    gl_PointSize = 16.0;
-  }else{
-    gl_PointSize = 0.0;
-  }
-  
+  vAffected = 0.0;
  
+
+
   // displacement
   vec3 displaced = position;
 
+ 
+
   // uPosition will be set to 2000 is there is no detections made
   if(uPosition.x > -2000.0){
-    vec3 effect = vec3(uPosition);
-    vec3 effectDistanceVector =  effect - displaced;
+
+    vec3 displacedPosition = position;
+    vec3 effect = uPosition;
+    vec3 effectDistanceVector =  effect - displacedPosition;
     float effectDistanceLength = length(effectDistanceVector);
-    float effectStrength =  5.0 * 0.9;
-    if(effectDistanceLength <= 8.0){
+    float effectStrength =  2.5 * uPower;
+    if(effectDistanceLength <= 1.5 * uPower){
       float rand = random(uTime);
       displaced.x += cos(angle) * effectStrength;
       displaced.y += sin(angle) * effectStrength;
-      displaced.z += sin(rand) * uPosition.z;
-      if(mod(pointIndex, 80.0) == 0.0){
-        gl_PointSize = 16.0;
-      }else{
-        gl_PointSize = 0.0;
-      }
+      vAffected = 1.0;
     }
+  }
+  
+  if(mod(pointIndex, vReduced) == 0.0){
+    vec3 translated = translatePoint(position);
+    gl_PointSize = max(4.0, min(18.0, 18.0 *  (9.0 / translated.z)) );
+  }else{
+    gl_PointSize = 0.0;
+  }
+  if(vAffected == 1.0){
+    gl_PointSize = 32.0;
   }
   
   

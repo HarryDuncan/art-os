@@ -3,7 +3,7 @@
     "assets": [
       {
         "name": "nymph-geometry",
-        "url": "../assets/models/NymphFixed.obj",
+        "url": "../assets/models/sculptures/philop.obj",
         "assetType": "GEOMETRY"
       },
       {
@@ -33,7 +33,7 @@
         "geometryId": "nymph-geometry",
         "rotation": { "z": 0 },
         "position": { "x": 0, "y": 0 },
-        "size": 100,
+        "size": 1,
         "meshType": "POINTS",
         "materialConfig": {
           "materialType": "INTERACTIVE_SHADER",
@@ -54,7 +54,12 @@
               "uTouchRef": { "value": null },
               "uTextureOne": { "value": null },
               "uTextureZero": { "value": null },
-              "uRotation": { "value": 0 }
+              "uRotation": { "value": 0 },
+              "uEffectTranslation": { "value": null },
+              "uModelDimensions": { "value": null },
+              "uPower": { "value": 1.0 },
+              "startPos": { "value": null },
+              "targetPosition": { "value": null }
             }
           }
         }
@@ -63,11 +68,8 @@
         "id": "hjdcurves1",
         "geometryId": "hjdcurves1-geometry",
         "size": 50,
-        "position": { "x": -0.5, "z": -3 },
-        "rotation": { "x": 90, "y": -30, "z": -20 },
-        "materialConfig": {
-          "materialById": "phong-color-one"
-        }
+        "position": { "x": -0.5, "y": 7, "z": 50 },
+        "rotation": { "x": -90, "y": -130, "z": -40 }
       },
       {
         "id": "hjdcurves2",
@@ -137,7 +139,22 @@
         "animationConfig": {
           "animationType": "SPIN",
           "animationProperties": {
-            "speed": 0.002,
+            "speed": 0.0004,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "curve",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.0006,
             "rotationAxis": "Y",
             "animationDurationMilis": -1,
             "animationPauseMilis": -1,

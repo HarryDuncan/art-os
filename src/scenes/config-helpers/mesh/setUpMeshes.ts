@@ -1,9 +1,11 @@
 import {
+  Box3,
   BufferAttribute,
   BufferGeometry,
   Float32BufferAttribute,
   Mesh,
   Points,
+  Vector3,
 } from "three";
 import { Geometry } from "types/threeJs.types";
 import {
@@ -36,6 +38,8 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
       angles.forEach((_value, index) => {
         angles[index] = Math.random() * Math.PI;
       });
+
+      getBoundingBoxDimensions(geometry);
 
       geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
       geometry.setAttribute("angle", new BufferAttribute(angles, 1, false));
@@ -85,3 +89,15 @@ const formatMesh = (mesh, position, rotation, name) => {
 
 //   return resultGeometry;
 // }
+export const getBoundingBoxDimensions = (geometry) => {
+  // Create a Box3 object
+  const boundingBox = new Box3();
+
+  // Set the bounding box to encapsulate the model
+  boundingBox.setFromBufferAttribute(geometry.getAttribute("position"));
+
+  // Get the size of the bounding box
+  const size = new Vector3();
+  boundingBox.getSize(size);
+  console.log(size);
+};

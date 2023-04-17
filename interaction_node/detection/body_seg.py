@@ -10,17 +10,18 @@ import numpy as np
 def run_stream(model_config, isRunning, queue, num_clusters):
     bodypix_model = load_model(download_model(model_config))
     cap = cv2.VideoCapture('udp://127.0.0.1:1235', )
-    torso = np.array([175, 240, 91])
+    torso = np.array([99, 81, 195])
     print('this is ran once')
     count = 0
     while cap.isOpened():
         ret,frame = cap.read()
       
         result = bodypix_model.predict_single(frame)
-        mask = result.get_mask(threshold=0.5).numpy().astype(np.uint8)
+        mask = result.get_mask(threshold=0.81).numpy().astype(np.uint8)
         coloured_mask = result.get_colored_part_mask(mask=mask)
         selected_coordinates = np.array(list(zip(*np.where(np.all(coloured_mask==torso, axis=-1)))))
         detected = bool(selected_coordinates.size > 0)
+        print(detected)
         # process = multiprocessing.Process(target=run_stream, args=())
         # process = multiprocessing.Process(target=run_stream, args=())
         
@@ -29,10 +30,13 @@ def run_stream(model_config, isRunning, queue, num_clusters):
         
             centroid = selected_coordinates.mean(axis=0)
             coords = centroid_to_scale(centroid, detected)
+            print(coords)
             queue.put(np.array([coords]))
             # get_clusters_birch(selected_coordinates)
             # clusters = get_clusters(selected_coordinates)
-            # queue.put(clusters)
+            # queue.put(clusters) 
+        else:
+            queue.put(np.array([{'x' : -2, 'y' : -2}]))
         count += 1
         if isRunning == False:
             break
@@ -48,7 +52,7 @@ class BodySeg():
         self.selected_model_config = BodyPixModelPaths.MOBILENET_FLOAT_50_STRIDE_16
         self.isRunning = False
         self.cluster_buffer_data = []
-        self.window_size = 8
+        self.window_size = 4
         self.queue = None
         self.num_clusters = 2
         self.processMain = None

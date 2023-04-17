@@ -11,7 +11,7 @@ import interactionNode_pb2_grpc as pb2_grpc
 
 
 # ALGOS
-import body_seg.body_seg as BodySeg
+import detection.posenet as Posenet
 
 class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
 
@@ -27,7 +27,7 @@ class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
         initialized = False
         if self.isRunning == False:
             if(request.algorithm_type == "BODY_PIX"):
-                self.currentAlgorithm = BodySeg.BodySeg()
+                self.currentAlgorithm = Posenet.Posenet()
                 initialized = True
         else:
             initialized = True

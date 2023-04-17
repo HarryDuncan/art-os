@@ -7,11 +7,12 @@ import {
   SceneData,
 } from "visual/components/interactive-scene";
 import { getMeshByName } from "visual/helpers/scene/object-finding/getMeshByName";
-import { RawShaderMaterial } from "three";
+import { Material, RawShaderMaterial } from "three";
 import { InteractionEventConfig } from "interaction-node/interactions.types";
 import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
 import { TextureLoader } from "three";
 import { eulerToDegrees } from "visual/helpers/conversion/euelerToDegrees";
+import { getCalculationWeightingForQuadrant } from "visual/utils/getQuadrant";
 
 export const compute = (config, assets) => {
   const { animationConfig, interactionConfig } = config;
@@ -25,7 +26,7 @@ export const compute = (config, assets) => {
   );
   return {
     threeJsParams: {
-      camera: { position: { x: 0, y: 0, z: 70 } },
+      camera: { position: { x: 0, y: -1, z: 25 } },
       controls: {
         hasOrbitControls: true,
       },
@@ -47,7 +48,10 @@ const updateRotationUniform = (scene: InteractiveScene, meshId) => {
   const mesh = getMeshByName(scene, meshId);
   if (mesh) {
     const material = mesh.material as RawShaderMaterial;
-    material.uniforms.uRotation.value = mesh.rotation.y;
+    material.uniforms.uRotation.value = mesh.rotation;
+    material.uniforms.uEffectTranslation.value = getCalculationWeightingForQuadrant(
+      mesh.rotation.y
+    );
   }
 };
 
