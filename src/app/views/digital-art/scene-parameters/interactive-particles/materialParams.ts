@@ -17,6 +17,8 @@ export const materialParams: InteractiveParam = {
     uTexture: { value: null },
     uTouch: { value: null },
     uTouchRef: { value: null },
+    uTextureOne: { value: null },
+    uTextureZero: { value: null },
   },
   shaders: {
     fragmentShader: interactiveParticleFragment,

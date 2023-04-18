@@ -17,7 +17,7 @@ export const interactiveParticles = {
     },
     renderer: {
       rendererType: RendererTypes.WEBGL,
-      size: { width: 800, height: 800 },
+      size: { width: 2000, height: 2000 },
       clearColor: 0x000000,
       alpha: 0,
     },
@@ -35,7 +35,7 @@ export const interactiveParticles = {
   assets: [
     {
       name: "image",
-      url: "../assets/textures/zz.jpg",
+      url: "../assets/textures/compute/images/Trans.jpg",
       assetType: AssetType.Texture,
     },
   ],

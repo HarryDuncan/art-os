@@ -5,6 +5,7 @@ import {
   InstancedBufferAttribute,
   InstancedBufferGeometry,
   Object3D,
+  TextureLoader,
   Vector2,
 } from "three";
 import {
@@ -95,7 +96,7 @@ const formatGeometry = (loadedTexture, uniforms) => {
   let threshold = 0;
   let originalColors;
 
-  threshold = 40;
+  threshold = 0;
 
   const img = loadedTexture.texture.image;
   const canvas = document.createElement("canvas");
@@ -146,6 +147,12 @@ const formatGeometry = (loadedTexture, uniforms) => {
   uniforms.uTexture.value = loadedTexture.texture;
   uniforms.uTouch.value = touch.texture;
   uniforms.uTouchRef.value = touch;
-
+  uniforms.uTextureOne.value = new TextureLoader().load(
+    "../assets/textures/compute/1.png"
+  );
+  // @ts-ignore
+  uniforms.uTextureZero.value = new TextureLoader().load(
+    "../assets/textures/compute/0.png"
+  );
   return { geometry, formattedUniforms: uniforms };
 };

@@ -36,8 +36,8 @@ export const interactiveParticlesVert = {
     
     varying vec2 vPUv;
     varying vec2 vUv;
-    
-    
+    varying float vReduced;
+    varying float vPointId;
     float random(float n) {
         return fract(sin(n) * 43758.5453123);
     }
@@ -45,10 +45,11 @@ export const interactiveParticlesVert = {
     void main() {
         vUv = uv;
     
+        vReduced =19.0;
         // particle uv
         vec2 puv = offset.xy / uTextureSize;
         vPUv = puv;
-    
+        vPointId = pindex;
         // pixel color
         vec4 colA = texture2D(uTexture, puv);
         float grey = colA.r * 0.2 + colA.g * 0.71 + colA.b * 0.07;
@@ -69,11 +70,11 @@ export const interactiveParticlesVert = {
         displaced.y += sin(angle) * t * 20.0 * rndz;
     
         // particle size
-        float psize = (noise(vec2(uTime, pindex) * 0.5) + 2.0);
+        float psize = (noise(vec2(uTime, pindex) * 0.5) + 8.0);
         float siz = 0.0;
         if( grey < 0.8 )
         {
-            siz = 0.4 ;
+            siz = 32.0 ;
         };
         psize *= min(grey, siz);
         psize *= uSize;
@@ -82,7 +83,13 @@ export const interactiveParticlesVert = {
         vec4 mvPosition = modelViewMatrix * vec4(displaced, 1.0);
         mvPosition.xyz += position * psize;
         vec4 finalPosition = projectionMatrix * mvPosition;
-    
+     
+        if(mod(pindex, vReduced) == 0.0){
+           
+        }else{
+            gl_PointSize = 0.0;
+        }
+   
         gl_Position = finalPosition;
     }`,
 };

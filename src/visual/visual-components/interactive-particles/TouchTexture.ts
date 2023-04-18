@@ -12,7 +12,7 @@ export default class TouchTexture {
   ctx: CanvasRenderingContext2D | null;
   texture: Texture | undefined;
   constructor() {
-    this.size = 800;
+    this.size = 1000;
     this.maxAge = 120;
     this.radius = 0.15;
     this.trail = [];

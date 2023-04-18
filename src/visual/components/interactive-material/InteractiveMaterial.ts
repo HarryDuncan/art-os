@@ -1,4 +1,11 @@
-import { Clock, DoubleSide, RawShaderMaterial } from "three";
+import {
+  Clock,
+  CustomBlending,
+  DoubleSide,
+  OneMinusSrcAlphaFactor,
+  RawShaderMaterial,
+  SrcAlphaFactor,
+} from "three";
 import { InteractionEventObject } from "visual/hooks/use-interactions/types";
 import { defaultInteractiveMaterialFunctions } from "./interactiveMaterialConstants";
 import { InteractiveMaterialFunctions, InteractiveShaders } from "./types";
@@ -19,6 +26,10 @@ export default class InteractiveMaterial extends RawShaderMaterial {
       fragmentShader: shaders.fragmentShader.frag,
       transparent: true,
       side: DoubleSide,
+      blending: CustomBlending,
+      blendSrc: SrcAlphaFactor,
+      blendDst: OneMinusSrcAlphaFactor,
+      depthTest: false,
     });
     this.isRunningThread = true;
     this.uniforms = uniforms;

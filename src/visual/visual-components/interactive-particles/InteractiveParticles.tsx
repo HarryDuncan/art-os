@@ -68,13 +68,11 @@ export const InteractiveParticles = ({ params }: InteractiveObjectProps) => {
 
   return (
     <>
-      {interactiveNode}
       <RootContainer
         containerRef={container}
-        viewHeight={"800px"}
-        viewWidth={"800px"}
+        viewHeight={"2000px"}
+        viewWidth={"2000px"}
       />
-      <StaticBackgroundContainer />
     </>
   );
 };
