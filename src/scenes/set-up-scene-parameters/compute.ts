@@ -48,10 +48,14 @@ const updateRotationUniform = (scene: InteractiveScene, meshId) => {
   const mesh = getMeshByName(scene, meshId);
   if (mesh) {
     const material = mesh.material as RawShaderMaterial;
-    material.uniforms.uRotation.value = mesh.rotation;
-    material.uniforms.uEffectTranslation.value = getCalculationWeightingForQuadrant(
-      mesh.rotation.y
-    );
+    // @ts-ignore
+    if (mesh.material.clock) {
+      // @ts-ignore
+      material.uniforms.uTime.value += mesh.material.clock.getDelta();
+      material.uniforms.uEffectTranslation.value = getCalculationWeightingForQuadrant(
+        mesh.rotation.y
+      );
+    }
   }
 };
 
@@ -70,10 +74,7 @@ const addInteractionEventsToSceneData = (
     if (mesh.name === "nymph") {
       // @ts-ignore
       mesh.material.addInteractionsEvents(materialEvents);
-      // @ts-ignore
-      mesh.material.uniforms.uTouchRef.value = interactionComponents[0];
-      // @ts-ignore
-      mesh.material.uniforms.uTouch.value = interactionComponents[0].texture;
+
       // @ts-ignore
       mesh.material.uniforms.uTextureOne.value = new TextureLoader().load(
         "../assets/textures/compute/1.png"

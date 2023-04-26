@@ -3,7 +3,7 @@
     "assets": [
       {
         "name": "nymph-geometry",
-        "url": "../assets/models/sculptures/philop.obj",
+        "url": "../assets/models/NymphFixed.obj",
         "assetType": "GEOMETRY"
       },
       {
@@ -32,8 +32,8 @@
         "id": "nymph",
         "geometryId": "nymph-geometry",
         "rotation": { "z": 0 },
-        "position": { "x": 0, "y": 0 },
-        "size": 1,
+        "position": { "x": 0, "y": -1 },
+        "size": 15,
         "meshType": "POINTS",
         "materialConfig": {
           "materialType": "INTERACTIVE_SHADER",

@@ -41,11 +41,8 @@ const updateMaterialTimeUniform = (
     const pos = new Vector3(x, y, 0.0);
 
     material.uniforms.uPower.value = 1.0;
-    console.log(pos);
     slideTo(pos, material);
   }
-
-  material.uniforms.uTime.value += material.clock.getDelta();
 };
 
 const getValueFromPercentage = (
@@ -60,9 +57,14 @@ const getValueFromPercentage = (
 
 const slideTo = (targetPosition: Vector3, material) => {
   const startPos = material.uniforms.startPos.value;
-  if (!!startPos) {
-    return;
-  } else {
+  const currentTargetPosition = material.uniforms.targetPosition.value;
+  let distance = 0;
+  if (currentTargetPosition) {
+    const distance = currentTargetPosition.distanceTo(targetPosition);
+    console.log(distance);
+  }
+
+  const animateMovement = () => {
     const currentPos = material.uniforms.uPosition.value;
     material.uniforms.startPos.value = currentPos;
     material.uniforms.targetPosition.value = targetPosition;
@@ -86,5 +88,13 @@ const slideTo = (targetPosition: Vector3, material) => {
     };
 
     requestAnimationFrame(stepValue);
+  };
+  if (!!startPos) {
+    return;
+  }
+  if (distance > 1.5) {
+    animateMovement();
+  } else if (distance < 1.5 && !startPos) {
+    animateMovement();
   }
 };

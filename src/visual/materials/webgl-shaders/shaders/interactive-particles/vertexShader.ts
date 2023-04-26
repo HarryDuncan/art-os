@@ -4,7 +4,6 @@ attribute vec3 color;
 attribute float pointIndex;
 attribute float angle;
 
-
 uniform float uTime;
 uniform vec3 uPosition;
 uniform vec2  uTextureSize;
@@ -40,37 +39,25 @@ float noise(vec2 p){
     return res*res;
 }
 
-vec3 translatePoint(vec3 pointToTranslate){
-  // get the effect position relative to the model
-  float xToZRatio = uModelDimensions.z / uModelDimensions.x;
-  float zToXRatio = uModelDimensions.x / uModelDimensions.z;
 
-  float xModelRadius = 3.5;
-  float zModelRadius = 4.5;
-  
-  float mX1 = pointToTranslate.x * uEffectTranslation.x;
-  float mZ1 = pointToTranslate.z * uEffectTranslation.x;
-  
-  float mX2 = ( -pointToTranslate.x - zModelRadius) * uEffectTranslation.y;
-  float mZ2 = (xModelRadius + (xModelRadius -  pointToTranslate.x)) * uEffectTranslation.y;
-
-  float mX3 = -pointToTranslate.x * uEffectTranslation.z;
-  float mZ3 = 2.0 * zModelRadius * uEffectTranslation.z;
-
-  float mX4 = ( -pointToTranslate.x - zModelRadius) * uEffectTranslation.w;
-  float mZ4 = (xModelRadius - ( pointToTranslate.x - xModelRadius))* uEffectTranslation.w;
-
-  float xEffectPos = mX1 + mX2 + mX3 + mX4;
-  float zEffectPos = mZ1 + mZ2 + mZ3 + mZ4;
-  return vec3(xEffectPos, pointToTranslate.y, zEffectPos);
+  vec3 inverseRotate(vec3 position){
+    mat4 inverseRotationMatrix = mat4(
+      vec4(cos(angle), 0, -sin(angle), 0),
+      vec4(0, 1, 0, 0),
+      vec4(sin(angle), 0, cos(angle), 0),
+      vec4(0, 0, 0, 1)
+    );
+    
+    vec4 inverse = vec4(position, 1.0) * inverseRotationMatrix;
+    return inverse.xyz;
   }
 
 void main() {
   vUv = uv;
-  vReduced = 1.0;
+  vReduced = 5.0;
   vec2 puv = position.xy / uTextureSize;
   vPUv = puv;
-
+  
   vColor = vec3(1.0,1.0,0.5);
   vPointId = pointIndex;
   vAffected = 0.0;
@@ -85,7 +72,7 @@ void main() {
   // uPosition will be set to 2000 is there is no detections made
   if(uPosition.x > -2000.0){
 
-    vec3 displacedPosition = position;
+    vec3 displacedPosition =position;
     vec3 effect = uPosition;
     vec3 effectDistanceVector =  effect - displacedPosition;
     float effectDistanceLength = length(effectDistanceVector);
@@ -97,23 +84,32 @@ void main() {
       vAffected = 1.0;
     }
   }
-  
+
   if(mod(pointIndex, vReduced) == 0.0){
-    vec3 translated = translatePoint(position);
-    gl_PointSize = max(4.0, min(18.0, 18.0 *  (9.0 / translated.z)) );
+    vec3 translated =  inverseRotate(position);
+    gl_PointSize = max(4.0, min(12.0, 12.0 *  (9.0 / translated.z)) );
   }else{
     gl_PointSize = 0.0;
   }
   if(vAffected == 1.0){
-    gl_PointSize = 32.0;
+    gl_PointSize = 64.0;
   }
   
+  float angle = uTime * 0.1; // calculate the angle based on time
+
+  mat4 rotationMatrix = mat4(
+    vec4(cos(angle), 0, sin(angle), 0),
+    vec4(0, 1, 0, 0),
+    vec4(-sin(angle), 0, cos(angle), 0),
+    vec4(0, 0, 0, 1)
+  ); // create a rotation matrix around y-axis
+
   
+  vec4 rotatedPosition = vec4(displaced,1.0) * rotationMatrix; // rotate position
 
 
-  vec4 mvPosition = modelViewMatrix * vec4(displaced, 1.0);
 
-  vec4 transformed = projectionMatrix *  mvPosition ;
+  vec4 transformed = projectionMatrix * modelViewMatrix *  rotatedPosition ;
   gl_Position = transformed;
 }
 `;

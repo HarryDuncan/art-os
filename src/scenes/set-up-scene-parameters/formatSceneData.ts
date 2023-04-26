@@ -4,7 +4,6 @@ import { formatSceneComponentConfigs } from "scenes/config-helpers/components/fo
 import { initializeVideos } from "utils/assets/animated-texture/setUpVideos";
 import { getMeshesFromConfig } from "scenes/config-helpers/mesh/getMeshesFromConfig";
 import { SceneData } from "visual/components/interactive-scene";
-import HeatPad from "visual/components/heat-pad/HeatPad";
 
 export const formatSceneData = (config, assets): SceneData => {
   const materials = formatGlobalMaterials(assets, config);
@@ -12,15 +11,10 @@ export const formatSceneData = (config, assets): SceneData => {
   const lights = getLightsFromConfig(config);
   initializeVideos(assets);
   const sceneComponents = formatSceneComponentConfigs(config, materials);
-  const interactionComponents = setUpInteractionComponents();
+
   return {
     meshes,
     sceneComponents,
     lights,
-    interactionComponents,
   };
-};
-
-const setUpInteractionComponents = () => {
-  return [new HeatPad()];
 };
