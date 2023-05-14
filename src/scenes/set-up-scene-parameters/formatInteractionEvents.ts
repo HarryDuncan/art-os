@@ -37,7 +37,7 @@ const updateMaterialTimeUniform = (
     material.uniforms.uPower.value -= 0.01;
   } else {
     const x = getValueFromPercentage(eventDetails[0].x, -2, 2);
-    const y = getValueFromPercentage(eventDetails[0].y, -10, 10);
+    const y = getValueFromPercentage(eventDetails[0].y, -5, 5);
     const pos = new Vector3(x, y, 0.0);
 
     material.uniforms.uPower.value = 1.0;
@@ -61,7 +61,6 @@ const slideTo = (targetPosition: Vector3, material) => {
   let distance = 0;
   if (currentTargetPosition) {
     const distance = currentTargetPosition.distanceTo(targetPosition);
-    console.log(distance);
   }
 
   const animateMovement = () => {

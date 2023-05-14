@@ -76,8 +76,8 @@ void main() {
     vec3 effect = uPosition;
     vec3 effectDistanceVector =  effect - displacedPosition;
     float effectDistanceLength = length(effectDistanceVector);
-    float effectStrength =  2.5 * uPower;
-    if(effectDistanceLength <= 1.5 * uPower){
+    float effectStrength =  1.5 * uPower;
+    if(effectDistanceLength <= 1.25 * uPower){
       float rand = random(uTime);
       displaced.x += cos(angle) * effectStrength;
       displaced.y += sin(angle) * effectStrength;
@@ -87,7 +87,7 @@ void main() {
 
   if(mod(pointIndex, vReduced) == 0.0){
     vec3 translated =  inverseRotate(position);
-    gl_PointSize = max(4.0, min(12.0, 12.0 *  (9.0 / translated.z)) );
+    gl_PointSize = max(8.0, min(18.0, 18.0 *  (9.0 / translated.z)) );
   }else{
     gl_PointSize = 0.0;
   }
