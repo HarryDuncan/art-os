@@ -6,15 +6,15 @@ import { getMeshesFromConfig } from "scenes/config-helpers/mesh/getMeshesFromCon
 import { SceneData } from "visual/components/interactive-scene";
 
 export const formatSceneData = (config, assets): SceneData => {
+  initializeVideos(assets);
   const materials = formatGlobalMaterials(assets, config);
   const meshes = getMeshesFromConfig(assets, materials, config);
   const lights = getLightsFromConfig(config);
-  initializeVideos(assets);
   const sceneComponents = formatSceneComponentConfigs(config, materials);
-
+  console.log(meshes);
   return {
-    meshes,
-    sceneComponents,
-    lights,
+    meshes: meshes ?? [],
+    sceneComponents: sceneComponents ?? [],
+    lights: lights ?? [],
   };
 };

@@ -5,17 +5,18 @@ import {
 } from "scenes/config-helpers/config.types";
 import { DEFAULT_MATERIAL } from "visual/materials/materials.defaults";
 import { getMaterial } from "visual/materials/getMaterial";
+import { FormattedGeometry } from "utils/assets/geometry/geometry.types";
 
 export const addMaterials = (
-  meshes,
+  meshes: FormattedGeometry[],
   materials: Material[],
-  config: SceneDataConfig
+  meshComponentConfigs: MeshComponentConfig[]
 ) => {
-  const { meshComponentConfigs } = config;
   return meshes.map((mesh) => {
     const meshConfig = meshComponentConfigs.find(
-      (config) => config.id === mesh.name
+      (config) => mesh.name?.indexOf(config.id) !== -1
     );
+
     const material = setUpMaterial(mesh, materials, meshConfig);
     return {
       ...mesh,

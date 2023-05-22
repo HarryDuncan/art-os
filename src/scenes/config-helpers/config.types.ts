@@ -7,6 +7,15 @@ import { MaterialConfig } from "visual/materials/materials.types";
 import { SceneComponentConfig } from "visual/components/interactive-scene";
 import { InteractionConfig } from "interaction-node/interactions.types";
 
+export type RandomizationConfig = {
+  instanceCount: number;
+  boundingBoxConfig: {
+    width: number;
+    height: number;
+    depth: number;
+    center: Partial<ThreeDPosition>;
+  };
+};
 export type MeshComponentConfig = {
   id: string;
   geometryId?: string;
@@ -14,6 +23,7 @@ export type MeshComponentConfig = {
   position?: Partial<ThreeDPosition>;
   size?: number;
   materialConfig: MaterialConfig;
+  randomizationConfig?: RandomizationConfig;
 };
 export type SceneDataConfig = {
   assets?: Asset[];

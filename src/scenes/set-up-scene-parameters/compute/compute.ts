@@ -1,5 +1,5 @@
 import { CustomAnimationConfig } from "visual/animation/animation.types";
-import { formatSceneData } from "./formatSceneData";
+import { formatSceneData } from "../formatSceneData";
 import { startSceneElementAnimations } from "visual/animation/animation-manager/startSceneElementAnimations";
 import { formatInteractionEvents } from "./formatInteractionEvents";
 import {
@@ -7,11 +7,10 @@ import {
   SceneData,
 } from "visual/components/interactive-scene";
 import { getMeshByName } from "visual/helpers/scene/object-finding/getMeshByName";
-import { Material, RawShaderMaterial } from "three";
+import { RawShaderMaterial } from "three";
 import { InteractionEventConfig } from "interaction-node/interactions.types";
 import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
 import { TextureLoader } from "three";
-import { eulerToDegrees } from "visual/helpers/conversion/euelerToDegrees";
 import { getCalculationWeightingForQuadrant } from "visual/utils/getQuadrant";
 
 export const compute = (config, assets) => {

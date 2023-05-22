@@ -25,7 +25,10 @@ export const useSceneData = () => {
     if (configId === null) return null;
     if (areAssetsInitialized) {
       const sceneParams = setUpScenes[configId](configData, initializedAssets);
-      setInteractions(sceneParams.interactionEvents ?? []);
+      if (sceneParams.interactionEvents) {
+        setInteractions(sceneParams.interactionEvents);
+      }
+
       return {
         assets,
         events,

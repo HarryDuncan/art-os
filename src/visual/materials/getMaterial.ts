@@ -61,6 +61,7 @@ export const getMaterial = (
     }
     case MATERIAL_TYPES.MATCAP: {
       const { matcap } = materialProps as MatcapMaterialProps;
+      console.log(matcap);
       return new MeshMatcapMaterial({
         matcap,
         side: DoubleSide,

@@ -1,0 +1,441 @@
+[
+  {
+    "assets": [
+      {
+        "name": "logo-geometry",
+        "url": "../assets/models/ltw/3dLogo.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "logo-material",
+        "url": "../assets/textures/matcaps/pearl.jpg",
+        "assetType": "TEXTURE",
+        "id": "logo-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "bg-video",
+        "url": "../assets/video/aurora/1256.mp4",
+        "assetType": "VIDEO"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "logo",
+        "geometryId": "logo-geometry",
+        "size": 1.5,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 90, "y": -0.5, "z": -0 },
+        "materialConfig": {
+          "materialById": "logo-material"
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "ROTATE",
+          "animationProperties": {
+            "speed": 0.0006,
+            "rotationAxis": "Z",
+            "animationDurationMilis": 1000,
+            "animationPauseMilis": 1500,
+            "repeatAnimation": true
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "scene-background",
+        "materialProps": {
+          "videoId": "bg-video"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "scene-background"
+        }
+      }
+    ]
+  },
+  {
+    "assets": [
+      {
+        "name": "logo-geometry",
+        "url": "../assets/models/ltw/names/brent.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "bg-video",
+        "url": "../assets/video/aurora/10.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "logo-material",
+        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "assetType": "TEXTURE",
+        "id": "logo-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "snow-material",
+        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "assetType": "TEXTURE",
+        "id": "snowflake-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "snowflake-geometry",
+        "url": "../assets/models/ltw/snowflake.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "snowflake-second-geometry",
+        "url": "../assets/models/ltw/snowflake-second.obj",
+        "assetType": "GEOMETRY"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "logo",
+        "geometryId": "logo-geometry",
+        "size": 12,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 90, "y": -0.5, "z": -0 },
+        "materialConfig": {
+          "materialById": "logo-material"
+        }
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "snowflake-geometry",
+        "size": 15,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialConfig": {
+          "materialById": "snowflake-material"
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "snowflake-second-geometry",
+        "size": 15,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialConfig": {
+          "materialById": "snowflake-material"
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "ROTATE",
+          "animationProperties": {
+            "speed": 0.0006,
+            "rotationAxis": "Z",
+            "animationDurationMilis": 1000,
+            "animationPauseMilis": 1500,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "snowflake-move",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "FALL",
+          "animationProperties": {
+            "speed": 0.0006,
+            "rotationAxis": "Z",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": 0,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "sno-rotate",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.06,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "scene-background",
+        "materialProps": {
+          "videoId": "bg-video"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "scene-background"
+        }
+      }
+    ]
+  },
+  {
+    "assets": [
+      {
+        "name": "logo-geometry",
+        "url": "../assets/models/ltw/brendan.obj",
+        "assetType": "GEOMETRY"
+      },
+
+      {
+        "name": "bg-video",
+        "url": "../assets/video/aurora/800.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "logo-material",
+        "url": "../assets/textures/matcaps/hot.jpg",
+        "assetType": "TEXTURE",
+        "id": "logo-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "snow-material",
+        "url": "../assets/textures/matcaps/irredescent-3.jpg",
+        "assetType": "TEXTURE",
+        "id": "snowflake-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "snowflake-geometry",
+        "url": "../assets/models/ltw/snowflake.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "snowflake-second-geometry",
+        "url": "../assets/models/ltw/snowflake-second.obj",
+        "assetType": "GEOMETRY"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "logo",
+        "geometryId": "logo-geometry",
+        "size": 0.13,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -0.5, "z": -0 },
+        "materialConfig": {
+          "materialById": "logo-material"
+        }
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "snowflake-geometry",
+        "size": 15,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialConfig": {
+          "materialById": "snowflake-material"
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "snowflake-second-geometry",
+        "size": 15,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialConfig": {
+          "materialById": "snowflake-material"
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.03,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": 0,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "snowflake-move",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "FALL",
+          "animationProperties": {
+            "speed": 0.0006,
+            "rotationAxis": "Z",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": 0,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "sno-rotate",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.06,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "scene-background",
+        "materialProps": {
+          "videoId": "bg-video"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "scene-background"
+        }
+      }
+    ]
+  }
+]

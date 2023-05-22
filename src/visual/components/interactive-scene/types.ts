@@ -15,16 +15,16 @@ export type SceneComponentConfig = {
   id: string;
   componentType: ThreeJsComponentType;
   componentProps: ComponentProps;
-  materialConfig: MaterialConfig;
+  materialConfig?: MaterialConfig;
 };
 
 export type SceneProperties = {
   background?: Texture;
 };
 export type SceneData = {
-  meshes?: Object3D[];
-  sceneComponents?: Object3D[];
-  lights?: LightConfigs[];
+  meshes: Object3D[];
+  sceneComponents: Object3D[];
+  lights: LightConfigs[];
   sceneProperties?: SceneProperties;
   // TODO -type
   interactionComponents?: any;

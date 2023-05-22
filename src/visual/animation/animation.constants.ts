@@ -19,6 +19,7 @@ export const ANIMATION_TYPES = {
   SPIN: "SPIN",
   TRAVERSE: "TRAVERSE",
   TRIG: "TRIG",
+  FALL: "FALL",
 };
 
 export const GENERIC_TARGET_IDENTIFIERS = {

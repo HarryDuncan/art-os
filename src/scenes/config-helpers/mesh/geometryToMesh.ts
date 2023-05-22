@@ -6,44 +6,45 @@ import {
   MESH_TYPES,
 } from "utils/assets/geometry/geometry.types";
 import { formatGeometriesFromAsset } from "utils/assets/geometry/formatGeometryFromAsset";
-import { SceneDataConfig } from "../config.types";
+import { MeshComponentConfig } from "../config.types";
 import { Asset } from "utils/assets/use-assets/types";
+import { clone, cloneDeep } from "lodash";
 
 export const geometryToMesh = (
   loadedAssets: Asset[],
-  config: SceneDataConfig
+  meshComponentConfigs: MeshComponentConfig[]
 ): FormattedGeometry[] => {
-  const { meshComponentConfigs } = config;
   const geometries = formatGeometriesFromAsset(loadedAssets);
-  console.log(geometries);
-  console.log(meshComponentConfigs);
-  return geometries.flatMap((geometry) => {
-    const meshConfig = getMeshConfigForGeometry(geometry, meshComponentConfigs);
-    if (!meshConfig || meshConfig.hidden) {
-      return [];
-    }
+  return meshComponentConfigs.flatMap((meshConfig) => {
+    const geometry = getGeometryForMeshConfig(
+      geometries,
+      meshConfig.geometryId ?? ""
+    );
     const position = formatPosition(meshConfig);
     const rotation = formatRotation(meshConfig);
     setScale(geometry, meshConfig);
+    const centeredGeometry = geometry.geometry;
+    centeredGeometry.center();
     return {
-      geometry: geometry.geometry.center(),
+      geometry: centeredGeometry,
       name: meshConfig.id,
-      meshType: meshConfig.meshType ?? MESH_TYPES.MESH,
+      meshType: MESH_TYPES.MESH,
       position,
       rotation,
-    };
-  });
+    } as FormattedGeometry;
+  }) as FormattedGeometry[];
 };
-const getMeshConfigForGeometry = (geometry, configs) => {
-  const meshConfig = configs.find(
-    ({ geometryId }) => geometryId === geometry.name
+const getGeometryForMeshConfig = (geometries, geometryId: string) => {
+  const meshGeometry = geometries.find(
+    (geometry) => geometry.name === geometryId
   );
-  if (!meshConfig) {
+  if (!meshGeometry) {
     console.warn(
-      `no mesh config found for ${geometry.name} this geometry will not be rendered`
+      `no geometry found for ${geometryId} this mesh will not be rendered`
     );
   }
-  return meshConfig;
+  const geometry = cloneDeep(meshGeometry);
+  return geometry;
 };
 
 const formatRotation = (config) => {
