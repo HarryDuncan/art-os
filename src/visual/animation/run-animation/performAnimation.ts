@@ -3,6 +3,7 @@ import { easeOut } from "visual/utils";
 import {
   AnimationProperties,
   AnimationType,
+  FallAnimationConfig,
   RotationAnimationConfig,
   SpinAnimationConfig,
   TraversalAnimationConfig,
@@ -18,6 +19,7 @@ import { rotateMeshAlongAxis } from "../animation-functions/rotation/rotateMeshA
 import { updateTimeStamp } from "../animation-functions/trigonometric/updateTimestampTrigonometric";
 import { updateObject } from "../animation-functions/update-object/updateObject";
 import { spinMeshAlongAxis } from "../animation-functions/rotation/spinMeshAlongAxis";
+import { fall } from "../animation-functions/fall";
 
 export const performAnimation = (
   animationType: AnimationType,
@@ -63,6 +65,9 @@ export const performAnimation = (
         updateObject(object, updatedValue, OBJECT_UPDATE_PROPERTY.POSITION);
       }
       break;
+    case ANIMATION_TYPES.FALL:
+      const {} = animationConfig as FallAnimationConfig;
+      fall(object, progress);
     case ANIMATION_TYPES.SPIN:
     default: {
       const { rotationAxis, speed } = animationConfig as SpinAnimationConfig;

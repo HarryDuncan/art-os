@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { WebGLRenderer } from "three";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
-import { ev } from "../use-events/useEventsWithMeshes";
+import { sceneUpdateEvent } from "visual/engine/engineEvents";
 
 export const useThread = (
   renderer: WebGLRenderer | CSS3DRenderer | undefined,
@@ -14,7 +14,7 @@ export const useThread = (
       console.warn("renderer not defined");
       return;
     }
-    ev("scene:update");
+    sceneUpdateEvent();
     if (scene.orbitControls) {
       scene.orbitControls.update();
     }

@@ -1,7 +1,7 @@
 import { Matrix4, Vector3 } from "three";
 import { Text as TroikaText } from "troika-three-text";
 import { TextProps } from "./threeJsComponents.types";
-import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
+import { DEFAULT_MATERIAL } from "visual/materials/materials.defaults";
 
 export const TextComponent = ({
   id,

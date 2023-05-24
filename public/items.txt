@@ -1,0 +1,27 @@
+{
+   leftFace : [110, 64, 170], - works
+   rightFace : (143, 61, 178) - works,
+   rightUpperLegFront : (178, 60, 178),
+   rightLowerLegBack :(210, 62, 167),    
+   rightUpperLegBack :(238, 67, 149), 
+   leftLowerLegFront :(255, 78, 125), 
+   leftUpperLegFront :(255, 94, 99),  
+   leftUpperLegBack :(255, 115, 75),
+   leftLowerLegBack :(255, 140, 56), 
+   rightFeet :(239, 167, 47), 
+   rightLowerLegFront :(217, 194, 49), 
+   leftFeet :(194, 219, 64),
+   torsoFront :(175, 240, 91), - works
+   torsoBack :(135, 245, 87), 
+   rightUpperArmFront :(96, 247, 96),  
+   rightUpperArmBack :(64, 243, 115),
+   rightLowerArmBack :(40, 234, 141), 
+   leftLowerArmFront :(28, 219, 169), 
+   leftUpperArmFront :(26, 199, 194), 
+   leftUpperArmBack :(33, 176, 213),
+   leftLowerArmBack :(47, 150, 224), 
+   rightHand :(65, 125, 224), 
+   rightLowerArmFront :(84, 101, 214), 
+   leftHand :(99, 81, 195)
+   
+}

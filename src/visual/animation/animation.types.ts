@@ -36,6 +36,8 @@ export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
   curve?: any;
 }
 
+export interface FallAnimationConfig extends AnimationPropertiesConfig {}
+
 export type TrigFunctionType = keyof typeof TRIG_FUNCTION_TYPES;
 export type ObjectUpdateProperty = keyof typeof OBJECT_UPDATE_PROPERTY;
 export type AnimationFunctionType = keyof typeof ANIMATION_FUNCTION_TYPES;

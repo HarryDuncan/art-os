@@ -21,6 +21,21 @@ class InteractionNodeServiceStub(object):
                 request_serializer=interactionNode__pb2.InitializeInteractionNodeRequest.SerializeToString,
                 response_deserializer=interactionNode__pb2.InitializeInteractionNodeResponse.FromString,
                 )
+        self.InitalizeAlgorithm = channel.unary_unary(
+                '/interactionNode.InteractionNodeService/InitalizeAlgorithm',
+                request_serializer=interactionNode__pb2.InitializeAlgorithmRequest.SerializeToString,
+                response_deserializer=interactionNode__pb2.InitializeAlgorithmResponse.FromString,
+                )
+        self.RunAlgorithm = channel.unary_stream(
+                '/interactionNode.InteractionNodeService/RunAlgorithm',
+                request_serializer=interactionNode__pb2.RunAlgorithmRequest.SerializeToString,
+                response_deserializer=interactionNode__pb2.RunAlgorithmResponse.FromString,
+                )
+        self.StopAlgorithm = channel.unary_unary(
+                '/interactionNode.InteractionNodeService/StopAlgorithm',
+                request_serializer=interactionNode__pb2.StopAlgorithmRequest.SerializeToString,
+                response_deserializer=interactionNode__pb2.StopAlgorithmResponse.FromString,
+                )
 
 
 class InteractionNodeServiceServicer(object):
@@ -35,6 +50,24 @@ class InteractionNodeServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def InitalizeAlgorithm(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RunAlgorithm(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def StopAlgorithm(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_InteractionNodeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -42,6 +75,21 @@ def add_InteractionNodeServiceServicer_to_server(servicer, server):
                     servicer.InitializeInteractionNode,
                     request_deserializer=interactionNode__pb2.InitializeInteractionNodeRequest.FromString,
                     response_serializer=interactionNode__pb2.InitializeInteractionNodeResponse.SerializeToString,
+            ),
+            'InitalizeAlgorithm': grpc.unary_unary_rpc_method_handler(
+                    servicer.InitalizeAlgorithm,
+                    request_deserializer=interactionNode__pb2.InitializeAlgorithmRequest.FromString,
+                    response_serializer=interactionNode__pb2.InitializeAlgorithmResponse.SerializeToString,
+            ),
+            'RunAlgorithm': grpc.unary_stream_rpc_method_handler(
+                    servicer.RunAlgorithm,
+                    request_deserializer=interactionNode__pb2.RunAlgorithmRequest.FromString,
+                    response_serializer=interactionNode__pb2.RunAlgorithmResponse.SerializeToString,
+            ),
+            'StopAlgorithm': grpc.unary_unary_rpc_method_handler(
+                    servicer.StopAlgorithm,
+                    request_deserializer=interactionNode__pb2.StopAlgorithmRequest.FromString,
+                    response_serializer=interactionNode__pb2.StopAlgorithmResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -69,5 +117,56 @@ class InteractionNodeService(object):
         return grpc.experimental.unary_unary(request, target, '/interactionNode.InteractionNodeService/InitializeInteractionNode',
             interactionNode__pb2.InitializeInteractionNodeRequest.SerializeToString,
             interactionNode__pb2.InitializeInteractionNodeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def InitalizeAlgorithm(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/interactionNode.InteractionNodeService/InitalizeAlgorithm',
+            interactionNode__pb2.InitializeAlgorithmRequest.SerializeToString,
+            interactionNode__pb2.InitializeAlgorithmResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RunAlgorithm(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/interactionNode.InteractionNodeService/RunAlgorithm',
+            interactionNode__pb2.RunAlgorithmRequest.SerializeToString,
+            interactionNode__pb2.RunAlgorithmResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StopAlgorithm(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/interactionNode.InteractionNodeService/StopAlgorithm',
+            interactionNode__pb2.StopAlgorithmRequest.SerializeToString,
+            interactionNode__pb2.StopAlgorithmResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

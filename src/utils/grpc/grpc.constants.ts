@@ -1,0 +1,3 @@
+export const PORT_NUMBERS = {
+  INTERACTION_NODE: 8000,
+};

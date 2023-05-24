@@ -1,14 +1,7 @@
-import { useEffect } from "react";
-import { Asset } from "../use-assets/types";
-import { useAssets } from "../use-assets/useAssets";
-import { useThreadWithPostProcessor } from "../use-thread";
 import { ThreeJsParams } from "../use-three-js/types";
 import { useThreeJs } from "../use-three-js/useThreeJs";
 
-export const useSetUpScene = (
-  threeJsParams: ThreeJsParams,
-  assets: Asset[] = []
-) => {
+export const useSetUpScene = (threeJsParams: ThreeJsParams) => {
   const {
     container,
     renderer,
@@ -19,7 +12,6 @@ export const useSetUpScene = (
     clock,
     orbitControls,
   } = useThreeJs(threeJsParams);
-  const { initializedAssets, areAssetsInitialized } = useAssets(assets);
 
   return {
     container,
@@ -27,8 +19,6 @@ export const useSetUpScene = (
     scene,
     camera,
     postProcessor,
-    initializedAssets,
-    areAssetsInitialized,
     currentFrameRef,
     clock,
     orbitControls,

@@ -1,11 +1,16 @@
-import React from "react";
-import { useDigitalArtContext } from "../context/useDigitalArtContext";
-import { useViewPiece } from "./useViewPiece";
+import React, { Suspense } from "react";
 import { ViewPieceContainer } from "./ViewPiece.styles";
+import { InteractiveSceneContainer } from "visual/containers";
+import { useSceneData } from "scenes/useSceneData";
 
-export function ViewPiece() {
-  const { selectedToViewIndex: index, pieces } = useDigitalArtContext();
-  const { component } = useViewPiece(pieces, index);
+export const ViewPiece = () => {
+  const sceneData = useSceneData();
 
-  return <ViewPieceContainer>{component}</ViewPieceContainer>;
-}
+  return (
+    <ViewPieceContainer>
+      <Suspense>
+        {sceneData ? <InteractiveSceneContainer {...sceneData} /> : null}
+      </Suspense>
+    </ViewPieceContainer>
+  );
+};

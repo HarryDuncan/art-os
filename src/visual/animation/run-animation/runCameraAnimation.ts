@@ -9,7 +9,6 @@ export const runCameraAnimation = (
   animationFunctionType: AnimationFunctionType,
   initializedAnimationConfig: AnimationConfig
 ) => {
-  console.log("acas");
   switch (animationFunctionType) {
     case ANIMATION_FUNCTION_TYPES.CHAIN:
       chainAnimation(initializedAnimationConfig, [camera]);

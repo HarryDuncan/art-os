@@ -1,24 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { SceneConfig } from "scenes/types";
+import scenes from "config/scenes.json";
+import { DigitalPiece } from "./types";
 
 export type SceneState = {
-  sceneConfig: {
-    configIndex: number;
-    configUrl: string;
-  };
+  configIndex: number;
+  configId: string | null;
+  data: SceneConfig | null;
+  configuredScenes: DigitalPiece[];
 };
 
 export const INITIAL_STATE: SceneState = {
-  sceneConfig: { configIndex: 0, configUrl: "" },
+  configIndex: 0,
+  configId: null,
+  data: null,
+  configuredScenes: scenes,
 };
 
 export const slice = createSlice({
   name: "scene-data",
   initialState: INITIAL_STATE,
   reducers: {
-    setSceneData: (state, { payload }: PayloadAction<any>) => {
+    setSelectedConfigId: (state, { payload }: PayloadAction<string | null>) => {
       return {
         ...state,
-        ...payload,
+        configId: payload,
       };
     },
   },

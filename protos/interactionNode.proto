@@ -9,16 +9,52 @@ service InteractionNodeService {
 
 // <------------------- Initialization -------------------------------->
   rpc InitializeInteractionNode (InitializeInteractionNodeRequest) returns (InitializeInteractionNodeResponse);
+
+  rpc InitalizeAlgorithm (InitializeAlgorithmRequest) returns (InitializeAlgorithmResponse);
+
+  rpc RunAlgorithm (RunAlgorithmRequest) returns (stream RunAlgorithmResponse);
+
+  rpc StopAlgorithm (StopAlgorithmRequest) returns (StopAlgorithmResponse);
+  
 }
+
 
 
 message InitializeInteractionNodeRequest {
+}
+message InitializeInteractionNodeResponse {
+  bool isInitialized = 1;
 
 }
 
 
-// Returns the playlists and directories
-message InitializeInteractionNodeResponse {
-  bool isInitialized = 1;
+message InitializeAlgorithmRequest {
+  string algorithm_type = 1;
+  string data_transform_type = 2;
+  string id = 3;
+}
+message InitializeAlgorithmResponse {
+  string id = 1;
+  bool isInitialized = 2;
+}
 
+message RunAlgorithmRequest {
+  
+}
+message RunAlgorithmResponse {
+  message Locations {
+    double x = 1;
+    double y = 2;
+  }
+  repeated Locations points = 1;
+  optional string errorMessage = 2;
+}
+
+
+message StopAlgorithmRequest {
+
+}
+
+message StopAlgorithmResponse {
+  
 }

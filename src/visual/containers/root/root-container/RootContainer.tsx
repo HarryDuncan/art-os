@@ -1,7 +1,6 @@
 import React from "react";
 import { useAppSelector } from "app/redux/store";
 import { VisualComponentConfig } from "app/redux/visual/types";
-import { InteractiveNode } from "../../../components/interactive/node/InteractiveNode";
 import { Layers } from "../../../components/layers/Layers";
 import { Root } from "./RootContainer.styles";
 import { VideoBackground } from "../video-background/VideoBackground";
@@ -11,21 +10,19 @@ interface IRootContainerProps {
   config?: Partial<VisualComponentConfig>;
 }
 // Scene manager for displaying multiple scenes in a particular setting
-export const RootContainer = ({
-  containerRef,
-  config,
-}: IRootContainerProps) => {
+export const RootContainer = ({ containerRef }: IRootContainerProps) => {
   const { visualComponentConfig, visualData } = useAppSelector(
     (state) => state.visual
   );
-  const componentConfig = { ...visualComponentConfig, ...config };
+
+  // todo - set component config from app selector
+  const componentConfig = { ...visualComponentConfig };
   const { viewHeight, viewWidth, backgroundColor } = componentConfig;
   const { video } = visualData;
 
   return (
     <>
       <Layers />
-      <InteractiveNode />
       <Root
         $height={viewHeight}
         $width={viewWidth}

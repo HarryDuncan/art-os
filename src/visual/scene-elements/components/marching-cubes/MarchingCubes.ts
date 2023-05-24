@@ -1,7 +1,7 @@
 import { MarchingCubes as ThreeJsMarchingCubes } from "three/examples/jsm/objects/MarchingCubes.js";
 import { DEFAULT_RESOLUTION } from "./marchingCubes.constants";
 import { MarchingCubesProps } from "../threeJsComponents.types";
-import { DEFAULT_MATERIAL } from "visual/helpers/materials/materials.defaults";
+import { DEFAULT_MATERIAL } from "visual/materials/materials.defaults";
 
 export const MarchingCubes = ({
   id,

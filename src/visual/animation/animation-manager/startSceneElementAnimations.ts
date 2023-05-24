@@ -1,6 +1,6 @@
-import { InteractiveThreeScene } from "visual/components/interactive";
+import { InteractiveScene } from "visual/components/interactive-scene";
 
-export const startSceneElementAnimations = (scene: InteractiveThreeScene) => {
+export const startSceneElementAnimations = (scene: InteractiveScene) => {
   const sceneElementAnimationIds = scene.animationManager.sceneElementAnimations.flatMap(
     ({ isRunning, animationId }) => (!isRunning ? animationId : [])
   );

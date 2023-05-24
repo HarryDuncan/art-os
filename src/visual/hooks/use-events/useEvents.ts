@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { EventConfig } from "./events.types";
 
-export const useEvents = (scene, eventConfig: EventConfig[]) => {
+export const useEvents = (scene, eventConfig: EventConfig[] = []) => {
   useEffect(() => {
     const sceneEventConfigs = eventConfig.flatMap((eventConfigItem) =>
       eventConfigItem.sceneIdentifer ? eventConfigItem : []

@@ -11,6 +11,7 @@ export const OBJECT_UPDATE_PROPERTY = {
 export const ANIMATION_FUNCTION_TYPES = {
   CHAIN: "CHAIN",
   ALL: "ALL",
+  TARGET: "TARGET",
 };
 
 export const ANIMATION_TYPES = {
@@ -18,6 +19,7 @@ export const ANIMATION_TYPES = {
   SPIN: "SPIN",
   TRAVERSE: "TRAVERSE",
   TRIG: "TRIG",
+  FALL: "FALL",
 };
 
 export const GENERIC_TARGET_IDENTIFIERS = {

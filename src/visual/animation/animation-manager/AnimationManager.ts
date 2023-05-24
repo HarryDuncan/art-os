@@ -64,7 +64,6 @@ export class AnimationManager {
 
   startCameraAnimation(camera: Camera) {
     // TODO - set up methods for multiple camera animations
-    console.log(this.cameraElementAnimations);
     const animation = this.cameraElementAnimations[0];
     if (!animation) {
       console.warn(`no camera animations configured`);

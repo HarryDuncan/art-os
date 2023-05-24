@@ -1,4 +1,4 @@
-import { Asset } from "visual/hooks/use-assets/types";
+import { Asset } from "utils/assets/use-assets/types";
 
 // links assets to uniforms - using name as the uniform name
 // Must follow the uniform naming convention

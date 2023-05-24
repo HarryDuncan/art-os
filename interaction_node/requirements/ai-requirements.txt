@@ -1,4 +1,7 @@
+scikit-learn==1.2.2
+tf-bodypix==0.4.2
 tensorflow==2.8.0
-tensorflow==2.8.0 
-tf_bodypix==0.4.2 
-tfjs_graph_converter==1.6.3
+tfjs-graph_converter==1.6.3
+matplotlib==3.7.1
+opencv-python-headless==4.7.0.72
+tensorflow-hub==0.7.0

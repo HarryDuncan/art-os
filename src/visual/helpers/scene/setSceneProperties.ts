@@ -1,5 +1,5 @@
 import { Scene } from "three";
-import { SceneProperties } from "visual/components/interactive/scene/types";
+import { SceneProperties } from "visual/components/interactive-scene";
 
 export const setSceneProperties = (
   sceneProperties: SceneProperties | undefined,

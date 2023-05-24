@@ -21,3 +21,16 @@ export const getRandomRotation = (
   });
   return results;
 };
+
+export const getRandomRotationAsDegrees = (
+  nonRandomizedAxes?: Partial<AxisOptions>
+) => {
+  const axisOptions = { ...DEFAULT_AXIS_OPTIONS, ...nonRandomizedAxes };
+  const axes = ["x", "y", "z"].filter((axis) => !axisOptions[axis]);
+
+  const rotation = { x: 0, y: 0, z: 0 };
+  for (const axis of axes) {
+    rotation[axis] = Math.random() * 360;
+  }
+  return rotation;
+};
