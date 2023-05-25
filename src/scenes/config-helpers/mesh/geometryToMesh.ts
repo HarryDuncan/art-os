@@ -1,14 +1,14 @@
 import { DEFAULT_POSITION } from "consts/threejs";
 import { Vector3 } from "three";
-import { vector3DegreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
+import { vector3DegreesToEuler } from "visual/display/helpers/three-dimension-space/degreesToEuler";
+import { MeshComponentConfig } from "../config.types";
+import { cloneDeep } from "lodash";
+import { Asset } from "visual/set-up/assets/use-assets/types";
 import {
   FormattedGeometry,
   MESH_TYPES,
-} from "utils/assets/geometry/geometry.types";
-import { formatGeometriesFromAsset } from "utils/assets/geometry/formatGeometryFromAsset";
-import { MeshComponentConfig } from "../config.types";
-import { Asset } from "utils/assets/use-assets/types";
-import { clone, cloneDeep } from "lodash";
+} from "visual/set-up/assets/geometry/geometry.types";
+import { formatGeometriesFromAsset } from "visual/set-up/assets/geometry/formatGeometryFromAsset";
 
 export const geometryToMesh = (
   loadedAssets: Asset[],

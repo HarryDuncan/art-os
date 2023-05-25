@@ -1,18 +1,10 @@
-import {
-  Box3,
-  BufferAttribute,
-  BufferGeometry,
-  Float32BufferAttribute,
-  Mesh,
-  Points,
-  Vector3,
-} from "three";
+import { Box3, BufferAttribute, Mesh, Points, Vector3 } from "three";
 import { Geometry } from "types/threeJs.types";
 import {
-  MESH_TYPES,
   MeshConfig,
   MeshType,
-} from "utils/assets/geometry/geometry.types";
+  MESH_TYPES,
+} from "visual/set-up/assets/geometry/geometry.types";
 
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
   return meshConfigs.flatMap(

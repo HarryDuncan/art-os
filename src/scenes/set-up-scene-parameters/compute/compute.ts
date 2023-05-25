@@ -1,17 +1,17 @@
-import { CustomAnimationConfig } from "visual/animation/animation.types";
+import { CustomAnimationConfig } from "visual/display/animation/animation.types";
 import { formatSceneData } from "../formatSceneData";
-import { startSceneElementAnimations } from "visual/animation/animation-manager/startSceneElementAnimations";
+import { startSceneElementAnimations } from "visual/display/animation/animation-manager/startSceneElementAnimations";
 import { formatInteractionEvents } from "./formatInteractionEvents";
 import {
   InteractiveScene,
   SceneData,
-} from "visual/components/interactive-scene";
-import { getMeshByName } from "visual/helpers/scene/object-finding/getMeshByName";
+} from "visual/display/components/interactive-scene";
+import { getMeshByName } from "visual/display/helpers/scene/object-finding/getMeshByName";
 import { RawShaderMaterial } from "three";
 import { InteractionEventConfig } from "interaction-node/interactions.types";
 import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
 import { TextureLoader } from "three";
-import { getCalculationWeightingForQuadrant } from "visual/utils/getQuadrant";
+import { getCalculationWeightingForQuadrant } from "visual/display/utils/getQuadrant";
 
 export const compute = (config, assets) => {
   const { animationConfig, interactionConfig } = config;

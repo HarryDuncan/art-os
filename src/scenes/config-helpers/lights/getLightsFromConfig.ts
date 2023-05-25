@@ -1,6 +1,6 @@
 import { Vector3 } from "three";
-import { DEFAULT_LIGHTS } from "visual/scene-elements/lights/lights.defaults";
-import { LightConfigs } from "visual/scene-elements/lights/lights.types";
+import { DEFAULT_LIGHTS } from "visual/display/scene-elements/lights/lights.defaults";
+import { LightConfigs } from "visual/display/scene-elements/lights/lights.types";
 
 export const getLightsFromConfig = (config): LightConfigs[] => {
   const { lightConfig } = config;

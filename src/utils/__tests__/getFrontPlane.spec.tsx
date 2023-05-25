@@ -1,4 +1,4 @@
-import { degreesToEuler } from "visual/helpers/three-dimension-space/degreesToEuler";
+import { degreesToEuler } from "visual/display/helpers/three-dimension-space/degreesToEuler";
 import { getFrontPlane } from "./path/to/getFrontPlane";
 
 describe("getFrontPlane", () => {

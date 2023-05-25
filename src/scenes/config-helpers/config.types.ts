@@ -1,11 +1,10 @@
-import { CustomAnimationConfig } from "visual/animation/animation.types";
-
-import { Asset } from "utils/assets/use-assets/types";
-import { LightConfigs } from "visual/scene-elements/lights/lights.types";
-import { ThreeDPosition } from "visual/helpers/three-dimension-space/position/position.types";
-import { MaterialConfig } from "visual/materials/materials.types";
-import { SceneComponentConfig } from "visual/components/interactive-scene";
+import { CustomAnimationConfig } from "visual/display/animation/animation.types";
+import { LightConfigs } from "visual/display/scene-elements/lights/lights.types";
+import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { MaterialConfig } from "visual/display/materials/materials.types";
+import { SceneComponentConfig } from "visual/display/components/interactive-scene";
 import { InteractionConfig } from "interaction-node/interactions.types";
+import { Asset } from "visual/set-up/assets/use-assets/types";
 
 export type RandomizationConfig = {
   instanceCount: number;

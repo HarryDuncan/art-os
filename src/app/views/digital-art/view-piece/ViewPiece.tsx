@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { ViewPieceContainer } from "./ViewPiece.styles";
-import { InteractiveSceneContainer } from "visual/containers";
+import { InteractiveSceneContainer } from "visual/display/containers";
 import { useSceneData } from "scenes/useSceneData";
 
 export const ViewPiece = () => {

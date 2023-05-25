@@ -1,6 +1,6 @@
-import { CustomAnimationConfig } from "visual/animation/animation.types";
-import { startSceneElementAnimations } from "visual/animation/animation-manager/startSceneElementAnimations";
-import { InteractiveScene } from "visual/components/interactive-scene";
+import { CustomAnimationConfig } from "visual/display/animation/animation.types";
+import { startSceneElementAnimations } from "visual/display/animation/animation-manager/startSceneElementAnimations";
+import { InteractiveScene } from "visual/display/components/interactive-scene";
 import { formatSceneData } from "../formatSceneData";
 
 export const ltw = (config, assets) => {

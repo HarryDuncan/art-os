@@ -1,10 +1,10 @@
-import { InteractiveScene } from "visual/components/interactive-scene";
+import { InteractiveScene } from "visual/display/components/interactive-scene";
 import {
   DATA_TRANSFORM_TYPE,
   EVENT_BINDING_TYPE,
   INTERACTION_ALGORITHIMS,
 } from "./interactions.constants";
-import InteractiveShaderMaterial from "visual/materials/interactive/InteractiveShaderMaterial";
+import InteractiveShaderMaterial from "visual/display/materials/interactive/InteractiveShaderMaterial";
 
 export type AlgorithmType = keyof typeof INTERACTION_ALGORITHIMS;
 export type DataTransformType = keyof typeof DATA_TRANSFORM_TYPE;

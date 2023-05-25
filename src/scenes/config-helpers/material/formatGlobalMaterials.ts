@@ -1,7 +1,7 @@
-import { Asset } from "utils/assets/use-assets/types";
+import { formatAssetBasedMaterial } from "visual/set-up/assets/formatAssetBasedMaterial";
+import { Asset } from "visual/set-up/assets/use-assets/types";
 import { SceneDataConfig } from "../config.types";
 import { getMaterialsFromConfig } from "./getMaterialsFromConfig";
-import { formatAssetBasedMaterial } from "utils/assets/formatAssetBasedMaterial";
 
 export const formatGlobalMaterials = (
   assets: Asset[],

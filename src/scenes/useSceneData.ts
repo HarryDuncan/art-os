@@ -3,9 +3,9 @@ import { useDefaultConfig } from "scenes/default-configs/useDefaultConfig";
 import { deepMergeObjects } from "utils/deepMergeObjects";
 import { useAppSelector } from "app/redux/store";
 import { useSceneConfig } from "./useSceneConfig";
-import { useAssets } from "utils/assets/use-assets/useAssets";
 import * as setUpScenes from "./set-up-scene-parameters";
 import { useInteractions } from "interaction-node/useInteractions";
+import { useAssets } from "visual/set-up/assets/use-assets/useAssets";
 
 export const useSceneData = () => {
   const { configId } = useAppSelector((state) => state.sceneData);

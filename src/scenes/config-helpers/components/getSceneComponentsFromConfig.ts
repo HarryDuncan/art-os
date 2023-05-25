@@ -1,18 +1,21 @@
-import { SceneComponentConfig } from "visual/components/interactive-scene";
-import { Mirror, TextComponent } from "visual/scene-elements/components";
-import { Cube } from "visual/scene-elements/components/Cube";
-import { Plane } from "visual/scene-elements/components/Plane";
-import { SphericalBackground } from "visual/scene-elements/components/SphericalBackground";
-import { MarchingCubes } from "visual/scene-elements/components/marching-cubes/MarchingCubes";
+import { SceneComponentConfig } from "visual/display/components/interactive-scene";
+import {
+  TextComponent,
+  Mirror,
+} from "visual/display/scene-elements/components";
+import { Cube } from "visual/display/scene-elements/components/Cube";
+import { SphericalBackground } from "visual/display/scene-elements/components/SphericalBackground";
 import {
   COMPONENT_TYPES,
-  CubeProps,
   MarchingCubesProps,
-  MirrorProps,
-  PlaneProps,
-  SphericalBackgroundProps,
   TextProps,
-} from "visual/scene-elements/components/threeJsComponents.types";
+  MirrorProps,
+  SphericalBackgroundProps,
+  PlaneProps,
+  CubeProps,
+} from "visual/display/scene-elements/components/threeJsComponents.types";
+import { MarchingCubesElement } from "visual/display/scene-elements/components";
+import { PlaneElement } from "visual/display/scene-elements/components/PlaneElement";
 
 export const getSceneComponents = (
   componentConfigs: SceneComponentConfig[] = []
@@ -25,7 +28,7 @@ export const getSceneComponents = (
           material,
           position,
         } = componentProps as MarchingCubesProps;
-        return MarchingCubes({ id, parameters, material, position });
+        return MarchingCubesElement({ id, parameters, material, position });
       }
       case COMPONENT_TYPES.TEXT: {
         const {
@@ -63,7 +66,7 @@ export const getSceneComponents = (
       }
       case COMPONENT_TYPES.PLANE: {
         const { material, position, size } = componentProps as PlaneProps;
-        return Plane({ id, position, size, material });
+        return PlaneElement({ id, position, size, material });
       }
       case COMPONENT_TYPES.CUBE: {
         const { material, position, size } = componentProps as CubeProps;

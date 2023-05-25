@@ -6,7 +6,7 @@ import {
   Interactive,
 } from "interaction-node/interactions.types";
 import { Vector3 } from "three";
-import InteractiveShaderMaterial from "visual/materials/interactive/InteractiveShaderMaterial";
+import InteractiveShaderMaterial from "visual/display/materials/interactive/InteractiveShaderMaterial";
 
 export const formatInteractionEvents = (
   interactionConfigs: InteractionConfig[]
