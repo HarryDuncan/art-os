@@ -1,4 +1,5 @@
 import { BoundingBox, ThreeDPosition } from "./position.types";
+
 const MAX_FIND_TIME = 10000;
 
 export const generateRandomlySpreadCoordinates = (

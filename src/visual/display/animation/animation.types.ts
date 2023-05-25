@@ -1,4 +1,4 @@
-import { Scene, Vector3 } from "three";
+import { Vector3 } from "three";
 import {
   ANIMATION_FUNCTION_TYPES,
   ANIMATION_TYPES,
@@ -33,10 +33,10 @@ export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
   startPosition: Vector3;
   endPosition: Vector3;
   curveSize: number;
-  curve?: any;
+  curve?: Vector3[];
 }
 
-export interface FallAnimationConfig extends AnimationPropertiesConfig {}
+export type FallAnimationConfig = AnimationPropertiesConfig;
 
 export type TrigFunctionType = keyof typeof TRIG_FUNCTION_TYPES;
 export type ObjectUpdateProperty = keyof typeof OBJECT_UPDATE_PROPERTY;

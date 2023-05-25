@@ -21,20 +21,20 @@ export const calculateCurve = (
   const points: Vector3[] = [];
   for (let t = 0; t <= 1; t += 0.0001) {
     const x =
-      Math.pow(1 - t, 3) * start.x +
-      3 * Math.pow(1 - t, 2) * t * controlPoint1.x +
-      3 * (1 - t) * Math.pow(t, 2) * controlPoint2.x +
-      Math.pow(t, 3) * end.x;
+      (1 - t) ** 3 * start.x +
+      3 * (1 - t) ** 2 * t * controlPoint1.x +
+      3 * (1 - t) * t ** 2 * controlPoint2.x +
+      t ** 3 * end.x;
     const y =
-      Math.pow(1 - t, 3) * start.y +
-      3 * Math.pow(1 - t, 2) * t * controlPoint1.y +
-      3 * (1 - t) * Math.pow(t, 2) * controlPoint2.y +
-      Math.pow(t, 3) * end.y;
+      (1 - t) ** 3 * start.y +
+      3 * (1 - t) ** 2 * t * controlPoint1.y +
+      3 * (1 - t) * t ** 2 * controlPoint2.y +
+      t ** 3 * end.y;
     const z =
-      Math.pow(1 - t, 3) * start.z +
-      3 * Math.pow(1 - t, 2) * t * controlPoint1.z +
-      3 * (1 - t) * Math.pow(t, 2) * controlPoint2.z +
-      Math.pow(t, 3) * end.z;
+      (1 - t) ** 3 * start.z +
+      3 * (1 - t) ** 2 * t * controlPoint1.z +
+      3 * (1 - t) * t ** 2 * controlPoint2.z +
+      t ** 3 * end.z;
     points.push(new Vector3(x, y, z));
   }
 

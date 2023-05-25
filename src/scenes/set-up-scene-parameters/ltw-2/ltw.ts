@@ -21,7 +21,7 @@ export const ltw = (config, assets) => {
     },
     sceneData: {
       meshes,
-      sceneComponents: sceneComponents,
+      sceneComponents,
       lights,
     },
 

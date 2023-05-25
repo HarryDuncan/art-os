@@ -7,10 +7,10 @@ import {
   SceneData,
 } from "visual/display/components/interactive-scene";
 import { getMeshByName } from "visual/display/helpers/scene/object-finding/getMeshByName";
-import { RawShaderMaterial } from "three";
+import { RawShaderMaterial, TextureLoader } from "three";
 import { InteractionEventConfig } from "interaction-node/interactions.types";
 import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
-import { TextureLoader } from "three";
+
 import { getCalculationWeightingForQuadrant } from "visual/display/utils/getQuadrant";
 
 export const compute = (config, assets) => {

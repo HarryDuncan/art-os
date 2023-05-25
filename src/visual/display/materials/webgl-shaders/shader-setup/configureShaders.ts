@@ -1,4 +1,3 @@
-import { Vector3 } from "three";
 import { ShaderConfig } from "../shaders.types";
 import { importShader } from "./importShader";
 

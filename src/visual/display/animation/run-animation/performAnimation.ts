@@ -2,7 +2,7 @@ import { MathUtils } from "three";
 import {
   AnimationProperties,
   AnimationType,
-  FallAnimationConfig,
+  // FallAnimationConfig,
   RotationAnimationConfig,
   SpinAnimationConfig,
   TraversalAnimationConfig,
@@ -66,8 +66,9 @@ export const performAnimation = (
       }
       break;
     case ANIMATION_TYPES.FALL:
-      const {} = animationConfig as FallAnimationConfig;
+      //  const {} = animationConfig as FallAnimationConfig;
       fall(object, progress);
+      break;
     case ANIMATION_TYPES.SPIN:
     default: {
       const { rotationAxis, speed } = animationConfig as SpinAnimationConfig;

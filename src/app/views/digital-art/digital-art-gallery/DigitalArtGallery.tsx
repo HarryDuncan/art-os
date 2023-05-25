@@ -3,6 +3,7 @@ import { GalleryContainer } from "../StyledComponents";
 import { Card } from "../../../components";
 import { useOnCardClick } from "./useOnCardClick";
 import { useAppSelector } from "app/redux/store";
+
 const DIGITAL_ART_CARD_IMAGE_URL = "../card-images";
 
 export function DigitalArtGallery() {

@@ -13,11 +13,11 @@ export interface LightConfigProperties {
   position?: Vector3;
   intensity?: number;
 }
-export interface AmbientLightConfig extends LightConfigProperties {}
+export type AmbientLightConfig = LightConfigProperties
 
-export interface PointLightConfig extends LightConfigProperties {}
+export type PointLightConfig = LightConfigProperties
 
-export interface DirectionalLightConfig extends LightConfigProperties {}
+export type DirectionalLightConfig = LightConfigProperties
 
 export type LightParameters =
   | AmbientLightConfig

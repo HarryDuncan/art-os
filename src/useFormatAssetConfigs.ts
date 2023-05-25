@@ -19,7 +19,7 @@ interface Folder {
 const getJpgItems = (folder): Item[] => {
   const jpgItems: Item[] = [];
 
-  const traverseFolder = folder => {
+  const traverseFolder = (folder) => {
     for (const key in folder) {
       const item = folder[key];
       if (item && typeof item === 'object') {

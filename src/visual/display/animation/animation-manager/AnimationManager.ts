@@ -25,13 +25,11 @@ export class AnimationManager {
         console.warn(
           `an animation with this animation id ${animation.animationId} already exists`
         );
-      } else {
-        if (animation.targetIdentifier === GENERIC_TARGET_IDENTIFIERS.CAMERA) {
+      } else if (animation.targetIdentifier === GENERIC_TARGET_IDENTIFIERS.CAMERA) {
           this.cameraElementAnimations.push({ ...animation, isRunning: false });
         } else {
           this.sceneElementAnimations.push({ ...animation, isRunning: false });
         }
-      }
     });
   }
 
@@ -58,6 +56,7 @@ export class AnimationManager {
       );
     }
   }
+
   hasCameraAnimations() {
     return this.cameraElementAnimations.length > 0;
   }

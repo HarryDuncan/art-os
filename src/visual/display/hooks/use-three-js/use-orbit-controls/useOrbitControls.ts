@@ -8,8 +8,7 @@ export const useOrbitControls = (
   hasOrbitControls = false
 ) => {
   return useMemo(() => {
-    if (!camera || !renderer || !renderer.domElement || !hasOrbitControls)
-      return null;
+    if (!camera || !renderer || !renderer.domElement || !hasOrbitControls) return null;
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.listenToKeyEvents(window); // optional
     controls.mouseButtons = {

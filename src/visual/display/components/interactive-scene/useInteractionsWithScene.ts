@@ -8,9 +8,9 @@ export const useInteractionsWithScene = () => {
     (state) => state.interactionNode
   );
   const sceneInteractionEvents = interactionEvents.flatMap((interactionEvent) =>
-    interactionEvent.bindingType !== EVENT_BINDING_TYPE.MATERIAL
+    (interactionEvent.bindingType !== EVENT_BINDING_TYPE.MATERIAL
       ? interactionEvent
-      : []
+      : [])
   );
   return useCallback(
     (scene: InteractiveScene) => {

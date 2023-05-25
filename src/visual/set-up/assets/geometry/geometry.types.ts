@@ -1,4 +1,4 @@
-import { Material, Vector3 } from "three";
+import { BufferGeometry, Material, Vector3 } from "three";
 import { Geometry } from "types/threeJs.types";
 
 export const MESH_TYPES = {
@@ -19,7 +19,7 @@ export type MeshConfig = FormattedGeometry & {
 };
 
 export type AssetGeometry = {
-  geometry: any;
+  geometry: BufferGeometry;
   name: string;
 };
 

@@ -4,7 +4,7 @@ import { TrigFunctionType } from "../../animation.types";
 export const oscillate = (
   timestamp: number,
   trigFunction: TrigFunctionType,
-  durationMs: number = 1000
+  durationMs = 1000
 ): number => {
   const angle = ((timestamp % durationMs) / durationMs) * Math.PI * 2;
   switch (trigFunction) {

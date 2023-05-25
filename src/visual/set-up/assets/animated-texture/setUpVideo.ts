@@ -1,5 +1,4 @@
 export const setupVideo = (url, identifier) => {
-  let copyVideo = false;
   const video = document.createElement("video");
   const root = document.getElementById("append-container");
   if (!root) return;
@@ -21,7 +20,6 @@ export const setupVideo = (url, identifier) => {
     "playing",
     () => {
       playing = true;
-      checkReady();
     },
     true
   );
@@ -30,19 +28,12 @@ export const setupVideo = (url, identifier) => {
     "timeupdate",
     () => {
       timeupdate = true;
-      checkReady();
     },
     true
   );
 
   video.src = url;
   video.play();
-
-  function checkReady() {
-    if (playing && timeupdate) {
-      copyVideo = true;
-    }
-  }
 
   return video;
 };

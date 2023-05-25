@@ -2,7 +2,7 @@ import { SceneComponentConfig } from "visual/display/components/interactive-scen
 import {
   TextComponent,
   Mirror,
-} from "visual/display/scene-elements/components";
+ MarchingCubesElement } from "visual/display/scene-elements/components";
 import { Cube } from "visual/display/scene-elements/components/Cube";
 import { SphericalBackground } from "visual/display/scene-elements/components/SphericalBackground";
 import {
@@ -14,7 +14,7 @@ import {
   PlaneProps,
   CubeProps,
 } from "visual/display/scene-elements/components/threeJsComponents.types";
-import { MarchingCubesElement } from "visual/display/scene-elements/components";
+
 import { PlaneElement } from "visual/display/scene-elements/components/PlaneElement";
 
 export const getSceneComponents = (

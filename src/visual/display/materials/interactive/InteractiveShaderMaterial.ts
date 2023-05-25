@@ -1,10 +1,8 @@
 import { InteractionEventConfig } from "interaction-node/interactions.types";
 import {
-  AdditiveBlending,
   Clock,
   CustomBlending,
   OneMinusSrcAlphaFactor,
-  RawShaderMaterial,
   ShaderMaterial,
   SrcAlphaFactor,
 } from "three";

@@ -1,3 +1,3 @@
 export const linearTransformation = () => {
-  //todo
+  // todo
 };

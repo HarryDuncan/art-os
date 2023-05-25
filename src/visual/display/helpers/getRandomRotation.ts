@@ -13,9 +13,9 @@ export const getRandomRotation = (
   const axes = ["x", "y", "z"].filter((axis) => !axisOptions[axis]);
   const results: ThreeDPosition[] = new Array(n).fill(null).map(() => {
     const rotation = { x: 0, y: 0, z: 0 };
-    for (const axis of axes) {
+    axes.forEach((axis) => {
       rotation[axis] = Math.random() * 360;
-    }
+    });
     const eulerRotation = vector3DegreesToEuler(rotation as Vector3);
     return eulerRotation;
   });
@@ -29,8 +29,8 @@ export const getRandomRotationAsDegrees = (
   const axes = ["x", "y", "z"].filter((axis) => !axisOptions[axis]);
 
   const rotation = { x: 0, y: 0, z: 0 };
-  for (const axis of axes) {
+  axes.forEach((axis) => {
     rotation[axis] = Math.random() * 360;
-  }
+  });
   return rotation;
 };

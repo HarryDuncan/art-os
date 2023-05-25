@@ -15,7 +15,7 @@ export const smoothstepBetweenBounds = (
 
   // Calculate the smoothstep value
   return (
-    3 * Math.pow(clampedValue - lowerBound, 2) -
-    2 * Math.pow(clampedValue - lowerBound, 3)
+    3 * (clampedValue - lowerBound) ** 2 -
+    2 * (clampedValue - lowerBound) ** 3
   );
 };
