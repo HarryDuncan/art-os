@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SceneConfig } from "scenes/types";
-import scenes from "config/scenes.json";
 import { DigitalPiece } from "./types";
 
 export type SceneState = {
@@ -14,7 +13,7 @@ export const INITIAL_STATE: SceneState = {
   configIndex: 0,
   configId: null,
   data: null,
-  configuredScenes: scenes,
+  configuredScenes: [],
 };
 
 export const slice = createSlice({
@@ -25,6 +24,12 @@ export const slice = createSlice({
       return {
         ...state,
         configId: payload,
+      };
+    },
+    setSceneConfigs: (state, { payload }: PayloadAction<DigitalPiece[]>) => {
+      return {
+        ...state,
+        configuredScenes: payload,
       };
     },
   },

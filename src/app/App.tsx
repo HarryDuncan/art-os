@@ -16,6 +16,7 @@ import { GlobalStyle } from "theme/GlobalStyle";
 import { Sandbox } from "./views/sandbox/sandbox";
 import { AppendContainer } from "./components/AppendContainer";
 import { useInteractionNode } from "interaction-node/useInteractionNode";
+import { useAppConfigs } from "./hooks/useSetUpConfigs";
 
 export const AppContainer = styled.div`
   margin: 0;
@@ -41,6 +42,7 @@ export function App() {
 
 export const AppContent = () => {
   useInteractionNode();
+  useAppConfigs();
   return (
     <AppContainer>
       <Navigation />
