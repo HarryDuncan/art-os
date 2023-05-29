@@ -28,7 +28,7 @@ export const InteractiveSceneContainer = ({
   } = useSetUpScene(threeJsParams);
 
   const lights = useLights(sceneData.lights);
-  const scene = useInteractiveScene(sceneFunctions);
+  const scene = useInteractiveScene([], sceneFunctions);
   useEvents(scene, events);
 
   const { update, pause } = useThreadWithPostProcessor(

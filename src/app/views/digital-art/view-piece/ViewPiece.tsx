@@ -5,7 +5,6 @@ import { useSceneData } from "scenes/useSceneData";
 
 export const ViewPiece = () => {
   const sceneData = useSceneData();
-
   return (
     <ViewPieceContainer>
       <Suspense>

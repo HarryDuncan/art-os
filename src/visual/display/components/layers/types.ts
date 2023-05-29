@@ -1,9 +1,10 @@
-export enum LayerTypes {
-  IMAGE = "image",
-  OVERLAY = "overlay",
-}
+export const LAYER_TYPES = {
+  IMAGE: "image",
+  OVERLAY: "overlay",
+};
+export type LayerType = keyof typeof LAYER_TYPES;
 export type Layer = {
   layerName: string;
-  layerType: LayerTypes;
+  layerType: LayerType;
   layerProps: any;
 };
