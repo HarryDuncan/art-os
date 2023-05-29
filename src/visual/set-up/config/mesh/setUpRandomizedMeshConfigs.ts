@@ -10,9 +10,9 @@ export const setUpRandomizedMeshConfigs = (
     return [];
   }
 
-  const randomizedMeshes = meshComponentConfigs.flatMap((meshConfig) =>
-    meshConfig.randomizationConfig ? meshConfig : []
-  );
+  const randomizedMeshes = meshComponentConfigs.flatMap((meshConfig) => {
+    return meshConfig.randomizationConfig ? meshConfig : [];
+  });
 
   return randomizedMeshes.flatMap((meshConfig) => {
     return setUpRandom(meshConfig);

@@ -18,7 +18,7 @@ export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
 
 const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
   switch (meshType) {
-    case MESH_TYPES.POINTS:
+    case MESH_TYPES.POINTS: {
       const positionsLength = geometry.getAttribute("position").array.length;
 
       const pointIds = new Float32Array(positionsLength / 3);
@@ -32,10 +32,11 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
       });
 
       getBoundingBoxDimensions(geometry);
-
       geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
       geometry.setAttribute("angle", new BufferAttribute(angles, 1, false));
       return new Points(geometry, material);
+    }
+
     case MESH_TYPES.MESH:
     default:
       return new Mesh(geometry, material);
@@ -91,5 +92,4 @@ export const getBoundingBoxDimensions = (geometry) => {
   // Get the size of the bounding box
   const size = new Vector3();
   boundingBox.getSize(size);
-  console.log(size);
 };

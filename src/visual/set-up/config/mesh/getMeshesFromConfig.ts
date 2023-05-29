@@ -1,10 +1,10 @@
 import { Material, Object3D } from "three";
-import { SceneDataConfig } from "scenes/config-helpers/config.types";
 import { geometryToMesh } from "./geometryToMesh";
 import { addMaterials } from "./addMaterials";
 import { setUpMeshes } from "./setUpMeshes";
 import { setUpRandomizedMeshConfigs } from "./setUpRandomizedMeshConfigs";
 import { Asset } from "visual/set-up/assets/use-assets/types";
+import { SceneDataConfig } from "../config.types";
 
 export const getMeshesFromConfig = (
   assets: Asset[],

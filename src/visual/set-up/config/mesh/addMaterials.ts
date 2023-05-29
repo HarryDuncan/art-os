@@ -1,8 +1,8 @@
 import { Material } from "three";
-import { MeshComponentConfig } from "scenes/config-helpers/config.types";
 import { DEFAULT_MATERIAL } from "visual/display/materials/materials.defaults";
 import { getMaterial } from "visual/display/materials/getMaterial";
 import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types";
+import { MeshComponentConfig } from "../config.types";
 
 export const addMaterials = (
   meshes: FormattedGeometry[],

@@ -1,9 +1,9 @@
-import { getLightsFromConfig } from "scenes/config-helpers/lights/getLightsFromConfig";
-import { formatGlobalMaterials } from "scenes/config-helpers/material/formatGlobalMaterials";
-import { formatSceneComponentConfigs } from "scenes/config-helpers/components/formatSceneComponentConfigs";
-import { getMeshesFromConfig } from "scenes/config-helpers/mesh/getMeshesFromConfig";
 import { SceneData } from "visual/display/components/interactive-scene";
 import { initializeVideos } from "visual/set-up/assets/animated-texture/setUpVideos";
+import { formatSceneComponentConfigs } from "visual/set-up/config/components/formatSceneComponentConfigs";
+import { getLightsFromConfig } from "visual/set-up/config/lights/getLightsFromConfig";
+import { formatGlobalMaterials } from "visual/set-up/config/material/formatGlobalMaterials";
+import { getMeshesFromConfig } from "visual/set-up/config/mesh/getMeshesFromConfig";
 
 export const formatSceneData = (config, assets): SceneData => {
   initializeVideos(assets);
@@ -11,7 +11,6 @@ export const formatSceneData = (config, assets): SceneData => {
   const meshes = getMeshesFromConfig(assets, materials, config);
   const lights = getLightsFromConfig(config);
   const sceneComponents = formatSceneComponentConfigs(config, materials);
-  console.log(meshes);
   return {
     meshes: meshes ?? [],
     sceneComponents: sceneComponents ?? [],

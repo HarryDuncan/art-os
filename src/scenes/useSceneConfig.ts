@@ -1,7 +1,7 @@
 import computeConfig from "config/scenes/computeConfig.json";
 import ltwConfig from "config/scenes/ltw.json";
-import { SceneDataConfig } from "./config-helpers/config.types";
 import { useMemo } from "react";
+import { SceneDataConfig } from "visual/set-up/config/config.types";
 
 export const useSceneConfig = (): SceneDataConfig => {
   // TODO - fetch from public folder
