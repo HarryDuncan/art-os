@@ -10,7 +10,6 @@
 // 	protoc              v3.19.6
 // source: protos/interactionNode.proto
 
-
 /* eslint-disable */
 // @ts-nocheck
 

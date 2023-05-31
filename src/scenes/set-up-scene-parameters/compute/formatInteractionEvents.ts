@@ -6,7 +6,7 @@ import {
   Interactive,
 } from "interaction-node/interactions.types";
 import { Vector3 } from "three";
-import InteractiveShaderMaterial from "visual/materials/interactive/InteractiveShaderMaterial";
+import InteractiveShaderMaterial from "visual/display/materials/interactive/InteractiveShaderMaterial";
 
 export const formatInteractionEvents = (
   interactionConfigs: InteractionConfig[]
@@ -58,7 +58,7 @@ const getValueFromPercentage = (
 const slideTo = (targetPosition: Vector3, material) => {
   const startPos = material.uniforms.startPos.value;
   const currentTargetPosition = material.uniforms.targetPosition.value;
-  let distance = 0;
+  const distance = 0;
   if (currentTargetPosition) {
     const distance = currentTargetPosition.distanceTo(targetPosition);
   }
@@ -88,7 +88,7 @@ const slideTo = (targetPosition: Vector3, material) => {
 
     requestAnimationFrame(stepValue);
   };
-  if (!!startPos) {
+  if (startPos) {
     return;
   }
   if (distance > 1.5) {

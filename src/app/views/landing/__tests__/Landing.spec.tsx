@@ -5,13 +5,16 @@ import { mockImplementation } from "test-utils/mockImplementation";
 import { LandingContainer, LandingPageTitle } from "../Landing.styles";
 import { Landing } from "../Landing";
 
-jest.mock("visual/components/animation-widget", () => ({
+jest.mock("visual/display/components/animation-widget", () => ({
   AnimationWidget: jest.fn(),
 }));
 
-jest.mock("visual/components/animation-widget/useRunAnimations", () => ({
-  useRunAnimations: jest.fn(),
-}));
+jest.mock(
+  "visual/display/components/animation-widget/useRunAnimations",
+  () => ({
+    useRunAnimations: jest.fn(),
+  })
+);
 jest.mock("../Landing.styles", () => ({
   LandingContainer: jest.fn(),
   LandingPageTitle: jest.fn(),

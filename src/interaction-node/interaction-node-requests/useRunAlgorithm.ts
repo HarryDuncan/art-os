@@ -14,7 +14,7 @@ export const useRunAlgorithm = () => {
     if (!isInitialized) {
       console.warn("interaction node not initialized");
       return;
-    } else if (!isAlgorithmInitialized) {
+    } if (!isAlgorithmInitialized) {
       console.warn(`algorithm not initialized`);
     }
     const request = new RunAlgorithmRequest();

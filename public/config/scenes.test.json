@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Compute Installation",
+    "configId": "compute",
+    "configPath": "scenes/compute",
+    "componentId": "InteractiveSceneContainer",
+    "cardImageName": "hjd2.jpg"
+  },
+  {
+    "title": "LTW ",
+    "configId": "ltw",
+    "configPath": "scenes/ltw",
+    "componentId": "InteractiveSceneContainer",
+    "cardImageName": "hjd2.jpg"
+  },
+  {
+    "title": "Home",
+    "configId": "homeScene",
+    "configPath": "scenes/home-scene",
+    "componentId": "InteractiveSceneContainer",
+    "cardImageName": "hjd2.jpg"
+  }
+]

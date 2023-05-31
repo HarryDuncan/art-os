@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import defaultComponentConfiguration from "config/visualComponentConfig.json";
 import defaultEventConfiguration from "config/eventsConfig.json";
 import { EventConfig, VisualComponentConfig } from "./types";
-import { Layer } from "visual/components/layers/types";
+import { Layer } from "visual/display/components/layers/types";
 
 export type VisualState = {
   visualComponentConfig: VisualComponentConfig;
