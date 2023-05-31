@@ -1,30 +1,26 @@
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
-import { startSceneElementAnimations } from "visual/display/animation/animation-manager/startSceneElementAnimations";
 import { InteractiveScene } from "visual/display/components/interactive-scene";
+import { animateMarchingCube } from "visual/display/scene-elements/components/marching-cubes/marchingCubeAnimation";
 import { formatSceneData } from "visual/set-up/config/formatSceneData";
 
-export const ltw = (config, assets) => {
+export const homeScene = (config, assets) => {
   const { animationConfig } = config;
-  const { meshes, sceneComponents, lights } = formatSceneData(config, assets);
-
+  const sceneData = formatSceneData(config, assets);
+  console.log(sceneData);
   return {
     threeJsParams: {
-      camera: { position: { x: 0, y: -1, z: 15 } },
+      camera: { position: { x: 0, y: -1, z: 25 } },
       controls: {
         hasOrbitControls: true,
       },
     },
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveScene) => {
-        startSceneElementAnimations(scene);
+        animateMarchingCube(scene);
       },
     },
-    sceneData: {
-      meshes,
-      sceneComponents,
-      lights,
-    },
-
+    interactionEvents: [],
+    sceneData,
     animations: animationConfig as CustomAnimationConfig[],
     events: [],
   };

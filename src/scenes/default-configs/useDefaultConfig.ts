@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { DEFAULT_THREE_JS } from "./three-js/defaultThreeJS";
+import { DEFAULT_THREE_JS } from "visual/set-up/config/default-configs/defaultThreeJS";
 
 export const useDefaultConfig = () =>
   useMemo(

@@ -1,5 +1,4 @@
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
-import { formatSceneData } from "../formatSceneData";
 import { startSceneElementAnimations } from "visual/display/animation/animation-manager/startSceneElementAnimations";
 import { formatInteractionEvents } from "./formatInteractionEvents";
 import {
@@ -10,8 +9,8 @@ import { getMeshByName } from "visual/display/helpers/scene/object-finding/getMe
 import { RawShaderMaterial, TextureLoader } from "three";
 import { InteractionEventConfig } from "interaction-node/interactions.types";
 import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
-
 import { getCalculationWeightingForQuadrant } from "visual/display/utils/getQuadrant";
+import { formatSceneData } from "visual/set-up/config/formatSceneData";
 
 export const compute = (config, assets) => {
   const { animationConfig, interactionConfig } = config;

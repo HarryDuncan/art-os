@@ -1,13 +1,15 @@
 import { getMeshByName } from "visual/display/helpers/scene/object-finding/getMeshByName";
+import { getMeshesByIdentifier } from "visual/display/helpers/scene/object-finding/getMeshesByIdentifier";
 
 export const animateMarchingCube = (scene) => {
-  const time = scene.clock.getElapsedTime() * 0.8;
-  const marchingCube = getMeshByName(scene, "marching-cubes");
-  if (!marchingCube) {
+  const time = scene.clock.getElapsedTime() * 0.08;
+  const marchingCube = getMeshesByIdentifier(scene, "marching-cubes");
+  if (!marchingCube.length) {
     return;
   }
+  const cube = marchingCube[0];
 
-  updateCubes(marchingCube, time, 50);
+  updateCubes(cube, time, 50);
 };
 
 export const updateCubes = (object, time, numblobs) => {

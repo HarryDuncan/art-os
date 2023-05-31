@@ -27,6 +27,8 @@ export const getMaterial = (
   materialType: MaterialType,
   materialProps: MaterialConfigProps
 ): Material => {
+  console.log(materialType);
+  console.log(materialProps);
   switch (materialType) {
     case MATERIAL_TYPES.INTERACTIVE_SHADER: {
       const {
@@ -71,7 +73,6 @@ export const getMaterial = (
         // @ts-ignore
         material: { imageUrl, envMapType },
       } = materialProps as EnvMapMaterialProps;
-
       const envMap = setUpEnvMap(imageUrl, envMapType);
       return new MeshStandardMaterial({
         envMap,

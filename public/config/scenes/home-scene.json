@@ -1,0 +1,51 @@
+[
+  {
+    "assets": [],
+    "meshComponentConfigs": [],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "scene-background"
+        }
+      },
+      {
+        "id": "marching-cubes",
+        "componentType": "MARCHING_CUBES",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": 0 },
+          "material": {
+            "imageUrl": "assets/cube-mapping/sculpture",
+            "envMapType": "REFLECTION"
+          },
+          "materialType": "ENV_MAP"
+        }
+      }
+    ],
+    "globalMaterialConfigs": [],
+    "animationConfig": [],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+
+    "interactionConfig": []
+  }
+]
