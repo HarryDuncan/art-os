@@ -66,7 +66,7 @@
       {
         "id": "phong-color-one",
         "materialProps": {
-          "color": "#1902b0",
+          "color": "#f705c7",
           "specular": "#0000ff",
           "shininess": 50
         },
@@ -98,6 +98,9 @@
           }
         }
       }
-    ]
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
   }
 ]

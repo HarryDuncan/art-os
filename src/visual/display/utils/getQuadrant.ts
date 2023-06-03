@@ -11,12 +11,14 @@ export type Quadrant = keyof typeof QUADRANT;
 export function getQuadrant(degree: number): Quadrant {
   if (degree >= 0 && degree < 90) {
     return QUADRANT.ONE as Quadrant;
-  } if (degree >= 90 && degree < 180) {
+  }
+  if (degree >= 90 && degree < 180) {
     return QUADRANT.TWO as Quadrant;
-  } if (degree >= 180 && degree < 270) {
+  }
+  if (degree >= 180 && degree < 270) {
     return QUADRANT.THREE as Quadrant;
   }
-    return QUADRANT.FOUR as Quadrant;
+  return QUADRANT.FOUR as Quadrant;
 }
 
 export const getCalculationWeightingForQuadrant = (rotationRadians: number) => {
@@ -24,7 +26,7 @@ export const getCalculationWeightingForQuadrant = (rotationRadians: number) => {
   const rotationDegree = (rotationRadians * 180) / Math.PI;
   const reducedRotation = rotationDegree % 360;
   const quadrant = getQuadrant(reducedRotation);
-  // console.log(quadrant);
+
   switch (quadrant) {
     case QUADRANT.ONE: {
       return new Vector4(

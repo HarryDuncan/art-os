@@ -7,7 +7,7 @@ import { useInteractions } from "interaction-node/useInteractions";
 import { useAssets } from "visual/set-up/assets/use-assets/useAssets";
 import { useFetchConfig } from "visual/set-up/config/useFetchConfig";
 
-export const useSceneData = () => {
+export const useSceneParameters = () => {
   const { configId, configuredScenes } = useAppSelector(
     (state) => state.sceneData
   );

@@ -19,13 +19,18 @@ export type SceneComponentConfig = {
 };
 
 export type SceneProperties = {
+  viewWidth: string;
+  viewHeight: string;
+  backgroundColor: string;
+  backgroundUrl: string;
   background?: Texture;
 };
+
 export type SceneData = {
   meshes: Object3D[];
   sceneComponents: Object3D[];
   lights: LightConfigs[];
-  sceneProperties?: SceneProperties;
+  sceneProperties: SceneProperties;
   // TODO -type
   interactionComponents?: any;
 };
