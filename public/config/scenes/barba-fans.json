@@ -1,0 +1,103 @@
+[
+  {
+    "threeJs": {
+      "camera": { "position": { "x": 0, "y": 0, "z": -5 } }
+    },
+    "assets": [
+      {
+        "name": "lip-stick-geometry",
+        "url": "../assets/models/lipstick.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "metal-material",
+        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "assetType": "TEXTURE",
+        "id": "metal-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "metal-materias",
+        "url": "../assets/textures/matcaps/polished-metal.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "lipstick-bottom",
+        "geometryId": "Lipstick_Cube.001",
+        "size": 1,
+        "position": { "x": 0, "z": -3 },
+        "rotation": { "x": 0, "y": 0, "z": -10 },
+        "materialConfig": {
+          "materialById": "metal-material"
+        },
+        "groupId": "lipstick",
+        "centerMesh": false
+      },
+      {
+        "id": "lipstick-metal",
+        "geometryId": "Lipstick_Cube.002",
+        "size": 1,
+        "position": { "x": 0, "z": -3 },
+        "rotation": { "x": 0, "y": 0, "z": -10 },
+        "materialConfig": {
+          "materialById": "phong-color-one"
+        },
+        "groupId": "lipstick",
+        "centerMesh": false
+      },
+      {
+        "id": "lipstick-top",
+        "geometryId": "Lipstick_Cube.003",
+        "size": 1,
+        "position": { "x": 0, "z": -3 },
+        "rotation": { "x": 0, "y": 0, "z": -10 },
+        "materialConfig": {
+          "materialById": "chrome"
+        },
+        "groupId": "lipstick",
+        "centerMesh": false
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "phong-color-one",
+        "materialProps": {
+          "color": "#1902b0",
+          "specular": "#0000ff",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-two",
+        "materialProps": {
+          "color": "#c70606",
+          "specular": "#ff0303",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "lipstick",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.004,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      }
+    ]
+  }
+]

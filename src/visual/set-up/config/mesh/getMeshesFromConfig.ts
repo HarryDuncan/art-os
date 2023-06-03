@@ -12,9 +12,10 @@ export const getMeshesFromConfig = (
   config: SceneDataConfig
 ): Object3D[] => {
   const { meshComponentConfigs } = config;
-  const meshConfigs = meshComponentConfigs.filter(
-    (meshConfig) => !meshConfig.randomizationConfig
-  );
+  const meshConfigs =
+    meshComponentConfigs?.filter(
+      (meshConfig) => !meshConfig.randomizationConfig
+    ) ?? [];
   const randomizedMeshes = setUpRandomizedMeshConfigs(meshComponentConfigs);
   const allMeshes = [...meshConfigs, ...randomizedMeshes];
   const formattedGeometry = geometryToMesh(assets, allMeshes);

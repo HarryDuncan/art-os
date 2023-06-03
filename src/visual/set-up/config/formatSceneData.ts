@@ -12,6 +12,7 @@ export const formatSceneData = (
   assets: Asset[]
 ): SceneData => {
   initializeVideos(assets);
+
   const materials = formatGlobalMaterials(assets, config);
   const meshes = getMeshesFromConfig(assets, materials, config);
   const lights = getLightsFromConfig(config);

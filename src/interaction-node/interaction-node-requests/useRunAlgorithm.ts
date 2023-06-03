@@ -34,7 +34,7 @@ export const useRunAlgorithm = () => {
 
     stream.on("end", () => {
       // handle the end of the stream here
-      console.log("Stream ended");
+      console.warn("Stream ended");
     });
   }, [isInitialized]);
 };

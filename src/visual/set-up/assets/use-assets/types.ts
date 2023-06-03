@@ -1,4 +1,4 @@
-import { Group, Texture } from "three";
+import { Group, Object3D, Texture } from "three";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { MATERIAL_TYPES } from "visual/display/materials/materials.constants";
 
@@ -14,8 +14,10 @@ export const ASSET_TAG = {
 };
 
 export type AssetType = keyof typeof ASSET_TYPES;
-export type Model = GLTF | Group;
-export type AssetData = Model | Texture | HTMLImageElement;
+export type Model = GLTF | Group | Object3D;
+export type LoadedObjChild = { geometry; name: string };
+export type LoadedGroup = Group & { children: LoadedObjChild[] };
+export type AssetData = Model | Texture | HTMLImageElement | LoadedGroup;
 
 export type AssetTag = keyof typeof ASSET_TAG;
 export type Asset = {

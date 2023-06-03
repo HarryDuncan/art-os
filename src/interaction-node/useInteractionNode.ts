@@ -17,7 +17,7 @@ export const useInteractionNode = () => {
     const request = new InitializeInteractionNodeRequest();
     client.initializeInteractionNode(request, {}, (err, response) => {
       if (err) {
-        console.log(err);
+        console.error(err);
       }
       const values = getResponseValue(response);
       const formatted = mapResponseToObject(values, initializeResponseObj);

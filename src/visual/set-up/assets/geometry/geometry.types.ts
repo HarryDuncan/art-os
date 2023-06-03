@@ -12,6 +12,7 @@ export interface FormattedGeometry {
   position?: Vector3;
   rotation?: Vector3;
   name?: string;
+  groupId?: string;
 }
 export type MeshConfig = FormattedGeometry & {
   material: Material;

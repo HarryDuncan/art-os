@@ -8,9 +8,12 @@ import {
 
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
   return meshConfigs.flatMap(
-    ({ geometry, name, material, meshType, position, rotation }, index) => {
+    (
+      { geometry, name, material, meshType, position, rotation, groupId },
+      index
+    ) => {
       const mesh = getMesh(geometry, material, meshType);
-      formatMesh(mesh, position, rotation, name ?? `mesh-${index}`);
+      formatMesh(mesh, position, rotation, name ?? `mesh-${index}`, groupId);
       return mesh;
     }
   );
@@ -43,8 +46,9 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
   }
 };
 
-const formatMesh = (mesh, position, rotation, name) => {
+const formatMesh = (mesh, position, rotation, name, groupId) => {
   mesh.name = name;
+  mesh.groupId = groupId;
   if (position) {
     const { x, y, z } = position;
     mesh.position.set(x, y, z);

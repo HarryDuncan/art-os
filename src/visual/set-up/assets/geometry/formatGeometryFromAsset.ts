@@ -2,7 +2,7 @@ import { getFileTypeFromFilename } from "utils/getFileType";
 import { FILE_TYPES } from "consts";
 import { Vector3 } from "three";
 import { GeometryConfig } from "./geometry.types";
-import { Asset } from "../use-assets/types";
+import { Asset, LoadedGroup, LoadedObjChild } from "../use-assets/types";
 
 export const formatGeometriesFromAsset = (
   assets: Asset[],
@@ -17,14 +17,14 @@ export const formatGeometriesFromAsset = (
     );
     return [];
   }
-  const geometries = geometryAssets.flatMap((geometry) => {
-    const materialType = getFileTypeFromFilename(geometry?.url);
-    switch (materialType) {
+  const geometries = geometryAssets.flatMap((geometryAsset) => {
+    const modelFileType = getFileTypeFromFilename(geometryAsset?.url);
+    switch (modelFileType) {
       case FILE_TYPES.MODELS.OBJ:
-        return { geometry: getGeometryFromObj(geometry), name: geometry.name };
-      case FILE_TYPES.MODELS.GLTF:
+        return getObjectGeometries(geometryAsset);
       default:
-        return { geometry, name: geometry.name };
+        console.warn(`no formatting for ${modelFileType}`);
+        return [];
     }
   });
   return geometries.map(({ geometry, name }) => ({
@@ -42,10 +42,14 @@ export const formatImportedGeometry = (geometry, scale = 0.15) => {
   return formattedGeometry;
 };
 
-const getGeometryFromObj = (object) => {
-  if (object.data.children[0]) {
-    return object.data.children[0].geometry;
+const getObjectGeometries = (geometryAsset: Asset) => {
+  const { children } = geometryAsset.data as LoadedGroup;
+  if (children.length) {
+    return children.map((child: LoadedObjChild) => ({
+      name: child.name,
+      geometry: child.geometry,
+    }));
   }
-  console.warn(`geometry not valid ${object.name}`);
-  return null;
+  console.warn(`geometry not valid ${geometryAsset.name}`);
+  return [];
 };
