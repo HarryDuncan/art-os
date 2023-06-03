@@ -7,4 +7,5 @@ export const DEFAULT_CONFIG = {
   lightConfig: [],
   sceneComponentConfigs: [],
   interactionConfig: [],
+  scenePropertiesConfig: {},
 };

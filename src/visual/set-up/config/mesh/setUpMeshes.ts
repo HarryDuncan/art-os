@@ -5,7 +5,6 @@ import {
   MeshType,
   MESH_TYPES,
 } from "visual/set-up/assets/geometry/geometry.types";
-import { ExtendedMesh } from "../config.types";
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
@@ -15,7 +14,7 @@ export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
       index
     ) => {
       const mesh = getMesh(geometry, material, meshType);
-      formatMesh(mesh, position, rotation, name ?? `mesh-${index}`, groupId);
+      formatMesh(mesh, name ?? `mesh-${index}`, position, rotation, groupId);
       return mesh;
     }
   );
@@ -49,10 +48,10 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
 };
 
 const formatMesh = (
-  mesh: ExtendedMesh,
-  position: ThreeDPosition,
-  rotation: ThreeDPosition,
+  mesh,
   name: string,
+  position?: ThreeDPosition,
+  rotation?: ThreeDPosition,
   groupId?: string
 ) => {
   mesh.name = name;

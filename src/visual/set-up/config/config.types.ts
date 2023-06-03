@@ -44,4 +44,5 @@ export type SceneDataConfig = {
   sceneComponentConfigs?: SceneComponentConfig[];
   interactionConfig?: InteractionConfig[];
   threeJsConfig: ThreeJSConfig;
+  scenePropertiesConfig: {};
 };

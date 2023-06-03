@@ -1,5 +1,6 @@
-import { BufferGeometry, Material, Vector3 } from "three";
+import { BufferGeometry, Material } from "three";
 import { Geometry } from "types/threeJs.types";
+import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 
 export const MESH_TYPES = {
   MESH: "MESH",
@@ -9,8 +10,8 @@ export type MeshType = keyof typeof MESH_TYPES;
 
 export interface FormattedGeometry {
   geometry: Geometry;
-  position?: Vector3;
-  rotation?: Vector3;
+  position?: ThreeDPosition;
+  rotation?: ThreeDPosition;
   name?: string;
   groupId?: string;
 }
