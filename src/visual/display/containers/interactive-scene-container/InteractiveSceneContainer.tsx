@@ -68,5 +68,8 @@ export const InteractiveSceneContainer = ({
     initializeSceneWithData();
   }, [initializeSceneWithData]);
 
-  return <RootContainer containerRef={container} />;
+  const { sceneProperties } = sceneData;
+  return (
+    <RootContainer containerRef={container} sceneProperties={sceneProperties} />
+  );
 };

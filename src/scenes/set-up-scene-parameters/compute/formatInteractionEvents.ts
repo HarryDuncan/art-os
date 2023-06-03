@@ -32,7 +32,6 @@ const updateMaterialTimeUniform = (
   material: InteractiveShaderMaterial,
   eventDetails
 ) => {
-  // console.log(eventDetails);
   if (eventDetails.length === 0 || eventDetails[0].x === -2) {
     material.uniforms.uPower.value -= 0.01;
   } else {

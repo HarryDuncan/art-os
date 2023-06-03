@@ -1,5 +1,5 @@
 import { ThreeJSConfig } from "../config.types";
-import { getPosition } from "../utlis/position";
+import { getPosition } from "../utils/position";
 
 export const getThreeJsFromConfig = (config: ThreeJSConfig) => {
   const { camera, controls } = config;

@@ -6,6 +6,7 @@ import { formatGlobalMaterials } from "visual/set-up/config/material/formatGloba
 import { getMeshesFromConfig } from "visual/set-up/config/mesh/getMeshesFromConfig";
 import { SceneDataConfig } from "./config.types";
 import { Asset } from "../assets/use-assets/types";
+import { getScenePropertiesFromConfig } from "./scene-properties/setSceneProperties";
 
 export const formatSceneData = (
   config: SceneDataConfig,
@@ -17,9 +18,13 @@ export const formatSceneData = (
   const meshes = getMeshesFromConfig(assets, materials, config);
   const lights = getLightsFromConfig(config);
   const sceneComponents = formatSceneComponentConfigs(config, materials);
+  const sceneProperties = getScenePropertiesFromConfig(
+    config.scenePropertiesConfig
+  );
   return {
     meshes: meshes ?? [],
     sceneComponents: sceneComponents ?? [],
     lights: lights ?? [],
+    sceneProperties,
   };
 };

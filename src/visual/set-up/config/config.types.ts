@@ -35,6 +35,13 @@ export type ThreeJSConfig = {
     hasOrbitControls: boolean;
   };
 };
+
+export type ScenePropertiesConfig = {
+  viewWidth?: string;
+  viewHeight?: string;
+  backgroundColor?: string;
+  backgroundUrl?: string;
+};
 export type SceneDataConfig = {
   assets?: Asset[];
   meshComponentConfigs: MeshComponentConfig[];
@@ -44,5 +51,5 @@ export type SceneDataConfig = {
   sceneComponentConfigs?: SceneComponentConfig[];
   interactionConfig?: InteractionConfig[];
   threeJsConfig: ThreeJSConfig;
-  scenePropertiesConfig: {};
+  scenePropertiesConfig: ScenePropertiesConfig;
 };
