@@ -20,17 +20,22 @@ export const geometryToMesh = (
       geometries,
       meshConfig.geometryId ?? ""
     );
+
     const position = formatPosition(meshConfig);
     const rotation = formatRotation(meshConfig);
     setScale(geometry, meshConfig);
     const centeredGeometry = geometry.geometry;
-    centeredGeometry.center();
+    if (meshConfig.centerMesh || meshConfig.centerMesh === undefined) {
+      centeredGeometry.center();
+    }
+
     return {
       geometry: centeredGeometry,
       name: meshConfig.id,
       meshType: MESH_TYPES.MESH,
       position,
       rotation,
+      groupId: meshConfig.groupId,
     } as FormattedGeometry;
   }) as FormattedGeometry[];
 };

@@ -6,10 +6,12 @@ import { InteractionEventConfig } from "interaction-node/interactions.types";
 export const useInteractionsWithScene = (
   interactionEvents: InteractionEventConfig[]
 ) => {
-  const sceneInteractionEvents = interactionEvents.flatMap((interactionEvent) =>
-    interactionEvent.bindingType !== EVENT_BINDING_TYPE.MATERIAL
-      ? interactionEvent
-      : []
+  const sceneInteractionEvents = interactionEvents.flatMap(
+    (interactionEvent) => {
+      return interactionEvent.bindingType !== EVENT_BINDING_TYPE.MATERIAL
+        ? interactionEvent
+        : [];
+    }
   );
   return useCallback(
     (scene: InteractiveScene) => {

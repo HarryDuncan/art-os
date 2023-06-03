@@ -19,5 +19,12 @@
     "configPath": "scenes/home-scene",
     "componentId": "InteractiveSceneContainer",
     "cardImageName": "hjd2.jpg"
+  },
+  {
+    "title": "BarbaFans",
+    "configId": "barbaFans",
+    "configPath": "scenes/barba-fans",
+    "componentId": "InteractiveSceneContainer",
+    "cardImageName": "hjd2.jpg"
   }
 ]

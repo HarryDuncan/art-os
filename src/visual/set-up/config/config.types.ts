@@ -5,7 +5,9 @@ import { MaterialConfig } from "visual/display/materials/materials.types";
 import { SceneComponentConfig } from "visual/display/components/interactive-scene";
 import { InteractionConfig } from "interaction-node/interactions.types";
 import { Asset } from "visual/set-up/assets/use-assets/types";
+import { Object3D } from "three";
 
+export type ExtendedMesh = Object3D<Event> & { groupId?: string };
 export type RandomizationConfig = {
   instanceCount: number;
   boundingBoxConfig: {
@@ -23,6 +25,8 @@ export type MeshComponentConfig = {
   size?: number;
   materialConfig: MaterialConfig;
   randomizationConfig?: RandomizationConfig;
+  centerMesh?: boolean;
+  groupId?: string;
 };
 
 export type ThreeJSConfig = {

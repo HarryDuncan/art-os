@@ -1,7 +1,7 @@
 import { ThreeJSConfig } from "../config.types";
 import { getPosition } from "../utlis/position";
 
-export const formatThreeParams = (config: ThreeJSConfig) => {
+export const getThreeJsFromConfig = (config: ThreeJSConfig) => {
   const { camera, controls } = config;
   const cameraConfig = formatCamera(camera);
   return {
@@ -12,6 +12,6 @@ export const formatThreeParams = (config: ThreeJSConfig) => {
 
 const formatCamera = (camera) => {
   return {
-    position: getPosition(camera.position ?? {}),
+    position: getPosition(camera?.position ?? {}),
   };
 };
