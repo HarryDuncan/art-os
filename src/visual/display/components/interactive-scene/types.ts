@@ -6,7 +6,6 @@ import {
 } from "visual/display/scene-elements/components/threeJsComponents.types";
 import { MaterialConfig } from "visual/display/materials/materials.types";
 import { LightConfigs } from "visual/display/scene-elements/lights/lights.types";
-import { RootContainerProps } from "visual/display/containers/containers.types";
 
 export type InteractiveSceneFunctions = {
   onTimeUpdate: (material: InteractiveScene) => void;
@@ -19,7 +18,11 @@ export type SceneComponentConfig = {
   materialConfig?: MaterialConfig;
 };
 
-export type SceneProperties = RootContainerProps & {
+export type SceneProperties = {
+  viewWidth: string;
+  viewHeight: string;
+  backgroundColor: string;
+  backgroundUrl: string;
   background?: Texture;
 };
 
@@ -28,7 +31,6 @@ export type SceneData = {
   sceneComponents: Object3D[];
   lights: LightConfigs[];
   sceneProperties: SceneProperties;
-
   // TODO -type
   interactionComponents?: any;
 };
