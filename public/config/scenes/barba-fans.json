@@ -10,17 +10,24 @@
         "assetType": "GEOMETRY"
       },
       {
-        "name": "metal-material",
+        "name": "base-material",
         "url": "../assets/textures/matcaps/irredescent-4.jpg",
         "assetType": "TEXTURE",
-        "id": "metal-material",
+        "id": "base-material",
         "assetTag": ["MATCAP"]
       },
       {
-        "name": "metal-materias",
+        "name": "metal-materials",
         "url": "../assets/textures/matcaps/polished-metal.jpg",
         "assetType": "TEXTURE",
         "id": "chrome",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "lipstick-material",
+        "url": "../assets/textures/matcaps/Pink-Lipstick-Top.jpg",
+        "assetType": "TEXTURE",
+        "id": "lipstick",
         "assetTag": ["MATCAP"]
       }
     ],
@@ -32,31 +39,31 @@
         "position": { "x": 0, "z": -3 },
         "rotation": { "x": 0, "y": 0, "z": -10 },
         "materialConfig": {
-          "materialById": "metal-material"
-        },
-        "groupId": "lipstick",
-        "centerMesh": false
-      },
-      {
-        "id": "lipstick-metal",
-        "geometryId": "Lipstick_Cube.002",
-        "size": 1,
-        "position": { "x": 0, "z": -3 },
-        "rotation": { "x": 0, "y": 0, "z": -10 },
-        "materialConfig": {
-          "materialById": "phong-color-one"
+          "materialById": "morphing-material"
         },
         "groupId": "lipstick",
         "centerMesh": false
       },
       {
         "id": "lipstick-top",
+        "geometryId": "Lipstick_Cube.002",
+        "size": 1,
+        "position": { "x": 0, "z": -3 },
+        "rotation": { "x": 0, "y": 0, "z": -10 },
+        "materialConfig": {
+          "materialById": "morphing-material-2"
+        },
+        "groupId": "lipstick",
+        "centerMesh": false
+      },
+      {
+        "id": "lipstick-metail",
         "geometryId": "Lipstick_Cube.003",
         "size": 1,
         "position": { "x": 0, "z": -3 },
         "rotation": { "x": 0, "y": 0, "z": -10 },
         "materialConfig": {
-          "materialById": "chrome"
+          "materialById": "morphing-material-1"
         },
         "groupId": "lipstick",
         "centerMesh": false
@@ -64,22 +71,94 @@
     ],
     "globalMaterialConfigs": [
       {
-        "id": "phong-color-one",
+        "id": "morphing-material",
+        "materialType": "SHADER",
         "materialProps": {
-          "color": "#f705c7",
-          "specular": "#0000ff",
-          "shininess": 50
-        },
-        "materialType": "PHONG"
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "base-material",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null },
+            "uMaterial": { "value": null },
+            "uFrame": {
+              "value": 0.0
+            },
+            "uMouse": {
+              "value": null
+            },
+            "uPosition": {
+              "value": null
+            }
+          }
+        }
       },
       {
-        "id": "phong-color-two",
+        "id": "morphing-material-1",
+        "materialType": "SHADER",
         "materialProps": {
-          "color": "#c70606",
-          "specular": "#ff0303",
-          "shininess": 50
-        },
-        "materialType": "PHONG"
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null },
+            "uMaterial": { "value": null },
+            "uFrame": {
+              "value": 0.0
+            },
+            "uMouse": {
+              "value": null
+            },
+            "uPosition": {
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "id": "morphing-material-2",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "lipstick",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null },
+            "uMaterial": { "value": null },
+            "uFrame": {
+              "value": 0.0
+            },
+            "uMouse": {
+              "value": null
+            },
+            "uPosition": {
+              "value": null
+            }
+          }
+        }
       }
     ],
     "animationConfig": [

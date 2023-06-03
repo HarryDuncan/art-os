@@ -42,7 +42,7 @@ export type ScenePropertiesConfig = {
   backgroundColor?: string;
   backgroundUrl?: string;
 };
-export type SceneDataConfig = {
+export type SceneConfig = {
   assets?: Asset[];
   meshComponentConfigs: MeshComponentConfig[];
   globalMaterialConfigs: MaterialConfig[];

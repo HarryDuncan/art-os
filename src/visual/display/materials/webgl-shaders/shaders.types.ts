@@ -9,9 +9,14 @@ export interface CustomShader {
   shader: string;
   tags?: FragmentShaderTag[];
 }
-
+export type AssetMap = {
+  uniform: string;
+  assetId: string;
+  relationship: string;
+};
 export interface ShaderConfig {
   shaderId: string;
+  assetMapping?: AssetMap[];
   fragmentShaderId?: string;
   vertexShaderId?: string;
 }

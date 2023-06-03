@@ -1,12 +1,16 @@
-import { SceneDataConfig } from "../config.types";
+import { SHADER_MATERIALS } from "visual/display/materials/materials.constants";
+import { SceneConfig } from "../config.types";
 import { materialConfigToMaterial } from "./materialConfigToMaterial";
+import { Material } from "three";
 
-export const getMaterialsFromConfig = (config: SceneDataConfig) => {
+export const getMaterialsFromConfig = (config: SceneConfig): Material[] => {
   const { globalMaterialConfigs } = config;
   if (globalMaterialConfigs) {
-    return globalMaterialConfigs.flatMap((materialConfig) =>
-      materialConfigToMaterial(materialConfig)
-    );
+    return globalMaterialConfigs.flatMap((materialConfig) => {
+      return !SHADER_MATERIALS.includes(materialConfig.materialType)
+        ? materialConfigToMaterial(materialConfig)
+        : [];
+    });
   }
   return [];
 };

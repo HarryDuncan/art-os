@@ -1,3 +1,4 @@
+import { updateUniformTime } from "visual/display/animation/animation-functions/uniforms/updateUniform";
 import { startSceneElementAnimations } from "visual/display/animation/animation-manager/startSceneElementAnimations";
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
 import { InteractiveScene } from "visual/display/components/interactive-scene";
@@ -14,6 +15,7 @@ export const barbaFans = (config, assets) => {
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveScene) => {
         startSceneElementAnimations(scene);
+        updateUniformTime(scene, "lipstick");
       },
     },
     sceneData,
