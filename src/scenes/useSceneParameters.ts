@@ -6,6 +6,7 @@ import * as setUpScenes from "./set-up-scene-parameters";
 import { useInteractions } from "interaction-node/useInteractions";
 import { useAssets } from "visual/set-up/assets/use-assets/useAssets";
 import { useFetchConfig } from "visual/set-up/config/useFetchConfig";
+import { SceneConfig } from "visual/set-up/config/config.types";
 
 export const useSceneParameters = () => {
   const { configId, configuredScenes } = useAppSelector(
@@ -20,11 +21,12 @@ export const useSceneParameters = () => {
   const sceneConfigData = useFetchConfig(
     `config/${selectedSceneFilePath}.json`
   );
-  const configData = sceneConfigData[0] ?? {};
+
+  const configData = useSelectedConfig(sceneConfigData);
   const { areAssetsInitialized, initializedAssets } = useAssets(
     configData.assets ?? []
   );
-  const setInteractions = useInteractions(configData.interactionConfig);
+  const setInteractions = useInteractions(configData.interactionConfig ?? []);
 
   // TODO - rename to parameters
   const { threeJsParams, assets, events } = useDefaultConfig();
@@ -48,4 +50,15 @@ export const useSceneParameters = () => {
       };
     }
   }, [configId, areAssetsInitialized, initializedAssets]);
+};
+
+const useSelectedConfig = (sceneConfigData: SceneConfig[]) => {
+  const index = 1;
+  return useMemo(() => {
+    const selectedScene = sceneConfigData[index];
+    if (selectedScene) {
+      return selectedScene;
+    }
+    return sceneConfigData[0];
+  }, [index, sceneConfigData]);
 };

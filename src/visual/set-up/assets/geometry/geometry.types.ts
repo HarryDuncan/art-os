@@ -27,5 +27,17 @@ export type AssetGeometry = {
 
 export type GeometryConfig = {
   scale: number;
-  name?: string;
+  centerMesh?: boolean;
+  subdivision?: {
+    subdivisionProps?: SubdivisionProps;
+    subdevisionIterations?: number;
+  };
+};
+
+export type SubdivisionProps = {
+  split?: boolean;
+  uvSmooth?: boolean;
+  preserveEdges?: boolean;
+  flatOnly?: boolean;
+  maxTriangles?: number;
 };

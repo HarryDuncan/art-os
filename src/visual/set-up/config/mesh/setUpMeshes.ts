@@ -20,6 +20,8 @@ export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
   );
 };
 
+const attributeConfig = [{ type: "POINT_ID" }];
+
 const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
   switch (meshType) {
     case MESH_TYPES.POINTS: {
@@ -43,6 +45,8 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
 
     case MESH_TYPES.MESH:
     default:
+      console.log(geometry);
+      setUpAttributes(geometry, attributeConfig);
       return new Mesh(geometry, material);
   }
 };
@@ -66,6 +70,23 @@ const formatMesh = (
   }
 };
 
+const ATTRIBUTE_TYPES = {
+  POINT_ID: "POINT_ID",
+};
+
+const setUpAttributes = (geometry, attributeConfig) => {
+  const positionsLength = geometry.getAttribute("position").array.length;
+  attributeConfig.forEach((attribute) => {
+    switch (attribute.type) {
+      case ATTRIBUTE_TYPES.POINT_ID:
+        const pointIds = new Float32Array(positionsLength / 3);
+        pointIds.forEach((_value, index) => {
+          pointIds[index] = Number(index.toFixed(1));
+        });
+        geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
+    }
+  });
+};
 // function removeXPositionsAndNormals(
 //   geometry: THREE.BufferGeometry,
 //   n: number

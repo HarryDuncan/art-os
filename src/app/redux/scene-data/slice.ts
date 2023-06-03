@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SceneConfig } from "scenes/types";
 import { DigitalPiece } from "./types";
+import { SceneItem } from "scenes/types";
 
 export type SceneState = {
   configIndex: number;
   configId: string | null;
-  data: SceneConfig | null;
+  data: SceneItem | null;
   configuredScenes: DigitalPiece[];
 };
 

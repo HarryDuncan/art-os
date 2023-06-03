@@ -8,6 +8,7 @@ import { getThreeJsFromConfig } from "visual/set-up/config/three-js/formatThreeP
 export const barbaFans = (config, assets) => {
   const { animationConfig } = config;
   const threeJsParams = getThreeJsFromConfig(config.threeJsConfig ?? {});
+  console.log(threeJsParams);
   const sceneData = formatSceneData(config, assets);
   return {
     threeJsParams,

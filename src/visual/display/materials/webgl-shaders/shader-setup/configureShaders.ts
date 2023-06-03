@@ -1,7 +1,6 @@
 import { Asset } from "visual/set-up/assets/use-assets/types";
 import { AssetMap, ShaderConfig } from "../shaders.types";
 import { importShader } from "./importShader";
-import { LinearMipmapLinearFilter } from "three";
 
 export const configureShaders = (
   shaderConfig: ShaderConfig,
@@ -32,9 +31,11 @@ const mapAssets = (uniforms, assetMapping: AssetMap[], assets: Asset[]) => {
 };
 
 const getMappedAsset = (assetMapping: AssetMap, assets: Asset[]) => {
-  const asset = assets.find((asset) => asset.id === assetMapping.assetId);
-  if (asset) {
-    return asset.data;
+  const mappedAsset = assets.find((asset) => asset.id === assetMapping.assetId);
+  if (mappedAsset && mappedAsset.data) {
+    const texture = mappedAsset.data;
+
+    return texture;
   }
   console.warn(`no mapped asset found for ${assetMapping.assetId}`);
 };

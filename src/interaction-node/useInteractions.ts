@@ -7,9 +7,7 @@ import {
   InteractionEventConfig,
 } from "./interactions.types";
 
-export const useInteractions = (
-  interactionsConfig: InteractionConfig[] | undefined
-) => {
+export const useInteractions = (interactionsConfig: InteractionConfig[]) => {
   const initializeAlgorithm = useInitializeAlgorithm();
   useEffect(() => {
     if (interactionsConfig?.length) {

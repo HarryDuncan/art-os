@@ -41,7 +41,6 @@ float diffuseFactor(vec3 normal, vec3 light_direction) {
 * The main program
 */
 void main() {
-    
     // Calculate the new normal vector
     vec3 new_normal = calculateNormal(v_position);
   
@@ -61,10 +60,16 @@ void main() {
     vec3 surface_color = vec3(1.0, 0.5, 0.4);
 
     // Apply the light diffusion factor
-    surface_color *= diffuseFactor(new_normal, light_direction);
+   
 
     // Fragment shader output
-    vec4 col = mix(uMaterialTex,vec4(surface_color, 1.0), 0.0);
+    // Calculate curvature based on the angle between the normal and the view direction
+    float curvature = 5.0 - abs(dot(normalize(vNormal), normalize(vec3(0.0, 0.0, 1.0))));
+    
+    // Blend the edge color with the object color based on curvature
+    vec3 finalColor = mix(surface_color, vec3(1.0), curvature);
+
+    vec4 col = mix(uMaterialTex,vec4( finalColor, 1.0), 0.0);
     gl_FragColor =  mix(uMaterialTex,col,1.0 );
 
     

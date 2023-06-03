@@ -14,6 +14,7 @@ import { ShaderMaterial } from "three";
 
 export const getShaderMaterials = (config: SceneConfig, assets: Asset[]) => {
   const { globalMaterialConfigs } = config;
+  if (!globalMaterialConfigs) return [];
   return globalMaterialConfigs.flatMap((materialConfig) => {
     if (SHADER_MATERIALS.includes(materialConfig.materialType)) {
       const shaderMaterial = setUpShaderMaterial(materialConfig, assets);

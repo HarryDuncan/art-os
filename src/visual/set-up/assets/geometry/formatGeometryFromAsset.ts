@@ -1,13 +1,8 @@
 import { getFileTypeFromFilename } from "utils/getFileType";
 import { FILE_TYPES } from "consts";
-import { Vector3 } from "three";
-import { GeometryConfig } from "./geometry.types";
 import { Asset, LoadedGroup, LoadedObjChild } from "../use-assets/types";
 
-export const formatGeometriesFromAsset = (
-  assets: Asset[],
-  geometryConfig?: GeometryConfig
-) => {
+export const formatGeometriesFromAsset = (assets: Asset[]) => {
   const geometryAssets = assets.flatMap((asset: Asset) => {
     return asset.name.indexOf("geometry") !== -1 ? asset : [];
   });
@@ -17,7 +12,7 @@ export const formatGeometriesFromAsset = (
     );
     return [];
   }
-  const geometries = geometryAssets.flatMap((geometryAsset) => {
+  return geometryAssets.flatMap((geometryAsset) => {
     const modelFileType = getFileTypeFromFilename(geometryAsset?.url);
     switch (modelFileType) {
       case FILE_TYPES.MODELS.OBJ:
@@ -27,19 +22,6 @@ export const formatGeometriesFromAsset = (
         return [];
     }
   });
-  return geometries.map(({ geometry, name }) => ({
-    geometry: formatImportedGeometry(geometry, geometryConfig?.scale),
-    name,
-  }));
-};
-
-export const formatImportedGeometry = (geometry, scale = 0.15) => {
-  const formattedGeometry = geometry.clone();
-  formattedGeometry.computeBoundingBox();
-  const size = new Vector3();
-  formattedGeometry.boundingBox.getSize(size);
-  formattedGeometry.scale(scale, scale, scale);
-  return formattedGeometry;
 };
 
 const getObjectGeometries = (geometryAsset: Asset) => {

@@ -6,8 +6,9 @@ import { SceneComponentConfig } from "visual/display/components/interactive-scen
 import { InteractionConfig } from "interaction-node/interactions.types";
 import { Asset } from "visual/set-up/assets/use-assets/types";
 import { Object3D } from "three";
+import { GeometryConfig } from "../assets/geometry/geometry.types";
 
-export type ExtendedMesh = Object3D<Event> & { groupId?: string };
+export type ExtendedMesh = Object3D<Event> & { groupId?: string; material? };
 export type RandomizationConfig = {
   instanceCount: number;
   boundingBoxConfig: {
@@ -22,10 +23,9 @@ export type MeshComponentConfig = {
   geometryId?: string;
   rotation?: Partial<ThreeDPosition>;
   position?: Partial<ThreeDPosition>;
-  size?: number;
   materialConfig: MaterialConfig;
   randomizationConfig?: RandomizationConfig;
-  centerMesh?: boolean;
+  geometryConfig?: GeometryConfig;
   groupId?: string;
 };
 

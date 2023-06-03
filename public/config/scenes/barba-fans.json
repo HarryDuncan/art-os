@@ -1,7 +1,7 @@
 [
   {
-    "threeJs": {
-      "camera": { "position": { "x": 0, "y": 0, "z": -5 } }
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 3, "z": 3.5 } }
     },
     "assets": [
       {
@@ -11,7 +11,7 @@
       },
       {
         "name": "base-material",
-        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "url": "../assets/textures/matcaps/pinkpearl.jpg",
         "assetType": "TEXTURE",
         "id": "base-material",
         "assetTag": ["MATCAP"]
@@ -25,7 +25,7 @@
       },
       {
         "name": "lipstick-material",
-        "url": "../assets/textures/matcaps/Pink-Lipstick-Top.jpg",
+        "url": "../assets/textures/matcaps/Pink-Lipstick2.jpg",
         "assetType": "TEXTURE",
         "id": "lipstick",
         "assetTag": ["MATCAP"]
@@ -35,26 +35,38 @@
       {
         "id": "lipstick-bottom",
         "geometryId": "Lipstick_Cube.001",
-        "size": 1,
         "position": { "x": 0, "z": -3 },
         "rotation": { "x": 0, "y": 0, "z": -10 },
         "materialConfig": {
           "materialById": "morphing-material"
         },
-        "groupId": "lipstick",
-        "centerMesh": false
+        "geometryConfig": {
+          "scale": 0.35
+        },
+        "groupId": "lipstick"
       },
       {
         "id": "lipstick-top",
         "geometryId": "Lipstick_Cube.002",
-        "size": 1,
+
         "position": { "x": 0, "z": -3 },
         "rotation": { "x": 0, "y": 0, "z": -10 },
         "materialConfig": {
           "materialById": "morphing-material-2"
         },
-        "groupId": "lipstick",
-        "centerMesh": false
+        "geometryConfig": {
+          "scale": 0.35,
+          "subdivision": {
+            "iterations": 3,
+            "subdivisionProps": {
+              "split": true,
+              "uvSmooth": true,
+              "preserveEdges": true,
+              "flatOnly": false
+            }
+          }
+        },
+        "groupId": "lipstick"
       },
       {
         "id": "lipstick-metail",
@@ -65,8 +77,19 @@
         "materialConfig": {
           "materialById": "morphing-material-1"
         },
-        "groupId": "lipstick",
-        "centerMesh": false
+        "geometryConfig": {
+          "scale": 0.35,
+          "subdivision": {
+            "iterations": 2,
+            "subdivisionProps": {
+              "split": true,
+              "uvSmooth": true,
+              "preserveEdges": true,
+              "flatOnly": false
+            }
+          }
+        },
+        "groupId": "lipstick"
       }
     ],
     "globalMaterialConfigs": [
@@ -178,6 +201,24 @@
         }
       }
     ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 3, "z": 3.5 } }
+    },
+    "assets": [
+      {
+        "name": "logo-svg",
+        "url": "../assets/textures/svg/barbara.svg",
+        "assetType": "SVG"
+      }
+    ],
+    "globalMaterialConfigs": [],
+    "meshComponentConfigs": [],
+    "animationConfig": [],
     "scenePropertiesConfig": {
       "backgroundColor": "black"
     }

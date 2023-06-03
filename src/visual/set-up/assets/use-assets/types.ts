@@ -8,6 +8,7 @@ export const ASSET_TYPES = {
   IMAGE: "IMAGE",
   VIDEO: "VIDEO",
   FONT: "FONT",
+  SVG: "SVG",
 };
 export const ASSET_TAG = {
   MATERIAL: MATERIAL_TYPES,
