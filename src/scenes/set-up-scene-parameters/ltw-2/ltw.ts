@@ -9,7 +9,7 @@ export const ltw = (config, assets) => {
 
   return {
     threeJsParams: {
-      camera: { position: { x: 0, y: -1, z: 15 } },
+      camera: { position: { x: 0, y: -1, z: 5 } },
       controls: {
         hasOrbitControls: true,
       },

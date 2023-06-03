@@ -6,10 +6,9 @@ import { formatSceneData } from "visual/set-up/config/formatSceneData";
 export const homeScene = (config, assets) => {
   const { animationConfig } = config;
   const sceneData = formatSceneData(config, assets);
-  console.log(sceneData);
   return {
     threeJsParams: {
-      camera: { position: { x: 0, y: -1, z: 25 } },
+      camera: { position: { x: 0, y: -1, z: 5 } },
       controls: {
         hasOrbitControls: true,
       },

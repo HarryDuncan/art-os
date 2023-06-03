@@ -24,6 +24,13 @@ export type MeshComponentConfig = {
   materialConfig: MaterialConfig;
   randomizationConfig?: RandomizationConfig;
 };
+
+export type ThreeJSConfig = {
+  camera?: { position: Partial<ThreeDPosition> };
+  controls?: {
+    hasOrbitControls: boolean;
+  };
+};
 export type SceneDataConfig = {
   assets?: Asset[];
   meshComponentConfigs: MeshComponentConfig[];
@@ -32,4 +39,5 @@ export type SceneDataConfig = {
   lightConfig: LightConfigs[];
   sceneComponentConfigs?: SceneComponentConfig[];
   interactionConfig?: InteractionConfig[];
+  threeJsConfig: ThreeJSConfig;
 };

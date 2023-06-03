@@ -5,10 +5,9 @@ import { DEFAULT_MATERIAL } from "visual/display/materials/materials.defaults";
 
 export const MarchingCubesElement = ({
   id,
-  parameters,
+  resolution = DEFAULT_RESOLUTION,
   material = DEFAULT_MATERIAL,
 }: MarchingCubesProps & { id: string }) => {
-  const resolution = parameters?.resolution ?? DEFAULT_RESOLUTION;
   const marchingCubeEffect = new ThreeJsMarchingCubes(
     resolution,
     material,

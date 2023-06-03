@@ -2,7 +2,8 @@ import { SceneComponentConfig } from "visual/display/components/interactive-scen
 import {
   TextComponent,
   Mirror,
- MarchingCubesElement } from "visual/display/scene-elements/components";
+  MarchingCubesElement,
+} from "visual/display/scene-elements/components";
 import { Cube } from "visual/display/scene-elements/components/Cube";
 import { SphericalBackground } from "visual/display/scene-elements/components/SphericalBackground";
 import {
@@ -24,11 +25,11 @@ export const getSceneComponents = (
     switch (componentType) {
       case COMPONENT_TYPES.MARCHING_CUBES: {
         const {
-          parameters,
+          resolution,
           material,
           position,
         } = componentProps as MarchingCubesProps;
-        return MarchingCubesElement({ id, parameters, material, position });
+        return MarchingCubesElement({ id, resolution, material, position });
       }
       case COMPONENT_TYPES.TEXT: {
         const {

@@ -6,9 +6,7 @@ export interface ThreeJSComponentProps {
 }
 
 export interface MarchingCubesProps extends ThreeJSComponentProps {
-  parameters?: {
-    resolution: number;
-  };
+  resolution?: number;
   material?: Material;
 }
 

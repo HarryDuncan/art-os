@@ -1,4 +1,3 @@
-import { getMeshByName } from "visual/display/helpers/scene/object-finding/getMeshByName";
 import { getMeshesByIdentifier } from "visual/display/helpers/scene/object-finding/getMeshesByIdentifier";
 
 export const animateMarchingCube = (scene) => {

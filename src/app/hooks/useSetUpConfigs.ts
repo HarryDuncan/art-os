@@ -1,9 +1,10 @@
 import { useAppDispatch } from "app/redux/store";
 import { useEffect } from "react";
 import { setSceneConfigs } from "app/redux/scene-data/actions";
+
 export const useAppConfigs = () => {
   const dispatch = useAppDispatch();
-  //TODO - toggle test vs production data
+  // TODO - toggle test vs production data
   const isTest = true;
   const filePath = `config/scenes${isTest ? ".test" : ""}.json`;
   useEffect(() => {
