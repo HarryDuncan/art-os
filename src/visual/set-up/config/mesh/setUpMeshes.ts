@@ -4,16 +4,26 @@ import {
   MeshConfig,
   MeshType,
   MESH_TYPES,
+  MeshAttributeConfig,
 } from "visual/set-up/assets/geometry/geometry.types";
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
+  console.log(meshConfigs);
   return meshConfigs.flatMap(
     (
-      { geometry, name, material, meshType, position, rotation, groupId },
+      {
+        geometry,
+        name,
+        material,
+        meshAttributeConfig,
+        position,
+        rotation,
+        groupId,
+      },
       index
     ) => {
-      const mesh = getMesh(geometry, material, meshType);
+      const mesh = getMesh(geometry, material, meshAttributeConfig);
       formatMesh(mesh, name ?? `mesh-${index}`, position, rotation, groupId);
       return mesh;
     }
@@ -22,7 +32,14 @@ export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
 
 const attributeConfig = [{ type: "POINT_ID" }];
 
-const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
+const getMesh = (
+  geometry: Geometry,
+  material,
+  meshAttributeConfig: MeshAttributeConfig = {
+    meshType: MESH_TYPES.MESH,
+  } as MeshAttributeConfig
+) => {
+  const { meshType } = meshAttributeConfig;
   switch (meshType) {
     case MESH_TYPES.POINTS: {
       const positionsLength = geometry.getAttribute("position").array.length;
@@ -45,7 +62,6 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
 
     case MESH_TYPES.MESH:
     default:
-      console.log(geometry);
       setUpAttributes(geometry, attributeConfig);
       return new Mesh(geometry, material);
   }

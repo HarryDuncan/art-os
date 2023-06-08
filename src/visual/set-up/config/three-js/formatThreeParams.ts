@@ -3,16 +3,16 @@ import { getPosition } from "../utils/position";
 
 export const getThreeJsFromConfig = (config: ThreeJSConfig) => {
   const { camera, controls } = config;
-  console.log(config);
-  const cameraConfig = formatCamera(camera);
   return {
-    camera: cameraConfig,
-    controls,
+    camera: formatCamera(camera),
+    controls: formatControls(controls),
   };
 };
 
-const formatCamera = (camera) => {
-  return {
-    position: getPosition(camera?.position ?? {}),
-  };
-};
+const formatControls = (controls) => ({
+  hasOrbitControls: controls?.hasOrbitControls ?? true,
+});
+
+const formatCamera = (camera) => ({
+  position: getPosition(camera?.position ?? {}),
+});

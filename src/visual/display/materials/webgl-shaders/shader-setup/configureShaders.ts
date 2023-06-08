@@ -34,7 +34,7 @@ const getMappedAsset = (assetMapping: AssetMap, assets: Asset[]) => {
   const mappedAsset = assets.find((asset) => asset.id === assetMapping.assetId);
   if (mappedAsset && mappedAsset.data) {
     const texture = mappedAsset.data;
-
+    console.log(texture);
     return texture;
   }
   console.warn(`no mapped asset found for ${assetMapping.assetId}`);

@@ -7,7 +7,9 @@ export const MESH_TYPES = {
   POINTS: "POINTS",
 };
 export type MeshType = keyof typeof MESH_TYPES;
-
+export type MeshAttributeConfig = {
+  meshType: MeshType;
+};
 export interface FormattedGeometry {
   geometry: Geometry;
   position?: ThreeDPosition;
@@ -17,7 +19,7 @@ export interface FormattedGeometry {
 }
 export type MeshConfig = FormattedGeometry & {
   material: Material;
-  meshType?: MeshType;
+  meshAttributeConfig?: MeshAttributeConfig;
 };
 
 export type AssetGeometry = {

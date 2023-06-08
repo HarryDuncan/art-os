@@ -53,12 +53,13 @@ export const useSceneParameters = () => {
 };
 
 const useSelectedConfig = (sceneConfigData: SceneConfig[]) => {
-  const index = 1;
+  const index = 0;
   return useMemo(() => {
     const selectedScene = sceneConfigData[index];
     if (selectedScene) {
       return selectedScene;
     }
+    console.warn(`error retrieving scene config at index ${index}`);
     return sceneConfigData[0];
   }, [index, sceneConfigData]);
 };
