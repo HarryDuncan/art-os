@@ -56,6 +56,7 @@
     "concurrently": "^7.3.0",
     "electron-builder": "^23.1.0",
     "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
@@ -76,6 +77,8 @@
   "main": "public/electron.js",
   "homepage": "./",
   "scripts": {
+    "lint": "npx eslint src",
+    "lint-visual" : "npx eslint src/visual",
     "react-start": "react-scripts start",
     "react-build": "react-scripts build",
     "react-test": "react-scripts test --env=jsdom",

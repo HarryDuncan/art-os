@@ -7,7 +7,6 @@ export const setSceneProperties = (
 ) => {
   if (!sceneProperties) return;
   if (sceneProperties.background !== null) {
-    // @ts-ignore
-    scene.background = sceneProperties.background;
+    scene.background = sceneProperties?.background ?? null;
   }
 };

@@ -25,7 +25,6 @@ export const useRandomObjectProperties = (
   } = bounds;
   return useMemo(() => {
     const coords = getRandomCoordinates(numberOfObjects, bounds);
-
     const rotation = getRandomCoordinates(numberOfObjects, bounds);
     const randomObjects: { position: number[]; rotation: number[] }[] = [];
     for (let i = 0; i < numberOfObjects; i += 1) {

@@ -27,7 +27,6 @@ export const geometryToMesh = (
     const position = formatPosition(meshConfig);
     const rotation = formatRotation(meshConfig);
     setScale(geometry, meshConfig);
-    console.log(geometries);
     if (!geometry.geometry) {
       return [];
     }
@@ -68,9 +67,8 @@ export const configureGeometry = (
       subdivision.subdevisionIterations,
       subdivision.subdivisionProps
     );
-  } else {
-    return formattedGeometry;
   }
+  return formattedGeometry;
 };
 
 const getGeometryForMeshConfig = (geometries, geometryId: string) => {

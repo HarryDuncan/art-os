@@ -9,7 +9,6 @@ import {
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
-  console.log(meshConfigs);
   return meshConfigs.flatMap(
     (
       {

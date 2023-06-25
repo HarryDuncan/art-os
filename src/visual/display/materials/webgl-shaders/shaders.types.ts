@@ -35,12 +35,6 @@ export interface Shaders {
   fragmentShader: FragmentShader;
   vertexShader: VertexShader;
 }
-export interface UniformDefinition {
-  uniformName: string;
-  uniformType: UniformTypes;
-  type?: string;
-  value?;
-}
 
 export type Uniform = Record<string, unknown>;
 export enum UniformTypes {
@@ -48,4 +42,11 @@ export enum UniformTypes {
   sampler2D = "sampler2D",
   Vec3 = "vec3",
   Vec2 = "vec2",
+}
+
+export interface UniformDefinition {
+  uniformName: string;
+  uniformType: UniformTypes;
+  type?: string;
+  value?;
 }

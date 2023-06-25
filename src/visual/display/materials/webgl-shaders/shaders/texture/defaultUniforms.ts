@@ -6,6 +6,5 @@ export const defaultUniforms = (uniformConfig) => {
       window.devicePixelRatio
     ),
   };
-  console.log(uniformConfig);
   return uniformConfig;
 };
