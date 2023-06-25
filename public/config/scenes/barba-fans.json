@@ -11,7 +11,7 @@
       },
       {
         "name": "base-material",
-        "url": "../assets/textures/matcaps/pinkpearl.jpg",
+        "url": "../assets/textures/matcaps/hot2.jpg",
         "assetType": "TEXTURE",
         "id": "base-material",
         "assetTag": ["MATCAP"]
@@ -213,7 +213,13 @@
       {
         "name": "image",
         "id": "image",
-        "url": "../assets/textures/zeus.jpg",
+        "url": "../assets/textures/barbara.jpg",
+        "assetType": "TEXTURE"
+      },
+      {
+        "name": "image",
+        "id": "image2",
+        "url": "../assets/textures/barbie2.jpg",
         "assetType": "TEXTURE"
       }
     ],
@@ -241,6 +247,11 @@
                 "uniform": "uTexture",
                 "assetId": "image",
                 "relationship": "MATCAP"
+              },
+              {
+                "uniform": "uTexture2",
+                "assetId": "image2",
+                "relationship": "MATCAP"
               }
             ]
           },
@@ -252,234 +263,196 @@
       }
     ],
     "meshComponentConfigs": [],
-    "animationConfig": [
-      {
-        "animationId": "rotate",
-        "targetIdentifier": "scene-background",
-        "animationFunctionType": "ALL",
-        "animationConfig": {
-          "animationType": "ROTATE",
-          "animationProperties": {
-            "speed": 0.0006,
-            "rotationAxis": "Y",
-            "animationDurationMilis": 1000,
-            "animationPauseMilis": 1500,
-            "repeatAnimation": true
-          }
-        }
-      }
-    ],
+    "animationConfig": [],
     "scenePropertiesConfig": {
       "backgroundColor": "black"
     }
   },
   {
     "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 3, "z": 3.5 } }
+      "camera": { "position": { "x": 0, "y": 3, "z": 60.5 } }
     },
     "assets": [
       {
-        "name": "lip-stick-geometry",
-        "url": "../assets/models/lipstick.obj",
-        "assetType": "GEOMETRY"
+        "name": "image",
+        "id": "image",
+        "url": "../assets/textures/barbara.jpg",
+        "assetType": "TEXTURE"
       },
       {
-        "name": "base-material",
-        "url": "../assets/textures/matcaps/pinkpearl.jpg",
-        "assetType": "TEXTURE",
-        "id": "base-material",
-        "assetTag": ["MATCAP"]
-      },
-      {
-        "name": "metal-materials",
-        "url": "../assets/textures/matcaps/polished-metal.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome",
-        "assetTag": ["MATCAP"]
-      },
-      {
-        "name": "lipstick-material",
-        "url": "../assets/textures/matcaps/Pink-Lipstick2.jpg",
-        "assetType": "TEXTURE",
-        "id": "lipstick",
-        "assetTag": ["MATCAP"]
+        "name": "image",
+        "id": "image2",
+        "url": "../assets/textures/barbie3.jpg",
+        "assetType": "TEXTURE"
       }
     ],
-    "meshComponentConfigs": [
+    "sceneComponentConfigs": [
       {
-        "id": "lipstick-bottom",
-        "geometryId": "Lipstick_Cube.001",
-        "position": { "x": 0, "z": -3 },
-        "rotation": { "x": 0, "y": 0, "z": -10 },
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
         "materialConfig": {
-          "materialById": "morphing-material"
-        },
-        "geometryConfig": {
-          "scale": 0.35
-        },
-        "groupId": "lipstick"
-      },
-      {
-        "id": "lipstick-top",
-        "geometryId": "Lipstick_Cube.002",
-
-        "position": { "x": 0, "z": -3 },
-        "rotation": { "x": 0, "y": 0, "z": -10 },
-        "materialConfig": {
-          "materialById": "morphing-material-2"
-        },
-        "geometryConfig": {
-          "scale": 0.35,
-          "subdivision": {
-            "iterations": 3,
-            "subdivisionProps": {
-              "split": true,
-              "uvSmooth": true,
-              "preserveEdges": true,
-              "flatOnly": false
-            }
-          }
-        },
-        "groupId": "lipstick"
-      },
-      {
-        "id": "lipstick-metail",
-        "geometryId": "Lipstick_Cube.003",
-        "size": 1,
-        "position": { "x": 0, "z": -3 },
-        "rotation": { "x": 0, "y": 0, "z": -10 },
-        "materialConfig": {
-          "materialById": "morphing-material-1"
-        },
-        "geometryConfig": {
-          "scale": 0.35,
-          "subdivision": {
-            "iterations": 2,
-            "subdivisionProps": {
-              "split": true,
-              "uvSmooth": true,
-              "preserveEdges": true,
-              "flatOnly": false
-            }
-          }
-        },
-        "groupId": "lipstick"
+          "materialById": "scene-background"
+        }
       }
     ],
     "globalMaterialConfigs": [
       {
-        "id": "morphing-material",
+        "id": "scene-background",
         "materialType": "SHADER",
         "materialProps": {
           "shaderConfig": {
-            "shaderId": "morphing",
+            "shaderId": "texture",
             "assetMapping": [
               {
-                "uniform": "uMaterial",
-                "assetId": "base-material",
-                "relationship": "MATCAP"
-              }
-            ]
-          },
-          "uniforms": {
-            "uTime": { "value": 0 },
-            "uResolution": { "value": null },
-            "uMaterial": { "value": null },
-            "uFrame": {
-              "value": 0.0
-            },
-            "uMouse": {
-              "value": null
-            },
-            "uPosition": {
-              "value": null
-            }
-          }
-        }
-      },
-      {
-        "id": "morphing-material-1",
-        "materialType": "SHADER",
-        "materialProps": {
-          "shaderConfig": {
-            "shaderId": "morphing",
-            "assetMapping": [
-              {
-                "uniform": "uMaterial",
-                "assetId": "chrome",
-                "relationship": "MATCAP"
-              }
-            ]
-          },
-          "uniforms": {
-            "uTime": { "value": 0 },
-            "uResolution": { "value": null },
-            "uMaterial": { "value": null },
-            "uFrame": {
-              "value": 0.0
-            },
-            "uMouse": {
-              "value": null
-            },
-            "uPosition": {
-              "value": null
-            }
-          }
-        }
-      },
-      {
-        "id": "morphing-material-2",
-        "materialType": "SHADER",
-        "materialProps": {
-          "shaderConfig": {
-            "shaderId": "morphing",
-            "assetMapping": [
-              {
-                "uniform": "uTextureOne",
-                "assetId": "lipstick",
+                "uniform": "uTexture",
+                "assetId": "image",
                 "relationship": "MATCAP"
               },
               {
-                "uniform": "uTextureZero",
-                "assetId": "lipstick",
+                "uniform": "uTexture2",
+                "assetId": "image2",
                 "relationship": "MATCAP"
               }
             ]
           },
           "uniforms": {
             "uTime": { "value": 0 },
-            "uResolution": { "value": null },
-            "uMaterial": { "value": null },
-            "uFrame": {
-              "value": 0.0
-            },
-            "uMouse": {
-              "value": null
-            },
-            "uPosition": {
-              "value": null
-            }
+            "uTexture": { "value": null }
           }
         }
       }
     ],
-    "animationConfig": [
+    "meshComponentConfigs": [],
+    "animationConfig": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 3, "z": 60.5 } }
+    },
+    "assets": [
       {
-        "animationId": "binary-rotate",
-        "targetIdentifier": "lipstick",
-        "animationFunctionType": "ALL",
-        "animationConfig": {
-          "animationType": "SPIN",
-          "animationProperties": {
-            "speed": 0.004,
-            "rotationAxis": "Y",
-            "animationDurationMilis": -1,
-            "animationPauseMilis": -1,
-            "repeatAnimation": true
+        "name": "image",
+        "id": "image",
+        "url": "../assets/textures/barbara.jpg",
+        "assetType": "TEXTURE"
+      },
+      {
+        "name": "image",
+        "id": "image2",
+        "url": "../assets/textures/barbie1.jpg",
+        "assetType": "TEXTURE"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "scene-background"
+        }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "scene-background",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "texture",
+            "assetMapping": [
+              {
+                "uniform": "uTexture",
+                "assetId": "image",
+                "relationship": "MATCAP"
+              },
+              {
+                "uniform": "uTexture2",
+                "assetId": "image2",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uTexture": { "value": null }
           }
         }
       }
     ],
+    "meshComponentConfigs": [],
+    "animationConfig": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 3, "z": 60.5 } }
+    },
+    "assets": [
+      {
+        "name": "image",
+        "id": "image",
+        "url": "../assets/textures/barbara.jpg",
+        "assetType": "TEXTURE"
+      },
+      {
+        "name": "image",
+        "id": "image2",
+        "url": "../assets/textures/barbie2.jpg",
+        "assetType": "TEXTURE"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "scene-background"
+        }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "scene-background",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "texture",
+            "assetMapping": [
+              {
+                "uniform": "uTexture",
+                "assetId": "image",
+                "relationship": "MATCAP"
+              },
+              {
+                "uniform": "uTexture2",
+                "assetId": "image2",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uTexture": { "value": null }
+          }
+        }
+      }
+    ],
+    "meshComponentConfigs": [],
+    "animationConfig": [],
     "scenePropertiesConfig": {
       "backgroundColor": "black"
     }

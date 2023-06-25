@@ -18,7 +18,6 @@ export const RootContainer = ({
   visualData = {},
   layers = [],
 }: IRootContainerProps) => {
-  // todo - set component config from app selector
   const { video } = visualData;
   return (
     <>

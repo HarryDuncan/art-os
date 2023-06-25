@@ -5,11 +5,14 @@ import { formatSceneData } from "visual/set-up/config/formatSceneData";
 
 export const ltw = (config, assets) => {
   const { animationConfig } = config;
-  const { meshes, sceneComponents, lights } = formatSceneData(config, assets);
+  const { meshes, sceneComponents, lights, sceneProperties } = formatSceneData(
+    config,
+    assets
+  );
 
   return {
     threeJsParams: {
-      camera: { position: { x: 0, y: -1, z: 5 } },
+      camera: { position: { x: 0, y: 0, z: 13 } },
       controls: {
         hasOrbitControls: true,
       },
@@ -23,6 +26,7 @@ export const ltw = (config, assets) => {
       meshes,
       sceneComponents,
       lights,
+      sceneProperties,
     },
 
     animations: animationConfig as CustomAnimationConfig[],

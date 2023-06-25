@@ -437,5 +437,260 @@
         }
       }
     ]
+  },
+  {
+    "assets": [
+      {
+        "name": "logo-geometry",
+        "url": "../assets/models/ltw/brendan.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "logo-geometry1",
+        "url": "../assets/models/ltw/ltwShapeReduced.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "logo-geometry2",
+        "url": "../assets/models/ltw/ltwShape2.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "bg-video",
+        "url": "../assets/video/TET.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "logo-material",
+        "url": "../assets/textures/matcaps/hot.jpg",
+        "assetType": "TEXTURE",
+        "id": "logo-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "logo-material2",
+        "url": "../assets/textures/matcaps/pearl.jpg",
+        "assetType": "TEXTURE",
+        "id": "logo-material2",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "logo",
+        "geometryId": "Subdivision_Surface",
+        "position": { "x": -1.7421, "y": -3.28, "z": 4 },
+        "rotation": { "x": 0, "y": -0.45, "z": -20 },
+        "materialConfig": {
+          "materialById": "logo-material"
+        },
+        "geometryConfig": {
+          "centerMesh": true,
+          "scale": 0.011
+        }
+      },
+
+      {
+        "id": "logo",
+        "geometryId": "Cube.1",
+        "position": { "x": 1.1, "y": 2.98, "z": 4 },
+        "rotation": { "x": 0, "y": -0.5, "z": -0 },
+        "materialConfig": {
+          "materialById": "logo-material"
+        },
+        "geometryConfig": {
+          "centerMesh": true,
+          "scale": 0.03
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.03,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": 0,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "jaaa",
+        "targetIdentifier": "jaaa",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "ROTATE",
+          "animationProperties": {
+            "speed": 0.03,
+            "rotationAxis": "Z",
+            "animationDurationMilis": 1000,
+            "animationPauseMilis": 500,
+            "repeatAnimation": true
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 20, "z": 10 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 20, "z": 10 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "scene-background",
+        "materialProps": {
+          "videoId": "bg-video"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": 0, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "scene-background"
+        }
+      }
+    ]
+  },
+  {
+    "assets": [
+      {
+        "name": "logo-geometry",
+        "url": "../assets/models/ltw/brendan.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "logo-obj-geometry",
+        "url": "../assets/models/ltw/3dLogo.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "bg-video",
+        "url": "../assets/video/TET.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "logo-material",
+        "url": "../assets/textures/matcaps/hot.jpg",
+        "assetType": "TEXTURE",
+        "id": "logo-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "logo-material2",
+        "url": "../assets/textures/matcaps/pearl.jpg",
+        "assetType": "TEXTURE",
+        "id": "logo-material2",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "jaaa",
+        "geometryId": "Curve",
+        "position": { "x": 0, "y": 0, "z": 3 },
+        "rotation": { "x": 90, "y": -0.5, "z": -0 },
+        "materialConfig": {
+          "materialById": "logo-material2"
+        },
+        "geometryConfig": {
+          "centerMesh": true,
+          "scale": 0.15
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.03,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": 0,
+            "repeatAnimation": true
+          }
+        }
+      },
+      {
+        "animationId": "jaaa",
+        "targetIdentifier": "jaaa",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "ROTATE",
+          "animationProperties": {
+            "speed": 0.03,
+            "rotationAxis": "Z",
+            "animationDurationMilis": 1000,
+            "animationPauseMilis": 500,
+            "repeatAnimation": true
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 20, "z": 10 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 20, "z": 10 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "scene-background",
+        "materialProps": {
+          "videoId": "bg-video"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": 0, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "scene-background"
+        }
+      }
+    ]
   }
 ]

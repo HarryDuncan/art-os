@@ -53,7 +53,7 @@ export const useSceneParameters = () => {
 };
 
 const useSelectedConfig = (sceneConfigData: SceneConfig[]) => {
-  const index = 0;
+  const index = 3;
   return useMemo(() => {
     const selectedScene = sceneConfigData[index];
     if (selectedScene) {

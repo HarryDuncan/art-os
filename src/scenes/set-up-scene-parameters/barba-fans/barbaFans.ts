@@ -8,7 +8,6 @@ import { getThreeJsFromConfig } from "visual/set-up/config/three-js/formatThreeP
 export const barbaFans = (config, assets) => {
   const { animationConfig } = config;
   const threeJsParams = getThreeJsFromConfig(config.threeJsConfig ?? {});
-  console.log(threeJsParams);
   const sceneData = formatSceneData(config, assets);
   return {
     threeJsParams,
@@ -16,7 +15,7 @@ export const barbaFans = (config, assets) => {
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveScene) => {
         startSceneElementAnimations(scene);
-        updateUniformTime(scene, "lipstick");
+        updateUniformTime(scene, "scene-background");
       },
     },
     sceneData,
