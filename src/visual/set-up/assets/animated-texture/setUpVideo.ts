@@ -6,8 +6,6 @@ export const setupVideo = (url, identifier) => {
   video.id = identifier;
   video.width = 600;
   video.height = 600;
-  let playing = false;
-  let timeupdate = false;
 
   video.playsInline = true;
   video.muted = true;
@@ -19,7 +17,7 @@ export const setupVideo = (url, identifier) => {
   video.addEventListener(
     "playing",
     () => {
-      playing = true;
+      // playing = true;
     },
     true
   );
@@ -27,7 +25,7 @@ export const setupVideo = (url, identifier) => {
   video.addEventListener(
     "timeupdate",
     () => {
-      timeupdate = true;
+      // timeupdate = true;
     },
     true
   );

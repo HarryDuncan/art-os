@@ -1,15 +1,7 @@
 import { useMemo } from "react";
 import { getRandomCoordinates } from "../helpers/getRandomCoordinates";
 import { xyzToArray } from "../helpers/xyzToArray";
-
-export type Bounds3D = {
-  lowerBoundX: number;
-  upperBoundX: number;
-  lowerBoundY: number;
-  upperBoundY: number;
-  lowerBoundZ: number;
-  upperBoundZ: number;
-};
+import { Bounds3D } from "../helpers/three-dimension-space/position/position.types";
 
 export const useRandomObjectProperties = (
   numberOfObjects: number,

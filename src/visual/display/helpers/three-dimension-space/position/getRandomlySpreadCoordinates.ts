@@ -10,8 +10,7 @@ export const generateRandomlySpreadCoordinates = (
 ): ThreeDPosition[] => {
   // Create an empty list to store the generated points
   const points: ThreeDPosition[] = [];
-  const now = new Date();
-  const startTime = now.getTime();
+  const startTime = new Date().getTime();
 
   // While there are fewer points than desired
   while (points.length < numCoordinates) {
@@ -26,21 +25,24 @@ export const generateRandomlySpreadCoordinates = (
         break;
       }
       // Select a random allowed bounding box
-      const boundingBox =
+      const allowedBoundingBox =
         allowedBoundingBoxes[
           Math.floor(Math.random() * allowedBoundingBoxes.length)
         ];
       // Generate a random point within the bounding box
       const newPoint = {
         x:
-          Math.random() * (boundingBox.max.x - boundingBox.min.x) +
-          boundingBox.min.x,
+          Math.random() *
+            (allowedBoundingBox.max.x - allowedBoundingBox.min.x) +
+          allowedBoundingBox.min.x,
         y:
-          Math.random() * (boundingBox.max.y - boundingBox.min.y) +
-          boundingBox.min.y,
+          Math.random() *
+            (allowedBoundingBox.max.y - allowedBoundingBox.min.y) +
+          allowedBoundingBox.min.y,
         z:
-          Math.random() * (boundingBox.max.z - boundingBox.min.z) +
-          boundingBox.min.z,
+          Math.random() *
+            (allowedBoundingBox.max.z - allowedBoundingBox.min.z) +
+          allowedBoundingBox.min.z,
       };
 
       // Check if it is at least the minimum distance away from all existing points

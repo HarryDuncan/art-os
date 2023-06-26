@@ -1,3 +1,4 @@
+/* eslint import/namespace: ['error', { allowComputed: true }] */
 import { ShaderType } from "../shaders.types";
 import * as Shaders from "../shaders";
 

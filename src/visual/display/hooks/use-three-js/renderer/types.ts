@@ -1,12 +1,10 @@
 import { TextureEncoding } from "three";
+import { RENDERER_TYPES } from "./rendererConstants";
 
-export enum RendererTypes {
-  WEBGL = "webgl",
-  CSS = "css",
-}
+export type RendererType = keyof typeof RENDERER_TYPES;
 
 export interface RendererParams {
-  rendererType: RendererTypes;
+  rendererType: RendererType;
   clearColor?: number;
   size?: { width: number; height: number };
   outputEncoding?: TextureEncoding;

@@ -1,22 +1,28 @@
 import { useMemo } from "react";
 import { LinearEncoding, WebGLRenderer } from "three";
-import { getRendererSize } from "../helpers/getRendererSize";
+import { useRendererSize } from "../hooks/useRendererSize";
 import { DEFAULT_RENDERER_PARAMS } from "../rendererConstants";
 import { RendererParams } from "../types";
+import { useWindowState } from "visual/compat/window-state/windowStateProvider";
 
 export const useWebGLRenderer = (
-  rendererParams: RendererParams = DEFAULT_RENDERER_PARAMS
-) =>
-  useMemo(() => {
+  rendererParams: RendererParams = DEFAULT_RENDERER_PARAMS as RendererParams
+) => {
+  const {
+    state: { devicePixelRatio },
+  } = useWindowState();
+  const { width, height } = useRendererSize(rendererParams);
+  return useMemo(() => {
     const renderer = new WebGLRenderer({
       powerPreference: "high-performance",
       antialias: true,
     });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    const { width, height } = getRendererSize(rendererParams);
+    renderer.setPixelRatio(devicePixelRatio);
+
     renderer.setSize(width, height);
     renderer.setClearColor(0x112233, 0);
     renderer.physicallyCorrectLights = true;
     renderer.outputEncoding = rendererParams.outputEncoding ?? LinearEncoding;
     return renderer;
-  }, [rendererParams]);
+  }, [rendererParams, width, height]);
+};

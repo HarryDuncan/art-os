@@ -2,7 +2,6 @@ import { Box3, BufferAttribute, Mesh, Points, Vector3 } from "three";
 import { Geometry } from "types/threeJs.types";
 import {
   MeshConfig,
-  MeshType,
   MESH_TYPES,
   MeshAttributeConfig,
 } from "visual/set-up/assets/geometry/geometry.types";
@@ -94,11 +93,16 @@ const setUpAttributes = (geometry, attributeConfig) => {
   attributeConfig.forEach((attribute) => {
     switch (attribute.type) {
       case ATTRIBUTE_TYPES.POINT_ID:
-        const pointIds = new Float32Array(positionsLength / 3);
-        pointIds.forEach((_value, index) => {
-          pointIds[index] = Number(index.toFixed(1));
-        });
-        geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
+        {
+          const pointIds = new Float32Array(positionsLength / 3);
+          pointIds.forEach((_value, index) => {
+            pointIds[index] = Number(index.toFixed(1));
+          });
+          geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
+        }
+        break;
+      default:
+        console.warn(`nothing configured for ${attribute.type}`);
     }
   });
 };

@@ -2,7 +2,12 @@ import { SHADER_TYPES } from "./shaders.constants";
 
 type FragmentShaderTag = "interactive" | "mouse" | "noUniforms" | "uniforms";
 export type ShaderType = keyof typeof SHADER_TYPES;
-
+export enum UniformTypes {
+  Float = "float",
+  sampler2D = "sampler2D",
+  Vec3 = "vec3",
+  Vec2 = "vec2",
+}
 export interface CustomShader {
   id: string;
   type: ShaderType;
@@ -37,12 +42,6 @@ export interface Shaders {
 }
 
 export type Uniform = Record<string, unknown>;
-export enum UniformTypes {
-  Float = "float",
-  sampler2D = "sampler2D",
-  Vec3 = "vec3",
-  Vec2 = "vec2",
-}
 
 export interface UniformDefinition {
   uniformName: string;
