@@ -1,0 +1,4 @@
+export const EVENT_BINDING_TYPE = {
+  SCENE: "SCENE",
+  MATERIAL: "MATERIAL",
+};

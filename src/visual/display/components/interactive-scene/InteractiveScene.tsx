@@ -1,6 +1,9 @@
+import {
+  FormattedInteractionConfig,
+  InteractionEvent,
+} from "interaction/interactions.types";
 import { Clock, Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { InteractionEventConfig } from "interaction-node/interactions.types";
 import { AnimationManager } from "visual/display/animation/animation-manager/AnimationManager";
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
 import { EventConfig } from "visual/display/hooks/use-events/events.types";
@@ -33,11 +36,10 @@ export class InteractiveScene extends Scene {
     );
   }
 
-  addInteractionEvents(interactionEvents: InteractionEventConfig[]) {
-    interactionEvents.forEach(({ key, onEvent }) => {
-      document.addEventListener(key, (e) => {
-        // TODO - TYPE e
-        const { detail } = e as any;
+  addInteractionEvents(interactionEvents: FormattedInteractionConfig[]) {
+    interactionEvents.forEach(({ eventKey, onEvent }) => {
+      document.addEventListener(eventKey, (e) => {
+        const { detail } = e as InteractionEvent;
         onEvent(this as InteractiveScene, detail);
       });
     });

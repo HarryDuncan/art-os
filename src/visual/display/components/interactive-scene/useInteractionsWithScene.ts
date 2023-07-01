@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { InteractiveScene } from "./InteractiveScene";
-import { EVENT_BINDING_TYPE } from "interaction-node/interactions.constants";
-import { InteractionEventConfig } from "interaction-node/interactions.types";
+import { FormattedInteractionConfig } from "interaction/interactions.types";
+import { EVENT_BINDING_TYPE } from "interaction/interactions.consts";
 
 export const useInteractionsWithScene = (
-  interactionEvents: InteractionEventConfig[]
+  interactionEvents: FormattedInteractionConfig[]
 ) => {
   const sceneInteractionEvents = interactionEvents.flatMap(
     (interactionEvent) => {

@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from "redux";
 import { reducer as visualReducer } from "./visual/slice";
 import { reducer as sceneDataReducer } from "./scene-data/slice";
-import { reducer as InteractionNodeReducer } from "./interaction-node/slice";
+import { reducer as InteractionNodeReducer } from "./interaction/slice";
 
 export type IGlobalState = ReturnType<typeof rootReducer>;
 

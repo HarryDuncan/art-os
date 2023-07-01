@@ -1,6 +1,6 @@
-import { getFileTypeFromFilename } from "utils/getFileType";
-import { FILE_TYPES } from "consts";
+import { FILE_TYPES } from "visual/consts";
 import { Asset, LoadedGroup, LoadedObjChild } from "../use-assets/types";
+import { getFileTypeFromFilename } from "visual/set-up/config/utils/file";
 
 export const formatGeometriesFromAsset = (assets: Asset[]) => {
   const geometryAssets = assets.flatMap((asset: Asset) => {

@@ -15,8 +15,8 @@ import { THEME } from "theme/theme";
 import { GlobalStyle } from "theme/GlobalStyle";
 import { Sandbox } from "./views/sandbox/sandbox";
 import { AppendContainer } from "./components/AppendContainer";
-import { useInteractionNode } from "interaction-node/useInteractionNode";
 import { useAppConfigs } from "./hooks/useSetUpConfigs";
+import { useInteractionNode } from "interaction/external/useInteractionNode";
 
 export const AppContainer = styled.div`
   margin: 0;

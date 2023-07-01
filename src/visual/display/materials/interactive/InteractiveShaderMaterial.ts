@@ -1,4 +1,4 @@
-import { InteractionEventConfig } from "interaction-node/interactions.types";
+import { FormattedInteractionConfig } from "interaction/interactions.types";
 import {
   Clock,
   CustomBlending,
@@ -26,10 +26,9 @@ export default class InteractiveShaderMaterial extends ShaderMaterial {
     this.clock = new Clock();
   }
 
-  addInteractionsEvents(interactionEvents: InteractionEventConfig[]) {
-    interactionEvents.forEach(({ key, onEvent }) => {
-      document.addEventListener(key, (e) => {
-        // TODO - TYPE e
+  addInteractionsEvents(interactionEvents: FormattedInteractionConfig[]) {
+    interactionEvents.forEach(({ eventKey, onEvent }) => {
+      document.addEventListener(eventKey, (e) => {
         const { detail } = e as any;
 
         onEvent(this as InteractiveShaderMaterial, detail);

@@ -4,15 +4,15 @@ import { useInitializeNode } from "../use-initialize-node/useInitializeNode";
 import { useWebGLRenderer } from "./renderer";
 import { useCssRenderer } from "./renderer/use-css-renderer";
 import { ThreeJsParams } from "./types";
-import { useCamera } from "./use-camera/useCamera";
 import { useOrbitControls } from "./use-orbit-controls/useOrbitControls";
 import { useScene } from "./use-scene/useScene";
 import PostProcessor from "visual/display/components/post-processor/PostProcessor";
 
-export const useThreeJs = (threeJsParams: ThreeJsParams = {}) => {
+export const useThreeJs = (threeJsParams: ThreeJsParams) => {
+  const { camera } = threeJsParams;
+
   const container = useRef(null);
   const scene = useScene();
-  const camera = useCamera(threeJsParams.camera);
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
   const postProcessor: React.MutableRefObject<null | PostProcessor> = useRef(
     null

@@ -1,5 +1,11 @@
-import { Box3, BufferAttribute, Mesh, Points, Vector3 } from "three";
-import { Geometry } from "types/threeJs.types";
+import {
+  Box3,
+  BufferAttribute,
+  BufferGeometry,
+  Mesh,
+  Points,
+  Vector3,
+} from "three";
 import {
   MeshConfig,
   MESH_TYPES,
@@ -31,7 +37,7 @@ export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
 const attributeConfig = [{ type: "POINT_ID" }];
 
 const getMesh = (
-  geometry: Geometry,
+  geometry: BufferGeometry,
   material,
   meshAttributeConfig: MeshAttributeConfig = {
     meshType: MESH_TYPES.MESH,

@@ -3,7 +3,7 @@ import { RENDERER_TYPES } from "visual/display/hooks/use-three-js/renderer/rende
 import {
   CAMERA_TYPES,
   CameraType,
-} from "visual/display/hooks/use-three-js/use-camera/types";
+} from "visual/set-up/config/three-js/use-camera/camera.types";
 
 export const DEFAULT_THREE_JS = {
   camera: {

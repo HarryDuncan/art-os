@@ -1,7 +1,8 @@
 import React from "react";
 import { LayerImg, LayerOverlay, LayersContainer } from "./Layers.styles";
-import { LAYERS } from "app/constants";
 import { LAYER_TYPES, Layer } from "./types";
+
+const LAYERS = "../assets/layers/";
 
 export const Layers = ({ layers }: { layers: Layer[] }) => {
   if (!layers.length) {

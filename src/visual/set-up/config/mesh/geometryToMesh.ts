@@ -1,4 +1,4 @@
-import { DEFAULT_POSITION } from "consts/threejs";
+import { DEFAULT_POSITION } from "visual/consts/threejs";
 import { Vector3 } from "three";
 import { vector3DegreesToEuler } from "visual/display/helpers/three-dimension-space/degreesToEuler";
 import { MeshComponentConfig } from "../config.types";

@@ -1,16 +1,14 @@
 import React, { Suspense } from "react";
 import { ViewPieceContainer } from "./ViewPiece.styles";
-import { InteractiveSceneContainer } from "visual/display/containers";
 import { useSceneParameters } from "scenes/useSceneParameters";
+import { InteractiveNode } from "visual/node";
 
 export const ViewPiece = () => {
   const sceneParameters = useSceneParameters();
   return (
     <ViewPieceContainer>
       <Suspense>
-        {sceneParameters ? (
-          <InteractiveSceneContainer {...sceneParameters} />
-        ) : null}
+        {sceneParameters ? <InteractiveNode {...sceneParameters} /> : null}
       </Suspense>
     </ViewPieceContainer>
   );
