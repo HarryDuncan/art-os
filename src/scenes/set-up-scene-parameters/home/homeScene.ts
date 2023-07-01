@@ -1,5 +1,5 @@
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
-import { InteractiveScene } from "visual/display/components/interactive-scene";
+import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import { animateMarchingCube } from "visual/display/scene-elements/components/marching-cubes/marchingCubeAnimation";
 
 export const homeScene = (config, sceneData) => {

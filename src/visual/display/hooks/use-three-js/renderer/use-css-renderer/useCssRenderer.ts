@@ -14,5 +14,5 @@ export const useCssRenderer = (
       renderer.setSize(width, height);
       return renderer;
     }
-  }, [rendererParams]);
+  }, [rendererParams, width, height]);
 };

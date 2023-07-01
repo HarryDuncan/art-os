@@ -1,4 +1,3 @@
-import { SceneComponentConfig } from "visual/display/components/interactive-scene";
 import {
   TextComponent,
   Mirror,
@@ -15,8 +14,8 @@ import {
   PlaneProps,
   CubeProps,
 } from "visual/display/scene-elements/components/threeJsComponents.types";
-
 import { PlaneElement } from "visual/display/scene-elements/components/PlaneElement";
+import { SceneComponentConfig } from "../config.types";
 
 export const getSceneComponents = (
   componentConfigs: SceneComponentConfig[] = []

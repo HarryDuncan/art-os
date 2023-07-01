@@ -12,12 +12,13 @@ export const useCamera = (config?: CameraConfig) => {
     },
   } = useWindowState();
   const aspect = width / height;
+
   return useMemo(() => {
     const camera = getCamera(aspect, config);
     const { x, y, z } = getPosition(config?.position ?? {});
     camera.position.set(x, y, z);
     return camera;
-  }, [config]);
+  }, [config, aspect]);
 };
 
 const getCamera = (aspect: number, config?: CameraConfig) => {

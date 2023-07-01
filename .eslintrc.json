@@ -27,7 +27,9 @@
   "plugins": ["react", "@typescript-eslint"],
   "ignorePatterns": ["*spec.tsx", "*spec.ts"],
   "rules": {
+    "no-sparse-arrays": "error",
     "import/no-unresolved": "off",
+    "no-lone-blocks": "warn",
     "quotes": "off",
     "import/prefer-default-export": "off",
     "linebreak-style": "off",

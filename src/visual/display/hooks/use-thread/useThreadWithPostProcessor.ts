@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Camera, Clock } from "three";
-import { InteractiveScene } from "visual/display/components/interactive-scene";
+import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import PostProcessor from "visual/display/components/post-processor/PostProcessor";
 import { sceneUpdateEvent } from "visual/display/engine/engineEvents";
 

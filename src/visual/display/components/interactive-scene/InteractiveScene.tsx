@@ -1,5 +1,5 @@
 import {
-  FormattedInteractionConfig,
+  InteractionConfig,
   InteractionEvent,
 } from "interaction/interactions.types";
 import { Clock, Scene } from "three";
@@ -10,6 +10,11 @@ import { EventConfig } from "visual/display/hooks/use-events/events.types";
 
 type InteractiveSceneFunctions = {
   onTimeUpdate: (material: InteractiveScene) => void;
+};
+
+export type SceneInteraction = InteractionConfig & SceneInteractionEvent;
+type SceneInteractionEvent = {
+  onEvent: (interactive: InteractiveScene, details: unknown) => void;
 };
 
 export class InteractiveScene extends Scene {
@@ -36,7 +41,7 @@ export class InteractiveScene extends Scene {
     );
   }
 
-  addInteractionEvents(interactionEvents: FormattedInteractionConfig[]) {
+  addInteractionEvents(interactionEvents: SceneInteraction[]) {
     interactionEvents.forEach(({ eventKey, onEvent }) => {
       document.addEventListener(eventKey, (e) => {
         const { detail } = e as InteractionEvent;

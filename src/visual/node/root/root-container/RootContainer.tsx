@@ -2,8 +2,8 @@ import React from "react";
 import { Root } from "./RootContainer.styles";
 import { VideoBackground } from "../video-background/VideoBackground";
 import { Layer } from "visual/display/components/layers/types";
-import { SceneProperties } from "visual/display/components/interactive-scene";
 import { Layers } from "visual/display/components/layers/Layers";
+import { SceneProperties } from "visual/display/components/interactive-scene/types";
 
 interface IRootContainerProps {
   containerRef: React.MutableRefObject<HTMLDivElement | null>;

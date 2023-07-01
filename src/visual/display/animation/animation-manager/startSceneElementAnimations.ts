@@ -1,4 +1,4 @@
-import { InteractiveScene } from "visual/display/components/interactive-scene";
+import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 
 export const startSceneElementAnimations = (scene: InteractiveScene) => {
   const sceneElementAnimationIds = scene.animationManager.sceneElementAnimations.flatMap(

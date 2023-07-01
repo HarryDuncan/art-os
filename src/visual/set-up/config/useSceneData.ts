@@ -1,4 +1,3 @@
-import { SceneData } from "visual/display/components/interactive-scene";
 import { initializeVideos } from "visual/set-up/assets/animated-texture/setUpVideos";
 import { formatSceneComponentConfigs } from "visual/set-up/config/components/formatSceneComponentConfigs";
 import { getLightsFromConfig } from "visual/set-up/config/lights/getLightsFromConfig";
@@ -9,11 +8,12 @@ import { Asset } from "../assets/use-assets/types";
 import { getScenePropertiesFromConfig } from "./scene-properties/setSceneProperties";
 import { useThreeJsFromConfig } from "./three-js/useThreeJsFromConfig";
 import { useMemo } from "react";
+import { SceneData } from "visual/display/components/interactive-scene/types";
 
 export const useSceneData = (
   config: SceneConfig,
   assets: Asset[],
-  areAssetsInitialized
+  areAssetsInitialized: boolean
 ): SceneData | null => {
   initializeVideos(assets);
   const threeJs = useThreeJsFromConfig(config.threeJsConfig);
@@ -33,5 +33,5 @@ export const useSceneData = (
       lights: lights ?? [],
       sceneProperties,
     };
-  }, [, config, assets, areAssetsInitialized]);
+  }, [threeJs, config, assets, areAssetsInitialized]);
 };

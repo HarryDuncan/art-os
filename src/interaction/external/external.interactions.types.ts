@@ -1,4 +1,4 @@
-import { InteractiveScene } from "visual/display/components/interactive-scene";
+import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import {
   DATA_TRANSFORM_TYPE,
   EVENT_BINDING_TYPE,
