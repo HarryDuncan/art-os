@@ -1,4 +1,4 @@
-import { DEFAULT_POSITION } from "consts/threejs";
+import { DEFAULT_POSITION } from "visual/consts/threejs";
 import { Vector3 } from "three";
 import { vector3DegreesToEuler } from "visual/display/helpers/three-dimension-space/degreesToEuler";
 import { MeshComponentConfig } from "../config.types";
@@ -6,9 +6,12 @@ import { cloneDeep } from "lodash";
 import { Asset } from "visual/set-up/assets/use-assets/types";
 import {
   FormattedGeometry,
+  GeometryConfig,
   MESH_TYPES,
 } from "visual/set-up/assets/geometry/geometry.types";
 import { formatGeometriesFromAsset } from "visual/set-up/assets/geometry/formatGeometryFromAsset";
+import { LoopSubdivision } from "three-subdivide";
+import { DEFAULT_GEOMETRY_CONFIG } from "visual/set-up/assets/assets.constants";
 
 export const geometryToMesh = (
   loadedAssets: Asset[],
@@ -24,13 +27,16 @@ export const geometryToMesh = (
     const position = formatPosition(meshConfig);
     const rotation = formatRotation(meshConfig);
     setScale(geometry, meshConfig);
-    const centeredGeometry = geometry.geometry;
-    if (meshConfig.centerMesh || meshConfig.centerMesh === undefined) {
-      centeredGeometry.center();
+    if (!geometry.geometry) {
+      return [];
     }
+    const configuredGeometry = configureGeometry(
+      geometry.geometry,
+      meshConfig.geometryConfig
+    );
 
     return {
-      geometry: centeredGeometry,
+      geometry: configuredGeometry,
       name: meshConfig.id,
       meshType: MESH_TYPES.MESH,
       position,
@@ -39,6 +45,32 @@ export const geometryToMesh = (
     } as FormattedGeometry;
   }) as FormattedGeometry[];
 };
+
+export const configureGeometry = (
+  geometry,
+  geometryConfig: GeometryConfig = DEFAULT_GEOMETRY_CONFIG
+) => {
+  const formattedGeometry = geometry.clone();
+
+  const { scale, centerMesh, subdivision } = geometryConfig;
+  formattedGeometry.scale(scale, scale, scale);
+  if (centerMesh) {
+    formattedGeometry.center();
+  }
+
+  const size = new Vector3();
+  formattedGeometry.computeBoundingBox();
+  formattedGeometry.boundingBox.getSize(size);
+  if (subdivision) {
+    return LoopSubdivision.modify(
+      formattedGeometry,
+      subdivision.subdevisionIterations,
+      subdivision.subdivisionProps
+    );
+  }
+  return formattedGeometry;
+};
+
 const getGeometryForMeshConfig = (geometries, geometryId: string) => {
   const meshGeometry = geometries.find(
     (geometry) => geometry.name === geometryId

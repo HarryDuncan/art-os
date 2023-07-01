@@ -1,9 +1,9 @@
 import { sRGBEncoding } from "three";
-import { RendererTypes } from "visual/display/hooks/use-three-js/renderer/types";
+import { RENDERER_TYPES } from "visual/display/hooks/use-three-js/renderer/rendererConstants";
 import {
   CAMERA_TYPES,
   CameraType,
-} from "visual/display/hooks/use-three-js/use-camera/types";
+} from "visual/set-up/config/three-js/use-camera/camera.types";
 
 export const DEFAULT_THREE_JS = {
   camera: {
@@ -24,7 +24,7 @@ export const DEFAULT_THREE_JS = {
     },
   },
   renderer: {
-    rendererType: RendererTypes.WEBGL,
+    rendererType: RENDERER_TYPES.WEBGL,
     outputEncoding: sRGBEncoding,
   },
 };

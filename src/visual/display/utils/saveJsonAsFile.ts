@@ -3,7 +3,7 @@ import * as fs from "fs";
 import path from "path";
 
 export const saveJSON = (
-  jsonObject: Record<string, any>,
+  jsonObject: Record<string, unknown>,
   filename: string
 ): void => {
   // Get the path to the public directory of the Electron app

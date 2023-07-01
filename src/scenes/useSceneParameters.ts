@@ -1,11 +1,11 @@
 import { useMemo } from "react";
-import { useDefaultConfig } from "scenes/default-configs/useDefaultConfig";
-import { deepMergeObjects } from "utils/deepMergeObjects";
 import { useAppSelector } from "app/redux/store";
 import * as setUpScenes from "./set-up-scene-parameters";
-import { useInteractions } from "interaction-node/useInteractions";
 import { useAssets } from "visual/set-up/assets/use-assets/useAssets";
 import { useFetchConfig } from "visual/set-up/config/useFetchConfig";
+import { SceneConfig } from "visual/set-up/config/config.types";
+import { useInteractions } from "interaction/external/useInteractions";
+import { useSceneData } from "visual/set-up/config/useSceneData";
 
 export const useSceneParameters = () => {
   const { configId, configuredScenes } = useAppSelector(
@@ -20,32 +20,39 @@ export const useSceneParameters = () => {
   const sceneConfigData = useFetchConfig(
     `config/${selectedSceneFilePath}.json`
   );
-  const configData = sceneConfigData[0] ?? {};
+
+  const configData = useSelectedConfig(sceneConfigData);
   const { areAssetsInitialized, initializedAssets } = useAssets(
     configData.assets ?? []
   );
-  const setInteractions = useInteractions(configData.interactionConfig);
-
-  // TODO - rename to parameters
-  const { threeJsParams, assets, events } = useDefaultConfig();
-
+  const setInteractions = useInteractions(configData.interactionConfig ?? []);
+  const sceneData = useSceneData(
+    configData,
+    initializedAssets,
+    areAssetsInitialized
+  );
   return useMemo(() => {
-    if (configId === null) return null;
-    if (areAssetsInitialized) {
-      const sceneParams = setUpScenes[configId](configData, initializedAssets);
-      if (sceneParams.interactionEvents) {
-        setInteractions(sceneParams.interactionEvents);
-      }
-
-      return {
-        assets,
-        events,
-        ...sceneParams,
-        threeJsParams: deepMergeObjects(
-          threeJsParams,
-          sceneParams.threeJsParams ?? {}
-        ),
-      };
+    if (configId === null || !sceneData) return null;
+    const sceneParams = setUpScenes[configId](configData, sceneData);
+    if (sceneParams.interactionEvents) {
+      setInteractions(sceneParams.interactionEvents);
     }
-  }, [configId, areAssetsInitialized, initializedAssets]);
+
+    return {
+      assets: initializedAssets,
+      ...sceneParams,
+    };
+  }, [configId, initializedAssets, sceneData]);
+};
+
+const useSelectedConfig = (sceneConfigData: SceneConfig[]) => {
+  const index = 3;
+  return useMemo(() => {
+    const selectedScene = sceneConfigData[index];
+    if (selectedScene) {
+      return selectedScene;
+    }
+    console.warn(`error retrieving scene config at index ${index}`);
+    return sceneConfigData[0];
+  }, [index, sceneConfigData]);
 };

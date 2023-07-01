@@ -36,32 +36,7 @@
         "size": 25,
         "meshType": "POINTS",
         "materialConfig": {
-          "materialType": "INTERACTIVE_SHADER",
-          "materialProps": {
-            "shaderConfig": {
-              "shaderId": "interactiveParticles"
-            },
-            "uniforms": {
-              "uTime": { "value": 0 },
-              "uRandom": { "value": 1.0 },
-              "uDepth": { "value": 2.0 },
-              "uSize": { "value": 0.0 },
-              "uResolution": { "value": null },
-              "uPosition": { "value": null },
-              "uTextureSize": { "value": null },
-              "uTexture": { "value": null },
-              "uTouch": { "value": null },
-              "uTouchRef": { "value": null },
-              "uTextureOne": { "value": null },
-              "uTextureZero": { "value": null },
-              "uRotation": { "value": 0 },
-              "uEffectTranslation": { "value": null },
-              "uModelDimensions": { "value": null },
-              "uPower": { "value": 1.0 },
-              "startPos": { "value": null },
-              "targetPosition": { "value": null }
-            }
-          }
+          "materialById": "interactive-material"
         }
       },
       {
@@ -129,6 +104,35 @@
           "shininess": 50
         },
         "materialType": "PHONG"
+      },
+      {
+        "id": "interactive-material",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "interactiveParticles"
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uRandom": { "value": 1.0 },
+            "uDepth": { "value": 2.0 },
+            "uSize": { "value": 0.0 },
+            "uResolution": { "value": null },
+            "uPosition": { "value": null },
+            "uTextureSize": { "value": null },
+            "uTexture": { "value": null },
+            "uTouch": { "value": null },
+            "uTouchRef": { "value": null },
+            "uTextureOne": { "value": null },
+            "uTextureZero": { "value": null },
+            "uRotation": { "value": 0 },
+            "uEffectTranslation": { "value": null },
+            "uModelDimensions": { "value": null },
+            "uPower": { "value": 1.0 },
+            "startPos": { "value": null },
+            "targetPosition": { "value": null }
+          }
+        }
       }
     ],
     "animationConfig": [

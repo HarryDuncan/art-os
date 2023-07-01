@@ -17,3 +17,12 @@ export const AXIS = {
 };
 
 export type Axis = keyof typeof AXIS;
+
+export type Bounds3D = {
+  lowerBoundX: number;
+  upperBoundX: number;
+  lowerBoundY: number;
+  upperBoundY: number;
+  lowerBoundZ: number;
+  upperBoundZ: number;
+};

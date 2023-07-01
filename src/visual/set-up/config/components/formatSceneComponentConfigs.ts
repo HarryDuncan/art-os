@@ -1,10 +1,10 @@
 import { Material } from "three";
-import { SceneDataConfig } from "../config.types";
+import { SceneConfig } from "../config.types";
 import { addMaterialsToComponents } from "./addMaterialsToComponents";
 import { getSceneComponents } from "./getSceneComponentsFromConfig";
 
 export const formatSceneComponentConfigs = (
-  config: SceneDataConfig,
+  config: SceneConfig,
   materials: Material[]
 ) => {
   const sceneComponentConfig = config.sceneComponentConfigs;

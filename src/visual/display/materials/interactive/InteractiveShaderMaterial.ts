@@ -1,4 +1,4 @@
-import { InteractionEventConfig } from "interaction-node/interactions.types";
+import { InteractionConfig } from "interaction/interactions.types";
 import {
   Clock,
   CustomBlending,
@@ -7,8 +7,11 @@ import {
   SrcAlphaFactor,
 } from "three";
 
-// import { UPDATE_TIME_UNIFORM } from "scenes/default-configs/material-functions";
-
+export type ShaderInteraction = InteractionConfig &
+  ShaderMaterialInteractionEvent;
+type ShaderMaterialInteractionEvent = {
+  onEvent: (interactive: InteractiveShaderMaterial, details: unknown) => void;
+};
 export default class InteractiveShaderMaterial extends ShaderMaterial {
   clock: Clock;
 
@@ -26,12 +29,10 @@ export default class InteractiveShaderMaterial extends ShaderMaterial {
     this.clock = new Clock();
   }
 
-  addInteractionsEvents(interactionEvents: InteractionEventConfig[]) {
-    interactionEvents.forEach(({ key, onEvent }) => {
-      document.addEventListener(key, (e) => {
-        // TODO - TYPE e
+  addInteractionsEvents(interactionEvents: ShaderInteraction[]) {
+    interactionEvents.forEach(({ eventKey, onEvent }) => {
+      document.addEventListener(eventKey, (e) => {
         const { detail } = e as any;
-
         onEvent(this as InteractiveShaderMaterial, detail);
       });
     });

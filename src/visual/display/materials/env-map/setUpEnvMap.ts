@@ -1,4 +1,4 @@
-import { FILE_TYPES } from "consts";
+import { FILE_TYPES } from "visual/consts";
 import { ENV_MAP_TYPES } from "../materials.constants";
 import { setUpReflectionEnvMap } from "./setUpReflectionEnvMap";
 

@@ -4,12 +4,12 @@ import { addMaterials } from "./addMaterials";
 import { setUpMeshes } from "./setUpMeshes";
 import { setUpRandomizedMeshConfigs } from "./setUpRandomizedMeshConfigs";
 import { Asset } from "visual/set-up/assets/use-assets/types";
-import { SceneDataConfig } from "../config.types";
+import { SceneConfig } from "../config.types";
 
 export const getMeshesFromConfig = (
   assets: Asset[],
   materials: Material[],
-  config: SceneDataConfig
+  config: SceneConfig
 ): Object3D[] => {
   const { meshComponentConfigs } = config;
   const meshConfigs =

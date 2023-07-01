@@ -1,10 +1,11 @@
 import { useCallback } from "react";
-import { getFileTypeFromFilename } from "utils/getFileType";
 import { Asset, ASSET_TYPES } from "./types";
 import { loadGeometry } from "../geometry/load-geometry/LoadGeometry";
 import { loadTexture } from "../texture/load-texture/loadTexture";
 import { loadImage } from "../image/load-image/LoadImage";
 import { loadFont } from "../fonts/loadFont";
+import { LoadSvg } from "../svg/loadSvg";
+import { getFileTypeFromFilename } from "visual/set-up/config/utils/file";
 
 export const useInitializeAssets = (assets: Asset[]) => {
   async function initializeAsset(asset: Asset) {
@@ -45,6 +46,10 @@ const loadAsset = async (asset: Asset) => {
     case ASSET_TYPES.FONT: {
       const loadedFont = await loadFont(path);
       return loadedFont;
+    }
+    case ASSET_TYPES.SVG: {
+      const svg = await LoadSvg(path);
+      return svg;
     }
     default: {
       return null;

@@ -1,22 +1,6 @@
 import { Object3D, Texture } from "three";
-import { InteractiveScene } from "./InteractiveScene";
-import {
-  ComponentProps,
-  ThreeJsComponentType,
-} from "visual/display/scene-elements/components/threeJsComponents.types";
-import { MaterialConfig } from "visual/display/materials/materials.types";
 import { LightConfigs } from "visual/display/scene-elements/lights/lights.types";
-
-export type InteractiveSceneFunctions = {
-  onTimeUpdate: (material: InteractiveScene) => void;
-};
-
-export type SceneComponentConfig = {
-  id: string;
-  componentType: ThreeJsComponentType;
-  componentProps: ComponentProps;
-  materialConfig?: MaterialConfig;
-};
+import { ThreeJsParams } from "visual/display/hooks/use-three-js/types";
 
 export type SceneProperties = {
   viewWidth: string;
@@ -27,6 +11,7 @@ export type SceneProperties = {
 };
 
 export type SceneData = {
+  threeJs: ThreeJsParams;
   meshes: Object3D[];
   sceneComponents: Object3D[];
   lights: LightConfigs[];

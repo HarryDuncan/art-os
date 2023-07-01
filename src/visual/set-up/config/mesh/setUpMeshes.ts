@@ -1,26 +1,49 @@
-import { Box3, BufferAttribute, Mesh, Points, Vector3 } from "three";
-import { Geometry } from "types/threeJs.types";
+import {
+  Box3,
+  BufferAttribute,
+  BufferGeometry,
+  Mesh,
+  Points,
+  Vector3,
+} from "three";
 import {
   MeshConfig,
-  MeshType,
   MESH_TYPES,
+  MeshAttributeConfig,
 } from "visual/set-up/assets/geometry/geometry.types";
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
   return meshConfigs.flatMap(
     (
-      { geometry, name, material, meshType, position, rotation, groupId },
+      {
+        geometry,
+        name,
+        material,
+        meshAttributeConfig,
+        position,
+        rotation,
+        groupId,
+      },
       index
     ) => {
-      const mesh = getMesh(geometry, material, meshType);
+      const mesh = getMesh(geometry, material, meshAttributeConfig);
       formatMesh(mesh, name ?? `mesh-${index}`, position, rotation, groupId);
       return mesh;
     }
   );
 };
 
-const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
+const attributeConfig = [{ type: "POINT_ID" }];
+
+const getMesh = (
+  geometry: BufferGeometry,
+  material,
+  meshAttributeConfig: MeshAttributeConfig = {
+    meshType: MESH_TYPES.MESH,
+  } as MeshAttributeConfig
+) => {
+  const { meshType } = meshAttributeConfig;
   switch (meshType) {
     case MESH_TYPES.POINTS: {
       const positionsLength = geometry.getAttribute("position").array.length;
@@ -43,6 +66,7 @@ const getMesh = (geometry: Geometry, material, meshType?: MeshType) => {
 
     case MESH_TYPES.MESH:
     default:
+      setUpAttributes(geometry, attributeConfig);
       return new Mesh(geometry, material);
   }
 };
@@ -66,6 +90,28 @@ const formatMesh = (
   }
 };
 
+const ATTRIBUTE_TYPES = {
+  POINT_ID: "POINT_ID",
+};
+
+const setUpAttributes = (geometry, attributeConfig) => {
+  const positionsLength = geometry.getAttribute("position").array.length;
+  attributeConfig.forEach((attribute) => {
+    switch (attribute.type) {
+      case ATTRIBUTE_TYPES.POINT_ID:
+        {
+          const pointIds = new Float32Array(positionsLength / 3);
+          pointIds.forEach((_value, index) => {
+            pointIds[index] = Number(index.toFixed(1));
+          });
+          geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
+        }
+        break;
+      default:
+        console.warn(`nothing configured for ${attribute.type}`);
+    }
+  });
+};
 // function removeXPositionsAndNormals(
 //   geometry: THREE.BufferGeometry,
 //   n: number

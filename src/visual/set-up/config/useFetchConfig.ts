@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { SceneDataConfig } from "./config.types";
+import { SceneConfig } from "./config.types";
 import { DEFAULT_CONFIG } from "./config.constants";
 
 export const useFetchConfig = (filePath: string) => {
-  const [data, setData] = useState<SceneDataConfig[]>([DEFAULT_CONFIG]);
+  const [data, setData] = useState<SceneConfig[]>([DEFAULT_CONFIG]);
   useEffect(() => {
     const fetchData = async () => {
       try {

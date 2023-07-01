@@ -1,8 +1,8 @@
+import { OrthographicCamera, PerspectiveCamera } from "three";
 import { RendererParams } from "./renderer/types";
-import { CameraParams } from "./use-camera/types";
 
 export type ThreeJsParams = {
-  camera?: CameraParams;
+  camera: PerspectiveCamera | OrthographicCamera;
   renderer?: RendererParams;
   controls?: {
     hasOrbitControls: boolean;

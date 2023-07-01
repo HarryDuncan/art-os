@@ -1,5 +1,4 @@
 import { BufferGeometry, Material } from "three";
-import { Geometry } from "types/threeJs.types";
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 
 export const MESH_TYPES = {
@@ -7,9 +6,11 @@ export const MESH_TYPES = {
   POINTS: "POINTS",
 };
 export type MeshType = keyof typeof MESH_TYPES;
-
+export type MeshAttributeConfig = {
+  meshType: MeshType;
+};
 export interface FormattedGeometry {
-  geometry: Geometry;
+  geometry: BufferGeometry;
   position?: ThreeDPosition;
   rotation?: ThreeDPosition;
   name?: string;
@@ -17,7 +18,7 @@ export interface FormattedGeometry {
 }
 export type MeshConfig = FormattedGeometry & {
   material: Material;
-  meshType?: MeshType;
+  meshAttributeConfig?: MeshAttributeConfig;
 };
 
 export type AssetGeometry = {
@@ -27,5 +28,17 @@ export type AssetGeometry = {
 
 export type GeometryConfig = {
   scale: number;
-  name?: string;
+  centerMesh?: boolean;
+  subdivision?: {
+    subdivisionProps?: SubdivisionProps;
+    subdevisionIterations?: number;
+  };
+};
+
+export type SubdivisionProps = {
+  split?: boolean;
+  uvSmooth?: boolean;
+  preserveEdges?: boolean;
+  flatOnly?: boolean;
+  maxTriangles?: number;
 };
