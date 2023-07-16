@@ -21,7 +21,14 @@ export const useThreadWithPostProcessor = (
     }
     postProcessor.current?.render(clock.getDelta());
     currentFrameRef.current = requestAnimationFrame(update);
-  }, [currentFrameRef, postProcessor, clock]);
+  }, [
+    currentFrameRef,
+    postProcessor,
+    clock,
+    camera,
+    scene?.animationManager,
+    scene?.orbitControls,
+  ]);
 
   const pause = useCallback(() => {
     cancelAnimationFrame(currentFrameRef.current);

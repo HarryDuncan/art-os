@@ -1,4 +1,7 @@
-import { InteractionConfig } from "interaction/interactions.types";
+import {
+  InteractionConfig,
+  InteractionEvent,
+} from "interaction/interactions.types";
 import {
   Clock,
   CustomBlending,
@@ -15,8 +18,13 @@ type ShaderMaterialInteractionEvent = {
 export default class InteractiveShaderMaterial extends ShaderMaterial {
   clock: Clock;
 
-  constructor(uniforms, vertexShader, fragmentShader) {
+  constructor(
+    uniforms: Record<string, unknown>,
+    vertexShader: string,
+    fragmentShader: string
+  ) {
     super({
+      // @ts-ignore
       uniforms,
       vertexShader,
       fragmentShader,
@@ -32,7 +40,7 @@ export default class InteractiveShaderMaterial extends ShaderMaterial {
   addInteractionsEvents(interactionEvents: ShaderInteraction[]) {
     interactionEvents.forEach(({ eventKey, onEvent }) => {
       document.addEventListener(eventKey, (e) => {
-        const { detail } = e as any;
+        const { detail } = e as InteractionEvent;
         onEvent(this as InteractiveShaderMaterial, detail);
       });
     });

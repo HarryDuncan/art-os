@@ -1,8 +1,9 @@
 import { GENERIC_TARGET_IDENTIFIERS } from "visual/display/animation/animation.constants";
 import { getLightsByIdentifier } from "./object-finding/getLightsByIdentifer";
 import { getMeshesByIdentifier } from "./object-finding/getMeshesByIdentifier";
+import { Scene } from "three";
 
-export const getSceneElementByName = (scene, identifier) => {
+export const getSceneElementByName = (scene: Scene, identifier: string) => {
   if (
     identifier.indexOf("light") !== -1 ||
     identifier === GENERIC_TARGET_IDENTIFIERS.LIGHTS

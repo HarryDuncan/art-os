@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from "react";
 import { RootContainer } from "../root/root-container";
-import { useRunAlgorithm } from "interaction/external/interaction-node-requests/useRunAlgorithm";
 import { useInteractiveScene } from "visual/display/components/interactive-scene/useInteractiveScene";
 import PostProcessor from "visual/display/components/post-processor/PostProcessor";
 import { setSceneProperties } from "visual/display/helpers/scene/setSceneProperties";
@@ -38,11 +37,6 @@ export const InteractiveNode = ({
     camera
   );
 
-  const run = useRunAlgorithm();
-
-  useEffect(() => {
-    run();
-  }, [run]);
   useEffect(() => () => pause(), [pause]);
 
   const initializeSceneWithData = useCallback(() => {
@@ -61,7 +55,19 @@ export const InteractiveNode = ({
       });
       update();
     }
-  }, [scene, update, postProcessor, renderer, camera]);
+  }, [
+    scene,
+    update,
+    postProcessor,
+    renderer,
+    camera,
+    animations,
+    initializedLights,
+    meshes,
+    orbitControls,
+    sceneComponents,
+    sceneProperties,
+  ]);
 
   useEffect(() => {
     initializeSceneWithData();

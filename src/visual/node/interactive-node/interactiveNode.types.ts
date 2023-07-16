@@ -1,12 +1,11 @@
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
+import { InteractiveSceneFunctions } from "visual/display/components/interactive-scene/InteractiveScene";
 import { SceneData } from "visual/display/components/interactive-scene/types";
-import { Asset } from "visual/set-up/assets/use-assets/types";
+import { EventConfig } from "visual/display/hooks/use-events/events.types";
 
 export interface InteractiveNodeProps {
-  assets: Asset[];
-  sceneFunctions;
-  visualComponentConfig;
-  events;
+  sceneFunctions: InteractiveSceneFunctions;
+  events: EventConfig[];
   animations?: CustomAnimationConfig[];
   sceneData: SceneData;
 }

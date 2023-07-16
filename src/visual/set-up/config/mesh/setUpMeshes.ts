@@ -2,6 +2,7 @@ import {
   Box3,
   BufferAttribute,
   BufferGeometry,
+  Material,
   Mesh,
   Points,
   Vector3,
@@ -13,6 +14,12 @@ import {
 } from "visual/set-up/assets/geometry/geometry.types";
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 
+export type CustomMesh = (
+  | Points<BufferGeometry, Material>
+  | Mesh<BufferGeometry>
+) & {
+  groupId?: string;
+};
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
   return meshConfigs.flatMap(
     (
@@ -34,11 +41,11 @@ export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
   );
 };
 
-const attributeConfig = [{ type: "POINT_ID" }];
+// const attributeConfig = [{ type: "POINT_ID" }];
 
 const getMesh = (
   geometry: BufferGeometry,
-  material,
+  material: Material,
   meshAttributeConfig: MeshAttributeConfig = {
     meshType: MESH_TYPES.MESH,
   } as MeshAttributeConfig
@@ -66,13 +73,13 @@ const getMesh = (
 
     case MESH_TYPES.MESH:
     default:
-      setUpAttributes(geometry, attributeConfig);
+      // setUpAttributes(geometry, attributeConfig);
       return new Mesh(geometry, material);
   }
 };
 
 const formatMesh = (
-  mesh,
+  mesh: CustomMesh,
   name: string,
   position?: ThreeDPosition,
   rotation?: ThreeDPosition,
@@ -90,28 +97,6 @@ const formatMesh = (
   }
 };
 
-const ATTRIBUTE_TYPES = {
-  POINT_ID: "POINT_ID",
-};
-
-const setUpAttributes = (geometry, attributeConfig) => {
-  const positionsLength = geometry.getAttribute("position").array.length;
-  attributeConfig.forEach((attribute) => {
-    switch (attribute.type) {
-      case ATTRIBUTE_TYPES.POINT_ID:
-        {
-          const pointIds = new Float32Array(positionsLength / 3);
-          pointIds.forEach((_value, index) => {
-            pointIds[index] = Number(index.toFixed(1));
-          });
-          geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
-        }
-        break;
-      default:
-        console.warn(`nothing configured for ${attribute.type}`);
-    }
-  });
-};
 // function removeXPositionsAndNormals(
 //   geometry: THREE.BufferGeometry,
 //   n: number
@@ -139,12 +124,14 @@ const setUpAttributes = (geometry, attributeConfig) => {
 
 //   return resultGeometry;
 // }
-export const getBoundingBoxDimensions = (geometry) => {
+export const getBoundingBoxDimensions = (geometry: BufferGeometry) => {
   // Create a Box3 object
   const boundingBox = new Box3();
 
   // Set the bounding box to encapsulate the model
-  boundingBox.setFromBufferAttribute(geometry.getAttribute("position"));
+  boundingBox.setFromBufferAttribute(
+    geometry.getAttribute("position") as BufferAttribute
+  );
 
   // Get the size of the bounding box
   const size = new Vector3();

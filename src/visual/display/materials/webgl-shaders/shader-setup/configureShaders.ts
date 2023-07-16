@@ -1,16 +1,15 @@
-import { Asset } from "visual/set-up/assets/use-assets/types";
+import { Asset } from "visual/set-up/assets/asset.types";
 import { AssetMap, ShaderConfig } from "../shaders.types";
 import { importShader } from "./importShader";
 
 export const configureShaders = (
   shaderConfig: ShaderConfig,
-  uniforms,
+  uniforms: Record<string, unknown>,
   assets?: Asset[]
 ) => {
   const { shaderId, assetMapping } = shaderConfig;
-  const { fragmentShader, vertexShader, defaultUniforms } = importShader(
-    shaderId
-  );
+  const { fragmentShader, vertexShader, defaultUniforms } =
+    importShader(shaderId);
 
   const configuredUniforms = defaultUniforms(uniforms);
   mapAssets(configuredUniforms, assetMapping ?? [], assets ?? []);
@@ -18,7 +17,11 @@ export const configureShaders = (
   return { fragmentShader, vertexShader, configuredUniforms };
 };
 
-const mapAssets = (uniforms, assetMapping: AssetMap[], assets: Asset[]) => {
+const mapAssets = (
+  uniforms: Record<string, unknown>,
+  assetMapping: AssetMap[],
+  assets: Asset[]
+) => {
   if (assetMapping) {
     assetMapping.forEach((mapping) => {
       const mappedAsset = getMappedAsset(mapping, assets);

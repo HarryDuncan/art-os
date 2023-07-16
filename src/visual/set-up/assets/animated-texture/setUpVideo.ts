@@ -1,4 +1,4 @@
-export const setupVideo = (url, identifier) => {
+export const setupVideo = (url: string, identifier: string) => {
   const video = document.createElement("video");
   const root = document.getElementById("append-container");
   if (!root) return;

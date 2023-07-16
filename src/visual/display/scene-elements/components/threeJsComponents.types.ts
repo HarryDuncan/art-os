@@ -13,6 +13,8 @@ export interface ThreeJSComponentProps {
 export interface MarchingCubesProps extends ThreeJSComponentProps {
   resolution?: number;
   material?: Material;
+  isolation?: number;
+  scale?: number;
 }
 
 export interface TextProps extends ThreeJSComponentProps {

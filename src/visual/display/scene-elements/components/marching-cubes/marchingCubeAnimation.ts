@@ -1,17 +1,23 @@
+import { MarchingCubes } from "three/examples/jsm/objects/MarchingCubes";
+import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import { getMeshesByIdentifier } from "visual/display/helpers/scene/object-finding/getMeshesByIdentifier";
 
-export const animateMarchingCube = (scene) => {
+export const animateMarchingCube = (scene: InteractiveScene) => {
   const time = scene.clock.getElapsedTime() * 0.08;
   const marchingCube = getMeshesByIdentifier(scene, "marching-cubes");
   if (!marchingCube.length) {
     return;
   }
   const cube = marchingCube[0];
-
-  updateCubes(cube, time, 50);
+  // @ts-ignore
+  updateCubes(cube, time, 15);
 };
 
-export const updateCubes = (object, time, numblobs) => {
+export const updateCubes = (
+  object: MarchingCubes,
+  time: number,
+  numblobs: number
+) => {
   object.reset();
 
   // fill the field with some metaballs
@@ -29,6 +35,6 @@ export const updateCubes = (object, time, numblobs) => {
 
     object.addBall(ballx, bally, ballz, strength, subtract);
   }
-
+  // @ts-ignore
   object.update();
 };

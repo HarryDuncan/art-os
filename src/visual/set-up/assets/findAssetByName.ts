@@ -1,4 +1,4 @@
-import { Asset } from "./use-assets/types";
+import { Asset } from "./asset.types";
 
 export const findAssetByName = (assets: Asset[], assetName: string) => {
   const selectedAsset = assets.find(({ name }) => name === assetName);

@@ -4,7 +4,7 @@ import { getLightsFromConfig } from "visual/set-up/config/lights/getLightsFromCo
 import { formatGlobalMaterials } from "visual/set-up/config/material/formatGlobalMaterials";
 import { getMeshesFromConfig } from "visual/set-up/config/mesh/getMeshesFromConfig";
 import { SceneConfig } from "./config.types";
-import { Asset } from "../assets/use-assets/types";
+import { Asset } from "../assets/asset.types";
 import { getScenePropertiesFromConfig } from "./scene-properties/setSceneProperties";
 import { useThreeJsFromConfig } from "./three-js/useThreeJsFromConfig";
 import { useMemo } from "react";

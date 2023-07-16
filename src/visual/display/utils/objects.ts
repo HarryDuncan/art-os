@@ -1,6 +1,10 @@
-export const getKeyCount = (keySubstring: string, object) =>
+export const getKeyCount = (
+  keySubstring: string,
+  object: Record<string, unknown>
+) =>
   Object.keys(object).filter((objectKey: string) =>
-    objectKey.includes(keySubstring)).length;
+    objectKey.includes(keySubstring)
+  ).length;
 
 export const capitalToCamelCase = (key: string) =>
   `${key.charAt(0).toLowerCase()}${key.slice(1)}`;
@@ -10,7 +14,7 @@ export const getOptionalName = (defaultName: string, optionalName?: string) =>
 
 export const createKeyName = (
   defaultName: string,
-  object,
+  object: Record<string, unknown>,
   optionalName?: string
 ) => {
   const keyName = getOptionalName(defaultName, optionalName);

@@ -3,7 +3,7 @@ import { geometryToMesh } from "./geometryToMesh";
 import { addMaterials } from "./addMaterials";
 import { setUpMeshes } from "./setUpMeshes";
 import { setUpRandomizedMeshConfigs } from "./setUpRandomizedMeshConfigs";
-import { Asset } from "visual/set-up/assets/use-assets/types";
+import { Asset } from "visual/set-up/assets/asset.types";
 import { SceneConfig } from "../config.types";
 
 export const getMeshesFromConfig = (

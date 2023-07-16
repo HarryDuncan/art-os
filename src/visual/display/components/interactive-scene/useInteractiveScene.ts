@@ -1,12 +1,19 @@
 import { useMemo } from "react";
 import { useInteractionsWithScene } from "./useInteractionsWithScene";
-import { InteractiveScene } from "./InteractiveScene";
+import {
+  InteractiveScene,
+  InteractiveSceneFunctions,
+  SceneInteraction,
+} from "./InteractiveScene";
 
-export const useInteractiveScene = (interactionEvents, sceneFunction) => {
+export const useInteractiveScene = (
+  interactionEvents: SceneInteraction[],
+  sceneFunction: InteractiveSceneFunctions
+) => {
   const addInteractions = useInteractionsWithScene(interactionEvents);
   return useMemo(() => {
     const scene = new InteractiveScene(sceneFunction);
     addInteractions(scene);
     return scene;
-  }, [sceneFunction]);
+  }, [sceneFunction, addInteractions]);
 };

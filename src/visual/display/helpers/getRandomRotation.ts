@@ -10,11 +10,13 @@ export const getRandomRotation = (
   nonRandomizedAxes?: Partial<AxisOptions>
 ): ThreeDPosition[] => {
   const axisOptions = { ...DEFAULT_AXIS_OPTIONS, ...nonRandomizedAxes };
-  const axes = ["x", "y", "z"].filter((axis) => !axisOptions[axis]);
+  const axes = ["x", "y", "z"].filter(
+    (axis) => !axisOptions[axis as keyof AxisOptions]
+  );
   const results: ThreeDPosition[] = new Array(n).fill(null).map(() => {
     const rotation = { x: 0, y: 0, z: 0 };
     axes.forEach((axis) => {
-      rotation[axis] = Math.random() * 360;
+      rotation[axis as keyof AxisOptions] = Math.random() * 360;
     });
     const eulerRotation = vector3DegreesToEuler(rotation as Vector3);
     return eulerRotation;
@@ -26,11 +28,13 @@ export const getRandomRotationAsDegrees = (
   nonRandomizedAxes?: Partial<AxisOptions>
 ) => {
   const axisOptions = { ...DEFAULT_AXIS_OPTIONS, ...nonRandomizedAxes };
-  const axes = ["x", "y", "z"].filter((axis) => !axisOptions[axis]);
+  const axes = ["x", "y", "z"].filter(
+    (axis) => !axisOptions[axis as keyof AxisOptions]
+  );
 
   const rotation = { x: 0, y: 0, z: 0 };
   axes.forEach((axis) => {
-    rotation[axis] = Math.random() * 360;
+    rotation[axis as keyof AxisOptions] = Math.random() * 360;
   });
   return rotation;
 };

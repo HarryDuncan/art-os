@@ -55,7 +55,19 @@ const SceneNode = ({
       });
       update();
     }
-  }, [scene, update, postProcessor, renderer, camera]);
+  }, [
+    scene,
+    update,
+    postProcessor,
+    renderer,
+    camera,
+    animations,
+    initializedLights,
+    meshes,
+    orbitControls,
+    sceneComponents,
+    sceneProperties,
+  ]);
 
   useEffect(() => {
     initializeSceneWithData();

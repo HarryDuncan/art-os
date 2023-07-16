@@ -8,6 +8,7 @@ export type SceneProperties = {
   backgroundColor: string;
   backgroundUrl: string;
   background?: Texture;
+  videoBackground?: string;
 };
 
 export type SceneData = {
@@ -16,6 +17,4 @@ export type SceneData = {
   sceneComponents: Object3D[];
   lights: LightConfigs[];
   sceneProperties: SceneProperties;
-  // TODO -type
-  interactionComponents?: any;
 };

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { SceneConfig } from "./config.types";
 import { DEFAULT_CONFIG } from "./config.constants";
+import { useAssetLocation } from "visual/compat/asset-location/useAssetLocation";
 
 export const useFetchConfig = (filePath: string) => {
   const [data, setData] = useState<SceneConfig[]>([DEFAULT_CONFIG]);
+  const configuredData = useAssetLocation(data);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,6 +22,5 @@ export const useFetchConfig = (filePath: string) => {
 
     fetchData();
   }, [filePath]);
-
-  return data;
+  return configuredData;
 };

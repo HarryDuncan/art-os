@@ -1,9 +1,11 @@
 import { performAnimation } from "./performAnimation";
 import { AnimationConfig } from "../animation.types";
+import { MeshObject } from "visual/set-up/config/mesh/mesh.types";
+import { Object3D } from "three";
 
 export const animateAll = (
   animationConfig: AnimationConfig,
-  animatedObjects
+  animatedObjects: MeshObject[] | Object3D[]
 ) => {
   const { animationProperties, animationType } = animationConfig;
   let startTime: number;

@@ -2,7 +2,7 @@ import { FILE_TYPES } from "visual/consts";
 import { loadGLTF } from "./loadGLTF";
 import { loadObject } from "./loadObject";
 
-export const loadGeometry = async (path: string, fileType) => {
+export const loadGeometry = async (path: string, fileType: string) => {
   switch (fileType) {
     case FILE_TYPES.MODELS.GLTF: {
       const gltf = loadGLTF(path);

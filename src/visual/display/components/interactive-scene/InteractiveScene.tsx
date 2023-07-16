@@ -8,7 +8,7 @@ import { AnimationManager } from "visual/display/animation/animation-manager/Ani
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
 import { EventConfig } from "visual/display/hooks/use-events/events.types";
 
-type InteractiveSceneFunctions = {
+export type InteractiveSceneFunctions = {
   onTimeUpdate: (material: InteractiveScene) => void;
 };
 
