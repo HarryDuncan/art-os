@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Asset, ASSET_TYPES } from "./types";
+import { Asset, ASSET_TYPES } from "../asset.types";
 import { loadGeometry } from "../geometry/load-geometry/LoadGeometry";
 import { loadTexture } from "../texture/load-texture/loadTexture";
 import { loadImage } from "../image/load-image/LoadImage";

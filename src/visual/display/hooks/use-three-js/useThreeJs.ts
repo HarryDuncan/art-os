@@ -14,9 +14,8 @@ export const useThreeJs = (threeJsParams: ThreeJsParams) => {
   const container = useRef(null);
   const scene = useScene();
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
-  const postProcessor: React.MutableRefObject<null | PostProcessor> = useRef(
-    null
-  );
+  const postProcessor: React.MutableRefObject<null | PostProcessor> =
+    useRef(null);
 
   const clock: Clock = new Clock();
   const renderer = useWebGLRenderer(threeJsParams.renderer);
@@ -25,7 +24,7 @@ export const useThreeJs = (threeJsParams: ThreeJsParams) => {
   const orbitControls = useOrbitControls(
     camera,
     renderer,
-    threeJsParams?.controls?.hasOrbitControls
+    threeJsParams?.controls
   );
 
   return {

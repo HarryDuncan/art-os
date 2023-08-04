@@ -1,4 +1,4 @@
-import { Asset } from "visual/set-up/assets/use-assets/types";
+import { Asset } from "visual/set-up/assets/asset.types";
 import { SceneConfig } from "../config.types";
 import {
   MATERIAL_TYPES,
@@ -27,11 +27,12 @@ export const getShaderMaterials = (config: SceneConfig, assets: Asset[]) => {
   });
 };
 
-const setUpShaderMaterial = (materialConfig: MaterialConfig, assets) => {
-  const {
-    shaderConfig,
-    uniforms,
-  } = materialConfig.materialProps as ShaderMaterialProps;
+const setUpShaderMaterial = (
+  materialConfig: MaterialConfig,
+  assets: Asset[]
+) => {
+  const { shaderConfig, uniforms } =
+    materialConfig.materialProps as ShaderMaterialProps;
   const { vertexShader, fragmentShader, configuredUniforms } = configureShaders(
     shaderConfig,
     uniforms,

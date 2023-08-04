@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 import { windowStateReducer } from "./windowStateReducer";
 import { WindowSize, WindowStateContextProps } from "./types";
 
@@ -13,7 +19,7 @@ export const useWindowState = (): WindowStateContextProps => {
   return context;
 };
 
-export const WindowStateProvider = ({ children }: { children }) => {
+export const WindowStateProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(windowStateReducer, {
     windowSize: { width: 0, height: 0 },
     devicePixelRatio: 1,

@@ -1,9 +1,9 @@
-import { Asset } from "../use-assets/types";
+import { Asset } from "../asset.types";
 import { setupVideo } from "./setUpVideo";
 
 export const initializeVideos = (loadedAssets: Asset[]) => {
   const videoAssets = loadedAssets.flatMap((asset) =>
-    (asset.name.indexOf("video") === -1 ? [] : asset)
+    asset.name.indexOf("video") === -1 ? [] : asset
   );
   videoAssets.forEach(({ url, name }) => {
     setupVideo(url, name);

@@ -1,4 +1,4 @@
-import { Texture, Uniform } from "three";
+import { Texture } from "three";
 import { ENV_MAP_TYPES, MATERIAL_TYPES } from "./materials.constants";
 import { ShaderConfig } from "./webgl-shaders/shaders.types";
 
@@ -12,11 +12,7 @@ export type InteractiveShaderProps = ShaderMaterialProps;
 
 export type ShaderMaterialProps = MaterialProps & {
   shaderConfig: ShaderConfig;
-  uniforms: Uniform;
-};
-
-export type StandardMaterialTypes = MaterialProps & {
-  material?: any;
+  uniforms: Record<string, unknown>;
 };
 
 export type MatcapMaterialProps = MaterialProps & {
@@ -38,7 +34,6 @@ export type PhongMaterialProps = MaterialProps & {
 };
 export type MaterialConfigProps =
   | MatcapMaterialProps
-  | StandardMaterialTypes
   | ShaderMaterialProps
   | VideoMaterialProps
   | EnvMapMaterialProps;

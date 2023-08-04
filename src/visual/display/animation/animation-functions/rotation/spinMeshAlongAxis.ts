@@ -1,9 +1,14 @@
+import { Object3D } from "three";
 import {
   AXIS,
   Axis,
 } from "visual/display/helpers/three-dimension-space/position/position.types";
 
-export const spinMeshAlongAxis = (object, axis: Axis, speed: number) => {
+export const spinMeshAlongAxis = (
+  object: Object3D,
+  axis: Axis,
+  speed: number
+) => {
   switch (axis) {
     case AXIS.X:
       object.rotation.x += speed;

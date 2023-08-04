@@ -1,8 +1,10 @@
+import { Object3D } from "three";
 import { degreesToEuler } from "visual/display/helpers/three-dimension-space/degreesToEuler";
 
 const ANIMATION_DURATION = 2000;
 const ANIMATION_PAUSE = 1000;
-export const animateRotation = ({ object }) => {
+
+export const animateRotation = (rotatedObject: Object3D) => {
   let startTime: number;
 
   function easeOut(t: number) {
@@ -17,8 +19,8 @@ export const animateRotation = ({ object }) => {
     const rotation = degreesToEuler(
       easeOut(progress / ANIMATION_DURATION) * 360
     );
-    const currentRotation = object.rotation.z;
-    object.rotateZ(rotation - currentRotation);
+    const currentRotation = rotatedObject.rotation.z;
+    rotatedObject.rotateZ(rotation - currentRotation);
     if (progress < ANIMATION_DURATION) {
       requestAnimationFrame(step);
     } else {

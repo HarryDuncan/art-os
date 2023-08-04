@@ -1,5 +1,5 @@
 import { FILE_TYPES } from "visual/consts";
-import { Asset, LoadedGroup, LoadedObjChild } from "../use-assets/types";
+import { Asset, LoadedGroup, LoadedObjChild } from "../asset.types";
 import { getFileTypeFromFilename } from "visual/set-up/config/utils/file";
 
 export const formatGeometriesFromAsset = (assets: Asset[]) => {

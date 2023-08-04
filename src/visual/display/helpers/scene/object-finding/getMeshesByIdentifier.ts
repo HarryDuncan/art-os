@@ -1,10 +1,7 @@
-import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
-import { ExtendedMesh } from "visual/set-up/config/config.types";
+import { Scene } from "three";
+import { ExtendedMesh } from "visual/set-up/config/mesh/mesh.types";
 
-export const getMeshesByIdentifier = (
-  scene: InteractiveScene,
-  identifier: string
-) => {
+export const getMeshesByIdentifier = (scene: Scene, identifier: string) => {
   const children = scene.children as ExtendedMesh[];
   const selectedMeshes = children.flatMap((child) => {
     if (child.name && child.name.indexOf(identifier) !== -1) {

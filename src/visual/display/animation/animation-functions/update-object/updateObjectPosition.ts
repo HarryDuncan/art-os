@@ -1,9 +1,14 @@
+import { Object3D } from "three";
 import {
   AXIS,
   Axis,
 } from "visual/display/helpers/three-dimension-space/position/position.types";
 
-export const updateObjectPosition = (object, value, axis: Axis) => {
+export const updateObjectPosition = (
+  object: Object3D,
+  value: number,
+  axis: Axis
+) => {
   const {
     position: { x, y, z },
   } = object;

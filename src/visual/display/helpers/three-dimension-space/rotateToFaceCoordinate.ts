@@ -1,7 +1,7 @@
-import { Vector3 } from "three";
+import { Object3D, Vector3 } from "three";
 
 export const rotateObjectToFaceCoordinate = (
-  object,
+  object: Object3D,
   lookAtCoordinate: Vector3
 ) => {
   const { x, y, z } = lookAtCoordinate;

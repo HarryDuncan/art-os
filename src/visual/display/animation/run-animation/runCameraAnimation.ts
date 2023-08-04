@@ -1,4 +1,4 @@
-import { Camera } from "three";
+import { Camera, Object3D } from "three";
 import { AnimationConfig, AnimationFunctionType } from "../animation.types";
 import { chainAnimation } from "./chainAnimation";
 import { ANIMATION_FUNCTION_TYPES } from "../animation.constants";
@@ -15,6 +15,6 @@ export const runCameraAnimation = (
       break;
     case ANIMATION_FUNCTION_TYPES.ALL:
     default:
-      animateAll(initializedAnimationConfig, [camera]);
+      animateAll(initializedAnimationConfig, [camera as Object3D]);
   }
 };

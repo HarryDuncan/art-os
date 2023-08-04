@@ -1,5 +1,5 @@
 import { MATCAP } from "../assets.constants";
-import { Asset } from "../use-assets/types";
+import { Asset } from "../asset.types";
 
 export const getMatcaps = (loadedAssets: Asset[]) =>
   loadedAssets.flatMap((asset) => {

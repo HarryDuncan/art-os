@@ -4,7 +4,7 @@ const fallParams = {
   bottom: -6,
   top: 5,
 };
-export const fall = (mesh: Mesh, time) => {
+export const fall = (mesh: Mesh, time: number) => {
   mesh.position.x +=
     Math.sin(1.26 * time * 0.003 * (1.03 + 0.5 * Math.cos(0.21))) * 0.02;
   mesh.position.y += -0.07;

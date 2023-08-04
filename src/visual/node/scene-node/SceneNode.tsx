@@ -26,8 +26,7 @@ const SceneNode = ({
   } = useSetUpScene(threeJs);
 
   const initializedLights = useLights(lights);
-  const scene = useInteractiveScene([], sceneFunctions);
-  useEvents(scene, events);
+  const scene = useInteractiveScene([], sceneFunctions, events);
 
   const { update, pause } = useThreadWithPostProcessor(
     postProcessor,
@@ -36,8 +35,6 @@ const SceneNode = ({
     scene,
     camera
   );
-
-  useEffect(() => () => pause(), [pause]);
 
   const initializeSceneWithData = useCallback(() => {
     if (scene) {
@@ -55,11 +52,26 @@ const SceneNode = ({
       });
       update();
     }
-  }, [scene, update, postProcessor, renderer, camera]);
+  }, [
+    scene,
+    update,
+    postProcessor,
+    renderer,
+    camera,
+    animations,
+    initializedLights,
+    meshes,
+    orbitControls,
+    sceneComponents,
+    sceneProperties,
+  ]);
 
   useEffect(() => {
     initializeSceneWithData();
-  }, [initializeSceneWithData]);
+    return () => {
+      pause();
+    };
+  }, [initializeSceneWithData, pause]);
 
   return (
     <RootContainer containerRef={container} sceneProperties={sceneProperties} />

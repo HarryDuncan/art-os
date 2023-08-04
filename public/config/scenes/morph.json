@@ -1,0 +1,69 @@
+[
+  {
+    "assets": [
+      {
+        "name": "nymph-geometry",
+        "url": "../assets/models/NymphFixed.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "obj-geometry",
+        "url": "../assets/models/ZeusBust.obj",
+        "assetType": "GEOMETRY"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "nymph",
+        "geometryId": "nymph-geometry",
+        "rotation": { "z": 0 },
+        "position": { "x": 0, "y": 0.25 },
+        "size": 25,
+        "meshType": "POINTS",
+        "materialConfig": {
+          "materialById": "phong-color-one"
+        }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "phong-color-one",
+        "materialProps": {
+          "color": "#1902b0",
+          "specular": "#0000ff",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-two",
+        "materialProps": {
+          "color": "#c70606",
+          "specular": "#ff0303",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      }
+    ],
+    "animationConfig": [],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "interactionConfig": []
+  }
+]

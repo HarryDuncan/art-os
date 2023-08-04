@@ -24,5 +24,5 @@ export const useWebGLRenderer = (
     renderer.physicallyCorrectLights = true;
     renderer.outputEncoding = rendererParams.outputEncoding ?? LinearEncoding;
     return renderer;
-  }, [rendererParams, width, height]);
+  }, [rendererParams, width, height, devicePixelRatio]);
 };

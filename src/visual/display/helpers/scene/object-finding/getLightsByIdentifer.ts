@@ -1,8 +1,13 @@
+import { Object3D, Scene } from "three";
 import { GENERIC_TARGET_IDENTIFIERS } from "visual/display/animation/animation.constants";
 
-export const getLightsByIdentifier = (scene, identifier) => {
+type CustomLightObject = Object3D & {
+  isLight?: boolean;
+  isAmbientLight?: boolean;
+};
+export const getLightsByIdentifier = (scene: Scene, identifier: string) => {
   const selectedLights = scene.children.filter(
-    (child) =>
+    (child: CustomLightObject) =>
       child.isLight &&
       !child.isAmbientLight &&
       (identifier === GENERIC_TARGET_IDENTIFIERS.LIGHTS ||

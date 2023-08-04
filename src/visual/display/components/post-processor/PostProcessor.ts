@@ -2,10 +2,12 @@ import { Camera, Scene, WebGLRenderer, WebGLRenderTarget } from "three";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { SMAAPass } from "three/examples/jsm/postprocessing/SMAAPass";
-
 import { getBloomPass } from "./render-passes/getBloomPass";
-import { PostProcessorCamera, PostProcessorPasses } from "./types";
-import { defaultRenderTargetParameters } from "./consts";
+import {
+  PostProcessorCamera,
+  PostProcessorPasses,
+} from "./postProcessor.types";
+import { defaultRenderTargetParameters } from "./postProcessor.consts";
 import { getWindowParams } from "visual/display/helpers/getWindowParams";
 
 export default class PostProcessor extends EffectComposer {
@@ -53,23 +55,20 @@ export default class PostProcessor extends EffectComposer {
     const renderPass = new RenderPass(this.scene, this.camera);
     this.addPass(renderPass);
     const { width, height, pixelRatio } = getWindowParams();
-    passes.forEach((renderPassType) => {
-      switch (renderPassType) {
-        case PostProcessorPasses.BLOOM:
-          {
-            const bloomPass = getBloomPass();
-            this.addPass(bloomPass);
-            const smaaPass = new SMAAPass(
-              width * pixelRatio,
-              height * pixelRatio
-            );
+    passes.forEach(() => {
+      // switch (renderPassType) {
+      //   case PostProcessorPasses.BLOOM:
+      //     {
+      const bloomPass = getBloomPass();
+      this.addPass(bloomPass);
+      const smaaPass = new SMAAPass(width * pixelRatio, height * pixelRatio);
 
-            this.addPass(smaaPass);
-          }
-          break;
-        default:
-          break;
-      }
+      this.addPass(smaaPass);
+      //   }
+      //   break;
+      // default:
+      //   break;
+      // }
     });
   }
 

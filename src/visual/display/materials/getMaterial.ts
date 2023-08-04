@@ -29,15 +29,10 @@ export const getMaterial = (
 ): Material => {
   switch (materialType) {
     case MATERIAL_TYPES.INTERACTIVE_SHADER: {
-      const {
-        shaderConfig,
-        uniforms,
-      } = materialProps as InteractiveShaderProps;
-      const {
-        vertexShader,
-        fragmentShader,
-        configuredUniforms,
-      } = configureShaders(shaderConfig, uniforms);
+      const { shaderConfig, uniforms } =
+        materialProps as InteractiveShaderProps;
+      const { vertexShader, fragmentShader, configuredUniforms } =
+        configureShaders(shaderConfig, uniforms);
       return new InteractiveShaderMaterial(
         configuredUniforms,
         vertexShader,
@@ -46,11 +41,8 @@ export const getMaterial = (
     }
     case MATERIAL_TYPES.SHADER: {
       const { shaderConfig, uniforms } = materialProps as ShaderMaterialProps;
-      const {
-        vertexShader,
-        fragmentShader,
-        configuredUniforms,
-      } = configureShaders(shaderConfig, uniforms);
+      const { vertexShader, fragmentShader, configuredUniforms } =
+        configureShaders(shaderConfig, uniforms);
       return new ShaderMaterial({
         uniforms: configuredUniforms,
         vertexShader,
@@ -87,11 +79,8 @@ export const getMaterial = (
       return new MeshStandardMaterial({});
     }
     case MATERIAL_TYPES.PHONG: {
-      const {
-        color,
-        specular,
-        shininess,
-      } = materialProps as PhongMaterialProps;
+      const { color, specular, shininess } =
+        materialProps as unknown as PhongMaterialProps;
       return new MeshPhongMaterial({ color, specular, shininess });
     }
     case MATERIAL_TYPES.STANDARD:

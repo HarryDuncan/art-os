@@ -5,38 +5,34 @@ import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types"
 import { MeshComponentConfig } from "../config.types";
 
 export const addMaterials = (
-  meshes: FormattedGeometry[],
+  formattedGeometries: FormattedGeometry[],
   materials: Material[],
   meshComponentConfigs: MeshComponentConfig[]
 ) => {
-  return meshes.map((mesh) => {
+  return formattedGeometries.map((formattedGeometry) => {
     const meshConfig = meshComponentConfigs.find(
-      (config) => mesh.name?.indexOf(config.id) !== -1
+      (config) => formattedGeometry.name?.indexOf(config.id) !== -1
     );
 
-    const material = setUpMaterial(mesh, materials, meshConfig);
+    const material = setUpMaterial(formattedGeometry, materials, meshConfig);
     return {
-      ...mesh,
+      ...formattedGeometry,
       material,
     };
   });
 };
 
 const setUpMaterial = (
-  mesh,
+  formattedGeometry: FormattedGeometry,
   globalMaterials: Material[],
   config?: MeshComponentConfig
 ): Material => {
   if (!config?.materialConfig) {
-    console.warn(`materialConfig does not exist for ${mesh.name}`);
+    console.warn(`materialConfig does not exist for ${formattedGeometry.name}`);
     return DEFAULT_MATERIAL;
   }
-  const {
-    materialById,
-    materialType,
-    materialProps,
-    id,
-  } = config.materialConfig;
+  const { materialById, materialType, materialProps, id } =
+    config.materialConfig;
   if (materialById) {
     const selectedMaterial = globalMaterials.find(
       (material) => String(material.name) === String(materialById)
@@ -45,7 +41,7 @@ const setUpMaterial = (
       return selectedMaterial;
     }
     console.warn(
-      `could not select material by id ${materialById} for ${mesh.name}`
+      `could not select material by id ${materialById} for ${formattedGeometry.name}`
     );
     return DEFAULT_MATERIAL;
   }

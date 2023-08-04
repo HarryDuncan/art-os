@@ -3,8 +3,7 @@ import { LightConfigs } from "visual/display/scene-elements/lights/lights.types"
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { MaterialConfig } from "visual/display/materials/materials.types";
 import { InteractionConfig } from "interaction/interactions.types";
-import { Asset } from "visual/set-up/assets/use-assets/types";
-import { Object3D } from "three";
+import { Asset } from "visual/set-up/assets/asset.types";
 import { GeometryConfig } from "../assets/geometry/geometry.types";
 import { CameraConfig } from "visual/set-up/config/three-js/use-camera/camera.types";
 import {
@@ -12,7 +11,6 @@ import {
   ThreeJsComponentType,
 } from "visual/display/scene-elements/components/threeJsComponents.types";
 
-export type ExtendedMesh = Object3D<Event> & { groupId?: string; material? };
 export type RandomizationConfig = {
   instanceCount: number;
   boundingBoxConfig: {
@@ -40,11 +38,46 @@ export type MeshComponentConfig = {
   groupId?: string;
 };
 
+export type ControlConfig = {
+  autoRotate: boolean;
+  autoRotateSpeed: number;
+  dampingFactor: number;
+  enabled: boolean;
+  enableDamping: boolean;
+  enablePan: boolean;
+  enableRotate: boolean;
+  enableZoom: boolean;
+  keyPanSpeed: number;
+  keys: {
+    LEFT: string;
+    UP: string;
+    RIGHT: string;
+    BOTTOM: string;
+  };
+  maxAzimuthAngle: number;
+  maxDistance: number;
+  maxPolarAngle: number;
+  maxZoom: number;
+  minAzimuthAngle: number;
+  minDistance: number;
+  minPolarAngle: number;
+  minZoom: number;
+  mouseButtons: {
+    LEFT: number;
+    MIDDLE: number;
+    RIGHT: number;
+  };
+
+  rotateSpeed: number;
+  screenSpacePanning: boolean;
+  touches: {
+    ONE: number;
+    TWO: number;
+  };
+};
 export type ThreeJSConfig = {
   camera?: CameraConfig;
-  controls?: {
-    hasOrbitControls: boolean;
-  };
+  controls?: ControlConfig;
 };
 
 export type ScenePropertiesConfig = {
