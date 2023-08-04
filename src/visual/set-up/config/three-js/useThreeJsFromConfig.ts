@@ -6,16 +6,23 @@ import { useCamera } from "visual/set-up/config/three-js/use-camera/useCamera";
 export const useThreeJsFromConfig = (
   config: ThreeJSConfig = {}
 ): ThreeJsParams => {
-  const { controls } = config;
   const camera = useCamera(config.camera);
+  const controls = useControls(config.controls);
   return useMemo(() => {
     return {
       camera,
-      controls: formatControls(controls),
+      controls,
     };
   }, [camera, controls]);
 };
 
-const formatControls = (controls?: ControlConfig) => ({
-  hasOrbitControls: controls?.hasOrbitControls ?? true,
-});
+const useControls = (controlsConfig?: Partial<ControlConfig>) =>
+  useMemo(
+    () =>
+      controlsConfig
+        ? {
+            ...controlsConfig,
+          }
+        : undefined,
+    [controlsConfig]
+  );

@@ -8,6 +8,7 @@ export const animateMarchingCube = (scene: InteractiveScene) => {
   if (!marchingCube.length) {
     return;
   }
+
   const cube = marchingCube[0];
   // @ts-ignore
   updateCubes(cube, time, 15);

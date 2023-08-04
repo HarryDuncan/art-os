@@ -7,11 +7,10 @@ export const useEvents = (
   eventConfig: EventConfig[] = []
 ) => {
   useEffect(() => {
-    const sceneEventConfigs = eventConfig.flatMap((eventConfigItem) =>
-      eventConfigItem.sceneIdentifer ? eventConfigItem : []
-    );
-    if (scene?.addEvents) {
-      scene.addEvents(sceneEventConfigs);
+    if (scene?.addEvents && scene.eventsSet === false) {
+      console.log(scene);
+      console.log(scene.eventsSet);
+      scene.addEvents(eventConfig);
     }
-  }, [scene, eventConfig]);
+  }, [scene, scene.eventsSet, eventConfig]);
 };

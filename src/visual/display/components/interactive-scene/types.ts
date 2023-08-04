@@ -9,6 +9,7 @@ export type SceneProperties = {
   backgroundUrl: string;
   background?: Texture;
   videoBackground?: string;
+  fixed?: boolean;
 };
 
 export type SceneData = {

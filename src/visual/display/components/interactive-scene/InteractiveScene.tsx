@@ -26,13 +26,20 @@ export class InteractiveScene extends Scene {
 
   orbitControls: OrbitControls | null;
 
-  constructor(sceneFunctions: InteractiveSceneFunctions) {
+  eventsSet: boolean;
+
+  constructor(
+    sceneFunctions: InteractiveSceneFunctions,
+    eventConfig: EventConfig[]
+  ) {
     super();
     this.sceneFunctions = sceneFunctions;
     this.clock = new Clock();
     this.bindMainFunctionFunctions();
+    this.addEvents(eventConfig);
     this.orbitControls = null;
     this.animationManager = new AnimationManager();
+    this.eventsSet = false;
   }
 
   bindMainFunctionFunctions() {
@@ -51,9 +58,16 @@ export class InteractiveScene extends Scene {
   }
 
   addEvents(eventConfig: EventConfig[]) {
-    eventConfig.forEach(({ eventKey, eventFunction }) => {
-      document.addEventListener(eventKey, (e) => eventFunction(this, e));
-    });
+    if (!this.eventsSet) {
+      eventConfig.forEach(({ eventKey, eventFunction }) => {
+        const existingListener = window[eventKey];
+        console.log(existingListener);
+        window.removeEventListener(eventKey, existingListener);
+        console.log("asdasd");
+        window.addEventListener(eventKey, (e) => eventFunction(this, e));
+      });
+      this.eventsSet = true;
+    }
   }
 
   addAnimations(animations: CustomAnimationConfig[]) {

@@ -22,6 +22,7 @@ export const RootContainer = ({
       <Root
         $height={sceneProperties.viewHeight}
         $width={sceneProperties.viewWidth}
+        $fixed={sceneProperties.fixed}
         ref={containerRef}
         $backgroundColor={sceneProperties.backgroundColor}
       />
