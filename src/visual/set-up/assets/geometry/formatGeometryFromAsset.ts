@@ -1,15 +1,18 @@
 import { FILE_TYPES } from "visual/consts";
-import { Asset, LoadedGroup, LoadedObjChild } from "../asset.types";
+import {
+  ASSET_TYPES,
+  Asset,
+  LoadedGroup,
+  LoadedObjChild,
+} from "../asset.types";
 import { getFileTypeFromFilename } from "visual/set-up/config/utils/file";
 
 export const formatGeometriesFromAsset = (assets: Asset[]) => {
-  const geometryAssets = assets.flatMap((asset: Asset) => {
-    return asset.name.indexOf("geometry") !== -1 ? asset : [];
-  });
+  const geometryAssets = assets.filter(
+    (asset: Asset) => asset.assetType === ASSET_TYPES.GEOMETRY
+  );
   if (!geometryAssets || !geometryAssets.length) {
-    console.warn(
-      'no geometryAssets were found - assets must have "geometry in name'
-    );
+    console.warn("no geometryAssets were found");
     return [];
   }
   return geometryAssets.flatMap((geometryAsset) => {

@@ -3,7 +3,6 @@ import { RootContainer } from "../root/root-container";
 import { useInteractiveScene } from "visual/display/components/interactive-scene/useInteractiveScene";
 import PostProcessor from "visual/display/components/post-processor/PostProcessor";
 import { setSceneProperties } from "visual/display/helpers/scene/setSceneProperties";
-import { useEvents } from "visual/display/hooks/use-events/useEvents";
 import { useThreadWithPostProcessor } from "visual/display/hooks/use-thread";
 import { useLights } from "visual/display/scene-elements/lights/useLights";
 import { useSetUpScene } from "visual/display/hooks/scene-data/useSetUpScene";

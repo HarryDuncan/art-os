@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { SceneConfig } from "visual/set-up/config/config.types";
 
-export const useAssetLocation = (configData: SceneConfig[]) => {
+export const useAssetLocation = (configData: SceneConfig[] | null) => {
   const staticContentRootUrl = useContentUrl();
   return useMemo(
     () =>
-      configData.map((config) => {
+      configData?.map((config) => {
         const updatedAssets = config.assets?.map((asset) => ({
           ...asset,
           url: `${staticContentRootUrl}${asset.url}`,

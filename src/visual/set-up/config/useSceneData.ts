@@ -11,14 +11,15 @@ import { useMemo } from "react";
 import { SceneData } from "visual/display/components/interactive-scene/types";
 
 export const useSceneData = (
-  config: SceneConfig,
+  config: SceneConfig | undefined | null,
   assets: Asset[],
   areAssetsInitialized: boolean
 ): SceneData | null => {
   initializeVideos(assets);
-  const threeJs = useThreeJsFromConfig(config.threeJsConfig);
+  const setUpThreeJs = useThreeJsFromConfig();
   return useMemo(() => {
-    if (!areAssetsInitialized) return null;
+    if (!areAssetsInitialized || !config) return null;
+    const threeJs = setUpThreeJs(config.threeJsConfig);
     const materials = formatGlobalMaterials(assets, config);
     const meshes = getMeshesFromConfig(assets, materials, config);
     const lights = getLightsFromConfig(config);
@@ -33,5 +34,5 @@ export const useSceneData = (
       lights: lights ?? [],
       sceneProperties,
     };
-  }, [threeJs, config, assets, areAssetsInitialized]);
+  }, [setUpThreeJs, config, assets, areAssetsInitialized]);
 };

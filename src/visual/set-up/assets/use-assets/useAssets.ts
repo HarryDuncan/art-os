@@ -1,19 +1,75 @@
-import { useEffect, useState } from "react";
-import { Asset } from "../asset.types";
-import { useInitializeAssets } from "./useInitializeAssets";
+import { useCallback, useEffect, useState } from "react";
+import { ASSET_TYPES, Asset } from "../asset.types";
+import { getFileTypeFromFilename } from "visual/set-up/config/utils/file";
+import { loadFont } from "../fonts/loadFont";
+import { loadGeometry } from "../geometry/load-geometry/LoadGeometry";
+import { loadImage } from "../image/load-image/LoadImage";
+import { LoadSvg } from "../svg/loadSvg";
+import { loadTexture } from "../texture/load-texture/loadTexture";
 
-export const useAssets = (assets: Asset[]) => {
+export const useAssets = (assets: Asset[] | undefined | null) => {
   const [areAssetsInitialized, setAreAssetsInitialized] = useState(false);
   const [initializedAssets, setInitializedAssets] = useState<Asset[]>([]);
-  const initializeAssets = useInitializeAssets(assets);
+
+  async function loadAssetData(asset: Asset) {
+    const loadedAsset = await loadAsset(asset);
+    if (!loadedAsset) {
+      console.warn(`asset ${asset.url} not properly loaded`);
+    }
+    return { ...asset, data: loadedAsset };
+  }
+  const initializeAssets = useCallback(async () => {
+    if (!assets) return;
+    const loadedAssets = await Promise.all(
+      assets.map(async (asset) => loadAssetData(asset))
+    );
+    return loadedAssets as Asset[];
+  }, [assets]);
+
   useEffect(() => {
     async function getAssets() {
       const loadedAssets = await initializeAssets();
-      setAreAssetsInitialized(true);
-      setInitializedAssets(loadedAssets);
+      if (loadedAssets) {
+        setAreAssetsInitialized(true);
+        setInitializedAssets(loadedAssets);
+      }
     }
     getAssets();
   }, [assets, initializeAssets]);
 
   return { initializedAssets, areAssetsInitialized };
+};
+
+const loadAsset = async (asset: Asset) => {
+  const { assetType, url: path } = asset;
+  const fileType = getFileTypeFromFilename(path);
+  switch (assetType) {
+    case ASSET_TYPES.GEOMETRY: {
+      const geometry = await loadGeometry(path, fileType);
+      return geometry;
+    }
+    case ASSET_TYPES.TEXTURE: {
+      const texture = await loadTexture(path);
+      return texture;
+    }
+    case ASSET_TYPES.IMAGE: {
+      const image = await loadImage(path);
+      return image;
+    }
+    case ASSET_TYPES.VIDEO: {
+      // todo - check if url actually exists
+      return "";
+    }
+    case ASSET_TYPES.FONT: {
+      const loadedFont = await loadFont(path);
+      return loadedFont;
+    }
+    case ASSET_TYPES.SVG: {
+      const svg = await LoadSvg(path);
+      return svg;
+    }
+    default: {
+      return null;
+    }
+  }
 };

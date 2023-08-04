@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import { Camera, Clock } from "three";
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import PostProcessor from "visual/display/components/post-processor/PostProcessor";

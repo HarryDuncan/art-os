@@ -1,4 +1,5 @@
 import {
+  EventConfig,
   InteractionConfig,
   InteractionEvent,
 } from "interaction/interactions.types";
@@ -6,7 +7,6 @@ import { Clock, Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { AnimationManager } from "visual/display/animation/animation-manager/AnimationManager";
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
-import { EventConfig } from "visual/display/hooks/use-events/events.types";
 
 export type InteractiveSceneFunctions = {
   onTimeUpdate: (material: InteractiveScene) => void;

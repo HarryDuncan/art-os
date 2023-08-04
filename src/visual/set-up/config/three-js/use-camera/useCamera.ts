@@ -1,11 +1,11 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { OrthographicCamera, PerspectiveCamera } from "three";
 import { CAMERA_TYPES, CameraConfig } from "./camera.types";
 import { getPosition } from "visual/set-up/config/utils/position";
 import { useWindowState } from "visual/compat/window-state/windowStateProvider";
 import { DEFAULT_ORTHOGRAPHIC, DEFAULT_PERSPECTIVE } from "./camera.consts";
 
-export const useCamera = (config?: CameraConfig) => {
+export const useSetUpCamera = () => {
   const {
     state: {
       windowSize: { width, height },
@@ -13,12 +13,15 @@ export const useCamera = (config?: CameraConfig) => {
   } = useWindowState();
   const aspect = width / height;
 
-  return useMemo(() => {
-    const camera = getCamera(aspect, config);
-    const { x, y, z } = getPosition(config?.position ?? {});
-    camera.position.set(x, y, z);
-    return camera;
-  }, [config, aspect]);
+  return useCallback(
+    (config?: CameraConfig) => {
+      const camera = getCamera(aspect, config);
+      const { x, y, z } = getPosition(config?.position ?? {});
+      camera.position.set(x, y, z);
+      return camera;
+    },
+    [aspect]
+  );
 };
 
 const getCamera = (aspect: number, config?: CameraConfig) => {
