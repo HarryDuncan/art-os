@@ -18,6 +18,12 @@
         "assetType": "GEOMETRY"
       }
     ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "meshes": ["nymph", "zeus"]
+      }
+    ],
     "meshComponentConfigs": [
       {
         "id": "nymph",
@@ -28,6 +34,17 @@
         "meshType": "POINTS",
         "materialConfig": {
           "materialById": "phong-color-one"
+        }
+      },
+      {
+        "id": "zeus",
+        "geometryId": "ZeusBust",
+        "rotation": { "z": 0 },
+        "position": { "x": 0, "y": 0.25 },
+        "size": 2,
+        "meshType": "POINTS",
+        "materialConfig": {
+          "materialById": "phong-color-two"
         }
       }
     ],

@@ -6,9 +6,11 @@ export const MESH_TYPES = {
   POINTS: "POINTS",
 };
 export type MeshType = keyof typeof MESH_TYPES;
+
 export type MeshAttributeConfig = {
   meshType: MeshType;
 };
+
 export interface FormattedGeometry {
   geometry: BufferGeometry;
   position?: ThreeDPosition;

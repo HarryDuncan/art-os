@@ -13,13 +13,8 @@ import {
   MeshAttributeConfig,
 } from "visual/set-up/assets/geometry/geometry.types";
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { CustomMesh } from "../mesh.types";
 
-export type CustomMesh = (
-  | Points<BufferGeometry, Material>
-  | Mesh<BufferGeometry>
-) & {
-  groupId?: string;
-};
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
   return meshConfigs.flatMap(
     (
@@ -53,21 +48,6 @@ const getMesh = (
   const { meshType } = meshAttributeConfig;
   switch (meshType) {
     case MESH_TYPES.POINTS: {
-      const positionsLength = geometry.getAttribute("position").array.length;
-
-      const pointIds = new Float32Array(positionsLength / 3);
-      pointIds.forEach((_value, index) => {
-        pointIds[index] = Number(index.toFixed(1));
-      });
-
-      const angles = new Float32Array(positionsLength / 3);
-      angles.forEach((_value, index) => {
-        angles[index] = Math.random() * Math.PI;
-      });
-
-      getBoundingBoxDimensions(geometry);
-      geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
-      geometry.setAttribute("angle", new BufferAttribute(angles, 1, false));
       return new Points(geometry, material);
     }
 
@@ -124,16 +104,3 @@ const formatMesh = (
 
 //   return resultGeometry;
 // }
-export const getBoundingBoxDimensions = (geometry: BufferGeometry) => {
-  // Create a Box3 object
-  const boundingBox = new Box3();
-
-  // Set the bounding box to encapsulate the model
-  boundingBox.setFromBufferAttribute(
-    geometry.getAttribute("position") as BufferAttribute
-  );
-
-  // Get the size of the bounding box
-  const size = new Vector3();
-  boundingBox.getSize(size);
-};

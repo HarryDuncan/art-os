@@ -7,7 +7,7 @@ import {
 } from "../asset.types";
 import { getFileTypeFromFilename } from "visual/set-up/config/utils/file";
 
-export const formatGeometriesFromAsset = (assets: Asset[]) => {
+export const getAssetGeometry = (assets: Asset[]) => {
   const geometryAssets = assets.filter(
     (asset: Asset) => asset.assetType === ASSET_TYPES.GEOMETRY
   );

@@ -8,28 +8,27 @@ import {
   GeometryConfig,
   MESH_TYPES,
 } from "visual/set-up/assets/geometry/geometry.types";
-import { formatGeometriesFromAsset } from "visual/set-up/assets/geometry/formatGeometryFromAsset";
-// import { LoopSubdivision } from "three-subdivide";
 import { DEFAULT_GEOMETRY_CONFIG } from "visual/set-up/assets/assets.constants";
-import { MeshComponentConfig } from "../config.types";
+import { MeshComponentConfig } from "../../config.types";
+import { getAssetGeometry } from "visual/set-up/assets/geometry/getAssetGeometry";
 
-export const geometryToMesh = (
+export const formatGeometry = (
   loadedAssets: Asset[],
   meshComponentConfigs: MeshComponentConfig[]
 ): FormattedGeometry[] => {
-  const geometries = formatGeometriesFromAsset(loadedAssets);
-  console.log(geometries);
+  const geometries = getAssetGeometry(loadedAssets);
   return meshComponentConfigs.flatMap((meshConfig) => {
     const geometry = getGeometryForMeshConfig(
       geometries,
       meshConfig.geometryId ?? ""
     );
-    const position = formatPosition(meshConfig);
-    const rotation = formatRotation(meshConfig);
-
     if (!geometry?.geometry) {
       return [];
     }
+
+    const position = formatPosition(meshConfig);
+    const rotation = formatRotation(meshConfig);
+
     const configuredGeometry = configureGeometry(
       geometry.geometry,
       meshConfig.geometryConfig
@@ -60,13 +59,6 @@ export const configureGeometry = (
   const size = new Vector3();
   formattedGeometry.computeBoundingBox();
   formattedGeometry.boundingBox?.getSize(size);
-  // if (subdivision) {
-  //   return LoopSubdivision.modify(
-  //     formattedGeometry,
-  //     subdivision.subdevisionIterations,
-  //     subdivision.subdivisionProps
-  //   );
-  // }
   return formattedGeometry;
 };
 
