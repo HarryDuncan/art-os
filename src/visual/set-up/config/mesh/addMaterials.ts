@@ -1,14 +1,17 @@
 import { Material } from "three";
 import { DEFAULT_MATERIAL } from "visual/display/materials/materials.defaults";
 import { getMaterial } from "visual/display/materials/getMaterial";
-import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types";
+import {
+  FormattedGeometry,
+  MeshConfig,
+} from "visual/set-up/assets/geometry/geometry.types";
 import { MeshComponentConfig } from "../config.types";
 
 export const addMaterials = (
   formattedGeometries: FormattedGeometry[],
   materials: Material[],
   meshComponentConfigs: MeshComponentConfig[]
-) => {
+): MeshConfig[] => {
   return formattedGeometries.map((formattedGeometry) => {
     const meshConfig = meshComponentConfigs.find(
       (config) => formattedGeometry.name?.indexOf(config.id) !== -1
@@ -31,8 +34,12 @@ const setUpMaterial = (
     console.warn(`materialConfig does not exist for ${formattedGeometry.name}`);
     return DEFAULT_MATERIAL;
   }
-  const { materialById, materialType, materialProps, id } =
-    config.materialConfig;
+  const {
+    materialById,
+    materialType,
+    materialProps,
+    id,
+  } = config.materialConfig;
   if (materialById) {
     const selectedMaterial = globalMaterials.find(
       (material) => String(material.name) === String(materialById)

@@ -4,6 +4,7 @@ import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/pos
 export const MESH_TYPES = {
   MESH: "MESH",
   POINTS: "POINTS",
+  NONE: "NONE",
 };
 export type MeshType = keyof typeof MESH_TYPES;
 
@@ -20,6 +21,7 @@ export interface FormattedGeometry {
 }
 export type MeshConfig = FormattedGeometry & {
   material: Material;
+  meshType?: string;
   meshAttributeConfig?: MeshAttributeConfig;
 };
 

@@ -15,42 +15,33 @@ import {
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { CustomMesh } from "../mesh.types";
 
-export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
-  return meshConfigs.flatMap(
+export const setUpMeshes = (meshConfigs: MeshConfig[] = []) =>
+  meshConfigs.flatMap(
     (
-      {
-        geometry,
-        name,
-        material,
-        meshAttributeConfig,
-        position,
-        rotation,
-        groupId,
-      },
+      { geometry, name, material, meshType, position, rotation, groupId },
       index
     ) => {
-      const mesh = getMesh(geometry, material, meshAttributeConfig);
+      const mesh = getMesh(geometry, material, meshType);
+      if (!mesh) return [];
       formatMesh(mesh, name ?? `mesh-${index}`, position, rotation, groupId);
       return mesh;
     }
   );
-};
 
 // const attributeConfig = [{ type: "POINT_ID" }];
 
 const getMesh = (
   geometry: BufferGeometry,
   material: Material,
-  meshAttributeConfig: MeshAttributeConfig = {
-    meshType: MESH_TYPES.MESH,
-  } as MeshAttributeConfig
+  meshType: string = MESH_TYPES.MESH
 ) => {
-  const { meshType } = meshAttributeConfig;
   switch (meshType) {
+    case MESH_TYPES.NONE: {
+      return null;
+    }
     case MESH_TYPES.POINTS: {
       return new Points(geometry, material);
     }
-
     case MESH_TYPES.MESH:
     default:
       // setUpAttributes(geometry, attributeConfig);

@@ -25,14 +25,23 @@ export const transformGeometry = (meshTransforms, formattedGeometries) => {
           if (vertexCount < maxVertexCount) {
             const currentVertices = getVertices(mesh.geometry);
 
-            const addedVertices = new Array(maxVertexCount - vertexCount).fill(
-              0
-            );
+            const addedVerticesCount = maxVertexCount - vertexCount;
+            const addedVertices1 = new Array(addedVerticesCount / 4).fill(0);
 
-            const totalLength = vertexCount + addedVertices.length;
+            const addedVertices2 = new Array(addedVerticesCount / 4).fill(0.2);
+            const addedVertices3 = new Array(addedVerticesCount / 4).fill(0.45);
+            const remainder = addedVerticesCount - (addedVerticesCount / 4) * 3;
+            const addedVertices4 = new Array(remainder).fill(0.5);
+            const allAdded = [
+              ...addedVertices1,
+              ...addedVertices2,
+              ...addedVertices3,
+              ...addedVertices4,
+            ];
+            const totalLength = vertexCount + addedVerticesCount;
             const combinedArray = new Float32Array(totalLength);
             combinedArray.set(currentVertices, 0);
-            combinedArray.set(addedVertices, currentVertices.length);
+            combinedArray.set(allAdded, currentVertices.length);
 
             // mesh.geometry.setAttribute(
             //   "position",
@@ -58,7 +67,7 @@ export const transformGeometry = (meshTransforms, formattedGeometries) => {
         });
 
         const morphTarget = morphMeshes[1];
-        console.log(morphTarget);
+
         const { normals, verticies } = getGeometryAttributes(
           morphTarget.geometry
         );
@@ -67,6 +76,21 @@ export const transformGeometry = (meshTransforms, formattedGeometries) => {
           "morphPosition",
           new BufferAttribute(verticies, 3)
         );
+
+        morphMeshes[0].geometry.setAttribute(
+          "morphNormal",
+          new BufferAttribute(verticies, 3)
+        );
+
+        const pointIds = new Float32Array(maxVertexCount / 3);
+        pointIds.forEach((_value, index) => {
+          pointIds[index] = Number(index.toFixed(1));
+        });
+        morphMeshes[0].geometry.setAttribute(
+          "pointIndex",
+          new BufferAttribute(pointIds, 1)
+        );
+
         console.log(morphMeshes);
     }
   });

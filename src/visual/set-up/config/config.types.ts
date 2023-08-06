@@ -36,6 +36,7 @@ export type MeshComponentConfig = {
   randomizationConfig?: RandomizationConfig;
   geometryConfig?: GeometryConfig;
   groupId?: string;
+  meshType: string;
 };
 
 export type ControlConfig = {
