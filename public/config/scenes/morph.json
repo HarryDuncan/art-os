@@ -14,12 +14,12 @@
       },
       {
         "name": "obj-geometry",
-        "url": "../assets/models/ZeusBust.obj",
+        "url": "../assets/models/sculptures/HerculesBust.obj",
         "assetType": "GEOMETRY"
       },
       {
         "name": "metal-materials",
-        "url": "../assets/textures/matcaps/polished-metal.jpg",
+        "url": "../assets/textures/matcaps/bore-2.jpg",
         "assetType": "TEXTURE",
         "id": "chrome",
         "assetTag": ["MATCAP"]
@@ -35,40 +35,32 @@
       {
         "id": "nymph",
         "geometryId": "nymph1",
-        "rotation": { "z": 0 },
-        "position": { "x": 0, "y": 0 },
-        "geometryConfig": {
-          "scale": 1.5
-        },
         "meshType": "MESH",
+        "rotation": { "z": 0 },
+        "position": { "x": 0, "y": -4 },
+        "geometryConfig": {
+          "scale": 2.2
+        },
         "materialConfig": {
           "materialById": "morphing-material-1"
         }
       },
       {
         "id": "zeus",
-        "geometryId": "ZeusBust",
-        "rotation": { "z": 0 },
-        "position": { "x": 0, "y": 0 },
-        "geometryConfig": {
-          "scale": 0.05
-        },
         "meshType": "NONE",
+        "geometryId": "HerculesBust",
+        "rotation": { "z": 0 },
+        "position": { "x": 0, "y": -4 },
+        "geometryConfig": {
+          "scale": 0.13
+        },
+
         "materialConfig": {
           "materialById": "morphing-material-1"
         }
       }
     ],
     "globalMaterialConfigs": [
-      {
-        "id": "phong-color-one",
-        "materialProps": {
-          "color": "#1902b0",
-          "specular": "#0000ff",
-          "shininess": 50
-        },
-        "materialType": "PHONG"
-      },
       {
         "id": "morphing-material-1",
         "materialType": "SHADER",
@@ -98,9 +90,38 @@
             }
           }
         }
+      },
+      {
+        "id": "plasma-material",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "plasma"
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null }
+          }
+        }
       }
     ],
-    "animationConfig": [],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "nymph",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.0004,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      }
+    ],
     "lightConfig": [
       {
         "name": "ambient-light",
@@ -118,7 +139,178 @@
         "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
       }
     ],
-    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "#010e85"
+    },
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -20 }
+        },
+        "materialConfig": {
+          "materialById": "plasma-material"
+        }
+      }
+    ],
+    "interactionConfig": []
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 2, "z": 15 } },
+      "controls": {
+        "hasOrbitControls": true
+      }
+    },
+    "assets": [
+      {
+        "name": "nymph-geometry",
+        "url": "../assets/models/NymphFixed.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "obj-geometry",
+        "url": "../assets/models/sculptures/HerculesBust.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "name": "metal-materials",
+        "url": "../assets/textures/matcaps/bore-2.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "meshes": ["nymph", "zeus"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "nymph",
+        "geometryId": "nymph1",
+        "meshType": "MESH",
+        "rotation": { "z": 0 },
+        "position": { "x": 0, "y": -4 },
+        "geometryConfig": {
+          "scale": 2.2
+        },
+        "materialConfig": {
+          "materialById": "morphing-material-1"
+        }
+      },
+      {
+        "id": "zeus",
+        "meshType": "NONE",
+        "geometryId": "HerculesBust",
+        "rotation": { "z": 0 },
+        "position": { "x": 0, "y": -4 },
+        "geometryConfig": {
+          "scale": 0.13
+        },
+
+        "materialConfig": {
+          "materialById": "morphing-material-1"
+        }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material-1",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "morph",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null },
+            "uMaterial": { "value": null },
+            "uFrame": {
+              "value": 0.0
+            },
+            "uMouse": {
+              "value": null
+            },
+            "uPosition": {
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "id": "plasma-material",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "plasma"
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null }
+          }
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "nymph",
+        "animationFunctionType": "ALL",
+        "animationConfig": {
+          "animationType": "SPIN",
+          "animationProperties": {
+            "speed": 0.0004,
+            "rotationAxis": "Y",
+            "animationDurationMilis": -1,
+            "animationPauseMilis": -1,
+            "repeatAnimation": true
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "#010e85"
+    },
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -20 }
+        },
+        "materialConfig": {
+          "materialById": "plasma-material"
+        }
+      }
+    ],
     "interactionConfig": []
   }
 ]

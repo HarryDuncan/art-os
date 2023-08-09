@@ -2,3 +2,4 @@ export { interactiveParticles } from "./interactive-particles/interactiveParticl
 export { morphing } from "./morphing/morphing.shader";
 export { texture } from "./texture/texture.shader";
 export { morph } from "./morph/morphing.shader";
+export * from "./fragment-shaders";

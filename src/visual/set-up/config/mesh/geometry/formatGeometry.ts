@@ -71,7 +71,8 @@ const getGeometryForMeshConfig = (
   );
   if (!meshGeometry) {
     console.warn(
-      `no geometry found for ${geometryId} this mesh will not be rendered`
+      `no geometry found for ${geometryId} this mesh will not be rendered
+      geometry names ${geometries.map(({ name }) => name)}`
     );
   }
   const geometry = cloneDeep(meshGeometry);

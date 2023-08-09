@@ -1,3 +1,4 @@
+import { startSceneElementAnimations } from "visual/display/animation/animation-manager/startSceneElementAnimations";
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 
@@ -9,7 +10,10 @@ export const defaultScene = (config, sceneData) => {
       onTimeUpdate: (scene: InteractiveScene) => {
         const time = scene.clock.getElapsedTime();
         // @ts-ignore
+
         scene.children[0].material.uniforms.uTime.value = time;
+        scene.children[4].material.uniforms.uTime.value = time;
+        startSceneElementAnimations(scene);
       },
     },
     interactionEvents: [],
