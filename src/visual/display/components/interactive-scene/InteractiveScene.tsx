@@ -60,14 +60,29 @@ export class InteractiveScene extends Scene {
   addEvents(eventConfig: EventConfig[]) {
     if (!this.eventsSet) {
       eventConfig.forEach(({ eventKey, eventFunction }) => {
+        switch (eventKey) {
+          case eventKey === "scroll":
+            this.addOnScrollListener(eventFunction);
+        }
         const existingListener = window[eventKey];
-        console.log(existingListener);
         window.removeEventListener(eventKey, existingListener);
-        console.log("asdasd");
-        window.addEventListener(eventKey, (e) => eventFunction(this, e));
+
+        window.addEventListener(eventKey, (e) => {
+          const s = window.scrollY;
+          const event = { ...e, s };
+          eventFunction(this, event);
+        });
       });
       this.eventsSet = true;
     }
+  }
+
+  addOnScrollListener(eventFunction) {
+    window.addEventListener("scroll", (e) => {
+      const { scrollY } = window;
+      const event = { ...e, scrollY };
+      eventFunction(this, event);
+    });
   }
 
   addAnimations(animations: CustomAnimationConfig[]) {

@@ -1,38 +1,76 @@
-import { BufferGeometry, Material, Mesh, Points } from "three";
+import {
+  Box3,
+  BufferAttribute,
+  BufferGeometry,
+  Material,
+  Mesh,
+  Points,
+  Vector3,
+} from "three";
 import {
   MeshConfig,
   MESH_TYPES,
+  MeshAttributeConfig,
 } from "visual/set-up/assets/geometry/geometry.types";
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
-import { CustomMesh } from "../mesh.types";
 
-export const setUpMeshes = (meshConfigs: MeshConfig[] = []) =>
-  meshConfigs.flatMap(
+export type CustomMesh = (
+  | Points<BufferGeometry, Material>
+  | Mesh<BufferGeometry>
+) & {
+  groupId?: string;
+};
+export const setUpMeshes = (meshConfigs: MeshConfig[] = []) => {
+  return meshConfigs.flatMap(
     (
-      { geometry, name, material, meshType, position, rotation, groupId },
+      {
+        geometry,
+        name,
+        material,
+        meshAttributeConfig,
+        position,
+        rotation,
+        groupId,
+      },
       index
     ) => {
-      const mesh = getMesh(geometry, material, meshType);
-      if (!mesh) return [];
+      const mesh = getMesh(geometry, material, meshAttributeConfig);
       formatMesh(mesh, name ?? `mesh-${index}`, position, rotation, groupId);
       return mesh;
     }
   );
+};
 
 // const attributeConfig = [{ type: "POINT_ID" }];
 
 const getMesh = (
   geometry: BufferGeometry,
   material: Material,
-  meshType: string = MESH_TYPES.MESH
+  meshAttributeConfig: MeshAttributeConfig = {
+    meshType: MESH_TYPES.MESH,
+  } as MeshAttributeConfig
 ) => {
+  const { meshType } = meshAttributeConfig;
   switch (meshType) {
-    case MESH_TYPES.NONE: {
-      return null;
-    }
     case MESH_TYPES.POINTS: {
+      const positionsLength = geometry.getAttribute("position").array.length;
+
+      const pointIds = new Float32Array(positionsLength / 3);
+      pointIds.forEach((_value, index) => {
+        pointIds[index] = Number(index.toFixed(1));
+      });
+
+      const angles = new Float32Array(positionsLength / 3);
+      angles.forEach((_value, index) => {
+        angles[index] = Math.random() * Math.PI;
+      });
+
+      getBoundingBoxDimensions(geometry);
+      geometry.setAttribute("pointIndex", new BufferAttribute(pointIds, 1));
+      geometry.setAttribute("angle", new BufferAttribute(angles, 1, false));
       return new Points(geometry, material);
     }
+
     case MESH_TYPES.MESH:
     default:
       // setUpAttributes(geometry, attributeConfig);
@@ -86,3 +124,16 @@ const formatMesh = (
 
 //   return resultGeometry;
 // }
+export const getBoundingBoxDimensions = (geometry: BufferGeometry) => {
+  // Create a Box3 object
+  const boundingBox = new Box3();
+
+  // Set the bounding box to encapsulate the model
+  boundingBox.setFromBufferAttribute(
+    geometry.getAttribute("position") as BufferAttribute
+  );
+
+  // Get the size of the bounding box
+  const size = new Vector3();
+  boundingBox.getSize(size);
+};

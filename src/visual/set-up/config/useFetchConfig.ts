@@ -22,6 +22,6 @@ export const useFetchConfig = (filePath: string) => {
     };
 
     fetchData();
-  }, [filePath]);
+  }, [filePath, data]);
   return configuredData;
 };

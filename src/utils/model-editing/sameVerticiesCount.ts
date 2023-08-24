@@ -1,6 +1,10 @@
 import { BufferGeometry } from "three";
 import { LoopSubdivision } from "three-subdivide";
 import { OBJExporter } from "three/examples/jsm/exporters/OBJExporter";
+import { getPositionsLength } from "visual/set-up/config/mesh/geometry/attributes/attribute.functions";
+
+export const maxVerticesCount = (geometries) =>
+  Math.max(...geometries.map((geometry) => getPositionsLength(geometry)));
 
 export const sameVerticiesCount = (geometries: BufferGeometry[]) => {
   // Find the count of the geometry with the most vertices

@@ -8,26 +8,27 @@ import {
   GeometryConfig,
   MESH_TYPES,
 } from "visual/set-up/assets/geometry/geometry.types";
+import { formatGeometriesFromAsset } from "visual/set-up/assets/geometry/formatGeometryFromAsset";
+// import { LoopSubdivision } from "three-subdivide";
 import { DEFAULT_GEOMETRY_CONFIG } from "visual/set-up/assets/assets.constants";
-import { MeshComponentConfig } from "../../config.types";
-import { getAssetGeometry } from "visual/set-up/assets/geometry/getAssetGeometry";
+import { MeshComponentConfig } from "../config.types";
 
-export const formatGeometry = (
+export const geometryToMesh = (
   loadedAssets: Asset[],
   meshComponentConfigs: MeshComponentConfig[]
 ): FormattedGeometry[] => {
-  const geometries = getAssetGeometry(loadedAssets);
+  const geometries = formatGeometriesFromAsset(loadedAssets);
   return meshComponentConfigs.flatMap((meshConfig) => {
     const geometry = getGeometryForMeshConfig(
       geometries,
       meshConfig.geometryId ?? ""
     );
+    const position = formatPosition(meshConfig);
+    const rotation = formatRotation(meshConfig);
+
     if (!geometry?.geometry) {
       return [];
     }
-
-    const position = formatPosition(meshConfig);
-    const rotation = formatRotation(meshConfig);
     const configuredGeometry = configureGeometry(
       geometry.geometry,
       meshConfig.geometryConfig
@@ -36,7 +37,7 @@ export const formatGeometry = (
     return {
       geometry: configuredGeometry,
       name: meshConfig.id,
-      meshType: meshConfig.meshType ?? MESH_TYPES.MESH,
+      meshType: MESH_TYPES.MESH,
       position,
       rotation,
       groupId: meshConfig.groupId,
@@ -58,6 +59,13 @@ export const configureGeometry = (
   const size = new Vector3();
   formattedGeometry.computeBoundingBox();
   formattedGeometry.boundingBox?.getSize(size);
+  // if (subdivision) {
+  //   return LoopSubdivision.modify(
+  //     formattedGeometry,
+  //     subdivision.subdevisionIterations,
+  //     subdivision.subdivisionProps
+  //   );
+  // }
   return formattedGeometry;
 };
 
@@ -70,8 +78,7 @@ const getGeometryForMeshConfig = (
   );
   if (!meshGeometry) {
     console.warn(
-      `no geometry found for ${geometryId} this mesh will not be rendered
-      geometry names ${geometries.map(({ name }) => name)}`
+      `no geometry found for ${geometryId} this mesh will not be rendered`
     );
   }
   const geometry = cloneDeep(meshGeometry);

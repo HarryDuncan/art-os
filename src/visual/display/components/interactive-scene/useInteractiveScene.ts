@@ -17,5 +17,5 @@ export const useInteractiveScene = (
     const scene = new InteractiveScene(sceneFunction, eventConfig);
     addInteractions(scene);
     return scene;
-  }, [sceneFunction, eventConfig]);
+  }, [sceneFunction, eventConfig, addInteractions]);
 };

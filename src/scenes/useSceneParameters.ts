@@ -23,7 +23,6 @@ export const useSceneParameters = () => {
     if (sceneParams.interactionEvents) {
       setInteractions(sceneParams.interactionEvents);
     }
-    console.log(initializedAssets);
     return {
       assets: initializedAssets,
       ...sceneParams,

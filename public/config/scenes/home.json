@@ -1,17 +1,31 @@
 [
   {
     "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": -1, "z": 5 } },
+      "camera": { "position": { "x": 0, "y": -1, "z": 15 } },
       "controls": {
         "hasOrbitControls": true
       }
     },
     "assets": [
       {
-        "name": "nymph-geometry",
-        "url": "../assets/models/NymphFixed.obj",
+        "id": "art-geometry",
+        "name": "art-geometry",
+        "url": "../assets/models/formatted/website-home/art-geometry.obj",
         "assetType": "GEOMETRY"
       },
+      {
+        "id": "magic-geometry",
+        "name": "magic-geometry",
+        "url": "../assets/models/formatted/website-home/magic-geometry.obj",
+        "assetType": "GEOMETRY"
+      },
+      {
+        "id": "tech-geometry",
+        "name": "tech-geometry",
+        "url": "../assets/models/formatted/website-home/tech-geometry.obj",
+        "assetType": "GEOMETRY"
+      },
+
       {
         "name": "hjdcurves1-geometry",
         "url": "../assets/models/hjd-lines/line-1.obj",
@@ -33,28 +47,21 @@
         "assetType": "GEOMETRY"
       }
     ],
+
     "meshComponentConfigs": [
       {
-        "id": "nymph",
-        "geometryId": "nymph-geometry",
-        "rotation": { "z": 0 },
-        "position": { "x": 0, "y": 0.25 },
-        "size": 25,
-        "meshType": "POINTS",
+        "id": "hjdcurves1",
+        "geometryId": "Cube",
+        "size": 50,
+        "position": { "x": -0.5, "y": 0, "z": 0 },
+        "rotation": { "x": -90, "y": -130, "z": -40 },
         "materialConfig": {
-          "materialById": "interactive-material"
+          "materialById": "phong-color-two"
         }
       },
       {
-        "id": "hjdcurves1",
-        "geometryId": "hjdcurves1-geometry",
-        "size": 50,
-        "position": { "x": -0.5, "y": 7, "z": 50 },
-        "rotation": { "x": -90, "y": -130, "z": -40 }
-      },
-      {
         "id": "hjdcurves2",
-        "geometryId": "hjdcurves2-geometry",
+        "geometryId": "Cube.003",
         "size": 50,
         "position": { "x": 1.5, "z": -3.2 },
         "rotation": { "x": 110, "y": -10, "z": 10 },
@@ -64,7 +71,7 @@
       },
       {
         "id": "hjdcurves3",
-        "geometryId": "hjdcurves3-geometry",
+        "geometryId": "Cube.001",
         "size": 50,
         "position": { "x": 0.5, "z": -2.5 },
         "rotation": { "x": 90, "y": 40, "z": -0 },
@@ -74,13 +81,49 @@
       },
       {
         "id": "hjdcurves4",
-        "geometryId": "hjdcurves4-geometry",
+        "geometryId": "Cube.002",
         "size": 50,
         "position": { "x": -1.5, "z": -3 },
         "rotation": { "x": 90, "y": 0, "z": -0 },
         "materialConfig": {
           "materialById": "phong-color-two"
         }
+      },
+      {
+        "id": "magic",
+        "geometryId": "magic-geometry",
+        "size": 50,
+        "position": { "x": 0.5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 40, "z": -0 },
+        "materialConfig": {
+          "materialById": "morphing-material-1"
+        }
+      },
+      {
+        "id": "tech",
+        "geometryId": "tech-geometry",
+        "size": 50,
+        "position": { "x": 0.5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 40, "z": -0 },
+        "materialConfig": {
+          "materialById": "morphing-material-1"
+        }
+      },
+      {
+        "id": "art",
+        "geometryId": "art-geometry",
+        "size": 50,
+        "position": { "x": 0.5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 40, "z": -0 },
+        "materialConfig": {
+          "materialById": "morphing-material-1"
+        }
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "meshes": ["art", "tech", "magic"]
       }
     ],
     "globalMaterialConfigs": [
@@ -112,51 +155,37 @@
         "materialType": "PHONG"
       },
       {
-        "id": "interactive-material",
+        "id": "morphing-material-1",
         "materialType": "SHADER",
         "materialProps": {
           "shaderConfig": {
-            "shaderId": "interactiveParticles"
+            "shaderId": "morph",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome",
+                "relationship": "MATCAP"
+              }
+            ]
           },
           "uniforms": {
             "uTime": { "value": 0 },
-            "uRandom": { "value": 1.0 },
-            "uDepth": { "value": 2.0 },
-            "uSize": { "value": 0.0 },
             "uResolution": { "value": null },
-            "uPosition": { "value": null },
-            "uTextureSize": { "value": null },
-            "uTexture": { "value": null },
-            "uTouch": { "value": null },
-            "uTouchRef": { "value": null },
-            "uTextureOne": { "value": null },
-            "uTextureZero": { "value": null },
-            "uRotation": { "value": 0 },
-            "uEffectTranslation": { "value": null },
-            "uModelDimensions": { "value": null },
-            "uPower": { "value": 1.0 },
-            "startPos": { "value": null },
-            "targetPosition": { "value": null }
+            "uMaterial": { "value": null },
+            "uFrame": {
+              "value": 0.0
+            },
+            "uMouse": {
+              "value": null
+            },
+            "uPosition": {
+              "value": null
+            }
           }
         }
       }
     ],
     "animationConfig": [
-      {
-        "animationId": "binary-rotate",
-        "targetIdentifier": "nymph",
-        "animationFunctionType": "ALL",
-        "animationConfig": {
-          "animationType": "SPIN",
-          "animationProperties": {
-            "speed": 0.0004,
-            "rotationAxis": "Y",
-            "animationDurationMilis": -1,
-            "animationPauseMilis": -1,
-            "repeatAnimation": true
-          }
-        }
-      },
       {
         "animationId": "curve-rotate",
         "targetIdentifier": "curve",
@@ -191,13 +220,6 @@
       }
     ],
     "sceneComponentConfigs": [],
-    "interactionConfig": [
-      {
-        "algorithmType": "BODY_PIX",
-        "dataTransformType": "PERSON_POSITION",
-        "eventKey": "update:position",
-        "bindingType": "MATERIAL"
-      }
-    ]
+    "interactionConfig": []
   }
 ]

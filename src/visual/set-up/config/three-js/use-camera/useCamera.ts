@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { OrthographicCamera, PerspectiveCamera } from "three";
 import { CAMERA_TYPES, CameraConfig } from "./camera.types";
 import { getPosition } from "visual/set-up/config/utils/position";
