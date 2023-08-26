@@ -1,8 +1,7 @@
-import { BufferAttribute, BufferGeometry } from "three";
+import { BufferAttribute } from "three";
 import {
   getGeometryAttributes,
-  getPositionsLength,
-  getVertices,
+  getVerticiesCount,
 } from "./attributes/attribute.functions";
 import { MESH_TRANSFORM } from "../mesh.consts";
 
@@ -12,13 +11,20 @@ export const transformGeometry = (meshTransforms, formattedGeometries) => {
   meshTransforms.forEach((transform) => {
     switch (transform.type) {
       case MESH_TRANSFORM.MORPH:
-        const morphMeshes = formattedGeometries.filter((geometry) =>
-          transform.meshes.includes(geometry.name)
-        );
+        const morphMeshes = formattedGeometries
+          .filter((geometry) => transform.meshes.includes(geometry.name))
+          .sort((a, b) => {
+            const indexA = transform.meshes.indexOf(a.name);
+            const indexB = transform.meshes.indexOf(b.name);
+            return indexA - indexB;
+          });
+        if (!morphMeshes.length) {
+          console.warn("no morph meshes selected check your transform");
+        }
 
         // TODO - test for same vertex count
         const maxVertexCount = Math.max(
-          ...morphMeshes.map(({ geometry }) => getPositionsLength(geometry))
+          ...morphMeshes.map(({ geometry }) => getVerticiesCount(geometry))
         );
         morphMeshes.forEach((morphTarget, index) => {
           if (index !== 0) {
@@ -45,7 +51,7 @@ export const transformGeometry = (meshTransforms, formattedGeometries) => {
           new BufferAttribute(pointIds, 1)
         );
 
-        console.log(morphMeshes);
+        return morphMeshes;
     }
   });
   return formattedGeometries;

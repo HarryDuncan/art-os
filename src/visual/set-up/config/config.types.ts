@@ -25,14 +25,14 @@ export type SceneComponentConfig = {
   id: string;
   componentType: SceneElementType;
   componentProps: ComponentProps;
-  materialConfig?: MaterialConfig;
+  materialId?: string;
 };
 export type MeshComponentConfig = {
   id: string;
   geometryId?: string;
+  materialId?: string;
   rotation?: Partial<ThreeDPosition>;
   position?: Partial<ThreeDPosition>;
-  materialConfig: MaterialConfig;
   randomizationConfig?: RandomizationConfig;
   geometryConfig?: GeometryConfig;
   groupId?: string;

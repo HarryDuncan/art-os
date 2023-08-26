@@ -9,6 +9,7 @@ import { Container } from "../views.styles";
 import { transformGeometryVerticies } from "utils/model-editing/transformGeometryVerticies";
 import { handleExportClick } from "./export/exportAsObj";
 import { Mesh } from "three";
+import { Asset } from "visual/set-up/assets/use-assets/types";
 
 export const AssetEditor = () => {
   const assets = [
@@ -31,10 +32,13 @@ export const AssetEditor = () => {
       assetType: "GEOMETRY",
     },
   ];
-  const { initializedAssets, areAssetsInitialized } = useAssets(assets);
+  const { initializedAssets, areAssetsInitialized } = useAssets(
+    assets as Asset[]
+  );
 
   const sameVerticies = useCallback(() => {
     const geometries = initializedAssets.flatMap(({ data }) => {
+      // @ts-ignore
       return data.children[0].geometry;
     });
 

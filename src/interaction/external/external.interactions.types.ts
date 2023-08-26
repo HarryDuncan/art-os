@@ -4,7 +4,6 @@ import {
   EVENT_BINDING_TYPE,
   INTERACTION_ALGORITHIMS,
 } from "./interactions.constants";
-import InteractiveShaderMaterial from "visual/display/materials/interactive/InteractiveShaderMaterial";
 
 export type AlgorithmType = keyof typeof INTERACTION_ALGORITHIMS;
 export type DataTransformType = keyof typeof DATA_TRANSFORM_TYPE;
@@ -20,7 +19,7 @@ export type InteractionConfig = IntializeAlgorithmConfig & {
 };
 
 export type InteractionEventBinding = keyof typeof EVENT_BINDING_TYPE;
-export type Interactive = InteractiveScene | InteractiveShaderMaterial;
+export type Interactive = InteractiveScene;
 export type InteractionEventConfig = {
   key: string;
   bindingType?: InteractionEventBinding;

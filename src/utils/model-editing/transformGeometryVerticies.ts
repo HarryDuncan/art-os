@@ -8,7 +8,6 @@ export const transformGeometryVerticies = (geometry, maxVertexCount) => {
   const currentVertices = getVertices(geometry);
   const vertexCount = getPositionsLength(geometry);
   const addedVerticesCount = maxVertexCount - vertexCount;
-  console.log(addedVerticesCount);
   if (addedVerticesCount <= 0) {
     return geometry;
   }

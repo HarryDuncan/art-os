@@ -1,6 +1,0 @@
-[
-  [],
-  [{ "name": "vUv", "type": "VEC2", "varyingType": "DEFAULT" }],
-  [{ "name": "vColor", "type": "VEC3", "varyingType": "CUSTOM" }],
-  [{ "name": "vPointId", "type": "FLOAT", "varyingType": "ATTRIBUTE" }]
-]

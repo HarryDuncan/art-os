@@ -8,11 +8,6 @@ export const defaultScene = (config, sceneData) => {
   return {
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveScene) => {
-        const time = scene.clock.getElapsedTime();
-        // @ts-ignore
-
-        scene.children[0].material.uniforms.uTime.value = time;
-        scene.children[4].material.uniforms.uTime.value = time;
         startSceneElementAnimations(scene);
       },
     },

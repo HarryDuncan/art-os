@@ -1,12 +1,13 @@
-import { Scene } from "three";
 import { AnimationConfig, AnimationFunctionType } from "../animation.types";
 import { ANIMATION_FUNCTION_TYPES } from "../animation.constants";
-import { chainAnimation } from "./chainAnimation";
-import { animateAll } from "./animateAll";
+import { animateAll } from "./run-functions/animateAll";
 import { getSceneElementByName } from "visual/display/helpers/scene/getSceneElementByName";
+import { updateUTime } from "./run-functions/updateUTime";
+import { chainAnimation } from "./run-functions/chainAnimation";
+import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 
 export const runAnimation = (
-  scene: Scene,
+  scene: InteractiveScene,
   animationFunctionType: AnimationFunctionType,
   targetIdentifier: string,
   initializedAnimationConfig: AnimationConfig,
@@ -22,6 +23,10 @@ export const runAnimation = (
   switch (animationFunctionType) {
     case ANIMATION_FUNCTION_TYPES.CHAIN:
       chainAnimation(initializedAnimationConfig, animatedObjects);
+      break;
+    case ANIMATION_FUNCTION_TYPES.UTIME:
+      console.log("asdasd");
+      updateUTime(scene, initializedAnimationConfig, animatedObjects);
       break;
     case ANIMATION_FUNCTION_TYPES.ALL:
     default:

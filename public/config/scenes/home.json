@@ -3,10 +3,30 @@
     "threeJsConfig": {
       "camera": { "position": { "x": 0, "y": -1, "z": 15 } },
       "controls": {
-        "hasOrbitControls": true
+        "minDistance": 10,
+        "maxDistance": 10
       }
     },
     "assets": [
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      },
+      {
+        "name": "metal-materials",
+        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome",
+        "assetTag": ["MATCAP"]
+      },
       {
         "id": "art-geometry",
         "name": "art-geometry",
@@ -55,9 +75,8 @@
         "size": 50,
         "position": { "x": -0.5, "y": 0, "z": 0 },
         "rotation": { "x": -90, "y": -130, "z": -40 },
-        "materialConfig": {
-          "materialById": "phong-color-two"
-        }
+
+        "materialId": "phong-color-two"
       },
       {
         "id": "hjdcurves2",
@@ -65,9 +84,7 @@
         "size": 50,
         "position": { "x": 1.5, "z": -3.2 },
         "rotation": { "x": 110, "y": -10, "z": 10 },
-        "materialConfig": {
-          "materialById": "phong-color-two"
-        }
+        "materialId": "phong-color-two"
       },
       {
         "id": "hjdcurves3",
@@ -75,9 +92,7 @@
         "size": 50,
         "position": { "x": 0.5, "z": -2.5 },
         "rotation": { "x": 90, "y": 40, "z": -0 },
-        "materialConfig": {
-          "materialById": "phong-color-one"
-        }
+        "materialId": "phong-color-one"
       },
       {
         "id": "hjdcurves4",
@@ -85,45 +100,47 @@
         "size": 50,
         "position": { "x": -1.5, "z": -3 },
         "rotation": { "x": 90, "y": 0, "z": -0 },
-        "materialConfig": {
-          "materialById": "phong-color-two"
-        }
+        "materialId": "phong-color-one"
       },
+
       {
-        "id": "magic",
+        "id": "magic-geometry-2",
         "geometryId": "magic-geometry",
-        "size": 50,
-        "position": { "x": 0.5, "z": -2.5 },
-        "rotation": { "x": 90, "y": 40, "z": -0 },
-        "materialConfig": {
-          "materialById": "morphing-material-1"
-        }
+        "meshType": "NONE",
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "materialId": "morphing-material-2"
       },
       {
-        "id": "tech",
+        "id": "tech-geometry-2",
         "geometryId": "tech-geometry",
-        "size": 50,
-        "position": { "x": 0.5, "z": -2.5 },
-        "rotation": { "x": 90, "y": 40, "z": -0 },
-        "materialConfig": {
-          "materialById": "morphing-material-1"
-        }
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "morphing-material-2"
       },
       {
-        "id": "art",
+        "id": "art-geometry-2",
         "geometryId": "art-geometry",
-        "size": 50,
-        "position": { "x": 0.5, "z": -2.5 },
-        "rotation": { "x": 90, "y": 40, "z": -0 },
-        "materialConfig": {
-          "materialById": "morphing-material-1"
-        }
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "morphing-material-2"
       }
     ],
     "meshTransforms": [
       {
         "type": "MORPH",
-        "meshes": ["art", "tech", "magic"]
+        "meshes": ["art-geometry-2", "tech-geometry-2", "magic-geometry-2"]
       }
     ],
     "globalMaterialConfigs": [
@@ -159,12 +176,22 @@
         "materialType": "SHADER",
         "materialProps": {
           "shaderConfig": {
-            "shaderId": "morph",
+            "shaderId": "homeMorph",
             "assetMapping": [
               {
                 "uniform": "uMaterial",
                 "assetId": "chrome",
                 "relationship": "MATCAP"
+              },
+              {
+                "uniform": "uTextureZero",
+                "assetId": "0-texture",
+                "relationship": "TEXTURE"
+              },
+              {
+                "uniform": "uTextureOne",
+                "assetId": "1-texture",
+                "relationship": "TEXTURE"
               }
             ]
           },
@@ -175,6 +202,12 @@
             "uFrame": {
               "value": 0.0
             },
+            "uLoopCount": {
+              "value": 0.0
+            },
+            "uProgress": {
+              "value": 0.0
+            },
             "uMouse": {
               "value": null
             },
@@ -183,9 +216,50 @@
             }
           }
         }
+      },
+      {
+        "id": "morphing-material-2",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "homeMorph",
+            "fragmentShaderId": "hjdBinary",
+            "assetMapping": [
+              {
+                "uniform": "uTextureZero",
+                "assetId": "0-texture",
+                "relationship": "TEXTURE"
+              },
+              {
+                "uniform": "uTextureOne",
+                "assetId": "1-texture",
+                "relationship": "TEXTURE"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uLoopCount": {
+              "value": 0.0
+            },
+            "uProgress": {
+              "value": 0.0
+            }
+          }
+        }
       }
     ],
     "animationConfig": [
+      {
+        "animationId": "uTime",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationConfig": {
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
       {
         "animationId": "curve-rotate",
         "targetIdentifier": "curve",

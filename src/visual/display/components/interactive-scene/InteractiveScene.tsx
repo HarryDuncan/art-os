@@ -61,7 +61,7 @@ export class InteractiveScene extends Scene {
     if (!this.eventsSet) {
       eventConfig.forEach(({ eventKey, eventFunction }) => {
         switch (eventKey) {
-          case eventKey === "scroll":
+          case "scroll":
             this.addOnScrollListener(eventFunction);
         }
         const existingListener = window[eventKey];

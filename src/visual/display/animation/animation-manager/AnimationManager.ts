@@ -1,9 +1,10 @@
-import { Camera, Scene } from "three";
+import { Camera } from "three";
 import { CustomAnimationConfig } from "../animation.types";
 import { runAnimation } from "../run-animation/runAnimation";
 import { setUpAnimationConfig } from "./setUpAnimationConfig";
 import { GENERIC_TARGET_IDENTIFIERS } from "../animation.constants";
 import { runCameraAnimation } from "../run-animation/runCameraAnimation";
+import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 
 export class AnimationManager {
   sceneElementAnimations: CustomAnimationConfig[];
@@ -25,15 +26,17 @@ export class AnimationManager {
         console.warn(
           `an animation with this animation id ${animation.animationId} already exists`
         );
-      } else if (animation.targetIdentifier === GENERIC_TARGET_IDENTIFIERS.CAMERA) {
-          this.cameraElementAnimations.push({ ...animation, isRunning: false });
-        } else {
-          this.sceneElementAnimations.push({ ...animation, isRunning: false });
-        }
+      } else if (
+        animation.targetIdentifier === GENERIC_TARGET_IDENTIFIERS.CAMERA
+      ) {
+        this.cameraElementAnimations.push({ ...animation, isRunning: false });
+      } else {
+        this.sceneElementAnimations.push({ ...animation, isRunning: false });
+      }
     });
   }
 
-  startAnimation(scene: Scene, animationId: string) {
+  startAnimation(scene: InteractiveScene, animationId: string) {
     const animation = this.sceneElementAnimations.find(
       (configuredAnimation) => configuredAnimation.animationId === animationId
     );

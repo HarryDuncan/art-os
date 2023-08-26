@@ -1,5 +1,4 @@
 import { Material } from "three";
-import { getMaterial } from "visual/display/materials/getMaterial";
 import { DEFAULT_MATERIAL } from "visual/display/materials/materials.defaults";
 import { SceneComponentConfig } from "../config.types";
 
@@ -23,25 +22,21 @@ const getComponentMaterial = (
   componentConfig: SceneComponentConfig,
   globalMaterials: Material[]
 ): Material => {
-  const { materialConfig } = componentConfig;
-  if (!materialConfig) {
-    console.warn(`materialConfig does not exist for ${componentConfig.id}`);
-    return DEFAULT_MATERIAL;
-  }
-  const { materialById, materialType, materialProps, id } = materialConfig;
-  if (materialById) {
-    const selectedMaterial = globalMaterials.find(
-      (material) => String(material.name) === String(materialById)
-    );
-    if (selectedMaterial) {
-      return selectedMaterial;
-    }
+  const { materialId } = componentConfig;
+  if (!materialId) {
     console.warn(
-      `could not select material by id ${materialById} for ${componentConfig.id}`
+      `materila not linked does not exist for ${componentConfig.id}`
     );
     return DEFAULT_MATERIAL;
   }
-  const material = getMaterial(materialType, materialProps);
-  material.name = id;
-  return material;
+  const selectedMaterial = globalMaterials.find(
+    (material) => String(material.name) === String(materialId)
+  );
+  if (selectedMaterial) {
+    return selectedMaterial;
+  }
+  console.warn(
+    `could not select material by id ${materialId} for ${componentConfig.id}`
+  );
+  return DEFAULT_MATERIAL;
 };

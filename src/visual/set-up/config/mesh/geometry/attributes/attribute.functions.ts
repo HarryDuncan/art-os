@@ -1,4 +1,6 @@
 import { BufferGeometry } from "three";
+export const getVerticiesCount = (geometry: BufferGeometry) =>
+  geometry.getAttribute("position").count;
 
 export const getPositionsLength = (geometry: BufferGeometry) =>
   geometry.getAttribute("position").array.length;
