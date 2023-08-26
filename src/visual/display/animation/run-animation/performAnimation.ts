@@ -29,8 +29,10 @@ export const performAnimation = (
   animationConfig: AnimationProperties
 ) => {
   if (animationType === ANIMATION_TYPES.TRAVERSE) {
-    const { curve, animationDurationMilis } =
-      animationConfig as TraversalAnimationConfig;
+    const {
+      curve,
+      animationDurationMilis,
+    } = animationConfig as TraversalAnimationConfig;
     if (curve) {
       const currentProg = easeOut(progress / animationDurationMilis) * 100;
       const { x, y, z } = traverseThroughtArray(
@@ -42,16 +44,19 @@ export const performAnimation = (
   }
 
   if (animationType === ANIMATION_TYPES.ROTATE) {
-    const { animationDurationMilis, rotationAxis } =
-      animationConfig as RotationAnimationConfig;
+    const {
+      animationDurationMilis,
+      rotationAxis,
+    } = animationConfig as RotationAnimationConfig;
     const rotation = MathUtils.degToRad(
       easeOut(progress / animationDurationMilis) * 360
     );
     rotateMeshAlongAxis(object as MeshObject, rotationAxis, rotation);
   }
   if (animationType === ANIMATION_TYPES.TRIG) {
-    const { trigFunctionType } =
-      animationConfig as TrigonometricAnimationConfig;
+    const {
+      trigFunctionType,
+    } = animationConfig as TrigonometricAnimationConfig;
     const updatedValue = updateTimeStamp(progress, trigFunctionType);
     updateObject(
       object,

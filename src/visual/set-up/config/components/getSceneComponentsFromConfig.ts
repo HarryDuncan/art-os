@@ -4,23 +4,30 @@ import {
 } from "visual/display/scene-elements/components";
 import { Cube } from "visual/display/scene-elements/components/Cube";
 import {
-  COMPONENT_TYPES,
+  SCENE_ELEMENTS,
   MarchingCubesProps,
   MirrorProps,
   PlaneProps,
   CubeProps,
+  ShaderBackgroundProps,
 } from "visual/display/scene-elements/components/threeJsComponents.types";
 import { PlaneElement } from "visual/display/scene-elements/components/PlaneElement";
 import { SceneComponentConfig } from "../config.types";
+import { ShaderBackground } from "visual/display/scene-elements/components/shader-background/ShaderBackground";
 
 export const getSceneComponents = (
   componentConfigs: SceneComponentConfig[] = []
 ) =>
   componentConfigs.flatMap(({ id, componentType, componentProps }) => {
     switch (componentType) {
-      case COMPONENT_TYPES.MARCHING_CUBES: {
-        const { resolution, material, position, isolation, scale } =
-          componentProps as MarchingCubesProps;
+      case SCENE_ELEMENTS.MARCHING_CUBES: {
+        const {
+          resolution,
+          material,
+          position,
+          isolation,
+          scale,
+        } = componentProps as MarchingCubesProps;
         return MarchingCubesElement({
           id,
           resolution,
@@ -30,7 +37,7 @@ export const getSceneComponents = (
           scale,
         });
       }
-      // case COMPONENT_TYPES.TEXT: {
+      // case SCENE_ELEMENTS.TEXT: {
       //   const {
       //     fontUrl,
       //     text,
@@ -45,17 +52,25 @@ export const getSceneComponents = (
       //     position,
       //   });
       // }
-      case COMPONENT_TYPES.MIRROR: {
+      case SCENE_ELEMENTS.MIRROR: {
         const { geometry, position } = componentProps as MirrorProps;
         return Mirror({ id, geometry, position });
       }
-      case COMPONENT_TYPES.PLANE: {
+      case SCENE_ELEMENTS.PLANE: {
         const { material, position, size } = componentProps as PlaneProps;
         return PlaneElement({ id, position, size, material });
       }
-      case COMPONENT_TYPES.CUBE: {
+      case SCENE_ELEMENTS.CUBE: {
         const { material, position, size } = componentProps as CubeProps;
         return Cube({ id, position, size, material });
+      }
+      case SCENE_ELEMENTS.SHADER_BACKGROUND: {
+        const {
+          material,
+          position,
+          size,
+        } = componentProps as ShaderBackgroundProps;
+        return ShaderBackground({ material, position, size });
       }
 
       default:

@@ -9,8 +9,8 @@ import {
   ShaderMaterialProps,
 } from "visual/display/materials/materials.types";
 import { configureShaders } from "visual/display/materials/webgl-shaders/shader-setup/configureShaders";
-import InteractiveShaderMaterial from "visual/display/materials/interactive/InteractiveShaderMaterial";
 import { ShaderMaterial } from "three";
+import { configureBlendingOptions } from "./configureBlendingOptions";
 
 export const getShaderMaterials = (config: SceneConfig, assets: Asset[]) => {
   const { globalMaterialConfigs } = config;
@@ -31,28 +31,25 @@ const setUpShaderMaterial = (
   materialConfig: MaterialConfig,
   assets: Asset[]
 ) => {
-  const { shaderConfig, uniforms } =
-    materialConfig.materialProps as ShaderMaterialProps;
+  const {
+    shaderConfig,
+    uniforms,
+  } = materialConfig.materialProps as ShaderMaterialProps;
   const { vertexShader, fragmentShader, configuredUniforms } = configureShaders(
     shaderConfig,
     uniforms,
     assets
   );
+  const blendingOptions = configureBlendingOptions(
+    materialConfig.blendingConfig
+  );
   switch (materialConfig.materialType) {
-    case MATERIAL_TYPES.INTERACTIVE_SHADER: {
-      return new InteractiveShaderMaterial(
-        configuredUniforms,
-        vertexShader,
-        fragmentShader
-      );
-    }
     case MATERIAL_TYPES.SHADER: {
       return new ShaderMaterial({
         uniforms: configuredUniforms,
         vertexShader,
         fragmentShader,
-        depthWrite: true,
-        depthTest: true,
+        ...blendingOptions,
       });
     }
     default:

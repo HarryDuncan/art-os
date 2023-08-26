@@ -1,8 +1,8 @@
 import { Camera, Object3D } from "three";
 import { AnimationConfig, AnimationFunctionType } from "../animation.types";
-import { chainAnimation } from "./chainAnimation";
 import { ANIMATION_FUNCTION_TYPES } from "../animation.constants";
-import { animateAll } from "./animateAll";
+import { animateAll } from "./run-functions/animateAll";
+import { chainAnimation } from "./run-functions/chainAnimation";
 
 export const runCameraAnimation = (
   camera: Camera,

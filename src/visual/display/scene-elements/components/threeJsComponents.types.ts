@@ -33,7 +33,11 @@ export interface SphericalBackgroundProps extends ThreeJSComponentProps {
   radius: number;
   material?: Material;
 }
-
+export interface ShaderBackgroundProps {
+  material: Material;
+  size?: Vector2;
+  position?: Vector3;
+}
 export interface PlaneProps extends ThreeJSComponentProps {
   size?: Vector2;
   material?: Material;
@@ -50,12 +54,13 @@ export type ComponentProps =
   | SphericalBackgroundProps
   | CubeProps;
 
-export const COMPONENT_TYPES = {
+export const SCENE_ELEMENTS = {
   MARCHING_CUBES: "MARCHING_CUBES",
   TEXT: "TEXT",
   MIRROR: "MIRROR",
   SPHERICAL_BACKGROUND: "SHPERICAL_BACKGROUND",
   PLANE: "PLANE",
   CUBE: "CUBE",
+  SHADER_BACKGROUND: "SHADER_BACKGROUND",
 };
-export type ThreeJsComponentType = keyof typeof COMPONENT_TYPES;
+export type SceneElementType = keyof typeof SCENE_ELEMENTS;

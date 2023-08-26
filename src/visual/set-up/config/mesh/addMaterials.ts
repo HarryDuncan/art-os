@@ -1,14 +1,16 @@
 import { Material } from "three";
 import { DEFAULT_MATERIAL } from "visual/display/materials/materials.defaults";
-import { getMaterial } from "visual/display/materials/getMaterial";
-import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types";
+import {
+  FormattedGeometry,
+  MeshConfig,
+} from "visual/set-up/assets/geometry/geometry.types";
 import { MeshComponentConfig } from "../config.types";
 
 export const addMaterials = (
   formattedGeometries: FormattedGeometry[],
   materials: Material[],
   meshComponentConfigs: MeshComponentConfig[]
-) => {
+): MeshConfig[] => {
   return formattedGeometries.map((formattedGeometry) => {
     const meshConfig = meshComponentConfigs.find(
       (config) => formattedGeometry.name?.indexOf(config.id) !== -1
@@ -27,25 +29,19 @@ const setUpMaterial = (
   globalMaterials: Material[],
   config?: MeshComponentConfig
 ): Material => {
-  if (!config?.materialConfig) {
-    console.warn(`materialConfig does not exist for ${formattedGeometry.name}`);
-    return DEFAULT_MATERIAL;
-  }
-  const { materialById, materialType, materialProps, id } =
-    config.materialConfig;
-  if (materialById) {
+  const { materialId } = config ?? {};
+  if (materialId) {
     const selectedMaterial = globalMaterials.find(
-      (material) => String(material.name) === String(materialById)
+      (material) => String(material.name) === String(materialId)
     );
     if (selectedMaterial) {
       return selectedMaterial;
     }
     console.warn(
-      `could not select material by id ${materialById} for ${formattedGeometry.name}`
+      `could not select material by id ${materialId} for ${formattedGeometry.name}`
     );
     return DEFAULT_MATERIAL;
   }
-  const material = getMaterial(materialType, materialProps);
-  material.name = id;
-  return material;
+  console.warn(`material not linked for ${formattedGeometry.name}`);
+  return DEFAULT_MATERIAL;
 };

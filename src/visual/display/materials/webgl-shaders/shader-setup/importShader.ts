@@ -1,14 +1,37 @@
 /* eslint import/namespace: ['error', { allowComputed: true }] */
-import { ShaderType } from "../shaders.types";
 import * as Shaders from "../shaders";
 
-export const importShader = (shaderId: string, _shaderType?: ShaderType) => {
+export const importShader = (
+  shaderId: string,
+  vertexShaderId: string | undefined,
+  fragmentShaderId: string | undefined
+) => {
   try {
     // @ts-ignore - not ideal but will replace with build shader
-    const { fragmentShader, vertexShader, defaultUniforms } = Shaders[shaderId];
+    const {
+      fragmentShader: defaultFragmentShader,
+      vertexShader,
+      defaultUniforms,
+    } = Shaders[shaderId];
+    if (vertexShaderId) {
+      // todo -import vertex shader
+    }
+    const fragmentShader = getFragmentShader(
+      defaultFragmentShader,
+      fragmentShaderId
+    );
+
     return { fragmentShader, vertexShader, defaultUniforms };
   } catch {
-    console.error(`${shaderId} not a valid fragment`);
+    console.error(`${shaderId} not a valid shader`);
     return { fragmentShader: "", vertexShader: "", defaultUniforms: {} };
   }
+};
+
+const getFragmentShader = (defaultFragmentShader, fragmentShaderId) => {
+  if (fragmentShaderId) {
+    const { fragmentShader } = Shaders[fragmentShaderId];
+    return fragmentShader;
+  }
+  return defaultFragmentShader;
 };

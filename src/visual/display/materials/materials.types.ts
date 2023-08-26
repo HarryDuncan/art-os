@@ -8,7 +8,6 @@ export type EnvMapType = keyof typeof ENV_MAP_TYPES;
 export interface MaterialProps {
   name?: string;
 }
-export type InteractiveShaderProps = ShaderMaterialProps;
 
 export type ShaderMaterialProps = MaterialProps & {
   shaderConfig: ShaderConfig;
@@ -42,5 +41,7 @@ export interface MaterialConfig {
   id: string;
   materialType: MaterialType;
   materialProps: MaterialConfigProps;
-  materialById?: string;
+  blendingConfig: BlendingConfig;
 }
+
+export interface BlendingConfig {}

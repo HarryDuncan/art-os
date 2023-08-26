@@ -8,7 +8,7 @@ import { GeometryConfig } from "../assets/geometry/geometry.types";
 import { CameraConfig } from "visual/set-up/config/three-js/use-camera/camera.types";
 import {
   ComponentProps,
-  ThreeJsComponentType,
+  SceneElementType,
 } from "visual/display/scene-elements/components/threeJsComponents.types";
 
 export type RandomizationConfig = {
@@ -23,19 +23,20 @@ export type RandomizationConfig = {
 
 export type SceneComponentConfig = {
   id: string;
-  componentType: ThreeJsComponentType;
+  componentType: SceneElementType;
   componentProps: ComponentProps;
-  materialConfig?: MaterialConfig;
+  materialId?: string;
 };
 export type MeshComponentConfig = {
   id: string;
   geometryId?: string;
+  materialId?: string;
   rotation?: Partial<ThreeDPosition>;
   position?: Partial<ThreeDPosition>;
-  materialConfig: MaterialConfig;
   randomizationConfig?: RandomizationConfig;
   geometryConfig?: GeometryConfig;
   groupId?: string;
+  meshType: string;
 };
 
 export type ControlConfig = {
@@ -89,6 +90,7 @@ export type ScenePropertiesConfig = {
 export type SceneConfig = {
   assets?: Asset[];
   meshComponentConfigs: MeshComponentConfig[];
+  meshTransforms?: any;
   globalMaterialConfigs: MaterialConfig[];
   animationConfig: CustomAnimationConfig[];
   lightConfig: LightConfigs[];

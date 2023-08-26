@@ -8,8 +8,6 @@ export const useEvents = (
 ) => {
   useEffect(() => {
     if (scene?.addEvents && scene.eventsSet === false) {
-      console.log(scene);
-      console.log(scene.eventsSet);
       scene.addEvents(eventConfig);
     }
   }, [scene, scene.eventsSet, eventConfig]);

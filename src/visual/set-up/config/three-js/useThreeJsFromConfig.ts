@@ -1,28 +1,30 @@
-import { ThreeJsParams } from "visual/display/hooks/use-three-js/types";
 import { ControlConfig, ThreeJSConfig } from "../config.types";
-import { useMemo } from "react";
-import { useCamera } from "visual/set-up/config/three-js/use-camera/useCamera";
+import { useCallback } from "react";
+import { useSetUpCamera } from "./use-camera/useCamera";
 
-export const useThreeJsFromConfig = (
-  config: ThreeJSConfig = {}
-): ThreeJsParams => {
-  const camera = useCamera(config.camera);
-  const controls = useControls(config.controls);
-  return useMemo(() => {
-    return {
-      camera,
-      controls,
-    };
-  }, [camera, controls]);
+export const useThreeJsFromConfig = () => {
+  const setUpCamera = useSetUpCamera();
+  const setUpControls = useSetUpControls();
+  return useCallback(
+    (config: ThreeJSConfig) => {
+      const camera = setUpCamera(config?.camera);
+      const controls = setUpControls(config?.controls);
+      return {
+        camera,
+        controls,
+      };
+    },
+    [setUpCamera, setUpControls]
+  );
 };
 
-const useControls = (controlsConfig?: Partial<ControlConfig>) =>
-  useMemo(
-    () =>
+const useSetUpControls = () =>
+  useCallback(
+    (controlsConfig?: Partial<ControlConfig>) =>
       controlsConfig
         ? {
             ...controlsConfig,
           }
-        : undefined,
-    [controlsConfig]
+        : {},
+    []
   );

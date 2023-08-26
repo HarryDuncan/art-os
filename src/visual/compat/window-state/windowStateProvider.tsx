@@ -31,9 +31,10 @@ export const WindowStateProvider = ({ children }: { children: ReactNode }) => {
         width: window.innerWidth,
         height: window.innerHeight,
       };
+
       dispatch({ type: "SET_WINDOW_SIZE", payload: windowSize });
     };
-
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {

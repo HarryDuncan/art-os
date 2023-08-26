@@ -1,10 +1,9 @@
 import { useCallback, useMemo } from "react";
 import { InteractiveScene, SceneInteraction } from "./InteractiveScene";
 import { EVENT_BINDING_TYPE } from "interaction/interactions.consts";
-import { ShaderInteraction } from "visual/display/materials/interactive/InteractiveShaderMaterial";
 
 export const useInteractionsWithScene = (
-  interactionEvents: ShaderInteraction[] | SceneInteraction[]
+  interactionEvents: SceneInteraction[]
 ) => {
   const sceneInteractionEvents = useMemo(
     () =>

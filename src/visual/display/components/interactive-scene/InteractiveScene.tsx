@@ -1,4 +1,5 @@
 import {
+  EventConfig,
   InteractionConfig,
   InteractionEvent,
 } from "interaction/interactions.types";
@@ -6,7 +7,6 @@ import { Clock, Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { AnimationManager } from "visual/display/animation/animation-manager/AnimationManager";
 import { CustomAnimationConfig } from "visual/display/animation/animation.types";
-import { EventConfig } from "visual/display/hooks/use-events/events.types";
 
 export type InteractiveSceneFunctions = {
   onTimeUpdate: (material: InteractiveScene) => void;
@@ -60,14 +60,29 @@ export class InteractiveScene extends Scene {
   addEvents(eventConfig: EventConfig[]) {
     if (!this.eventsSet) {
       eventConfig.forEach(({ eventKey, eventFunction }) => {
+        switch (eventKey) {
+          case "scroll":
+            this.addOnScrollListener(eventFunction);
+        }
         const existingListener = window[eventKey];
-        console.log(existingListener);
         window.removeEventListener(eventKey, existingListener);
-        console.log("asdasd");
-        window.addEventListener(eventKey, (e) => eventFunction(this, e));
+
+        window.addEventListener(eventKey, (e) => {
+          const s = window.scrollY;
+          const event = { ...e, s };
+          eventFunction(this, event);
+        });
       });
       this.eventsSet = true;
     }
+  }
+
+  addOnScrollListener(eventFunction) {
+    window.addEventListener("scroll", (e) => {
+      const { scrollY } = window;
+      const event = { ...e, scrollY };
+      eventFunction(this, event);
+    });
   }
 
   addAnimations(animations: CustomAnimationConfig[]) {

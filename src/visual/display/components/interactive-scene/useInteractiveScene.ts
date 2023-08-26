@@ -5,7 +5,7 @@ import {
   InteractiveSceneFunctions,
   SceneInteraction,
 } from "./InteractiveScene";
-import { EventConfig } from "visual/display/hooks/use-events/events.types";
+import { EventConfig } from "interaction/interactions.types";
 
 export const useInteractiveScene = (
   interactionEvents: SceneInteraction[],
@@ -17,5 +17,5 @@ export const useInteractiveScene = (
     const scene = new InteractiveScene(sceneFunction, eventConfig);
     addInteractions(scene);
     return scene;
-  }, [sceneFunction, eventConfig]);
+  }, [sceneFunction, eventConfig, addInteractions]);
 };
