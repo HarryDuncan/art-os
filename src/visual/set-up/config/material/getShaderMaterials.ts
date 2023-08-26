@@ -9,13 +9,8 @@ import {
   ShaderMaterialProps,
 } from "visual/display/materials/materials.types";
 import { configureShaders } from "visual/display/materials/webgl-shaders/shader-setup/configureShaders";
-import {
-  CustomBlending,
-  OneFactor,
-  OneMinusSrcAlphaFactor,
-  ShaderMaterial,
-  SrcAlphaFactor,
-} from "three";
+import { ShaderMaterial } from "three";
+import { configureBlendingOptions } from "./configureBlendingOptions";
 
 export const getShaderMaterials = (config: SceneConfig, assets: Asset[]) => {
   const { globalMaterialConfigs } = config;
@@ -45,17 +40,16 @@ const setUpShaderMaterial = (
     uniforms,
     assets
   );
+  const blendingOptions = configureBlendingOptions(
+    materialConfig.blendingConfig
+  );
   switch (materialConfig.materialType) {
     case MATERIAL_TYPES.SHADER: {
       return new ShaderMaterial({
         uniforms: configuredUniforms,
         vertexShader,
         fragmentShader,
-        blending: CustomBlending,
-        blendSrc: SrcAlphaFactor,
-        blendDst: OneFactor,
-        transparent: true,
-        depthTest: false,
+        ...blendingOptions,
       });
     }
     default:

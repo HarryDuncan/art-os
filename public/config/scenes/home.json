@@ -135,12 +135,50 @@
         "position": { "x": 0, "z": 4 },
         "rotation": { "x": 90, "y": 0, "z": -0 },
         "materialId": "morphing-material-2"
+      },
+      {
+        "id": "magic-geometry",
+        "geometryId": "magic-geometry",
+        "meshType": "NONE",
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "materialId": "morphing-material-1"
+      },
+      {
+        "id": "tech-geometry",
+        "geometryId": "tech-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+
+        "materialId": "morphing-material-1"
+      },
+      {
+        "id": "art-geometry",
+        "geometryId": "art-geometry",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "meshType": "NONE",
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "morphing-material-1"
       }
     ],
     "meshTransforms": [
       {
         "type": "MORPH",
         "meshes": ["art-geometry-2", "tech-geometry-2", "magic-geometry-2"]
+      },
+      {
+        "type": "MORPH",
+        "meshes": ["art-geometry", "tech-geometry", "magic-geometry"]
       }
     ],
     "globalMaterialConfigs": [
@@ -220,6 +258,7 @@
       {
         "id": "morphing-material-2",
         "materialType": "SHADER",
+        "blendingConfig": {},
         "materialProps": {
           "shaderConfig": {
             "shaderId": "homeMorph",
