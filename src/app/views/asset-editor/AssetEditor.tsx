@@ -3,41 +3,27 @@ import { useAssets } from "visual/set-up/assets/use-assets/useAssets";
 import {
   maxVerticesCount,
   sameVerticiesCount,
-} from "utils/model-editing/sameVerticiesCount";
+} from "utils/asset-editing/sameVerticiesCount";
 import { Container } from "../views.styles";
 
-import { transformGeometryVerticies } from "utils/model-editing/transformGeometryVerticies";
+import { transformGeometryVerticies } from "utils/asset-editing/transformGeometryVerticies";
 import { handleExportClick } from "./export/exportAsObj";
 import { Mesh } from "three";
 import { Asset } from "visual/set-up/assets/use-assets/types";
+import { CONFIG } from "app/constants";
+import { useFetchData } from "app/hooks/useFetchData";
+import { extractMetadata } from "./extract-metadata/extractMetadata";
+import { downloadJsonFile } from "./downloadJson";
 
 export const AssetEditor = () => {
-  const assets = [
-    {
-      id: "art-geometry",
-      name: "art-geometry",
-      url: "../assets/models/website/home/art.obj",
-      assetType: "GEOMETRY",
-    },
-    {
-      id: "magic-geometry",
-      name: "magic-geometry",
-      url: "../assets/models/website/home/magic.obj",
-      assetType: "GEOMETRY",
-    },
-    {
-      id: "tech-geometry",
-      name: "tech-geometry",
-      url: "../assets/models/website/home/tech.obj",
-      assetType: "GEOMETRY",
-    },
-  ];
+  const assets = useFetchData(`${CONFIG}assets/assets.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );
 
   const sameVerticies = useCallback(() => {
-    const geometries = initializedAssets.flatMap(({ data }) => {
+    const updatedAssetData = extractMetadata(initializedAssets);
+    const geometries = updatedAssetData.flatMap(({ data }) => {
       // @ts-ignore
       return data.children[0].geometry;
     });
@@ -53,13 +39,24 @@ export const AssetEditor = () => {
       handleExportClick(asObj3d, fileName);
     });
   }, [initializedAssets]);
+
+  const extractAssetMetadata = () => {
+    const updatedAssetData = extractMetadata(initializedAssets);
+    downloadJsonFile(updatedAssetData, `asset-data`);
+  };
+
   return (
     <Container>
       <h1>Transform Geometry Assets </h1>
       <h1>Assets Initialized : {areAssetsInitialized ? "yes" : "no"} </h1>
+      <h1>Assets : {initializedAssets.map(({ name }) => `${name} `)} </h1>
       <h2>Same Verticies</h2>
       <button onClick={sameVerticies} disabled={!areAssetsInitialized}>
         Same Verticies
+      </button>
+      <h2>Extract Metadata</h2>
+      <button onClick={extractAssetMetadata} disabled={!areAssetsInitialized}>
+        Extract Metadata
       </button>
     </Container>
   );
