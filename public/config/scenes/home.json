@@ -32,7 +32,7 @@
         "id": "art-geometry",
         "name": "art-geometry",
         "url": "../assets/models/website/home/art.obj",
-        "assetType": "GEOMETRY",
+        "assetType": "MODEL3D",
         "metaData": {
           "boundingBox": {
             "min": {
@@ -48,7 +48,7 @@
         "id": "magic-geometry",
         "name": "magic-geometry",
         "url": "../assets/models/website/home/magic.obj",
-        "assetType": "GEOMETRY",
+        "assetType": "MODEL3D",
         "metaData": {
           "boundingBox": {
             "min": {
@@ -68,7 +68,7 @@
         "id": "tech-geometry",
         "name": "tech-geometry",
         "url": "../assets/models/website/home/tech.obj",
-        "assetType": "GEOMETRY",
+        "assetType": "MODEL3D",
         "metaData": {
           "boundingBox": {
             "min": {
@@ -88,22 +88,22 @@
       {
         "name": "hjdcurves1-geometry",
         "url": "../assets/models/hjd-lines/line-1.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves2-geometry",
         "url": "../assets/models/hjd-lines/line-2.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves3-geometry",
         "url": "../assets/models/hjd-lines/line-3.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves4-geometry",
         "url": "../assets/models/hjd-lines/line-4.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       }
     ],
 

@@ -4,7 +4,7 @@
       {
         "name": "logo-geometry",
         "url": "../assets/models/ltw/3dLogo.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "logo-material",
@@ -92,7 +92,7 @@
       {
         "name": "logo-geometry",
         "url": "../assets/models/ltw/names/brent.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "bg-video",
@@ -116,12 +116,12 @@
       {
         "name": "snowflake-geometry",
         "url": "../assets/models/ltw/snowflake.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "snowflake-second-geometry",
         "url": "../assets/models/ltw/snowflake-second.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       }
     ],
     "meshComponentConfigs": [
@@ -267,7 +267,7 @@
       {
         "name": "logo-geometry",
         "url": "../assets/models/ltw/brendan.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
 
       {
@@ -292,12 +292,12 @@
       {
         "name": "snowflake-geometry",
         "url": "../assets/models/ltw/snowflake.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "snowflake-second-geometry",
         "url": "../assets/models/ltw/snowflake-second.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       }
     ],
     "meshComponentConfigs": [
@@ -443,17 +443,17 @@
       {
         "name": "logo-geometry",
         "url": "../assets/models/ltw/brendan.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "logo-geometry1",
         "url": "../assets/models/ltw/ltwShapeReduced.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "logo-geometry2",
         "url": "../assets/models/ltw/ltwShape2.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "bg-video",
@@ -580,12 +580,12 @@
       {
         "name": "logo-geometry",
         "url": "../assets/models/ltw/brendan.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "logo-obj-geometry",
         "url": "../assets/models/ltw/3dLogo.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "bg-video",

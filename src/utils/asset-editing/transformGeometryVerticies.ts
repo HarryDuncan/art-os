@@ -1,10 +1,19 @@
 import { BufferAttribute, BufferGeometry } from "three";
+import { AssetMetaData } from "visual/set-up/assets/asset.types";
 import {
   getPositionsLength,
   getVertices,
 } from "visual/set-up/config/mesh/geometry/attributes/attribute.functions";
 
-export const transformGeometryVerticies = (geometry, maxVertexCount) => {
+export interface TransformGeometryConfig {
+  extraVertexPoints: number;
+}
+export const transformGeometryVerticies = (
+  geometry: BufferGeometry,
+  maxVertexCount: number,
+  assetMetaData: AssetMetaData | undefined,
+  config: TransformGeometryConfig
+) => {
   const currentVertices = getVertices(geometry);
   const vertexCount = getPositionsLength(geometry);
   const addedVerticesCount = maxVertexCount - vertexCount;
@@ -39,3 +48,5 @@ export const transformGeometryVerticies = (geometry, maxVertexCount) => {
 
   return newGeometry; // Mark the attribute as needing an update
 };
+
+const setUpExtraVertexPoints = () => {};

@@ -19,8 +19,6 @@ export const setUpMeshes = (meshConfigs: MeshConfig[] = []) =>
     }
   );
 
-// const attributeConfig = [{ type: "POINT_ID" }];
-
 const getMesh = (
   geometry: BufferGeometry,
   material: Material,
@@ -35,7 +33,6 @@ const getMesh = (
     }
     case MESH_TYPES.MESH:
     default:
-      // setUpAttributes(geometry, attributeConfig);
       return new Mesh(geometry, material);
   }
 };

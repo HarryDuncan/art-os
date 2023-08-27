@@ -1,19 +1,14 @@
 import React, { useCallback } from "react";
 import { useAssets } from "visual/set-up/assets/use-assets/useAssets";
-import {
-  maxVerticesCount,
-  sameVerticiesCount,
-} from "utils/asset-editing/sameVerticiesCount";
 import { Container } from "../views.styles";
-
 import { transformGeometryVerticies } from "utils/asset-editing/transformGeometryVerticies";
 import { handleExportClick } from "./export/exportAsObj";
 import { Mesh } from "three";
-import { Asset } from "visual/set-up/assets/use-assets/types";
 import { CONFIG } from "app/constants";
 import { useFetchData } from "app/hooks/useFetchData";
 import { extractMetadata } from "./extract-metadata/extractMetadata";
 import { downloadJsonFile } from "./downloadJson";
+import { Asset } from "visual/set-up/assets/asset.types";
 
 export const AssetEditor = () => {
   const assets = useFetchData(`${CONFIG}assets/assets.json`);
@@ -21,16 +16,22 @@ export const AssetEditor = () => {
     assets as Asset[]
   );
 
+  const transformConfig = {
+    extraVertexPoints: 8,
+  };
   const sameVerticies = useCallback(() => {
     const updatedAssetData = extractMetadata(initializedAssets);
-    const geometries = updatedAssetData.flatMap(({ data }) => {
-      // @ts-ignore
-      return data.children[0].geometry;
-    });
 
-    const maxVCount = maxVerticesCount(geometries);
-    const transformedGeometry = geometries.map((geometry) => {
-      return transformGeometryVerticies(geometry, maxVCount);
+    const maxVertexCount = Math.max(
+      ...updatedAssetData.map(({ metaData }) => metaData?.vertexCount ?? 0)
+    );
+    const transformedGeometry = updatedAssetData.map(({ data, metaData }) => {
+      return transformGeometryVerticies(
+        geometry,
+        maxVertexCount,
+        metaData,
+        transformConfig
+      );
     });
     transformedGeometry.forEach((transformed, index) => {
       const fileName = initializedAssets[index].name;

@@ -7,7 +7,7 @@
       {
         "name": "lip-stick-geometry",
         "url": "../assets/models/lipstick.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "base-material",

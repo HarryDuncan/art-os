@@ -3,18 +3,18 @@
     "id": "art-geometry",
     "name": "art-geometry",
     "url": "../assets/models/website/home/art.obj",
-    "assetType": "GEOMETRY"
+    "assetType": "MODEL3D"
   },
   {
     "id": "magic-geometry",
     "name": "magic-geometry",
     "url": "../assets/models/website/home/magic.obj",
-    "assetType": "GEOMETRY"
+    "assetType": "MODEL3D"
   },
   {
     "id": "tech-geometry",
     "name": "tech-geometry",
     "url": "../assets/models/website/home/tech.obj",
-    "assetType": "GEOMETRY"
+    "assetType": "MODEL3D"
   }
 ]

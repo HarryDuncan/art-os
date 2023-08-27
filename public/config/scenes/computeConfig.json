@@ -10,27 +10,27 @@
       {
         "name": "nymph-geometry",
         "url": "../assets/models/NymphFixed.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves1-geometry",
         "url": "../assets/models/hjd-lines/line-1.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves2-geometry",
         "url": "../assets/models/hjd-lines/line-2.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves3-geometry",
         "url": "../assets/models/hjd-lines/line-3.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves4-geometry",
         "url": "../assets/models/hjd-lines/line-4.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       }
     ],
     "meshComponentConfigs": [

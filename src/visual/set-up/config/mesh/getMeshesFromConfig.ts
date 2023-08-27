@@ -1,8 +1,8 @@
 import { Material, Object3D } from "three";
 import { formatGeometry } from "./geometry/formatGeometry";
-import { addMaterials } from "./addMaterials";
+import { addMaterials } from "./mesh-materials/addMaterials";
 import { setUpMeshes } from "./mesh-setup/setUpMeshes";
-import { setUpRandomizedMeshConfigs } from "./setUpRandomizedMeshConfigs";
+import { setUpRandomizedMeshConfigs } from "./randomized/setUpRandomizedMeshConfigs";
 import { Asset } from "visual/set-up/assets/asset.types";
 import { SceneConfig } from "../config.types";
 import { transformGeometry } from "./geometry/transformGeometries";

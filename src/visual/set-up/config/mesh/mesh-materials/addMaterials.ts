@@ -4,7 +4,7 @@ import {
   FormattedGeometry,
   MeshConfig,
 } from "visual/set-up/assets/geometry/geometry.types";
-import { MeshComponentConfig } from "../config.types";
+import { MeshComponentConfig } from "../../config.types";
 
 export const addMaterials = (
   formattedGeometries: FormattedGeometry[],

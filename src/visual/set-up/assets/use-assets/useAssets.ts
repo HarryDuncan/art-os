@@ -2,10 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import { ASSET_TYPES, Asset } from "../asset.types";
 import { getFileTypeFromFilename } from "visual/set-up/config/utils/file";
 import { loadFont } from "../fonts/loadFont";
-import { loadGeometry } from "../geometry/load-geometry/LoadGeometry";
+
 import { loadImage } from "../image/load-image/LoadImage";
 import { LoadSvg } from "../svg/loadSvg";
 import { loadTexture } from "../texture/load-texture/loadTexture";
+import { loadModel } from "../geometry/load-model/LoadModel";
 
 export const useAssets = (assets: Asset[] | undefined | null) => {
   const [areAssetsInitialized, setAreAssetsInitialized] = useState(false);
@@ -44,8 +45,8 @@ const loadAsset = async (asset: Asset) => {
   const { assetType, url: path } = asset;
   const fileType = getFileTypeFromFilename(path);
   switch (assetType) {
-    case ASSET_TYPES.GEOMETRY: {
-      const geometry = await loadGeometry(path, fileType);
+    case ASSET_TYPES.MODEL3D: {
+      const geometry = await loadModel(path, fileType);
       return geometry;
     }
     case ASSET_TYPES.TEXTURE: {

@@ -35,7 +35,6 @@ export const sameVerticiesCount = (geometries: BufferGeometry[]) => {
     return LoopSubdivision.modify(subdivisionGeometry, iterations, params);
   });
 
-  console.log(subdividedGeometries);
   // Export all subdivided geometries as OBJ files
   const exporter = new OBJExporter();
   subdividedGeometries.forEach((geometry, index) => {

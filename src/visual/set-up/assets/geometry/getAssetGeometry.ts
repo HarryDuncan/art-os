@@ -9,7 +9,7 @@ import { getFileTypeFromFilename } from "visual/set-up/config/utils/file";
 
 export const getAssetGeometry = (assets: Asset[]) => {
   const geometryAssets = assets.filter(
-    (asset: Asset) => asset.assetType === ASSET_TYPES.GEOMETRY
+    (asset: Asset) => asset.assetType === ASSET_TYPES.MODEL3D
   );
   if (!geometryAssets || !geometryAssets.length) {
     console.warn("no geometryAssets were found");

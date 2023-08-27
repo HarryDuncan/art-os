@@ -10,12 +10,12 @@
       {
         "name": "nymph-geometry",
         "url": "../assets/models/NymphFixed.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "obj-geometry",
         "url": "../assets/models/sculptures/HerculesBust.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "metal-materials",
@@ -167,12 +167,12 @@
       {
         "name": "nymph-geometry",
         "url": "../assets/models/NymphFixed.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "obj-geometry",
         "url": "../assets/models/sculptures/HerculesBust.obj",
-        "assetType": "GEOMETRY"
+        "assetType": "MODEL3D"
       },
       {
         "name": "metal-materials",
