@@ -31,58 +31,20 @@
       {
         "id": "art-geometry",
         "name": "art-geometry",
-        "url": "../assets/models/website/home/art.obj",
-        "assetType": "MODEL3D",
-        "metaData": {
-          "boundingBox": {
-            "min": {
-              "x": 0.043689001351594925,
-              "y": -0.11779999732971191,
-              "z": -0.6067960262298584
-            },
-            "max": { "x": 1.3701460361480713, "y": 0.11779999732971191, "z": 0 }
-          }
-        }
+        "url": "../assets/models/website/home/art-geometry.obj",
+        "assetType": "MODEL3D"
       },
       {
         "id": "magic-geometry",
         "name": "magic-geometry",
-        "url": "../assets/models/website/home/magic.obj",
-        "assetType": "MODEL3D",
-        "metaData": {
-          "boundingBox": {
-            "min": {
-              "x": 0.06553400307893753,
-              "y": -0.11779999732971191,
-              "z": -0.6201459765434265
-            },
-            "max": {
-              "x": 2.3543689250946045,
-              "y": 0.11779999732971191,
-              "z": 0.01334999967366457
-            }
-          }
-        }
+        "url": "../assets/models/website/home/magic-geometry.obj",
+        "assetType": "MODEL3D"
       },
       {
         "id": "tech-geometry",
         "name": "tech-geometry",
-        "url": "../assets/models/website/home/tech.obj",
-        "assetType": "MODEL3D",
-        "metaData": {
-          "boundingBox": {
-            "min": {
-              "x": 0.0315530002117157,
-              "y": -0.11779999732971191,
-              "z": -0.6201459765434265
-            },
-            "max": {
-              "x": 1.6953879594802856,
-              "y": 0.11779999732971191,
-              "z": 0.01334999967366457
-            }
-          }
-        }
+        "url": "../assets/models/website/home/tech-geometry.obj",
+        "assetType": "MODEL3D"
       },
 
       {
@@ -147,7 +109,7 @@
         "geometryId": "magic-geometry",
         "meshType": "NONE",
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
         "geometryConfig": {
           "scale": 2.5
         },
@@ -161,7 +123,7 @@
           "scale": 2.5
         },
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
         "materialId": "morphing-material-2"
       },
       {
@@ -172,7 +134,7 @@
           "scale": 2.5
         },
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
         "materialId": "morphing-material-2"
       },
       {
@@ -180,7 +142,7 @@
         "geometryId": "magic-geometry",
         "meshType": "NONE",
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
         "geometryConfig": {
           "scale": 2.5
         },
@@ -194,7 +156,7 @@
           "scale": 2.5
         },
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
 
         "materialId": "morphing-material-1"
       },
@@ -204,9 +166,9 @@
         "geometryConfig": {
           "scale": 2.5
         },
-        "meshType": "NONE",
+        "meshType": "MESH",
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
         "materialId": "morphing-material-1"
       }
     ],

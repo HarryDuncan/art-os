@@ -9,6 +9,7 @@ import { useFetchData } from "app/hooks/useFetchData";
 import { extractMetadata } from "./extract-metadata/extractMetadata";
 import { downloadJsonFile } from "./downloadJson";
 import { Asset } from "visual/set-up/assets/asset.types";
+import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
 
 export const AssetEditor = () => {
   const assets = useFetchData(`${CONFIG}assets/assets.json`);
@@ -20,18 +21,28 @@ export const AssetEditor = () => {
     extraVertexPoints: 8,
   };
   const sameVerticies = useCallback(() => {
-    const updatedAssetData = extractMetadata(initializedAssets);
+    const assetMetaData = extractMetadata(initializedAssets);
 
     const maxVertexCount = Math.max(
-      ...updatedAssetData.map(({ metaData }) => metaData?.vertexCount ?? 0)
+      ...assetMetaData.map(({ metaData }) => metaData?.vertexCount ?? 0)
     );
-    const transformedGeometry = updatedAssetData.map(({ data, metaData }) => {
-      return transformGeometryVerticies(
-        geometry,
-        maxVertexCount,
-        metaData,
-        transformConfig
-      );
+    const transformedGeometry = initializedAssets.flatMap((asset, index) => {
+      const bufferGeometry = getAssetBufferGeometry(asset);
+      if (bufferGeometry) {
+        const { metaData } = assetMetaData[index];
+        if (!metaData) {
+          console.warn(`no metadata found for ${asset.name}`);
+          return [];
+        }
+        return transformGeometryVerticies(
+          bufferGeometry,
+          maxVertexCount,
+          metaData,
+          transformConfig
+        );
+      }
+      console.warn(`no buffer geometry found for ${asset.name}`);
+      return [];
     });
     transformedGeometry.forEach((transformed, index) => {
       const fileName = initializedAssets[index].name;

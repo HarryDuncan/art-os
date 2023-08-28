@@ -1,5 +1,6 @@
 import { BufferGeometry, Group, Object3D, Texture } from "three";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+import { BoundingBox } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { MATERIAL_TYPES } from "visual/display/materials/materials.constants";
 
 export const ASSET_TYPES = {
@@ -23,18 +24,7 @@ export type AssetData = Model | Texture | HTMLImageElement | LoadedGroup;
 
 export interface AssetMetaData {
   vertexCount: number;
-  boundingBox: {
-    min: {
-      x: number;
-      y: number;
-      z: number;
-    };
-    max: {
-      x: number;
-      y: number;
-      z: number;
-    };
-  };
+  boundingBox: BoundingBox;
 }
 export type AssetTag = keyof typeof ASSET_TAG;
 export type Asset = {

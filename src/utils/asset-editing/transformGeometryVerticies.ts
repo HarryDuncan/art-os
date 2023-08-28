@@ -1,4 +1,10 @@
 import { BufferAttribute, BufferGeometry } from "three";
+import { getEquidistantCoordinates } from "visual/display/helpers/three-dimension-space/position/getEquidistantCoordinates";
+import {
+  AXIS,
+  Axis,
+  ThreeDPosition,
+} from "visual/display/helpers/three-dimension-space/position/position.types";
 import { AssetMetaData } from "visual/set-up/assets/asset.types";
 import {
   getPositionsLength,
@@ -11,42 +17,66 @@ export interface TransformGeometryConfig {
 export const transformGeometryVerticies = (
   geometry: BufferGeometry,
   maxVertexCount: number,
-  assetMetaData: AssetMetaData | undefined,
+  assetMetaData: AssetMetaData,
   config: TransformGeometryConfig
 ) => {
   const currentVertices = getVertices(geometry);
   const vertexCount = getPositionsLength(geometry);
-  const addedVerticesCount = maxVertexCount - vertexCount;
-  if (addedVerticesCount <= 0) {
+  const extraVertexCount = maxVertexCount - vertexCount;
+  if (extraVertexCount <= 0) {
     return geometry;
   }
-  const addedVertices1 = new Array(addedVerticesCount / 4).fill(0);
+  const allVerticies = setUpExtraVertexPoints(
+    extraVertexCount,
+    assetMetaData,
+    config
+  );
 
-  const addedVertices2 = new Array(addedVerticesCount / 4).fill(0.2);
-  const addedVertices3 = new Array(addedVerticesCount / 4).fill(0.45);
-  const remainder = addedVerticesCount - (addedVerticesCount / 4) * 3;
-  const addedVertices4 = new Array(remainder).fill(0.5);
-  const allAdded = [
-    ...addedVertices1,
-    ...addedVertices2,
-    ...addedVertices3,
-    ...addedVertices4,
-  ];
-  const totalLength = vertexCount + addedVerticesCount;
+  const totalLength = vertexCount + extraVertexCount;
   const combinedArray = new Float32Array(totalLength);
   combinedArray.set(currentVertices, 0);
-  combinedArray.set(allAdded, currentVertices.length);
+  combinedArray.set(allVerticies, currentVertices.length);
   const newGeometry = new BufferGeometry();
-
   newGeometry.setAttribute("position", new BufferAttribute(combinedArray, 3));
 
   newGeometry.setDrawRange(0, vertexCount);
-
-  // // If you need to update the render, for example, if the mesh is already in the scene
-  newGeometry.computeBoundingSphere(); // Recalculate bounding sphere
-  newGeometry.computeVertexNormals(); // Recalculate vertex normals if needed
-
-  return newGeometry; // Mark the attribute as needing an update
+  newGeometry.computeBoundingSphere();
+  newGeometry.computeVertexNormals();
+  return newGeometry;
 };
 
-const setUpExtraVertexPoints = () => {};
+const setUpExtraVertexPoints = (
+  extraVertexCount: number,
+  assetMetaData: AssetMetaData,
+  config: TransformGeometryConfig
+) => {
+  const { boundingBox } = assetMetaData;
+  const { extraVertexPoints } = config;
+  const extraPoints = getEquidistantCoordinates(
+    extraVertexPoints,
+    boundingBox,
+    AXIS.X as Axis
+  );
+
+  const arraySize = Math.floor(extraVertexCount / extraVertexPoints);
+  const remainderArraySize =
+    extraVertexCount - arraySize * (extraVertexPoints - 1);
+  return extraPoints.flatMap((coordinates, index) =>
+    fillPoints(
+      index === extraVertexPoints - 1 ? remainderArraySize : arraySize,
+      coordinates
+    )
+  );
+};
+
+const fillPoints = (arraySize: number, coordinates: ThreeDPosition) =>
+  new Array(arraySize).fill(0).map((_value, index) => {
+    const axis = index % 3;
+    if (axis === 0) {
+      return coordinates.x;
+    }
+    if (axis === 1) {
+      return coordinates.y;
+    }
+    return coordinates.z;
+  });

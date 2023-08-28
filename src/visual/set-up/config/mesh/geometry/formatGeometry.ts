@@ -10,13 +10,13 @@ import {
 } from "visual/set-up/assets/geometry/geometry.types";
 import { DEFAULT_MODEL3D_CONFIG } from "visual/set-up/assets/assets.constants";
 import { MeshComponentConfig } from "../../config.types";
-import { getAssetGeometry } from "visual/set-up/assets/geometry/getAssetGeometry";
+import { getAssetGeometries } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
 
 export const formatGeometry = (
   loadedAssets: Asset[],
   meshComponentConfigs: MeshComponentConfig[]
 ): FormattedGeometry[] => {
-  const geometries = getAssetGeometry(loadedAssets);
+  const geometries = getAssetGeometries(loadedAssets);
   return meshComponentConfigs.flatMap((meshConfig) => {
     const geometry = getGeometryForMeshConfig(
       geometries,
