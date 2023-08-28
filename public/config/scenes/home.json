@@ -213,6 +213,7 @@
       {
         "id": "morphing-material-1",
         "materialType": "SHADER",
+        "blendingConfig": {},
         "materialProps": {
           "shaderConfig": {
             "shaderId": "homeMorph",
@@ -239,6 +240,9 @@
             "uResolution": { "value": null },
             "uMaterial": { "value": null },
             "uFrame": {
+              "value": 0.0
+            },
+            "uOpacity": {
               "value": 0.0
             },
             "uLoopCount": {
@@ -283,6 +287,9 @@
               "value": 0.0
             },
             "uProgress": {
+              "value": 0.0
+            },
+            "uOpacity": {
               "value": 0.0
             }
           }

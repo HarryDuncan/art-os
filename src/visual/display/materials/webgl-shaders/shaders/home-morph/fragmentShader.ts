@@ -9,6 +9,7 @@ uniform sampler2D uMaterial;
 uniform sampler2D uTextureOne;
 uniform sampler2D uTextureZero;
 uniform float uProgress;
+uniform float uOpacity;
 // Common varyings
 varying vec3 v_position;
 varying float vPointId;
@@ -75,6 +76,7 @@ void main() {
 
     vec4 col = mix(uMaterialTex,vec4( finalColor, 1.0), 0.0);
     gl_FragColor =  mix(uMaterialTex,col,1.0 );
+    gl_FragColor = vec4(gl_FragColor.rgb, gl_FragColor.a * uOpacity);
     
 
 

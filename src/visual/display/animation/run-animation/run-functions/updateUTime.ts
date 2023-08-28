@@ -1,5 +1,5 @@
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
-import { shaderAnimationLoop } from "../../animation-functions/time/shaderAnimationLoop";
+import { shaderAnimationLoop } from "../../animation-functions/animation-loop/shaderAnimationLoop";
 
 export const updateUTime = (
   scene: InteractiveScene,
