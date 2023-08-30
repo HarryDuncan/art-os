@@ -63,17 +63,13 @@ export class InteractiveScene extends Scene {
         switch (eventKey) {
           case "scroll":
             this.addOnScrollListener(eventFunction);
+            break;
+          default:
+            window.addEventListener(eventKey, (e) => {
+              eventFunction(this, e);
+            });
         }
-        const existingListener = window[eventKey];
-        window.removeEventListener(eventKey, existingListener);
-
-        window.addEventListener(eventKey, (e) => {
-          const s = window.scrollY;
-          const event = { ...e, s };
-          eventFunction(this, event);
-        });
       });
-      this.eventsSet = true;
     }
   }
 

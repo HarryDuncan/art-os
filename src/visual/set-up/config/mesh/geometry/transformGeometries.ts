@@ -4,18 +4,25 @@ import {
   getVerticiesCount,
 } from "./attributes/attribute.functions";
 import { MESH_TRANSFORM } from "../mesh.consts";
+import { MeshTransformConfig } from "../../config.types";
+import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types";
 
-export const transformGeometry = (meshTransforms, formattedGeometries) => {
+export const transformGeometry = (
+  meshTransforms: MeshTransformConfig[] | undefined,
+  formattedGeometries: FormattedGeometry[]
+): FormattedGeometry[] => {
   if (!meshTransforms || !meshTransforms.length) return formattedGeometries;
 
   meshTransforms.forEach((transform) => {
     switch (transform.type) {
-      case MESH_TRANSFORM.MORPH:
+      case MESH_TRANSFORM.MORPH: {
         const morphMeshes = formattedGeometries
-          .filter((geometry) => transform.meshes.includes(geometry.name))
+          .filter((geometry) =>
+            transform.transformedMeshIds.includes(geometry.name)
+          )
           .sort((a, b) => {
-            const indexA = transform.meshes.indexOf(a.name);
-            const indexB = transform.meshes.indexOf(b.name);
+            const indexA = transform.transformedMeshIds.indexOf(a.name);
+            const indexB = transform.transformedMeshIds.indexOf(b.name);
             return indexA - indexB;
           });
         if (!morphMeshes.length) {
@@ -52,6 +59,10 @@ export const transformGeometry = (meshTransforms, formattedGeometries) => {
         );
 
         return morphMeshes;
+      }
+      default: {
+        return formattedGeometries;
+      }
     }
   });
   return formattedGeometries;

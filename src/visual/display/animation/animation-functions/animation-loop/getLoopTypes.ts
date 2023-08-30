@@ -14,6 +14,7 @@ export const getLoopType = (config: AnimationLoopConfig) => {
         ((Math.cos((2 * Math.PI * time) / duration) * -1 + 1) * 0.5) **
         animationSteepness;
     case ANIMATION_LOOP_TYPES.ZERO_TO_ONE:
+    default:
       return (time: number) => time / duration / duration;
   }
 };

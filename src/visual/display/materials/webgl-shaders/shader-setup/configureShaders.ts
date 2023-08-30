@@ -1,20 +1,14 @@
 import { Asset } from "visual/set-up/assets/asset.types";
 import { AssetMap, ShaderConfig } from "../shaders.types";
 import { importShader } from "./importShader";
-import { TextureLoader } from "three";
-import { load } from "@tensorflow-models/body-segmentation/dist/body_pix/impl/body_pix_model";
 
 export const configureShaders = (
   shaderConfig: ShaderConfig,
   uniforms: Record<string, unknown>,
   assets?: Asset[]
 ) => {
-  const {
-    shaderId,
-    fragmentShaderId,
-    vertexShaderId,
-    assetMapping,
-  } = shaderConfig;
+  const { shaderId, fragmentShaderId, vertexShaderId, assetMapping } =
+    shaderConfig;
   const { fragmentShader, vertexShader, defaultUniforms } = importShader(
     shaderId,
     vertexShaderId,

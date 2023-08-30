@@ -20,6 +20,7 @@ export const RootContainer = ({
     <>
       <Layers layers={layers} />
       <Root
+        $position={sceneProperties.position}
         $height={sceneProperties.viewHeight}
         $width={sceneProperties.viewWidth}
         $fixed={sceneProperties.fixed}

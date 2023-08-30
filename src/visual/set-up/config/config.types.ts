@@ -10,6 +10,7 @@ import {
   ComponentProps,
   SceneElementType,
 } from "visual/display/scene-elements/components/threeJsComponents.types";
+import { MESH_TRANSFORM } from "./mesh/mesh.consts";
 
 export type RandomizationConfig = {
   instanceCount: number;
@@ -86,11 +87,17 @@ export type ScenePropertiesConfig = {
   viewHeight?: string;
   backgroundColor?: string;
   backgroundUrl?: string;
+  position?: string;
+};
+export type MeshTransformType = keyof typeof MESH_TRANSFORM;
+export type MeshTransformConfig = {
+  type: MeshTransformType;
+  transformedMeshIds: string[];
 };
 export type SceneConfig = {
   assets?: Asset[];
   meshComponentConfigs: MeshComponentConfig[];
-  meshTransforms?: any;
+  meshTransforms?: MeshTransformConfig;
   globalMaterialConfigs: MaterialConfig[];
   animationConfig: CustomAnimationConfig[];
   lightConfig: LightConfigs[];

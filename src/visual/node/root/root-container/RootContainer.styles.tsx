@@ -5,12 +5,13 @@ export const Root = styled.div<{
   $width: string;
   $backgroundColor?: string;
   $fixed?: boolean;
+  $position?: string;
 }>`
   height: ${({ $height }) => $height};
   width: ${({ $width }) => $width};
   overflow: hidden;
   margin: 0 auto;
-  position: ${({ $fixed }) => ($fixed ? "fixed" : "relative")};
+  position: ${({ $position }) => $position ?? "relative"};
   background-color: ${({ $backgroundColor }) =>
     $backgroundColor ?? "transparent"};
   & canvas {

@@ -25,7 +25,6 @@ export const runAnimation = (
       chainAnimation(initializedAnimationConfig, animatedObjects);
       break;
     case ANIMATION_FUNCTION_TYPES.UTIME:
-      console.log("asdasd");
       updateUTime(scene, initializedAnimationConfig, animatedObjects);
       break;
     case ANIMATION_FUNCTION_TYPES.ALL:
