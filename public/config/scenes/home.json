@@ -266,8 +266,7 @@
         "blendingConfig": {},
         "materialProps": {
           "shaderConfig": {
-            "shaderId": "homeMorph",
-            "fragmentShaderId": "hjdBinary",
+            "shaderId": "homeMorphTransition",
             "assetMapping": [
               {
                 "uniform": "uTextureZero",

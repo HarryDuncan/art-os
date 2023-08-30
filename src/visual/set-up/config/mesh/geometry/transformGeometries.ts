@@ -58,6 +58,24 @@ export const transformGeometry = (
           new BufferAttribute(pointIds, 1)
         );
 
+        const angles = new Float32Array(maxVertexCount / 3);
+        angles.forEach((_value, index) => {
+          angles[index] = Math.random();
+        });
+        morphMeshes[0].geometry.setAttribute(
+          "angle",
+          new BufferAttribute(angles, 1)
+        );
+
+        const random = new Float32Array(maxVertexCount / 3);
+        random.forEach((_value, index) => {
+          random[index] = Math.random() * 100;
+        });
+        morphMeshes[0].geometry.setAttribute(
+          "random",
+          new BufferAttribute(random, 1)
+        );
+
         return morphMeshes;
       }
       default: {
