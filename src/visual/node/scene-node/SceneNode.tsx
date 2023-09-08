@@ -11,8 +11,14 @@ const SceneNode = ({
   events,
   sceneData: { threeJs, lights, meshes, sceneComponents, sceneProperties },
 }: SceneNodeProps) => {
-  const { currentFrameRef, clock, renderer, camera, container, orbitControls } =
-    useSetUpScene(threeJs);
+  const {
+    currentFrameRef,
+    clock,
+    renderer,
+    camera,
+    container,
+    orbitControls,
+  } = useSetUpScene(threeJs);
 
   const scene = useInteractiveScene(
     sceneFunctions,

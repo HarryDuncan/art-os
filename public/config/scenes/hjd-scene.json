@@ -308,7 +308,7 @@
         "animationId": "uTime",
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
-        "animationProperties": {
+        "animationConfig": {
           "animationDurationMilis": 6000,
           "animationPauseMilis": 500,
           "repeatAnimation": true
