@@ -1,16 +1,21 @@
-import { AnimationConfig, AnimationFunctionType } from "../animation.types";
+import {
+  AnimatedScene,
+  AnimationConfig,
+  AnimationFunctionType,
+  AnimationProperties,
+} from "../animation.types";
 import { ANIMATION_FUNCTION_TYPES } from "../animation.constants";
 import { animateAll } from "./run-functions/animateAll";
 import { getSceneElementByName } from "visual/display/helpers/scene/getSceneElementByName";
 import { updateUTime } from "./run-functions/updateUTime";
 import { chainAnimation } from "./run-functions/chainAnimation";
-import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
+import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
 
 export const runAnimation = (
-  scene: InteractiveScene,
+  scene: AnimatedScene,
   animationFunctionType: AnimationFunctionType,
   targetIdentifier: string,
-  initializedAnimationConfig: AnimationConfig,
+  animationProperties: AnimationProperties,
   animationId: string
 ) => {
   const animatedObjects = getSceneElementByName(scene, targetIdentifier);
@@ -22,13 +27,17 @@ export const runAnimation = (
   }
   switch (animationFunctionType) {
     case ANIMATION_FUNCTION_TYPES.CHAIN:
-      chainAnimation(initializedAnimationConfig, animatedObjects);
+      chainAnimation(animationProperties, animatedObjects);
       break;
     case ANIMATION_FUNCTION_TYPES.UTIME:
-      updateUTime(scene, initializedAnimationConfig, animatedObjects);
+      updateUTime(
+        scene,
+        animationProperties,
+        animatedObjects as ShaderMeshObject[]
+      );
       break;
     case ANIMATION_FUNCTION_TYPES.ALL:
     default:
-      animateAll(initializedAnimationConfig, animatedObjects);
+      animateAll(animationProperties, animatedObjects);
   }
 };

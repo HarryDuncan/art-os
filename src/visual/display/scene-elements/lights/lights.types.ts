@@ -1,4 +1,4 @@
-import { Vector3 } from "three";
+import { AmbientLight, DirectionalLight, PointLight, Vector3 } from "three";
 
 export const LIGHT_TYPES = {
   AMBIENT: "AMBIENT",
@@ -13,11 +13,11 @@ export interface LightConfigProperties {
   position?: Vector3;
   intensity?: number;
 }
-export type AmbientLightConfig = LightConfigProperties
+export type AmbientLightConfig = LightConfigProperties;
 
-export type PointLightConfig = LightConfigProperties
+export type PointLightConfig = LightConfigProperties;
 
-export type DirectionalLightConfig = LightConfigProperties
+export type DirectionalLightConfig = LightConfigProperties;
 
 export type LightParameters =
   | AmbientLightConfig
@@ -29,3 +29,5 @@ export interface LightConfigs {
   lightType: LightType;
   props?: LightParameters;
 }
+
+export type SceneLight = AmbientLight | PointLight | DirectionalLight;

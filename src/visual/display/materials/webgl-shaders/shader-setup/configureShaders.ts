@@ -1,24 +1,34 @@
 import { Asset } from "visual/set-up/assets/asset.types";
 import { AssetMap, ShaderConfig } from "../shaders.types";
 import { importShader } from "./importShader";
+import { MaterialUniform } from "visual/set-up/config/material/materials.types";
 
 export const configureShaders = (
   shaderConfig: ShaderConfig,
-  uniforms: Record<string, unknown>,
+  uniforms: MaterialUniform,
   assets?: Asset[]
 ) => {
   const { shaderId, fragmentShaderId, vertexShaderId, assetMapping } =
     shaderConfig;
-  const { fragmentShader, vertexShader, defaultUniforms } = importShader(
+  const { fragmentShader, vertexShader, setUpDefaultUniforms } = importShader(
     shaderId,
     vertexShaderId,
     fragmentShaderId
   );
 
-  const configuredUniforms = defaultUniforms(uniforms);
+  const configuredUniforms = configureUniforms(uniforms, setUpDefaultUniforms);
   mapAssets(configuredUniforms, assetMapping ?? [], assets ?? []);
   // TODO - return default shaders and log that the shader ids didn't work
   return { fragmentShader, vertexShader, configuredUniforms };
+};
+const configureUniforms = (
+  uniforms: MaterialUniform,
+  setUpDefaultUniforms: null | ((uniforms: MaterialUniform) => MaterialUniform)
+) => {
+  if (setUpDefaultUniforms) {
+    return setUpDefaultUniforms(uniforms);
+  }
+  return uniforms;
 };
 
 const mapAssets = (

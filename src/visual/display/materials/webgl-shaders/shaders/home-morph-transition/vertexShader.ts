@@ -10,7 +10,8 @@ export const vertexShader = `
   uniform float uProgress;
   uniform vec2 uPosition;
   attribute float angle;
-  attribute float random;
+  attribute float randomBool;
+  attribute float randomBool2;
   attribute float pointIndex;
   attribute vec3 morphPosition_1;
   attribute vec3 morphNormal_1;
@@ -22,11 +23,12 @@ export const vertexShader = `
   varying vec2 vUv;
   varying float vPointId;
   varying float vRandom;
-
+  varying float vRandom2;
 ${noise3D}
   void main() {
     vPointId = pointIndex;
-    vRandom = random;
+    vRandom = randomBool;
+    vRandom2 = randomBool2;
     // Calculate the new vertex 
 
     vec3 currentPosition = position;
@@ -49,8 +51,8 @@ ${noise3D}
     vec3 new_position = currentPosition + (effect_direction * (uProgress));
     vec3 new_normal = normal + (normal_effect_direction * (uProgress));
     float noise = noise3D(new_position);
-    new_position.x += noise * 2.0 * uProgress;
-    new_position.y += noise * 2.0 * uProgress;;
+    new_position.x += (noise * 0.8) * uProgress;
+    new_position.y += (noise * 1.3) * uProgress;;
     vec4 mv_position =  vec4(new_position,1.0);
     // Save the varyings
     // v_position = mv_position.xyz;
@@ -60,7 +62,7 @@ ${noise3D}
   
     
     
-    gl_PointSize = 15.0;
+    gl_PointSize = 25.0;
   
     // Vertex shader output
     gl_Position = projectionMatrix  *  modelViewMatrix * mv_position;

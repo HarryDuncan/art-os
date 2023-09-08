@@ -1,5 +1,5 @@
 import { FILE_TYPES } from "visual/consts";
-import { ENV_MAP_TYPES } from "../materials.constants";
+import { ENV_MAP_TYPES } from "../materials.consts";
 import { setUpReflectionEnvMap } from "./setUpReflectionEnvMap";
 
 export const setUpEnvMap = (

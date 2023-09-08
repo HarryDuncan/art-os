@@ -26,13 +26,11 @@ export const performAnimation = (
   animationType: AnimationType,
   object: MeshObject | Object3D,
   progress: number,
-  animationConfig: AnimationProperties
+  animationProperties: AnimationProperties
 ) => {
   if (animationType === ANIMATION_TYPES.TRAVERSE) {
-    const {
-      curve,
-      animationDurationMilis,
-    } = animationConfig as TraversalAnimationConfig;
+    const { curve, animationDurationMilis } =
+      animationProperties as TraversalAnimationConfig;
     if (curve) {
       const currentProg = easeOut(progress / animationDurationMilis) * 100;
       const { x, y, z } = traverseThroughtArray(
@@ -44,19 +42,16 @@ export const performAnimation = (
   }
 
   if (animationType === ANIMATION_TYPES.ROTATE) {
-    const {
-      animationDurationMilis,
-      rotationAxis,
-    } = animationConfig as RotationAnimationConfig;
+    const { animationDurationMilis, rotationAxis } =
+      animationProperties as RotationAnimationConfig;
     const rotation = MathUtils.degToRad(
       easeOut(progress / animationDurationMilis) * 360
     );
     rotateMeshAlongAxis(object as MeshObject, rotationAxis, rotation);
   }
   if (animationType === ANIMATION_TYPES.TRIG) {
-    const {
-      trigFunctionType,
-    } = animationConfig as TrigonometricAnimationConfig;
+    const { trigFunctionType } =
+      animationProperties as TrigonometricAnimationConfig;
     const updatedValue = updateTimeStamp(progress, trigFunctionType);
     updateObject(
       object,
@@ -68,7 +63,7 @@ export const performAnimation = (
     fall(object as MeshObject, progress);
   }
   if (animationType === ANIMATION_TYPES.SPIN) {
-    const { rotationAxis, speed } = animationConfig as SpinAnimationConfig;
+    const { rotationAxis, speed } = animationProperties as SpinAnimationConfig;
     spinMeshAlongAxis(object, rotationAxis, speed);
   }
 };

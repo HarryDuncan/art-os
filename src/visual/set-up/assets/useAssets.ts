@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import { ASSET_TYPES, Asset } from "../asset.types";
+import { ASSET_TYPES, Asset } from "./asset.types";
 import { getFileTypeFromFilename } from "visual/set-up/config/utils/file";
-import { loadFont } from "../fonts/loadFont";
+import { loadFont } from "./fonts/loadFont";
 
-import { loadImage } from "../image/load-image/LoadImage";
-import { LoadSvg } from "../svg/loadSvg";
-import { loadTexture } from "../texture/load-texture/loadTexture";
-import { loadModel } from "../geometry/load-model/LoadModel";
+import { loadImage } from "./image/load-image/LoadImage";
+import { LoadSvg } from "./svg/loadSvg";
+import { loadTexture } from "./texture/load-texture/loadTexture";
+import { loadModel } from "./geometry/load-model/LoadModel";
 
 export const useAssets = (assets: Asset[] | undefined | null) => {
   const [areAssetsInitialized, setAreAssetsInitialized] = useState(false);

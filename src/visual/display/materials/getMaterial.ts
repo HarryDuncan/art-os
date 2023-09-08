@@ -8,15 +8,15 @@ import {
   VideoTexture,
 } from "three";
 import { setUpEnvMap } from "./env-map/setUpEnvMap";
-import { MATERIAL_TYPES } from "./materials.constants";
+import { MATERIAL_TYPES } from "./materials.consts";
 import {
-  EnvMapMaterialProps,
-  MatcapMaterialProps,
-  MaterialConfigProps,
   MaterialType,
-  PhongMaterialProps,
+  MaterialConfigProps,
+  MatcapMaterialProps,
+  EnvMapMaterialProps,
   VideoMaterialProps,
-} from "./materials.types";
+  PhongMaterialProps,
+} from "../../set-up/config/material/materials.types";
 
 export const getMaterial = (
   materialType: MaterialType,
@@ -51,11 +51,8 @@ export const getMaterial = (
       return new MeshStandardMaterial({});
     }
     case MATERIAL_TYPES.PHONG: {
-      const {
-        color,
-        specular,
-        shininess,
-      } = (materialProps as unknown) as PhongMaterialProps;
+      const { color, specular, shininess } =
+        materialProps as unknown as PhongMaterialProps;
       return new MeshPhongMaterial({ color, specular, shininess });
     }
     case MATERIAL_TYPES.STANDARD:

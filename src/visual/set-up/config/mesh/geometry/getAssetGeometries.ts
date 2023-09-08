@@ -28,7 +28,7 @@ export const getAssetGeometry = (asset: Asset) => {
   }
 };
 
-const getObjectGeometries = (data: LoadedGroup, name) => {
+const getObjectGeometries = (data: LoadedGroup, name: string) => {
   const { children } = data;
   if (children.length) {
     return children.map((child: LoadedObjChild) => ({

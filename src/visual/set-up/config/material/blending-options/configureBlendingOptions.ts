@@ -1,8 +1,7 @@
 import { CustomBlending, OneFactor, SrcAlphaFactor } from "three";
-import { BlendingConfig } from "visual/display/materials/materials.types";
 
 export const configureBlendingOptions = (
-  blendingConfig: BlendingConfig | undefined
+  blendingConfig: Record<string, unknown> | undefined
 ) => {
   if (!blendingConfig) return {};
   // TODO - make blending options properly configurable

@@ -3,14 +3,14 @@ import { SceneConfig } from "../config.types";
 import {
   MATERIAL_TYPES,
   SHADER_MATERIALS,
-} from "visual/display/materials/materials.constants";
+} from "visual/display/materials/materials.consts";
 import {
   MaterialConfig,
   ShaderMaterialProps,
-} from "visual/display/materials/materials.types";
+} from "visual/set-up/config/material/materials.types";
 import { configureShaders } from "visual/display/materials/webgl-shaders/shader-setup/configureShaders";
 import { ShaderMaterial } from "three";
-import { configureBlendingOptions } from "./configureBlendingOptions";
+import { configureBlendingOptions } from "./blending-options/configureBlendingOptions";
 
 export const getShaderMaterials = (config: SceneConfig, assets: Asset[]) => {
   const { globalMaterialConfigs } = config;
@@ -31,10 +31,8 @@ const setUpShaderMaterial = (
   materialConfig: MaterialConfig,
   assets: Asset[]
 ) => {
-  const {
-    shaderConfig,
-    uniforms,
-  } = materialConfig.materialProps as ShaderMaterialProps;
+  const { shaderConfig, uniforms } =
+    materialConfig.materialProps as ShaderMaterialProps;
   const { vertexShader, fragmentShader, configuredUniforms } = configureShaders(
     shaderConfig,
     uniforms,

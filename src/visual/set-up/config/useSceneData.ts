@@ -9,6 +9,8 @@ import { getScenePropertiesFromConfig } from "./scene-properties/setScenePropert
 import { useThreeJsFromConfig } from "./three-js/useThreeJsFromConfig";
 import { useMemo } from "react";
 import { SceneData } from "visual/display/components/interactive-scene/types";
+import { useScreenSizeProperties } from "./scene-properties/useScreenSizeProperties";
+import { useWindowState } from "visual/compat/window-state/windowStateProvider";
 
 export const useSceneData = (
   config: SceneConfig | undefined | null,
@@ -17,15 +19,22 @@ export const useSceneData = (
 ): SceneData | null => {
   initializeVideos(assets);
   const setUpThreeJs = useThreeJsFromConfig();
+  const {
+    state: { screenType },
+  } = useWindowState();
+  const formattedConfig = useScreenSizeProperties(config, screenType);
   return useMemo(() => {
-    if (!areAssetsInitialized || !config) return null;
-    const threeJs = setUpThreeJs(config.threeJsConfig);
-    const materials = formatGlobalMaterials(assets, config);
-    const meshes = getMeshesFromConfig(assets, materials, config);
-    const lights = getLightsFromConfig(config);
-    const sceneComponents = formatSceneComponentConfigs(config, materials);
+    if (!areAssetsInitialized || !formattedConfig) return null;
+    const threeJs = setUpThreeJs(formattedConfig.threeJsConfig);
+    const materials = formatGlobalMaterials(assets, formattedConfig);
+    const meshes = getMeshesFromConfig(assets, materials, formattedConfig);
+    const lights = getLightsFromConfig(formattedConfig);
+    const sceneComponents = formatSceneComponentConfigs(
+      formattedConfig,
+      materials
+    );
     const sceneProperties = getScenePropertiesFromConfig(
-      config.scenePropertiesConfig
+      formattedConfig.scenePropertiesConfig
     );
     return {
       threeJs,
@@ -34,5 +43,5 @@ export const useSceneData = (
       lights: lights ?? [],
       sceneProperties,
     };
-  }, [setUpThreeJs, config, assets, areAssetsInitialized]);
+  }, [setUpThreeJs, formattedConfig, assets, areAssetsInitialized]);
 };

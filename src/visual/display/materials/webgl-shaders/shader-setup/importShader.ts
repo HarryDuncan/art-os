@@ -1,17 +1,22 @@
 /* eslint import/namespace: ['error', { allowComputed: true }] */
+import { MaterialUniform } from "visual/set-up/config/material/materials.types";
 import * as Shaders from "../shaders";
 
 export const importShader = (
   shaderId: string,
   vertexShaderId: string | undefined,
   fragmentShaderId: string | undefined
-) => {
+): {
+  fragmentShader: string;
+  vertexShader: string;
+  setUpDefaultUniforms: ((uniforms: MaterialUniform) => MaterialUniform) | null;
+} => {
   try {
-    // @ts-ignore - not ideal but will replace with build shader
     const {
       fragmentShader: defaultFragmentShader,
       vertexShader,
-      defaultUniforms,
+      defaultUniforms: setUpDefaultUniforms,
+      // @ts-ignore - not ideal but will replace with build shader
     } = Shaders[shaderId];
     if (vertexShaderId) {
       // todo -import vertex shader
@@ -21,15 +26,19 @@ export const importShader = (
       fragmentShaderId
     );
 
-    return { fragmentShader, vertexShader, defaultUniforms };
+    return { fragmentShader, vertexShader, setUpDefaultUniforms };
   } catch {
     console.error(`${shaderId} not a valid shader`);
-    return { fragmentShader: "", vertexShader: "", defaultUniforms: {} };
+    return { fragmentShader: "", vertexShader: "", setUpDefaultUniforms: null };
   }
 };
 
-const getFragmentShader = (defaultFragmentShader, fragmentShaderId) => {
+const getFragmentShader = (
+  defaultFragmentShader: string,
+  fragmentShaderId: string | undefined
+) => {
   if (fragmentShaderId) {
+    // @ts-ignore - not ideal but will replace with build shader
     const { fragmentShader } = Shaders[fragmentShaderId];
     return fragmentShader;
   }

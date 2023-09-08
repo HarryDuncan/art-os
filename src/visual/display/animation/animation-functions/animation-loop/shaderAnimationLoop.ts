@@ -1,8 +1,14 @@
-export const shaderAnimationLoop = (time, object) => {
-  const duration = 10;
-  const oneToOne = (Math.cos((2 * Math.PI * time) / duration) * 0.5 + 0.5) ** 7;
+import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
+
+export const shaderAnimationLoop = (
+  time: number,
+  duration: number,
+  object: ShaderMeshObject
+) => {
+  const oneToOne =
+    (Math.cos((2 * Math.PI * time) / duration) * 0.5 + 0.5) ** 30;
   const zeroToZeroLoop =
-    ((Math.cos((2 * Math.PI * time) / duration) * -1 + 1) * 0.5) ** 1;
+    ((Math.cos((2 * Math.PI * time) / duration) * -1 + 1) * 0.5) ** 0.5;
   const oneToZero = (time % duration) / duration;
   const loopCount = Math.floor(time / duration);
   const loopLimit = 3;

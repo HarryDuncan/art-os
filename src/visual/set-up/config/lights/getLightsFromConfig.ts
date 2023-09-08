@@ -1,15 +1,16 @@
 import { Vector3 } from "three";
 import { DEFAULT_LIGHTS } from "visual/display/scene-elements/lights/lights.defaults";
-import { LightConfigs } from "visual/display/scene-elements/lights/lights.types";
 import { SceneConfig } from "../config.types";
+import { setUpLights } from "./setUpLights";
+import { SceneLight } from "visual/display/scene-elements/lights/lights.types";
 
-export const getLightsFromConfig = (config: SceneConfig): LightConfigs[] => {
+export const getLightsFromConfig = (config: SceneConfig): SceneLight[] => {
   const { lightConfig } = config;
   if (!lightConfig) {
     console.warn("no light config found - return default light config");
-    return DEFAULT_LIGHTS;
+    return setUpLights(DEFAULT_LIGHTS);
   }
-  return lightConfig.map(({ name, lightType, props }) => {
+  const formattedConfigs = lightConfig.map(({ name, lightType, props }) => {
     const light = { name, lightType, props: {} };
     const lightProps = { ...props };
     if (props && props.position) {
@@ -19,4 +20,5 @@ export const getLightsFromConfig = (config: SceneConfig): LightConfigs[] => {
     light.props = lightProps;
     return light;
   });
+  return setUpLights(formattedConfigs);
 };

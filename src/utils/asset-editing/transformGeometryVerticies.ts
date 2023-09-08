@@ -76,7 +76,7 @@ const fillPoints = (arraySize: number, coordinates: ThreeDPosition) =>
       return coordinates.x;
     }
     if (axis === 1) {
-      return coordinates.y;
+      return 0;
     }
     return coordinates.z;
   });

@@ -1,10 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { RootContainer } from "../root/root-container";
 import { useInteractiveScene } from "visual/display/components/interactive-scene/useInteractiveScene";
-import PostProcessor from "visual/display/components/post-processor/PostProcessor";
-import { setSceneProperties } from "visual/display/helpers/scene/setSceneProperties";
 import { useThreadWithPostProcessor } from "visual/display/hooks/use-thread";
-import { useLights } from "visual/display/scene-elements/lights/useLights";
 import { useSetUpScene } from "visual/display/hooks/scene-data/useSetUpScene";
 import { SceneNodeProps } from "./SceneNode.types";
 
@@ -14,56 +11,33 @@ const SceneNode = ({
   events,
   sceneData: { threeJs, lights, meshes, sceneComponents, sceneProperties },
 }: SceneNodeProps) => {
-  const {
-    currentFrameRef,
-    clock,
-    postProcessor,
-    renderer,
-    camera,
-    container,
+  const { currentFrameRef, clock, renderer, camera, container, orbitControls } =
+    useSetUpScene(threeJs);
+
+  const scene = useInteractiveScene(
+    sceneFunctions,
+    events,
+    animations,
+    meshes,
+    lights,
+    sceneComponents,
     orbitControls,
-  } = useSetUpScene(threeJs);
+    sceneProperties
+  );
 
-  const initializedLights = useLights(lights);
-  const scene = useInteractiveScene([], sceneFunctions, events);
-
-  const { update, pause } = useThreadWithPostProcessor(
-    postProcessor,
+  const { update, pause, postProcessor } = useThreadWithPostProcessor(
     currentFrameRef,
     clock,
     scene,
-    camera
+    camera,
+    renderer
   );
 
   const initializeSceneWithData = useCallback(() => {
-    if (scene) {
-      meshes?.forEach((mesh) => scene.add(mesh));
-      initializedLights.forEach((light) => scene.add(light));
-      setSceneProperties(sceneProperties, scene);
-      sceneComponents?.forEach((component) => scene.add(component));
-      scene.addAnimations(animations);
-      scene.addOrbitControls(orbitControls);
-      postProcessor.current = new PostProcessor({
-        renderer,
-        scene,
-        camera,
-        passes: [],
-      });
+    if (postProcessor.current) {
       update();
     }
-  }, [
-    scene,
-    update,
-    postProcessor,
-    renderer,
-    camera,
-    animations,
-    initializedLights,
-    meshes,
-    orbitControls,
-    sceneComponents,
-    sceneProperties,
-  ]);
+  }, [update, postProcessor]);
 
   useEffect(() => {
     initializeSceneWithData();

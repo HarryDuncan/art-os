@@ -30,7 +30,8 @@ export class InteractiveScene extends Scene {
 
   constructor(
     sceneFunctions: InteractiveSceneFunctions,
-    eventConfig: EventConfig[]
+    eventConfig: EventConfig[],
+    animationConfig: CustomAnimationConfig[]
   ) {
     super();
     this.sceneFunctions = sceneFunctions;
@@ -38,7 +39,7 @@ export class InteractiveScene extends Scene {
     this.bindMainFunctionFunctions();
     this.addEvents(eventConfig);
     this.orbitControls = null;
-    this.animationManager = new AnimationManager();
+    this.animationManager = new AnimationManager(animationConfig);
     this.eventsSet = false;
   }
 
@@ -73,7 +74,7 @@ export class InteractiveScene extends Scene {
     }
   }
 
-  addOnScrollListener(eventFunction) {
+  addOnScrollListener(eventFunction: (scene: Scene, event: Event) => void) {
     window.addEventListener("scroll", (e) => {
       const { scrollY } = window;
       const event = { ...e, scrollY };

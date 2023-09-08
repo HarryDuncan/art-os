@@ -6,7 +6,8 @@ import React, {
   useReducer,
 } from "react";
 import { windowStateReducer } from "./windowStateReducer";
-import { WindowSize, WindowStateContextProps } from "./types";
+import { ScreenType, WindowSize, WindowStateContextProps } from "./types";
+import { SCREEN_TYPE } from "./windowState.consts";
 
 const WindowStateContext = createContext<WindowStateContextProps | undefined>(
   undefined
@@ -22,6 +23,7 @@ export const useWindowState = (): WindowStateContextProps => {
 export const WindowStateProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(windowStateReducer, {
     windowSize: { width: 0, height: 0 },
+    screenType: SCREEN_TYPE.DESKTOP as ScreenType,
     devicePixelRatio: 1,
   });
 
@@ -31,7 +33,6 @@ export const WindowStateProvider = ({ children }: { children: ReactNode }) => {
         width: window.innerWidth,
         height: window.innerHeight,
       };
-
       dispatch({ type: "SET_WINDOW_SIZE", payload: windowSize });
     };
     handleResize();

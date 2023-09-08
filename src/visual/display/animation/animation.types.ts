@@ -1,4 +1,4 @@
-import { Vector3 } from "three";
+import { Clock, Scene, Vector3 } from "three";
 import {
   ANIMATION_FUNCTION_TYPES,
   ANIMATION_TYPES,
@@ -7,15 +7,21 @@ import {
 } from "./animation.constants";
 import { Axis } from "../helpers/three-dimension-space/position/position.types";
 
+// to avoid dependency cycle
+export type AnimatedScene = Scene & {
+  clock: Clock;
+};
+
 export type CustomAnimationConfig = {
   animationId: string;
   animationFunctionType: AnimationFunctionType;
   targetIdentifier: string;
-  animationConfig: AnimationConfig;
+  animationProperties: AnimationProperties;
   isRunning?: boolean;
 };
 
 export interface AnimationPropertiesConfig {
+  animationType: AnimationType;
   animationDurationMilis: number;
   repeatAnimation: boolean;
   animationPauseMilis: number;
@@ -55,8 +61,3 @@ export type AnimationProperties =
   | TrigonometricAnimationConfig;
 
 export type AnimationType = keyof typeof ANIMATION_TYPES;
-
-export interface AnimationConfig {
-  animationType: AnimationType;
-  animationProperties: AnimationProperties;
-}

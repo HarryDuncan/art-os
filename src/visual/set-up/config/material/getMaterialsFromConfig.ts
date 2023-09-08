@@ -1,4 +1,4 @@
-import { SHADER_MATERIALS } from "visual/display/materials/materials.constants";
+import { SHADER_MATERIALS } from "visual/display/materials/materials.consts";
 import { SceneConfig } from "../config.types";
 import { materialConfigToMaterial } from "./materialConfigToMaterial";
 import { Material } from "three";

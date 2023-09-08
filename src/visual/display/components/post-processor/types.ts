@@ -5,7 +5,7 @@ export type PostProcessorCamera = Camera & {
 };
 
 export enum PostProcessorPasses {
-  BLOOM = "bloom",
+  BLOOM,
 }
 
 export type Effects = {

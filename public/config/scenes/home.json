@@ -175,11 +175,19 @@
     "meshTransforms": [
       {
         "type": "MORPH",
-        "meshes": ["art-geometry-2", "tech-geometry-2", "magic-geometry-2"]
+        "transformedMeshIds": [
+          "art-geometry-2",
+          "tech-geometry-2",
+          "magic-geometry-2"
+        ]
       },
       {
         "type": "MORPH",
-        "meshes": ["art-geometry", "tech-geometry", "magic-geometry"]
+        "transformedMeshIds": [
+          "art-geometry",
+          "tech-geometry",
+          "magic-geometry"
+        ]
       }
     ],
     "globalMaterialConfigs": [
@@ -301,8 +309,8 @@
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationConfig": {
-          "animationDurationMilis": -1,
-          "animationPauseMilis": -1,
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": 500,
           "repeatAnimation": true
         }
       },

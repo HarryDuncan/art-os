@@ -6,9 +6,14 @@ uniform sampler2D uTextureZero;
 uniform float uOpacity;
 varying float vPointId;
 varying float vRandom;
+varying float vRandom2;
 void main() {
-    vec4 pointColor =  vec4(1.0, 0.0, 0.0, uOpacity);        
-    if(mod(vRandom, 2.0) == 0.0 ){
+    float opacity = uOpacity;
+    if(vRandom2 == 0.0 ){
+        opacity = 0.0;
+    }
+    vec4 pointColor =  vec4(1.0, 0.0, 0.0, opacity);        
+    if(vRandom == 0.0 ){
         gl_FragColor =  pointColor * texture2D(uTextureOne, gl_PointCoord);
     }else{
         gl_FragColor =  pointColor * texture2D(uTextureZero, gl_PointCoord);

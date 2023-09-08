@@ -1,16 +1,18 @@
-import React, { useCallback } from "react";
-import { Camera, Clock } from "three";
+import { MutableRefObject, useCallback, useEffect, useRef } from "react";
+import { Camera, Clock, WebGLRenderer } from "three";
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import PostProcessor from "visual/display/components/post-processor/PostProcessor";
 import { sceneUpdateEvent } from "visual/display/engine/engineEvents";
 
 export const useThreadWithPostProcessor = (
-  postProcessor: React.MutableRefObject<PostProcessor | null>,
-  currentFrameRef: React.MutableRefObject<number>,
+  currentFrameRef: MutableRefObject<number>,
   clock: Clock,
   scene: InteractiveScene | null,
-  camera: Camera
+  camera: Camera,
+  renderer: WebGLRenderer
 ) => {
+  const postProcessor: MutableRefObject<null | PostProcessor> = useRef(null);
+
   const update = useCallback(() => {
     sceneUpdateEvent();
     if (scene?.orbitControls) {
@@ -37,6 +39,15 @@ export const useThreadWithPostProcessor = (
   const pause = useCallback(() => {
     cancelAnimationFrame(currentFrameRef.current);
   }, [currentFrameRef]);
-
-  return { update, pause };
+  useEffect(() => {
+    if (scene && camera && renderer && !postProcessor.current) {
+      postProcessor.current = new PostProcessor({
+        renderer,
+        scene,
+        camera,
+        passes: [],
+      });
+    }
+  }, [scene, camera, renderer, postProcessor]);
+  return { update, pause, postProcessor };
 };

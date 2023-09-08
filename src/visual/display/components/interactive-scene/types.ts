@@ -1,5 +1,5 @@
 import { Object3D, Texture } from "three";
-import { LightConfigs } from "visual/display/scene-elements/lights/lights.types";
+import { SceneLight } from "visual/display/scene-elements/lights/lights.types";
 import { ThreeJsParams } from "visual/display/hooks/use-three-js/types";
 
 export type SceneProperties = {
@@ -17,6 +17,6 @@ export type SceneData = {
   threeJs: ThreeJsParams;
   meshes: Object3D[];
   sceneComponents: Object3D[];
-  lights: LightConfigs[];
+  lights: SceneLight[];
   sceneProperties: SceneProperties;
 };

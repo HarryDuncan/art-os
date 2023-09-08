@@ -6,7 +6,6 @@ import { useCssRenderer } from "./renderer/use-css-renderer";
 import { ThreeJsParams } from "./types";
 import { useOrbitControls } from "./use-orbit-controls/useOrbitControls";
 import { useScene } from "./use-scene/useScene";
-import PostProcessor from "visual/display/components/post-processor/PostProcessor";
 
 export const useThreeJs = (threeJsParams: ThreeJsParams) => {
   const { camera } = threeJsParams;
@@ -14,8 +13,6 @@ export const useThreeJs = (threeJsParams: ThreeJsParams) => {
   const container = useRef(null);
   const scene = useScene();
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
-  const postProcessor: React.MutableRefObject<null | PostProcessor> =
-    useRef(null);
 
   const clock: Clock = new Clock();
   const renderer = useWebGLRenderer(threeJsParams.renderer);
@@ -33,7 +30,6 @@ export const useThreeJs = (threeJsParams: ThreeJsParams) => {
     scene,
     camera,
     currentFrameRef,
-    postProcessor,
     clock,
     threeJsInitialized: true,
     cssRenderer,

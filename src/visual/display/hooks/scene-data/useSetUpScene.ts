@@ -8,7 +8,6 @@ export const useSetUpScene = (threeJsParams: ThreeJsParams) => {
     scene,
     camera,
     currentFrameRef,
-    postProcessor,
     clock,
     orbitControls,
   } = useThreeJs(threeJsParams);
@@ -18,7 +17,6 @@ export const useSetUpScene = (threeJsParams: ThreeJsParams) => {
     renderer,
     scene,
     camera,
-    postProcessor,
     currentFrameRef,
     clock,
     orbitControls,
