@@ -1,4 +1,4 @@
-import { CustomAnimationConfig } from "visual/display/animation/animation.types";
+import { AnimationConfig } from "visual/display/animation/animation.types";
 import { LightConfigs } from "visual/display/scene-elements/lights/lights.types";
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { MaterialConfig } from "visual/set-up/config/material/materials.types";
@@ -107,7 +107,7 @@ export type SceneConfig = {
   meshComponentConfigs: MeshComponentConfig[];
   meshTransforms?: MeshTransformConfig[];
   globalMaterialConfigs: MaterialConfig[];
-  animationConfig: CustomAnimationConfig[];
+  animationConfig: AnimationConfig[];
   lightConfig: LightConfigs[];
   sceneComponentConfigs?: SceneComponentConfig[];
   interactionConfig?: InteractionConfig[];

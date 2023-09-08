@@ -12,7 +12,7 @@ export type AnimatedScene = Scene & {
   clock: Clock;
 };
 
-export type CustomAnimationConfig = {
+export type AnimationConfig = {
   animationId: string;
   animationFunctionType: AnimationFunctionType;
   targetIdentifier: string;

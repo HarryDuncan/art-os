@@ -4,7 +4,7 @@ import {
   InteractiveSceneFunctions,
 } from "./InteractiveScene";
 import { EventConfig } from "interaction/interactions.types";
-import { CustomAnimationConfig } from "visual/display/animation/animation.types";
+import { AnimationConfig } from "visual/display/animation/animation.types";
 import { Object3D } from "three";
 import { SceneLight } from "visual/display/scene-elements/lights/lights.types";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -14,7 +14,7 @@ import { setSceneProperties } from "visual/display/helpers/scene/setScenePropert
 export const useInteractiveScene = (
   sceneFunction: InteractiveSceneFunctions,
   eventConfig: EventConfig[],
-  animationConfig: CustomAnimationConfig[],
+  animationConfig: AnimationConfig[],
   meshes: Object3D[],
   lights: SceneLight[],
   sceneComponents: Object3D[],

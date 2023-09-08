@@ -6,7 +6,7 @@ import {
 import { Clock, Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { AnimationManager } from "visual/display/animation/animation-manager/AnimationManager";
-import { CustomAnimationConfig } from "visual/display/animation/animation.types";
+import { AnimationConfig } from "visual/display/animation/animation.types";
 
 export type InteractiveSceneFunctions = {
   onTimeUpdate: (material: InteractiveScene) => void;
@@ -31,7 +31,7 @@ export class InteractiveScene extends Scene {
   constructor(
     sceneFunctions: InteractiveSceneFunctions,
     eventConfig: EventConfig[],
-    animationConfig: CustomAnimationConfig[]
+    animationConfig: AnimationConfig[]
   ) {
     super();
     this.sceneFunctions = sceneFunctions;
@@ -82,7 +82,7 @@ export class InteractiveScene extends Scene {
     });
   }
 
-  addAnimations(animations: CustomAnimationConfig[]) {
+  addAnimations(animations: AnimationConfig[]) {
     this.animationManager.initializeAnimations(animations);
   }
 

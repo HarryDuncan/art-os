@@ -318,15 +318,13 @@
         "animationId": "curve-rotate",
         "targetIdentifier": "curve",
         "animationFunctionType": "ALL",
-        "animationConfig": {
+        "animationProperties": {
           "animationType": "SPIN",
-          "animationProperties": {
-            "speed": 0.0006,
-            "rotationAxis": "Y",
-            "animationDurationMilis": -1,
-            "animationPauseMilis": -1,
-            "repeatAnimation": true
-          }
+          "speed": 0.0006,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
         }
       }
     ],

@@ -1,5 +1,5 @@
 import { startSceneElementAnimations } from "visual/display/animation/animation-manager/startSceneElementAnimations";
-import { CustomAnimationConfig } from "visual/display/animation/animation.types";
+import { AnimationConfig } from "visual/display/animation/animation.types";
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 
 export const defaultScene = (config, sceneData) => {
@@ -13,7 +13,7 @@ export const defaultScene = (config, sceneData) => {
     },
     interactionEvents: [],
     sceneData,
-    animations: animationConfig as CustomAnimationConfig[],
+    animations: animationConfig as AnimationConfig[],
     events: [],
   };
 };

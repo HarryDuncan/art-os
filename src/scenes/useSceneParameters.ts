@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import * as setUpScenes from "./set-up-scene-parameters";
-import { useAssets } from "visual/set-up/assets/use-assets/useAssets";
 import { useInteractions } from "interaction/external/useInteractions";
 import { useSceneData } from "visual/set-up/config/useSceneData";
 import { defaultScene } from "./set-up-scene-parameters/default";
 import { useConfigData } from "./useConfigData";
+import { useAssets } from "visual/set-up/assets/useAssets";
 
 export const useSceneParameters = () => {
   const { configData, configId } = useConfigData();

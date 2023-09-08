@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import { useAssets } from "visual/set-up/assets/use-assets/useAssets";
 import { Container } from "../views.styles";
 import { transformGeometryVerticies } from "utils/asset-editing/transformGeometryVerticies";
 import { handleExportClick } from "./export/exportAsObj";
@@ -11,6 +10,7 @@ import { downloadJsonFile } from "./downloadJson";
 import { Asset } from "visual/set-up/assets/asset.types";
 import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
 import { preTransform } from "./pre-transform/preTransform";
+import { useAssets } from "visual/set-up/assets/useAssets";
 
 const preTranformConfig = {
   centerGeometry: true,
