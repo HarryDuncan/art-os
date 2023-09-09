@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import { RootContainer } from "../root/root-container";
 import { useInteractiveScene } from "visual/display/components/interactive-scene/useInteractiveScene";
 import { useThreadWithPostProcessor } from "visual/display/hooks/use-thread";
-import { useSetUpScene } from "visual/display/hooks/scene-data/useSetUpScene";
 import { SceneNodeProps } from "./SceneNode.types";
+import { useThreeJs } from "visual/display/hooks/use-three-js/useThreeJs";
 
 const SceneNode = ({
   sceneFunctions,
@@ -12,13 +12,12 @@ const SceneNode = ({
   sceneData: { threeJs, lights, meshes, sceneComponents, sceneProperties },
 }: SceneNodeProps) => {
   const {
-    currentFrameRef,
-    clock,
+    container,
     renderer,
     camera,
-    container,
+    currentFrameRef,
     orbitControls,
-  } = useSetUpScene(threeJs);
+  } = useThreeJs(threeJs);
 
   const scene = useInteractiveScene(
     sceneFunctions,
@@ -31,26 +30,7 @@ const SceneNode = ({
     sceneProperties
   );
 
-  const { update, pause, postProcessor } = useThreadWithPostProcessor(
-    currentFrameRef,
-    clock,
-    scene,
-    camera,
-    renderer
-  );
-
-  const initializeSceneWithData = useCallback(() => {
-    if (postProcessor.current) {
-      update();
-    }
-  }, [update, postProcessor]);
-
-  useEffect(() => {
-    initializeSceneWithData();
-    return () => {
-      pause();
-    };
-  }, [initializeSceneWithData, pause]);
+  useThreadWithPostProcessor(currentFrameRef, scene, camera, renderer, []);
 
   return (
     <RootContainer containerRef={container} sceneProperties={sceneProperties} />

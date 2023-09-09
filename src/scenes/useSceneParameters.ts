@@ -6,8 +6,10 @@ import { defaultScene } from "./set-up-scene-parameters/default";
 import { useConfigData } from "./useConfigData";
 import { useAssets } from "visual/set-up/assets/useAssets";
 
-export const useSceneParameters = () => {
-  const { configData, configId } = useConfigData();
+export const useSceneParameters = (sceneConfigId?: string) => {
+  const { configData, selectedConfigId: configId } = useConfigData(
+    sceneConfigId
+  );
   const { areAssetsInitialized, initializedAssets } = useAssets(
     configData?.assets
   );

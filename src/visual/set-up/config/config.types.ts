@@ -1,5 +1,8 @@
 import { AnimationConfig } from "visual/display/animation/animation.types";
-import { LightConfigs } from "visual/display/scene-elements/lights/lights.types";
+import {
+  LightConfigs,
+  SceneLight,
+} from "visual/display/scene-elements/lights/lights.types";
 import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { MaterialConfig } from "visual/set-up/config/material/materials.types";
 import { InteractionConfig } from "interaction/interactions.types";
@@ -12,6 +15,8 @@ import {
 } from "visual/display/scene-elements/components/threeJsComponents.types";
 import { MESH_TRANSFORM } from "./mesh/mesh.consts";
 import { ScreenType } from "visual/compat/window-state/types";
+import { Object3D, Texture } from "three";
+import { ThreeJsParams } from "visual/display/hooks/use-three-js/types";
 
 export type RandomizationConfig = {
   instanceCount: number;
@@ -114,4 +119,23 @@ export type SceneConfig = {
   threeJsConfig: ThreeJSConfig;
   scenePropertiesConfig: ScenePropertiesConfig;
   screenSizeAdjustments?: ScreenSizeAdjustmentConfig[];
+};
+
+export type SceneProperties = {
+  position: string;
+  viewWidth: string;
+  viewHeight: string;
+  backgroundColor: string;
+  backgroundUrl: string;
+  background?: Texture;
+  videoBackground?: string;
+  fixed?: boolean;
+};
+
+export type SceneData = {
+  threeJs: ThreeJsParams;
+  meshes: Object3D[];
+  sceneComponents: Object3D[];
+  lights: SceneLight[];
+  sceneProperties: SceneProperties;
 };

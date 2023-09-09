@@ -1,20 +1,21 @@
 import { useAppSelector } from "app/redux/store";
 import { useMemo } from "react";
-import { SceneConfig } from "visual/set-up/config/config.types";
 import { useFetchConfig } from "visual/set-up/config/useFetchConfig";
 
-export const useConfigData = () => {
+export const useConfigData = (sceneConfigId?: string) => {
   const { configId, configuredScenes } = useAppSelector(
     (state) => state.sceneData
   );
+  const selectedConfigId = useMemo(() => sceneConfigId ?? configId, []);
 
   const selectedScene = configuredScenes.find(
-    (scene) => scene.configId === configId
+    (scene) => scene.configId === selectedConfigId
   );
   const selectedSceneFilePath = selectedScene?.configPath ?? "";
-  const sceneConfigData = useFetchConfig(
-    `config/${selectedSceneFilePath}.json`
-  );
+  const configPath = selectedSceneFilePath
+    ? `config/${selectedSceneFilePath}.json`
+    : "";
+  const sceneConfigData = useFetchConfig(configPath);
   const index = 3;
   const configData = useMemo(() => {
     if (!sceneConfigData) return null;
@@ -26,5 +27,5 @@ export const useConfigData = () => {
     return sceneConfigData[0];
   }, [index, sceneConfigData]);
 
-  return { configData, configId };
+  return { configData, selectedConfigId };
 };

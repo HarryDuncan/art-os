@@ -9,7 +9,8 @@ import { AnimationManager } from "visual/display/animation/animation-manager/Ani
 import { AnimationConfig } from "visual/display/animation/animation.types";
 
 export type InteractiveSceneFunctions = {
-  onTimeUpdate: (material: InteractiveScene) => void;
+  onTimeUpdate?: (scene: InteractiveScene) => void;
+  onTriggeredUpdate?: (scene: InteractiveScene) => void;
 };
 
 export type SceneInteraction = InteractionConfig & SceneInteractionEvent;
@@ -36,17 +37,25 @@ export class InteractiveScene extends Scene {
     super();
     this.sceneFunctions = sceneFunctions;
     this.clock = new Clock();
-    this.bindMainFunctionFunctions();
+    this.bindExecutionFunctions();
     this.addEvents(eventConfig);
     this.orbitControls = null;
     this.animationManager = new AnimationManager(animationConfig);
     this.eventsSet = false;
   }
 
-  bindMainFunctionFunctions() {
-    document.addEventListener("scene:update", () =>
-      this.sceneFunctions.onTimeUpdate(this)
-    );
+  bindExecutionFunctions() {
+    console.log(this.sceneFunctions);
+    const { onTimeUpdate, onTriggeredUpdate } = this.sceneFunctions;
+    if (onTimeUpdate) {
+      console.log("adding on time update");
+      document.addEventListener("scene:update", () => onTimeUpdate(this));
+    }
+    if (onTriggeredUpdate) {
+      document.addEventListener("scene:update-triggered", () =>
+        onTriggeredUpdate(this)
+      );
+    }
   }
 
   addInteractionEvents(interactionEvents: SceneInteraction[]) {
