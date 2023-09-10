@@ -23,7 +23,7 @@ export default class PostProcessor extends EffectComposer {
     renderer: WebGLRenderer;
     camera: Camera;
     scene: Scene;
-    passes?: PostProcessorPasses[];
+    passes?;
   }) {
     const renderTarget = new WebGLRenderTarget(
       window.innerHeight,
@@ -48,11 +48,12 @@ export default class PostProcessor extends EffectComposer {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
-  addPasses(passes: PostProcessorPasses[]) {
+  addPasses(passes) {
     const renderPass = new RenderPass(this.scene, this.camera);
     this.addPass(renderPass);
-
-    console.log(passes);
+    passes.forEach((pass) => {
+      this.addPass(pass);
+    });
   }
 
   updateProcessorParams({

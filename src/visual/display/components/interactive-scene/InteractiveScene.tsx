@@ -7,6 +7,7 @@ import { Clock, Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { AnimationManager } from "visual/display/animation/animation-manager/AnimationManager";
 import { AnimationConfig } from "visual/display/animation/animation.types";
+import { ENGINE_EVENTS } from "visual/display/engine/engine.consts";
 
 export type InteractiveSceneFunctions = {
   onTimeUpdate?: (scene: InteractiveScene) => void;
@@ -45,14 +46,14 @@ export class InteractiveScene extends Scene {
   }
 
   bindExecutionFunctions() {
-    console.log(this.sceneFunctions);
     const { onTimeUpdate, onTriggeredUpdate } = this.sceneFunctions;
     if (onTimeUpdate) {
-      console.log("adding on time update");
-      document.addEventListener("scene:update", () => onTimeUpdate(this));
+      document.addEventListener(ENGINE_EVENTS.UPDATE_SCENE, () =>
+        onTimeUpdate(this)
+      );
     }
     if (onTriggeredUpdate) {
-      document.addEventListener("scene:update-triggered", () =>
+      document.addEventListener(ENGINE_EVENTS.TIGGERED_UPDATE, () =>
         onTriggeredUpdate(this)
       );
     }

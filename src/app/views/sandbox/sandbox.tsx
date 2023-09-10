@@ -7,15 +7,12 @@ import { useInteractiveScene } from "visual/display/components/interactive-scene
 import { useWebGLRenderer } from "visual/display/hooks/use-three-js/renderer";
 import { RootContainer } from "visual/node/root/root-container";
 import { useSetUpCamera } from "visual/set-up/config/three-js/use-camera/useCamera";
-import {
-  MaskPass,
-  ClearMaskPass,
-} from "three/examples/jsm//postprocessing/MaskPass.js";
+import { MaskPass } from "three/examples/jsm//postprocessing/MaskPass.js";
 import { Scene } from "three";
 import { useThreadWithPostProcessor } from "visual/display/hooks/use-thread";
-import { useScene } from "visual/display/hooks/use-three-js/use-scene/useScene";
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import { DEFAULT_SCENE_PROPERTIES } from "visual/set-up/config/config.constants";
+import { sceneTriggeredUpdateEvent } from "visual/display/engine/engineEvents";
 
 export const Sandbox = () => (
   <WindowStateProvider>
@@ -37,7 +34,7 @@ const SandboxContent = () => {
 };
 const DEFAULT_SCENE_FUNCTIONS = {
   onTimeUpdate: (scene: InteractiveScene) => {
-    console.log("test");
+    sceneTriggeredUpdateEvent();
   },
 };
 const EMPTY_EVENT_CONFIG = [];
@@ -62,10 +59,13 @@ const SceneData = ({
   renderer.autoClear = false;
 
   const passes = useMemo(() => {
+    if (!scene1 || !scene2) {
+      return [];
+    }
     const maskPass1 = new MaskPass(scene1 as Scene, camera);
     const maskPass2 = new MaskPass(scene2 as Scene, camera);
     return [maskPass1, maskPass2];
-  }, []);
+  }, [scene1, scene2]);
   const scene = useInteractiveScene(
     DEFAULT_SCENE_FUNCTIONS,
     EMPTY_EVENT_CONFIG,
@@ -87,6 +87,12 @@ const SceneData = ({
   );
 };
 
+const TRIGGER_SCENE_FUNCTIONS = {
+  onTriggeredUpdate: (scene: InteractiveScene) => {
+    sceneTriggeredUpdateEvent();
+  },
+};
+
 const useScenes = (props: SceneNodeProps) => {
   const {
     animations = [],
@@ -94,7 +100,7 @@ const useScenes = (props: SceneNodeProps) => {
     sceneData: { lights, meshes, sceneComponents, sceneProperties },
   } = props;
   return useInteractiveScene(
-    EMPTY_SCENE_FUNCTIONS,
+    TRIGGER_SCENE_FUNCTIONS,
     events,
     animations,
     meshes,
