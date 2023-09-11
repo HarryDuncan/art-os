@@ -1,4 +1,4 @@
-import { TrigFunctionType } from "../../animation.types";
+import { TrigFunctionType } from "visual/display/animation/animation.types";
 import { oscillate } from "./oscilate";
 
 export const updateStepTrigonometrically = (

@@ -42,6 +42,10 @@ export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
   curve?: Vector3[];
 }
 
+export interface ShaderAnimationConfig extends AnimationPropertiesConfig {
+  snapOnPause?: boolean;
+}
+
 export type FallAnimationConfig = AnimationPropertiesConfig;
 
 export type TrigFunctionType = keyof typeof TRIG_FUNCTION_TYPES;
@@ -58,6 +62,7 @@ export type AnimationProperties =
   | RotationAnimationConfig
   | SpinAnimationConfig
   | TraversalAnimationConfig
-  | TrigonometricAnimationConfig;
+  | TrigonometricAnimationConfig
+  | ShaderAnimationConfig;
 
 export type AnimationType = keyof typeof ANIMATION_TYPES;

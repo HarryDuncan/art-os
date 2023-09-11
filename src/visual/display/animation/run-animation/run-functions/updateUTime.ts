@@ -1,16 +1,23 @@
 import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { shaderAnimationLoop } from "../../animation-functions/animation-loop/shaderAnimationLoop";
-import { AnimatedScene, AnimationProperties } from "../../animation.types";
+import { AnimatedScene, ShaderAnimationConfig } from "../../animation.types";
+import { setUpAnimationLoopParams } from "../../animation-functions/shader-animations/animation-loop/setUpAnimationLoop";
 
 export const updateUTime = (
   scene: AnimatedScene,
-  animationProperties: AnimationProperties,
+  animationProperties: ShaderAnimationConfig,
   animatedObjects: ShaderMeshObject[]
 ) => {
   let startTime: number;
   let uTime = 0;
-  const { animationDurationMilis } = animationProperties;
+  const {
+    animationDurationMilis,
+    repeatAnimation,
+    snapOnPause,
+    animationPauseMilis,
+  } = animationProperties;
   const duration = animationDurationMilis / 1000;
+  const loopParams = setUpAnimationLoopParams();
   function step(timestamp: number) {
     if (!startTime) startTime = timestamp;
     const progress = timestamp - startTime;
@@ -24,11 +31,13 @@ export const updateUTime = (
       requestAnimationFrame(step);
     } else {
       startTime = 0;
-      if (animationProperties.repeatAnimation) {
+      if (snapOnPause) {
+      }
+      if (repeatAnimation) {
         setTimeout(() => {
           scene.clock.getDelta();
           requestAnimationFrame(step);
-        }, animationProperties.animationPauseMilis);
+        }, animationPauseMilis);
       }
     }
   }

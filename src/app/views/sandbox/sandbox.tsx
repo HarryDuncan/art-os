@@ -13,6 +13,7 @@ import { useThreadWithPostProcessor } from "visual/display/hooks/use-thread";
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import { DEFAULT_SCENE_PROPERTIES } from "visual/set-up/config/config.constants";
 import { sceneTriggeredUpdateEvent } from "visual/display/engine/engineEvents";
+import { startSceneElementAnimations } from "visual/display/animation/animation-manager/startSceneElementAnimations";
 
 export const Sandbox = () => (
   <WindowStateProvider>
@@ -50,8 +51,8 @@ const SceneData = ({
 }) => {
   const container = useRef<HTMLDivElement | null>(null);
   const currentFrameRef: React.MutableRefObject<number> = useRef(0);
-  const scene1 = useScenes(props1);
-  const scene2 = useScenes(props2);
+  const scene1 = useScenes(props1, 1);
+  const scene2 = useScenes(props2, 2);
   const renderer = useWebGLRenderer();
   const setUpcamera = useSetUpCamera();
   const camera = useMemo(() => setUpcamera(), [setUpcamera]);
@@ -89,11 +90,11 @@ const SceneData = ({
 
 const TRIGGER_SCENE_FUNCTIONS = {
   onTriggeredUpdate: (scene: InteractiveScene) => {
-    sceneTriggeredUpdateEvent();
+    startSceneElementAnimations(scene);
   },
 };
 
-const useScenes = (props: SceneNodeProps) => {
+const useScenes = (props: SceneNodeProps, num: number) => {
   const {
     animations = [],
     events,
@@ -107,6 +108,9 @@ const useScenes = (props: SceneNodeProps) => {
     lights,
     sceneComponents,
     ORBIT,
-    sceneProperties
+    {
+      ...sceneProperties,
+      sceneId: String(num),
+    }
   );
 };

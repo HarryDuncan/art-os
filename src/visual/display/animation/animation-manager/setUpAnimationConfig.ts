@@ -1,4 +1,4 @@
-import { calculateCurve } from "../animation-functions/traversal/calculateBeizier";
+import { calculateCurve } from "../animation-functions/mesh-animations/traversal/calculateBeizier";
 import { ANIMATION_TYPES } from "../animation.constants";
 import { AnimationConfig, TraversalAnimationConfig } from "../animation.types";
 import { DEFAULT_ANIMATION_DURATION_MILIS } from "../animation.defaults";

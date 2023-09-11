@@ -28,6 +28,8 @@ export class InteractiveScene extends Scene {
 
   orbitControls: OrbitControls | null;
 
+  guid: string;
+
   eventsSet: boolean;
 
   constructor(
@@ -36,6 +38,7 @@ export class InteractiveScene extends Scene {
     animationConfig: AnimationConfig[]
   ) {
     super();
+    this.guid = "";
     this.sceneFunctions = sceneFunctions;
     this.clock = new Clock();
     this.bindExecutionFunctions();

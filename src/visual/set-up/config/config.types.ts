@@ -122,6 +122,7 @@ export type SceneConfig = {
 };
 
 export type SceneProperties = {
+  sceneId?: string;
   position: string;
   viewWidth: string;
   viewHeight: string;
