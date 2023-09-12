@@ -1,40 +1,6 @@
-import { ExtendedMesh } from "visual/set-up/config/mesh/mesh.types";
 import { ANIMATION_LOOP_TYPES } from "../animationLoop.consts";
-import { setUpAnimationLoop } from "../setUpAnimationLoop";
 import { getLoopType } from "../getLoopTypes";
 
-const MOCK = [
-  {
-    uniform: "uProgress",
-    loopType: ANIMATION_LOOP_TYPES.ZERO_TO_ONE,
-  },
-  {
-    uniform: "uOpacity1",
-    loopType: ANIMATION_LOOP_TYPES.ONE_TO_ONE,
-    toMaterial: "material-1",
-  },
-  {
-    uniform: "uOpacity2",
-    loopType: ANIMATION_LOOP_TYPES.ZERO_TO_ZERO,
-    toMaterial: "material-2",
-  },
-];
-const mockObject = {
-  material: {
-    name: "",
-    uniforms: {
-      uTime: {
-        value: 0,
-      },
-      uProgress: {
-        value: 1.0,
-      },
-      uOpacity1: {
-        value: 0.0,
-      },
-    },
-  },
-};
 const MOCK_START = 0;
 const MOCK_MID = 50;
 const MOCK_END = 100;
