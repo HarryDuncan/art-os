@@ -18,18 +18,17 @@ export const transformGeometry = (
       case MESH_TRANSFORM.MORPH: {
         const morphMeshes = formattedGeometries
           .filter((geometry) =>
-            transform.transformedMeshIds.includes(geometry.name)
+            transform.transformedMeshIds.includes(geometry.name ?? "")
           )
           .sort((a, b) => {
-            const indexA = transform.transformedMeshIds.indexOf(a.name);
-            const indexB = transform.transformedMeshIds.indexOf(b.name);
+            const indexA = transform.transformedMeshIds.indexOf(a.name ?? "");
+            const indexB = transform.transformedMeshIds.indexOf(b.name ?? "");
             return indexA - indexB;
           });
         if (!morphMeshes.length) {
           console.warn("no morph meshes selected check your transform");
         }
 
-        // TODO - test for same vertex count
         const maxVertexCount = Math.max(
           ...morphMeshes.map(({ geometry }) => getVerticiesCount(geometry))
         );
@@ -58,6 +57,43 @@ export const transformGeometry = (
           new BufferAttribute(pointIds, 1)
         );
 
+        const angles = new Float32Array(maxVertexCount / 3);
+        angles.forEach((_value, index) => {
+          angles[index] = Math.random();
+        });
+        morphMeshes[0].geometry.setAttribute(
+          "angle",
+          new BufferAttribute(angles, 1)
+        );
+
+        // const random = new Float32Array(maxVertexCount / 3);
+        // random.forEach((_value, index) => {
+        //   random[index] = parseFloat(
+        //     Math.round(Math.random() * 100).toFixed(1)
+        //   );
+        // });
+        // console.log(random);
+        // morphMeshes[0].geometry.setAttribute(
+        //   "random",
+        //   new BufferAttribute(random, 1)
+        // );
+
+        const randomBool = new Float32Array(maxVertexCount / 3);
+        randomBool.forEach((_value, index) => {
+          randomBool[index] = Math.random() < 0.5 ? 1.0 : 0.0;
+        });
+        morphMeshes[0].geometry.setAttribute(
+          "randomBool",
+          new BufferAttribute(randomBool, 1)
+        );
+        const randomBool2 = new Float32Array(maxVertexCount / 3);
+        randomBool2.forEach((_value, index) => {
+          randomBool2[index] = Math.random() < 0.7 ? 1.0 : 0.0;
+        });
+        morphMeshes[0].geometry.setAttribute(
+          "randomBool2",
+          new BufferAttribute(randomBool2, 1)
+        );
         return morphMeshes;
       }
       default: {

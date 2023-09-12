@@ -15,4 +15,5 @@ export const DEFAULT_SCENE_PROPERTIES = {
   viewHeight: "100vh",
   backgroundColor: "white",
   backgroundUrl: "",
+  position: "fixed",
 };

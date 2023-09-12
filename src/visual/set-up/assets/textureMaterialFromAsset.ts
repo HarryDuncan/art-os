@@ -3,10 +3,10 @@ import { getMaterial } from "visual/display/materials/getMaterial";
 import {
   EnvMapType,
   MaterialType,
-} from "visual/display/materials/materials.types";
+} from "visual/set-up/config/material/materials.types";
 import { hasCommonValues } from "visual/display/utils/hasCommonElement";
 import { Asset, ASSET_TAG } from "./asset.types";
-import { ENV_MAP_TYPES } from "visual/display/materials/materials.constants";
+import { ENV_MAP_TYPES } from "visual/display/materials/materials.consts";
 
 export const textureMaterialFromAsset = (assets: Asset[]) =>
   sortMaterialsFromAssets(assets).flatMap((asset: Asset) => {

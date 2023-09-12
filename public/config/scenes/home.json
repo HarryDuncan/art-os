@@ -1,10 +1,10 @@
 [
   {
     "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": -1, "z": 15 } },
+      "camera": { "position": { "x": 0, "y": -2, "z": 15 } },
       "controls": {
         "minDistance": 10,
-        "maxDistance": 10
+        "maxDistance": 25
       }
     },
 
@@ -175,11 +175,19 @@
     "meshTransforms": [
       {
         "type": "MORPH",
-        "meshes": ["art-geometry-2", "tech-geometry-2", "magic-geometry-2"]
+        "transformedMeshIds": [
+          "art-geometry-2",
+          "tech-geometry-2",
+          "magic-geometry-2"
+        ]
       },
       {
         "type": "MORPH",
-        "meshes": ["art-geometry", "tech-geometry", "magic-geometry"]
+        "transformedMeshIds": [
+          "art-geometry",
+          "tech-geometry",
+          "magic-geometry"
+        ]
       }
     ],
     "globalMaterialConfigs": [
@@ -266,8 +274,7 @@
         "blendingConfig": {},
         "materialProps": {
           "shaderConfig": {
-            "shaderId": "homeMorph",
-            "fragmentShaderId": "hjdBinary",
+            "shaderId": "homeMorphTransition",
             "assetMapping": [
               {
                 "uniform": "uTextureZero",
@@ -301,25 +308,45 @@
         "animationId": "uTime",
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
-        "animationConfig": {
-          "animationDurationMilis": -1,
-          "animationPauseMilis": -1,
-          "repeatAnimation": true
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": 500,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ONE"
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "ONE_TO_ONE",
+              "toMaterial": "morphing-material-1"
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "ZERO_TO_ZERO",
+              "toMaterial": "morphing-material-2"
+            },
+            {
+              "uniform": "uLoopCount",
+              "loopType": "COUNT",
+              "loopLimit": 3
+            }
+          ],
+          "snapOnPause": true
         }
       },
       {
         "animationId": "curve-rotate",
         "targetIdentifier": "curve",
         "animationFunctionType": "ALL",
-        "animationConfig": {
+        "animationProperties": {
           "animationType": "SPIN",
-          "animationProperties": {
-            "speed": 0.0006,
-            "rotationAxis": "Y",
-            "animationDurationMilis": -1,
-            "animationPauseMilis": -1,
-            "repeatAnimation": true
-          }
+          "speed": 0.0006,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
         }
       }
     ],
@@ -340,7 +367,18 @@
         "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
       }
     ],
+    "scenePropertiesConfig": {
+      "position": "fixed"
+    },
     "sceneComponentConfigs": [],
-    "interactionConfig": []
+    "interactionConfig": [],
+    "screenSizeAdjustments": [
+      {
+        "screenType": "MOBILE",
+        "threeJsConfig": {
+          "camera": { "position": { "x": 0, "y": -2, "z": 25 } }
+        }
+      }
+    ]
   }
 ]

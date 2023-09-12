@@ -1,13 +1,19 @@
 import { performAnimation } from "../performAnimation";
-import { AnimationConfig } from "../../animation.types";
+
 import { MeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { Object3D } from "three";
+import { AnimationProperties } from "../../animation.types";
 
 export const animateAll = (
-  animationConfig: AnimationConfig,
+  animationProperties: AnimationProperties,
   animatedObjects: MeshObject[] | Object3D[]
 ) => {
-  const { animationProperties, animationType } = animationConfig;
+  const {
+    animationDurationMilis,
+    animationType,
+    repeatAnimation,
+    animationPauseMilis,
+  } = animationProperties;
   let startTime: number;
   function step(timestamp: number) {
     if (!startTime) startTime = timestamp;
@@ -15,17 +21,14 @@ export const animateAll = (
     animatedObjects.forEach((object) => {
       performAnimation(animationType, object, progress, animationProperties);
     });
-    if (
-      progress < animationProperties.animationDurationMilis ||
-      animationProperties.animationDurationMilis === -1
-    ) {
+    if (progress < animationDurationMilis || animationDurationMilis === -1) {
       requestAnimationFrame(step);
     } else {
       startTime = 0;
-      if (animationProperties.repeatAnimation) {
+      if (repeatAnimation) {
         setTimeout(() => {
           requestAnimationFrame(step);
-        }, animationProperties.animationPauseMilis);
+        }, animationPauseMilis);
       }
     }
   }

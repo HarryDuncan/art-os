@@ -1,5 +1,0 @@
-export const ANIMATION_LOOP_TYPES = {
-  ONE_TO_ONE: "ONE_TO_ONE",
-  ZERO_TO_ONE: "ZERO_TO_ONE",
-  ZERO_TO_ZERO: "ZERO_TO_ZERO",
-};

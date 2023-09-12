@@ -1,15 +1,15 @@
 export interface BoundingBox {
-  min: ThreeDPosition;
-  max: ThreeDPosition;
+  min: Position3d;
+  max: Position3d;
 }
 
-export interface ThreeDPosition {
+export interface Position3d {
   x: number;
   y: number;
   z: number;
 }
 
-export type PositionConfig = Partial<ThreeDPosition>;
+export type PositionConfig = Partial<Position3d>;
 export const AXIS = {
   X: "X",
   Y: "Y",

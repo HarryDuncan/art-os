@@ -1,22 +1,22 @@
 import { Camera } from "three";
-import { CustomAnimationConfig } from "../animation.types";
+import { AnimatedScene, AnimationConfig } from "../animation.types";
 import { runAnimation } from "../run-animation/runAnimation";
 import { setUpAnimationConfig } from "./setUpAnimationConfig";
 import { GENERIC_TARGET_IDENTIFIERS } from "../animation.constants";
 import { runCameraAnimation } from "../run-animation/runCameraAnimation";
-import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 
 export class AnimationManager {
-  sceneElementAnimations: CustomAnimationConfig[];
+  sceneElementAnimations: AnimationConfig[];
 
-  cameraElementAnimations: CustomAnimationConfig[];
+  cameraElementAnimations: AnimationConfig[];
 
-  constructor() {
+  constructor(animationConfig: AnimationConfig[]) {
     this.sceneElementAnimations = [];
     this.cameraElementAnimations = [];
+    this.initializeAnimations(animationConfig);
   }
 
-  initializeAnimations(animations: CustomAnimationConfig[]) {
+  initializeAnimations(animations: AnimationConfig[]) {
     animations.forEach((animation) => {
       if (
         this.sceneElementAnimations.findIndex(
@@ -36,27 +36,16 @@ export class AnimationManager {
     });
   }
 
-  startAnimation(scene: InteractiveScene, animationId: string) {
+  startAnimation(scene: AnimatedScene, animationId: string) {
     const animation = this.sceneElementAnimations.find(
       (configuredAnimation) => configuredAnimation.animationId === animationId
     );
     if (!animation) {
       console.warn(`animation: ${animationId} has not been initialized`);
     } else if (animation?.isRunning === false) {
-      const {
-        animationConfig,
-        targetIdentifier,
-        animationFunctionType,
-      } = animation;
-      const initializedAnimationConfig = setUpAnimationConfig(animationConfig);
+      const initializedConfig = setUpAnimationConfig(animation);
       animation.isRunning = true;
-      runAnimation(
-        scene,
-        animationFunctionType,
-        targetIdentifier,
-        initializedAnimationConfig,
-        animationId
-      );
+      runAnimation(scene, initializedConfig, animationId);
     }
   }
 
@@ -71,14 +60,9 @@ export class AnimationManager {
       console.warn(`no camera animations configured`);
     }
     if (animation.isRunning === false) {
-      const { animationConfig, animationFunctionType } = animation;
-      const initializedAnimationConfig = setUpAnimationConfig(animationConfig);
+      const initializedAnimationConfig = setUpAnimationConfig(animation);
       animation.isRunning = true;
-      runCameraAnimation(
-        camera,
-        animationFunctionType,
-        initializedAnimationConfig
-      );
+      runCameraAnimation(camera, initializedAnimationConfig);
     }
   }
 

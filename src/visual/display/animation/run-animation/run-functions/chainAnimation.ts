@@ -1,14 +1,19 @@
 import { stepAndWrap } from "visual/display/utils/stepAndWrap";
 import { MeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { Object3D } from "three";
-import { AnimationConfig } from "../../animation.types";
+import { AnimationProperties } from "../../animation.types";
 import { performAnimation } from "../performAnimation";
 
 export const chainAnimation = (
-  animationConfig: AnimationConfig,
+  animationProperties: AnimationProperties,
   animatedObjects: MeshObject[] | Object3D[]
 ) => {
-  const { animationProperties, animationType } = animationConfig;
+  const {
+    animationDurationMilis,
+    animationType,
+    animationPauseMilis,
+    repeatAnimation,
+  } = animationProperties;
   let startTime: number;
   let currentItemIndex = 0;
   function step(timestamp: number) {
@@ -16,10 +21,7 @@ export const chainAnimation = (
     if (!startTime) startTime = timestamp;
     const progress = timestamp - startTime;
     performAnimation(animationType, object, progress, animationProperties);
-    if (
-      progress < animationProperties.animationDurationMilis ||
-      animationProperties.animationDurationMilis === -1
-    ) {
+    if (progress < animationDurationMilis || animationDurationMilis === -1) {
       requestAnimationFrame(step);
     } else {
       startTime = 0;
@@ -28,10 +30,10 @@ export const chainAnimation = (
         animatedObjects.length - 1,
         currentItemIndex
       );
-      if (animationProperties.repeatAnimation) {
+      if (repeatAnimation) {
         setTimeout(() => {
-          step(timestamp + animationProperties.animationPauseMilis);
-        }, animationProperties.animationPauseMilis);
+          step(timestamp + animationPauseMilis);
+        }, animationPauseMilis);
       }
     }
   }

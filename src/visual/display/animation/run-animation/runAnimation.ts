@@ -1,18 +1,25 @@
-import { AnimationConfig, AnimationFunctionType } from "../animation.types";
+import {
+  AnimatedScene,
+  AnimationConfig,
+  ShaderAnimationConfig,
+} from "../animation.types";
 import { ANIMATION_FUNCTION_TYPES } from "../animation.constants";
 import { animateAll } from "./run-functions/animateAll";
 import { getSceneElementByName } from "visual/display/helpers/scene/getSceneElementByName";
-import { updateUTime } from "./run-functions/updateUTime";
 import { chainAnimation } from "./run-functions/chainAnimation";
-import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
+import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
+import { runShaderAnimations } from "../animation-functions/shader-animations/runShaderAnimations";
 
 export const runAnimation = (
-  scene: InteractiveScene,
-  animationFunctionType: AnimationFunctionType,
-  targetIdentifier: string,
-  initializedAnimationConfig: AnimationConfig,
+  scene: AnimatedScene,
+  animationConfig: AnimationConfig,
   animationId: string
 ) => {
+  const {
+    targetIdentifier,
+    animationFunctionType,
+    animationProperties,
+  } = animationConfig;
   const animatedObjects = getSceneElementByName(scene, targetIdentifier);
   if (!animatedObjects.length) {
     console.warn(
@@ -22,13 +29,17 @@ export const runAnimation = (
   }
   switch (animationFunctionType) {
     case ANIMATION_FUNCTION_TYPES.CHAIN:
-      chainAnimation(initializedAnimationConfig, animatedObjects);
+      chainAnimation(animationProperties, animatedObjects);
       break;
     case ANIMATION_FUNCTION_TYPES.UTIME:
-      updateUTime(scene, initializedAnimationConfig, animatedObjects);
+      runShaderAnimations(
+        scene,
+        animationProperties as ShaderAnimationConfig,
+        animatedObjects as ShaderMeshObject[]
+      );
       break;
     case ANIMATION_FUNCTION_TYPES.ALL:
     default:
-      animateAll(initializedAnimationConfig, animatedObjects);
+      animateAll(animationProperties, animatedObjects);
   }
 };

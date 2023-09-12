@@ -1,0 +1,351 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": -1, "z": 15 } },
+      "controls": {
+        "minDistance": 10,
+        "maxDistance": 10
+      }
+    },
+
+    "assets": [
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      },
+      {
+        "name": "metal-materials",
+        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "id": "art-geometry",
+        "name": "art-geometry",
+        "url": "../assets/models/website/home/art-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "id": "magic-geometry",
+        "name": "magic-geometry",
+        "url": "../assets/models/website/home/magic-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "id": "tech-geometry",
+        "name": "tech-geometry",
+        "url": "../assets/models/website/home/tech-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
+        "name": "hjdcurves1-geometry",
+        "url": "../assets/models/hjd-lines/line-1.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves2-geometry",
+        "url": "../assets/models/hjd-lines/line-2.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves3-geometry",
+        "url": "../assets/models/hjd-lines/line-3.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves4-geometry",
+        "url": "../assets/models/hjd-lines/line-4.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+
+    "meshComponentConfigs": [
+      {
+        "id": "hjdcurves1",
+        "geometryId": "Cube",
+        "size": 50,
+        "position": { "x": -0.5, "y": 0, "z": 0 },
+        "rotation": { "x": -90, "y": -130, "z": -40 },
+
+        "materialId": "phong-color-two"
+      },
+      {
+        "id": "hjdcurves2",
+        "geometryId": "Cube.003",
+        "size": 50,
+        "position": { "x": 1.5, "z": -3.2 },
+        "rotation": { "x": 110, "y": -10, "z": 10 },
+        "materialId": "phong-color-two"
+      },
+      {
+        "id": "hjdcurves3",
+        "geometryId": "Cube.001",
+        "size": 50,
+        "position": { "x": 0.5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 40, "z": -0 },
+        "materialId": "phong-color-one"
+      },
+      {
+        "id": "hjdcurves4",
+        "geometryId": "Cube.002",
+        "size": 50,
+        "position": { "x": -1.5, "z": -3 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "phong-color-one"
+      },
+
+      {
+        "id": "magic-geometry-2",
+        "geometryId": "magic-geometry",
+        "meshType": "NONE",
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "materialId": "morphing-material-2"
+      },
+      {
+        "id": "tech-geometry-2",
+        "geometryId": "tech-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material-2"
+      },
+      {
+        "id": "art-geometry-2",
+        "geometryId": "art-geometry",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material-2"
+      },
+      {
+        "id": "magic-geometry",
+        "geometryId": "magic-geometry",
+        "meshType": "NONE",
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "materialId": "morphing-material-1"
+      },
+      {
+        "id": "tech-geometry",
+        "geometryId": "tech-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+
+        "materialId": "morphing-material-1"
+      },
+      {
+        "id": "art-geometry",
+        "geometryId": "art-geometry",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "meshType": "MESH",
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material-1"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": [
+          "art-geometry-2",
+          "tech-geometry-2",
+          "magic-geometry-2"
+        ]
+      },
+      {
+        "type": "MORPH",
+        "transformedMeshIds": [
+          "art-geometry",
+          "tech-geometry",
+          "magic-geometry"
+        ]
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "compute-background",
+        "materialProps": {
+          "color": "#111111",
+          "specular": "#bfbfbf",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-one",
+        "materialProps": {
+          "color": "#1902b0",
+          "specular": "#0000ff",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-two",
+        "materialProps": {
+          "color": "#c70606",
+          "specular": "#ff0303",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "morphing-material-1",
+        "materialType": "SHADER",
+        "blendingConfig": {},
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "homeMorph",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome",
+                "relationship": "MATCAP"
+              },
+              {
+                "uniform": "uTextureZero",
+                "assetId": "0-texture",
+                "relationship": "TEXTURE"
+              },
+              {
+                "uniform": "uTextureOne",
+                "assetId": "1-texture",
+                "relationship": "TEXTURE"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null },
+            "uMaterial": { "value": null },
+            "uFrame": {
+              "value": 0.0
+            },
+            "uOpacity": {
+              "value": 0.0
+            },
+            "uLoopCount": {
+              "value": 0.0
+            },
+            "uProgress": {
+              "value": 0.0
+            },
+            "uMouse": {
+              "value": null
+            },
+            "uPosition": {
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "id": "morphing-material-2",
+        "materialType": "SHADER",
+        "blendingConfig": {},
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "homeMorphTransition",
+            "assetMapping": [
+              {
+                "uniform": "uTextureZero",
+                "assetId": "0-texture",
+                "relationship": "TEXTURE"
+              },
+              {
+                "uniform": "uTextureOne",
+                "assetId": "1-texture",
+                "relationship": "TEXTURE"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uLoopCount": {
+              "value": 0.0
+            },
+            "uProgress": {
+              "value": 0.0
+            },
+            "uOpacity": {
+              "value": 0.0
+            }
+          }
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "uTime",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationConfig": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": 500,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "curve",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.0006,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "interactionConfig": []
+  }
+]

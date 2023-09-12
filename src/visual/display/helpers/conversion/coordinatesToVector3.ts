@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import { ThreeDPosition } from "../three-dimension-space/position/position.types";
+import { Position3d } from "../three-dimension-space/position/position.types";
 
-export const coordinatesToVector3 = (coordinate: ThreeDPosition) =>
+export const coordinatesToVector3 = (coordinate: Position3d) =>
   new Vector3(coordinate.x, coordinate.y, coordinate.z);

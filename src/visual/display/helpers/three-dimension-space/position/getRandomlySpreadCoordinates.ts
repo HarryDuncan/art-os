@@ -1,4 +1,4 @@
-import { BoundingBox, ThreeDPosition } from "./position.types";
+import { BoundingBox, Position3d } from "./position.types";
 
 const MAX_FIND_TIME = 10000;
 
@@ -7,9 +7,9 @@ export const generateRandomlySpreadCoordinates = (
   allowedBoundingBoxes: BoundingBox[],
   exclusionBoundingBoxes: BoundingBox[],
   minDistance: number
-): ThreeDPosition[] => {
+): Position3d[] => {
   // Create an empty list to store the generated points
-  const points: ThreeDPosition[] = [];
+  const points: Position3d[] = [];
   const startTime = new Date().getTime();
 
   // While there are fewer points than desired
@@ -79,7 +79,7 @@ export const generateRandomlySpreadCoordinates = (
   return points;
 };
 
-function distance(a: ThreeDPosition, b: ThreeDPosition): number {
+function distance(a: Position3d, b: Position3d): number {
   const dx = a.x - b.x;
   const dy = a.y - b.y;
   const dz = a.z - b.z;

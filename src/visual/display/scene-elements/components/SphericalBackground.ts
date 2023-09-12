@@ -1,4 +1,4 @@
-import { Mesh, SphereGeometry } from "three";
+import { Material, Mesh, SphereGeometry, Vector3 } from "three";
 import { SphericalBackgroundProps } from "./threeJsComponents.types";
 import { DEFAULT_ROTATION } from "visual/display/helpers/three-dimension-space/threeDSpace.constants";
 import { DEFAULT_MATERIAL } from "visual/display/materials/materials.defaults";
@@ -19,7 +19,10 @@ export const SphericalBackground = ({
   return sphere;
 };
 
-const setRotation = (object, rotation) => {
+const setRotation = (
+  object: Mesh<SphereGeometry, Material>,
+  rotation: Vector3
+) => {
   const { x, y, z } = rotation;
   object.rotation.set(x, y, z);
 };

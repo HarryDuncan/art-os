@@ -1,5 +1,10 @@
+import { SCREEN_TYPE } from "./windowState.consts";
+
+export type ScreenType = keyof typeof SCREEN_TYPE;
+
 export interface WindowStateContextProps {
   state: WindowState;
+
   dispatch: React.Dispatch<WindowStateAction>;
 }
 
@@ -11,6 +16,7 @@ export interface WindowSize {
 export interface WindowState {
   windowSize: WindowSize;
   devicePixelRatio: number;
+  screenType: ScreenType;
 }
 
 export type WindowStateAction =

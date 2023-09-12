@@ -1,4 +1,4 @@
-import { BoundingBox, ThreeDPosition } from "./position/position.types";
+import { BoundingBox, Position3d } from "./position/position.types";
 
 export const createBoundingBox = ({
   center,
@@ -6,7 +6,7 @@ export const createBoundingBox = ({
   height,
   depth,
 }: {
-  center: Partial<ThreeDPosition>;
+  center: Partial<Position3d>;
   width: number;
   height: number;
   depth: number;

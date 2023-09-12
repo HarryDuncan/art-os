@@ -1,7 +1,7 @@
 import { BufferGeometry, Group, Object3D, Texture } from "three";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { BoundingBox } from "visual/display/helpers/three-dimension-space/position/position.types";
-import { MATERIAL_TYPES } from "visual/display/materials/materials.constants";
+import { MATERIAL_TYPES } from "visual/display/materials/materials.consts";
 
 export const ASSET_TYPES = {
   MODEL3D: "MODEL3D",

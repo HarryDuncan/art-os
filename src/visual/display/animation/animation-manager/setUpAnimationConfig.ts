@@ -1,12 +1,14 @@
-import { calculateCurve } from "../animation-functions/traversal/calculateBeizier";
+import { calculateCurve } from "../animation-functions/mesh-animations/traversal/calculateBeizier";
 import { ANIMATION_TYPES } from "../animation.constants";
 import { AnimationConfig, TraversalAnimationConfig } from "../animation.types";
 import { DEFAULT_ANIMATION_DURATION_MILIS } from "../animation.defaults";
 import { positionConfigToVector3 } from "visual/display/helpers/conversion/positionConfigToVector3";
 
-export const setUpAnimationConfig = (animationConfig: AnimationConfig) => {
+export const setUpAnimationConfig = (
+  animationConfig: AnimationConfig
+): AnimationConfig => {
   const { animationProperties } = animationConfig;
-  switch (animationConfig.animationType) {
+  switch (animationProperties.animationType) {
     case ANIMATION_TYPES.TRAVERSE: {
       const {
         startPosition,

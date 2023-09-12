@@ -1,11 +1,11 @@
-import { BoundingBox, ThreeDPosition } from "./position.types";
+import { BoundingBox, Position3d } from "./position.types";
 
 export const getRandomCoordinatesInBoundingBoxes = (
   boundingBoxes: BoundingBox[],
   excludingBoxes: BoundingBox[],
   numberOfCoordinates: number
-): ThreeDPosition[] => {
-  const coordinates: ThreeDPosition[] = [];
+): Position3d[] => {
+  const coordinates: Position3d[] = [];
   while (coordinates.length < numberOfCoordinates) {
     const boundingBox =
       boundingBoxes[Math.floor(Math.random() * boundingBoxes.length)];

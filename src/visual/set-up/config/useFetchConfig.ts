@@ -7,7 +7,7 @@ export const useFetchConfig = (filePath: string) => {
   const configuredData = useAssetLocation(data);
   useEffect(() => {
     const fetchData = async () => {
-      if (!data) {
+      if (!data && filePath.length) {
         try {
           const response = await fetch(filePath);
           if (!response.ok) {
