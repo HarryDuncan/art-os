@@ -3,7 +3,7 @@ import {
   LightConfigs,
   SceneLight,
 } from "visual/display/scene-elements/lights/lights.types";
-import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { Position3d } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { MaterialConfig } from "visual/set-up/config/material/materials.types";
 import { InteractionConfig } from "interaction/interactions.types";
 import { Asset } from "visual/set-up/assets/asset.types";
@@ -24,7 +24,7 @@ export type RandomizationConfig = {
     width: number;
     height: number;
     depth: number;
-    center: Partial<ThreeDPosition>;
+    center: Partial<Position3d>;
   };
 };
 
@@ -38,8 +38,8 @@ export type MeshComponentConfig = {
   id: string;
   geometryId?: string;
   materialId?: string;
-  rotation?: Partial<ThreeDPosition>;
-  position?: Partial<ThreeDPosition>;
+  rotation?: Partial<Position3d>;
+  position?: Partial<Position3d>;
   randomizationConfig?: RandomizationConfig;
   geometryConfig?: GeometryConfig;
   groupId?: string;

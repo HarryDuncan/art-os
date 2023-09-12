@@ -1,4 +1,4 @@
-import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { Position3d } from "visual/display/helpers/three-dimension-space/position/position.types";
 
 export const CAMERA_TYPES = {
   PERSPECTIVE_CAMERA: "perspectiveCamera",
@@ -8,7 +8,7 @@ export type CameraType = keyof typeof CAMERA_TYPES;
 
 export interface CameraConfig {
   cameraType: CameraType;
-  position: Partial<ThreeDPosition>;
+  position: Partial<Position3d>;
   perspectiveCameraConfig?: PerspectiveCameraConfig;
   orthographicCameraConfig?: OrthographicCameraConfig;
 }

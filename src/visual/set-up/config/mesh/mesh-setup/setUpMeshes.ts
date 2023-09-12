@@ -3,7 +3,7 @@ import {
   MeshConfig,
   MESH_TYPES,
 } from "visual/set-up/assets/geometry/geometry.types";
-import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { Position3d } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { CustomMesh } from "../mesh.types";
 
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) =>
@@ -40,8 +40,8 @@ const getMesh = (
 const formatMesh = (
   mesh: CustomMesh,
   name: string,
-  position?: ThreeDPosition,
-  rotation?: ThreeDPosition,
+  position?: Position3d,
+  rotation?: Position3d,
   groupId?: string
 ) => {
   mesh.name = name;

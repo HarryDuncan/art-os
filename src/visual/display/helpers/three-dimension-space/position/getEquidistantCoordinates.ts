@@ -1,10 +1,10 @@
-import { AXIS, Axis, BoundingBox, ThreeDPosition } from "./position.types";
+import { AXIS, Axis, BoundingBox, Position3d } from "./position.types";
 
 export const getEquidistantCoordinates = (
   numCoordinates: number,
   boundingBox: BoundingBox,
   axis: Axis
-): ThreeDPosition[] => {
+): Position3d[] => {
   let interval: number;
   const midY = (boundingBox.max.y + boundingBox.min.y) / 2;
   switch (axis) {

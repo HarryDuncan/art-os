@@ -1,5 +1,5 @@
 import { BufferGeometry, Material } from "three";
-import { ThreeDPosition } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { Position3d } from "visual/display/helpers/three-dimension-space/position/position.types";
 
 export const MESH_TYPES = {
   MESH: "MESH",
@@ -14,8 +14,8 @@ export type MeshAttributeConfig = {
 
 export interface FormattedGeometry {
   geometry: BufferGeometry;
-  position?: ThreeDPosition;
-  rotation?: ThreeDPosition;
+  position?: Position3d;
+  rotation?: Position3d;
   name?: string;
   groupId?: string;
 }

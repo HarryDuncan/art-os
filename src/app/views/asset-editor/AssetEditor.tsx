@@ -11,6 +11,7 @@ import { Asset } from "visual/set-up/assets/asset.types";
 import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
 import { preTransform } from "./pre-transform/preTransform";
 import { useAssets } from "visual/set-up/assets/useAssets";
+import { subdivideBufferGeometry } from "./subdivide/subdivideMesh";
 
 const preTranformConfig = {
   centerGeometry: true,
@@ -40,9 +41,13 @@ export const AssetEditor = () => {
           return [];
         }
         console.log(metaData);
+        const originalBufferGeometry = getAssetBufferGeometry(
+          initializedAssets[index]
+        );
 
         return transformGeometryVerticies(
           bufferGeometry,
+          originalBufferGeometry,
           maxVertexCount,
           metaData,
           transformConfig
