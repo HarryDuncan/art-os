@@ -332,7 +332,8 @@
               "loopType": "COUNT",
               "loopLimit": 3
             }
-          ]
+          ],
+          "snapOnPause": true
         }
       },
       {

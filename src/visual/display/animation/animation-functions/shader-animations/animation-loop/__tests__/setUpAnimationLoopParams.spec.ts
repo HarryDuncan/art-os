@@ -17,6 +17,11 @@ const MOCK = [
     loopType: ANIMATION_LOOP_TYPES.ZERO_TO_ZERO,
     toMaterial: "material-2",
   },
+  {
+    uniform: "uCount",
+    loopType: ANIMATION_LOOP_TYPES.COUNT,
+    loopLimit: 3,
+  },
 ];
 const mockObject = {
   material: {
@@ -30,6 +35,9 @@ const mockObject = {
       },
       uOpacity1: {
         value: 0.0,
+      },
+      uCount: {
+        value: 0,
       },
     },
   },
@@ -77,5 +85,20 @@ describe("setUpAnimationLoop", () => {
     const testShaderObject = { ...mockObject };
     const [shaderMesh] = animationLoop(testShaderObject, 20);
     expect(shaderMesh.material.uniforms.uTime.value).toEqual(20);
+  });
+
+  test("loop counts reset after completing x amounts of loops", () => {
+    const animationLoop = setUpAnimationLoop(MOCK, 40);
+    const testShaderObject = { ...mockObject };
+    const [shaderMesh] = animationLoop(testShaderObject, 20);
+    expect(shaderMesh.material.uniforms.uCount.value).toEqual(0);
+    const [shaderMesh2] = animationLoop(testShaderObject, 40);
+    expect(shaderMesh2.material.uniforms.uCount.value).toEqual(1);
+    const [shaderMesh3] = animationLoop(testShaderObject, 80);
+    expect(shaderMesh3.material.uniforms.uCount.value).toEqual(2);
+    const [shaderMesh4] = animationLoop(testShaderObject, 120);
+    expect(shaderMesh4.material.uniforms.uCount.value).toEqual(0);
+    const [shaderMesh5] = animationLoop(testShaderObject, 130);
+    expect(shaderMesh5.material.uniforms.uCount.value).toEqual(0);
   });
 });

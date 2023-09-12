@@ -1,5 +1,4 @@
 import { ANIMATION_LOOP_TYPES } from "../animationLoop.consts";
-import { getLoopType } from "../getLoopTypes";
 import { snapAnimationLoopOnPause } from "../snapAnimationLoopOnPause";
 
 const MOCK = [
@@ -10,7 +9,6 @@ const MOCK = [
   {
     uniform: "uOneToOne",
     loopType: ANIMATION_LOOP_TYPES.ONE_TO_ONE,
-    toMaterial: "material-1",
   },
   {
     uniform: "uZeroToZero",
@@ -23,6 +21,16 @@ const MOCK = [
   {
     uniform: "uLoopCount",
     loopType: ANIMATION_LOOP_TYPES.COUNT,
+  },
+  {
+    uniform: "uTestMaterial",
+    loopType: ANIMATION_LOOP_TYPES.ONE_TO_ONE,
+    toMaterial: "test",
+  },
+  {
+    uniform: "uTestMaterial2",
+    loopType: ANIMATION_LOOP_TYPES.ZERO_TO_ZERO,
+    toMaterial: "test-2",
   },
 ];
 const mockObject = {
@@ -46,6 +54,12 @@ const mockObject = {
       },
       uLoopCount: {
         value: 5,
+      },
+      uTestMaterial: {
+        value: 0.5,
+      },
+      uTestMaterial2: {
+        value: 0.5,
       },
     },
   },
@@ -76,5 +90,12 @@ describe("snapAnimationLoopOnPause", () => {
     const shaderObject = { ...mockObject };
     snapAnimationLoopOnPause(MOCK, shaderObject);
     expect(shaderObject.material.uniforms.uLinear.value).toEqual(199.0);
+  });
+  test("doesnt snap functions if toMaterial isn't matching the objects material name", () => {
+    const shaderObject = { ...mockObject };
+    mockObject.material.name = "test";
+    snapAnimationLoopOnPause(MOCK, shaderObject);
+    expect(shaderObject.material.uniforms.uTestMaterial.value).toEqual(1);
+    expect(shaderObject.material.uniforms.uTestMaterial2.value).toEqual(0.5);
   });
 });

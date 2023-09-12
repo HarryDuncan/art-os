@@ -10,17 +10,22 @@ export const snapAnimationLoopOnPause = (
   config: AnimationLoopConfigItem[],
   animatedObject: ExtendedMesh
 ) => {
-  config.forEach(({ loopType, uniform }) => {
+  config.forEach(({ loopType, uniform, toMaterial }) => {
     const loopKey = screamingSnakeToCamel(loopType);
-    switch (loopType) {
-      case ANIMATION_LOOP_TYPES.ONE_TO_ONE:
-      case ANIMATION_LOOP_TYPES.ZERO_TO_ONE:
-      case ANIMATION_LOOP_TYPES.ZERO_TO_ZERO:
-        const uniformValue = ANIMATION_LOOP_KEYPOINTS[loopKey].end;
-        updateObjectUniformByKey(animatedObject, uniform, uniformValue);
-        break;
-      default:
-        break;
+    if (
+      (toMaterial && animatedObject.material.name === toMaterial) ||
+      !toMaterial
+    ) {
+      switch (loopType) {
+        case ANIMATION_LOOP_TYPES.ONE_TO_ONE:
+        case ANIMATION_LOOP_TYPES.ZERO_TO_ONE:
+        case ANIMATION_LOOP_TYPES.ZERO_TO_ZERO:
+          const uniformValue = ANIMATION_LOOP_KEYPOINTS[loopKey].end;
+          updateObjectUniformByKey(animatedObject, uniform, uniformValue);
+          break;
+        default:
+          break;
+      }
     }
   });
 };
