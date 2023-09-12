@@ -326,6 +326,11 @@
               "uniform": "uOpacity",
               "loopType": "ZERO_TO_ZERO",
               "toMaterial": "morphing-material-2"
+            },
+            {
+              "uniform": "uLoopCount",
+              "loopType": "COUNT",
+              "loopLimit": 3
             }
           ]
         }

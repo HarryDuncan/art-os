@@ -1,5 +1,4 @@
 import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
-import { shaderAnimationLoop } from "../animation-loop/shaderAnimationLoop";
 import { AnimatedScene, ShaderAnimationConfig } from "../../animation.types";
 import { setUpAnimationLoop } from "./animation-loop/setUpAnimationLoop";
 

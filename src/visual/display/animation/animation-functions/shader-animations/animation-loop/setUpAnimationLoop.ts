@@ -13,12 +13,13 @@ export const setUpAnimationLoop = (
 ): ((shaderMesh: ExtendedMesh, time: number) => [shaderMesh : ExtendedMesh, time : number]) => {
   const animationConfig = [...defaultConfig, ...config ] as AnimationLoopConfigItem[]
   const animationLoopFunctions = animationConfig.map(
-    ({ uniform, loopType, duration, steepness, toMaterial }) => {
+    ({ uniform, loopType, duration, steepness, toMaterial , loopLimit}) => {
       const animationLoopDuration = duration ?? loopDuration;
       const loopFunction = getLoopType(
         loopType,
         animationLoopDuration,
-        steepness
+        steepness,
+        loopLimit
       );
       return (shaderMesh: ExtendedMesh, time: number) => {
         const uniformValue = loopFunction(time);
