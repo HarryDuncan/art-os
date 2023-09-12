@@ -9,3 +9,18 @@ export const ANIMATION_LOOP_TYPES = {
 export const DEFAULT_DURATION_SECONDS = 10;
 export const DEFAULT_STEEPNESS = 1;
 export const DEFAULT_LOOP_LIMIT = 1;
+
+export const ANIMATION_LOOP_KEYPOINTS = {
+  oneToOne: {
+    start: 1,
+    end: 1,
+  },
+  zeroToOne: {
+    start: 0,
+    end: 1,
+  },
+  zeroToZero: {
+    start: 0,
+    end: 0,
+  },
+};
