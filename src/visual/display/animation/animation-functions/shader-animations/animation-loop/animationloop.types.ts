@@ -1,4 +1,4 @@
-import { ANIMATION_LOOP_TYPES } from "../../animation-loop/animationLoop.consts";
+import { ANIMATION_LOOP_TYPES } from "./animationLoop.consts";
 
 export type AnimationLoopType = keyof typeof ANIMATION_LOOP_TYPES;
 export interface AnimationLoopConfigItem {
@@ -7,4 +7,5 @@ export interface AnimationLoopConfigItem {
   duration?: number;
   steepness?: number;
   toMaterial?: string;
+  loopLimit?: number;
 }

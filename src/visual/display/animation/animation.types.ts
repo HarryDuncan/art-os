@@ -6,6 +6,7 @@ import {
   TRIG_FUNCTION_TYPES,
 } from "./animation.constants";
 import { Axis } from "../helpers/three-dimension-space/position/position.types";
+import { AnimationLoopConfigItem } from "./animation-functions/shader-animations/animation-loop/animationloop.types";
 
 // to avoid dependency cycle
 export type AnimatedScene = Scene & {
@@ -44,6 +45,7 @@ export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
 
 export interface ShaderAnimationConfig extends AnimationPropertiesConfig {
   snapOnPause?: boolean;
+  animationLoopConfig: AnimationLoopConfigItem[];
 }
 
 export type FallAnimationConfig = AnimationPropertiesConfig;

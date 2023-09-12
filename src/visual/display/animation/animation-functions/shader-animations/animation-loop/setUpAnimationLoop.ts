@@ -1,13 +1,18 @@
 import { ExtendedMesh } from "visual/set-up/config/mesh/mesh.types";
-import { getLoopType } from "../../animation-loop/getLoopTypes";
+import { getLoopType } from "./getLoopTypes";
 import { updateObjectUniformByKey } from "../uniforms/updateObjectUniformByKey";
 import { AnimationLoopConfigItem } from "./animationloop.types";
 
-export const setUpAnimationLoopParams = (
+const defaultConfig = [{
+  "uniform": "uTime",
+  "loopType": "LINEAR"
+}];
+export const setUpAnimationLoop = (
   config: AnimationLoopConfigItem[],
   loopDuration?: number
-): ((shaderMesh: ExtendedMesh, time: number) => [shaderMesh, time]) => {
-  const animationLoopFunctions = config.map(
+): ((shaderMesh: ExtendedMesh, time: number) => [shaderMesh : ExtendedMesh, time : number]) => {
+  const animationConfig = [...defaultConfig, ...config ] as AnimationLoopConfigItem[]
+  const animationLoopFunctions = animationConfig.map(
     ({ uniform, loopType, duration, steepness, toMaterial }) => {
       const animationLoopDuration = duration ?? loopDuration;
       const loopFunction = getLoopType(
