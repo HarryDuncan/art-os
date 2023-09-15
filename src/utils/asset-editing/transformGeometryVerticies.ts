@@ -15,7 +15,7 @@ import {
 export interface TransformGeometryConfig {
   extraVertexPoints: number;
 }
-export const transformGeometryVerticies = (
+export const transformGeometryVertices = (
   geometry: BufferGeometry,
   originalBufferGeometry,
   maxVertexCount: number,
@@ -28,7 +28,7 @@ export const transformGeometryVerticies = (
   if (extraVertexCount <= 0) {
     return geometry;
   }
-  const allVerticies = setUpExtraVertexPoints(
+  const allVertices = setUpExtraVertexPoints(
     originalBufferGeometry,
     extraVertexCount,
     assetMetaData,
@@ -38,7 +38,7 @@ export const transformGeometryVerticies = (
   const totalLength = vertexCount + extraVertexCount;
   const combinedArray = new Float32Array(totalLength);
   combinedArray.set(currentVertices, 0);
-  combinedArray.set(allVerticies, currentVertices.length);
+  combinedArray.set(allVertices, currentVertices.length);
   const newGeometry = new BufferGeometry();
   newGeometry.setAttribute("position", new BufferAttribute(combinedArray, 3));
 
@@ -76,7 +76,7 @@ const setUpExtraVertexPoints = (
   const arraySize = Math.floor(extraVertexCount / extraVertexPoints);
   const remainderArraySize =
     extraVertexCount - arraySize * (extraVertexPoints - 1);
-  console.log(targetPoints);
+
   return targetPoints.flatMap((coordinates, index) =>
     fillPoints(
       index === extraVertexPoints - 1 ? remainderArraySize : arraySize,
@@ -104,7 +104,6 @@ const nearestPointInBufferGeometry = (
   const positionAttribute = bufferGeometry.getAttribute("position");
   const positions = positionAttribute.array as Float32Array;
   const numVertices = positions.length / 3;
-  console.log(numVertices);
   const pointAsVector = new Vector3(point.x, point.y, point.z);
   let nearestVertexIndexes: number[] = [];
   let nearestDistance = Number.POSITIVE_INFINITY;
@@ -120,9 +119,9 @@ const nearestPointInBufferGeometry = (
 
     // Check if this vertex is closer than the current nearest vertex
     if (distance < nearestDistance) {
-      nearestVertexIndexes = [i];
       nearestDistance = distance;
       nearestPoint = vertex;
+      nearestVertexIndexes = [i];
     } else if (distance === nearestDistance) {
       // If there are multiple vertices at the same distance, add them to the list
       nearestVertexIndexes.push(i);

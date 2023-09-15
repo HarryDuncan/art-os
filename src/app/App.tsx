@@ -17,7 +17,7 @@ import { Sandbox } from "./views/sandbox/sandbox";
 import { AppendContainer } from "./components/AppendContainer";
 import { useAppConfigs } from "./hooks/useSetUpConfigs";
 import { useInteractionNode } from "interaction/external/useInteractionNode";
-import { AssetEditor } from "./views/asset-editor/AssetEditor";
+import { GeometryPreprocess } from "./views/asset-editor/GeometryPreprocess";
 
 export const AppContainer = styled.div`
   margin: 0;
@@ -51,7 +51,11 @@ export const AppContent = () => {
         <Route exact path="/digital-art" component={DigitalArt} />
         <Route exact path="/sandbox" component={Sandbox} />
         <Route exact path="/" component={Landing} />
-        <Route exact path="/asset-editor" component={AssetEditor} />
+        <Route
+          exact
+          path="/geometry-preprocess"
+          component={GeometryPreprocess}
+        />
       </Switch>
       <AppendContainer />
     </AppContainer>
