@@ -1,6 +1,6 @@
-import { chunkArray } from "../chunksArray";
+import { chunkArray } from "../chunkArray";
 
-describe("createArrayChunks", () => {
+describe("chunkArray", () => {
   test("chunks array of 5 million to 5 arrays of 1 million items DEFAULT_CHUNK_SIZE", () => {
     const large = new Array(5000000);
     const chunks = chunkArray(large);

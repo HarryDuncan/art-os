@@ -49,6 +49,7 @@ export interface MaterialConfig {
 
 export type ShaderMaterial = Material & {
   uniforms: Record<string, UniformValue>;
+  name: string;
 };
 export type MaterialUniform = Record<string, UniformValue>;
 export type UniformValue = Record<"value", unknown>;

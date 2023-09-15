@@ -1,4 +1,4 @@
-import { CHUNK_SIZE } from "../../../editGeometry.consts";
+import { CHUNK_SIZE } from "../../editGeometry.consts";
 
 export const chunkArray = (array: number[], chunkSize = CHUNK_SIZE) => {
   const numChunks = Math.ceil(array.length / chunkSize);

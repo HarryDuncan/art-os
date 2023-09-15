@@ -11,18 +11,20 @@ import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAs
 import { preTransform } from "./pre-transform/preTransform";
 import { useAssets } from "visual/set-up/assets/useAssets";
 import { setSameVertexCount } from "./geometry/vertex/setSameVertexCount";
+import { AXIS } from "visual/display/helpers/three-dimension-space/position/position.types";
 
 const preTranformConfig = {
   centerGeometry: true,
 };
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/morph-demo.json`);
+  const assets = useFetchData(`${CONFIG}assets/assets.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );
 
   const transformConfig = {
-    vertexPositionsCount: 5,
+    vertexPositionsCount: 3,
+    vertexPositionAxis: AXIS.Y,
   };
   const sameVertices = useCallback(() => {
     const preTransformed = preTransform(initializedAssets, preTranformConfig);
@@ -39,7 +41,7 @@ export const GeometryPreprocess = () => {
           console.warn(`no metadata found for ${asset.name}`);
           return [];
         }
-        console.log(metaData);
+
         const originalBufferGeometry = getAssetBufferGeometry(
           initializedAssets[index]
         );

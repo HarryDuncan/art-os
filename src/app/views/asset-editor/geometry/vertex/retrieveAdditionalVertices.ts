@@ -6,11 +6,7 @@ import {
   VertexAdditonConfig,
 } from "../editGeometry.types";
 import { vector3ToPosition3d } from "visual/display/helpers/conversion/vector3ToThreeDPosition";
-import {
-  AXIS,
-  Axis,
-  Position3d,
-} from "visual/display/helpers/three-dimension-space/position/position.types";
+import { Position3d } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { fillPoints } from "./helpers/fillPoints";
 
 export const retrieveAdditionalVertices = (
@@ -20,11 +16,11 @@ export const retrieveAdditionalVertices = (
   config: VertexAdditonConfig
 ): AdditonalVertexPosition[] => {
   const { boundingBox } = assetMetaData;
-  const { vertexPositionsCount } = config;
+  const { vertexPositionsCount, vertexPositionAxis } = config;
   const extraPoints = getEquidistantCoordinates(
     vertexPositionsCount,
     boundingBox,
-    AXIS.Y as Axis
+    vertexPositionAxis
   );
   const vCount = extraVertexCount;
 
@@ -32,7 +28,7 @@ export const retrieveAdditionalVertices = (
   const remainderArraySize =
     extraVertexCount - arraySize * (vertexPositionsCount - 1);
 
-  return extraPoints.flatMap((point, index) => {
+  const additionalVertices = extraPoints.flatMap((point, index) => {
     const { nearestPoint, vertexIndex } = nearestPointInBufferGeometry(
       point,
       originalBufferGeometry
@@ -47,6 +43,7 @@ export const retrieveAdditionalVertices = (
     );
     return { vertices, insertPosition: vertexIndex };
   });
+  return additionalVertices;
 };
 
 const nearestPointInBufferGeometry = (
@@ -57,11 +54,11 @@ const nearestPointInBufferGeometry = (
   const positions = positionAttribute.array as Float32Array;
   const numVertices = positions.length / 3;
   const pointAsVector = new Vector3(point.x, point.y, point.z);
-  let vertexIndex: number = 0;
+  let vertexIndex = 0;
   let nearestDistance = Number.POSITIVE_INFINITY;
   let nearestPoint: Vector3 | null = null;
   // Iterate through all vertices and calculate distances
-  for (let i = 0; i < numVertices; i++) {
+  for (let i = 0; i < numVertices; i += 1) {
     const x = positions[i * 3];
     const y = positions[i * 3 + 1];
     const z = positions[i * 3 + 2];

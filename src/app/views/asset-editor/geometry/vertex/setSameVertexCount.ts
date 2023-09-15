@@ -2,6 +2,7 @@ import { BufferAttribute, BufferGeometry } from "three";
 import { AssetMetaData } from "visual/set-up/assets/asset.types";
 import {
   getPositionsLength,
+  getVertexArray,
   getVertices,
 } from "visual/set-up/config/mesh/geometry/attributes/attribute.functions";
 import { retrieveAdditionalVertices } from "./retrieveAdditionalVertices";
@@ -15,7 +16,7 @@ export const setSameVertexCount = (
   assetMetaData: AssetMetaData,
   config: VertexAdditonConfig
 ) => {
-  const currentVertices = getVertices(geometry);
+  const currentVertices = getVertexArray(geometry);
   const vertexCount = getPositionsLength(geometry);
   const extraVertexCount = maxVertexCount - vertexCount;
   if (extraVertexCount <= 0) {
@@ -29,7 +30,7 @@ export const setSameVertexCount = (
   );
   const totalLength = vertexCount + extraVertexCount;
   const combinedVertices = combineVertices(
-    currentVertices as number[],
+    currentVertices,
     additional,
     totalLength
   );

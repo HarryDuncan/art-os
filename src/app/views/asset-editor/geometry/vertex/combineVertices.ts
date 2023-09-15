@@ -1,8 +1,9 @@
 import { CHUNK_SIZE } from "../editGeometry.consts";
 import { AdditonalVertexPosition } from "../editGeometry.types";
-import { chunkArray } from "./helpers/chunking/chunksArray";
+import { chunkArray } from "./helpers/chunkArray";
 import { fillPoints } from "./helpers/fillPoints";
 
+const ADDITIONAL_CHUNK_SIZE = 10000;
 export const combineVertices = (
   currentVertices: number[],
   additionalVertices: AdditonalVertexPosition[],
@@ -13,6 +14,11 @@ export const combineVertices = (
   additionalVertices.forEach(({ vertices, insertPosition }) => {
     const chunkIndex = Math.floor(insertPosition / CHUNK_SIZE);
     const chunkOffset = insertPosition % CHUNK_SIZE;
+    const chunkedAdditional = chunkArray(vertices, ADDITIONAL_CHUNK_SIZE);
+    chunkedAdditional.forEach((additional) => {});
+    console.log(chunkIndex);
+    console.log(chunks);
+    console.log(chunks[chunkIndex]);
     chunks[chunkIndex].splice(chunkOffset + addedVertexCount, 0, ...vertices);
     addedVertexCount += vertices.length;
   });

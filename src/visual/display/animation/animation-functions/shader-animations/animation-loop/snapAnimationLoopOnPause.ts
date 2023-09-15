@@ -1,4 +1,4 @@
-import { ExtendedMesh } from "visual/set-up/config/mesh/mesh.types";
+import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { updateObjectUniformByKey } from "../uniforms/updateObjectUniformByKey";
 import {
   ANIMATION_LOOP_KEYPOINTS,
@@ -8,7 +8,7 @@ import { AnimationLoopConfigItem } from "./animationloop.types";
 
 export const snapAnimationLoopOnPause = (
   config: AnimationLoopConfigItem[],
-  animatedObject: ExtendedMesh
+  animatedObject: ShaderMeshObject
 ) => {
   config.forEach(({ loopType, uniform, toMaterial }) => {
     const loopKey = screamingSnakeToCamel(loopType);
@@ -30,15 +30,10 @@ export const snapAnimationLoopOnPause = (
   });
 };
 
-function screamingSnakeToCamel(screamingSnake) {
-  // Split the input string into words using underscores as separators
+const screamingSnakeToCamel = (screamingSnake: string) => {
   const words = screamingSnake.toLowerCase().split("_");
-
-  // Capitalize the first letter of each word except the first one
-  for (let i = 1; i < words.length; i++) {
+  for (let i = 1; i < words.length; i += 1) {
     words[i] = words[i][0].toUpperCase() + words[i].slice(1);
   }
-
-  // Concatenate the words together without any spaces or underscores
   return words.join("");
-}
+};
