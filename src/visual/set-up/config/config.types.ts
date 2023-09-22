@@ -15,8 +15,13 @@ import {
 } from "visual/display/scene-elements/components/threeJsComponents.types";
 import { MESH_TRANSFORM } from "./mesh/mesh.consts";
 import { ScreenType } from "visual/compat/window-state/types";
-import { Object3D, Texture } from "three";
-import { ThreeJsParams } from "visual/display/hooks/use-three-js/types";
+import {
+  Object3D,
+  OrthographicCamera,
+  PerspectiveCamera,
+  Texture,
+} from "three";
+import { RendererParams } from "visual/display/hooks/use-three-js/renderer/types";
 
 export type RandomizationConfig = {
   instanceCount: number;
@@ -131,6 +136,12 @@ export type SceneProperties = {
   background?: Texture;
   videoBackground?: string;
   fixed?: boolean;
+};
+
+export type ThreeJsParams = {
+  camera: PerspectiveCamera | OrthographicCamera;
+  renderer?: RendererParams;
+  controls?: Partial<ControlConfig>;
 };
 
 export type SceneData = {

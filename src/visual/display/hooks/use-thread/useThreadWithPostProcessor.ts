@@ -1,5 +1,6 @@
 import { MutableRefObject, useCallback, useEffect, useRef } from "react";
 import { Camera, WebGLRenderer } from "three";
+import { Pass } from "three/examples/jsm/postprocessing/Pass";
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import PostProcessor from "visual/display/components/post-processor/PostProcessor";
 import { sceneUpdateEvent } from "visual/display/engine/engineEvents";
@@ -9,7 +10,7 @@ export const useThreadWithPostProcessor = (
   scene: InteractiveScene | null,
   camera: Camera,
   renderer: WebGLRenderer,
-  passes
+  passes: Pass[]
 ) => {
   const postProcessor: MutableRefObject<null | PostProcessor> = useRef(null);
 

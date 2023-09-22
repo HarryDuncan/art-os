@@ -17,7 +17,7 @@ const preTranformConfig = {
   centerGeometry: true,
 };
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/assets.json`);
+  const assets = useFetchData(`${CONFIG}assets/hjd.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );
@@ -25,6 +25,19 @@ export const GeometryPreprocess = () => {
   const transformConfig = {
     vertexPositionsCount: 3,
     vertexPositionAxis: AXIS.Y,
+  };
+  const centerToOrigin = () => {
+    const preTransformed = preTransform(initializedAssets, preTranformConfig);
+    const transformedGeometry = preTransformed.flatMap((asset, index) => {
+      const bufferGeometry = getAssetBufferGeometry(asset);
+      return bufferGeometry;
+    });
+    transformedGeometry.forEach((transformed, index) => {
+      const fileName = initializedAssets[index].name;
+      const asObj3d = new Mesh(transformed);
+      asObj3d.name = initializedAssets[index].id;
+      handleExportClick(asObj3d, fileName);
+    });
   };
   const sameVertices = useCallback(() => {
     const preTransformed = preTransform(initializedAssets, preTranformConfig);
@@ -82,6 +95,10 @@ export const GeometryPreprocess = () => {
       <h2>Extract Metadata</h2>
       <button onClick={extractAssetMetadata} disabled={!areAssetsInitialized}>
         Extract Metadata
+      </button>
+      <h2>Center to origin</h2>
+      <button onClick={centerToOrigin} disabled={!areAssetsInitialized}>
+        Center to origin
       </button>
     </Container>
   );

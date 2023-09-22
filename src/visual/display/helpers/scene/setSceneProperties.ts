@@ -1,4 +1,3 @@
-import { Scene } from "three";
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 import { SceneProperties } from "visual/set-up/config/config.types";
 

@@ -37,7 +37,6 @@ export const WindowStateProvider = ({ children }: { children: ReactNode }) => {
     };
     handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };

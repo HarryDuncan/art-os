@@ -2,8 +2,8 @@ import { useRef } from "react";
 import { useInitializeNode } from "../use-initialize-node/useInitializeNode";
 import { useWebGLRenderer } from "./renderer";
 import { useCssRenderer } from "./renderer/use-css-renderer";
-import { ThreeJsParams } from "./types";
 import { useOrbitControls } from "./use-orbit-controls/useOrbitControls";
+import { ThreeJsParams } from "visual/set-up/config/config.types";
 
 export const useThreeJs = (threeJsParams: ThreeJsParams) => {
   const { camera } = threeJsParams;

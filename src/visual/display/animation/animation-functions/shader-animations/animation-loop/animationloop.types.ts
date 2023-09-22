@@ -9,3 +9,8 @@ export interface AnimationLoopConfigItem {
   toMaterial?: string;
   loopLimit?: number;
 }
+
+export type AnimationLoopKeyPoint = {
+  start: number;
+  end: number;
+};

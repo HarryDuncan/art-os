@@ -1,10 +1,10 @@
 import { Camera, Scene, WebGLRenderer, WebGLRenderTarget } from "three";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import {
-  PostProcessorCamera,
-  PostProcessorPasses,
-} from "./postProcessor.types";
+  EffectComposer,
+  Pass,
+} from "three/examples/jsm/postprocessing/EffectComposer";
+import { PostProcessorCamera } from "./postProcessor.types";
 import { defaultRenderTargetParameters } from "./postProcessor.consts";
 
 export default class PostProcessor extends EffectComposer {
@@ -23,7 +23,7 @@ export default class PostProcessor extends EffectComposer {
     renderer: WebGLRenderer;
     camera: Camera;
     scene: Scene;
-    passes?;
+    passes?: Pass[];
   }) {
     const renderTarget = new WebGLRenderTarget(
       window.innerHeight,
@@ -48,7 +48,7 @@ export default class PostProcessor extends EffectComposer {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
-  addPasses(passes) {
+  addPasses(passes: Pass[]) {
     const renderPass = new RenderPass(this.scene, this.camera);
     this.addPass(renderPass);
     passes.forEach((pass) => {
@@ -63,7 +63,7 @@ export default class PostProcessor extends EffectComposer {
   }: {
     camera: Camera;
     scene: Scene;
-    passes?: PostProcessorPasses[];
+    passes?: Pass[];
   }) {
     this.camera = camera as PostProcessorCamera;
     this.scene = scene;

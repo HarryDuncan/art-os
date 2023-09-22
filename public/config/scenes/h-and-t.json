@@ -24,10 +24,9 @@
       },
       {
         "name": "metal-materials",
-        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "url": "../assets/textures/matcaps/neon-blur.jpg",
         "assetType": "TEXTURE",
-        "id": "chrome",
-        "assetTag": ["MATCAP"]
+        "id": "chrome"
       },
       {
         "name": "hjdcurves1-geometry",
@@ -140,9 +139,7 @@
       {
         "id": "matcap-material",
         "materialProps": {
-          "color": "#c70606",
-          "specular": "#ff0303",
-          "shininess": 50
+          "assetId": "chrome"
         },
         "materialType": "MATCAP"
       },
