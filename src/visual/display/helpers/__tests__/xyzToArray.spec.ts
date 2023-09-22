@@ -1,4 +1,3 @@
-import { describe, expect, test } from "vitest";
 import { xyzToArray } from "../xyzToArray";
 
 describe("coordinateObjectToArray", () => {

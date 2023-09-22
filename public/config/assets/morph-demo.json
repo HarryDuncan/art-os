@@ -1,0 +1,14 @@
+[
+  {
+    "id": "nymph-geometry",
+    "name": "nymph-geometry-transformed",
+    "url": "../assets/models/NymphFixed.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "bust-geometry",
+    "name": "bust-geometry-transformed",
+    "url": "../assets/models/sculptures/HerculesBust.obj",
+    "assetType": "MODEL3D"
+  }
+]

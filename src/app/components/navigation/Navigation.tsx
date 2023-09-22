@@ -6,13 +6,18 @@ export function Navigation() {
     () => [
       {
         key: "digital-art",
-        title: "Gallery",
+        title: "Scenes",
         link: "digital-art",
       },
       {
-        key: "asset-editor",
-        title: "Asset Editor",
-        link: "asset-editor",
+        key: "geometry-preprocess",
+        title: "Geometry Preprocess",
+        link: "geometry-preprocess",
+      },
+      {
+        key: "texture-preprocess",
+        title: "Texture Preprocess",
+        link: "geometry-preprocess",
       },
       {
         key: "sandbox",

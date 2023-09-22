@@ -19,5 +19,12 @@
     "configPath": "scenes/hjd-scene",
     "componentId": "InteractiveSceneContainer",
     "cardImageName": "hjd2.jpg"
+  },
+  {
+    "title": "H and T",
+    "configId": "hAndT",
+    "configPath": "scenes/h-and-t",
+    "componentId": "InteractiveSceneContainer",
+    "cardImageName": "hjd2.jpg"
   }
 ]

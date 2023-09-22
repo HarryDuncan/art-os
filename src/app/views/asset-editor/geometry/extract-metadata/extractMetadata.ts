@@ -1,4 +1,3 @@
-import { BufferGeometry } from "three";
 import { Asset } from "visual/set-up/assets/asset.types";
 import { getPositionsLength } from "visual/set-up/config/mesh/geometry/attributes/attribute.functions";
 import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAssetGeometries";

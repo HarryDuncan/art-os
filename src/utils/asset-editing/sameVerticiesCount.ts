@@ -6,7 +6,7 @@ import { getPositionsLength } from "visual/set-up/config/mesh/geometry/attribute
 export const maxVerticesCount = (geometries) =>
   Math.max(...geometries.map((geometry) => getPositionsLength(geometry)));
 
-export const sameVerticiesCount = (geometries: BufferGeometry[]) => {
+export const sameVerticesCount = (geometries: BufferGeometry[]) => {
   // Find the count of the geometry with the most vertices
   const maxVerticesCount = Math.max(
     ...geometries.map((geometry) => geometry.attributes.position.count)

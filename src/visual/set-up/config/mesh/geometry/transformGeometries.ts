@@ -1,7 +1,7 @@
 import { BufferAttribute } from "three";
 import {
   getGeometryAttributes,
-  getVerticiesCount,
+  getVerticesCount,
 } from "./attributes/attribute.functions";
 import { MESH_TRANSFORM } from "../mesh.consts";
 import { MeshTransformConfig } from "../../config.types";
@@ -30,20 +30,20 @@ export const transformGeometry = (
         }
 
         const maxVertexCount = Math.max(
-          ...morphMeshes.map(({ geometry }) => getVerticiesCount(geometry))
+          ...morphMeshes.map(({ geometry }) => getVerticesCount(geometry))
         );
         morphMeshes.forEach((morphTarget, index) => {
           if (index !== 0) {
-            const { verticies } = getGeometryAttributes(morphTarget.geometry);
+            const { vertices } = getGeometryAttributes(morphTarget.geometry);
 
             morphMeshes[0].geometry.setAttribute(
               `morphPosition_${index}`,
-              new BufferAttribute(verticies, 3)
+              new BufferAttribute(vertices, 3)
             );
 
             morphMeshes[0].geometry.setAttribute(
               `morphNormal_${index}`,
-              new BufferAttribute(verticies, 3)
+              new BufferAttribute(vertices, 3)
             );
           }
         });
