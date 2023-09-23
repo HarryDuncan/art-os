@@ -3,8 +3,8 @@ import {
   MeshConfig,
   MESH_TYPES,
 } from "visual/set-up/assets/geometry/geometry.types";
-import { Position3d } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { CustomMesh } from "../mesh.types";
+import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
 
 export const setUpMeshes = (meshConfigs: MeshConfig[] = []) =>
   meshConfigs.flatMap(

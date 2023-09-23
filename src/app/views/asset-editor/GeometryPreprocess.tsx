@@ -11,7 +11,8 @@ import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAs
 import { preTransform } from "./pre-transform/preTransform";
 import { useAssets } from "visual/set-up/assets/useAssets";
 import { setSameVertexCount } from "./geometry/vertex/setSameVertexCount";
-import { AXIS } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { getEdgesGeometry } from "./geometry/edges-geometry/getEdgesGeometry";
+import { AXIS } from "visual/utils/three-dimension-space/position/position.types";
 
 const preTranformConfig = {
   centerGeometry: true,
@@ -83,6 +84,20 @@ export const GeometryPreprocess = () => {
     downloadJsonFile(updatedAssetData, `asset-data`);
   };
 
+  const getEdges = () => {
+    initializedAssets.map((asset) => {
+      const bufferGeometry = getAssetBufferGeometry(asset);
+      if (bufferGeometry) {
+        console.log(bufferGeometry);
+        const edges = getEdgesGeometry(bufferGeometry);
+        const fileName = asset.name;
+        const asObj3d = new Mesh(edges);
+        asObj3d.name = asset.id;
+        handleExportClick(asObj3d, fileName);
+      }
+    });
+  };
+
   return (
     <Container>
       <h1>Geometry Preprocess</h1>
@@ -99,6 +114,10 @@ export const GeometryPreprocess = () => {
       <h2>Center to origin</h2>
       <button onClick={centerToOrigin} disabled={!areAssetsInitialized}>
         Center to origin
+      </button>
+      <h2>Get Edges Geometry</h2>
+      <button onClick={getEdges} disabled={!areAssetsInitialized}>
+        Get Edges
       </button>
     </Container>
   );

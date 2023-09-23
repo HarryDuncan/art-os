@@ -1,5 +1,5 @@
 import { BufferGeometry } from "three";
-import { BoundingBox } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { BoundingBox } from "visual/utils/three-dimension-space/position/position.types";
 
 export const getGeometryBoundingBox = (
   bufferGeometry: BufferGeometry

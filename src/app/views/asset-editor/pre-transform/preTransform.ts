@@ -1,4 +1,4 @@
-import { translateToOrigin } from "utils/asset-editing/translateToOrigin";
+import { translateToOrigin } from "app/views/asset-editor/pre-transform/translateToOrigin";
 import { Asset } from "visual/set-up/assets/asset.types";
 import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
 

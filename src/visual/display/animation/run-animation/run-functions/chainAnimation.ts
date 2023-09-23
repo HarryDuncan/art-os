@@ -1,8 +1,8 @@
-import { stepAndWrap } from "visual/display/utils/stepAndWrap";
 import { MeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { Object3D } from "three";
 import { AnimationProperties } from "../../animation.types";
 import { performAnimation } from "../performAnimation";
+import { stepAndWrap } from "visual/utils/maths/maths";
 
 export const chainAnimation = (
   animationProperties: AnimationProperties,

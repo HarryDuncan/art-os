@@ -1,8 +1,8 @@
+import { MeshObject } from "visual/set-up/config/mesh/mesh.types";
 import {
   AXIS,
   Axis,
-} from "visual/display/helpers/three-dimension-space/position/position.types";
-import { MeshObject } from "visual/set-up/config/mesh/mesh.types";
+} from "visual/utils/three-dimension-space/position/position.types";
 
 export const rotateMeshAlongAxis = (
   mesh: MeshObject,

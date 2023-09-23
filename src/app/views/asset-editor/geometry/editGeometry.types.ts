@@ -1,4 +1,4 @@
-import { Axis } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { Axis } from "visual/utils/three-dimension-space/position/position.types";
 
 export interface VertexAdditonConfig {
   vertexPositionsCount: number;

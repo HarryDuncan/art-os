@@ -8,8 +8,8 @@ import { AnimationConfig } from "visual/display/animation/animation.types";
 import { Object3D } from "three";
 import { SceneLight } from "visual/display/scene-elements/lights/lights.types";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { setSceneProperties } from "visual/display/helpers/scene/setSceneProperties";
 import { SceneProperties } from "visual/set-up/config/config.types";
+import { setSceneProperties } from "visual/utils/scene/setSceneProperties";
 
 export const useInteractiveScene = (
   sceneFunction: InteractiveSceneFunctions,

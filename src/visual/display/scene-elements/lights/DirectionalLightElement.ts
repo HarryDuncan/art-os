@@ -2,7 +2,7 @@ import { DirectionalLight as ThreeDirectionalLight } from "three";
 import { DEFAULT_LIGHT_COLOR } from "./lights.constants";
 import { DirectionalLightConfig } from "./lights.types";
 import { DEFAULT_VECTOR_POSITION } from "visual/consts/threejs";
-import { setObjectPosition } from "visual/display/helpers/three-dimension-space/position/setObjectPosition";
+import { setObjectPosition } from "visual/utils/three-dimension-space/position/setObjectPosition";
 
 interface DirectionalLightParameters extends DirectionalLightConfig {
   name: string;

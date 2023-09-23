@@ -19,9 +19,9 @@ import { rotateMeshAlongAxis } from "../animation-functions/rotation/rotateMeshA
 import { updateObject } from "../animation-functions/mesh-animations/update-object/updateObject";
 import { spinMeshAlongAxis } from "../animation-functions/rotation/spinMeshAlongAxis";
 import { fall } from "../animation-functions/mesh-animations/fall";
-import { easeOut } from "visual/display/utils";
 import { MeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { updateTimeStamp } from "../animation-functions/mesh-animations/trigonometric/updateTimestampTrigonometric";
+import { easeOut } from "visual/utils/maths/maths";
 
 export const performAnimation = (
   animationType: AnimationType,

@@ -3,7 +3,6 @@ import { AssetMetaData } from "visual/set-up/assets/asset.types";
 import {
   getPositionsLength,
   getVertexArray,
-  getVertices,
 } from "visual/set-up/config/mesh/geometry/attributes/attribute.functions";
 import { retrieveAdditionalVertices } from "./retrieveAdditionalVertices";
 import { combineVertices } from "./combineVertices";

@@ -1,7 +1,7 @@
-import { createBoundingBox } from "visual/display/helpers/three-dimension-space/createBoundingBox";
-import { generateRandomlySpreadCoordinates } from "visual/display/helpers/three-dimension-space/position/getRandomlySpreadCoordinates";
+import { generateRandomlySpreadCoordinates } from "visual/utils/three-dimension-space/position/getRandomlySpreadCoordinates";
 import { MeshComponentConfig } from "../../config.types";
-import { getRandomRotationAsDegrees } from "visual/display/helpers/getRandomRotation";
+import { createBoundingBox } from "visual/utils/three-dimension-space/createBoundingBox";
+import { getRandomRotationAsDegrees } from "visual/utils/randomize/getRandomRotation";
 
 export const setUpRandomizedMeshConfigs = (
   meshComponentConfigs: MeshComponentConfig[]

@@ -1,4 +1,4 @@
-import { Position3d } from "visual/display/helpers/three-dimension-space/position/position.types";
+import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
 
 export const fillPoints = (
   vertexCount: number,

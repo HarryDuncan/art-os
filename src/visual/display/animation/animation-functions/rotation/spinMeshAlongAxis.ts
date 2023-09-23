@@ -2,7 +2,7 @@ import { Object3D } from "three";
 import {
   AXIS,
   Axis,
-} from "visual/display/helpers/three-dimension-space/position/position.types";
+} from "visual/utils/three-dimension-space/position/position.types";
 
 export const spinMeshAlongAxis = (
   object: Object3D,

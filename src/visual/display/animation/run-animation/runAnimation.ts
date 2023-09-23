@@ -5,10 +5,10 @@ import {
 } from "../animation.types";
 import { ANIMATION_FUNCTION_TYPES } from "../animation.constants";
 import { animateAll } from "./run-functions/animateAll";
-import { getSceneElementByName } from "visual/display/helpers/scene/getSceneElementByName";
 import { chainAnimation } from "./run-functions/chainAnimation";
 import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { runShaderAnimations } from "../animation-functions/shader-animations/runShaderAnimations";
+import { getSceneElementByName } from "visual/utils/scene/getSceneElementByName";
 
 export const runAnimation = (
   scene: AnimatedScene,

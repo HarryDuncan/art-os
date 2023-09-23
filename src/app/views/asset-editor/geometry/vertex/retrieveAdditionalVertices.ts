@@ -1,13 +1,13 @@
 import { BufferGeometry, Vector3 } from "three";
 import { AssetMetaData } from "visual/set-up/assets/asset.types";
-import { getEquidistantCoordinates } from "visual/display/helpers/three-dimension-space/position/getEquidistantCoordinates";
 import {
   AdditonalVertexPosition,
   VertexAdditonConfig,
 } from "../editGeometry.types";
-import { vector3ToPosition3d } from "visual/display/helpers/conversion/vector3ToThreeDPosition";
-import { Position3d } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { fillPoints } from "./helpers/fillPoints";
+import { getEquidistantCoordinates } from "visual/utils/three-dimension-space/position/getEquidistantCoordinates";
+import { vectorToPosition3d } from "visual/utils/conversion/conversion";
+import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
 
 export const retrieveAdditionalVertices = (
   originalBufferGeometry: BufferGeometry,
@@ -36,7 +36,7 @@ export const retrieveAdditionalVertices = (
     if (!nearestPoint) {
       return [];
     }
-    const vectorPoint = vector3ToPosition3d(nearestPoint);
+    const vectorPoint = vectorToPosition3d(nearestPoint);
     const vertices = fillPoints(
       index === vertexPositionsCount - 1 ? remainderArraySize : arraySize,
       vectorPoint

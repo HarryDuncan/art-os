@@ -1,7 +1,7 @@
 import { Color, Vector3 } from "three";
 import { Reflector } from "three/examples/jsm/objects/Reflector";
 import { MirrorProps } from "./threeJsComponents.types";
-import { rotatePlaneToFaceCoordinate } from "visual/display/helpers/three-dimension-space/rotatePlane";
+import { rotatePlaneToFaceCoordinate } from "visual/utils/three-dimension-space/rotatePlane";
 
 export const Mirror = ({
   id,

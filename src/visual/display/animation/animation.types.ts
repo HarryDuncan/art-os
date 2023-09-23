@@ -5,8 +5,8 @@ import {
   OBJECT_UPDATE_PROPERTY,
   TRIG_FUNCTION_TYPES,
 } from "./animation.constants";
-import { Axis } from "../helpers/three-dimension-space/position/position.types";
 import { AnimationLoopConfigItem } from "./animation-functions/shader-animations/animation-loop/animationloop.types";
+import { Axis } from "visual/utils/three-dimension-space/position/position.types";
 
 // to avoid dependency cycle
 export type AnimatedScene = Scene & {

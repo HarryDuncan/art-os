@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { OrthographicCamera, PerspectiveCamera } from "three";
 import { CAMERA_TYPES, CameraConfig } from "./camera.types";
-import { getPosition } from "visual/set-up/config/utils/position";
 import { useWindowState } from "visual/compat/window-state/windowStateProvider";
 import { DEFAULT_ORTHOGRAPHIC, DEFAULT_PERSPECTIVE } from "./camera.consts";
 
@@ -48,3 +47,10 @@ const getCamera = (aspect: number, config?: CameraConfig) => {
     }
   }
 };
+function getPosition(
+  arg0: Partial<
+    import("../../../../utils/three-dimension-space/position/position.types").Position3d
+  >
+): { x: any; y: any; z: any } {
+  throw new Error("Function not implemented.");
+}

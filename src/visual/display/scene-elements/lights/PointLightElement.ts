@@ -3,7 +3,7 @@ import { DEFAULT_LIGHT_COLOR } from "./lights.constants";
 import { DEFAULT_VECTOR_POSITION } from "visual/consts/threejs";
 import { PointLightConfig } from "./lights.types";
 import { DEFAULT_LIGHT_INTENSITY } from "./lights.defaults";
-import { setObjectPosition } from "visual/display/helpers/three-dimension-space/position/setObjectPosition";
+import { setObjectPosition } from "visual/utils/three-dimension-space/position/setObjectPosition";
 
 interface PointLightParameters extends PointLightConfig {
   name: string;

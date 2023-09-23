@@ -1,6 +1,5 @@
 import { DEFAULT_POSITION } from "visual/consts/threejs";
 import { BufferGeometry, Vector3 } from "three";
-import { vector3DegreesToEuler } from "visual/display/helpers/three-dimension-space/degreesToEuler";
 import { cloneDeep } from "lodash";
 import { Asset } from "visual/set-up/assets/asset.types";
 import {
@@ -11,6 +10,7 @@ import {
 import { DEFAULT_MODEL3D_CONFIG } from "visual/set-up/assets/assets.constants";
 import { MeshComponentConfig } from "../../config.types";
 import { getAssetGeometries } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
+import { vector3DegreesToEuler } from "visual/utils/three-dimension-space/degreesToEuler";
 
 export const formatGeometry = (
   loadedAssets: Asset[],

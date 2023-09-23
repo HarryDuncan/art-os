@@ -3,7 +3,6 @@ import {
   LightConfigs,
   SceneLight,
 } from "visual/display/scene-elements/lights/lights.types";
-import { Position3d } from "visual/display/helpers/three-dimension-space/position/position.types";
 import { MaterialConfig } from "visual/set-up/config/material/materials.types";
 import { InteractionConfig } from "interaction/interactions.types";
 import { Asset } from "visual/set-up/assets/asset.types";
@@ -22,6 +21,7 @@ import {
   Texture,
 } from "three";
 import { RendererParams } from "visual/display/hooks/use-three-js/renderer/types";
+import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
 
 export type RandomizationConfig = {
   instanceCount: number;
