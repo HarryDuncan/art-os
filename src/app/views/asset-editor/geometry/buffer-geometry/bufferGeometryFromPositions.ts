@@ -9,5 +9,8 @@ export const bufferGeometryFromPositions = (positions) => {
     "position",
     new Float32BufferAttribute(positions, 3)
   );
+  bufferGeometry.setDrawRange(0, positions.length);
+  bufferGeometry.computeBoundingSphere();
+  bufferGeometry.computeVertexNormals();
   return bufferGeometry;
 };

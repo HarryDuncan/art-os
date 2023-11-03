@@ -78,15 +78,15 @@ export const transformGeometry = (
         //   new BufferAttribute(random, 1)
         // );
 
-        const randomBool = new Float32Array(maxVertexCount / 3);
+        const randomBool = new Float32Array(maxVertexCount);
         randomBool.forEach((_value, index) => {
-          randomBool[index] = Math.random() < 0.5 ? 1.0 : 0.0;
+          randomBool[index] = Math.random() < 0.9 ? 1.0 : 0.0;
         });
         morphMeshes[0].geometry.setAttribute(
           "randomBool",
           new BufferAttribute(randomBool, 1)
         );
-        const randomBool2 = new Float32Array(maxVertexCount / 3);
+        const randomBool2 = new Float32Array(maxVertexCount);
         randomBool2.forEach((_value, index) => {
           randomBool2[index] = Math.random() < 0.7 ? 1.0 : 0.0;
         });

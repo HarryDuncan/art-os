@@ -10,36 +10,37 @@
 // 	protoc              v3.19.6
 // source: protos/interactionNode.proto
 
+
 /* eslint-disable */
 // @ts-nocheck
 
-import * as grpcWeb from "grpc-web";
 
-import * as protos_interactionNode_pb from "./interactionNode_pb";
+import * as grpcWeb from 'grpc-web';
+
+import * as protos_interactionNode_pb from '../protos/interactionNode_pb';
+
 
 export class InteractionNodeServiceClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
-  credentials_: null | { [index: string]: string };
-  options_: null | { [index: string]: any };
+  credentials_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
 
-  constructor(
-    hostname: string,
-    credentials?: null | { [index: string]: string },
-    options?: null | { [index: string]: any }
-  ) {
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; }) {
     if (!options) options = {};
     if (!credentials) credentials = {};
-    options["format"] = "text";
+    options['format'] = 'text';
 
     this.client_ = new grpcWeb.GrpcWebClientBase(options);
-    this.hostname_ = hostname.replace(/\/+$/, "");
+    this.hostname_ = hostname.replace(/\/+$/, '');
     this.credentials_ = credentials;
     this.options_ = options;
   }
 
   methodDescriptorInitializeInteractionNode = new grpcWeb.MethodDescriptor(
-    "/interactionNode.InteractionNodeService/InitializeInteractionNode",
+    '/interactionNode.InteractionNodeService/InitializeInteractionNode',
     grpcWeb.MethodType.UNARY,
     protos_interactionNode_pb.InitializeInteractionNodeRequest,
     protos_interactionNode_pb.InitializeInteractionNodeResponse,
@@ -51,49 +52,38 @@ export class InteractionNodeServiceClient {
 
   initializeInteractionNode(
     request: protos_interactionNode_pb.InitializeInteractionNodeRequest,
-    metadata: grpcWeb.Metadata | null
-  ): Promise<protos_interactionNode_pb.InitializeInteractionNodeResponse>;
+    metadata: grpcWeb.Metadata | null): Promise<protos_interactionNode_pb.InitializeInteractionNodeResponse>;
 
   initializeInteractionNode(
     request: protos_interactionNode_pb.InitializeInteractionNodeRequest,
     metadata: grpcWeb.Metadata | null,
-    callback: (
-      err: grpcWeb.RpcError,
-      response: protos_interactionNode_pb.InitializeInteractionNodeResponse
-    ) => void
-  ): grpcWeb.ClientReadableStream<
-    protos_interactionNode_pb.InitializeInteractionNodeResponse
-  >;
+    callback: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.InitializeInteractionNodeResponse) => void): grpcWeb.ClientReadableStream<protos_interactionNode_pb.InitializeInteractionNodeResponse>;
 
   initializeInteractionNode(
     request: protos_interactionNode_pb.InitializeInteractionNodeRequest,
     metadata: grpcWeb.Metadata | null,
-    callback?: (
-      err: grpcWeb.RpcError,
-      response: protos_interactionNode_pb.InitializeInteractionNodeResponse
-    ) => void
-  ) {
+    callback?: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.InitializeInteractionNodeResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          "/interactionNode.InteractionNodeService/InitializeInteractionNode",
+          '/interactionNode.InteractionNodeService/InitializeInteractionNode',
         request,
         metadata || {},
         this.methodDescriptorInitializeInteractionNode,
-        callback
-      );
+        callback);
     }
     return this.client_.unaryCall(
-      this.hostname_ +
-        "/interactionNode.InteractionNodeService/InitializeInteractionNode",
-      request,
-      metadata || {},
-      this.methodDescriptorInitializeInteractionNode
-    );
+    this.hostname_ +
+      '/interactionNode.InteractionNodeService/InitializeInteractionNode',
+    request,
+    metadata || {},
+    this.methodDescriptorInitializeInteractionNode);
   }
 
   methodDescriptorInitalizeAlgorithm = new grpcWeb.MethodDescriptor(
-    "/interactionNode.InteractionNodeService/InitalizeAlgorithm",
+    '/interactionNode.InteractionNodeService/InitalizeAlgorithm',
     grpcWeb.MethodType.UNARY,
     protos_interactionNode_pb.InitializeAlgorithmRequest,
     protos_interactionNode_pb.InitializeAlgorithmResponse,
@@ -105,49 +95,38 @@ export class InteractionNodeServiceClient {
 
   initalizeAlgorithm(
     request: protos_interactionNode_pb.InitializeAlgorithmRequest,
-    metadata: grpcWeb.Metadata | null
-  ): Promise<protos_interactionNode_pb.InitializeAlgorithmResponse>;
+    metadata: grpcWeb.Metadata | null): Promise<protos_interactionNode_pb.InitializeAlgorithmResponse>;
 
   initalizeAlgorithm(
     request: protos_interactionNode_pb.InitializeAlgorithmRequest,
     metadata: grpcWeb.Metadata | null,
-    callback: (
-      err: grpcWeb.RpcError,
-      response: protos_interactionNode_pb.InitializeAlgorithmResponse
-    ) => void
-  ): grpcWeb.ClientReadableStream<
-    protos_interactionNode_pb.InitializeAlgorithmResponse
-  >;
+    callback: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.InitializeAlgorithmResponse) => void): grpcWeb.ClientReadableStream<protos_interactionNode_pb.InitializeAlgorithmResponse>;
 
   initalizeAlgorithm(
     request: protos_interactionNode_pb.InitializeAlgorithmRequest,
     metadata: grpcWeb.Metadata | null,
-    callback?: (
-      err: grpcWeb.RpcError,
-      response: protos_interactionNode_pb.InitializeAlgorithmResponse
-    ) => void
-  ) {
+    callback?: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.InitializeAlgorithmResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          "/interactionNode.InteractionNodeService/InitalizeAlgorithm",
+          '/interactionNode.InteractionNodeService/InitalizeAlgorithm',
         request,
         metadata || {},
         this.methodDescriptorInitalizeAlgorithm,
-        callback
-      );
+        callback);
     }
     return this.client_.unaryCall(
-      this.hostname_ +
-        "/interactionNode.InteractionNodeService/InitalizeAlgorithm",
-      request,
-      metadata || {},
-      this.methodDescriptorInitalizeAlgorithm
-    );
+    this.hostname_ +
+      '/interactionNode.InteractionNodeService/InitalizeAlgorithm',
+    request,
+    metadata || {},
+    this.methodDescriptorInitalizeAlgorithm);
   }
 
   methodDescriptorRunAlgorithm = new grpcWeb.MethodDescriptor(
-    "/interactionNode.InteractionNodeService/RunAlgorithm",
+    '/interactionNode.InteractionNodeService/RunAlgorithm',
     grpcWeb.MethodType.SERVER_STREAMING,
     protos_interactionNode_pb.RunAlgorithmRequest,
     protos_interactionNode_pb.RunAlgorithmResponse,
@@ -159,20 +138,17 @@ export class InteractionNodeServiceClient {
 
   runAlgorithm(
     request: protos_interactionNode_pb.RunAlgorithmRequest,
-    metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<
-    protos_interactionNode_pb.RunAlgorithmResponse
-  > {
+    metadata?: grpcWeb.Metadata): grpcWeb.ClientReadableStream<protos_interactionNode_pb.RunAlgorithmResponse> {
     return this.client_.serverStreaming(
-      this.hostname_ + "/interactionNode.InteractionNodeService/RunAlgorithm",
+      this.hostname_ +
+        '/interactionNode.InteractionNodeService/RunAlgorithm',
       request,
       metadata || {},
-      this.methodDescriptorRunAlgorithm
-    );
+      this.methodDescriptorRunAlgorithm);
   }
 
   methodDescriptorStopAlgorithm = new grpcWeb.MethodDescriptor(
-    "/interactionNode.InteractionNodeService/StopAlgorithm",
+    '/interactionNode.InteractionNodeService/StopAlgorithm',
     grpcWeb.MethodType.UNARY,
     protos_interactionNode_pb.StopAlgorithmRequest,
     protos_interactionNode_pb.StopAlgorithmResponse,
@@ -184,43 +160,35 @@ export class InteractionNodeServiceClient {
 
   stopAlgorithm(
     request: protos_interactionNode_pb.StopAlgorithmRequest,
-    metadata: grpcWeb.Metadata | null
-  ): Promise<protos_interactionNode_pb.StopAlgorithmResponse>;
+    metadata: grpcWeb.Metadata | null): Promise<protos_interactionNode_pb.StopAlgorithmResponse>;
 
   stopAlgorithm(
     request: protos_interactionNode_pb.StopAlgorithmRequest,
     metadata: grpcWeb.Metadata | null,
-    callback: (
-      err: grpcWeb.RpcError,
-      response: protos_interactionNode_pb.StopAlgorithmResponse
-    ) => void
-  ): grpcWeb.ClientReadableStream<
-    protos_interactionNode_pb.StopAlgorithmResponse
-  >;
+    callback: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.StopAlgorithmResponse) => void): grpcWeb.ClientReadableStream<protos_interactionNode_pb.StopAlgorithmResponse>;
 
   stopAlgorithm(
     request: protos_interactionNode_pb.StopAlgorithmRequest,
     metadata: grpcWeb.Metadata | null,
-    callback?: (
-      err: grpcWeb.RpcError,
-      response: protos_interactionNode_pb.StopAlgorithmResponse
-    ) => void
-  ) {
+    callback?: (err: grpcWeb.RpcError,
+               response: protos_interactionNode_pb.StopAlgorithmResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          "/interactionNode.InteractionNodeService/StopAlgorithm",
+          '/interactionNode.InteractionNodeService/StopAlgorithm',
         request,
         metadata || {},
         this.methodDescriptorStopAlgorithm,
-        callback
-      );
+        callback);
     }
     return this.client_.unaryCall(
-      this.hostname_ + "/interactionNode.InteractionNodeService/StopAlgorithm",
-      request,
-      metadata || {},
-      this.methodDescriptorStopAlgorithm
-    );
+    this.hostname_ +
+      '/interactionNode.InteractionNodeService/StopAlgorithm',
+    request,
+    metadata || {},
+    this.methodDescriptorStopAlgorithm);
   }
+
 }
+

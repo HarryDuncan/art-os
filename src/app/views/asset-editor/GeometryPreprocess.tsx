@@ -12,7 +12,11 @@ import { preTransform } from "./pre-transform/preTransform";
 import { useAssets } from "visual/set-up/assets/useAssets";
 import { setSameVertexCount } from "./geometry/vertex/setSameVertexCount";
 import { getEdgesGeometry } from "./geometry/edges-geometry/getEdgesGeometry";
-import { AXIS } from "visual/utils/three-dimension-space/position/position.types";
+import {
+  AXIS,
+  Axis,
+} from "visual/utils/three-dimension-space/position/position.types";
+import { subdivideByVertexDistance } from "./geometry/vertex/subdivide/subdivideByVertexDistance";
 
 const preTranformConfig = {
   centerGeometry: true,
@@ -25,13 +29,13 @@ export const GeometryPreprocess = () => {
 
   const transformConfig = {
     vertexPositionsCount: 3,
-    vertexPositionAxis: AXIS.Y,
+    vertexPositionAxis: AXIS.Y as Axis,
   };
   const centerToOrigin = () => {
     const preTransformed = preTransform(initializedAssets, preTranformConfig);
-    const transformedGeometry = preTransformed.flatMap((asset, index) => {
+    const transformedGeometry = preTransformed.flatMap((asset) => {
       const bufferGeometry = getAssetBufferGeometry(asset);
-      return bufferGeometry;
+      return bufferGeometry ?? [];
     });
     transformedGeometry.forEach((transformed, index) => {
       const fileName = initializedAssets[index].name;
@@ -85,13 +89,25 @@ export const GeometryPreprocess = () => {
   };
 
   const getEdges = () => {
-    initializedAssets.map((asset) => {
+    initializedAssets.forEach((asset) => {
       const bufferGeometry = getAssetBufferGeometry(asset);
       if (bufferGeometry) {
-        console.log(bufferGeometry);
         const edges = getEdgesGeometry(bufferGeometry);
         const fileName = asset.name;
         const asObj3d = new Mesh(edges);
+        asObj3d.name = asset.id;
+        handleExportClick(asObj3d, fileName);
+      }
+    });
+  };
+
+  const subDivide = () => {
+    initializedAssets.forEach((asset) => {
+      const bufferGeometry = getAssetBufferGeometry(asset);
+      if (bufferGeometry) {
+        const subdivided = subdivideByVertexDistance(bufferGeometry);
+        const fileName = asset.name;
+        const asObj3d = new Mesh(subdivided);
         asObj3d.name = asset.id;
         handleExportClick(asObj3d, fileName);
       }
@@ -104,20 +120,40 @@ export const GeometryPreprocess = () => {
       <h1>Assets Initialized : {areAssetsInitialized ? "yes" : "no"} </h1>
       <h1>Assets : {initializedAssets.map(({ name }) => `${name} `)} </h1>
       <h2>Same Vertices</h2>
-      <button onClick={sameVertices} disabled={!areAssetsInitialized}>
+      <button
+        type="button"
+        onClick={sameVertices}
+        disabled={!areAssetsInitialized}
+      >
         Same Vertices
       </button>
       <h2>Extract Metadata</h2>
-      <button onClick={extractAssetMetadata} disabled={!areAssetsInitialized}>
+      <button
+        type="button"
+        onClick={extractAssetMetadata}
+        disabled={!areAssetsInitialized}
+      >
         Extract Metadata
       </button>
       <h2>Center to origin</h2>
-      <button onClick={centerToOrigin} disabled={!areAssetsInitialized}>
+      <button
+        type="button"
+        onClick={centerToOrigin}
+        disabled={!areAssetsInitialized}
+      >
         Center to origin
       </button>
       <h2>Get Edges Geometry</h2>
-      <button onClick={getEdges} disabled={!areAssetsInitialized}>
+      <button type="button" onClick={getEdges} disabled={!areAssetsInitialized}>
         Get Edges
+      </button>
+      <h2>Subdivide</h2>
+      <button
+        type="button"
+        onClick={subDivide}
+        disabled={!areAssetsInitialized}
+      >
+        Subdivide
       </button>
     </Container>
   );

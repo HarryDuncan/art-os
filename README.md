@@ -8,13 +8,13 @@ Desktop Application created by HARRY J DEE - for reactive art installations
 
 - compile typescript client proto
 
-protoc -I../googleapis -I. --include_imports --include_source_info protos/visualInputNode.proto --js_out=import_style=commonjs,binary:./src/grpc --grpc-web_out=import_style=typescript,mode=grpcwebtext:./src/grpc
+protoc -I../googleapis -I. --include_imports --include_source_info protos/interactionNode.proto --js_out=import_style=commonjs,binary:./src/grpc --grpc-web_out=import_style=typescript,mode=grpcwebtext:./src/grpc
 
 - generate python proto
 
-python -m -I../googleapis grpc_tools.protoc -I./protos --python_out=./visualInputNode --grpc_python_out=./visualInputNode ./protos/visualInputNode.proto
+python -m -I../googleapis grpc_tools.protoc -I./protos --python_out=./interactionNode --grpc_python_out=./interactionNode ./protos/interactionNode.proto
 
-protoc -I../googleapis -I. --include_imports --include_source_info --descriptor_set_out=envoy/protos/visualInputNode.pb protos/visualInputNode.proto
+protoc -I../googleapis -I. --include_imports --include_source_info --descriptor_set_out=envoy/protos/interactionNode.pb protos/interactionNode.proto
 
 ## Build Docker Images
 

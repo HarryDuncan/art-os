@@ -230,16 +230,6 @@
                 "uniform": "uMaterial",
                 "assetId": "chrome",
                 "relationship": "MATCAP"
-              },
-              {
-                "uniform": "uTextureZero",
-                "assetId": "0-texture",
-                "relationship": "TEXTURE"
-              },
-              {
-                "uniform": "uTextureOne",
-                "assetId": "1-texture",
-                "relationship": "TEXTURE"
               }
             ]
           },

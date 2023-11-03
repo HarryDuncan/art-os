@@ -3,6 +3,7 @@ import { OrthographicCamera, PerspectiveCamera } from "three";
 import { CAMERA_TYPES, CameraConfig } from "./camera.types";
 import { useWindowState } from "visual/compat/window-state/windowStateProvider";
 import { DEFAULT_ORTHOGRAPHIC, DEFAULT_PERSPECTIVE } from "./camera.consts";
+import { positionConfigToPosition } from "visual/utils/conversion/conversion";
 
 export const useSetUpCamera = () => {
   const {
@@ -15,7 +16,7 @@ export const useSetUpCamera = () => {
   return useCallback(
     (config?: CameraConfig) => {
       const camera = getCamera(aspect, config);
-      const { x, y, z } = getPosition(config?.position ?? {});
+      const { x, y, z } = positionConfigToPosition(config?.position ?? {});
       camera.position.set(x, y, z);
       return camera;
     },
@@ -47,10 +48,3 @@ const getCamera = (aspect: number, config?: CameraConfig) => {
     }
   }
 };
-function getPosition(
-  arg0: Partial<
-    import("../../../../utils/three-dimension-space/position/position.types").Position3d
-  >
-): { x: any; y: any; z: any } {
-  throw new Error("Function not implemented.");
-}

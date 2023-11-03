@@ -26,5 +26,12 @@
     "configPath": "scenes/h-and-t",
     "componentId": "InteractiveSceneContainer",
     "cardImageName": "hjd2.jpg"
+  },
+  {
+    "title": "Tech Home",
+    "configId": "techHome",
+    "configPath": "scenes/hjd-tech",
+    "componentId": "InteractiveSceneContainer",
+    "cardImageName": "hjd2.jpg"
   }
 ]

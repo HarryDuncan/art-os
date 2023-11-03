@@ -21,7 +21,7 @@ export const vectorToArray = (vector: Vector3) => {
 export const positionToArray = (position: PositionConfig): number[] =>
   Object.values(position).map((value) => value);
 
-export const positionConfigToPosition = (positionConfig: Position3d) => {
+export const positionConfigToPosition = (positionConfig: PositionConfig) => {
   return {
     x: positionConfig.x ?? 0,
     y: positionConfig.y ?? 0,
