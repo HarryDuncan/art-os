@@ -1,4 +1,4 @@
-import { removeDuplicatesByKey } from "../../../../utils/removeDuplicatesByKey";
+import { removeDuplicatesByKey } from "visual/utils/removeDuplicatesByKey";
 import { VaryingConfig } from "../varyings.types";
 
 export const mergeVaryingConfigs = (varyingConfigArray: VaryingConfig[]) => {

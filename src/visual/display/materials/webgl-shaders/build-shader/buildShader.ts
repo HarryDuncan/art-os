@@ -7,6 +7,7 @@ import { EMPTY_UNIFORM_CONFIG } from "./shader-properties/uniforms/uniforms.cons
 import { UniformConfig } from "./shader-properties/uniforms/uniforms.types";
 import { buildVaryings } from "./shader-properties/varyings/buildVaryings";
 import { mergeVaryingConfigs } from "./shader-properties/varyings/helpers/mergeVaryingConfigs";
+import { VaryingConfig } from "./shader-properties/varyings/varyings.types";
 import { setUpVertexEffects } from "./vertex-effects/setUpVertexEffects";
 
 export const buildShader = (shaderConfig: ShaderConfig) => {
@@ -37,7 +38,9 @@ export const buildShader = (shaderConfig: ShaderConfig) => {
     fragmentEffects.varyingConfigs,
     varyingConfig ?? [],
   ];
-  const mergedShaderVaryings = mergeVaryingConfigs(shaderVaryings);
+  const mergedShaderVaryings = mergeVaryingConfigs(
+    shaderVaryings
+  ) as VaryingConfig[];
 
   const { uniforms, uniformDeclaration } = buildUniforms(mergedShaderUniforms);
   const {
@@ -64,7 +67,7 @@ export const buildShader = (shaderConfig: ShaderConfig) => {
 
 export const buildAttributes = (attributeConfig: AttributeConfig[]) =>
   attributeConfig
-    .map(({ name, type }) => `attribute ${name} ${type}`)
+    .map(({ id, valueType }) => `attribute ${id} ${valueType}`)
     .join(" ");
 
 const formatVertexShader = (

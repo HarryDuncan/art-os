@@ -1,63 +1,77 @@
-import { PROPERTY_VALUE_TYPES } from "../../buildShader.constants";
+import { Matrix3, Matrix4, Vector2, Vector3, Vector4 } from "three";
 import { UniformValueConfig } from "../uniforms.types";
+import {
+  PROPERTY_TYPES,
+  PROPERTY_VALUE_TYPES,
+} from "../../../buildShader.constants";
+import { createDeclarationString } from "../../../helpers/createDeclarationString";
+import { PropertyType, PropertyValueType } from "../../../buildShader.types";
 
 export const setUpCustom = (config: UniformValueConfig[] = []) => {
   const customUniforms = {};
   const customStrings: string[] = [];
-  config.forEach(({ value, name, type }) => {
-    switch (type) {
+  config.forEach(({ value, id, valueType }) => {
+    switch (valueType) {
       case PROPERTY_VALUE_TYPES.INT:
-        customUniforms[name] = { value: value ?? 0 };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? 0 };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.FLOAT:
-        customUniforms[name] = { value: value ?? 0 };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? 0 };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.BOOL:
-        customUniforms[name] = { value: value ?? false };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? false };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.VEC2:
-        customUniforms[name] = { value: value ?? new THREE.Vector2() };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? new Vector2() };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.VEC3:
-        customUniforms[name] = { value: value ?? new THREE.Vector3() };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? new Vector3() };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.VEC4:
-        customUniforms[name] = { value: value ?? new THREE.Vector4() };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? new Vector4() };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.MAT2:
-        customUniforms[name] = { value: value ?? new THREE.Matrix2() };
-        customStrings.push(addUniformString(name, type));
+        // customUniforms[id] = { value: value ?? new Matrix2() };
+        console.warn("mat 2 not configured");
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.MAT3:
-        customUniforms[name] = { value: value ?? new THREE.Matrix3() };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? new Matrix3() };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.MAT4:
-        customUniforms[name] = { value: value ?? new THREE.Matrix4() };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? new Matrix4() };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.SAMPLER_2D:
-        customUniforms[name] = { value: value ?? null };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? null };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.SAMPLER_CUBE:
-        customUniforms[name] = { value: value ?? null };
-        customStrings.push(addUniformString(name, type));
+        customUniforms[id] = { value: value ?? null };
+        customStrings.push(addUniformString(id, valueType));
         break;
       case PROPERTY_VALUE_TYPES.VOID:
         break;
       case PROPERTY_VALUE_TYPES.CONST:
-        customStrings.push(addUniformString(name, type));
+        customStrings.push(addUniformString(id, valueType));
         break;
       default:
-        console.warn(`uniform configuration not set for ${type}`);
+        console.warn(`uniform configuration not set for ${valueType}`);
     }
   });
   return { customUniforms, customStrings };
 };
+
+const addUniformString = (id: string, valueType: PropertyValueType) =>
+  createDeclarationString(
+    PROPERTY_TYPES.UNIFORM as PropertyType,
+    valueType,
+    id
+  );

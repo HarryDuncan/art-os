@@ -17,7 +17,7 @@ export const getDefaultValue = (valueType: PropertyValueType) => {
     case PROPERTY_VALUE_TYPES.VEC4:
       return new Vector4(0, 0, 0, 0);
     case PROPERTY_VALUE_TYPES.MAT2:
-      return new Matrix2();
+      return null;
     case PROPERTY_VALUE_TYPES.MAT3:
       return new Matrix3();
     case PROPERTY_VALUE_TYPES.MAT4:

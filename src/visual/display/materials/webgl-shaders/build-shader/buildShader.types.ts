@@ -4,7 +4,7 @@ import {
   PROPERTY_VALUE_TYPES,
 } from "./buildShader.constants";
 import { FragmentEffectConfig } from "./fragment-effects/fragmentEffects.types";
-import { UniformConfig } from "./uniforms/uniforms.types";
+import { UniformConfig } from "./shader-properties/uniforms/uniforms.types";
 
 export type PropertyValueType = keyof typeof PROPERTY_VALUE_TYPES;
 export type PropertyType = keyof typeof PROPERTY_TYPES;
@@ -32,8 +32,6 @@ export type VertexEffectConfig = {
   effectProps: DisplacementEffectProps;
 };
 
-export type VertexEffectConfig = VertexEffectConfig;
-
 export type AttributeConfig = ShaderPropertyConfig;
 
 export type ShaderFunction = {
@@ -45,4 +43,6 @@ export type ShaderConfig = {
   vertexEffectConfigs: VertexEffectConfig[];
   fragmentEffectConfigs: FragmentEffectConfig[];
   uniformConfig?: UniformConfig;
+  varyingConfig;
+  attributeConfig;
 };

@@ -1,5 +1,5 @@
 import { PROPERTY_TYPES } from "../../buildShader.constants";
-import { PropertyType } from "../../buildShader.types";
+import { AttributeConfig, PropertyType } from "../../buildShader.types";
 import { createDeclarationString } from "../../helpers/createDeclarationString";
 import { getDefaultValueAsString } from "../../helpers/getDefaultValue";
 import {
@@ -81,6 +81,6 @@ const getAttributeVaryingStrings = (
   config: VaryingConfig[],
   attributeConfig: AttributeConfig
 ) => {
-  if (!config.length) return "";
+  if (!config.length) return [];
   return [];
 };

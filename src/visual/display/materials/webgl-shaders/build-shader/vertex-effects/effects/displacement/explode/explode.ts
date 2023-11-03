@@ -1,3 +1,4 @@
+import { UniformConfig } from "../../../../shader-properties/uniforms/uniforms.types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";
 import { explodeTransformation } from "./explodeTransformation";
@@ -15,7 +16,7 @@ export const explodeVaryings = () => [
 
 export const explode = (transformPointName: string): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.EXPLODED_POINT;
-  const uniformConfig = explodeUniforms();
+  const uniformConfig = explodeUniforms() as UniformConfig;
   const varyingConfig = explodeVaryings();
   const transformation = explodeTransformation(transformPointName, pointName);
   const requiredFunctions = explodeFunctions();

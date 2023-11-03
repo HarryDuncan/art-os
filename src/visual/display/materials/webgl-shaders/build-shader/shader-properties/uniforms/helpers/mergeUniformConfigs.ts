@@ -1,4 +1,4 @@
-import { removeDuplicatesByKey } from "../../../../utils/removeDuplicatesByKey";
+import { removeDuplicatesByKey } from "visual/utils/removeDuplicatesByKey";
 import { ShaderPropertyConfig } from "../../../buildShader.types";
 import { EMPTY_UNIFORM_CONFIG } from "../uniforms.consts";
 import { UniformConfig } from "../uniforms.types";
@@ -6,8 +6,10 @@ import { UniformConfig } from "../uniforms.types";
 export const mergeUniformConfigs = (uniformConfigArray: UniformConfig[]) => {
   const mergedUniformConfig = { ...EMPTY_UNIFORM_CONFIG } as UniformConfig;
   uniformConfigArray.forEach(({ defaultUniforms, customUniforms }) => {
-    const { defaultUniforms: currentDefaults, customUniforms: currentCustom } =
-      mergedUniformConfig;
+    const {
+      defaultUniforms: currentDefaults,
+      customUniforms: currentCustom,
+    } = mergedUniformConfig;
     const updatedDefaults = [...currentDefaults, ...defaultUniforms].filter(
       (value, index, self) => self.indexOf(value) === index
     );
