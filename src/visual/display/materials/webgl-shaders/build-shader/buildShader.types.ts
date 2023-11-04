@@ -39,7 +39,7 @@ export type ShaderFunction = {
   functionDefinition: string;
 };
 
-export type ShaderConfig = {
+export type BuiltShaderConfig = {
   vertexEffectConfigs: VertexEffectConfig[];
   fragmentEffectConfigs: FragmentEffectConfig[];
   uniformConfig?: UniformConfig;

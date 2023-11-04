@@ -1,5 +1,5 @@
 import { MAIN_END, MAIN_START } from "./buildShader.constants";
-import { AttributeConfig, ShaderConfig } from "./buildShader.types";
+import { AttributeConfig, BuiltShaderConfig } from "./buildShader.types";
 import { setUpFragmentEffects } from "./fragment-effects/setUpFragmentEffects";
 import { buildUniforms } from "./shader-properties/uniforms/buildUniforms";
 import { mergeUniformConfigs } from "./shader-properties/uniforms/helpers/mergeUniformConfigs";
@@ -10,7 +10,7 @@ import { mergeVaryingConfigs } from "./shader-properties/varyings/helpers/mergeV
 import { VaryingConfig } from "./shader-properties/varyings/varyings.types";
 import { setUpVertexEffects } from "./vertex-effects/setUpVertexEffects";
 
-export const buildShader = (shaderConfig: ShaderConfig) => {
+export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const {
     vertexEffectConfigs,
     fragmentEffectConfigs,

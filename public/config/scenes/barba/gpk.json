@@ -1,0 +1,43 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 3, "z": 60.5 } }
+    },
+    "assets": [
+      {
+        "name": "image",
+        "id": "image",
+        "url": "../assets/textures/barbara.jpg",
+        "assetType": "TEXTURE"
+      },
+      {
+        "name": "image",
+        "id": "image2",
+        "url": "../assets/textures/barbie2.jpg",
+        "assetType": "TEXTURE"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialConfig": {
+          "materialById": "scene-background"
+        }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-images",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {}
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]

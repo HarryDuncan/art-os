@@ -25,7 +25,7 @@ const getComponentMaterial = (
   const { materialId } = componentConfig;
   if (!materialId) {
     console.warn(
-      `materila not linked does not exist for ${componentConfig.id}`
+      `material not linked does not exist for ${componentConfig.id}`
     );
     return DEFAULT_MATERIAL;
   }

@@ -4,7 +4,6 @@ import { InteractiveScene } from "visual/display/components/interactive-scene/In
 
 export const defaultScene = (config, sceneData) => {
   const { animationConfig } = config;
-
   return {
     sceneFunctions: {
       onTimeUpdate: (scene: InteractiveScene) => {
@@ -13,7 +12,7 @@ export const defaultScene = (config, sceneData) => {
     },
     interactionEvents: [],
     sceneData,
-    animations: animationConfig as AnimationConfig[],
+    animations: (animationConfig as AnimationConfig[]) ?? [],
     events: [],
   };
 };
