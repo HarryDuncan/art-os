@@ -39,5 +39,11 @@
     "configId": "barba",
     "configPath": "scenes/barba/gpk",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Barba EYE",
+    "configId": "eye-skull",
+    "configPath": "scenes/barba/eye-skull",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

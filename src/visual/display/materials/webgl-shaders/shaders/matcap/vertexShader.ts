@@ -1,8 +1,5 @@
 export const vertexShader = `
 
-  // Common uniforms
-
-  uniform vec2 uResolution;
   uniform float uTime;
   attribute float pointIndex;
   // Common varyings
@@ -18,12 +15,10 @@ export const vertexShader = `
 
     vec3 currentPosition = position;
     vec3 currentNormal = normal;
-    vec3 effect_direction = morphPosition_1 - currentPosition;
-    vec4 mv_position =  vec4(new_position,1.0);
-    Save the varyings
-     v_position = mv_position.xyz;
-    vNormal = normalize(normalMatrix * new_normal);
-     vUv = vec2(new_position.x, -new_position.y);
+    vec4 mv_position =  vec4(position,1.0);
+    // Save the varyings
+    vec3 v_position = mv_position.xyz;
+    vec3 vNormal = normal;
   
     // Vertex shader output
     gl_Position = projectionMatrix  *  modelViewMatrix * mv_position;

@@ -7,13 +7,13 @@
       {
         "name": "image",
         "id": "image",
-        "url": "../assets/textures/barbara.jpg",
+        "url": "../assets/textures/barba/gpk/image5.jpg",
         "assetType": "TEXTURE"
       },
       {
         "name": "image",
         "id": "image2",
-        "url": "../assets/textures/barbie2.jpg",
+        "url": "../assets/textures/barba/gpk/image1.jpg",
         "assetType": "TEXTURE"
       }
     ],
@@ -24,16 +24,55 @@
         "componentProps": {
           "position": { "x": 0, "y": -5, "z": -6 }
         },
-        "materialConfig": {
-          "materialById": "scene-background"
-        }
+        "materialId": "morphing-images"
       }
     ],
     "globalMaterialConfigs": [
       {
         "id": "morphing-images",
-        "materialType": "BUILT_SHADER",
-        "builtShaderConfig": {}
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "wavy",
+            "assetMapping": [
+              {
+                "uniform": "uTexture",
+                "assetId": "image"
+              },
+              {
+                "uniform": "uTexture2",
+                "assetId": "image2"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uTexture": { "value": null }
+          }
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "uTime",
+        "targetIdentifier": "scene-background",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ONE"
+            },
+            {
+              "uniform": "uLoopCount",
+              "loopType": "COUNT",
+              "loopLimit": 3
+            }
+          ],
+          "snapOnPause": true
+        }
       }
     ],
     "scenePropertiesConfig": {

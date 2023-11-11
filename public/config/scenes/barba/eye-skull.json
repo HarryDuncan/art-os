@@ -1,0 +1,129 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 2.5 } },
+      "controls": {
+        "minDistance": 0,
+        "maxDistance": 25
+      }
+    },
+    "assets": [
+      {
+        "name": "eye-geometry",
+        "url": "../assets/models/barba/eye-skull/eye.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "iris-geometry",
+        "url": "../assets/models/barba/eye-skull/iris.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "irisTexture",
+        "id": "irisTexture",
+        "url": "../assets/textures/barba/eye/iris_texture.png",
+        "assetType": "TEXTURE"
+      },
+      {
+        "name": "eyeball",
+        "id": "eyeballTexture",
+        "url": "../assets/textures/barba/eye/eyeball_texture.png",
+        "assetType": "TEXTURE"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "eyeball-geometry",
+        "geometryId": "eye_low.001",
+        "position": { "x": 0, "z": -3 },
+        "rotation": { "x": 0, "y": 180, "z": 0 },
+        "materialId": "morphing-images-eyeball",
+        "geometryConfig": {
+          "scale": 35
+        },
+        "groupId": "eye"
+      },
+      {
+        "id": "iris-geometry",
+        "geometryId": "eye_low.002",
+        "position": { "x": 0, "z": -2.5 },
+        "rotation": { "x": 0, "y": 180, "z": 0 },
+        "materialId": "morphing-images-iris",
+        "geometryConfig": {
+          "scale": 35
+        },
+        "groupId": "eye"
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-images-iris",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "plasma",
+            "assetMapping": [
+              {
+                "uniform": "uTexture",
+                "assetId": "irisTexture"
+              },
+              {
+                "uniform": "uTexture2",
+                "assetId": "image2"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uTexture": { "value": null }
+          }
+        }
+      },
+      {
+        "id": "morphing-images-eyeball",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "matcap",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "eyeballTexture"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uMaterial": { "value": null }
+          }
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "uTime",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ONE"
+            },
+            {
+              "uniform": "uLoopCount",
+              "loopType": "COUNT",
+              "loopLimit": 3
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]

@@ -8,8 +8,12 @@ export const configureShaders = (
   uniforms: MaterialUniform,
   assets?: Asset[]
 ) => {
-  const { shaderId, fragmentShaderId, vertexShaderId, assetMapping } =
-    shaderConfig;
+  const {
+    shaderId,
+    fragmentShaderId,
+    vertexShaderId,
+    assetMapping,
+  } = shaderConfig;
   const { fragmentShader, vertexShader, setUpDefaultUniforms } = importShader(
     shaderId,
     vertexShaderId,
@@ -31,6 +35,7 @@ const configureUniforms = (
   return uniforms;
 };
 
+// TODO - refactor to use mapAssetsToUniforms
 const mapAssets = (
   uniforms: Record<string, unknown>,
   assetMapping: AssetMap[],

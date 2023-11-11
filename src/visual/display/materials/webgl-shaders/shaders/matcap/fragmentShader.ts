@@ -6,11 +6,9 @@ uniform vec2 uMouse;
 uniform float uTime;
 
 uniform sampler2D uMaterial;
-uniform sampler2D uTextureOne;
-uniform sampler2D uTextureZero;
+
 // Common varyings
 varying vec3 v_position;
-varying float vPointId;
 varying vec3 vNormal;
 varying vec3 vViewDirection;
 
