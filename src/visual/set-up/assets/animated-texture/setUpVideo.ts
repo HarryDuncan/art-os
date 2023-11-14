@@ -1,7 +1,8 @@
 export const setupVideo = (url: string, identifier: string) => {
   const video = document.createElement("video");
   const root = document.getElementById("append-container");
-  if (!root) return;
+  const videoId = document.getElementById(identifier);
+  if (!root || videoId) return;
   root.appendChild(video);
   video.id = identifier;
   video.width = 600;

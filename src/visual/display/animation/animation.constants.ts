@@ -22,6 +22,7 @@ export const ANIMATION_TYPES = {
   TRIG: "TRIG",
   FALL: "FALL",
   TIME: "TIME",
+  MOVE: "MOVE",
 };
 
 export const GENERIC_TARGET_IDENTIFIERS = {

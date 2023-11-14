@@ -45,5 +45,35 @@
     "configId": "eye-skull",
     "configPath": "scenes/barba/eye-skull",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Decadance",
+    "configId": "decadance",
+    "configPath": "scenes/blackout/decadance",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "B",
+    "configId": "bayker",
+    "configPath": "scenes/blackout/bayker",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "D",
+    "configId": "decadance",
+    "configPath": "scenes/blackout/decadance",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "M",
+    "configId": "decadance",
+    "configPath": "scenes/blackout/decadance",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "J",
+    "configId": "decadance",
+    "configPath": "scenes/blackout/decadance",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

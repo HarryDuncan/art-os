@@ -22,12 +22,14 @@ import { fall } from "../animation-functions/mesh-animations/fall";
 import { MeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { updateTimeStamp } from "../animation-functions/mesh-animations/trigonometric/updateTimestampTrigonometric";
 import { easeOut } from "visual/utils/maths/maths";
+import { moveObject } from "../animation-functions/mesh-animations/move/moveObject";
 
 export const performAnimation = (
   animationType: AnimationType,
   object: MeshObject | Object3D,
   progress: number,
-  animationProperties: AnimationProperties
+  animationProperties: AnimationProperties,
+  count: number
 ) => {
   if (animationType === ANIMATION_TYPES.TRAVERSE) {
     const {
@@ -67,6 +69,11 @@ export const performAnimation = (
   }
   if (animationType === ANIMATION_TYPES.FALL) {
     fall(object as MeshObject, progress);
+  }
+  if (animationType === ANIMATION_TYPES.MOVE) {
+    const { animationDurationMilis, moveTo, moveFrom } = animationProperties;
+    const prog = easeOut(progress / animationDurationMilis);
+    moveObject(object as MeshObject, prog, moveTo, moveFrom, count);
   }
   if (animationType === ANIMATION_TYPES.SPIN) {
     const { rotationAxis, speed } = animationProperties as SpinAnimationConfig;

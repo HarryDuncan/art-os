@@ -5,19 +5,17 @@ import {
   AXIS,
   Axis,
 } from "visual/utils/three-dimension-space/position/position.types";
+import { OBJECT_UPDATE_PROPERTY } from "visual/display/animation/animation.constants";
 
-const OBJECT_PARAMETER = {
-  POSITION: "POSITION",
-  ROTATION: "ROTATION",
-};
 export const updateObject = (
   object: Object3D,
   updatedValue: number,
-  objectParameter: ObjectUpdateProperty
+  objectParameter: ObjectUpdateProperty,
+  axis: Axis = AXIS.X as Axis
 ) => {
   switch (objectParameter) {
-    case OBJECT_PARAMETER.POSITION:
+    case OBJECT_UPDATE_PROPERTY.POSITION:
     default:
-      updateObjectPosition(object, updatedValue, AXIS.X as Axis);
+      updateObjectPosition(object, updatedValue, axis);
   }
 };

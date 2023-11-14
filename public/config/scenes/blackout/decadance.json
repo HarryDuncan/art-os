@@ -1,0 +1,444 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 3, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "snow-material",
+        "url": "../assets/textures/matcaps/polished-metal.jpg",
+        "assetType": "TEXTURE",
+        "id": "snowflake-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "chain",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -45 },
+        "materialId": "snowflake-material"
+      },
+      {
+        "id": "chain2",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 45 },
+        "materialId": "snowflake-material"
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "snowflake-material",
+        "materialProps": {
+          "assetId": "snowflake-material"
+        },
+        "materialType": "MATCAP"
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 0.5 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "chain",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 2500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "chain-move",
+        "targetIdentifier": "chain",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 2500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      }
+    ],
+
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 3, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "snow-material",
+        "url": "../assets/textures/matcaps/polished-metal.jpg",
+        "assetType": "TEXTURE",
+        "id": "snowflake-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "chain-1",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -45 },
+        "materialId": "snowflake-material"
+      },
+      {
+        "id": "chain-2",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 15 },
+        "rotation": { "x": 0, "y": 0, "z": 45 },
+        "materialId": "snowflake-material"
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "snowflake-material",
+        "materialProps": {
+          "assetId": "snowflake-material"
+        },
+        "materialType": "MATCAP"
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 0.5 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "chain-move",
+        "targetIdentifier": "chain-1",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 20, "y": 20, "z": 0 },
+          "moveFrom": { "x": 0, "y": 0, "z": 0 }
+        }
+      },
+      {
+        "animationId": "chain-move2",
+        "targetIdentifier": "chain-2",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": -20, "y": 20, "z": 2 },
+          "moveFrom": { "x": 0, "y": 0, "z": 2 }
+        }
+      }
+    ],
+
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 3, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "snow-material",
+        "url": "../assets/textures/matcaps/polished-metal.jpg",
+        "assetType": "TEXTURE",
+        "id": "snowflake-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "image",
+        "id": "image",
+        "url": "../assets/textures/backgrounds/black.jpg",
+        "assetType": "TEXTURE"
+      },
+      {
+        "name": "image",
+        "id": "image2",
+        "url": "../assets/textures/blackout/logo.jpg",
+        "assetType": "TEXTURE"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "chain-1",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -45 },
+        "materialId": "snowflake-material"
+      },
+      {
+        "id": "chain-2",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 15 },
+        "rotation": { "x": 0, "y": 0, "z": 45 },
+        "materialId": "snowflake-material"
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "snowflake-material",
+        "materialProps": {
+          "assetId": "snowflake-material"
+        },
+        "materialType": "MATCAP"
+      },
+      {
+        "id": "morphing-images",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "wavy",
+            "assetMapping": [
+              {
+                "uniform": "uTexture",
+                "assetId": "image"
+              },
+              {
+                "uniform": "uTexture2",
+                "assetId": "image2"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uTexture": { "value": null }
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 0.5 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": -10, "y": -10, "z": -2 }
+        },
+        "materialId": "morphing-images"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "chain-move",
+        "targetIdentifier": "chain-1",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 20, "y": 20, "z": 0 },
+          "moveFrom": { "x": 0, "y": 0, "z": 0 }
+        }
+      },
+      {
+        "animationId": "chain-move2",
+        "targetIdentifier": "chain-2",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": -20, "y": 20, "z": 2 },
+          "moveFrom": { "x": 0, "y": 0, "z": 2 }
+        }
+      },
+      {
+        "animationId": "uTime",
+        "targetIdentifier": "scene-background",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ONE_TO_ZERO"
+            },
+            {
+              "uniform": "uLoopCount",
+              "loopType": "COUNT",
+              "loopLimit": 3
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 3, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "snow-material",
+        "url": "../assets/textures/matcaps/polished-metal.jpg",
+        "assetType": "TEXTURE",
+        "id": "snowflake-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "chain",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -45 },
+        "materialId": "snowflake-material"
+      },
+      {
+        "id": "chain2",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 45 },
+        "materialId": "snowflake-material"
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "snowflake-material",
+        "materialProps": {
+          "assetId": "snowflake-material"
+        },
+        "materialType": "MATCAP"
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 0.5 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "chain",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 2500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      }
+    ],
+
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]

@@ -15,6 +15,7 @@ export const DigitalArt = () => (
 const DigitalArtContent = () => {
   const { configId } = useAppSelector((state) => state.sceneData);
   useSetWindowState();
+
   return (
     <DigitalArtContainer>
       {configId ? <ViewPiece /> : <DigitalArtGallery />}

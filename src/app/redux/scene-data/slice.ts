@@ -4,6 +4,7 @@ import { SceneItem } from "scenes/types";
 
 export type SceneState = {
   configIndex: number;
+  sceneIndex: number;
   configId: string | null;
   data: SceneItem | null;
   configuredScenes: DigitalPiece[];
@@ -11,6 +12,7 @@ export type SceneState = {
 
 export const INITIAL_STATE: SceneState = {
   configIndex: 0,
+  sceneIndex: 2,
   configId: null,
   data: null,
   configuredScenes: [],

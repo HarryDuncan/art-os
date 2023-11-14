@@ -46,7 +46,7 @@ const formatMaterial = (configItem, mappedAsset) => {
       break;
     }
     case MATERIAL_TYPES.VIDEO: {
-      getVideoMaterial(
+      return getVideoMaterial(
         configItem.materialProps as VideoMaterialProps,
         mappedAsset
       );
@@ -66,7 +66,6 @@ const getMatcapMaterial = (
   asset: Asset
 ): Material => {
   materialProps.matcap = asset.data as Texture;
-  console.log(asset);
   return getMaterial(
     MATERIAL_TYPES.MATCAP as MaterialType,
     materialProps
@@ -89,6 +88,7 @@ const getVideoMaterial = (
   asset: Asset
 ): Material => {
   materialProps.videoId = asset.id;
+  console.log(asset);
   return getMaterial(
     MATERIAL_TYPES.VIDEO as MaterialType,
     materialProps

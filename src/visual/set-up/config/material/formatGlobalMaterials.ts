@@ -10,10 +10,11 @@ export const formatGlobalMaterials = (
   config: SceneConfig
 ): Material[] => {
   const assetMappedMaterials = getAssetMappedMaterials(
-    config.globalMaterialConfigs,
+    config?.globalMaterialConfigs ?? [],
     assets
   );
   const shaderMaterials = getShaderMaterials(config, assets);
   const globalMaterials = getMaterialsFromConfig(config);
+  console.log(globalMaterials);
   return [...assetMappedMaterials, ...shaderMaterials, ...globalMaterials];
 };

@@ -1,0 +1,170 @@
+[
+  {
+    "assets": [
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/bayker.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg1.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "logo-material",
+        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "assetType": "TEXTURE",
+        "id": "logo-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "snow-material",
+        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "assetType": "TEXTURE",
+        "id": "snowflake-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "snowflake-geometry",
+        "url": "../assets/models/ltw/snowflake.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "snowflake-second-geometry",
+        "url": "../assets/models/ltw/snowflake-second.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "logo",
+        "geometryId": "curve",
+        "size": 12,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 90, "y": -0.5, "z": -0 },
+        "materialConfig": {
+          "materialById": "logo-material"
+        }
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "snowflake-geometry",
+        "size": 15,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialConfig": {
+          "materialById": "snowflake-material"
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "snowflake-second-geometry",
+        "size": 15,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialConfig": {
+          "materialById": "snowflake-material"
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": 1500,
+          "repeatAnimation": true,
+          "animationType": "ROTATE"
+        }
+      },
+      {
+        "animationId": "snowflake-move",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL"
+        }
+      },
+      {
+        "animationId": "sno-rotate",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.06,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ]
+  }
+]

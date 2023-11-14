@@ -13,7 +13,14 @@ export interface MaterialProps {
   name?: string;
   assetId?: string;
 }
-
+export type StandardMaterialProps = MaterialProps & {
+  color: string;
+  metalness: number;
+  roughness: number;
+  envMapIntensity: number;
+  displacementScale: number;
+  normalScale: number;
+};
 export type ShaderMaterialProps = MaterialProps & {
   shaderConfig: ShaderConfig;
   uniforms: MaterialUniform;

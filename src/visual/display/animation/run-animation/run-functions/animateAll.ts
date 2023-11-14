@@ -15,16 +15,24 @@ export const animateAll = (
     animationPauseMilis,
   } = animationProperties;
   let startTime: number;
+  let count = 0;
   function step(timestamp: number) {
     if (!startTime) startTime = timestamp;
     const progress = timestamp - startTime;
     animatedObjects.forEach((object) => {
-      performAnimation(animationType, object, progress, animationProperties);
+      performAnimation(
+        animationType,
+        object,
+        progress,
+        animationProperties,
+        count
+      );
     });
     if (progress < animationDurationMilis || animationDurationMilis === -1) {
       requestAnimationFrame(step);
     } else {
       startTime = 0;
+      count += 1;
       if (repeatAnimation) {
         setTimeout(() => {
           requestAnimationFrame(step);

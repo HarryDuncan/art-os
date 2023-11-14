@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { ViewPieceContainer } from "./ViewPiece.styles";
 import { useSceneParameters } from "scenes/useSceneParameters";
 import SceneNode from "visual/node/scene-node/SceneNode";

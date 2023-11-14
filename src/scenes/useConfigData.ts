@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useFetchConfig } from "visual/set-up/config/useFetchConfig";
 
 export const useConfigData = (sceneConfigId?: string) => {
-  const { configId, configuredScenes } = useAppSelector(
+  const { configId, configuredScenes, sceneIndex } = useAppSelector(
     (state) => state.sceneData
   );
   const selectedConfigId = useMemo(() => sceneConfigId ?? configId, []);
@@ -16,16 +16,15 @@ export const useConfigData = (sceneConfigId?: string) => {
     ? `config/${selectedSceneFilePath}.json`
     : "";
   const sceneConfigData = useFetchConfig(configPath);
-  const index = 3;
   const configData = useMemo(() => {
     if (!sceneConfigData) return null;
-    const selectedScene = sceneConfigData[index];
+    const selectedScene = sceneConfigData[sceneIndex];
     if (selectedScene) {
       return selectedScene;
     }
-    console.warn(`error retrieving scene config at index ${index}`);
+    console.warn(`error retrieving scene config at index ${sceneIndex}`);
     return sceneConfigData[0];
-  }, [index, sceneConfigData]);
+  }, [sceneIndex, sceneConfigData]);
 
   return { configData, selectedConfigId };
 };

@@ -5,6 +5,7 @@
   "version": "0.2.7",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
     "@improbable-eng/grpc-web": "^0.15.0",
     "@mediapipe/selfie_segmentation": "^0.1.1632777926",
     "@reduxjs/toolkit": "^1.8.1",
@@ -45,8 +46,8 @@
     "update-electron-app": "^1.2.0"
   },
   "devDependencies": {
-    "@testing-library/react": "^14.0.0",
     "@babel/preset-env": "^7.17.10",
+    "@testing-library/react": "^14.0.0",
     "@types/lodash": "^4.14.182",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.25",
@@ -56,16 +57,16 @@
     "concurrently": "^7.3.0",
     "electron-builder": "^23.1.0",
     "eslint": "^8.20.0",
-    "eslint-config-prettier": "^8.5.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^1.4.4",
     "react-scripts": "^5.0.1",
-    "wait-on": "3.3.0",
-    "vitest": "0.8.4"
+    "vitest": "0.8.4",
+    "wait-on": "3.3.0"
   },
   "build": {
     "extends": null,

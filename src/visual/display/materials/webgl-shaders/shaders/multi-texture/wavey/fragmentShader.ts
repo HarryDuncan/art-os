@@ -2,6 +2,7 @@ export const fragmentShader = `
 uniform sampler2D uTexture;
 uniform sampler2D uTexture2;
 uniform float uTime;
+uniform float uProgress;
 uniform vec2 uResolution;
 varying vec2 vUv;
 
@@ -121,18 +122,14 @@ vec3 curlNoise( vec3 p ){
 void main( )
 {
     // Normalized pixel coordinates (from 0 to 1)
-    vec2 uv =  -1.0 + 2.0 *vUv;
-	float f = sin(uTime) * 0.5 +0.5;
+    vec2 uv =  -1.0 + 2.0 * vUv;
+	  float f = sin(uTime) * 0.5 +0.5;
     vec3 curl = curlNoise(vec3(uv,1.) *5. + uTime) / 1.;
-    // curl = curl * curl;
-    
-    vec4 t0 = texture(uTexture, vec2(uv.x,uv.y + f * (curl.x) ) );
-    vec4 t1 = texture(uTexture2, vec2(uv.x,uv.y + (1.-f) * (curl.x) ));
+    vec4 t0 = texture(uTexture, vec2(uv.x,uv.y + f * (curl.x)));
+    vec4 t1 = texture(uTexture2, vec2(uv.x,uv.y + (1.-f) * (curl.x)));
     // Time varying pixel color
-	uv.x += curl.x;
+	  uv.x += curl.x;
     // Output to screen
     gl_FragColor = mix(t0,t1,f);
-    // Really interesting effect. colors don't overlap
-    // fragColor = vec4(vec3(curl.x,curl.y,curl.z),1.0);
 }
 `;
