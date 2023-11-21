@@ -7,3 +7,4 @@ export { homeMorph } from "./home-morph/morphing.shader";
 export { homeMorphTransition } from "./home-morph-transition/morphing.shader";
 export { wavy } from "./multi-texture/wavey/wavy.shader";
 export { matcap } from "./matcap/matcap.shader";
+export { dissolve } from "./dissolve/dissolve.shader";

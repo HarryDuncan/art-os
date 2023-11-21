@@ -6,7 +6,7 @@
     "assets": [
       {
         "name": "name-geometry",
-        "url": "../assets/models/blackout/bayker.obj",
+        "url": "../assets/models/blackout/diesel.obj",
         "assetType": "MODEL3D"
       },
       {
@@ -17,7 +17,7 @@
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/chrome.jpg",
+        "url": "../assets/textures/matcaps/dark-chrome.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -28,8 +28,8 @@
         "assetType": "MODEL3D"
       },
       {
-        "name": "snowflake-second-geometry",
-        "url": "../assets/models/blackout/lotus.obj",
+        "name": "snowflake-geometry",
+        "url": "../assets/models/blackout/flower2-geometry.obj",
         "assetType": "MODEL3D"
       }
     ],
@@ -37,6 +37,7 @@
       {
         "id": "logo",
         "geometryId": "Text",
+        "size": 22,
         "position": { "x": 0, "y": 0, "z": 4 },
         "rotation": { "x": 90, "y": -0, "z": -0 },
         "materialId": "chrome-material"
@@ -45,7 +46,7 @@
         "id": "snowflake",
         "geometryId": "hydrange",
         "geometryConfig": {
-          "scale": 0.2
+          "scale": 0.4
         },
         "position": { "x": 0, "y": 0, "z": 4 },
         "rotation": { "x": 0, "y": -90, "z": -0 },
@@ -54,7 +55,7 @@
           "instanceCount": 5,
           "randomRotation": true,
           "boundingBoxConfig": {
-            "width": 20,
+            "width": 10,
             "height": 10,
             "depth": 1,
             "center": { "x": 0, "y": 0, "z": 2 }
@@ -63,9 +64,9 @@
       },
       {
         "id": "snowflake",
-        "geometryId": "lotus",
+        "geometryId": "flower2",
         "geometryConfig": {
-          "scale": 0.2
+          "scale": 0.4
         },
         "position": { "x": 0, "y": 0, "z": 4 },
         "rotation": { "x": 0, "y": -90, "z": -0 },
@@ -74,7 +75,7 @@
           "instanceCount": 5,
           "randomRotation": true,
           "boundingBoxConfig": {
-            "width": 20,
+            "width": 10,
             "height": 10,
             "depth": 1,
             "center": { "x": 0, "y": 0, "z": 2 }
@@ -181,707 +182,28 @@
     "assets": [
       {
         "name": "name-geometry",
-        "url": "../assets/models/blackout/hydrange-geometry.obj",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "lotus-geometry",
-        "url": "../assets/models/blackout/lotus-geometry.obj",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "chain-geometry",
-        "url": "../assets/models/chain.obj",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "bg-vid",
-        "id": "bg-vid",
-        "url": "../assets/video/blackout/bg2.mp4",
-        "assetType": "VIDEO"
-      },
-      {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/chrome2.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
-      },
-      {
-        "name": "snow-material",
-        "url": "../assets/textures/matcaps/irredescent-4.jpg",
-        "assetType": "TEXTURE",
-        "id": "snowflake-material",
-        "assetTag": ["MATCAP"]
-      }
-    ],
-    "meshComponentConfigs": [
-      {
-        "id": "hydrange-geometry",
-        "geometryId": "hydrange",
-        "geometryConfig": {
-          "scale": 0.5
-        },
-        "position": { "x": 0, "y": 0, "z": 4 },
-        "rotation": { "x": 90, "y": -0, "z": -0 },
-        "materialId": "morphing-material"
-      },
-      {
-        "id": "lotus-geometry",
-        "geometryId": "lotus",
-        "meshType": "NONE",
-        "geometryConfig": {
-          "scale": 0.5
-        },
-        "position": { "x": 0, "y": 0, "z": 4 },
-        "rotation": { "x": 0, "y": -90, "z": -0 },
-        "materialId": "morphing-material"
-      },
-      {
-        "id": "chain1",
-        "geometryId": "Chain",
-        "size": 0.005,
-        "position": { "x": -5, "y": 0, "z": 0 },
-        "rotation": { "x": 0, "y": 0, "z": 0 },
-        "materialId": "chrome-material"
-      },
-      {
-        "id": "chain2",
-        "geometryId": "Chain",
-        "size": 0.005,
-        "position": { "x": 5, "y": 0, "z": 0 },
-        "rotation": { "x": 0, "y": 0, "z": 0 },
-        "materialId": "chrome-material"
-      }
-    ],
-    "animationConfig": [
-      {
-        "animationId": "binary-rotate",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "animationType": "SPIN",
-          "speed": 0.008,
-          "rotationAxis": "Y",
-          "animationDurationMilis": 2500,
-          "animationPauseMilis": -1,
-          "repeatAnimation": true
-        }
-      },
-      {
-        "animationId": "morph-geometry",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "UTIME",
-        "animationProperties": {
-          "animationDurationMilis": 6000,
-          "animationPauseMilis": 500,
-          "repeatAnimation": true,
-          "animationLoopConfig": [
-            {
-              "uniform": "uProgress",
-              "loopType": "ZERO_TO_ZERO"
-            }
-          ],
-          "snapOnPause": true
-        }
-      },
-      {
-        "animationId": "chain-move",
-        "targetIdentifier": "chain1",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "animationType": "MOVE",
-          "speed": 0.008,
-          "rotationAxis": "Z",
-          "animationDurationMilis": 3500,
-          "animationPauseMilis": -1,
-          "repeatAnimation": true,
-          "moveTo": { "x": -5, "y": -20, "z": 0 },
-          "moveFrom": { "x": -5, "y": 0, "z": 0 }
-        }
-      },
-      {
-        "animationId": "chain-move2-vert",
-        "targetIdentifier": "chain2",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "animationType": "MOVE",
-          "speed": 0.008,
-          "rotationAxis": "Z",
-          "animationDurationMilis": 3500,
-          "animationPauseMilis": -1,
-          "repeatAnimation": true,
-          "moveTo": { "x": 5, "y": 20, "z": 0 },
-          "moveFrom": { "x": 5, "y": 0, "z": 0 }
-        }
-      }
-    ],
-    "lightConfig": [
-      {
-        "name": "ambient-light",
-        "lightType": "AMBIENT",
-        "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      },
-      {
-        "name": "point-lightd",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      }
-    ],
-    "globalMaterialConfigs": [
-      {
-        "id": "bg-vid",
-        "materialProps": {
-          "assetId": "bg-vid"
-        },
-        "materialType": "VIDEO"
-      },
-      {
-        "id": "chrome-material",
-        "materialProps": {
-          "assetId": "chrome-material"
-        },
-        "materialType": "MATCAP"
-      },
-      {
-        "id": "morphing-material",
-        "materialType": "SHADER",
-
-        "materialProps": {
-          "shaderConfig": {
-            "shaderId": "homeMorph",
-            "assetMapping": [
-              {
-                "uniform": "uMaterial",
-                "assetId": "chrome-material",
-                "relationship": "MATCAP"
-              },
-              {
-                "uniform": "uTextureZero",
-                "assetId": "0-texture",
-                "relationship": "TEXTURE"
-              },
-              {
-                "uniform": "uTextureOne",
-                "assetId": "1-texture",
-                "relationship": "TEXTURE"
-              }
-            ]
-          },
-          "uniforms": {
-            "uTime": { "value": 0 },
-            "uResolution": { "value": null },
-            "uMaterial": { "value": null },
-            "uFrame": {
-              "value": 0.0
-            },
-            "uOpacity": {
-              "value": 1.0
-            },
-            "uLoopCount": {
-              "value": 0.0
-            },
-            "uProgress": {
-              "value": 0.0
-            },
-            "uMouse": {
-              "value": null
-            },
-            "uPosition": {
-              "value": null
-            }
-          }
-        }
-      }
-    ],
-    "meshTransforms": [
-      {
-        "type": "MORPH",
-        "transformedMeshIds": ["hydrange-geometry", "lotus-geometry"]
-      }
-    ],
-    "sceneComponentConfigs": [
-      {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "position": { "x": 0, "y": -5, "z": -6 }
-        },
-        "materialId": "bg-vid"
-      }
-    ]
-  },
-  {
-    "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
-    },
-    "assets": [
-      {
-        "name": "name-geometry",
-        "url": "../assets/models/blackout/bayker.obj",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "chain-geometry",
-        "url": "../assets/models/chain.obj",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "bg-vid",
-        "id": "bg-vid",
-        "url": "../assets/video/blackout/bg1.mp4",
-        "assetType": "VIDEO"
-      },
-      {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/chrome.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
-      }
-    ],
-    "meshComponentConfigs": [
-      {
-        "id": "bayker-geometry",
-        "geometryId": "Text",
-        "size": 22,
-        "position": { "x": 0, "y": 0, "z": 4 },
-        "rotation": { "x": 90, "y": -0, "z": -0 },
-        "materialId": "morphing-material"
-      },
-      {
-        "id": "chain1",
-        "geometryId": "Chain",
-        "size": 0.005,
-        "position": { "x": -5, "y": 0, "z": 0 },
-        "rotation": { "x": 0, "y": 0, "z": 0 },
-        "materialId": "chrome-material"
-      },
-      {
-        "id": "chain2",
-        "geometryId": "Chain",
-        "size": 0.005,
-        "position": { "x": 5, "y": 0, "z": 0 },
-        "rotation": { "x": 0, "y": 0, "z": 0 },
-        "materialId": "chrome-material"
-      }
-    ],
-    "animationConfig": [
-      {
-        "animationId": "curve-rotate",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "speed": 0.0006,
-          "rotationAxis": "Z",
-          "animationDurationMilis": 1000,
-          "animationPauseMilis": 1500,
-          "repeatAnimation": true,
-          "animationType": "ROTATE"
-        }
-      },
-      {
-        "animationId": "morph-geometry",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "UTIME",
-        "animationProperties": {
-          "animationDurationMilis": 6000,
-          "repeatAnimation": true,
-          "animationLoopConfig": [
-            {
-              "uniform": "uProgress",
-              "loopType": "ZERO_TO_ZERO"
-            }
-          ],
-          "snapOnPause": true
-        }
-      },
-      {
-        "animationId": "chain-move",
-        "targetIdentifier": "chain1",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "animationType": "MOVE",
-          "speed": 0.008,
-          "rotationAxis": "Z",
-          "animationDurationMilis": 3500,
-          "animationPauseMilis": -1,
-          "repeatAnimation": true,
-          "moveTo": { "x": -5, "y": -20, "z": 0 },
-          "moveFrom": { "x": -5, "y": 0, "z": 0 }
-        }
-      },
-      {
-        "animationId": "chain-move2-vert",
-        "targetIdentifier": "chain2",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "animationType": "MOVE",
-          "speed": 0.008,
-          "rotationAxis": "Z",
-          "animationDurationMilis": 3500,
-          "animationPauseMilis": -1,
-          "repeatAnimation": true,
-          "moveTo": { "x": 5, "y": 20, "z": 0 },
-          "moveFrom": { "x": 5, "y": 0, "z": 0 }
-        }
-      }
-    ],
-    "lightConfig": [
-      {
-        "name": "ambient-light",
-        "lightType": "AMBIENT",
-        "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      },
-      {
-        "name": "point-lightd",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      }
-    ],
-    "globalMaterialConfigs": [
-      {
-        "id": "bg-vid",
-        "materialProps": {
-          "assetId": "bg-vid"
-        },
-        "materialType": "VIDEO"
-      },
-      {
-        "id": "chrome-material",
-        "materialProps": {
-          "assetId": "chrome-material"
-        },
-        "materialType": "MATCAP"
-      },
-      {
-        "id": "morphing-material",
-        "materialType": "SHADER",
-        "materialProps": {
-          "shaderConfig": {
-            "shaderId": "morphing",
-            "assetMapping": [
-              {
-                "uniform": "uMaterial",
-                "assetId": "chrome-material",
-                "relationship": "MATCAP"
-              },
-              {
-                "uniform": "uTextureZero",
-                "assetId": "0-texture",
-                "relationship": "TEXTURE"
-              },
-              {
-                "uniform": "uTextureOne",
-                "assetId": "1-texture",
-                "relationship": "TEXTURE"
-              }
-            ]
-          },
-          "uniforms": {
-            "uTime": { "value": 0 },
-            "uResolution": { "value": null },
-            "uMaterial": { "value": null },
-            "uFrame": {
-              "value": 0.0
-            },
-            "uOpacity": {
-              "value": 1.0
-            },
-            "uLoopCount": {
-              "value": 0.0
-            },
-            "uProgress": {
-              "value": 0.0
-            },
-            "uMouse": {
-              "value": null
-            },
-            "uPosition": {
-              "value": null
-            }
-          }
-        }
-      }
-    ],
-
-    "sceneComponentConfigs": [
-      {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "position": { "x": 0, "y": -5, "z": -6 }
-        },
-        "materialId": "bg-vid"
-      }
-    ]
-  },
-  {
-    "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
-    },
-    "assets": [
-      {
-        "name": "name-geometry",
-        "url": "../assets/models/blackout/lotus.obj",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "chain-geometry",
-        "url": "../assets/models/blackout/bayker.obj",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "bg-vid",
-        "id": "bg-vid",
-        "url": "../assets/video/blackout/bg1.mp4",
-        "assetType": "VIDEO"
-      },
-      {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/chrome.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
-      }
-    ],
-    "meshComponentConfigs": [
-      {
-        "id": "lotus-geometry",
-        "geometryId": "lotus",
-        "position": { "x": 0, "y": 0, "z": 4 },
-        "rotation": { "x": 90, "y": -0, "z": -0 },
-        "materialId": "morphing-material",
-        "geometryConfig": {
-          "scale": 0.5
-        }
-      },
-      {
-        "id": "bayker-geometry",
-        "geometryId": "Text",
-        "position": { "x": 0, "y": 0, "z": 4 },
-        "rotation": { "x": 90, "y": -0, "z": -0 },
-        "materialId": "chrome-material",
-        "randomizationConfig": {
-          "instanceCount": 5,
-
-          "boundingBoxConfig": {
-            "width": 10,
-            "height": 10,
-            "depth": 1,
-            "center": { "x": 0, "y": 0, "z": 2 }
-          }
-        }
-      }
-    ],
-    "animationConfig": [
-      {
-        "animationId": "curve-rotate",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "speed": 0.0006,
-          "rotationAxis": "Z",
-          "animationDurationMilis": 1000,
-          "animationPauseMilis": 1500,
-          "repeatAnimation": true,
-          "animationType": "ROTATE"
-        }
-      },
-      {
-        "animationId": "morph-geometry",
-        "targetIdentifier": "lotus",
-        "animationFunctionType": "UTIME",
-        "animationProperties": {
-          "animationDurationMilis": 6000,
-          "repeatAnimation": true,
-          "animationLoopConfig": [
-            {
-              "uniform": "uProgress",
-              "loopType": "ZERO_TO_ZERO"
-            }
-          ],
-          "snapOnPause": true
-        }
-      },
-      {
-        "animationId": "snowflake-move",
-        "targetIdentifier": "bayker",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "speed": 0.0006,
-          "rotationAxis": "Z",
-          "animationDurationMilis": -1,
-          "animationPauseMilis": 0,
-          "repeatAnimation": true,
-          "animationType": "FALL"
-        }
-      },
-      {
-        "animationId": "chain-move",
-        "targetIdentifier": "chain1",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "animationType": "MOVE",
-          "speed": 0.008,
-          "rotationAxis": "Z",
-          "animationDurationMilis": 3500,
-          "animationPauseMilis": -1,
-          "repeatAnimation": true,
-          "moveTo": { "x": -5, "y": -20, "z": 0 },
-          "moveFrom": { "x": -5, "y": 0, "z": 0 }
-        }
-      },
-      {
-        "animationId": "chain-move2-vert",
-        "targetIdentifier": "chain2",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "animationType": "MOVE",
-          "speed": 0.008,
-          "rotationAxis": "Z",
-          "animationDurationMilis": 3500,
-          "animationPauseMilis": -1,
-          "repeatAnimation": true,
-          "moveTo": { "x": 5, "y": 20, "z": 0 },
-          "moveFrom": { "x": 5, "y": 0, "z": 0 }
-        }
-      }
-    ],
-    "lightConfig": [
-      {
-        "name": "ambient-light",
-        "lightType": "AMBIENT",
-        "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      },
-      {
-        "name": "point-lightd",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      }
-    ],
-    "globalMaterialConfigs": [
-      {
-        "id": "bg-vid",
-        "materialProps": {
-          "assetId": "bg-vid"
-        },
-        "materialType": "VIDEO"
-      },
-      {
-        "id": "chrome-material",
-        "materialProps": {
-          "assetId": "chrome-material"
-        },
-        "materialType": "MATCAP"
-      },
-      {
-        "id": "morphing-material",
-        "materialType": "SHADER",
-        "materialProps": {
-          "shaderConfig": {
-            "shaderId": "morphing",
-            "assetMapping": [
-              {
-                "uniform": "uMaterial",
-                "assetId": "chrome-material",
-                "relationship": "MATCAP"
-              },
-              {
-                "uniform": "uTextureZero",
-                "assetId": "0-texture",
-                "relationship": "TEXTURE"
-              },
-              {
-                "uniform": "uTextureOne",
-                "assetId": "1-texture",
-                "relationship": "TEXTURE"
-              }
-            ]
-          },
-          "uniforms": {
-            "uTime": { "value": 0 },
-            "uResolution": { "value": null },
-            "uMaterial": { "value": null },
-            "uFrame": {
-              "value": 0.0
-            },
-            "uOpacity": {
-              "value": 1.0
-            },
-            "uLoopCount": {
-              "value": 0.0
-            },
-            "uProgress": {
-              "value": 0.0
-            },
-            "uMouse": {
-              "value": null
-            },
-            "uPosition": {
-              "value": null
-            }
-          }
-        }
-      }
-    ],
-
-    "sceneComponentConfigs": [
-      {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "position": { "x": 0, "y": -5, "z": -6 }
-        },
-        "materialId": "bg-vid"
-      }
-    ]
-  },
-
-  {
-    "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
-    },
-    "assets": [
-      {
-        "name": "name-geometry",
         "url": "../assets/models/blackout/flower2-geometry.obj",
         "assetType": "MODEL3D"
       },
       {
-        "name": "chain-geometry",
-        "url": "../assets/models/blackout/bayker.obj",
-        "assetType": "MODEL3D"
-      },
-      {
         "name": "lotus-geometry",
-        "url": "../assets/models/blackout/lotus-geometry.obj",
+        "url": "../assets/models/blackout/hydrange-geometry.obj",
         "assetType": "MODEL3D"
       },
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/blackout/bg2.mp4",
+        "url": "../assets/video/blackout/bg1.mp4",
         "assetType": "VIDEO"
       },
       {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+      {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/chrome2.jpg",
+        "url": "../assets/textures/matcaps/dark-chrome.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -900,7 +222,7 @@
       },
       {
         "id": "lotus-geometry",
-        "geometryId": "lotus",
+        "geometryId": "hydrange",
         "meshType": "NONE",
         "geometryConfig": {
           "scale": 0.5
@@ -910,20 +232,20 @@
         "materialId": "morphing-material"
       },
       {
-        "id": "bayker-geometry",
-        "geometryId": "Text",
-        "position": { "x": 0, "y": 0, "z": 4 },
-        "rotation": { "x": 90, "y": -0, "z": -0 },
-        "materialId": "chrome-material",
-        "randomizationConfig": {
-          "instanceCount": 7,
-          "boundingBoxConfig": {
-            "width": 10,
-            "height": 10,
-            "depth": 1,
-            "center": { "x": 0, "y": 0, "z": 2 }
-          }
-        }
+        "id": "chain",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -45 },
+        "materialId": "dissolve"
+      },
+      {
+        "id": "chain2",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 45 },
+        "materialId": "dissolve"
       }
     ],
     "animationConfig": [
@@ -942,7 +264,7 @@
       },
       {
         "animationId": "morph-geometry",
-        "targetIdentifier": "hydrange",
+        "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationProperties": {
           "animationDurationMilis": 6000,
@@ -984,11 +306,26 @@
         "materialType": "VIDEO"
       },
       {
-        "id": "chrome-material",
+        "id": "dissolve",
+        "materialType": "SHADER",
         "materialProps": {
-          "assetId": "chrome-material"
-        },
-        "materialType": "MATCAP"
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome-material",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uMaterial": { "value": null },
+            "uOpacity": { "value": 1.0 },
+            "uProgress": { "value": 0.0 }
+          }
+        }
       },
       {
         "id": "morphing-material",
@@ -1047,6 +384,703 @@
         "transformedMeshIds": ["hydrange-geometry", "lotus-geometry"]
       }
     ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ]
+  },
+  {
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
+    },
+    "assets": [
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg2.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/dark-chrome.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/diesel.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "chain",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -45 },
+        "materialId": "dissolve"
+      },
+      {
+        "id": "chain2",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 45 },
+        "materialId": "dissolve"
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "Text",
+        "geometryConfig": {
+          "scale": 1.2
+        },
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "chrome-material",
+        "randomizationConfig": {
+          "instanceCount": 10,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["chain"]
+      },
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["chain2"]
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "chrome-material",
+        "materialProps": {
+          "assetId": "chrome-material"
+        },
+        "materialType": "MATCAP"
+      },
+      {
+        "id": "dissolve",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome-material",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uMaterial": { "value": null },
+            "uOpacity": { "value": 1.0 },
+            "uProgress": { "value": 0.0 }
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 0.5 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "chain",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 2500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "uTime",
+        "targetIdentifier": "scene-background",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "animationLoopConfig": [],
+          "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "uTimeChain",
+        "targetIdentifier": "chain",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "ONE_TO_ONE"
+            }
+          ],
+          "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "snowflake-move",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL"
+        }
+      }
+    ],
+
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
+    },
+    "assets": [
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg2.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome",
+        "url": "../assets/textures/matcaps/dark-chrome.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/hydrange-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/flower2-geometry.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "chain1",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -45 },
+        "materialId": "dissolve"
+      },
+      {
+        "id": "chain2",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 45 },
+        "materialId": "dissolve"
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "hydrange",
+        "geometryConfig": {
+          "scale": 0.3
+        },
+        "randomizationConfig": {
+          "instanceCount": 7,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 10,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
+        "position": { "x": 0, "y": 0, "z": -2 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "chrome-material"
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "flower2",
+        "geometryConfig": {
+          "scale": 0.3
+        },
+        "randomizationConfig": {
+          "instanceCount": 7,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 10,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
+        "position": { "x": 0, "y": 0, "z": -2 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "chrome-material"
+      }
+    ],
+
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "chrome-material",
+        "materialProps": {
+          "assetId": "chrome-material"
+        },
+        "materialType": "MATCAP"
+      },
+      {
+        "id": "dissolve",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome-material",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uMaterial": { "value": null },
+            "uOpacity": { "value": 1.0 },
+            "uProgress": { "value": 0.0 }
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 0.5 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "chain-move",
+        "targetIdentifier": "chain1",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 20, "y": 20, "z": 0 },
+          "moveFrom": { "x": 0, "y": 0, "z": 0 }
+        }
+      },
+      {
+        "animationId": "sno-rotate",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.06,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "chain-move2",
+        "targetIdentifier": "chain2",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": -20, "y": 20, "z": 2 },
+          "moveFrom": { "x": 0, "y": 0, "z": 2 }
+        }
+      },
+      {
+        "animationId": "uTime",
+        "targetIdentifier": "scene-background",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "animationLoopConfig": [],
+          "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "uTimeChain",
+        "targetIdentifier": "chain",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "ONE_TO_ONE"
+            }
+          ],
+          "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "snowflake-move",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL"
+        }
+      }
+    ],
+
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
+    },
+    "assets": [
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/diesel.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/hydrange-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "lotus-geometry",
+        "url": "../assets/models/blackout/lotus-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg2.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/dark-chrome.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "snow-material",
+        "url": "../assets/textures/matcaps/irredescent-4.jpg",
+        "assetType": "TEXTURE",
+        "id": "snowflake-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "hydrange-geometry",
+        "geometryId": "hydrange",
+        "geometryConfig": {
+          "scale": 0.3
+        },
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 90, "y": -0, "z": -0 },
+        "materialId": "morphing-material",
+        "randomizationConfig": {
+          "instanceCount": 5,
+
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      },
+      {
+        "id": "lotus-geometry",
+        "geometryId": "lotus",
+        "geometryConfig": {
+          "scale": 0.5
+        },
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "morphing-material",
+        "randomizationConfig": {
+          "instanceCount": 5,
+
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      },
+      {
+        "id": "logo",
+        "geometryId": "Text",
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 90, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "logo-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "ROTATE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 2500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.008,
+          "rotationAxis": "Y",
+          "animationDurationMilis": 2500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": 500,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            }
+          ],
+          "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "snowflake-move",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL"
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "morphing-material",
+        "materialType": "SHADER",
+
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome-material",
+                "relationship": "MATCAP"
+              },
+              {
+                "uniform": "uTextureZero",
+                "assetId": "0-texture",
+                "relationship": "TEXTURE"
+              },
+              {
+                "uniform": "uTextureOne",
+                "assetId": "1-texture",
+                "relationship": "TEXTURE"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null },
+            "uMaterial": { "value": null },
+            "uFrame": {
+              "value": 0.0
+            },
+            "uOpacity": {
+              "value": 1.0
+            },
+            "uLoopCount": {
+              "value": 0.0
+            },
+            "uProgress": {
+              "value": 0.0
+            },
+            "uMouse": {
+              "value": null
+            },
+            "uPosition": {
+              "value": null
+            }
+          }
+        }
+      }
+    ],
+
     "sceneComponentConfigs": [
       {
         "id": "scene-background",

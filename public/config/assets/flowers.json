@@ -1,0 +1,32 @@
+[
+  {
+    "name": "lotus-geometry",
+    "id": "lotus",
+    "url": "../assets/models/blackout/lotus.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "hydrange-geometry",
+    "id": "hydrange",
+    "url": "../assets/models/blackout/hydrange.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "flower-geometry",
+    "id": "flower",
+    "url": "../assets/models/blackout/flower.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "flower2-geometry",
+    "id": "flower2",
+    "url": "../assets/models/blackout/flower2.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "flower3-geometry",
+    "id": "flower3",
+    "url": "../assets/models/blackout/flower3.obj",
+    "assetType": "MODEL3D"
+  }
+]

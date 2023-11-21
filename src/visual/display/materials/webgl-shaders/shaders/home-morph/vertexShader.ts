@@ -45,14 +45,15 @@ export const vertexShader = `
   
     vec4 mv_position =  vec4(new_position,1.0);
     // Save the varyings
-    // v_position = mv_position.xyz;
-    // vNormal = normalize(normalMatrix * new_normal);
-    // vUv = vec2(new_position.x, -new_position.y); // or use a different mapping based on your needs
+ 
+    // Save the varyings
+    v_position = mv_position.xyz;
+    vNormal = normalize(normalMatrix * new_normal);
+    vUv = vec2(new_position.x, -new_position.y); // or use a different mapping based on your needs
   
   
     
     
-    gl_PointSize = 15.0;
   
     // Vertex shader output
     gl_Position = projectionMatrix  *  modelViewMatrix * mv_position;

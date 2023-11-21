@@ -60,20 +60,26 @@
   },
   {
     "title": "D",
-    "configId": "decadance",
-    "configPath": "scenes/blackout/decadance",
+    "configId": "diesel",
+    "configPath": "scenes/blackout/diesel",
     "componentId": "InteractiveSceneContainer"
   },
   {
     "title": "M",
-    "configId": "decadance",
-    "configPath": "scenes/blackout/decadance",
+    "configId": "marsh",
+    "configPath": "scenes/blackout/marsh",
     "componentId": "InteractiveSceneContainer"
   },
   {
     "title": "J",
-    "configId": "decadance",
-    "configPath": "scenes/blackout/decadance",
+    "configId": "juanoz",
+    "configPath": "scenes/blackout/juanoz",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "J",
+    "configId": "fan2",
+    "configPath": "scenes/blackout/fan2",
     "componentId": "InteractiveSceneContainer"
   }
 ]

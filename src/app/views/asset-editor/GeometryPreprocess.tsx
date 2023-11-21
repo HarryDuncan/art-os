@@ -22,14 +22,14 @@ const preTranformConfig = {
   centerGeometry: true,
 };
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/hjd.json`);
+  const assets = useFetchData(`${CONFIG}assets/words.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );
 
   const transformConfig = {
-    vertexPositionsCount: 3,
-    vertexPositionAxis: AXIS.Y as Axis,
+    vertexPositionsCount: 1,
+    vertexPositionAxis: AXIS.X as Axis,
   };
   const centerToOrigin = () => {
     const preTransformed = preTransform(initializedAssets, preTranformConfig);

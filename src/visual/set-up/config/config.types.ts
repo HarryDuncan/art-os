@@ -25,6 +25,7 @@ import { Position3d } from "visual/utils/three-dimension-space/position/position
 
 export type RandomizationConfig = {
   instanceCount: number;
+  randomRotation?: boolean;
   boundingBoxConfig: {
     width: number;
     height: number;

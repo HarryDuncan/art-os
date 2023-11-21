@@ -20,11 +20,15 @@ export const setUpRandomizedMeshConfigs = (
 };
 
 const setUpRandom = (meshConfig: MeshComponentConfig) => {
-  const { randomizationConfig } = meshConfig;
+  const { randomizationConfig, rotation } = meshConfig;
   if (!randomizationConfig) {
     return [];
   }
-  const { instanceCount, boundingBoxConfig } = randomizationConfig;
+  const {
+    instanceCount,
+    boundingBoxConfig,
+    randomRotation,
+  } = randomizationConfig;
   const boundingBox = createBoundingBox(boundingBoxConfig);
   const randomCoordinates = generateRandomlySpreadCoordinates(
     instanceCount,
@@ -33,12 +37,14 @@ const setUpRandom = (meshConfig: MeshComponentConfig) => {
     2
   );
   const formattedMeshConfig = randomCoordinates.map((coordinate, index) => {
-    const rotation = getRandomRotationAsDegrees();
+    const meshRotation = randomRotation
+      ? getRandomRotationAsDegrees()
+      : rotation;
     return {
       ...meshConfig,
       id: `${meshConfig.id}-${index}`,
       position: coordinate,
-      rotation,
+      rotation: meshRotation,
     };
   });
   return formattedMeshConfig;

@@ -15,11 +15,14 @@ export const combineVertices = (
     const chunkIndex = Math.floor(insertPosition / CHUNK_SIZE);
     const chunkOffset = insertPosition % CHUNK_SIZE;
     const chunkedAdditional = chunkArray(vertices, ADDITIONAL_CHUNK_SIZE);
-    chunkedAdditional.forEach((additional) => {});
-    console.log(chunkIndex);
-    console.log(chunks);
-    console.log(chunks[chunkIndex]);
-    chunks[chunkIndex].splice(chunkOffset + addedVertexCount, 0, ...vertices);
+    chunkedAdditional.forEach((additional) => {
+      chunks[chunkIndex].splice(
+        chunkOffset + addedVertexCount,
+        0,
+        ...additional
+      );
+    });
+
     addedVertexCount += vertices.length;
   });
 

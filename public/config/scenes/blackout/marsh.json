@@ -1,0 +1,1034 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
+    },
+    "assets": [
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/marsh-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg3.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/jupiter.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "snowflake-geometry",
+        "url": "../assets/models/blackout/flower-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "snowflake-geometry",
+        "url": "../assets/models/blackout/flower3-geometry.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "logo",
+        "geometryId": "marsh",
+        "size": 22,
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 90, "y": -0, "z": -0 },
+        "materialId": "chrome-material"
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "flower3",
+        "geometryConfig": {
+          "scale": 0.3
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "chrome-material",
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "flower",
+        "geometryConfig": {
+          "scale": 0.5
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "chrome-material",
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": 1500,
+          "repeatAnimation": true,
+          "animationType": "ROTATE"
+        }
+      },
+      {
+        "animationId": "snowflake-move",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL"
+        }
+      },
+      {
+        "animationId": "sno-rotate",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.06,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "snowflake-material",
+        "materialProps": {
+          "assetId": "snowflake-material"
+        },
+        "materialType": "MATCAP"
+      },
+      {
+        "id": "chrome-material",
+        "materialProps": {
+          "assetId": "chrome-material"
+        },
+        "materialType": "MATCAP"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ]
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
+    },
+    "assets": [
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/jupiter.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg3.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/marsh-geometry.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "logo",
+        "geometryId": "marsh",
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 90, "y": -0, "z": -0 },
+        "materialId": "dissolve"
+      },
+      {
+        "id": "chain1",
+        "geometryId": "Chain",
+        "size": 0.007,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 90 },
+        "materialId": "chrome-material"
+      },
+      {
+        "id": "chain2",
+        "geometryId": "Chain",
+        "size": 0.007,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 90 },
+        "materialId": "chrome-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "CHAIN",
+        "animationProperties": {
+          "animationType": "ROTATE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "chain-move",
+        "targetIdentifier": "chain1",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 20, "y": -4, "z": -3 },
+          "moveFrom": { "x": 0, "y": -4, "z": -3 }
+        }
+      },
+      {
+        "animationId": "chain-move2",
+        "targetIdentifier": "chain2",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": -20, "y": 4, "z": -3 },
+          "moveFrom": { "x": 0, "y": 4, "z": -3 }
+        }
+      },
+      {
+        "animationId": "uTimeChain",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "ONE_TO_ONE"
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "chrome-material",
+        "materialProps": {
+          "assetId": "chrome-material"
+        },
+        "materialType": "MATCAP"
+      },
+      {
+        "id": "dissolve",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome-material",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uMaterial": { "value": null },
+            "uOpacity": { "value": 1.0 },
+            "uProgress": { "value": 0.0 }
+          }
+        }
+      }
+    ],
+
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ]
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
+    },
+    "assets": [
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/flower3-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "lotus-geometry",
+        "url": "../assets/models/blackout/flower-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg4.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/jupiter.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "hydrange-geometry",
+        "geometryId": "flower",
+        "geometryConfig": {
+          "scale": 0.5
+        },
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 90, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "lotus-geometry",
+        "geometryId": "flower3",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 0.5
+        },
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "chain1",
+        "geometryId": "Chain",
+        "size": 0.007,
+        "position": { "x": 0, "y": 4, "z": -3 },
+        "rotation": { "x": 0, "y": 0, "z": 90 },
+        "materialId": "chrome-material"
+      },
+      {
+        "id": "chain2",
+        "geometryId": "Chain",
+        "size": 0.007,
+        "position": { "x": 0, "y": -4, "z": -3 },
+        "rotation": { "x": 0, "y": 0, "z": 90 },
+        "materialId": "chrome-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.008,
+          "rotationAxis": "Y",
+          "animationDurationMilis": 2500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": 500,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "chrome-material",
+        "materialProps": {
+          "assetId": "chrome-material"
+        },
+        "materialType": "MATCAP"
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "morphing-material",
+        "materialType": "SHADER",
+
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "homeMorph",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome-material",
+                "relationship": "MATCAP"
+              },
+              {
+                "uniform": "uTextureZero",
+                "assetId": "0-texture",
+                "relationship": "TEXTURE"
+              },
+              {
+                "uniform": "uTextureOne",
+                "assetId": "1-texture",
+                "relationship": "TEXTURE"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null },
+            "uMaterial": { "value": null },
+            "uFrame": {
+              "value": 0.0
+            },
+            "uOpacity": {
+              "value": 1.0
+            },
+            "uLoopCount": {
+              "value": 0.0
+            },
+            "uProgress": {
+              "value": 0.0
+            },
+            "uMouse": {
+              "value": null
+            },
+            "uPosition": {
+              "value": null
+            }
+          }
+        }
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["hydrange-geometry", "lotus-geometry"]
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -15 }
+        },
+        "materialId": "bg-vid"
+      }
+    ]
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
+    },
+    "assets": [
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/jupiter.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg4.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "name-geometry",
+        "url": "../assets/models/blackout/marsh-geometry.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "logo",
+        "geometryId": "marsh",
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 90, "y": -0, "z": -0 },
+        "materialId": "chrome-material",
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "boundingBoxConfig": {
+            "width": 10,
+            "height": 8,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      },
+      {
+        "id": "chain1",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -90 },
+        "materialId": "dissolve"
+      },
+      {
+        "id": "chain2",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 90 },
+        "materialId": "dissolve"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "ROTATE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "snowflake-move",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL"
+        }
+      },
+      {
+        "animationId": "chain-move",
+        "targetIdentifier": "chain1",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 20, "y": -4, "z": -3 },
+          "moveFrom": { "x": 0, "y": -4, "z": -3 }
+        }
+      },
+      {
+        "animationId": "chain-move2",
+        "targetIdentifier": "chain2",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": -20, "y": 4, "z": -3 },
+          "moveFrom": { "x": 0, "y": 4, "z": -3 }
+        }
+      },
+      {
+        "animationId": "uTimeChain",
+        "targetIdentifier": "chain",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "ONE_TO_ONE"
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "chrome-material",
+        "materialProps": {
+          "assetId": "chrome-material"
+        },
+        "materialType": "MATCAP"
+      },
+      {
+        "id": "dissolve",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome-material",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uMaterial": { "value": null },
+            "uOpacity": { "value": 1.0 },
+            "uProgress": { "value": 0.0 }
+          }
+        }
+      }
+    ],
+
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ]
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 10.5 } }
+    },
+    "assets": [
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/jupiter.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "chain-geometry",
+        "url": "../assets/models/chain.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg3.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "snowflake-geometry",
+        "url": "../assets/models/blackout/flower-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "snowflake-second-geometry",
+        "url": "../assets/models/blackout/flower3-geometry.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "snowflake",
+        "geometryId": "flower3",
+        "geometryConfig": {
+          "scale": 0.5
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "dissolve",
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      },
+      {
+        "id": "snowflake",
+        "geometryId": "flower",
+        "geometryConfig": {
+          "scale": 0.5
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "dissolve",
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "randomRotation": true,
+          "boundingBoxConfig": {
+            "width": 20,
+            "height": 10,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        }
+      },
+      {
+        "id": "chain1",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 90 },
+        "materialId": "chrome-material"
+      },
+      {
+        "id": "chain2",
+        "geometryId": "Chain",
+        "size": 0.005,
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 90 },
+        "materialId": "chrome-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "binary-rotate",
+        "targetIdentifier": "logo",
+        "animationFunctionType": "CHAIN",
+        "animationProperties": {
+          "animationType": "ROTATE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "sno-rotate",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.06,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "snowflake-move",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL"
+        }
+      },
+      {
+        "animationId": "chain-move",
+        "targetIdentifier": "chain1",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 20, "y": 4, "z": -3 },
+          "moveFrom": { "x": 0, "y": 4, "z": -3 }
+        }
+      },
+      {
+        "animationId": "chain-move2",
+        "targetIdentifier": "chain2",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "rotationAxis": "Z",
+          "animationDurationMilis": 3500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": -20, "y": -4, "z": -3 },
+          "moveFrom": { "x": 0, "y": -4, "z": -3 }
+        }
+      },
+      {
+        "animationId": "uTimeChain",
+        "targetIdentifier": "snowflake",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 6000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "ONE_TO_ONE"
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "chrome-material",
+        "materialProps": {
+          "assetId": "chrome-material"
+        },
+        "materialType": "MATCAP"
+      },
+      {
+        "id": "dissolve",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "morphing",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome-material",
+                "relationship": "MATCAP"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uMaterial": { "value": null },
+            "uOpacity": { "value": 1.0 },
+            "uProgress": { "value": 0.0 }
+          }
+        }
+      }
+    ],
+
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ]
+  }
+]

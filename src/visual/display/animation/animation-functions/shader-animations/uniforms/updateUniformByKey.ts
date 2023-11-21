@@ -11,6 +11,7 @@ export const updateUniformByKey = (
   const meshes = getMeshesByIdentifier(scene, identifier);
   meshes.forEach((mesh) => {
     const material = mesh.material as RawShaderMaterial;
+    console.log(material.uniforms);
     if (material.uniforms[uniformKey]) {
       material.uniforms[uniformKey].value = uniformValue;
     }

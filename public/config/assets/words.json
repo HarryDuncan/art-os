@@ -1,0 +1,14 @@
+[
+  {
+    "name": "liberation-geometry",
+    "id": "liberation",
+    "url": "../assets/models/blackout/liberation.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "decadance-geometry",
+    "id": "decadance",
+    "url": "../assets/models/blackout/decadance.obj",
+    "assetType": "MODEL3D"
+  }
+]

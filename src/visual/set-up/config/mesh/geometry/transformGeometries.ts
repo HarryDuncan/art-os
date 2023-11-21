@@ -16,6 +16,7 @@ export const transformGeometry = (
   meshTransforms.forEach((transform) => {
     switch (transform.type) {
       case MESH_TRANSFORM.MORPH: {
+        console.log(formattedGeometries);
         const morphMeshes = formattedGeometries
           .filter((geometry) =>
             transform.transformedMeshIds.includes(geometry.name ?? "")
@@ -48,7 +49,7 @@ export const transformGeometry = (
           }
         });
 
-        const pointIds = new Float32Array(maxVertexCount / 3);
+        const pointIds = new Float32Array(maxVertexCount);
         pointIds.forEach((_value, index) => {
           pointIds[index] = Number(index.toFixed(1));
         });
@@ -57,7 +58,7 @@ export const transformGeometry = (
           new BufferAttribute(pointIds, 1)
         );
 
-        const angles = new Float32Array(maxVertexCount / 3);
+        const angles = new Float32Array(maxVertexCount);
         angles.forEach((_value, index) => {
           angles[index] = Math.random();
         });

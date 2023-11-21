@@ -3,10 +3,13 @@ export const fragmentShader = `
 // Common uniforms
 uniform vec2 uResolution;
 uniform float uTime;
-uniform sampler2D uMaterial;
 
+uniform sampler2D uMaterial;
+uniform float uProgress;
+uniform float uOpacity;
 // Common varyings
 varying vec3 v_position;
+varying float vPointId;
 varying vec3 vNormal;
 varying vec3 vViewDirection;
 
@@ -53,13 +56,14 @@ void main() {
 
     // Use the mouse position to define the light direction
     float min_resolution = min(uResolution.x, uResolution.y);
-    vec3 light_direction = -vec3((vec2(20.0, 20.0) - 0.5 * uResolution) / min_resolution, 0.25);
+    vec2 lightDir = vec2(439.0, 3431.0);
+    vec3 light_direction = -vec3((lightDir - 0.5 * uResolution) / min_resolution, 0.25);
 
     // Set the surface color
-    vec3 surface_color = vec3(0.0, 0.5, 0.4);
+    vec3 surface_color = vec3(1.0, 0.5, 0.4);
 
     // Apply the light diffusion factor
-   
+    
 
     // Fragment shader output
     // Calculate curvature based on the angle between the normal and the view direction
@@ -68,8 +72,11 @@ void main() {
     // Blend the edge color with the object color based on curvature
     vec3 finalColor = mix(surface_color, vec3(1.0), curvature);
 
-    vec4 col = mix(uMaterialTex,vec4( finalColor, 0.0), 0.0);
+    vec4 col = mix(uMaterialTex,vec4( finalColor, 1.0), 0.0);
     gl_FragColor =  mix(uMaterialTex,col,1.0 );
+    gl_FragColor = vec4(gl_FragColor.rgb, gl_FragColor.a * uOpacity);
+    
+
 
     
 }

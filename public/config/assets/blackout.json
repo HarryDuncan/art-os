@@ -1,0 +1,44 @@
+[
+  {
+    "name": "bayker-geometry",
+    "id": "bayker",
+    "url": "../assets/models/blackout/bayker.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "marsh-geometry",
+    "id": "marshLong",
+    "url": "../assets/models/blackout/marshLong.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "diesel-geometry",
+    "id": "diesel",
+    "url": "../assets/models/blackout/diesel.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "juan-geometry",
+    "id": "juanoz",
+    "url": "../assets/models/blackout/juanoz.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "hydrange-geometry",
+    "id": "hydrange",
+    "url": "../assets/models/blackout/hydrange.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "lotus-geometry",
+    "id": "lotus",
+    "url": "../assets/models/blackout/lotus.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "person-geometry",
+    "id": "person",
+    "url": "../assets/models/blackout/person.obj",
+    "assetType": "MODEL3D"
+  }
+]

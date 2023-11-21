@@ -1,1 +1,1 @@
-export const CHUNK_SIZE = 1000000;
+export const CHUNK_SIZE = 1000;
