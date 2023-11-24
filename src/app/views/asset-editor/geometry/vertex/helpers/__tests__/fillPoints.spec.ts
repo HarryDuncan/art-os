@@ -1,4 +1,5 @@
 import { fillPoints } from "../fillPoints";
+import { expect, test, describe } from "vitest";
 
 describe("fillPoints", () => {
   test("returns an array of x vertices all being the parsed coordinate", () => {

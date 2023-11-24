@@ -1,5 +1,6 @@
 import { Asset, AssetData } from "visual/set-up/assets/asset.types";
 import { mapAssetsToUniforms } from "../mapAssetsToUniforms";
+import { expect, test, describe } from "vitest";
 
 const MOCK_MAP = [
   {

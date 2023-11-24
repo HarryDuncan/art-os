@@ -2,6 +2,7 @@ import { Vector2, Vector3 } from "three";
 import { buildUniforms } from "../buildUniforms";
 import configs from "./uniformConfigs.json";
 import { UniformConfig } from "../uniforms.types";
+import { expect, test, describe } from "vitest";
 
 describe("buildUniforms", () => {
   test("returns empty config with mandatory uniforms", () => {

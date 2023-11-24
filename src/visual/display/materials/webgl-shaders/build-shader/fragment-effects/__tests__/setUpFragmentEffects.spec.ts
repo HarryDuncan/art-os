@@ -1,6 +1,7 @@
 import { EMPTY_UNIFORM_CONFIG } from "../../shader-properties/uniforms/uniforms.consts";
 import { FragmentEffectConfig } from "../fragmentEffects.types";
 import { setUpFragmentEffects } from "../setUpFragmentEffects";
+import { expect, test, describe } from "vitest";
 import config from "./fragmentEffects.json";
 
 describe("setUpFragmentEffects", () => {

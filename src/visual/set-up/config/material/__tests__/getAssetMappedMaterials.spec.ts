@@ -1,4 +1,5 @@
 import { getAssetMappedMaterials } from "../getAssetMappedMaterials";
+import { expect, test, describe } from "vitest";
 
 const mockAssets = [
   {

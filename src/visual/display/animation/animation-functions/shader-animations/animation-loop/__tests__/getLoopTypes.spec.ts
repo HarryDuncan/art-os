@@ -1,5 +1,6 @@
 import { ANIMATION_LOOP_TYPES } from "../animationLoop.consts";
 import { getLoopType } from "../getLoopTypes";
+import { expect, test, describe } from "vitest";
 
 const MOCK_START = 0;
 const MOCK_MID = 50;

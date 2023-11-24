@@ -1,5 +1,6 @@
 import { VaryingConfig } from "../../varyings.types";
 import { mergeVaryingConfigs } from "../mergeVaryingConfigs";
+import { expect, test, describe } from "vitest";
 
 import varyingConfigs from "./testVaryings.json";
 describe("mergeVaryingConfigs", () => {

@@ -1,5 +1,6 @@
 import { buildVaryings } from "../buildVaryings";
 import { VaryingConfig } from "../varyings.types";
+import { expect, test, describe } from "vitest";
 import config from "./varyingConfigs.json";
 
 describe("buildVaryings", () => {

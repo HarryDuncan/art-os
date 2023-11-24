@@ -1,5 +1,6 @@
 import { ANIMATION_LOOP_TYPES } from "../animationLoop.consts";
 import { snapAnimationLoopOnPause } from "../snapAnimationLoopOnPause";
+import { expect, test, describe } from "vitest";
 
 const MOCK = [
   {

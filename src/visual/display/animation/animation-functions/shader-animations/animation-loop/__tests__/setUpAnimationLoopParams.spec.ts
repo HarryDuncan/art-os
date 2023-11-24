@@ -1,6 +1,7 @@
 import { ExtendedMesh } from "visual/set-up/config/mesh/mesh.types";
 import { ANIMATION_LOOP_TYPES } from "../animationLoop.consts";
 import { setUpAnimationLoop } from "../setUpAnimationLoop";
+import { expect, test, describe } from "vitest";
 
 const MOCK = [
   {

@@ -4,6 +4,7 @@ import {
   vectorToArray,
   vectorToPosition3d,
 } from "../conversion";
+import { expect, test, describe } from "vitest";
 
 describe("conversion", () => {
   test("converts full position to vector3", () => {

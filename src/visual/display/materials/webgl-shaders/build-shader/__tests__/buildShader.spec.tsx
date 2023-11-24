@@ -1,6 +1,7 @@
 import { Vector3 } from "three";
 import { buildShader } from "../buildShader";
 import shaderConfig from "./config.json";
+import { expect, test, describe } from "vitest";
 
 jest.mock(
   "../vertex-effects/effects/displacement/explode/explodeTransformation",

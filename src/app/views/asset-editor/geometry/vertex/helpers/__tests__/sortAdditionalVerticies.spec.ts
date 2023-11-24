@@ -1,4 +1,5 @@
 import { sortAdditionalVertices } from "../sortAdditionalVertices";
+import { expect, test, describe } from "vitest";
 
 const ADDITIONAL = [
   { vertices: [0.1, 0.1, 0.1], insertPosition: 20 },

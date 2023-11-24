@@ -1,4 +1,5 @@
 import { getRandomCoordinates } from "../getRandomCoordinates";
+import { expect, test, describe } from "vitest";
 
 describe("getRandomXYZCoordinates", () => {
   test("should generate the specified number of random XYZ coordinates within the given bounds", () => {

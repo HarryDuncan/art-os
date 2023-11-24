@@ -2,6 +2,7 @@ import {
   PROPERTY_TYPES,
   PROPERTY_VALUE_TYPES,
 } from "../../buildShader.constants";
+import { expect, test, describe } from "vitest";
 import { createDeclarationString } from "../createDeclarationString";
 
 describe("createDeclarationString", () => {

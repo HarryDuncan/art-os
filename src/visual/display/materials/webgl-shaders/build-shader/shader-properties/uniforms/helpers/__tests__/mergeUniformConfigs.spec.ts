@@ -1,5 +1,6 @@
 import { EMPTY_UNIFORM_CONFIG } from "../../uniforms.consts";
 import { mergeUniformConfigs } from "../mergeUniformConfigs";
+import { expect, test, describe } from "vitest";
 import uniformConfigs from "./uniformConfigs.json";
 
 describe("mergeUniformConfigs", () => {

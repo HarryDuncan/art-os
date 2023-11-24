@@ -1,4 +1,5 @@
 import { mergeAttributeConfigs } from "../mergeAttributeConfigs";
+import { expect, test, describe } from "vitest";
 import attributeConfig from "./attributeConfigs.json";
 
 describe("mergeAttributeConfig", () => {

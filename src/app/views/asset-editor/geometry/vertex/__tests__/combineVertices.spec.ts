@@ -1,4 +1,5 @@
 import { combineVertices } from "../combineVertices";
+import { expect, test, describe } from "vitest";
 
 const MOCK_CURRENT = [1, 1, 1, 2, 2, 2, 3, 3, 3];
 const ADDITIONAL = [
