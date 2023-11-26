@@ -49,7 +49,6 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
     allRequiredFunctions.push(requiredFunctions);
   });
 
-  console.log(unmergedUniformConfigs);
   const mergedUniformConfigs = mergeUniformConfigs(unmergedUniformConfigs);
   const mergedVaryingConfigs = mergeVaryingConfigs(unmergedVaryingConfigs);
   const mergedRequiredFunction = reduceFunctions(allRequiredFunctions);

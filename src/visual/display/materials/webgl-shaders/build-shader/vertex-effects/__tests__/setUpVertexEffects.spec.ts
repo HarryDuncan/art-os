@@ -1,13 +1,13 @@
 import { VertexEffectConfig } from "../../buildShader.types";
 import { EMPTY_UNIFORM_CONFIG } from "../../shader-properties/uniforms/uniforms.consts";
 import { setUpVertexEffects } from "../setUpVertexEffects";
-import { expect, test, describe } from "vitest";
+import { expect, test, describe, vi } from "vitest";
 import configs from "./vertexEffectConfigs.json";
 
-jest.mock("../effects/displacement/explode/explodeTransformation", () => ({
+vi.mock("../effects/displacement/explode/explodeTransformation", () => ({
   explodeTransformation: () => "explodeTransformationString; ",
 }));
-jest.mock("../effects/filter-vertex/vertexFilterTransformation", () => ({
+vi.mock("../effects/filter-vertex/vertexFilterTransformation", () => ({
   vertexFilterTransformation: () => "vertexFilterTransformation; ",
 }));
 

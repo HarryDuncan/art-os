@@ -15,6 +15,5 @@ export const formatGlobalMaterials = (
   );
   const shaderMaterials = getShaderMaterials(config, assets);
   const globalMaterials = getMaterialsFromConfig(config);
-  console.log(globalMaterials);
   return [...assetMappedMaterials, ...shaderMaterials, ...globalMaterials];
 };

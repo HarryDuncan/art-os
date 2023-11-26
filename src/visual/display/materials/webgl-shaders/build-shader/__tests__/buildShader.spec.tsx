@@ -1,9 +1,9 @@
 import { Vector3 } from "three";
 import { buildShader } from "../buildShader";
 import shaderConfig from "./config.json";
-import { expect, test, describe } from "vitest";
+import { expect, test, describe, vi } from "vitest";
 
-jest.mock(
+vi.mock(
   "../vertex-effects/effects/displacement/explode/explodeTransformation",
   () => ({
     explodeTransformation: () => "explodeTransformationString;",

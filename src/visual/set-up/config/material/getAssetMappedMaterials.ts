@@ -88,7 +88,6 @@ const getVideoMaterial = (
   asset: Asset
 ): Material => {
   materialProps.videoId = asset.id;
-  console.log(asset);
   return getMaterial(
     MATERIAL_TYPES.VIDEO as MaterialType,
     materialProps

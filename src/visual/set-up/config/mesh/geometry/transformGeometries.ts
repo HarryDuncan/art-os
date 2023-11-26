@@ -16,7 +16,6 @@ export const transformGeometry = (
   meshTransforms.forEach((transform) => {
     switch (transform.type) {
       case MESH_TRANSFORM.MORPH: {
-        console.log(formattedGeometries);
         const morphMeshes = formattedGeometries
           .filter((geometry) =>
             transform.transformedMeshIds.includes(geometry.name ?? "")

@@ -13,7 +13,7 @@ describe("useAssetLocation", () => {
     );
   });
   test("if running on server asset url is concatenated with NEXT_PUBLIC_CONTENT_ROOT", () => {
-    vi.stubEnv("NEXT_PUBLIC_CONTENT_ROOT", "root");
+    vi.stubGlobal("NEXT_PUBLIC_CONTENT_ROOT", "root");
     render(<MockComponent mockConfig={mockConfig} />);
     expect(mockFunction).toHaveBeenCalledWith(
       "root/assets/textures/point-textures/1.png"
