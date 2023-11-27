@@ -47,7 +47,7 @@ export const transformGeometry = (
             );
           }
         });
-
+        console.log(maxVertexCount);
         const pointIds = new Float32Array(maxVertexCount);
         pointIds.forEach((_value, index) => {
           pointIds[index] = Number(index.toFixed(1));

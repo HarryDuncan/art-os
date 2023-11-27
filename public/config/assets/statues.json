@@ -1,0 +1,14 @@
+[
+  {
+    "name": "athena-geometry",
+    "id": "athena",
+    "url": "../assets/models/sculptures/athena-statue.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "mercury-geometry",
+    "id": "mercury",
+    "url": "../assets/models/sculptures/mercury-statue.obj",
+    "assetType": "MODEL3D"
+  }
+]

@@ -29,7 +29,7 @@ export const performAnimation = (
   object: MeshObject | Object3D,
   progress: number,
   animationProperties: AnimationProperties,
-  count: number
+  count: number = 0
 ) => {
   if (animationType === ANIMATION_TYPES.TRAVERSE) {
     const {

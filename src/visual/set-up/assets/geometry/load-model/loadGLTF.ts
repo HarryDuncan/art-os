@@ -1,9 +1,14 @@
 import { Group } from "three";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export const loadGLTF = (path: string) =>
   new Promise((resolve: (value: Group) => void) => {
     const gltfLoader = new GLTFLoader();
+    // Optional: Provide a DRACOLoader instance to decode compressed mesh data
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath("/examples/jsm/libs/draco/");
+    gltfLoader.setDRACOLoader(dracoLoader);
     gltfLoader.load(
       path,
       (gltf: GLTF) => {
@@ -12,8 +17,8 @@ export const loadGLTF = (path: string) =>
       }, // On Progress
       () => null,
       // On Error
-      () => {
-        console.error("error loading object");
+      (error) => {
+        console.error(error);
       }
     );
   });

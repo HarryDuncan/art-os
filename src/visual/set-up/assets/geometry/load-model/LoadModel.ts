@@ -4,7 +4,8 @@ import { loadObject } from "./loadObject";
 
 export const loadModel = async (path: string, fileType: string) => {
   switch (fileType) {
-    case FILE_TYPES.MODELS.GLTF: {
+    case FILE_TYPES.MODELS.GLTF:
+    case FILE_TYPES.MODELS.GLB: {
       const gltf = loadGLTF(path);
       return gltf;
     }
@@ -14,6 +15,7 @@ export const loadModel = async (path: string, fileType: string) => {
     }
     case "":
     default: {
+      console.warn(`no file type specified for ${fileType}`);
       return null;
     }
   }

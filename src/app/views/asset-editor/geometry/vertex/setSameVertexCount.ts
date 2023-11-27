@@ -28,11 +28,9 @@ export const setSameVertexCount = (
     config
   );
   const totalLength = vertexCount + extraVertexCount;
-  const combinedVertices = combineVertices(
-    currentVertices,
-    additional,
-    totalLength
-  );
+  const combinedVertices = [...currentVertices, ...additional];
+  console.log(combinedVertices.length);
+  console.log(totalLength);
   const combinedArray = new Float32Array(totalLength);
   combinedArray.set(combinedVertices, 0);
   const newGeometry = new BufferGeometry();

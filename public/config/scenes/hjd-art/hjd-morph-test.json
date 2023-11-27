@@ -1,0 +1,169 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 80.5 } }
+    },
+    "assets": [
+      {
+        "name": "aphrodite-geometry",
+        "url": "../assets/models/sculptures/aphrodite-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "apollo-geometry",
+        "url": "../assets/models/sculptures/apollo-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg3.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "aphrodite-geometry",
+        "geometryId": "aphrodite",
+        "geometryConfig": {
+          "scale": 0.5
+        },
+        "position": { "x": 0, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "apollo-geometry",
+        "geometryId": "apollo",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 0.5
+        },
+        "position": { "x": -5, "y": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "geometry-rotate",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.0008,
+          "rotationAxis": "Y",
+          "animationDurationMilis": 2500,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 15000,
+          "animationPauseMilis": 500,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "morphing-material",
+        "materialType": "SHADER",
+        "materialProps": {
+          "shaderConfig": {
+            "shaderId": "homeMorph",
+            "assetMapping": [
+              {
+                "uniform": "uMaterial",
+                "assetId": "chrome-material",
+                "relationship": "MATCAP"
+              },
+              {
+                "uniform": "uTextureZero",
+                "assetId": "0-texture",
+                "relationship": "TEXTURE"
+              },
+              {
+                "uniform": "uTextureOne",
+                "assetId": "1-texture",
+                "relationship": "TEXTURE"
+              }
+            ]
+          },
+          "uniforms": {
+            "uTime": { "value": 0 },
+            "uResolution": { "value": null },
+            "uMaterial": { "value": null },
+            "uFrame": {
+              "value": 0.0
+            },
+            "uOpacity": {
+              "value": 1.0
+            },
+            "uLoopCount": {
+              "value": 0.0
+            },
+            "uProgress": {
+              "value": 0.0
+            },
+            "uMouse": {
+              "value": null
+            },
+            "uPosition": {
+              "value": null
+            }
+          }
+        }
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"]
+      }
+    ],
+    "sceneComponentConfigs": []
+  }
+]

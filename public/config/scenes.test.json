@@ -1,85 +1,14 @@
 [
   {
-    "title": "Morph",
-    "configId": "morph",
-    "configPath": "scenes/morph",
-    "componentId": "InteractiveSceneContainer",
-    "cardImageName": "hjd2.jpg"
-  },
-  {
-    "title": "Home",
-    "configId": "home",
-    "configPath": "scenes/home",
-    "componentId": "InteractiveSceneContainer",
-    "cardImageName": "hjd2.jpg"
-  },
-  {
-    "title": "HJD Scene Template",
-    "configId": "hjdScene",
-    "configPath": "scenes/hjd-scene",
-    "componentId": "InteractiveSceneContainer",
-    "cardImageName": "hjd2.jpg"
-  },
-  {
-    "title": "H and T",
-    "configId": "hAndT",
-    "configPath": "scenes/h-and-t",
-    "componentId": "InteractiveSceneContainer",
-    "cardImageName": "hjd2.jpg"
-  },
-  {
-    "title": "Tech Home",
-    "configId": "techHome",
-    "configPath": "scenes/hjd-tech",
-    "componentId": "InteractiveSceneContainer",
-    "cardImageName": "hjd2.jpg"
-  },
-  {
-    "title": "Barba GPK",
-    "configId": "barba",
-    "configPath": "scenes/barba/gpk",
+    "title": "Palestine Morph",
+    "configId": "palestine-morph",
+    "configPath": "scenes/hjd-art/palestine-morph",
     "componentId": "InteractiveSceneContainer"
   },
   {
-    "title": "Barba EYE",
-    "configId": "eye-skull",
-    "configPath": "scenes/barba/eye-skull",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "Decadance",
-    "configId": "decadance",
-    "configPath": "scenes/blackout/decadance",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "B",
-    "configId": "bayker",
-    "configPath": "scenes/blackout/bayker",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "D",
-    "configId": "diesel",
-    "configPath": "scenes/blackout/diesel",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "M",
-    "configId": "marsh",
-    "configPath": "scenes/blackout/marsh",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "J",
-    "configId": "juanoz",
-    "configPath": "scenes/blackout/juanoz",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "J",
-    "configId": "fan2",
-    "configPath": "scenes/blackout/fan2",
+    "title": "Morph Text",
+    "configId": "hjd-morph-test",
+    "configPath": "scenes/hjd-art/hjd-morph-test",
     "componentId": "InteractiveSceneContainer"
   }
 ]

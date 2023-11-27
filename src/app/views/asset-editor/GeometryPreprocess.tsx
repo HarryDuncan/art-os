@@ -41,7 +41,7 @@ export const GeometryPreprocess = () => {
       const fileName = initializedAssets[index].name;
       const asObj3d = new Mesh(transformed);
       asObj3d.name = initializedAssets[index].id;
-      handleExportClick(asObj3d, fileName);
+      //handleExportClick(asObj3d, fileName);
     });
   };
   const sameVertices = useCallback(() => {
@@ -75,11 +75,10 @@ export const GeometryPreprocess = () => {
       console.warn(`no buffer geometry found for ${asset.name}`);
       return [];
     });
-    transformedGeometry.forEach((transformed, index) => {
+    transformedGeometry.forEach(async (transformed, index) => {
       const fileName = initializedAssets[index].name;
-      const asObj3d = new Mesh(transformed);
-      asObj3d.name = initializedAssets[index].id;
-      handleExportClick(asObj3d, fileName);
+      const geometryId = initializedAssets[index].id;
+      await handleExportClick(transformed, geometryId, fileName);
     });
   }, [initializedAssets]);
 
@@ -96,7 +95,7 @@ export const GeometryPreprocess = () => {
         const fileName = asset.name;
         const asObj3d = new Mesh(edges);
         asObj3d.name = asset.id;
-        handleExportClick(asObj3d, fileName);
+        //  handleExportClick(asObj3d, fileName);
       }
     });
   };
@@ -109,7 +108,7 @@ export const GeometryPreprocess = () => {
         const fileName = asset.name;
         const asObj3d = new Mesh(subdivided);
         asObj3d.name = asset.id;
-        handleExportClick(asObj3d, fileName);
+        //  handleExportClick(asObj3d, fileName);
       }
     });
   };
