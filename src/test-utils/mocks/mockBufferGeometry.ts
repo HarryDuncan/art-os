@@ -1,5 +1,6 @@
 export class MockBufferGeometry {
   attributes: any;
+
   constructor() {
     this.attributes = {
       position: {

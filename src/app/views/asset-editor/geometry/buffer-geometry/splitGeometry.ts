@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BufferGeometry, Float32BufferAttribute } from "three";
 
 export const splitGeometry = (originalGeometry, numberOfGeometries) => {
@@ -8,7 +9,7 @@ export const splitGeometry = (originalGeometry, numberOfGeometries) => {
   );
 
   // Access the attributes of the original geometry
-  const attributes = originalGeometry.attributes;
+  const { attributes } = originalGeometry;
 
   // Calculate the number of vertices
   const vertexCount = attributes.position.count;

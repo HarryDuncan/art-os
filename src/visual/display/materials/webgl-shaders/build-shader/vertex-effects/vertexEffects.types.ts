@@ -1,5 +1,4 @@
-import { ShaderFunction } from "../buildShader.types";
-import { UniformConfig } from "../shader-properties/uniforms/uniforms.types";
+import { ShaderFunction, UniformConfig } from "../buildShader.types";
 
 export interface RequiredFunctionData {
   functionId: string;

@@ -10,10 +10,8 @@ import { VertexAdditonConfig } from "../editGeometry.types";
 
 export const setSameVertexCount = (
   geometry: BufferGeometry,
-  originalBufferGeometry,
-  maxVertexCount: number,
-  assetMetaData: AssetMetaData,
-  config: VertexAdditonConfig
+  originalBufferGeometry: BufferGeometry | undefined,
+  maxVertexCount: number
 ) => {
   const currentVertices = getVertexArray(geometry);
   const vertexCount = getPositionsLength(geometry);
@@ -23,14 +21,10 @@ export const setSameVertexCount = (
   }
   const additional = retrieveAdditionalVertices(
     originalBufferGeometry,
-    extraVertexCount,
-    assetMetaData,
-    config
+    extraVertexCount
   );
   const totalLength = vertexCount + extraVertexCount;
   const combinedVertices = [...currentVertices, ...additional];
-  console.log(combinedVertices.length);
-  console.log(totalLength);
   const combinedArray = new Float32Array(totalLength);
   combinedArray.set(combinedVertices, 0);
   const newGeometry = new BufferGeometry();

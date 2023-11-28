@@ -1,8 +1,8 @@
 import { defaultFragmentEffect } from "./effects/defaultFragmentEffect/defaultFragmentEffect";
 import { getFragmentEffects } from "./effects/getFragmentEffects";
-import { FragmentEffectConfig } from "./fragmentEffects.types";
-import { mergeUniformConfigs } from "./../shader-properties/uniforms/helpers/mergeUniformConfigs";
+import { mergeUniformConfigs } from "../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { mergeVaryingConfigs } from "../shader-properties/varyings/helpers/mergeVaryingConfigs";
+import { FragmentEffectConfig } from "../buildShader.types";
 
 export const setUpFragmentEffects = (
   fragmentEffects: FragmentEffectConfig[]
@@ -34,8 +34,12 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
   } = setUpInitialParameters();
   const allRequiredFunctions: unknown[] = [];
   fragmentEffects.forEach((effect) => {
-    const { varyingConfig, uniformConfig, transformation, fragmentColorName } =
-      getFragmentEffects(effect, currentFragmentColorName);
+    const {
+      varyingConfig,
+      uniformConfig,
+      transformation,
+      fragmentColorName,
+    } = getFragmentEffects(effect, currentFragmentColorName);
     unmergedVaryingConfigs.push(varyingConfig);
     unmergedUniformConfigs.push(uniformConfig);
     unmergedTransformations.push(transformation);
@@ -54,8 +58,11 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
 };
 
 const setUpInitialParameters = () => {
-  const { varyingConfig, uniformConfig, transformation } =
-    defaultFragmentEffect();
+  const {
+    varyingConfig,
+    uniformConfig,
+    transformation,
+  } = defaultFragmentEffect();
   const unmergedVaryingConfigs = [varyingConfig];
   const unmergedUniformConfigs = [uniformConfig];
   const unmergedTransformations = [transformation];

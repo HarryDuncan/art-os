@@ -6,11 +6,7 @@ export const useConfigData = (sceneConfigId?: string) => {
   const { configId, configuredScenes, sceneIndex } = useAppSelector(
     (state) => state.sceneData
   );
-  const selectedConfigId = useMemo(() => sceneConfigId ?? configId, []);
 
-  const selectedScene = configuredScenes.find(
-    (scene) => scene.configId === selectedConfigId
-  );
   const selectedSceneFilePath = selectedScene?.configPath ?? "";
   const configPath = selectedSceneFilePath
     ? `config/${selectedSceneFilePath}.json`
@@ -27,4 +23,12 @@ export const useConfigData = (sceneConfigId?: string) => {
   }, [sceneIndex, sceneConfigData]);
 
   return { configData, selectedConfigId };
+};
+
+const useSceneConfig = () => {
+  const selectedConfigId = useMemo(() => sceneConfigId ?? configId, []);
+  const defaultScene = configuredScenes.find((scene) => scene.configId);
+  const selectedScene = configuredScenes.find(
+    (scene) => scene.configId === selectedConfigId
+  );
 };

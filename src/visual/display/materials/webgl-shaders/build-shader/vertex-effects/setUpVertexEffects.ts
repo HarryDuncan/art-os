@@ -1,7 +1,6 @@
-import { VertexEffectConfig } from "../buildShader.types";
+import { UniformConfig, VertexEffectConfig } from "../buildShader.types";
 import { reduceFunctions } from "../helpers/reduceFunctions";
 import { mergeUniformConfigs } from "../shader-properties/uniforms/helpers/mergeUniformConfigs";
-import { UniformConfig } from "../shader-properties/uniforms/uniforms.types";
 import { mergeVaryingConfigs } from "../shader-properties/varyings/helpers/mergeVaryingConfigs";
 import { VaryingConfig } from "../shader-properties/varyings/varyings.types";
 import { getVertexEffect } from "./effects/getVertexEffect";

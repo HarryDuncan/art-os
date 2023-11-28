@@ -41,7 +41,7 @@ export const GeometryPreprocess = () => {
       const fileName = initializedAssets[index].name;
       const asObj3d = new Mesh(transformed);
       asObj3d.name = initializedAssets[index].id;
-      //handleExportClick(asObj3d, fileName);
+      // handleExportClick(asObj3d, fileName);
     });
   };
   const sameVertices = useCallback(() => {
@@ -67,9 +67,7 @@ export const GeometryPreprocess = () => {
         return setSameVertexCount(
           bufferGeometry,
           originalBufferGeometry,
-          maxVertexCount,
-          metaData,
-          transformConfig
+          maxVertexCount
         );
       }
       console.warn(`no buffer geometry found for ${asset.name}`);

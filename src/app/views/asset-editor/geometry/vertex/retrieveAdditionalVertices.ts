@@ -1,9 +1,10 @@
 import { BufferGeometry } from "three";
 
 export const retrieveAdditionalVertices = (
-  originalBufferGeometry: BufferGeometry,
+  originalBufferGeometry: BufferGeometry | undefined,
   extraVertexCount: number
 ): number[] => {
+  if (!originalBufferGeometry) return [];
   const positionAttribute = originalBufferGeometry.getAttribute("position");
   const positions = positionAttribute.array as Float32Array;
   const positionsCount = positions.length - 1;

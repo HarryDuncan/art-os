@@ -1,13 +1,13 @@
 import { PROPERTY_TYPES } from "../../buildShader.constants";
-import { PropertyType } from "../../buildShader.types";
+import {
+  DefaultUniform,
+  PropertyType,
+  UniformConfig,
+  UniformValueConfig,
+} from "../../buildShader.types";
 import { setUpCustomPropertyValues } from "../../helpers/getShaderPropertyValues";
 import { getResolution } from "./helpers/getResolution";
 import { DEFAULT_UNIFORMS, UNIFORM_DECLARATION } from "./uniforms.consts";
-import {
-  DefaultUniform,
-  UniformConfig,
-  UniformValueConfig,
-} from "./uniforms.types";
 
 export const buildUniforms = (uniformConfig: UniformConfig) => {
   const { defaultUniforms, defaultStrings } = setUpDefaultUniforms(

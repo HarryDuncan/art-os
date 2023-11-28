@@ -2,6 +2,7 @@ import { MathUtils, Object3D } from "three";
 import {
   AnimationProperties,
   AnimationType,
+  MoveAnimationConfig,
   ObjectUpdateProperty,
   // FallAnimationConfig,
   RotationAnimationConfig,
@@ -29,7 +30,7 @@ export const performAnimation = (
   object: MeshObject | Object3D,
   progress: number,
   animationProperties: AnimationProperties,
-  count: number = 0
+  count = 0
 ) => {
   if (animationType === ANIMATION_TYPES.TRAVERSE) {
     const {
@@ -71,7 +72,11 @@ export const performAnimation = (
     fall(object as MeshObject, progress);
   }
   if (animationType === ANIMATION_TYPES.MOVE) {
-    const { animationDurationMilis, moveTo, moveFrom } = animationProperties;
+    const {
+      animationDurationMilis,
+      moveTo,
+      moveFrom,
+    } = animationProperties as MoveAnimationConfig;
     const prog = easeOut(progress / animationDurationMilis);
     moveObject(object as MeshObject, prog, moveTo, moveFrom, count);
   }

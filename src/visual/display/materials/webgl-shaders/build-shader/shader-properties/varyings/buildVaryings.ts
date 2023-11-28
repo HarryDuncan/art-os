@@ -58,6 +58,9 @@ const getDefaultVaryingString = (config: VaryingConfig[]) => {
     switch (item.id) {
       case "vUv":
         strings.push("vUv = uv;");
+        break;
+      default:
+        console.warn("nothing made for default varying");
     }
   });
   return strings;
@@ -79,7 +82,7 @@ const getCustomVaryingStrings = (config: VaryingConfig[]) => {
 
 const getAttributeVaryingStrings = (
   config: VaryingConfig[],
-  attributeConfig: AttributeConfig
+  _attributeConfig: AttributeConfig
 ) => {
   if (!config.length) return [];
   return [];

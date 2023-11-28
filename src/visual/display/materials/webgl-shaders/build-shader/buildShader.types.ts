@@ -3,13 +3,13 @@ import {
   PROPERTY_TYPES,
   PROPERTY_VALUE_TYPES,
 } from "./buildShader.constants";
-import { FragmentEffectConfig } from "./fragment-effects/fragmentEffects.types";
-import { UniformConfig } from "./shader-properties/uniforms/uniforms.types";
+import { FRAGMENT_EFFECT } from "./fragment-effects/fragmentEffects.consts";
+import { DEFAULT_UNIFORMS } from "./shader-properties/uniforms/uniforms.consts";
 
 export type PropertyValueType = keyof typeof PROPERTY_VALUE_TYPES;
 export type PropertyType = keyof typeof PROPERTY_TYPES;
 
-export type VertexEffectType = any;
+export type VertexEffectType = unknown;
 export type DisplacementType = keyof typeof DISPLACEMENT_TYPES;
 
 export type ShaderPropertyConfig = {
@@ -32,11 +32,32 @@ export type VertexEffectConfig = {
   effectProps: DisplacementEffectProps;
 };
 
+export type FragmentEffectType = keyof typeof FRAGMENT_EFFECT;
+export type FragmentEffectConfig = {
+  effectType: FragmentEffectType;
+};
+
+export interface FragmentEffectData {
+  requiredFunctions: ShaderFunction[];
+  uniformConfig: UniformConfig;
+  varyingConfig;
+  transformation;
+  fragmentColorName: string;
+}
+
 export type AttributeConfig = ShaderPropertyConfig;
 
 export type ShaderFunction = {
   id: string;
   functionDefinition: string;
+};
+
+export type DefaultUniform = keyof typeof DEFAULT_UNIFORMS;
+export type ShaderValueType = keyof typeof PROPERTY_VALUE_TYPES;
+export type UniformValueConfig = ShaderPropertyConfig;
+export type UniformConfig = {
+  defaultUniforms: DefaultUniform[];
+  customUniforms?: UniformValueConfig[];
 };
 
 export type BuiltShaderConfig = {

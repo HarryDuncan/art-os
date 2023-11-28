@@ -1,4 +1,4 @@
-import React, { JSXElementConstructor, ReactElement } from "react";
+import { JSXElementConstructor, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { THEME } from "theme";
 import { ThemeProvider } from "styled-components/macro";

@@ -1,15 +1,7 @@
 import { Mesh } from "three";
-import { updateObject } from "../update-object/updateObject";
-import { OBJECT_UPDATE_PROPERTY } from "visual/display/animation/animation.constants";
-import { ObjectUpdateProperty } from "visual/display/animation/animation.types";
-import {
-  AXIS,
-  Axis,
-  Position3d,
-} from "visual/utils/three-dimension-space/position/position.types";
+import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
 import { calculatePositionDistance } from "visual/utils/three-dimension-space/calculatePositionDistance";
 
-const INITIAL_POSITION = { x: 0, y: 0, z: 0 };
 export const moveObject = (
   mesh: Mesh,
   progress: number,

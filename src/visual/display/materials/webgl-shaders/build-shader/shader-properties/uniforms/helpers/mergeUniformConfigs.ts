@@ -1,7 +1,9 @@
 import { removeDuplicatesByKey } from "visual/utils/removeDuplicatesByKey";
-import { ShaderPropertyConfig } from "../../../buildShader.types";
+import {
+  ShaderPropertyConfig,
+  UniformConfig,
+} from "../../../buildShader.types";
 import { EMPTY_UNIFORM_CONFIG } from "../uniforms.consts";
-import { UniformConfig } from "../uniforms.types";
 
 export const mergeUniformConfigs = (uniformConfigArray: UniformConfig[]) => {
   const mergedUniformConfig = { ...EMPTY_UNIFORM_CONFIG } as UniformConfig;

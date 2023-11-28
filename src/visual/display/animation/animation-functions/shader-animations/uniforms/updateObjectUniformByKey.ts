@@ -7,7 +7,7 @@ export const updateObjectUniformByKey = (
   uniformValue: unknown
 ) => {
   const material = mesh.material as RawShaderMaterial;
-  if (material.uniforms[uniformKey]) {
+  if (material && material.uniforms && material.uniforms[uniformKey]) {
     material.uniforms[uniformKey].value = uniformValue;
   }
 };

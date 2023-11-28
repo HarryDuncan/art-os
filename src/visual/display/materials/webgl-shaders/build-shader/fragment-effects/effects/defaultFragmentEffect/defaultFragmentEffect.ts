@@ -1,6 +1,6 @@
+import { FragmentEffectData } from "../../../buildShader.types";
 import { EMPTY_UNIFORM_CONFIG } from "../../../shader-properties/uniforms/uniforms.consts";
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
-import { FragmentEffectData } from "../../fragmentEffects.types";
 
 export const defaultFragmentEffect = (): FragmentEffectData => {
   const fragmentColorName = FRAGMENT_COLOR_NAMES.DEFAULT;

@@ -6,4 +6,6 @@ export const formatBuiltShaderConfig = (
   materialProperties: MaterialConfigProps,
   parsedConfig: Partial<BuiltShaderConfig>,
   assets: Asset[]
-) => {};
+) => {
+  console.warn(materialProperties, parsedConfig, assets);
+};

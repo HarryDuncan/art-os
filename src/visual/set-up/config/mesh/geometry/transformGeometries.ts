@@ -47,7 +47,6 @@ export const transformGeometry = (
             );
           }
         });
-        console.log(maxVertexCount);
         const pointIds = new Float32Array(maxVertexCount);
         pointIds.forEach((_value, index) => {
           pointIds[index] = Number(index.toFixed(1));
@@ -80,7 +79,7 @@ export const transformGeometry = (
 
         const randomBool = new Float32Array(maxVertexCount);
         randomBool.forEach((_value, index) => {
-          randomBool[index] = Math.random() < 0.9 ? 1.0 : 0.0;
+          randomBool[index] = Math.random() < 0.5 ? 1.0 : 0.0;
         });
         morphMeshes[0].geometry.setAttribute(
           "randomBool",
@@ -88,7 +87,7 @@ export const transformGeometry = (
         );
         const randomBool2 = new Float32Array(maxVertexCount);
         randomBool2.forEach((_value, index) => {
-          randomBool2[index] = Math.random() < 0.7 ? 1.0 : 0.0;
+          randomBool2[index] = Math.random() < 0.01 ? 1.0 : 0.0;
         });
         morphMeshes[0].geometry.setAttribute(
           "randomBool2",

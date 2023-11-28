@@ -1,7 +1,7 @@
 [
   {
     "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 80.5 } }
+      "camera": { "position": { "x": 0, "y": 10, "z": 80.5 } }
     },
     "assets": [
       {
@@ -26,14 +26,27 @@
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
       }
     ],
     "meshComponentConfigs": [
       {
         "id": "aphrodite-geometry",
         "geometryId": "aphrodite",
+        "meshType": "POINTS",
         "geometryConfig": {
-          "scale": 0.5
+          "scale": 1.2
         },
         "position": { "x": 0, "y": 0, "z": 4 },
         "rotation": { "x": 0, "y": -0, "z": -0 },
@@ -44,7 +57,7 @@
         "geometryId": "apollo",
         "meshType": "NONE",
         "geometryConfig": {
-          "scale": 0.5
+          "scale": 1.2
         },
         "position": { "x": -5, "y": 0, "z": 4 },
         "rotation": { "x": 0, "y": 0, "z": -0 },
@@ -52,19 +65,6 @@
       }
     ],
     "animationConfig": [
-      {
-        "animationId": "geometry-rotate",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "ALL",
-        "animationProperties": {
-          "animationType": "SPIN",
-          "speed": 0.0008,
-          "rotationAxis": "Y",
-          "animationDurationMilis": 2500,
-          "animationPauseMilis": -1,
-          "repeatAnimation": true
-        }
-      },
       {
         "animationId": "morph-geometry",
         "targetIdentifier": "geometry",
@@ -111,9 +111,10 @@
       {
         "id": "morphing-material",
         "materialType": "SHADER",
+        "blendingConfig": {},
         "materialProps": {
           "shaderConfig": {
-            "shaderId": "homeMorph",
+            "shaderId": "genericMorph",
             "assetMapping": [
               {
                 "uniform": "uMaterial",

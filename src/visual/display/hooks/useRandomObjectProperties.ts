@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { getRandomCoordinates } from "visual/utils/randomize/getRandomCoordinates";
 import { Bounds3D } from "visual/utils/three-dimension-space/position/position.types";
+import { xyzToArray } from "../helpers/xyzToArray";
 
 export const useRandomObjectProperties = (
   numberOfObjects: number,
@@ -19,6 +20,3 @@ export const useRandomObjectProperties = (
     return randomObjects;
   }, [numberOfObjects, bounds]);
 };
-function xyzToArray(arg0: { x: number; y: number; z: number }): number[] {
-  throw new Error("Function not implemented.");
-}

@@ -2,8 +2,7 @@ import { Vector3 } from "three";
 import { PROPERTY_VALUE_TYPES } from "../../../buildShader.constants";
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 import { colorTransformation } from "./colorTransformation";
-import { FragmentEffectData } from "../../fragmentEffects.types";
-import { UniformConfig } from "../../../shader-properties/uniforms/uniforms.types";
+import { FragmentEffectData, UniformConfig } from "../../../buildShader.types";
 
 export const colorFunctions = () => [];
 

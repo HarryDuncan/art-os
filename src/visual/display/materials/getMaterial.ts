@@ -63,7 +63,7 @@ export const getMaterial = (
         color,
         roughness,
         metalness,
-        envMapIntensity: envMapIntensity,
+        envMapIntensity,
       });
     }
 

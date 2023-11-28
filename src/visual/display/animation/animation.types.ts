@@ -6,7 +6,10 @@ import {
   TRIG_FUNCTION_TYPES,
 } from "./animation.constants";
 import { AnimationLoopConfigItem } from "./animation-functions/shader-animations/animation-loop/animationloop.types";
-import { Axis } from "visual/utils/three-dimension-space/position/position.types";
+import {
+  Axis,
+  Position3d,
+} from "visual/utils/three-dimension-space/position/position.types";
 
 // to avoid dependency cycle
 export type AnimatedScene = Scene & {
@@ -36,6 +39,10 @@ export interface RotationAnimationConfig extends AnimationPropertiesConfig {
   rotationAxis: Axis;
 }
 
+export interface MoveAnimationConfig extends AnimationPropertiesConfig {
+  moveTo: Position3d;
+  moveFrom: Position3d;
+}
 export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
   startPosition: Vector3;
   endPosition: Vector3;
@@ -65,6 +72,7 @@ export type AnimationProperties =
   | SpinAnimationConfig
   | TraversalAnimationConfig
   | TrigonometricAnimationConfig
-  | ShaderAnimationConfig;
+  | ShaderAnimationConfig
+  | MoveAnimationConfig;
 
 export type AnimationType = keyof typeof ANIMATION_TYPES;

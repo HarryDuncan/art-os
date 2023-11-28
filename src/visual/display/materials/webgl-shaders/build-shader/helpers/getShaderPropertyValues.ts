@@ -4,7 +4,7 @@ import { PropertyType, ShaderPropertyConfig } from "../buildShader.types";
 import { createDeclarationString } from "./createDeclarationString";
 
 export const setUpCustomPropertyValues = (
-  config: ShaderPropertyConfig[] = [],
+  config: ShaderPropertyConfig[],
   propertyType: PropertyType
 ) => {
   const customProperties = {};

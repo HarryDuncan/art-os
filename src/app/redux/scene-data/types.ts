@@ -1,4 +1,4 @@
-export interface DigitalPiece {
+export interface AnimatedScene {
   title: string;
   configId: string;
   configPath: string;

@@ -15,6 +15,11 @@ export function Navigation() {
         link: "geometry-preprocess",
       },
       {
+        key: "view-object",
+        title: "View Object",
+        link: "view-object",
+      },
+      {
         key: "texture-preprocess",
         title: "Texture Preprocess",
         link: "geometry-preprocess",

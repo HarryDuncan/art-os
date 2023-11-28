@@ -12,15 +12,20 @@ export const vertexShader = `
   attribute vec3 morphNormal_1;
   attribute vec3 morphPosition_2;
   attribute vec3 morphNormal_2;
+  attribute float randomBool;
+  attribute float randomBool2;
   // Common varyings
   varying vec3 v_position;
   varying vec3 vNormal;
   varying vec2 vUv;
   varying float vPointId;
-
+  varying float vRandom;
+  varying float vRandom2;
 
   void main() {
     vPointId = pointIndex;
+    vRandom = randomBool;
+    vRandom2 = randomBool2;
     // Calculate the new vertex 
 
     vec3 currentPosition = position;
@@ -44,14 +49,17 @@ export const vertexShader = `
     vec3 new_normal = normal + (normal_effect_direction * (uProgress));
   
     vec4 mv_position =  vec4(new_position,1.0);
-    // Save the varyings
- 
+
     // Save the varyings
     v_position = mv_position.xyz;
-
-
-    gl_PointSize = max(8.0, min(18.0, 18.0 *  (9.0 / position.z)) );
+    vNormal = normalize(normalMatrix * new_normal);
+    vUv = vec2(new_position.x, -new_position.y); // or use a different mapping based on your needs
+  
+  
     
+    
+
+    gl_PointSize = max(15.0, min(28.0, 25.0 *  (9.0 / position.z)) );
   
     // Vertex shader output
     gl_Position = projectionMatrix  *  modelViewMatrix * mv_position;

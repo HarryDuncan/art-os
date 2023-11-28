@@ -1,11 +1,14 @@
 import { Matrix3, Matrix4, Vector2, Vector3, Vector4 } from "three";
-import { UniformValueConfig } from "../uniforms.types";
 import {
   PROPERTY_TYPES,
   PROPERTY_VALUE_TYPES,
 } from "../../../buildShader.constants";
 import { createDeclarationString } from "../../../helpers/createDeclarationString";
-import { PropertyType, PropertyValueType } from "../../../buildShader.types";
+import {
+  PropertyType,
+  PropertyValueType,
+  UniformValueConfig,
+} from "../../../buildShader.types";
 
 export const setUpCustom = (config: UniformValueConfig[] = []) => {
   const customUniforms = {};
