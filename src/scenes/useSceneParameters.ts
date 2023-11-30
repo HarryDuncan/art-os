@@ -6,10 +6,8 @@ import { defaultScene } from "./set-up-scene-parameters/default";
 import { useConfigData } from "./useConfigData";
 import { useAssets } from "visual/set-up/assets/useAssets";
 
-export const useSceneParameters = (sceneConfigId?: string) => {
-  const { configData, selectedConfigId: configId } = useConfigData(
-    sceneConfigId
-  );
+export const useSceneParameters = (configId = "default") => {
+  const configData = useConfigData(configId);
   const { areAssetsInitialized, initializedAssets } = useAssets(
     configData?.assets
   );
@@ -19,8 +17,9 @@ export const useSceneParameters = (sceneConfigId?: string) => {
     initializedAssets,
     areAssetsInitialized
   );
+  console.log(sceneData);
   return useMemo(() => {
-    if (!configId || !sceneData) return null;
+    if (!sceneData) return null;
     const sceneParams = setUpParams(configId, configData, sceneData);
     if (sceneParams.interactionEvents) {
       setInteractions(sceneParams.interactionEvents);

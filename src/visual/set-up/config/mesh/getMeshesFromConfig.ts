@@ -5,7 +5,7 @@ import { setUpMeshes } from "./mesh-setup/setUpMeshes";
 import { setUpRandomizedMeshConfigs } from "./randomized/setUpRandomizedMeshConfigs";
 import { Asset } from "visual/set-up/assets/asset.types";
 import { SceneConfig } from "../config.types";
-import { transformGeometry } from "./geometry/transformGeometries";
+import { transformGeometry } from "./geometry/transform-geometries/transformGeometries";
 
 export const getMeshesFromConfig = (
   assets: Asset[],

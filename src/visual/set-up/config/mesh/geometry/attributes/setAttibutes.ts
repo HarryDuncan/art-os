@@ -1,4 +1,5 @@
 import { BufferAttribute, BufferGeometry } from "three";
+import { getVerticesCount } from "./attribute.functions";
 
 export type RandomBoolConfig = {
   randomizedPercentage: number;
@@ -12,9 +13,9 @@ export type AttributeConfig = {
 };
 export const setAttribute = (
   bufferGeometry: BufferGeometry,
-  vertexCount: number,
-  attributeConfig: AttributeConfig[]
+  attributeConfig: AttributeConfig[] = []
 ) => {
+  const vertexCount = getVerticesCount(bufferGeometry);
   attributeConfig.forEach(({ id, valueConfig }) => {
     if (id.indexOf("randomAngle")) {
       const angles = new Float32Array(vertexCount);

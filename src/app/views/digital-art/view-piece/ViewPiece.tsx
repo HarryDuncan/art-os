@@ -3,8 +3,11 @@ import { ViewPieceContainer } from "./ViewPiece.styles";
 import { useSceneParameters } from "scenes/useSceneParameters";
 import SceneNode from "visual/node/scene-node/SceneNode";
 
-export const ViewPiece = () => {
-  const sceneParameters = useSceneParameters();
+interface ViewPieceProps {
+  configId: string;
+}
+export const ViewPiece = ({ configId }: ViewPieceProps) => {
+  const sceneParameters = useSceneParameters(configId);
   return (
     <ViewPieceContainer>
       <Suspense>

@@ -2,10 +2,11 @@ import { BufferAttribute } from "three";
 import {
   getGeometryAttributes,
   getVerticesCount,
-} from "./attributes/attribute.functions";
-import { MESH_TRANSFORM } from "../mesh.consts";
-import { MeshTransformConfig } from "../../config.types";
+} from "../attributes/attribute.functions";
+import { MESH_TRANSFORM } from "../../mesh.consts";
+import { MeshTransformConfig } from "../../../config.types";
 import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types";
+import { setAttribute } from "../attributes/setAttibutes";
 
 export const transformGeometry = (
   meshTransforms: MeshTransformConfig[] | undefined,
@@ -13,35 +14,27 @@ export const transformGeometry = (
 ): FormattedGeometry[] => {
   if (!meshTransforms || !meshTransforms.length) return formattedGeometries;
 
-  meshTransforms.forEach((transform) => {
-    switch (transform.type) {
+  meshTransforms.forEach(({ type, transformedMeshIds, attributeConfig }) => {
+    const transformedMeshes = getTransformedMeshes(
+      formattedGeometries,
+      transformedMeshIds
+    );
+    console.log(transformedMeshes);
+    switch (type) {
       case MESH_TRANSFORM.MORPH: {
-        const morphMeshes = formattedGeometries
-          .filter((geometry) =>
-            transform.transformedMeshIds.includes(geometry.name ?? "")
-          )
-          .sort((a, b) => {
-            const indexA = transform.transformedMeshIds.indexOf(a.name ?? "");
-            const indexB = transform.transformedMeshIds.indexOf(b.name ?? "");
-            return indexA - indexB;
-          });
-        if (!morphMeshes.length) {
-          console.warn("no morph meshes selected check your transform");
-        }
-
         const maxVertexCount = Math.max(
-          ...morphMeshes.map(({ geometry }) => getVerticesCount(geometry))
+          ...transformedMeshes.map(({ geometry }) => getVerticesCount(geometry))
         );
-        morphMeshes.forEach((morphTarget, index) => {
+        transformedMeshes.forEach((morphTarget, index) => {
           if (index !== 0) {
             const { vertices } = getGeometryAttributes(morphTarget.geometry);
 
-            morphMeshes[0].geometry.setAttribute(
+            transformedMeshes[0].geometry.setAttribute(
               `morphPosition_${index}`,
               new BufferAttribute(vertices, 3)
             );
 
-            morphMeshes[0].geometry.setAttribute(
+            transformedMeshes[0].geometry.setAttribute(
               `morphNormal_${index}`,
               new BufferAttribute(vertices, 3)
             );
@@ -51,7 +44,7 @@ export const transformGeometry = (
         pointIds.forEach((_value, index) => {
           pointIds[index] = Number(index.toFixed(1));
         });
-        morphMeshes[0].geometry.setAttribute(
+        transformedMeshes[0].geometry.setAttribute(
           "pointIndex",
           new BufferAttribute(pointIds, 1)
         );
@@ -60,7 +53,7 @@ export const transformGeometry = (
         angles.forEach((_value, index) => {
           angles[index] = Math.random();
         });
-        morphMeshes[0].geometry.setAttribute(
+        transformedMeshes[0].geometry.setAttribute(
           "angle",
           new BufferAttribute(angles, 1)
         );
@@ -72,7 +65,7 @@ export const transformGeometry = (
         //   );
         // });
         // console.log(random);
-        // morphMeshes[0].geometry.setAttribute(
+        // transformedMeshes[0].geometry.setAttribute(
         //   "random",
         //   new BufferAttribute(random, 1)
         // );
@@ -81,7 +74,7 @@ export const transformGeometry = (
         randomBool.forEach((_value, index) => {
           randomBool[index] = Math.random() < 0.5 ? 1.0 : 0.0;
         });
-        morphMeshes[0].geometry.setAttribute(
+        transformedMeshes[0].geometry.setAttribute(
           "randomBool",
           new BufferAttribute(randomBool, 1)
         );
@@ -89,11 +82,19 @@ export const transformGeometry = (
         randomBool2.forEach((_value, index) => {
           randomBool2[index] = Math.random() < 0.01 ? 1.0 : 0.0;
         });
-        morphMeshes[0].geometry.setAttribute(
+        transformedMeshes[0].geometry.setAttribute(
           "randomBool2",
           new BufferAttribute(randomBool2, 1)
         );
-        return morphMeshes;
+        return transformedMeshes;
+      }
+      case MESH_TRANSFORM.CUSTOM_ATTRIBUTES: {
+        const attributesSet = formattedGeometries.map((formattedGeometry) => {
+          const { geometry } = formattedGeometry;
+          const setAttributeGeometry = setAttribute(geometry, attributeConfig);
+          return { ...formattedGeometry, geometry: setAttributeGeometry };
+        });
+        return attributesSet;
       }
       default: {
         return formattedGeometries;
@@ -102,3 +103,15 @@ export const transformGeometry = (
   });
   return formattedGeometries;
 };
+
+const getTransformedMeshes = (
+  formattedGeometries: FormattedGeometry[],
+  transformedMeshIds: string[]
+) =>
+  formattedGeometries
+    .filter((geometry) => transformedMeshIds.includes(geometry.name ?? ""))
+    .sort((a, b) => {
+      const indexA = transformedMeshIds.indexOf(a.name ?? "");
+      const indexB = transformedMeshIds.indexOf(b.name ?? "");
+      return indexA - indexB;
+    });

@@ -28,7 +28,7 @@ export const useAppConfigs = () => {
       const sceneConfigsUrl = `config/scenes${isTest ? ".test" : ""}.json`;
       const sceneConfigs = await fetchData(sceneConfigsUrl);
       dispatch(setSceneConfigs(sceneConfigs));
-      const defaultSceneConfigsUrl = "configs/defaults/scenes.json";
+      const defaultSceneConfigsUrl = "config/defaults/scenes.json";
       const defaultScenes = await fetchData(defaultSceneConfigsUrl);
       dispatch(setDefaultSceneConfigs(defaultScenes));
     };

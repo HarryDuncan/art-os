@@ -25,3 +25,9 @@ export const GalleryContainer = styled.div`
   width: 70%;
   margin: 0 auto;
 `;
+
+export const FullScreenContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+`;

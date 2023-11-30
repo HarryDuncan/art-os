@@ -41,6 +41,7 @@
     "no-param-reassign": ["error", { "props": false }],
     "no-use-before-define": "off",
     "operator-linebreak": "off",
+    "react/react-in-jsx-scope": "off",
     // turning off because gsl shaders doesn't currently have formatting
     "no-tabs": "off",
     "react/require-default-props": "off",

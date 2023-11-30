@@ -19,6 +19,7 @@ import { useAppConfigs } from "./hooks/useSetUpConfigs";
 import { useInteractionNode } from "interaction/external/useInteractionNode";
 import { GeometryPreprocess } from "./views/asset-editor/GeometryPreprocess";
 import { ViewObject } from "./views/view-object/ViewObject";
+import { WindowStateProvider } from "visual/compat/window-state/windowStateProvider";
 
 export const AppContainer = styled.div`
   margin: 0;
@@ -31,14 +32,16 @@ export const AppContainer = styled.div`
 
 export function App() {
   return (
-    <ThemeProvider theme={THEME}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Provider store={store}>
-          <AppContent />
-        </Provider>
-      </BrowserRouter>
-    </ThemeProvider>
+    <WindowStateProvider>
+      <ThemeProvider theme={THEME}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <Provider store={store}>
+            <AppContent />
+          </Provider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </WindowStateProvider>
   );
 }
 

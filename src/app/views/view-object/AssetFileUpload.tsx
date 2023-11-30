@@ -1,4 +1,5 @@
 import React, { ReactNode, useState } from "react";
+import { FullScreenContainer } from "../digital-art/StyledComponents";
 
 interface FileDropProps {
   children: ReactNode;
@@ -23,7 +24,7 @@ export const AssetFileUpload: React.FC<FileDropProps> = ({
   const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(false);
-
+    console.log(e);
     const file = e.dataTransfer.files[0];
 
     if (file) {
@@ -47,7 +48,7 @@ export const AssetFileUpload: React.FC<FileDropProps> = ({
   };
 
   return (
-    <div
+    <FullScreenContainer
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
@@ -57,6 +58,6 @@ export const AssetFileUpload: React.FC<FileDropProps> = ({
       }}
     >
       {children}
-    </div>
+    </FullScreenContainer>
   );
 };

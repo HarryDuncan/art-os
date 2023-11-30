@@ -42,7 +42,7 @@ export const slice = createSlice({
     ) => {
       return {
         ...state,
-        configuredScenes: payload,
+        defaultScenes: payload,
       };
     },
   },

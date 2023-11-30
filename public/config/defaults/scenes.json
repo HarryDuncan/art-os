@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Default",
+    "configId": "default",
+    "configPath": "defaults/default",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "View Object",
+    "configId": "view-object",
+    "configPath": "viewObject",
+    "componentId": "InteractiveSceneContainer"
+  }
+]

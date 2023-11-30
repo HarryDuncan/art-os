@@ -18,7 +18,7 @@ const DigitalArtContent = () => {
 
   return (
     <DigitalArtContainer>
-      {configId ? <ViewPiece /> : <DigitalArtGallery />}
+      {configId ? <ViewPiece configId={configId} /> : <DigitalArtGallery />}
     </DigitalArtContainer>
   );
 };

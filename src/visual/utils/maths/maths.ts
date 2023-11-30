@@ -25,3 +25,19 @@ export const stepAndWrap = (
   }
   return newCurrent;
 };
+
+export const generateEquidistantValues = (
+  start: number,
+  end: number,
+  numPoints: number
+): number[] => {
+  const values: number[] = [];
+
+  for (let i = 0; i <= numPoints; i += 1) {
+    const t = i / numPoints;
+    const value = start + t * (end - start);
+    values.push(value);
+  }
+
+  return values;
+};

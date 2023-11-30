@@ -15,13 +15,19 @@ export const useInteractionNode = () => {
   useEffect(() => {
     const client = INTERACTION_NODE_CLIENT;
     const request = new InitializeInteractionNodeRequest();
-    client.initializeInteractionNode(request, {}, (err, response) => {
-      if (err) {
-        console.error(err);
-      }
-      const values = getResponseValue(response);
-      const formatted = mapResponseToObject(values, initializeResponseObj);
-      dispatch(setInitialization(formatted as { isInitialized: boolean }));
-    });
+    try {
+      client.initializeInteractionNode(request, {}, (err, response) => {
+        if (err) {
+          console.error(err);
+        }
+        if (response) {
+          const values = getResponseValue(response);
+          const formatted = mapResponseToObject(values, initializeResponseObj);
+          dispatch(setInitialization(formatted as { isInitialized: boolean }));
+        }
+      });
+    } catch {
+      console.warn("interaction node not connected");
+    }
   }, []);
 };

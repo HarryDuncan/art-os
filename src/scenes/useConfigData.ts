@@ -2,12 +2,10 @@ import { useAppSelector } from "app/redux/store";
 import { useMemo } from "react";
 import { useFetchConfig } from "visual/set-up/config/useFetchConfig";
 
-export const useConfigData = (sceneConfigId?: string) => {
-  const { configId, configuredScenes, sceneIndex } = useAppSelector(
-    (state) => state.sceneData
-  );
-
-  const selectedSceneFilePath = selectedScene?.configPath ?? "";
+export const useConfigData = (sceneConfigId: string) => {
+  const { sceneIndex } = useAppSelector((state) => state.sceneData);
+  const selectedSceneConfig = useSceneConfig(sceneConfigId);
+  const selectedSceneFilePath = selectedSceneConfig?.configPath ?? "";
   const configPath = selectedSceneFilePath
     ? `config/${selectedSceneFilePath}.json`
     : "";
@@ -22,13 +20,18 @@ export const useConfigData = (sceneConfigId?: string) => {
     return sceneConfigData[0];
   }, [sceneIndex, sceneConfigData]);
 
-  return { configData, selectedConfigId };
+  return configData;
 };
 
-const useSceneConfig = () => {
-  const selectedConfigId = useMemo(() => sceneConfigId ?? configId, []);
-  const defaultScene = configuredScenes.find((scene) => scene.configId);
-  const selectedScene = configuredScenes.find(
-    (scene) => scene.configId === selectedConfigId
+const useSceneConfig = (sceneConfigId: string) => {
+  const { configuredScenes, defaultScenes } = useAppSelector(
+    (state) => state.sceneData
   );
+  const defaultScene = defaultScenes.find(
+    (scene) => scene.configId === sceneConfigId
+  );
+  const selectedScene = configuredScenes.find(
+    (scene) => scene.configId === sceneConfigId
+  );
+  return defaultScene ?? selectedScene ?? null;
 };

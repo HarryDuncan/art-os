@@ -1,0 +1,30 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 10, "z": 80.5 } }
+    },
+    "assets": [],
+    "meshComponentConfigs": [],
+    "globalMaterialConfigs": [],
+    "animationConfig": [],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "interactionConfig": []
+  }
+]

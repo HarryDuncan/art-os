@@ -5,8 +5,6 @@ import {
   getVertexArray,
 } from "visual/set-up/config/mesh/geometry/attributes/attribute.functions";
 import { retrieveAdditionalVertices } from "./retrieveAdditionalVertices";
-import { combineVertices } from "./combineVertices";
-import { VertexAdditonConfig } from "../editGeometry.types";
 
 export const setSameVertexCount = (
   geometry: BufferGeometry,

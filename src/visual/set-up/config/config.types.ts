@@ -22,6 +22,7 @@ import {
 } from "three";
 import { RendererParams } from "visual/display/hooks/use-three-js/renderer/types";
 import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
+import { AttributeConfig } from "./mesh/geometry/attributes/setAttibutes";
 
 export type RandomizationConfig = {
   instanceCount: number;
@@ -105,6 +106,7 @@ export type MeshTransformType = keyof typeof MESH_TRANSFORM;
 export type MeshTransformConfig = {
   type: MeshTransformType;
   transformedMeshIds: string[];
+  attributeConfig?: AttributeConfig[];
 };
 
 export type ScreenSizeAdjustmentConfig = {
