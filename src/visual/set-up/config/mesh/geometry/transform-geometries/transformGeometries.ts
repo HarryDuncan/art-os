@@ -3,8 +3,12 @@ import { getGeometryAttributes } from "../attributes/attribute.functions";
 import { MESH_TRANSFORM } from "../../mesh.consts";
 import { MeshTransformConfig } from "../../../config.types";
 import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types";
-import { setAttributes } from "../attributes/set-attributes/setAttributes";
+import {
+  AttributeConfig,
+  setAttributes,
+} from "../attributes/set-attributes/setAttributes";
 import { DEFAULT_MORPH_ATTRIBUTE_CONFIG } from "./transform.constants";
+import { mergeArraysWithoutDuplicates } from "visual/utils/mergeArraysWithoutDuplicates";
 
 export const transformGeometry = (
   meshTransforms: MeshTransformConfig[] | undefined,
@@ -35,10 +39,15 @@ export const transformGeometry = (
               );
             }
           });
+          const morphAttributeConfig = mergeAttributeConfigs(
+            DEFAULT_MORPH_ATTRIBUTE_CONFIG,
+            attributeConfig ?? []
+          );
           const configuredRootGeometry = setAttributes(
             transformedMeshes[0].geometry,
-            DEFAULT_MORPH_ATTRIBUTE_CONFIG
+            morphAttributeConfig
           );
+
           transformedMeshes[0] = {
             ...transformedMeshes[0],
             geometry: configuredRootGeometry,
@@ -82,3 +91,9 @@ const getTransformedMeshes = (
       const indexB = transformedMeshIds.indexOf(b.name ?? "");
       return indexA - indexB;
     });
+
+const mergeAttributeConfigs = (
+  defaultAttributeConfig: AttributeConfig[],
+  parsedAttributeConfig: AttributeConfig[]
+) =>
+  mergeArraysWithoutDuplicates(parsedAttributeConfig, defaultAttributeConfig);

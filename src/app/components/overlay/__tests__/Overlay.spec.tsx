@@ -5,11 +5,11 @@ import { renderWithTheme } from "test-utils/renderWithTheme";
 import { mockImplementation } from "test-utils/mockImplementation";
 import { Overlay } from "../Overlay";
 import { OverlayContainer, OverlayPane } from "../Overlay.styles";
-import { expect, test, describe } from "vitest";
+import { expect, test, describe, vi } from "vitest";
 
-jest.mock("../Overlay.styles", () => ({
-  OverlayContainer: jest.fn(),
-  OverlayPane: jest.fn(),
+vi.mock("../Overlay.styles", () => ({
+  OverlayContainer: vi.fn(),
+  OverlayPane: vi.fn(),
 }));
 
 describe("<Overlay>", () => {
