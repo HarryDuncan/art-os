@@ -17,7 +17,6 @@ export const useSceneParameters = (configId = "default") => {
     initializedAssets,
     areAssetsInitialized
   );
-  console.log(sceneData);
   return useMemo(() => {
     if (!sceneData) return null;
     const sceneParams = setUpParams(configId, configData, sceneData);

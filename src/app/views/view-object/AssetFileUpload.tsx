@@ -24,7 +24,6 @@ export const AssetFileUpload: React.FC<FileDropProps> = ({
   const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(false);
-    console.log(e);
     const file = e.dataTransfer.files[0];
 
     if (file) {

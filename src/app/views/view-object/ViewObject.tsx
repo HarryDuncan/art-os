@@ -12,7 +12,7 @@ import { LoadedGroup } from "visual/set-up/assets/asset.types";
 export const ViewObject = () => {
   const onFileLoaded = async (file) => {
     const b64 = btoa(file);
-    const dataURL = "data:model/obj+json;base64," + b64;
+    const dataURL = `data:model/obj+json;base64,${b64}`;
     const loadedModel = (await loadModel(dataURL, "obj")) as LoadedGroup;
     if (!!loadedModel) {
       const geometry = getObjectGeometries(loadedModel, "geometry");

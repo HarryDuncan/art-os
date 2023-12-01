@@ -24,3 +24,5 @@ export const getGeometryAttributes = (geometry: BufferGeometry) => {
   const vertices = getVertices(geometry);
   return { uvs, normals, vertices };
 };
+
+export const getAttributes = (geometry: BufferGeometry) => geometry.attributes;

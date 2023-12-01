@@ -12,6 +12,7 @@
     "@tensorflow-models/body-segmentation": "^1.0.1",
     "@tensorflow-models/posenet": "^2.2.2",
     "@tensorflow/tfjs": "^3.18.0",
+    "@testing-library/jest-dom": "^6.1.5",
     "@types/google-protobuf": "^3.15.6",
     "@types/jest": "^27.4.1",
     "@types/node": "^18.0.0",
@@ -65,6 +66,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^1.4.4",
     "react-scripts": "^5.0.1",
+    "vite": "5.0.0",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "0.8.4",
     "wait-on": "3.3.0"
