@@ -20,6 +20,7 @@ export const useRunAlgorithm = () => {
     const client = INTERACTION_NODE_CLIENT;
     const stream = client.runAlgorithm(request);
     stream.on("data", (response) => {
+      console.log(response);
       // handle each response message here
       const points = response.getPointsList();
       const pointData = getPoints(points);

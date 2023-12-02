@@ -15,13 +15,3 @@ services:
       - "1235:1235/udp"
     depends_on:
       - proxy
-  protos:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: /bin/sh -c "./protos.sh"
-  shell:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: /bin/sh -c "./start-camera.sh"

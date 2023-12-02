@@ -5,6 +5,8 @@ import tensorflow as tf
 import cv2
 import numpy as np
 
+from detection.detection_algorithm import DetectionAlgorithim
+
 
 PIXEL_SKIP = 1
 WIDTH = 640
@@ -58,8 +60,7 @@ def run_stream(isRunning, queue):
     while cap.isOpened():
         ret,frame = cap.read()
         if curr_frame % hop == 0:
-            img = frame.copy()
-            img = tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
+            img = tf.image.resize_with_pad(tf.expand_dims(frame, axis=0), 192,256)
             input_image = tf.cast(img, dtype=tf.int32)
             results = movenet(input_image)
             keypoints_with_scores = results['output_0'].numpy()[:,:,:51].reshape((6,17,3))
@@ -72,10 +73,9 @@ def run_stream(isRunning, queue):
 
 
 
-class Posenet():
-     
+class Posenet(DetectionAlgorithim): 
     def __init__(self):
-        self.isRunning = False
+        super().__init__()
         self.cluster_buffer_data = []
         self.window_size = 3
         self.queue = None
@@ -93,30 +93,6 @@ class Posenet():
     def get_smoothed_cluster_coords(self):
         clusters = self.get_cluster_coords()
         return clusters
-        # cluster_buffer_data = self.cluster_buffer_data
-        # smoothed_cluster_centroids = []
-        # if(len(clusters) == 0):
-        #     for cluster in cluster_buffer_data:
-        #         updated = update_cluster_buffer(None, cluster, self.window_size)
-        #         smoothed_cluster_centroids.append(get_movement_value(updated))
-        # else:
-        #     for i in range(len(clusters)):
-        #         current_cluster_centroid = clusters[i]
-        #         current_cluster_buffer_data = {
-        #             'x' : [],
-        #             'y' : [],
-        #             'sum_x' : 0,
-        #             'sum_y' : 0
-        #         }
-        #         if(i+1 <= len(cluster_buffer_data)):
-        #             current_cluster_buffer_data = cluster_buffer_data[i]
-        #         updated_cluster_buffer = update_cluster_buffer(current_cluster_centroid, current_cluster_buffer_data, self.window_size)
-        #         if(i+1 <= len(cluster_buffer_data)):
-        #             self.cluster_buffer_data[i] = updated_cluster_buffer
-        #         else:
-        #             self.cluster_buffer_data.append(updated_cluster_buffer)
-        #         smoothed_cluster_centroids.append(get_movement_value(updated_cluster_buffer))
-        # return smoothed_cluster_centroids
 
    
         

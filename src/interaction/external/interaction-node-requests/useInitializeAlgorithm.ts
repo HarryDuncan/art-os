@@ -1,6 +1,9 @@
 import { setAlgorithm } from "app/redux/interaction/actions";
 import { useAppDispatch, useAppSelector } from "app/redux/store";
-import { InitializeAlgorithmRequest } from "interaction/external/protos/interactionNode_pb";
+import {
+  AlgorithimConfig,
+  InitializeAlgorithmRequest,
+} from "interaction/external/protos/interactionNode_pb";
 import { useCallback } from "react";
 import { getResponseValue } from "utils/grpc/getResponseValue";
 import { mapResponseToObject } from "utils/grpc/mapResponseToObject";
@@ -14,14 +17,19 @@ export const useInitializeAlgorithm = () => {
   const { isInitialized } = useAppSelector((state) => state.interactionNode);
   const dispatch = useAppDispatch();
   return useCallback(
-    ({ algorithmType, dataTransformType }) => {
+    ({ algorithmType, dataTransformType, algorithmConfig, id }) => {
       if (!isInitialized) {
         console.warn("interaction node not initialized");
         return;
       }
+      const config = new AlgorithimConfig();
+      config.setKeyPointsList(algorithmConfig.keypoints);
+      config.setThreshold(algorithmConfig.threshold);
       const request = new InitializeAlgorithmRequest();
       request.setAlgorithmType(algorithmType);
       request.setDataTransformType(dataTransformType);
+      request.setAlgorithmConfig(config);
+      request.setId(id);
       const client = INTERACTION_NODE_CLIENT;
       client.initalizeAlgorithm(request, null, (err, response) => {
         if (err) {

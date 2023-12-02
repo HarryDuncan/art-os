@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import * as setUpScenes from "./set-up-scene-parameters";
-import { useInteractions } from "interaction/external/useInteractions";
+import { useExternalInteractions } from "interaction/external/useExternalInteractions";
 import { useSceneData } from "visual/set-up/config/useSceneData";
 import { defaultScene } from "./set-up-scene-parameters/default";
 import { useConfigData } from "./useConfigData";
@@ -11,7 +11,9 @@ export const useSceneParameters = (configId = "default") => {
   const { areAssetsInitialized, initializedAssets } = useAssets(
     configData?.assets
   );
-  const setInteractions = useInteractions(configData?.interactionConfig ?? []);
+  const setInteractions = useExternalInteractions(
+    configData?.externalInteractionConfig
+  );
   const sceneData = useSceneData(
     configData,
     initializedAssets,

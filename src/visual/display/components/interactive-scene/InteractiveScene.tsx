@@ -60,6 +60,7 @@ export class InteractiveScene extends Scene {
         onTriggeredUpdate(this)
       );
     }
+    // @ts-ignore
     document.addEventListener(ENGINE_EVENTS.MESH_ADDED, ({ detail }) => {
       this.add(detail);
     });

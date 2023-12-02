@@ -8,6 +8,16 @@ export type InteractionConfig = {
   bindingType?: InteractionEventBinding;
 };
 
+export type ExternalInteractionConfig = InteractionConfig & {
+  algorithmType: string;
+  algorithmConfig: {
+    threshold: number;
+    keyPoints: string[];
+  };
+  dataTransformType: string;
+  id: string;
+};
+
 export type InteractionEvent = Event & {
   detail: unknown;
 };

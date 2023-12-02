@@ -16,24 +16,25 @@ import detection.posenet as Posenet
 class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
 
     def __init__(self):
-        print('initialized')
         self.currentAlgorithm = None
         self.isRunning = False
 
     def InitializeInteractionNode(self, request, context):
-        return pb2.InitializeInteractionNodeResponse(isInitialized=True)
+        return pb2.InitializeInteractionNodeResponse(is_initialized=True)
 
     def InitalizeAlgorithm(self, request, context):
         initialized = False
         if self.isRunning == False:
-            if(request.algorithm_type == "BODY_PIX"):
+            if(request.algorithm_type == "POSENET"):
+                print('setting to posenet')
                 self.currentAlgorithm = Posenet.Posenet()
                 initialized = True
         else:
             initialized = True
-        return pb2.InitializeAlgorithmResponse(id='1',isInitialized=initialized )
+        return pb2.InitializeAlgorithmResponse(id='1',is_initialized=initialized )
 
     def RunAlgorithm(self, request, context):
+        print(self.currentAlgorithm)
         if(self.currentAlgorithm != None):
             if(self.isRunning == False):
                 self.currentAlgorithm.run_algorithm()
@@ -43,7 +44,7 @@ class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
                 response = pb2.RunAlgorithmResponse(points=coords)
                 yield response
         else:
-            return pb2.RunAlgorithmResponse(points=[],errorMessage='error' )
+            return pb2.RunAlgorithmResponse(points=[],error_message='error' )
 
         
     
