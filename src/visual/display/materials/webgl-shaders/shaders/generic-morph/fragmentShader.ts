@@ -12,7 +12,7 @@ void main() {
     if(vRandom2 == 0.0 ){
         opacity = 0.0;
     }
-    vec4 pointColor =  vec4(1.0, 0.0, 0.0, opacity);        
+    vec4 pointColor =  vec4(0.1294, 0.6157, 0.7176, opacity);        
     if(vRandom == 0.0 ){
         gl_FragColor =  pointColor * texture2D(uTextureOne, gl_PointCoord);
     }else{

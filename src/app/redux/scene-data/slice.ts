@@ -13,7 +13,7 @@ export type SceneState = {
 
 export const INITIAL_STATE: SceneState = {
   configIndex: 0,
-  sceneIndex: 4,
+  sceneIndex: 0,
   configId: null,
   data: null,
   configuredScenes: [],

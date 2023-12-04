@@ -10,5 +10,11 @@
     "configId": "hjd-morph-test",
     "configPath": "scenes/hjd-art/hjd-morph-test",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Vector Morph",
+    "configId": "hjd-vector-morph",
+    "configPath": "scenes/hjd-art/hjd-vector-morph",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

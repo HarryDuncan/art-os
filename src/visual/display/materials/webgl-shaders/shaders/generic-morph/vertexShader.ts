@@ -1,3 +1,5 @@
+import { rotateModel } from "../../shader-functions/rotation/rotation.functions";
+
 export const vertexShader = `
 
   // Common uniforms
@@ -21,6 +23,19 @@ export const vertexShader = `
   varying float vPointId;
   varying float vRandom;
   varying float vRandom2;
+
+  mat4 rotateY(float angle) {
+    float cosA = cos(angle);
+    float sinA = sin(angle);
+
+    return mat4(
+        cosA, 0.0, sinA, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        -sinA, 0.0, cosA, 0.0,
+        0.0, 0.0, 0.0, 1.0
+    );
+}
+
 
   void main() {
     vPointId = pointIndex;
@@ -49,19 +64,22 @@ export const vertexShader = `
     vec3 new_normal = normal + (normal_effect_direction * (uProgress));
   
     vec4 mv_position =  vec4(new_position,1.0);
+    float angle = uTime * 0.5; // calculate the angle based on time
+    float rotationAngle = uTime * 0.2;
 
+    // Create a rotation matrix
+    mat4 rotationMatrix = rotateY(rotationAngle);
+
+    vec4 rotatedPosition = vec4(mv_position.xyz,1.0) * rotationMatrix; 
     // Save the varyings
-    v_position = mv_position.xyz;
+    v_position = rotatedPosition.xyz;
     vNormal = normalize(normalMatrix * new_normal);
-    vUv = vec2(new_position.x, -new_position.y); // or use a different mapping based on your needs
+    vUv = vec2(rotatedPosition.x, -rotatedPosition.y); // or use a different mapping based on your needs
   
-  
-    
-    
 
-    gl_PointSize = max(15.0, min(28.0, 25.0 *  (9.0 / position.z)) );
+    gl_PointSize = max(10.0, min(18.0, 16.0 *  (9.0 / rotatedPosition.z)) );
   
     // Vertex shader output
-    gl_Position = projectionMatrix  *  modelViewMatrix * mv_position;
+    gl_Position = projectionMatrix  *  modelViewMatrix * rotatedPosition;
   }
 `;
