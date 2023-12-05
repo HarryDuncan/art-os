@@ -1,5 +1,9 @@
-import { PROPERTY_TYPES } from "../../buildShader.constants";
-import { AttributeConfig, PropertyType } from "../../buildShader.types";
+import { ShaderPropertyTypes } from "../../buildShader.constants";
+import {
+  AttributeConfig,
+  PropertyType,
+  VaryingConfig,
+} from "../../buildShader.types";
 import { createDeclarationString } from "../../helpers/createDeclarationString";
 import { getDefaultValueAsString } from "../../helpers/getDefaultValue";
 import {
@@ -8,21 +12,25 @@ import {
   V_DECLARATION,
   V_DEFAULT_INSTANTIATION,
 } from "./varyings.consts";
-import { VaryingConfig } from "./varyings.types";
 
 export const buildVaryings = (
   varyingSchema: VaryingConfig[],
-  attributeSchema
+  attributeSchema,
+  vertexTransformationName: string
 ) => {
   const declaration = varyingDeclarations(varyingSchema);
-  const instantiation = varyingInstantiation(varyingSchema, attributeSchema);
+  const instantiation = varyingInstantiation(
+    varyingSchema,
+    attributeSchema,
+    vertexTransformationName
+  );
   return { declaration, instantiation };
 };
 
 const varyingDeclarations = (config: VaryingConfig[]) => {
   const declarationStrings = config.map(({ id, valueType }) =>
     createDeclarationString(
-      PROPERTY_TYPES.VARYING as PropertyType,
+      ShaderPropertyTypes.VARYING as PropertyType,
       valueType,
       id
     )
@@ -33,9 +41,13 @@ const varyingDeclarations = (config: VaryingConfig[]) => {
 
 const varyingInstantiation = (
   varyingConfig: VaryingConfig[],
-  attributeConfig: AttributeConfig
+  attributeConfig: AttributeConfig,
+  vertexTransformationName: string
 ) => {
-  const defaultVaryingStrings = getDefaultVaryingString(varyingConfig);
+  const defaultVaryingStrings = getDefaultVaryingString(
+    varyingConfig,
+    vertexTransformationName
+  );
   const attributeVaryingStrings = getAttributeVaryingStrings(
     varyingConfig,
     attributeConfig
@@ -48,7 +60,10 @@ const varyingInstantiation = (
   ].join(" \n ");
 };
 
-const getDefaultVaryingString = (config: VaryingConfig[]) => {
+const getDefaultVaryingString = (
+  config: VaryingConfig[],
+  vertexTransformationName: string
+) => {
   const defaultVaryings: VaryingConfig[] = config.filter(
     (item) => item.varyingType === VARYING_TYPES.DEFAULT
   );
@@ -59,8 +74,14 @@ const getDefaultVaryingString = (config: VaryingConfig[]) => {
       case "vUv":
         strings.push("vUv = uv;");
         break;
+      case "vPosition":
+        strings.push(`vPosition = ${vertexTransformationName};`);
+        break;
+      case "vNormal":
+        strings.push(`vNormal = normalize(normalMatrix * normal);`);
+        break;
       default:
-        console.warn("nothing made for default varying");
+        console.warn(`nothing made for default varying ${item.id}`);
     }
   });
   return strings;

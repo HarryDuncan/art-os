@@ -1,9 +1,7 @@
-import { Asset } from "visual/set-up/assets/asset.types";
-import { BuiltShaderConfig } from "./build-shader/buildShader.types";
+import { BuiltShaderConfig } from "../build-shader/buildShader.types";
 
 export const formatBuiltShaderConfig = (
-  parsedConfig: Partial<BuiltShaderConfig>,
-  assets: Asset[]
+  parsedConfig: Partial<BuiltShaderConfig>
 ): BuiltShaderConfig => {
   const {
     vertexEffectConfigs,

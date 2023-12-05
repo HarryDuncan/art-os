@@ -102,37 +102,32 @@
     ],
     "globalMaterialConfigs": [
       {
-        "id": "bg-vid",
-        "materialProps": {
-          "assetId": "bg-vid"
-        },
-        "materialType": "VIDEO"
-      },
-      {
         "id": "morphing-material",
         "materialType": "BUILT_SHADER",
         "blendingConfig": {},
-        "builtShaderConfig": {},
+        "builtShaderConfig": {
+          "fragmentEffectConfigs": [{ "effectType": "MATERIAL" }]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          },
+          {
+            "uniform": "uTextureZero",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTextureOne",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ],
         "materialProps": {
           "shaderConfig": {
-            "shaderId": "genericMorph",
-            "assetMapping": [
-              {
-                "uniform": "uMaterial",
-                "assetId": "chrome-material",
-                "relationship": "MATCAP"
-              },
-              {
-                "uniform": "uTextureZero",
-                "assetId": "0-texture",
-                "relationship": "TEXTURE"
-              },
-              {
-                "uniform": "uTextureOne",
-                "assetId": "1-texture",
-                "relationship": "TEXTURE"
-              }
-            ]
+            "shaderId": "genericMorph"
           },
           "uniforms": {
             "uTime": { "value": 0 },

@@ -1,30 +1,29 @@
 import { Matrix3, Matrix4, Vector2, Vector3, Vector4 } from "three";
-import { PROPERTY_VALUE_TYPES } from "../buildShader.constants";
-import { PropertyValueType } from "../buildShader.types";
+import { ShaderPropertyValueTypes } from "../buildShader.constants";
 
-export const getDefaultValue = (valueType: PropertyValueType) => {
+export const getDefaultValue = (valueType: ShaderPropertyValueTypes) => {
   switch (valueType) {
-    case PROPERTY_VALUE_TYPES.FLOAT:
+    case ShaderPropertyValueTypes.FLOAT:
       return 0.0;
-    case PROPERTY_VALUE_TYPES.INT:
+    case ShaderPropertyValueTypes.INT:
       return 0;
-    case PROPERTY_VALUE_TYPES.BOOL:
+    case ShaderPropertyValueTypes.BOOL:
       return false;
-    case PROPERTY_VALUE_TYPES.VEC2:
+    case ShaderPropertyValueTypes.VEC2:
       return new Vector2(0, 0);
-    case PROPERTY_VALUE_TYPES.VEC3:
+    case ShaderPropertyValueTypes.VEC3:
       return new Vector3(0, 0, 0);
-    case PROPERTY_VALUE_TYPES.VEC4:
+    case ShaderPropertyValueTypes.VEC4:
       return new Vector4(0, 0, 0, 0);
-    case PROPERTY_VALUE_TYPES.MAT2:
+    case ShaderPropertyValueTypes.MAT2:
       return null;
-    case PROPERTY_VALUE_TYPES.MAT3:
+    case ShaderPropertyValueTypes.MAT3:
       return new Matrix3();
-    case PROPERTY_VALUE_TYPES.MAT4:
+    case ShaderPropertyValueTypes.MAT4:
       return new Matrix4();
-    case PROPERTY_VALUE_TYPES.SAMPLER_2D:
+    case ShaderPropertyValueTypes.SAMPLER2D:
       return null;
-    case PROPERTY_VALUE_TYPES.SAMPLER_CUBE:
+    case ShaderPropertyValueTypes.SAMPLER_CUBE:
       return null;
     default:
       return null; // Handle unsupported types or VOID type here
@@ -32,30 +31,30 @@ export const getDefaultValue = (valueType: PropertyValueType) => {
 };
 
 export const getDefaultValueAsString = (
-  valueType: PropertyValueType
+  valueType: ShaderPropertyValueTypes
 ): string => {
   switch (valueType) {
-    case PROPERTY_VALUE_TYPES.FLOAT:
+    case ShaderPropertyValueTypes.FLOAT:
       return `0.0`;
-    case PROPERTY_VALUE_TYPES.INT:
+    case ShaderPropertyValueTypes.INT:
       return `0`;
-    case PROPERTY_VALUE_TYPES.BOOL:
+    case ShaderPropertyValueTypes.BOOL:
       return `false`;
-    case PROPERTY_VALUE_TYPES.VEC2:
+    case ShaderPropertyValueTypes.VEC2:
       return `vec2(0.0, 0.0)`;
-    case PROPERTY_VALUE_TYPES.VEC3:
+    case ShaderPropertyValueTypes.VEC3:
       return `vec3(0.0, 0.0, 0.0)`;
-    case PROPERTY_VALUE_TYPES.VEC4:
+    case ShaderPropertyValueTypes.VEC4:
       return `vec4(0.0, 0.0, 0.0, 0.0)`;
-    case PROPERTY_VALUE_TYPES.MAT2:
+    case ShaderPropertyValueTypes.MAT2:
       return `mat2(1.0, 0.0, 0.0, 1.0)`;
-    case PROPERTY_VALUE_TYPES.MAT3:
+    case ShaderPropertyValueTypes.MAT3:
       return `mat3(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)`;
-    case PROPERTY_VALUE_TYPES.MAT4:
+    case ShaderPropertyValueTypes.MAT4:
       return `mat4(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)`;
-    case PROPERTY_VALUE_TYPES.SAMPLER_2D:
+    case ShaderPropertyValueTypes.SAMPLER2D:
       return `sampler2D`;
-    case PROPERTY_VALUE_TYPES.SAMPLER_CUBE:
+    case ShaderPropertyValueTypes.SAMPLER_CUBE:
       return `samplerCube`;
     default:
       return ``; // Handle unsupported types or VOID type here

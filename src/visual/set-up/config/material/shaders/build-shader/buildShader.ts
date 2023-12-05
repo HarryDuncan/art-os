@@ -2,7 +2,9 @@ import { MAIN_END, MAIN_START } from "./buildShader.constants";
 import {
   AttributeConfig,
   BuiltShaderConfig,
+  ShaderFunction,
   UniformConfig,
+  VaryingConfig,
 } from "./buildShader.types";
 import { setUpFragmentEffects } from "./fragment-effects/setUpFragmentEffects";
 import { buildUniforms } from "./shader-properties/uniforms/buildUniforms";
@@ -10,7 +12,6 @@ import { mergeUniformConfigs } from "./shader-properties/uniforms/helpers/mergeU
 import { EMPTY_UNIFORM_CONFIG } from "./shader-properties/uniforms/uniforms.consts";
 import { buildVaryings } from "./shader-properties/varyings/buildVaryings";
 import { mergeVaryingConfigs } from "./shader-properties/varyings/helpers/mergeVaryingConfigs";
-import { VaryingConfig } from "./shader-properties/varyings/varyings.types";
 import { setUpVertexEffects } from "./vertex-effects/setUpVertexEffects";
 
 export const buildShader = (shaderConfig: BuiltShaderConfig) => {
@@ -21,8 +22,8 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     varyingConfig,
     // attributeConfig,
   } = shaderConfig;
-  const vertexEffects = setUpVertexEffects(vertexEffectConfigs);
   const fragmentEffects = setUpFragmentEffects(fragmentEffectConfigs);
+  const vertexEffects = setUpVertexEffects(vertexEffectConfigs);
 
   const shaderUniforms: UniformConfig[] = [
     vertexEffects.uniformConfigs,
@@ -44,12 +45,11 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const mergedShaderVaryings = mergeVaryingConfigs(
     shaderVaryings
   ) as VaryingConfig[];
-
   const { uniforms, uniformDeclaration } = buildUniforms(mergedShaderUniforms);
   const {
     declaration: varyingDeclaration,
     instantiation: varyingInstantiation,
-  } = buildVaryings(mergedShaderVaryings, []);
+  } = buildVaryings(mergedShaderVaryings, [], vertexEffects.transformPoint);
   //  const attributes = buildAttributes(attributeSchema);
 
   const vertexShader = formatVertexShader(
@@ -62,6 +62,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const fragmentShader = formatFragmentShader(
     uniformDeclaration,
     varyingDeclaration,
+    fragmentEffects.requiredFunctions,
     fragmentEffects.transformations,
     fragmentEffects.fragColor
   );
@@ -84,8 +85,8 @@ const formatVertexShader = (
     uniformDeclarations,
     varyingDeclaration,
     MAIN_START,
-    varyingInstantiation,
     vertexTransformations,
+    varyingInstantiation,
     viewMatrix,
     MAIN_END,
   ].join(" \n ");
@@ -94,12 +95,14 @@ const formatVertexShader = (
 export const formatFragmentShader = (
   uniformDeclaration: string,
   varyingDeclaration: string,
+  fragmentFunctions: ShaderFunction[],
   fragmentTransformations: string,
   fragColor: string
 ) => {
   const shaderCodeArray: string[] = [
     uniformDeclaration,
     varyingDeclaration,
+    ...fragmentFunctions.map(({ functionDefinition }) => functionDefinition),
     MAIN_START,
     fragmentTransformations,
     fragColor,

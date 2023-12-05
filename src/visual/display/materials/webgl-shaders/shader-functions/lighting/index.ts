@@ -1,0 +1,1 @@
+export { diffuseFactor } from "./diffuseFactor";

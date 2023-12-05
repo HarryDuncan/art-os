@@ -3,7 +3,10 @@ import {
   ENV_MAP_TYPES,
   MATERIAL_TYPES,
 } from "../../../display/materials/materials.consts";
-import { ShaderConfig } from "../../../display/materials/webgl-shaders/shaders.types";
+import {
+  AssetMap,
+  ShaderConfig,
+} from "../../../display/materials/webgl-shaders/shaders.types";
 import { BuiltShaderConfig } from "./shaders/build-shader/buildShader.types";
 
 export type MaterialType = keyof typeof MATERIAL_TYPES;
@@ -54,6 +57,7 @@ export interface MaterialConfig {
   materialType: MaterialType;
   materialProps: MaterialConfigProps;
   builtShaderConfig?: BuiltShaderConfig;
+  assetMapping?: AssetMap[];
   blendingConfig?: Record<string, unknown>;
 }
 

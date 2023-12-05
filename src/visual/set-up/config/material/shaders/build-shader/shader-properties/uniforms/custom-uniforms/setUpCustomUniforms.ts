@@ -1,68 +1,64 @@
 import { Matrix3, Matrix4, Vector2, Vector3, Vector4 } from "three";
 import {
-  PROPERTY_TYPES,
-  PROPERTY_VALUE_TYPES,
+  ShaderPropertyTypes,
+  ShaderPropertyValueTypes,
 } from "../../../buildShader.constants";
 import { createDeclarationString } from "../../../helpers/createDeclarationString";
-import {
-  PropertyType,
-  PropertyValueType,
-  UniformValueConfig,
-} from "../../../buildShader.types";
+import { PropertyType, UniformValueConfig } from "../../../buildShader.types";
 
 export const setUpCustom = (config: UniformValueConfig[] = []) => {
   const customUniforms = {};
   const customStrings: string[] = [];
   config.forEach(({ value, id, valueType }) => {
     switch (valueType) {
-      case PROPERTY_VALUE_TYPES.INT:
+      case ShaderPropertyValueTypes.INT:
         customUniforms[id] = { value: value ?? 0 };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.FLOAT:
+      case ShaderPropertyValueTypes.FLOAT:
         customUniforms[id] = { value: value ?? 0 };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.BOOL:
+      case ShaderPropertyValueTypes.BOOL:
         customUniforms[id] = { value: value ?? false };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.VEC2:
+      case ShaderPropertyValueTypes.VEC2:
         customUniforms[id] = { value: value ?? new Vector2() };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.VEC3:
+      case ShaderPropertyValueTypes.VEC3:
         customUniforms[id] = { value: value ?? new Vector3() };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.VEC4:
+      case ShaderPropertyValueTypes.VEC4:
         customUniforms[id] = { value: value ?? new Vector4() };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.MAT2:
+      case ShaderPropertyValueTypes.MAT2:
         // customUniforms[id] = { value: value ?? new Matrix2() };
         console.warn("mat 2 not configured");
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.MAT3:
+      case ShaderPropertyValueTypes.MAT3:
         customUniforms[id] = { value: value ?? new Matrix3() };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.MAT4:
+      case ShaderPropertyValueTypes.MAT4:
         customUniforms[id] = { value: value ?? new Matrix4() };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.SAMPLER_2D:
+      case ShaderPropertyValueTypes.SAMPLER2D:
         customUniforms[id] = { value: value ?? null };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.SAMPLER_CUBE:
+      case ShaderPropertyValueTypes.SAMPLER_CUBE:
         customUniforms[id] = { value: value ?? null };
         customStrings.push(addUniformString(id, valueType));
         break;
-      case PROPERTY_VALUE_TYPES.VOID:
+      case ShaderPropertyValueTypes.VOID:
         break;
-      case PROPERTY_VALUE_TYPES.CONST:
+      case ShaderPropertyValueTypes.CONST:
         customStrings.push(addUniformString(id, valueType));
         break;
       default:
@@ -72,9 +68,9 @@ export const setUpCustom = (config: UniformValueConfig[] = []) => {
   return { customUniforms, customStrings };
 };
 
-const addUniformString = (id: string, valueType: PropertyValueType) =>
+const addUniformString = (id: string, valueType: ShaderPropertyValueTypes) =>
   createDeclarationString(
-    PROPERTY_TYPES.UNIFORM as PropertyType,
+    ShaderPropertyTypes.UNIFORM as PropertyType,
     valueType,
     id
   );

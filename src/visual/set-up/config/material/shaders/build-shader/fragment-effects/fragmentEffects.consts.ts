@@ -6,5 +6,6 @@ export const FRAGMENT_EFFECT = {
 
 export const FRAGMENT_COLOR_NAMES = {
   DEFAULT: "fragColor",
+  MATERIAL: "fragMaterialColor",
   COLOR: "fragColouredColor",
 };

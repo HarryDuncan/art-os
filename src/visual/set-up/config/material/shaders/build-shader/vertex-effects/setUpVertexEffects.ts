@@ -1,8 +1,12 @@
-import { UniformConfig, VertexEffectConfig } from "../buildShader.types";
+import {
+  ShaderFunction,
+  UniformConfig,
+  VaryingConfig,
+  VertexEffectConfig,
+} from "../buildShader.types";
 import { reduceFunctions } from "../helpers/reduceFunctions";
 import { mergeUniformConfigs } from "../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { mergeVaryingConfigs } from "../shader-properties/varyings/helpers/mergeVaryingConfigs";
-import { VaryingConfig } from "../shader-properties/varyings/varyings.types";
 import { getVertexEffect } from "./effects/getVertexEffect";
 import { VERTEX_EFFECT_POINT_NAMES } from "./vertexEffects.consts";
 
@@ -23,15 +27,16 @@ export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
     transformations,
     requiredFunctions,
     viewMatrix,
+    transformPoint,
   };
 };
 
 const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
   let transformPoint = VERTEX_EFFECT_POINT_NAMES.DEFAULT_POINT;
   const unmergedUniformConfigs: UniformConfig[] = [];
-  const unmergedVaryingConfigs: VaryingConfig[] = [];
+  const unmergedVaryingConfigs: VaryingConfig[][] = [];
   const unmergedTransformations: string[] = [];
-  const allRequiredFunctions: unknown[] = [];
+  const allRequiredFunctions: ShaderFunction[][] = [];
 
   vertexEffects.forEach((effect) => {
     const {

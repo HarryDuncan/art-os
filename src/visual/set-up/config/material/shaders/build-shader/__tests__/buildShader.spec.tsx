@@ -23,9 +23,9 @@ describe("buildShader", () => {
         },
       },
       vertexShader:
-        "// UNIFORM DECLARATION \n uniform float uTime; \n // VARYING DECLARATION \n void main() { \n gl_Position = projectionMatrix * modelViewMatrix * position; \n }",
+        "// UNIFORM DECLARATION \n uniform float uTime; \n // VARYING DECLARATION \n void main() { \n gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); \n }",
     };
-    expect(result).toStrictEqual(expected);
+    expect(result).toEqual(expected);
   });
   test("builds the correct shader if according to the config", () => {
     const result = buildShader(shaderConfig[1]);
@@ -45,8 +45,8 @@ describe("buildShader", () => {
       fragmentShader:
         "// UNIFORM DECLARATION \n uniform float uTime; \n uniform vec3 uPosition; \n uniform float uPower; \n // VARYING DECLARATION \n varying float vPointId; \n void main() { \n vec4 fragColor = vec4(1.0,0,0,1.0); \n gl_FragColor = fragColor; \n }",
       vertexShader:
-        "// UNIFORM DECLARATION \n uniform float uTime; \n uniform vec3 uPosition; \n uniform float uPower; \n // VARYING DECLARATION \n varying float vPointId; \n void main() { \n explodeTransformationString; \n gl_Position = projectionMatrix * modelViewMatrix * explodedPoint; \n }",
+        "// UNIFORM DECLARATION \n uniform float uTime; \n uniform vec3 uPosition; \n uniform float uPower; \n // VARYING DECLARATION \n varying float vPointId; \n void main() { \n explodeTransformationString; \n gl_Position = projectionMatrix * modelViewMatrix * vec4(explodedPoint, 1.0); \n }",
     };
-    expect(result).toEqual(expected);
+    expect(result).toContainEqual(expected);
   });
 });

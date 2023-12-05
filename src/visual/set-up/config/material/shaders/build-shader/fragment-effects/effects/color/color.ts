@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import { PROPERTY_VALUE_TYPES } from "../../../buildShader.constants";
+import { ShaderPropertyValueTypes } from "../../../buildShader.constants";
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 import { colorTransformation } from "./colorTransformation";
 import { FragmentEffectData, UniformConfig } from "../../../buildShader.types";
@@ -11,7 +11,7 @@ export const colorUniforms = () => ({
   customUniforms: [
     {
       id: "uColor",
-      valueType: PROPERTY_VALUE_TYPES.VEC3,
+      valueType: ShaderPropertyValueTypes.VEC3,
       value: new Vector3(0, 0, 0),
     },
   ],
