@@ -1,64 +1,45 @@
 # syntax=docker/dockerfile:1
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04 as base
+WORKDIR /interaction_node
 
-FROM python:3.10.5
-ENV APP_HOME /interaction_node
-WORKDIR $APP_HOME
+RUN apt-get update && apt-get upgrade -y
+RUN export DEBIAN_FRONTEND=noninteractive
 
 
+# Set up python
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        procps \
+        lsof \
+        numactl \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
-    cmake \
-    gcc g++ \
-    libopencv-dev \
-    python3-opencv \
-    libavcodec-dev \
-    libswscale-dev \
-    libavformat-dev \
-    libgstreamer-plugins-base1.0-dev \
-    libgstreamer1.0-dev \
-    libpng-dev \
-    libopencv-dev \
-    libjpeg-dev \
-    libopenexr-dev \
-    libtiff-dev \
-    libwebp-dev \
-    wget \
-    qtbase5-dev \
-    libgtk2.0-dev \
-    pkg-config \
-    qtchooser \
-    qt5-qmake \
-    qtbase5-dev-tools \
-    libtbb-dev \
-    libgphoto2-dev \
-    ffmpeg \
-    usbutils \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
+WORKDIR /interaction_node
 RUN pip install --upgrade pip setuptools
-
 # Copy requirements folder to image
 COPY requirements /requirements
 
 # Install requirements
 RUN pip install -r /requirements/grpc-requirements.txt
 RUN pip install -r /requirements/ai-requirements.txt
-
-
-
+RUN pip install --extra-index-url https://pypi.nvidia.com tensorrt-bindings==8.6.1 tensorrt-libs==8.6.1
+RUN pip install -U tensorflow[and-cuda]
+RUN pip install tensorrt
 COPY . .
-
+WORKDIR /interaction_node
 # Because we have to use an old version of protobuf - it doesn't have builder py
 # so we need to copy it into the site packages for protobuf to work for grpc and tensorflow
-COPY /detection/builder.py ../../usr/local/lib/python3.10/site-packages/google/protobuf/internal/
+COPY /detection/builder.py ../../usr/local/lib/python3.8/dist-packages/google/protobuf/internal/
 
-WORKDIR /interaction_node
+ENV PATH="/usr/local/nvidia/bin:${PATH}"
+ENV LD_LIBRARY_PATH="/usr/local/nvidia/lib:${LD_LIBRARY_PATH}"
 
 
 RUN chmod +x interaction_node.py
+ENV CUDA_VISIBLE_DEVICES=0
 ENV APP_HOME=$APP_HOME
 WORKDIR /interaction_node
 
-CMD ["python", "-u", "interaction_node.py"]
+CMD ["python3", "-u", "interaction_node.py"]

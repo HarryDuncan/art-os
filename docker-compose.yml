@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 services:
   proxy:
     build:
@@ -7,6 +7,7 @@ services:
     ports:
       - "8000:8000"
   server:
+    privileged: true
     build:
       context: ./interaction_node
       dockerfile: Dockerfile
@@ -15,3 +16,10 @@ services:
       - "1235:1235/udp"
     depends_on:
       - proxy
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count : 1
+              capabilities: [gpu]

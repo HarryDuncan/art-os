@@ -55,18 +55,14 @@ def run_stream(isRunning, queue):
     movenet = model.signatures['serving_default']
     cap = cv2.VideoCapture('udp://127.0.0.1:1235', )
     fps = round(cap.get(cv2.CAP_PROP_FPS))
-    hop = round(fps / 1)
-    curr_frame = 0
     while cap.isOpened():
         ret,frame = cap.read()
-        if curr_frame % hop == 0:
-            img = tf.image.resize_with_pad(tf.expand_dims(frame, axis=0), 192,256)
-            input_image = tf.cast(img, dtype=tf.int32)
-            results = movenet(input_image)
-            keypoints_with_scores = results['output_0'].numpy()[:,:,:51].reshape((6,17,3))
-            selected_points = loop_through_people(frame, keypoints_with_scores, 0.1)
-            queue.put(selected_points)
-        curr_frame += 1
+        img = tf.image.resize_with_pad(tf.expand_dims(frame, axis=0), 256,256)
+        input_image = tf.cast(img, dtype=tf.int32)
+        results = movenet(input_image)
+        keypoints_with_scores = results['output_0'].numpy()[:,:,:51].reshape((6,17,3))
+        selected_points = loop_through_people(frame, keypoints_with_scores, 0.1)
+        queue.put(selected_points)
         if isRunning == False:
             break
     cap.release()
