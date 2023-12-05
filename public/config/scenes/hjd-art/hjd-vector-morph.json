@@ -44,7 +44,7 @@
       {
         "id": "aphrodite-geometry",
         "geometryId": "aphrodite",
-        "meshType": "POINTS",
+        "meshType": "MESH",
         "geometryConfig": {
           "scale": 1.2
         },
@@ -110,8 +110,9 @@
       },
       {
         "id": "morphing-material",
-        "materialType": "SHADER",
+        "materialType": "BUILT_SHADER",
         "blendingConfig": {},
+        "builtShaderConfig": {},
         "materialProps": {
           "shaderConfig": {
             "shaderId": "genericMorph",
@@ -178,9 +179,7 @@
       }
     ],
     "sceneComponentConfigs": [],
-    "scenePropertiesConfig": {
-      "backgroundColor": "black"
-    }
+    "scenePropertiesConfig": {}
   },
   {
     "threeJsConfig": {
@@ -362,8 +361,6 @@
       }
     ],
     "sceneComponentConfigs": [],
-    "scenePropertiesConfig": {
-      "backgroundColor": "black"
-    }
+    "scenePropertiesConfig": {}
   }
 ]

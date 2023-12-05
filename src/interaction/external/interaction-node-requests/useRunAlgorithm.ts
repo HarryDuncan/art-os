@@ -24,7 +24,7 @@ export const useRunAlgorithm = () => {
       // handle each response message here
       const points = response.getPointsList();
       const pointData = getPoints(points);
-
+      console.log(pointData);
       dispatchInteractionEvent("update:position", pointData);
     });
 

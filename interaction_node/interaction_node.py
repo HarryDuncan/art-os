@@ -20,6 +20,9 @@ class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
         self.isRunning = False
 
     def InitializeInteractionNode(self, request, context):
+        self.isRunning = False
+        if self.currentAlgorithm != None:
+            self.currentAlgorithm.stop()
         return pb2.InitializeInteractionNodeResponse(is_initialized=True)
 
     def InitalizeAlgorithm(self, request, context):
