@@ -1,5 +1,3 @@
-import { rotateModel } from "../../shader-functions/rotation/rotation.functions";
-
 export const vertexShader = `
 
   // Common uniforms

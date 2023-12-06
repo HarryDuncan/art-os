@@ -283,8 +283,18 @@
         "materialType": "BUILT_SHADER",
         "blendingConfig": {},
         "builtShaderConfig": {
-          "vertexEffectConfigs": [{ "effectType": "POINTS" }],
-          "fragmentEffectConfigs": [{ "effectType": "POINT_MATERIAL" }]
+          "vertexEffectConfigs": [
+            { "effectType": "POINTS" },
+            { "effectType": "ROTATE" }
+          ],
+          "fragmentEffectConfigs": [{ "effectType": "POINT_MATERIAL" }],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.017 }
+            }
+          ]
         },
         "assetMapping": [
           {

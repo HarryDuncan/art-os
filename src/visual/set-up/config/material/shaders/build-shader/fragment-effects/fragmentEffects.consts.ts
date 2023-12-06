@@ -16,6 +16,6 @@ export const DEFAULT_POINT_MATERIAL = {
   pointDisplayPercentage: 0.5,
   pointDefinitions: [
     { id: "uTexture1", pointColor: "#ff1205" },
-    { id: "uTexture2", pointColor: "#ff1205" },
+    { id: "uTexture2", pointColor: "#ff1005" },
   ],
 };

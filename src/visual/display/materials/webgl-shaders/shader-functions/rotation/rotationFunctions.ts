@@ -1,4 +1,4 @@
-export const zRotate = `
+export const rotateZ = `
     mat4 zRotate(float time){
         float angle = time * 0.2;
         float c = cos(angle);
@@ -13,7 +13,7 @@ export const zRotate = `
     }
 `;
 
-export const xRotate = `
+export const rotateX = `
 mat4 xRotate(float time){
     float angle = time * 0.2;
     float c = cos(angle);
@@ -24,6 +24,20 @@ mat4 xRotate(float time){
     vec4(0.0, c, s, 0.0),
     vec4(0.0, -s, c, 0.0),
     vec4(0.0, 0.0, 0.0, 1.0)
+    );
+}
+`;
+
+export const rotateY = `  
+mat4 rotateY(float angle) {
+    float cosA = cos(angle);
+    float sinA = sin(angle);
+
+    return mat4(
+        cosA, 0.0, sinA, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        -sinA, 0.0, cosA, 0.0,
+        0.0, 0.0, 0.0, 1.0
     );
 }
 `;

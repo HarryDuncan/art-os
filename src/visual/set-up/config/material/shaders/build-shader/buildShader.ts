@@ -22,7 +22,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     fragmentEffectConfigs,
     uniformConfig,
     varyingConfig,
-    // attributeConfig,
+    attributeConfig,
   } = shaderConfig;
   const fragmentEffects = setUpFragmentEffects(fragmentEffectConfigs);
   const vertexEffects = setUpVertexEffects(vertexEffectConfigs);
@@ -35,6 +35,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const mergedShaderUniforms = mergeUniformConfigs(shaderUniforms);
 
   const shaderAttributes = [
+    attributeConfig,
     fragmentEffects.attributeConfigs,
   ] as AttributeConfig[][];
   const combinedAttributeConfigs = mergeAttributeConfigs(shaderAttributes);
@@ -62,6 +63,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     uniformDeclaration,
     varyingDeclaration,
     varyingInstantiation,
+    vertexEffects.requiredFunctions,
     vertexEffects.transformations,
     vertexEffects.viewMatrix
   );
@@ -85,6 +87,7 @@ const formatVertexShader = (
   uniformDeclarations: string,
   varyingDeclaration,
   varyingInstantiation,
+  vertexFunctions,
   vertexTransformations: string,
   viewMatrix: string
 ) => {
@@ -92,6 +95,7 @@ const formatVertexShader = (
     attributes,
     uniformDeclarations,
     varyingDeclaration,
+    vertexFunctions.map(({ functionDefinition }) => functionDefinition),
     MAIN_START,
     vertexTransformations,
     varyingInstantiation,

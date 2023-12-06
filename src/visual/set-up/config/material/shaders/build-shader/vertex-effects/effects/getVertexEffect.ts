@@ -1,9 +1,13 @@
-import { VertexEffectConfig } from "../../buildShader.types";
+import {
+  RotationEffectProps,
+  VertexEffectConfig,
+} from "../../buildShader.types";
 import { VERTEX_EFFECTS } from "../vertexEffects.consts";
 import { VertexEffectData } from "../vertexEffects.types";
 import { explode } from "./displacement/explode/explode";
 import { vertexFilter } from "./filter-vertex/filterVertex";
 import { pointsVertex } from "./points/pointsVertex";
+import { rotationVertex } from "./rotation/rotation";
 
 export const getVertexEffect = (
   effect: VertexEffectConfig,
@@ -18,6 +22,12 @@ export const getVertexEffect = (
     }
     case VERTEX_EFFECTS.POINTS: {
       return pointsVertex();
+    }
+    case VERTEX_EFFECTS.ROTATE: {
+      return rotationVertex(
+        transformPointName,
+        effect.effectProps as RotationEffectProps
+      );
     }
     default:
       console.warn(

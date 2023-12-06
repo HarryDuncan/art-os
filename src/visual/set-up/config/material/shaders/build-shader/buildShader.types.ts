@@ -1,3 +1,4 @@
+import { Axis } from "visual/utils/three-dimension-space/position/position.types";
 import {
   DISPLACEMENT_TYPES,
   ShaderPropertyValueTypes,
@@ -27,9 +28,16 @@ export type DisplacementEffectProps = {
   };
 };
 
+export type RotationEffectProps = {
+  speed: number;
+  axis: Axis;
+};
+
+export type VertexEffectProps = RotationEffectProps | DisplacementEffectProps;
+
 export type VertexEffectConfig = {
   effectType: DisplacementType;
-  effectProps: DisplacementEffectProps;
+  effectProps: VertexEffectProps;
 };
 
 // <--------------------------- FRAGMENT -------------------------------->
@@ -97,6 +105,6 @@ export type BuiltShaderConfig = {
   vertexEffectConfigs: VertexEffectConfig[];
   fragmentEffectConfigs: FragmentEffectConfig[];
   uniformConfig?: UniformConfig;
-  varyingConfig;
-  attributeConfig;
+  varyingConfig?: VaryingConfig[];
+  attributeConfig?: AttributeConfig[];
 };

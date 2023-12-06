@@ -51,11 +51,11 @@ export const getBuiltShaderMaterials = (
   );
 
   const builtShaders = builtShadersAndAttributes.map(({ shader }) => shader);
-  const attributeConfigs = builtShadersAndAttributes.map(
+  const shaderAttributeConfigs = builtShadersAndAttributes.map(
     ({ shader, attributeConfigs }) => ({
       materialId: shader.name,
       attributeConfigs,
     })
   );
-  return { attributeConfigs, builtShaders };
+  return { attributeConfigs: shaderAttributeConfigs, builtShaders };
 };

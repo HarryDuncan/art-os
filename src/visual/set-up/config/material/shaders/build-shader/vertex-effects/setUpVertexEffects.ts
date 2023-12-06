@@ -19,7 +19,7 @@ export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
     requiredFunctions,
   } = getVertexTransformations(vertexEffects);
 
-  const viewMatrix = `gl_Position = projectionMatrix * modelViewMatrix * vec4(${transformPoint}, 1.0);`;
+  const viewMatrix = `gl_Position = projectionMatrix * modelViewMatrix * vec4(${transformPoint}.xyz, 1.0);`;
 
   return {
     uniformConfigs,

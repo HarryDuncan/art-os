@@ -12,6 +12,7 @@ export const reduceFunctions = (
       uniqueFunctions[id] = functionDefinition;
     }
   });
+
   return Object.keys(uniqueFunctions).map((key) => ({
     id: key,
     functionDefinition: uniqueFunctions[key],
