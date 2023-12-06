@@ -1,16 +1,7 @@
 import { BufferAttribute, BufferGeometry } from "three";
 import { getVerticesCount } from "../attribute.functions";
+import { AttributeConfig } from "visual/set-up/config/material/shaders/build-shader/buildShader.types";
 
-export type RandomBoolConfig = {
-  randomizedPercentage: number;
-};
-export type ValueConfig = RandomBoolConfig;
-export type AttributeConfig = {
-  id: string;
-  valueType: string;
-  value?: unknown;
-  valueConfig?: ValueConfig;
-};
 export const setAttributes = (
   bufferGeometry: BufferGeometry,
   attributeConfig: AttributeConfig[] = []
@@ -35,6 +26,23 @@ export const setAttributes = (
     if (id.indexOf("randomBool") !== -1) {
       const { randomizedPercentage } = valueConfig ?? {
         randomizedPercentage: 0.5,
+      };
+      const randomBool = new Float32Array(vertexCount);
+      randomBool.forEach((_value, index) => {
+        randomBool[index] = Math.random() < randomizedPercentage ? 1.0 : 0.0;
+      });
+      bufferGeometry.setAttribute(id, new BufferAttribute(randomBool, 1));
+    }
+    if (id === "pointType") {
+      const points = new Float32Array(vertexCount);
+      points.forEach((_value, index) => {
+        points[index] = Math.random();
+      });
+      bufferGeometry.setAttribute(id, new BufferAttribute(points, 1));
+    }
+    if (id === "pointDisplay") {
+      const { randomizedPercentage } = valueConfig ?? {
+        randomizedPercentage: 0.01,
       };
       const randomBool = new Float32Array(vertexCount);
       randomBool.forEach((_value, index) => {

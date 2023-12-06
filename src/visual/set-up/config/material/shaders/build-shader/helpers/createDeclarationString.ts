@@ -1,8 +1,10 @@
-import { ShaderPropertyValueTypes } from "../buildShader.constants";
-import { PropertyType } from "../buildShader.types";
+import {
+  ShaderPropertyTypes,
+  ShaderPropertyValueTypes,
+} from "../buildShader.constants";
 
 export const createDeclarationString = (
-  propertyType: PropertyType,
+  propertyType: ShaderPropertyTypes,
   valueType: ShaderPropertyValueTypes,
   propertyId: string
 ) =>

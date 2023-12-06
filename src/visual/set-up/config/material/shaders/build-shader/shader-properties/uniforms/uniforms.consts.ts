@@ -14,6 +14,10 @@ export const DEFAULT_UNIFORMS = {
     valueType: ShaderPropertyValueTypes.SAMPLER2D,
     defaultValue: null,
   },
+  uOpacity: {
+    valueType: ShaderPropertyValueTypes.FLOAT,
+    defaultValue: 1.0,
+  },
 };
 
 export const UNIFORM_DECLARATION = "// UNIFORM DECLARATION";

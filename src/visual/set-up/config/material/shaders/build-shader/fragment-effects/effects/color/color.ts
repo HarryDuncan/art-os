@@ -30,6 +30,7 @@ export const color = (transformColorName: string): FragmentEffectData => {
     uniformConfig,
     transformation,
     varyingConfig,
+    attributeConfig: [],
     fragmentColorName: "pointName",
   };
 };

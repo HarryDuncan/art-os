@@ -67,6 +67,7 @@ export const getFragmentMaterial = (
     uniformConfig,
     transformation,
     varyingConfig,
+    attributeConfig: [],
     fragmentColorName,
   };
 };

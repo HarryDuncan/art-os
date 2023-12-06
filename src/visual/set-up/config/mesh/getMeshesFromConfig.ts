@@ -6,11 +6,14 @@ import { setUpRandomizedMeshConfigs } from "./randomized/setUpRandomizedMeshConf
 import { Asset } from "visual/set-up/assets/asset.types";
 import { SceneConfig } from "../config.types";
 import { transformGeometry } from "./geometry/transform-geometries/transformGeometries";
+import { ShaderAttributeConfig } from "../material/shaders/build-shader/buildShader.types";
+import { formatMeshTransforms } from "./geometry/formatMeshTransforms";
 
 export const getMeshesFromConfig = (
   assets: Asset[],
   materials: Material[],
-  config: SceneConfig
+  config: SceneConfig,
+  attributeConfigs: ShaderAttributeConfig[]
 ): Object3D[] => {
   const { meshComponentConfigs, meshTransforms } = config;
   const meshConfigs =
@@ -19,9 +22,15 @@ export const getMeshesFromConfig = (
     ) ?? [];
   const randomizedMeshes = setUpRandomizedMeshConfigs(meshComponentConfigs);
   const allMeshes = [...meshConfigs, ...randomizedMeshes];
+
   const formattedGeometry = formatGeometry(assets, allMeshes);
+  const formattedTransforms = formatMeshTransforms(
+    meshTransforms ?? [],
+    attributeConfigs
+  );
+
   const transformedGeometry = transformGeometry(
-    meshTransforms,
+    formattedTransforms,
     formattedGeometry
   );
   const geometriesWithMaterials = addMaterials(

@@ -1,7 +1,6 @@
 import { ShaderPropertyTypes } from "../../buildShader.constants";
 import {
   DefaultUniform,
-  PropertyType,
   UniformConfig,
   UniformValueConfig,
 } from "../../buildShader.types";
@@ -50,7 +49,7 @@ const setUpDefaultUniforms = (uniformConfig: DefaultUniform[]) => {
 const setUpCustom = (config: UniformValueConfig[] = []) => {
   const { customProperties, customStrings } = setUpCustomPropertyValues(
     config,
-    ShaderPropertyTypes.UNIFORM as PropertyType
+    ShaderPropertyTypes.UNIFORM as ShaderPropertyTypes
   );
   return { customUniforms: customProperties, customStrings };
 };

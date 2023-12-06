@@ -3,6 +3,7 @@ import { VERTEX_EFFECTS } from "../vertexEffects.consts";
 import { VertexEffectData } from "../vertexEffects.types";
 import { explode } from "./displacement/explode/explode";
 import { vertexFilter } from "./filter-vertex/filterVertex";
+import { pointsVertex } from "./points/pointsVertex";
 
 export const getVertexEffect = (
   effect: VertexEffectConfig,
@@ -14,6 +15,9 @@ export const getVertexEffect = (
     }
     case VERTEX_EFFECTS.FILTER: {
       return vertexFilter(transformPointName);
+    }
+    case VERTEX_EFFECTS.POINTS: {
+      return pointsVertex();
     }
     default:
       console.warn(

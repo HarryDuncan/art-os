@@ -1,14 +1,14 @@
 import {
   DISPLACEMENT_TYPES,
-  ShaderPropertyTypes,
   ShaderPropertyValueTypes,
 } from "./buildShader.constants";
 import { FRAGMENT_EFFECT } from "./fragment-effects/fragmentEffects.consts";
 import { DEFAULT_UNIFORMS } from "./shader-properties/uniforms/uniforms.consts";
 import { VARYING_TYPES } from "./shader-properties/varyings/varyings.consts";
 
-export type PropertyType = keyof typeof ShaderPropertyTypes;
+// GENERAL TYPES
 
+// <--------------------- VERTEX ---------------------------->
 export type VertexEffectType = unknown;
 export type DisplacementType = keyof typeof DISPLACEMENT_TYPES;
 
@@ -32,19 +32,32 @@ export type VertexEffectConfig = {
   effectProps: DisplacementEffectProps;
 };
 
+// <--------------------------- FRAGMENT -------------------------------->
 export type FragmentEffectType = keyof typeof FRAGMENT_EFFECT;
+export type PointDefinition = {
+  id: string;
+  pointColor: string;
+};
+export type PointMaterialEffectProps = {
+  pointDisplayPercentage: number;
+  pointDefinitions: PointDefinition[];
+};
+export type FragmentEffectProps = PointMaterialEffectProps;
 export type FragmentEffectConfig = {
   effectType: FragmentEffectType;
+  effectProps?: FragmentEffectProps;
 };
 
 export interface FragmentEffectData {
   requiredFunctions: ShaderFunction[];
   uniformConfig: UniformConfig;
   varyingConfig: VaryingConfig[];
+  attributeConfig: AttributeConfig[];
   transformation: string;
   fragmentColorName: string;
 }
 
+// <---------------------------------------- VARYING ------------------------>
 export type VaryingTypes = keyof typeof VARYING_TYPES;
 
 export type VaryingConfig = ShaderPropertyConfig & {
@@ -52,15 +65,28 @@ export type VaryingConfig = ShaderPropertyConfig & {
   attributeKey?: string;
 };
 
-export type AttributeConfig = ShaderPropertyConfig;
+// <------------------------------------ ATTRIBUTES ------------------------------>
+export type RandomBoolConfig = {
+  randomizedPercentage: number;
+};
+export type ShaderAttributeConfig = {
+  attributeConfigs: AttributeConfig[];
+  materialId: string;
+};
+export type AttributeValueConfig = RandomBoolConfig;
+export type AttributeConfig = ShaderPropertyConfig & {
+  valueConfig?: AttributeValueConfig;
+};
 
 export type ShaderFunction = {
   id: string;
   functionDefinition: string;
 };
 
+// <-------------------------------------UNIFORMS ---------------------------------->
+
 export type DefaultUniform = keyof typeof DEFAULT_UNIFORMS;
-export type ShaderValueType = keyof typeof ShaderPropertyValueTypes;
+
 export type UniformValueConfig = ShaderPropertyConfig;
 export type UniformConfig = {
   defaultUniforms: DefaultUniform[];

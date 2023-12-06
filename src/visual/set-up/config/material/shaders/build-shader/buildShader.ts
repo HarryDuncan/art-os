@@ -7,6 +7,8 @@ import {
   VaryingConfig,
 } from "./buildShader.types";
 import { setUpFragmentEffects } from "./fragment-effects/setUpFragmentEffects";
+import { buildAttributes } from "./shader-properties/attributes/buildAttributes";
+import { mergeAttributeConfigs } from "./shader-properties/attributes/helpers/mergeAttributeConfigs";
 import { buildUniforms } from "./shader-properties/uniforms/buildUniforms";
 import { mergeUniformConfigs } from "./shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { EMPTY_UNIFORM_CONFIG } from "./shader-properties/uniforms/uniforms.consts";
@@ -32,11 +34,11 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   ];
   const mergedShaderUniforms = mergeUniformConfigs(shaderUniforms);
 
-  // const shaderAttributes = [
-
-  // ]
-  // const mergedAttributeConfigs = mergeAttributeConfigs()
-
+  const shaderAttributes = [
+    fragmentEffects.attributeConfigs,
+  ] as AttributeConfig[][];
+  const combinedAttributeConfigs = mergeAttributeConfigs(shaderAttributes);
+  const attributes = buildAttributes(combinedAttributeConfigs);
   const shaderVaryings = [
     vertexEffects.varyingConfigs,
     fragmentEffects.varyingConfigs,
@@ -49,10 +51,14 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const {
     declaration: varyingDeclaration,
     instantiation: varyingInstantiation,
-  } = buildVaryings(mergedShaderVaryings, [], vertexEffects.transformPoint);
-  //  const attributes = buildAttributes(attributeSchema);
+  } = buildVaryings(
+    mergedShaderVaryings,
+    combinedAttributeConfigs,
+    vertexEffects.transformPoint
+  );
 
   const vertexShader = formatVertexShader(
+    attributes,
     uniformDeclaration,
     varyingDeclaration,
     varyingInstantiation,
@@ -66,15 +72,16 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     fragmentEffects.transformations,
     fragmentEffects.fragColor
   );
-  return { vertexShader, fragmentShader, uniforms };
+  return {
+    vertexShader,
+    fragmentShader,
+    uniforms,
+    attributeConfigs: combinedAttributeConfigs,
+  };
 };
 
-export const buildAttributes = (attributeConfig: AttributeConfig[]) =>
-  attributeConfig
-    .map(({ id, valueType }) => `attribute ${id} ${valueType}`)
-    .join(" ");
-
 const formatVertexShader = (
+  attributes: string,
   uniformDeclarations: string,
   varyingDeclaration,
   varyingInstantiation,
@@ -82,6 +89,7 @@ const formatVertexShader = (
   viewMatrix: string
 ) => {
   return [
+    attributes,
     uniformDeclarations,
     varyingDeclaration,
     MAIN_START,

@@ -1,9 +1,5 @@
 import { ShaderPropertyTypes } from "../../buildShader.constants";
-import {
-  AttributeConfig,
-  PropertyType,
-  VaryingConfig,
-} from "../../buildShader.types";
+import { AttributeConfig, VaryingConfig } from "../../buildShader.types";
 import { createDeclarationString } from "../../helpers/createDeclarationString";
 import { getDefaultValueAsString } from "../../helpers/getDefaultValue";
 import {
@@ -15,13 +11,13 @@ import {
 
 export const buildVaryings = (
   varyingSchema: VaryingConfig[],
-  attributeSchema,
+  attributeConfig: AttributeConfig[],
   vertexTransformationName: string
 ) => {
   const declaration = varyingDeclarations(varyingSchema);
   const instantiation = varyingInstantiation(
     varyingSchema,
-    attributeSchema,
+    attributeConfig,
     vertexTransformationName
   );
   return { declaration, instantiation };
@@ -30,7 +26,7 @@ export const buildVaryings = (
 const varyingDeclarations = (config: VaryingConfig[]) => {
   const declarationStrings = config.map(({ id, valueType }) =>
     createDeclarationString(
-      ShaderPropertyTypes.VARYING as PropertyType,
+      ShaderPropertyTypes.VARYING as ShaderPropertyTypes,
       valueType,
       id
     )
@@ -41,7 +37,7 @@ const varyingDeclarations = (config: VaryingConfig[]) => {
 
 const varyingInstantiation = (
   varyingConfig: VaryingConfig[],
-  attributeConfig: AttributeConfig,
+  attributeConfig: AttributeConfig[],
   vertexTransformationName: string
 ) => {
   const defaultVaryingStrings = getDefaultVaryingString(
@@ -103,8 +99,20 @@ const getCustomVaryingStrings = (config: VaryingConfig[]) => {
 
 const getAttributeVaryingStrings = (
   config: VaryingConfig[],
-  _attributeConfig: AttributeConfig
-) => {
-  if (!config.length) return [];
-  return [];
-};
+  attributeConfig: AttributeConfig[]
+) =>
+  config.flatMap(({ id, attributeKey, varyingType }) => {
+    if (varyingType === VARYING_TYPES.ATTRIBUTE) {
+      const hasAttribute = attributeConfig.findIndex(
+        (attributeConf) => attributeConf.id === attributeKey
+      );
+      if (hasAttribute !== -1) {
+        return `${id} = ${attributeKey};`;
+      }
+      console.warn(
+        `varying ${id} links to ${attributeKey} but ${attributeKey} is not found`
+      );
+      return [];
+    }
+    return [];
+  });

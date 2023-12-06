@@ -1,8 +1,10 @@
 import { removeDuplicatesByKey } from "visual/utils/removeDuplicatesByKey";
 import { AttributeConfig } from "../../../buildShader.types";
 
-export const mergeAttributeConfigs = (attributeConfig: AttributeConfig[]) => {
+export const mergeAttributeConfigs = (
+  attributeConfig: AttributeConfig[][]
+): AttributeConfig[] => {
   const mergedConfigs = attributeConfig.flatMap((config) => config);
   const uniqueConfigs = removeDuplicatesByKey(mergedConfigs, "id");
-  return uniqueConfigs;
+  return uniqueConfigs as AttributeConfig[];
 };

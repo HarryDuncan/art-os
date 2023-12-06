@@ -1,11 +1,14 @@
 import { Matrix3, Matrix4, Vector2, Vector3, Vector4 } from "three";
-import { ShaderPropertyValueTypes } from "../buildShader.constants";
-import { PropertyType, ShaderPropertyConfig } from "../buildShader.types";
+import {
+  ShaderPropertyTypes,
+  ShaderPropertyValueTypes,
+} from "../buildShader.constants";
+import { ShaderPropertyConfig } from "../buildShader.types";
 import { createDeclarationString } from "./createDeclarationString";
 
 export const setUpCustomPropertyValues = (
   config: ShaderPropertyConfig[],
-  propertyType: PropertyType
+  propertyType: ShaderPropertyTypes
 ) => {
   const customProperties = {};
   const customStrings: string[] = [];

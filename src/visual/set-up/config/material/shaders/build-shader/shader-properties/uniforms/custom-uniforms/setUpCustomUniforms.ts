@@ -4,7 +4,7 @@ import {
   ShaderPropertyValueTypes,
 } from "../../../buildShader.constants";
 import { createDeclarationString } from "../../../helpers/createDeclarationString";
-import { PropertyType, UniformValueConfig } from "../../../buildShader.types";
+import { UniformValueConfig } from "../../../buildShader.types";
 
 export const setUpCustom = (config: UniformValueConfig[] = []) => {
   const customUniforms = {};
@@ -70,7 +70,7 @@ export const setUpCustom = (config: UniformValueConfig[] = []) => {
 
 const addUniformString = (id: string, valueType: ShaderPropertyValueTypes) =>
   createDeclarationString(
-    ShaderPropertyTypes.UNIFORM as PropertyType,
+    ShaderPropertyTypes.UNIFORM as ShaderPropertyTypes,
     valueType,
     id
   );

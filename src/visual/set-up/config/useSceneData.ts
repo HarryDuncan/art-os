@@ -25,8 +25,16 @@ export const useSceneData = (
   return useMemo(() => {
     if (!areAssetsInitialized || !formattedConfig) return null;
     const threeJs = setUpThreeJs(formattedConfig.threeJsConfig);
-    const materials = formatGlobalMaterials(assets, formattedConfig);
-    const meshes = getMeshesFromConfig(assets, materials, formattedConfig);
+    const { materials, attributeConfigs } = formatGlobalMaterials(
+      assets,
+      formattedConfig
+    );
+    const meshes = getMeshesFromConfig(
+      assets,
+      materials,
+      formattedConfig,
+      attributeConfigs
+    );
     const lights = getLightsFromConfig(formattedConfig);
     const sceneComponents = formatSceneComponentConfigs(
       formattedConfig,

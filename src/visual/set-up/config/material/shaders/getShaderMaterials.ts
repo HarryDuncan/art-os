@@ -11,9 +11,6 @@ import {
 import { configureShaders } from "visual/display/materials/webgl-shaders/shader-setup/configureShaders";
 import { ShaderMaterial } from "three";
 import { configureBlendingOptions } from "../blending-options/configureBlendingOptions";
-import { buildShader } from "./build-shader/buildShader";
-import { formatBuiltShaderConfig } from "./shader-formatting/formatBuiltShaderConfig";
-import { formatBuiltShaderUniforms } from "./shader-formatting/formatBuiltShaderUniforms";
 
 export const getShaderMaterials = (config: SceneConfig, assets: Asset[]) => {
   const { globalMaterialConfigs } = config;
@@ -25,26 +22,6 @@ export const getShaderMaterials = (config: SceneConfig, assets: Asset[]) => {
         shaderMaterial.name = materialConfig.id;
         return shaderMaterial;
       }
-    }
-    if (materialConfig.materialType === MATERIAL_TYPES.BUILT_SHADER) {
-      const { builtShaderConfig, assetMapping } = materialConfig;
-      if (!builtShaderConfig) return [];
-      const shaderConfig = formatBuiltShaderConfig(builtShaderConfig);
-      const { uniforms, vertexShader, fragmentShader } = buildShader(
-        shaderConfig
-      );
-      const formattedUniforms = formatBuiltShaderUniforms(
-        uniforms,
-        assetMapping ?? [],
-        assets
-      );
-      const shader = new ShaderMaterial({
-        uniforms: formattedUniforms,
-        vertexShader,
-        fragmentShader,
-      });
-      shader.name = materialConfig.id;
-      return shader;
     }
     return [];
   });

@@ -199,7 +199,7 @@
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/pink-jelly.jpg",
+        "url": "../assets/textures/matcaps/blue-green.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -221,7 +221,7 @@
       {
         "id": "aphrodite-geometry",
         "geometryId": "aphrodite",
-        "meshType": "MESH",
+        "meshType": "POINTS",
         "geometryConfig": {
           "scale": 1.2
         },
@@ -279,80 +279,37 @@
     ],
     "globalMaterialConfigs": [
       {
-        "id": "bg-vid",
-        "materialProps": {
-          "assetId": "bg-vid"
-        },
-        "materialType": "VIDEO"
-      },
-      {
         "id": "morphing-material",
-        "materialType": "SHADER",
-
-        "materialProps": {
-          "shaderConfig": {
-            "shaderId": "genericMorph",
-            "fragmentShaderId": "homeMorph",
-            "assetMapping": [
-              {
-                "uniform": "uMaterial",
-                "assetId": "chrome-material",
-                "relationship": "MATCAP"
-              },
-              {
-                "uniform": "uTextureZero",
-                "assetId": "0-texture",
-                "relationship": "TEXTURE"
-              },
-              {
-                "uniform": "uTextureOne",
-                "assetId": "1-texture",
-                "relationship": "TEXTURE"
-              }
-            ]
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {},
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [{ "effectType": "POINTS" }],
+          "fragmentEffectConfigs": [{ "effectType": "POINT_MATERIAL" }]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
           },
-          "uniforms": {
-            "uTime": { "value": 0 },
-            "uResolution": { "value": null },
-            "uMaterial": { "value": null },
-            "uFrame": {
-              "value": 0.0
-            },
-            "uOpacity": {
-              "value": 1.0
-            },
-            "uLoopCount": {
-              "value": 0.0
-            },
-            "uProgress": {
-              "value": 0.0
-            },
-            "uMouse": {
-              "value": null
-            },
-            "uPosition": {
-              "value": null
-            }
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
           }
-        }
+        ]
       }
     ],
     "meshTransforms": [
       {
         "type": "MORPH",
         "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"],
-        "attributeConfig": [
-          {
-            "id": "randomBool",
-            "valueType": "FLOAT",
-            "valueConfig": { "randomizedPercentage": 0.5 }
-          },
-          {
-            "id": "randomBool2",
-            "valueType": "FLOAT",
-            "valueConfig": { "randomizedPercentage": 0.02 }
-          }
-        ]
+        "materialId": "morphing-material"
       }
     ],
     "sceneComponentConfigs": [],

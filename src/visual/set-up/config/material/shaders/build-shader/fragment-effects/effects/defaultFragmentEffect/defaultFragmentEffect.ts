@@ -13,6 +13,7 @@ export const defaultFragmentEffect = (): FragmentEffectData => {
     uniformConfig,
     transformation,
     varyingConfig,
+    attributeConfig: [],
     fragmentColorName,
   };
 };
