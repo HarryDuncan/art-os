@@ -285,6 +285,7 @@
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             { "effectType": "POINTS" },
+            { "effectType": "MORPH" },
             { "effectType": "ROTATE" }
           ],
           "fragmentEffectConfigs": [{ "effectType": "POINT_MATERIAL" }],

@@ -37,6 +37,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const shaderAttributes = [
     attributeConfig,
     fragmentEffects.attributeConfigs,
+    vertexEffects.attributeConfigs,
   ] as AttributeConfig[][];
   const combinedAttributeConfigs = mergeAttributeConfigs(shaderAttributes);
   const attributes = buildAttributes(combinedAttributeConfigs);

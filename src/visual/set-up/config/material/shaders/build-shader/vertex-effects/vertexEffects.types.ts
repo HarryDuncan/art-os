@@ -1,4 +1,8 @@
-import { ShaderFunction, UniformConfig } from "../buildShader.types";
+import {
+  AttributeConfig,
+  ShaderFunction,
+  UniformConfig,
+} from "../buildShader.types";
 
 export interface RequiredFunctionData {
   functionId: string;
@@ -8,6 +12,7 @@ export interface VertexEffectData {
   requiredFunctions: ShaderFunction[];
   uniformConfig: UniformConfig;
   varyingConfig;
-  transformation;
+  transformation: string;
   pointName: string;
+  attributeConfig?: AttributeConfig[];
 }

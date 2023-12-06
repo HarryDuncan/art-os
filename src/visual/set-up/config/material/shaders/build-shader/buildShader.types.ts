@@ -33,7 +33,11 @@ export type RotationEffectProps = {
   axis: Axis;
 };
 
-export type VertexEffectProps = RotationEffectProps | DisplacementEffectProps;
+export type MorphEffectProps = {};
+export type VertexEffectProps =
+  | RotationEffectProps
+  | DisplacementEffectProps
+  | MorphEffectProps;
 
 export type VertexEffectConfig = {
   effectType: DisplacementType;

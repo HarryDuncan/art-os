@@ -18,6 +18,14 @@ export const DEFAULT_UNIFORMS = {
     valueType: ShaderPropertyValueTypes.FLOAT,
     defaultValue: 1.0,
   },
+  uProgress: {
+    valueType: ShaderPropertyValueTypes.FLOAT,
+    defaultValue: 0.0,
+  },
+  uLoopCount: {
+    valueType: ShaderPropertyValueTypes.INT,
+    defaultValue: 0,
+  },
 };
 
 export const UNIFORM_DECLARATION = "// UNIFORM DECLARATION";
