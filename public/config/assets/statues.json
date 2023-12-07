@@ -1,14 +1,14 @@
 [
   {
-    "name": "athena-geometry",
-    "id": "athena",
-    "url": "../assets/models/sculptures/athena-statue.obj",
+    "name": "philo-1-geometry",
+    "id": "philo-1",
+    "url": "../assets/models/philo-time.obj",
     "assetType": "MODEL3D"
   },
   {
-    "name": "mercury-geometry",
-    "id": "mercury",
-    "url": "../assets/models/sculptures/mercury-statue.obj",
+    "name": "philo-2-geometry",
+    "id": "philo-2",
+    "url": "../assets/models/philo-time-2.obj",
     "assetType": "MODEL3D"
   }
 ]

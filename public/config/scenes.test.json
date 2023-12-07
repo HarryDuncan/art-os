@@ -16,5 +16,11 @@
     "configId": "hjd-vector-morph",
     "configPath": "scenes/hjd-art/hjd-vector-morph",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Vertical Morph",
+    "configId": "hjd-philo-time",
+    "configPath": "scenes/hjd-art/hjd-philo-time",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

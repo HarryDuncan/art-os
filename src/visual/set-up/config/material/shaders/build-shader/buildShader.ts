@@ -96,7 +96,9 @@ const formatVertexShader = (
     attributes,
     uniformDeclarations,
     varyingDeclaration,
-    vertexFunctions.map(({ functionDefinition }) => functionDefinition),
+    vertexFunctions
+      .map(({ functionDefinition }) => functionDefinition)
+      .join(""),
     MAIN_START,
     vertexTransformations,
     varyingInstantiation,

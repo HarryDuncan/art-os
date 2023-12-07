@@ -22,4 +22,9 @@ export const DEFAULT_ROTATE_EFFECT_CONFIG = {
 
 export const DEFAULT_MORPH_EFFECT_CONFIG = {
   morphCount: 2,
+  preTransformConfigs: [],
 };
+
+export const enum TransformTypes {
+  TRANSLATE = "TRANSLATE",
+}

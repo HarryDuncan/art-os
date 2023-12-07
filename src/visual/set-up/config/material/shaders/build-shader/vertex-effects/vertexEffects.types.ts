@@ -1,13 +1,10 @@
+import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
 import {
   AttributeConfig,
   ShaderFunction,
   UniformConfig,
 } from "../buildShader.types";
 
-export interface RequiredFunctionData {
-  functionId: string;
-  functionText: string;
-}
 export interface VertexEffectData {
   requiredFunctions: ShaderFunction[];
   uniformConfig: UniformConfig;
@@ -16,3 +13,8 @@ export interface VertexEffectData {
   pointName: string;
   attributeConfig?: AttributeConfig[];
 }
+
+export type MorphObject = {
+  pointName: string;
+  normalName: string;
+};

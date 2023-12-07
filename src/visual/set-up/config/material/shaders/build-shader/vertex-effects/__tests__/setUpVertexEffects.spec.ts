@@ -16,7 +16,9 @@ describe("setUpVertexEffects", () => {
     const result = setUpVertexEffects(configs[0] as VertexEffectConfig[]);
     const expected = {
       requiredFunctions: {},
+      attributeConfigs: [],
       transformations: "",
+      transformPoint: "explodedPoint",
       uniformConfigs: EMPTY_UNIFORM_CONFIG,
       varyingConfigs: [],
       viewMatrix: `gl_Position = projectionMatrix * modelViewMatrix * position;`,
@@ -28,6 +30,7 @@ describe("setUpVertexEffects", () => {
     const result = setUpVertexEffects(configs[1] as VertexEffectConfig[]);
     const expected = {
       requiredFunctions: {},
+      attributeConfigs : [],
       transformations: "explodeTransformationString; ",
       uniformConfigs: {
         customUniforms: [
@@ -55,6 +58,7 @@ describe("setUpVertexEffects", () => {
     const result = setUpVertexEffects(configs[2] as VertexEffectConfig[]);
     const expected = {
       requiredFunctions: {},
+      attributeConfigs : [],
       transformations:
         "explodeTransformationString; vertexFilterTransformation; ",
       uniformConfigs: {
@@ -75,7 +79,7 @@ describe("setUpVertexEffects", () => {
           varyingType: "ATTRIBUTE",
         },
       ],
-      viewMatrix: `gl_Position = projectionMatrix * modelViewMatrix * filteredPoint;`,
+      viewMatrix: "viewMatrix": "gl_Position = projectionMatrix * modelViewMatrix * vec4(filteredPoint.xyz, 1.0);",
     };
     expect(result).toStrictEqual(expected);
   });

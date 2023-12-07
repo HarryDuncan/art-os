@@ -27,12 +27,12 @@ export const transformGeometry = (
               const { vertices } = getGeometryAttributes(morphTarget.geometry);
 
               transformedMeshes[0].geometry.setAttribute(
-                `morphPosition_${index - 1}`,
+                `morphPosition${index - 1}`,
                 new BufferAttribute(vertices, 3)
               );
 
               transformedMeshes[0].geometry.setAttribute(
-                `morphNormal_${index - 1}`,
+                `morphNormal${index - 1}`,
                 new BufferAttribute(vertices, 3)
               );
             }

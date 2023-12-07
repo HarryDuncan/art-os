@@ -16,7 +16,7 @@ test("hexToRgb should convert hex to normalized RGB", () => {
 
 test("hexToRgb should handle lowercase hex codes", () => {
   const hexColor = "#aabbcc";
-  const expectedNormalizedRgb = [0.6705882352941176, 0.7333333333333333, 0.8];
+  const expectedNormalizedRgb = [0.6666666666666666, 0.7333333333333333, 0.8];
 
   const normalizedRgb = hexToRgb(hexColor);
 

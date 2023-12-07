@@ -9,6 +9,7 @@ describe("setUpFragmentEffects", () => {
     const result = setUpFragmentEffects(config[0] as FragmentEffectConfig[]);
     const expected = {
       requiredFunctions: [],
+      attributeConfigs: [],
       transformations: "vec4 fragColor = vec4(1.0,0,0,1.0);",
       uniformConfigs: EMPTY_UNIFORM_CONFIG,
       varyingConfigs: [],
@@ -19,6 +20,7 @@ describe("setUpFragmentEffects", () => {
   test("returns correct fragment shader and config", () => {
     const result = setUpFragmentEffects(config[0] as FragmentEffectConfig[]);
     const expected = {
+      attributeConfigs: [],
       requiredFunctions: [],
       transformations: "vec4 fragColor = vec4(1.0,0,0,1.0);",
       uniformConfigs: EMPTY_UNIFORM_CONFIG,

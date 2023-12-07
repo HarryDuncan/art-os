@@ -5,7 +5,7 @@ import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAs
 interface PreTransformConfig {
   centerGeometry?: boolean;
 }
-export const preTransform = (
+export const preTransformGeometry = (
   assets: Asset[],
   preTransformConfig: PreTransformConfig
 ) =>

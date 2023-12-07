@@ -1,4 +1,7 @@
-import { Axis } from "visual/utils/three-dimension-space/position/position.types";
+import {
+  Axis,
+  Position3d,
+} from "visual/utils/three-dimension-space/position/position.types";
 import {
   DISPLACEMENT_TYPES,
   ShaderPropertyValueTypes,
@@ -6,9 +9,13 @@ import {
 import { FRAGMENT_EFFECT } from "./fragment-effects/fragmentEffects.consts";
 import { DEFAULT_UNIFORMS } from "./shader-properties/uniforms/uniforms.consts";
 import { VARYING_TYPES } from "./shader-properties/varyings/varyings.consts";
+import { TransformTypes } from "./vertex-effects/vertexEffects.consts";
 
 // GENERAL TYPES
-
+export type ShaderFunction = {
+  id: string;
+  functionDefinition: string;
+};
 // <--------------------- VERTEX ---------------------------->
 export type VertexEffectType = unknown;
 export type DisplacementType = keyof typeof DISPLACEMENT_TYPES;
@@ -33,7 +40,11 @@ export type RotationEffectProps = {
   axis: Axis;
 };
 
-export type MorphEffectProps = {};
+export type MorphEffectProps = {
+  morphCount: number;
+  preTransformConfigs: PreTransformConfig[];
+};
+
 export type VertexEffectProps =
   | RotationEffectProps
   | DisplacementEffectProps
@@ -42,6 +53,26 @@ export type VertexEffectProps =
 export type VertexEffectConfig = {
   effectType: DisplacementType;
   effectProps: VertexEffectProps;
+};
+
+// PRE-TRANSFORMS
+
+export type TranslateTransformProps = {
+  translate: Partial<Position3d>;
+};
+export type TransformProps = TranslateTransformProps;
+export type PreTransformConfig = {
+  index: number;
+  pointName: string;
+  transformType: TransformTypes;
+  transformProps: TransformProps;
+};
+export type PreTransformData = {
+  index: number;
+  transform: string;
+  positionName: string;
+  normalName: string;
+  requiredFunctions: ShaderFunction[];
 };
 
 // <--------------------------- FRAGMENT -------------------------------->
@@ -88,11 +119,6 @@ export type ShaderAttributeConfig = {
 export type AttributeValueConfig = RandomBoolConfig;
 export type AttributeConfig = ShaderPropertyConfig & {
   valueConfig?: AttributeValueConfig;
-};
-
-export type ShaderFunction = {
-  id: string;
-  functionDefinition: string;
 };
 
 // <-------------------------------------UNIFORMS ---------------------------------->

@@ -7,10 +7,10 @@ import { extractMetadata } from "./geometry/extract-metadata/extractMetadata";
 import { downloadJsonFile } from "./export/downloadJson";
 import { Asset } from "visual/set-up/assets/asset.types";
 import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
-import { preTransform } from "./pre-transform/preTransform";
 import { useAssets } from "visual/set-up/assets/useAssets";
 import { setSameVertexCount } from "./geometry/vertex/setSameVertexCount";
 import { addAdditionalVerticies } from "./geometry/vertex/add-shapes/addAdditionalVertices";
+import { preTransformGeometry } from "./pre-transform/preTransform";
 // import { getEdgesGeometry } from "./geometry/edges-geometry/getEdgesGeometry";
 // import {
 //   AXIS,
@@ -22,7 +22,7 @@ const preTranformConfig = {
   centerGeometry: true,
 };
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/print-pieces/nov/mercury.json`);
+  const assets = useFetchData(`${CONFIG}assets/statues.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );
@@ -45,7 +45,10 @@ export const GeometryPreprocess = () => {
   //   });
   // };
   const sameVertices = useCallback(() => {
-    const preTransformed = preTransform(initializedAssets, preTranformConfig);
+    const preTransformed = preTransformGeometry(
+      initializedAssets,
+      preTranformConfig
+    );
     const assetMetaData = extractMetadata(preTransformed);
 
     const maxVertexCount = Math.max(
@@ -80,7 +83,10 @@ export const GeometryPreprocess = () => {
     });
   }, [initializedAssets]);
   const addVertices = useCallback(() => {
-    const preTransformed = preTransform(initializedAssets, preTranformConfig);
+    const preTransformed = preTransformGeometry(
+      initializedAssets,
+      preTranformConfig
+    );
     const assetMetaData = extractMetadata(preTransformed);
 
     const maxVertexCount = Math.max(
