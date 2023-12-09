@@ -10,6 +10,7 @@ import { FRAGMENT_EFFECT } from "./fragment-effects/fragmentEffects.consts";
 import { DEFAULT_UNIFORMS } from "./shader-properties/uniforms/uniforms.consts";
 import { VARYING_TYPES } from "./shader-properties/varyings/varyings.consts";
 import { TransformTypes } from "./vertex-effects/vertexEffects.consts";
+import { PointPerspectiveConfig } from "./vertex-effects/vertexEffects.types";
 
 // GENERAL TYPES
 export type ShaderFunction = {
@@ -45,10 +46,15 @@ export type MorphEffectProps = {
   preTransformConfigs: PreTransformConfig[];
 };
 
+export type PointsEffectProps = {
+  pointSize: number;
+  perspectiveConfig: PointPerspectiveConfig;
+};
 export type VertexEffectProps =
   | RotationEffectProps
   | DisplacementEffectProps
-  | MorphEffectProps;
+  | MorphEffectProps
+  | PointsEffectProps;
 
 export type VertexEffectConfig = {
   effectType: DisplacementType;

@@ -25,6 +25,9 @@ export const DEFAULT_MORPH_EFFECT_CONFIG = {
   preTransformConfigs: [],
 };
 
+export const DEFAULT_POINT_EFFECT_CONFIG = {
+  pointSize: 20,
+};
 export const enum TransformTypes {
   TRANSLATE = "TRANSLATE",
 }

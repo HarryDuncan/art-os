@@ -22,7 +22,7 @@ export const getVertexEffect = (
       return vertexFilter(transformPointName);
     }
     case VERTEX_EFFECTS.POINTS: {
-      return pointsVertex();
+      return pointsVertex(transformPointName, effect.effectProps);
     }
     case VERTEX_EFFECTS.MORPH: {
       return morphVertex(transformPointName, effect.effectProps);

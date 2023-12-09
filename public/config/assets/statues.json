@@ -1,14 +1,14 @@
 [
   {
-    "name": "philo-1-geometry",
-    "id": "philo-1",
-    "url": "../assets/models/philo-time.obj",
+    "name": "statue1-geometry",
+    "id": "statue1",
+    "url": "../assets/models/sculptures/hercules-bust-1.obj",
     "assetType": "MODEL3D"
   },
   {
-    "name": "philo-2-geometry",
-    "id": "philo-2",
-    "url": "../assets/models/philo-time-2.obj",
+    "name": "statue2-geometry",
+    "id": "statue2",
+    "url": "../assets/models/sculptures/aphrodite-bust-2.obj",
     "assetType": "MODEL3D"
   }
 ]

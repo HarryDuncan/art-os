@@ -71,7 +71,7 @@ const getDefaultVaryingString = (
         strings.push("vUv = uv;");
         break;
       case "vPosition":
-        strings.push(`vPosition = ${vertexTransformationName};`);
+        strings.push(`vPosition = ${vertexTransformationName}.xyz;`);
         break;
       case "vNormal":
         strings.push(`vNormal = normalize(normalMatrix * normal);`);

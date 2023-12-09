@@ -1,4 +1,3 @@
-import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
 import {
   AttributeConfig,
   ShaderFunction,
@@ -17,4 +16,11 @@ export interface VertexEffectData {
 export type MorphObject = {
   pointName: string;
   normalName: string;
+};
+
+export type PointPerspectiveConfig = {
+  floor: number;
+  ceiling: number;
+  scaleFactor: number;
+  divisor: number;
 };

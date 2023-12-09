@@ -22,5 +22,11 @@
     "configId": "hjd-philo-time",
     "configPath": "scenes/hjd-art/hjd-philo-time",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Palestine Morph",
+    "configId": "palestine-flag",
+    "configPath": "scenes/hjd-art/palestine-flag",
+    "componentId": "InteractiveSceneContainer"
   }
 ]
