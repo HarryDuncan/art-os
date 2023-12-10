@@ -1,8 +1,8 @@
-import styled from "styled-components/macro";
 import {
   SIDE_BAR_TRANSITION_SPEED,
   SIDE_BAR_WIDTH,
-} from "../../components/navigation/side-bar/SideBar.styles";
+} from "app/components/side-bar/side-bar/SideBar.styles";
+import styled from "styled-components/macro";
 
 const HEADER_HEIGHT = 100;
 export const DigitalArtContainer = styled.div`

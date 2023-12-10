@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const SIDE_BAR_WIDTH = 110;
+export const SIDE_BAR_WIDTH = 220;
 export const SIDE_BAR_TRANSITION_SPEED = 0.2;
-const SIDE_BAR_WIDTH_OPEN = 120;
+const SIDE_BAR_WIDTH_OPEN = 220;
 const SIDE_BAR_LINK_HEIGHT = 65;
 const SIDE_BAR_LINK_FONT_SIZE = "1.6rem";
 const LOGO_HEIGHT = 40;
@@ -70,7 +70,6 @@ export const SideBarLinkList = styled.div`
   flex: 1 1 1px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow: auto;
   a {
     text-decoration: none;

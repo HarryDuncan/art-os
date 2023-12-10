@@ -1,4 +1,4 @@
-import { SIDE_BAR_WIDTH } from "app/components/navigation/side-bar/SideBar.styles";
+import { SIDE_BAR_WIDTH } from "app/components/side-bar/side-bar/SideBar.styles";
 import styled from "styled-components";
 
 export const Container = styled.div`

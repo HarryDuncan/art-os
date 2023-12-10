@@ -8,7 +8,7 @@ import styled, { ThemeProvider } from "styled-components/macro";
 import { DigitalArt } from "./views/digital-art/DigitalArt";
 import { Landing } from "./views/landing/Landing";
 // Components
-import { Navigation } from "./components/navigation/Navigation";
+import { Navigation } from "./views/navigation/Navigation";
 // Redux
 import { store } from "./redux/store";
 import { THEME } from "theme/theme";

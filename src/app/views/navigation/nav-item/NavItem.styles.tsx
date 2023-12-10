@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components/macro";
-import { SIDE_BAR_TRANSITION_SPEED } from "../side-bar/SideBar.styles";
+import { SIDE_BAR_TRANSITION_SPEED } from "../../../components/side-bar/side-bar/SideBar.styles";
 
 const BORDER_WIDTH = 3;
 
@@ -41,7 +41,7 @@ const borderStyles = css`
   }
 `;
 
-export const SideBarLink = styled.a<{
+export const NavLink = styled.a<{
   $isActive?: boolean;
   $isDisabled?: boolean;
 }>`
@@ -51,9 +51,8 @@ export const SideBarLink = styled.a<{
   position: relative;
   cursor: pointer;
   font-family: "HarryDuncan";
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding-left: 1rem;
-
   && {
     color: ${({ theme }) => theme.colors.mono.text01};
   }
