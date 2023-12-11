@@ -1,4 +1,4 @@
-import { ShaderPropertyValueTypes } from "../../../buildShader.constants";
+import { ShaderPropertyValueTypes } from "../../../../buildShader.constants";
 import {
   AttributeConfig,
   DefaultUniform,
@@ -7,13 +7,14 @@ import {
   PointMaterialEffectProps,
   ShaderFunction,
   VaryingConfig,
-} from "../../../buildShader.types";
+} from "../../../../buildShader.types";
 import {
   DEFAULT_POINT_MATERIAL,
   FRAGMENT_COLOR_NAMES,
-} from "../../fragmentEffects.consts";
-import { VARYING_TYPES } from "../../../shader-properties/varyings/varyings.consts";
-import { createColorVectorString } from "../../../helpers/createColorVectorString";
+} from "../../../fragmentEffects.consts";
+import { VARYING_TYPES } from "../../../../shader-properties/varyings/varyings.consts";
+import { createColorVectorString } from "../../../../helpers/createColorVectorString";
+import { getPointColor } from "./getPointColor";
 
 const getCustomUniforms = (pointDefinitions: PointDefinition[]) =>
   pointDefinitions.map(({ id }) => ({
@@ -67,7 +68,7 @@ export const getFragmentPointMaterial = (
   _transformColorName
 ): FragmentEffectData => {
   const formattedEffectProps = formatWithDefaultEffectProps(effectProps);
-  const { pointDefinitions } = formattedEffectProps;
+  const { pointDefinitions, defaultColor } = formattedEffectProps;
   const fragmentColorName = FRAGMENT_COLOR_NAMES.POINT_MATERIAL;
   const uniformConfig = {
     defaultUniforms: ["uOpacity"] as DefaultUniform[],
@@ -79,7 +80,7 @@ export const getFragmentPointMaterial = (
   if(vPointDisplay == 0.0 ){
       opacity = 0.0;
   }
-  vec4 ${fragmentColorName} =  vec4(1.0, 0.0, 0.0, opacity);        
+  ${getPointColor(fragmentColorName, defaultColor)}       
   ${getPointTextureInstantiations(fragmentColorName, pointDefinitions)}
   `;
   const requiredFunctions = getRequiredFunctions();

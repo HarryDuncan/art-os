@@ -11,11 +11,12 @@ export const FRAGMENT_COLOR_NAMES = {
   POINT_MATERIAL: "fragPointMaterial",
   COLOR: "fragColouredColor",
 };
-
+export const DEFAULT_FRAG_COLOR = "#ff1205";
 export const DEFAULT_POINT_MATERIAL = {
   pointDisplayPercentage: 0.5,
   pointDefinitions: [
     { id: "uTexture1", pointColor: "#ff1205" },
     { id: "uTexture2", pointColor: "#ff1005" },
   ],
+  pointColor: "#ff1205",
 };

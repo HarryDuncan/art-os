@@ -2,15 +2,15 @@ import {
   calculateNormal,
   diffuseFactor,
 } from "visual/display/materials/webgl-shaders/shader-functions";
-import { ShaderPropertyValueTypes } from "../../../buildShader.constants";
+import { ShaderPropertyValueTypes } from "../../../../buildShader.constants";
 import {
   DefaultUniform,
   FragmentEffectData,
   ShaderFunction,
   VaryingConfig,
-} from "../../../buildShader.types";
-import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
-import { VARYING_TYPES } from "../../../shader-properties/varyings/varyings.consts";
+} from "../../../../buildShader.types";
+import { FRAGMENT_COLOR_NAMES } from "../../../fragmentEffects.consts";
+import { VARYING_TYPES } from "../../../../shader-properties/varyings/varyings.consts";
 
 const getCustomUniforms = () => [
   {
@@ -39,9 +39,7 @@ const getVaryings = () =>
     },
   ] as VaryingConfig[];
 
-export const getFragmentMaterial = (
-  _transformColorName
-): FragmentEffectData => {
+export const matcapMaterial = (_transformColorName): FragmentEffectData => {
   const fragmentColorName = FRAGMENT_COLOR_NAMES.MATERIAL;
   const uniformConfig = {
     defaultUniforms: ["uMaterial", "uResolution"] as DefaultUniform[],

@@ -4,8 +4,8 @@ import {
 } from "../../buildShader.types";
 import { FRAGMENT_EFFECT } from "../fragmentEffects.consts";
 import { defaultFragmentEffect } from "./defaultFragmentEffect/defaultFragmentEffect";
-import { getFragmentMaterial } from "./material/getFragmentMaterial";
-import { getFragmentPointMaterial } from "./material/getFragmentPointMaterial";
+import { matcapMaterial } from "./material/matcap/matcapMaterial";
+import { getFragmentPointMaterial } from "./material/point-material/getFragmentPointMaterial";
 
 export const getFragmentEffects = (
   effect: FragmentEffectConfig,
@@ -14,7 +14,7 @@ export const getFragmentEffects = (
   switch (effect.effectType) {
     case FRAGMENT_EFFECT.COLOR:
     case FRAGMENT_EFFECT.MATERIAL:
-      return getFragmentMaterial(transformColorName);
+      return matcapMaterial(transformColorName);
     case FRAGMENT_EFFECT.POINT_MATERIAL:
       return getFragmentPointMaterial(effect.effectProps, transformColorName);
     case FRAGMENT_EFFECT.DEFAULT:

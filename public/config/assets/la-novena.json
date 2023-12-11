@@ -1,0 +1,32 @@
+[
+  {
+    "name": "wise-1-geometry",
+    "id": "wise-1",
+    "url": "../assets/models/barba/la-novena/wise-1.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "wise-2-geometry",
+    "id": "wise-2",
+    "url": "../assets/models/barba/la-novena/wise-2.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "wise-3-geometry",
+    "id": "wise-3",
+    "url": "../assets/models/barba/la-novena/wise-3.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "virgin-geometry",
+    "id": "virgin",
+    "url": "../assets/models/barba/la-novena/virgin.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "barba-geometry",
+    "id": "barba",
+    "url": "../assets/models/barba/la-novena/barba-logo.obj",
+    "assetType": "MODEL3D"
+  }
+]

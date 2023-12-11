@@ -89,6 +89,7 @@ export type PointDefinition = {
 };
 export type PointMaterialEffectProps = {
   pointDisplayPercentage: number;
+  defaultColor?: string;
   pointDefinitions: PointDefinition[];
 };
 export type FragmentEffectProps = PointMaterialEffectProps;

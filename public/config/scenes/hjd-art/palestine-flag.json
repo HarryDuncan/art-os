@@ -46,7 +46,7 @@
         "geometryId": "statue1",
         "meshType": "POINTS",
         "geometryConfig": {
-          "scale": 1
+          "scale": 2.5
         },
 
         "rotation": { "x": 0, "y": -0, "z": -0 },
@@ -57,7 +57,7 @@
         "geometryId": "statue2",
         "meshType": "NONE",
         "geometryConfig": {
-          "scale": 2
+          "scale": 2.5
         },
         "position": { "x": 0, "y": 10, "z": 4 },
         "rotation": { "x": 0, "y": 0, "z": -0 },
@@ -124,7 +124,19 @@
               }
             }
           ],
-          "fragmentEffectConfigs": [{ "effectType": "POINT_MATERIAL" }],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.5,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#009736" },
+                  { "id": "uTexture2", "pointColor": "#009736" }
+                ],
+                "pointColor": "#009736"
+              }
+            }
+          ],
           "attributeConfig": [
             {
               "id": "pointDisplay",
@@ -160,7 +172,9 @@
       }
     ],
     "sceneComponentConfigs": [],
-    "scenePropertiesConfig": {}
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
   },
   {
     "threeJsConfig": {
@@ -185,7 +199,7 @@
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/gold-chrome2.jpg",
+        "url": "../assets/textures/matcaps/hot-green.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -207,9 +221,9 @@
       {
         "id": "aphrodite-geometry",
         "geometryId": "statue1",
-        "meshType": "POINTS",
+        "meshType": "MESH",
         "geometryConfig": {
-          "scale": 1
+          "scale": 2.5
         },
 
         "rotation": { "x": 0, "y": -0, "z": -0 },
@@ -220,7 +234,7 @@
         "geometryId": "statue2",
         "meshType": "NONE",
         "geometryConfig": {
-          "scale": 2
+          "scale": 2.5
         },
         "position": { "x": 0, "y": 10, "z": 4 },
         "rotation": { "x": 0, "y": 0, "z": -0 },
@@ -267,7 +281,6 @@
       {
         "id": "morphing-material",
         "materialType": "BUILT_SHADER",
-        "blendingConfig": {},
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
@@ -287,7 +300,7 @@
               }
             }
           ],
-          "fragmentEffectConfigs": [{ "effectType": "POINT_MATERIAL" }],
+          "fragmentEffectConfigs": [{ "effectType": "MATERIAL" }],
           "attributeConfig": []
         },
         "assetMapping": [
@@ -317,8 +330,6 @@
       }
     ],
     "sceneComponentConfigs": [],
-    "scenePropertiesConfig": {
-      "backgroundColor": "black"
-    }
+    "scenePropertiesConfig": {}
   }
 ]

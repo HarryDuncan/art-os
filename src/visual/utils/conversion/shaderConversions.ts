@@ -11,3 +11,19 @@ export const shaderSafeVector = (position: PositionConfig) => {
     formattedPositon.y
   )}, ${shaderSafeFloat(formattedPositon.z)})`;
 };
+
+export const shaderSafeVector4 = (
+  position: PositionConfig,
+  fourthElement: number | string = 1
+) => {
+  const formattedPositon = positionConfigToPosition(position);
+  return `vec4(${shaderSafeFloat(formattedPositon.x)}, ${shaderSafeFloat(
+    formattedPositon.y
+  )}, ${shaderSafeFloat(formattedPositon.z)}, ${
+    isVariableName(fourthElement)
+      ? fourthElement
+      : shaderSafeFloat(Number(fourthElement))
+  })`;
+};
+
+const isVariableName = (value: number | string) => isNaN(Number(value));

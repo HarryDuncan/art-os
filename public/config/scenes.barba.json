@@ -1,0 +1,8 @@
+[
+  {
+    "title": "Morph",
+    "configId": "barba-morph",
+    "configPath": "scenes/barba/la-novena/morph",
+    "componentId": "InteractiveSceneContainer"
+  }
+]

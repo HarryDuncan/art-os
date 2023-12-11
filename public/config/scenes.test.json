@@ -28,5 +28,23 @@
     "configId": "palestine-flag",
     "configPath": "scenes/hjd-art/palestine-flag",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Morph",
+    "configId": "barba-morph",
+    "configPath": "scenes/barba/la-novena/morph",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Morph Material",
+    "configId": "barba-morph-2",
+    "configPath": "scenes/barba/la-novena/morph-material",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Distortion Material",
+    "configId": "barba-distort-3",
+    "configPath": "scenes/barba/la-novena/distortion",
+    "componentId": "InteractiveSceneContainer"
   }
 ]
