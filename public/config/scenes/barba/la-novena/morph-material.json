@@ -110,10 +110,6 @@
             {
               "effectType": "MORPH",
               "effectProps": {}
-            },
-            {
-              "effectType": "ROTATE",
-              "effectProps": { "speed": 0.8 }
             }
           ],
           "fragmentEffectConfigs": [

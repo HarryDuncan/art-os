@@ -46,5 +46,11 @@
     "configId": "barba-distort-3",
     "configPath": "scenes/barba/la-novena/distortion",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Statue and Fall",
+    "configId": "barba-distort-4",
+    "configPath": "scenes/barba/la-novena/statue-and-fall",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

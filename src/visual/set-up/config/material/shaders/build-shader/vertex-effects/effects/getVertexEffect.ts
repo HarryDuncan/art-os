@@ -4,6 +4,7 @@ import {
 } from "../../buildShader.types";
 import { VERTEX_EFFECTS } from "../vertexEffects.consts";
 import { VertexEffectData } from "../vertexEffects.types";
+import { distort } from "./displacement/distort/distort";
 import { explode } from "./displacement/explode/explode";
 import { vertexFilter } from "./filter-vertex/filterVertex";
 import { morphVertex } from "./morph/morphVertex";
@@ -26,6 +27,9 @@ export const getVertexEffect = (
     }
     case VERTEX_EFFECTS.MORPH: {
       return morphVertex(transformPointName, effect.effectProps);
+    }
+    case VERTEX_EFFECTS.DISTORT: {
+      return distort(transformPointName);
     }
     case VERTEX_EFFECTS.ROTATE: {
       return rotationVertex(

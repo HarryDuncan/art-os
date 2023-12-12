@@ -6,9 +6,11 @@ export const VERTEX_EFFECTS = {
   POINTS: "POINTS",
   ROTATE: "ROTATE",
   MORPH: "MORPH",
+  DISTORT: "DISTORT",
 };
 export const VERTEX_EFFECT_POINT_NAMES = {
   DEFAULT_POINT: "position",
+  DISTORT_POINT: "distortPoint",
   EXPLODED_POINT: "explodedPoint",
   FILTERED_POINT: "filteredPoint",
   ROTATED_POINT: "rotatedPoint",
