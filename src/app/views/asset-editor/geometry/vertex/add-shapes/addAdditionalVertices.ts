@@ -36,7 +36,6 @@ const createAdditionalVertices = (
   return new Array(extraVertexCount).fill("").map((_item, index) => {
     const axis = index % 3;
     const multiplier = (Math.floor(index / positionsCount) + 1) % 2;
-    console.log(multiplier);
     const m = -1 * multiplier === -1 ? -1 : 1;
     let geometryVertexIndex = positionsCount - index * m;
     if (axis === 0) {

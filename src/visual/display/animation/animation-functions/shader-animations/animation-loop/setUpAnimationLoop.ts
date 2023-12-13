@@ -12,7 +12,7 @@ const defaultConfig = [
 ];
 export const setUpAnimationLoop = (
   config: AnimationLoopConfigItem[],
-  loopDuration?: number
+  loopDuration: number
 ): ((
   shaderMesh: ShaderMeshObject,
   time: number
@@ -22,13 +22,12 @@ export const setUpAnimationLoop = (
     ...config,
   ] as AnimationLoopConfigItem[];
   const animationLoopFunctions = animationConfig.map(
-    ({ uniform, loopType, duration, steepness, toMaterial, loopLimit }) => {
+    ({ uniform,toMaterial, loopType, duration, loopProps }) => {
       const animationLoopDuration = duration ?? loopDuration;
       const loopFunction = getLoopType(
         loopType,
         animationLoopDuration,
-        steepness,
-        loopLimit
+       loopProps
       );
       return (shaderMesh: ShaderMeshObject, time: number) => {
         const uniformValue = loopFunction(time);

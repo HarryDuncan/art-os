@@ -1,17 +1,17 @@
 import {
   ANIMATION_LOOP_TYPES,
-  DEFAULT_DURATION_SECONDS,
-  DEFAULT_LOOP_LIMIT,
-  DEFAULT_STEEPNESS,
+  DEFAULT_LOOP_PROPS,
 } from "./animationLoop.consts";
-import { AnimationLoopType } from "./animationloop.types";
+import { AnimationLoopType, LoopProps } from "./animationloop.types";
 
 export const getLoopType = (
   loopType: AnimationLoopType,
-  duration = DEFAULT_DURATION_SECONDS,
-  steepness = DEFAULT_STEEPNESS,
-  loopLimit = DEFAULT_LOOP_LIMIT
+  duration: number,
+  loopProps: Partial<LoopProps>
 ) => {
+  const { steepness, loopLimit, minTrough, maxPeak } = formatLoopProps(
+    loopProps
+  );
   switch (loopType) {
     case ANIMATION_LOOP_TYPES.ONE_TO_ONE:
       return (time: number) =>
@@ -27,8 +27,15 @@ export const getLoopType = (
         const loopCount = Math.floor(time / duration);
         return loopCount % loopLimit;
       };
+    case ANIMATION_LOOP_TYPES.MIN_MAX:
+      return (time: number) =>
+        Math.max(Math.min(Math.cos(time) * 1.2 + 0.5, maxPeak), minTrough);
     case ANIMATION_LOOP_TYPES.LINEAR:
     default:
       return (time: number) => time;
   }
+};
+
+const formatLoopProps = (parsedLoopProps: Partial<LoopProps>) => {
+  return { ...DEFAULT_LOOP_PROPS, ...parsedLoopProps };
 };

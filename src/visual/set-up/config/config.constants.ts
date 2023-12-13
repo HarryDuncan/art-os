@@ -17,3 +17,7 @@ export const DEFAULT_SCENE_PROPERTIES = {
   backgroundUrl: "",
   position: "fixed",
 };
+
+export enum SceneConfigType {
+  Master = "Master",
+}

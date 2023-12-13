@@ -1,12 +1,13 @@
 [
   {
+    "sceneConfigType": "Master",
     "threeJsConfig": {
       "camera": { "position": { "x": 0, "y": 0, "z": 30.5 } }
     },
     "assets": [
       {
         "name": "geometry-1",
-        "url": "../assets/models/barba/la-novena/barba-geometry.obj",
+        "url": "../assets/models/barba/la-novena/barba-logo.obj",
         "assetType": "MODEL3D"
       },
       {
@@ -31,12 +32,20 @@
     "meshComponentConfigs": [
       {
         "id": "geometry-fall",
-        "geometryId": "barba",
+        "geometryId": "Plane.001",
         "meshType": "MESH",
         "geometryConfig": {
-          "scale": 10
+          "scale": 4
         },
-
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "boundingBoxConfig": {
+            "width": 40,
+            "height": 40,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "distortion-material"
       },
@@ -45,7 +54,7 @@
         "geometryId": "virgin",
         "meshType": "MESH",
         "geometryConfig": {
-          "scale": 10
+          "scale": 0.13
         },
 
         "rotation": { "x": 0, "y": -0, "z": -0 },
@@ -68,6 +77,25 @@
             }
           ],
           "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "fall-geometry",
+        "targetIdentifier": "fall",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL",
+          "fallParams": {
+            "bottom": -15,
+            "top": 15,
+            "speed": 0.3,
+            "direction": 1
+          }
         }
       }
     ],
@@ -127,13 +155,7 @@
         "materialType": "VIDEO"
       }
     ],
-    "meshTransforms": [
-      {
-        "type": "MORPH",
-        "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"],
-        "materialId": "morphing-material"
-      }
-    ],
+
     "sceneComponentConfigs": [
       {
         "id": "scene-background",
@@ -147,5 +169,237 @@
     "scenePropertiesConfig": {
       "backgroundColor": "black"
     }
+  },
+  {
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/la-novena/barba-logo.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/la-novena/wise-2-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/strobe/chains-and-spikes.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/blue-start.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-fall",
+        "geometryId": "Plane.001",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 4
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "boundingBoxConfig": {
+            "width": 40,
+            "height": 40,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
+      },
+      {
+        "id": "geometry-1",
+        "geometryId": "wise-2",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.13
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
+      }
+    ]
+  },
+  {
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/la-novena/barba-logo.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/la-novena/wise-3-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/strobe/chains-and-spikes.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/blue-start.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-fall",
+        "geometryId": "Plane.001",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 4
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "boundingBoxConfig": {
+            "width": 40,
+            "height": 40,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
+      },
+      {
+        "id": "geometry-1",
+        "geometryId": "wise-3",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.13
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
+      }
+    ]
+  },
+  {
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/la-novena/barba-logo.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/la-novena/donkey-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/strobe/chains-and-spikes.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/blue-start.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-fall",
+        "geometryId": "Plane.001",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 4
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "boundingBoxConfig": {
+            "width": 40,
+            "height": 40,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
+      },
+      {
+        "id": "geometry-1",
+        "geometryId": "donkey",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.13
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
+      }
+    ]
+  },
+  {
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/la-novena/barba-logo.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/la-novena/wise-1-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/strobe/chains-and-spikes.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/blue-start.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-fall",
+        "geometryId": "Plane.001",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 4
+        },
+        "randomizationConfig": {
+          "instanceCount": 5,
+          "boundingBoxConfig": {
+            "width": 40,
+            "height": 40,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
+      },
+      {
+        "id": "geometry-1",
+        "geometryId": "wise-1",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 25
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
+      }
+    ]
   }
 ]

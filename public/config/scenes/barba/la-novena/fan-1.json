@@ -1,0 +1,187 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 30.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/la-novena/virgin-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-3",
+        "url": "../assets/models/barba/la-novena/wise-1-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-4",
+        "url": "../assets/models/barba/la-novena/wise-2-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-5",
+        "url": "../assets/models/barba/la-novena/wise-3-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-6",
+        "url": "../assets/models/barba/la-novena/donkey-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/blue-magic.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "wise-1",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 25
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-66",
+        "geometryId": "virgin",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 0.12
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-2",
+        "geometryId": "wise-2",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 0.12
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-3",
+        "geometryId": "wise-3",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 0.12
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-4",
+        "geometryId": "donkey",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 0.12
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uLoopCount",
+              "loopType": "COUNT",
+              "loopProps": {
+                "loopLimit": 5
+              }
+            },
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ONE"
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": { "morphCount": 4 }
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 1.2 }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATERIAL"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": [
+          "geometry-1",
+          "geometry-2",
+          "geometry-3",
+          "geometry-4",
+          "geometry-66"
+        ],
+        "materialId": "morphing-material"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]

@@ -48,9 +48,27 @@
     "componentId": "InteractiveSceneContainer"
   },
   {
+    "title": "Distortion Points",
+    "configId": "barba-distort-3-points",
+    "configPath": "scenes/barba/la-novena/distortion-points",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
     "title": "Statue and Fall",
     "configId": "barba-distort-4",
     "configPath": "scenes/barba/la-novena/statue-and-fall",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Fan 1",
+    "configId": "Fan 1",
+    "configPath": "scenes/barba/la-novena/fan-1",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Fan 2",
+    "configId": "barba-distort-fan",
+    "configPath": "scenes/barba/la-novena/fan-2",
     "componentId": "InteractiveSceneContainer"
   }
 ]

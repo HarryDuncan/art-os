@@ -20,13 +20,19 @@
   {
     "name": "virgin-geometry",
     "id": "virgin",
-    "url": "../assets/models/barba/la-novena/virgin.obj",
+    "url": "../assets/models/barba/la-novena/virgin-geometry.obj",
     "assetType": "MODEL3D"
   },
   {
     "name": "barba-geometry",
     "id": "barba",
     "url": "../assets/models/barba/la-novena/barba-logo.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "donkey-geometry",
+    "id": "donkey",
+    "url": "../assets/models/barba/la-novena/donkey.obj",
     "assetType": "MODEL3D"
   }
 ]

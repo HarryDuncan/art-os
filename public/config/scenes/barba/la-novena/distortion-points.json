@@ -1,5 +1,6 @@
 [
   {
+    "sceneConfigType": "Master",
     "threeJsConfig": {
       "camera": { "position": { "x": 0, "y": 0, "z": 30.5 } }
     },
@@ -12,24 +13,29 @@
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
+        "url": "../assets/video/strobe/strobe.mp4",
         "assetType": "VIDEO"
       },
       {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
         "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
       }
     ],
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
         "geometryId": "barba",
-        "meshType": "MESH",
+        "meshType": "POINTS",
         "geometryConfig": {
-          "scale": 10
+          "scale": 15
         },
 
         "rotation": { "x": 0, "y": -0, "z": -0 },
@@ -42,16 +48,19 @@
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationProperties": {
-          "animationDurationMilis": 15000,
+          "animationDurationMilis": 8000,
           "animationPauseMilis": 0,
           "repeatAnimation": true,
           "animationLoopConfig": [
             {
               "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
             }
-          ],
-          "snapOnPause": true
+          ]
         }
       }
     ],
@@ -76,30 +85,59 @@
       {
         "id": "distortion-material",
         "materialType": "BUILT_SHADER",
-
+        "blendingConfig": {},
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
+              "effectType": "DISTORT"
             },
             {
               "effectType": "ROTATE",
               "effectProps": { "speed": 0.8 }
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 8,
+                  "ceiling": 12,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
             }
           ],
           "fragmentEffectConfigs": [
             {
-              "effectType": "MATERIAL"
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.5,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#f53105" },
+                  { "id": "uTexture2", "pointColor": "#f53105" }
+                ],
+                "pointColor": "#f53105"
+              }
             }
           ],
-          "attributeConfig": []
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.07 }
+            }
+          ]
         },
         "assetMapping": [
           {
-            "uniform": "uMaterial",
-            "assetId": "chrome-material",
-            "relationship": "MATCAP"
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
           }
         ]
       },
@@ -113,9 +151,9 @@
     ],
     "meshTransforms": [
       {
-        "type": "MORPH",
-        "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"],
-        "materialId": "morphing-material"
+        "type": "CUSTOM_ATTRIBUTES",
+        "transformedMeshIds": ["geometry-1"],
+        "materialId": "distortion-material"
       }
     ],
     "sceneComponentConfigs": [
@@ -133,9 +171,6 @@
     }
   },
   {
-    "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 30.5 } }
-    },
     "assets": [
       {
         "name": "geometry-1",
@@ -145,94 +180,91 @@
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
+        "url": "../assets/video/strobe/strobe.mp4",
         "assetType": "VIDEO"
       },
       {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
         "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
       }
     ],
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
         "geometryId": "virgin",
-        "meshType": "MESH",
+        "meshType": "POINTS",
         "geometryConfig": {
-          "scale": 10
+          "scale": 0.13
         },
-
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "distortion-material"
-      }
-    ],
-    "animationConfig": [
-      {
-        "animationId": "morph-geometry",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "UTIME",
-        "animationProperties": {
-          "animationDurationMilis": 15000,
-          "animationPauseMilis": 0,
-          "repeatAnimation": true,
-          "animationLoopConfig": [
-            {
-              "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
-            }
-          ],
-          "snapOnPause": true
-        }
-      }
-    ],
-    "lightConfig": [
-      {
-        "name": "ambient-light",
-        "lightType": "AMBIENT",
-        "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      },
-      {
-        "name": "point-lightd",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
       }
     ],
     "globalMaterialConfigs": [
       {
         "id": "distortion-material",
         "materialType": "BUILT_SHADER",
-
+        "blendingConfig": {},
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
+              "effectType": "DISTORT"
             },
             {
               "effectType": "ROTATE",
               "effectProps": { "speed": 0.8 }
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 8,
+                  "ceiling": 12,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
             }
           ],
           "fragmentEffectConfigs": [
             {
-              "effectType": "MATERIAL"
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.5,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#00c8fa" },
+                  { "id": "uTexture2", "pointColor": "#00c8fa" }
+                ],
+                "pointColor": "#00c8fa"
+              }
             }
           ],
-          "attributeConfig": []
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.008 }
+            }
+          ]
         },
         "assetMapping": [
           {
-            "uniform": "uMaterial",
-            "assetId": "chrome-material",
-            "relationship": "MATCAP"
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
           }
         ]
       },
@@ -243,298 +275,9 @@
         },
         "materialType": "VIDEO"
       }
-    ],
-    "meshTransforms": [
-      {
-        "type": "MORPH",
-        "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"],
-        "materialId": "morphing-material"
-      }
-    ],
-    "sceneComponentConfigs": [
-      {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "position": { "x": 0, "y": -5, "z": -10 }
-        },
-        "materialId": "bg-vid"
-      }
-    ],
-    "scenePropertiesConfig": {
-      "backgroundColor": "black"
-    }
+    ]
   },
   {
-    "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 30.5 } }
-    },
-    "assets": [
-      {
-        "name": "geometry-1",
-        "url": "../assets/models/barba/la-novena/wise-1-geometry.obj",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "bg-vid",
-        "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
-        "assetType": "VIDEO"
-      },
-      {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
-      }
-    ],
-    "meshComponentConfigs": [
-      {
-        "id": "geometry-1",
-        "geometryId": "wise-1",
-        "meshType": "MESH",
-        "geometryConfig": {
-          "scale": 10
-        },
-
-        "rotation": { "x": 0, "y": -0, "z": -0 },
-        "materialId": "distortion-material"
-      }
-    ],
-    "animationConfig": [
-      {
-        "animationId": "morph-geometry",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "UTIME",
-        "animationProperties": {
-          "animationDurationMilis": 15000,
-          "animationPauseMilis": 0,
-          "repeatAnimation": true,
-          "animationLoopConfig": [
-            {
-              "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
-            }
-          ],
-          "snapOnPause": true
-        }
-      }
-    ],
-    "lightConfig": [
-      {
-        "name": "ambient-light",
-        "lightType": "AMBIENT",
-        "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      },
-      {
-        "name": "point-lightd",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      }
-    ],
-    "globalMaterialConfigs": [
-      {
-        "id": "distortion-material",
-        "materialType": "BUILT_SHADER",
-
-        "builtShaderConfig": {
-          "vertexEffectConfigs": [
-            {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
-            },
-            {
-              "effectType": "ROTATE",
-              "effectProps": { "speed": 0.8 }
-            }
-          ],
-          "fragmentEffectConfigs": [
-            {
-              "effectType": "MATERIAL"
-            }
-          ],
-          "attributeConfig": []
-        },
-        "assetMapping": [
-          {
-            "uniform": "uMaterial",
-            "assetId": "chrome-material",
-            "relationship": "MATCAP"
-          }
-        ]
-      },
-      {
-        "id": "bg-vid",
-        "materialProps": {
-          "assetId": "bg-vid"
-        },
-        "materialType": "VIDEO"
-      }
-    ],
-    "meshTransforms": [
-      {
-        "type": "MORPH",
-        "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"],
-        "materialId": "morphing-material"
-      }
-    ],
-    "sceneComponentConfigs": [
-      {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "position": { "x": 0, "y": -5, "z": -10 }
-        },
-        "materialId": "bg-vid"
-      }
-    ],
-    "scenePropertiesConfig": {
-      "backgroundColor": "black"
-    }
-  },
-  {
-    "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 30.5 } }
-    },
-    "assets": [
-      {
-        "name": "geometry-1",
-        "url": "../assets/models/barba/la-novena/wise-2-geometry.obj",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "bg-vid",
-        "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
-        "assetType": "VIDEO"
-      },
-      {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
-      }
-    ],
-    "meshComponentConfigs": [
-      {
-        "id": "geometry-1",
-        "geometryId": "wise-2",
-        "meshType": "MESH",
-        "geometryConfig": {
-          "scale": 10
-        },
-
-        "rotation": { "x": 0, "y": -0, "z": -0 },
-        "materialId": "distortion-material"
-      }
-    ],
-    "animationConfig": [
-      {
-        "animationId": "morph-geometry",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "UTIME",
-        "animationProperties": {
-          "animationDurationMilis": 15000,
-          "animationPauseMilis": 0,
-          "repeatAnimation": true,
-          "animationLoopConfig": [
-            {
-              "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
-            }
-          ],
-          "snapOnPause": true
-        }
-      }
-    ],
-    "lightConfig": [
-      {
-        "name": "ambient-light",
-        "lightType": "AMBIENT",
-        "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      },
-      {
-        "name": "point-lightd",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      }
-    ],
-    "globalMaterialConfigs": [
-      {
-        "id": "distortion-material",
-        "materialType": "BUILT_SHADER",
-
-        "builtShaderConfig": {
-          "vertexEffectConfigs": [
-            {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
-            },
-            {
-              "effectType": "ROTATE",
-              "effectProps": { "speed": 0.8 }
-            }
-          ],
-          "fragmentEffectConfigs": [
-            {
-              "effectType": "MATERIAL"
-            }
-          ],
-          "attributeConfig": []
-        },
-        "assetMapping": [
-          {
-            "uniform": "uMaterial",
-            "assetId": "chrome-material",
-            "relationship": "MATCAP"
-          }
-        ]
-      },
-      {
-        "id": "bg-vid",
-        "materialProps": {
-          "assetId": "bg-vid"
-        },
-        "materialType": "VIDEO"
-      }
-    ],
-    "meshTransforms": [
-      {
-        "type": "MORPH",
-        "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"],
-        "materialId": "morphing-material"
-      }
-    ],
-    "sceneComponentConfigs": [
-      {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "position": { "x": 0, "y": -5, "z": -10 }
-        },
-        "materialId": "bg-vid"
-      }
-    ],
-    "scenePropertiesConfig": {
-      "backgroundColor": "black"
-    }
-  },
-  {
-    "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 30.5 } }
-    },
     "assets": [
       {
         "name": "geometry-1",
@@ -544,94 +287,91 @@
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
+        "url": "../assets/video/strobe/strobe.mp4",
         "assetType": "VIDEO"
       },
       {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
         "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
       }
     ],
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
         "geometryId": "wise-3",
-        "meshType": "MESH",
+        "meshType": "POINTS",
         "geometryConfig": {
-          "scale": 10
+          "scale": 0.13
         },
-
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "distortion-material"
-      }
-    ],
-    "animationConfig": [
-      {
-        "animationId": "morph-geometry",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "UTIME",
-        "animationProperties": {
-          "animationDurationMilis": 15000,
-          "animationPauseMilis": 0,
-          "repeatAnimation": true,
-          "animationLoopConfig": [
-            {
-              "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
-            }
-          ],
-          "snapOnPause": true
-        }
-      }
-    ],
-    "lightConfig": [
-      {
-        "name": "ambient-light",
-        "lightType": "AMBIENT",
-        "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      },
-      {
-        "name": "point-lightd",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
       }
     ],
     "globalMaterialConfigs": [
       {
         "id": "distortion-material",
         "materialType": "BUILT_SHADER",
-
+        "blendingConfig": {},
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
+              "effectType": "DISTORT"
             },
             {
               "effectType": "ROTATE",
               "effectProps": { "speed": 0.8 }
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 8,
+                  "ceiling": 12,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
             }
           ],
           "fragmentEffectConfigs": [
             {
-              "effectType": "MATERIAL"
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.5,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#fa0a1a" },
+                  { "id": "uTexture2", "pointColor": "#fa0a1a" }
+                ],
+                "pointColor": "#fa0a1a"
+              }
             }
           ],
-          "attributeConfig": []
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.008 }
+            }
+          ]
         },
         "assetMapping": [
           {
-            "uniform": "uMaterial",
-            "assetId": "chrome-material",
-            "relationship": "MATCAP"
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
           }
         ]
       },
@@ -642,129 +382,103 @@
         },
         "materialType": "VIDEO"
       }
-    ],
-    "meshTransforms": [
-      {
-        "type": "MORPH",
-        "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"],
-        "materialId": "morphing-material"
-      }
-    ],
-    "sceneComponentConfigs": [
-      {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "position": { "x": 0, "y": -5, "z": -10 }
-        },
-        "materialId": "bg-vid"
-      }
-    ],
-    "scenePropertiesConfig": {
-      "backgroundColor": "black"
-    }
+    ]
   },
   {
-    "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 30.5 } }
-    },
     "assets": [
       {
         "name": "geometry-1",
-        "url": "../assets/models/barba/la-novena/barba-geometry.obj",
+        "url": "../assets/models/barba/la-novena/donkey-geometry.obj",
         "assetType": "MODEL3D"
       },
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
+        "url": "../assets/video/strobe/strobe.mp4",
         "assetType": "VIDEO"
       },
       {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
         "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
       }
     ],
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
-        "geometryId": "barba",
-        "meshType": "MESH",
+        "geometryId": "donkey",
+        "meshType": "POINTS",
         "geometryConfig": {
-          "scale": 10
+          "scale": 0.13
         },
-
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "distortion-material"
-      }
-    ],
-    "animationConfig": [
-      {
-        "animationId": "morph-geometry",
-        "targetIdentifier": "geometry",
-        "animationFunctionType": "UTIME",
-        "animationProperties": {
-          "animationDurationMilis": 15000,
-          "animationPauseMilis": 0,
-          "repeatAnimation": true,
-          "animationLoopConfig": [
-            {
-              "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
-            }
-          ],
-          "snapOnPause": true
-        }
-      }
-    ],
-    "lightConfig": [
-      {
-        "name": "ambient-light",
-        "lightType": "AMBIENT",
-        "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      },
-      {
-        "name": "point-lightd",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
       }
     ],
     "globalMaterialConfigs": [
       {
         "id": "distortion-material",
         "materialType": "BUILT_SHADER",
-
+        "blendingConfig": {},
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
+              "effectType": "DISTORT"
             },
             {
               "effectType": "ROTATE",
               "effectProps": { "speed": 0.8 }
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 8,
+                  "ceiling": 12,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
             }
           ],
           "fragmentEffectConfigs": [
             {
-              "effectType": "MATERIAL"
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.5,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#f7ce00" },
+                  { "id": "uTexture2", "pointColor": "#f7ce00" }
+                ],
+                "pointColor": "#f7ce00"
+              }
             }
           ],
-          "attributeConfig": []
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.008 }
+            }
+          ]
         },
         "assetMapping": [
           {
-            "uniform": "uMaterial",
-            "assetId": "chrome-material",
-            "relationship": "MATCAP"
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
           }
         ]
       },
@@ -775,26 +489,220 @@
         },
         "materialType": "VIDEO"
       }
-    ],
-    "meshTransforms": [
+    ]
+  },
+  {
+    "assets": [
       {
-        "type": "MORPH",
-        "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"],
-        "materialId": "morphing-material"
+        "name": "geometry-1",
+        "url": "../assets/models/barba/la-novena/wise-1-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/strobe/strobe.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
       }
     ],
-    "sceneComponentConfigs": [
+    "meshComponentConfigs": [
       {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "position": { "x": 0, "y": -5, "z": -10 }
+        "id": "geometry-1",
+        "geometryId": "wise-1",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 25
         },
-        "materialId": "bg-vid"
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
       }
     ],
-    "scenePropertiesConfig": {
-      "backgroundColor": "black"
-    }
+    "globalMaterialConfigs": [
+      {
+        "id": "distortion-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {},
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT"
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.8 }
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 8,
+                  "ceiling": 12,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.5,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#8e00fa" },
+                  { "id": "uTexture2", "pointColor": "#8e00fa" }
+                ],
+                "pointColor": "#8e00fa"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.008 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ]
+  },
+  {
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/la-novena/wise-2-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/strobe/strobe.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "wise-2",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 0.13
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distortion-material"
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "distortion-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {},
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT"
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.8 }
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 8,
+                  "ceiling": 12,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.5,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#006aff" },
+                  { "id": "uTexture2", "pointColor": "#006aff" }
+                ],
+                "pointColor": "#006aff"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.008 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ]
   }
 ]

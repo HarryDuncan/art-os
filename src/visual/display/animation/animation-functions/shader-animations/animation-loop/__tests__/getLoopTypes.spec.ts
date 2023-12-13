@@ -5,13 +5,14 @@ import { expect, test, describe } from "vitest";
 const MOCK_START = 0;
 const MOCK_MID = 50;
 const MOCK_END = 100;
-
+const MOCK_DURATION = 100;
 describe("getLoopTypes", () => {
   test("returns a correct one to one function with parsed and default params", () => {
     const loopType = ANIMATION_LOOP_TYPES.ONE_TO_ONE;
-    const duration = 100;
-    const steepness = 2;
-    const loopFunction = getLoopType(loopType, duration, steepness);
+    const loopProps = {
+      steepness: 2,
+    };
+    const loopFunction = getLoopType(loopType, MOCK_DURATION, loopProps);
     const startUniformValue = loopFunction(MOCK_START);
     const midUniformValue = loopFunction(MOCK_MID);
     const endUniformValue = loopFunction(MOCK_END);
@@ -21,9 +22,10 @@ describe("getLoopTypes", () => {
   });
   test("returns a correct zero to one function with parsed and default params", () => {
     const loopType = ANIMATION_LOOP_TYPES.ZERO_TO_ONE;
-    const duration = 100;
-    const steepness = 1;
-    const loopFunction = getLoopType(loopType, duration, steepness);
+    const loopProps = {
+      steepness: 1,
+    };
+    const loopFunction = getLoopType(loopType, MOCK_DURATION, loopProps);
     const startUniformValue = loopFunction(MOCK_START);
     const midUniformValue = loopFunction(MOCK_MID);
     // Have to pass just below duration
@@ -35,9 +37,10 @@ describe("getLoopTypes", () => {
 
   test("returns a correct zero to zero function with parsed and default params", () => {
     const loopType = ANIMATION_LOOP_TYPES.ZERO_TO_ZERO;
-    const duration = 100;
-    const steepness = 2;
-    const loopFunction = getLoopType(loopType, duration, steepness);
+    const loopProps = {
+      steepness: 2,
+    };
+    const loopFunction = getLoopType(loopType, MOCK_DURATION, loopProps);
     const startUniformValue = loopFunction(MOCK_START);
     const midUniformValue = loopFunction(MOCK_MID);
     const endUniformValue = loopFunction(MOCK_END);
@@ -48,16 +51,22 @@ describe("getLoopTypes", () => {
 
   test("returns a count function with parsed and default params", () => {
     const loopType = ANIMATION_LOOP_TYPES.COUNT;
-    const duration = 100;
-    const steepness = 2;
-    const defaultLoopFunction = getLoopType(loopType, duration, steepness);
+    const loopProps = {
+      steepness: 2,
+    };
+    const defaultLoopFunction = getLoopType(loopType, MOCK_DURATION, loopProps);
     const defaultStartUniformValue = defaultLoopFunction(MOCK_START);
     const defaultMidUniformValue = defaultLoopFunction(MOCK_MID);
     const defaultEndUniformValue = defaultLoopFunction(MOCK_END);
     expect(defaultStartUniformValue).toEqual(0);
     expect(defaultMidUniformValue).toEqual(0);
     expect(defaultEndUniformValue).toEqual(0);
-    const loopFunction = getLoopType(loopType, duration, steepness, 3);
+    const loopProps2 = {
+      steepness: 2,
+      loopLimit: 3,
+    };
+
+    const loopFunction = getLoopType(loopType, MOCK_DURATION, loopProps2);
     const startUniformValue = loopFunction(MOCK_START);
     const midUniformValue = loopFunction(MOCK_MID * 2);
     const endUniformValue = loopFunction(MOCK_END * 2);
@@ -68,8 +77,7 @@ describe("getLoopTypes", () => {
 
   test("returns a correct linear function", () => {
     const loopType = ANIMATION_LOOP_TYPES.LINEAR;
-    const duration = 100;
-    const loopFunction = getLoopType(loopType, duration);
+    const loopFunction = getLoopType(loopType, MOCK_DURATION, {});
     const startUniformValue = loopFunction(MOCK_START);
     const midUniformValue = loopFunction(MOCK_MID);
     const endUniformValue = loopFunction(MOCK_END);

@@ -29,7 +29,7 @@
         "geometryId": "barba",
         "meshType": "MESH",
         "geometryConfig": {
-          "scale": 10
+          "scale": 15
         },
 
         "rotation": { "x": 0, "y": -0, "z": -0 },
@@ -42,16 +42,19 @@
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationProperties": {
-          "animationDurationMilis": 15000,
+          "animationDurationMilis": 8000,
           "animationPauseMilis": 0,
           "repeatAnimation": true,
           "animationLoopConfig": [
             {
               "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
             }
-          ],
-          "snapOnPause": true
+          ]
         }
       }
     ],
@@ -80,12 +83,11 @@
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
+              "effectType": "DISTORT"
             },
             {
               "effectType": "ROTATE",
-              "effectProps": { "speed": 0.8 }
+              "effectProps": { "speed": 0.6 }
             }
           ],
           "fragmentEffectConfigs": [
@@ -145,12 +147,12 @@
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
+        "url": "../assets/video/strobe/diffuse-3.mp4",
         "assetType": "VIDEO"
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "url": "../assets/textures/matcaps/blue-magic.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -162,7 +164,7 @@
         "geometryId": "virgin",
         "meshType": "MESH",
         "geometryConfig": {
-          "scale": 10
+          "scale": 0.15
         },
 
         "rotation": { "x": 0, "y": -0, "z": -0 },
@@ -175,16 +177,19 @@
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationProperties": {
-          "animationDurationMilis": 15000,
+          "animationDurationMilis": 8000,
           "animationPauseMilis": 0,
           "repeatAnimation": true,
           "animationLoopConfig": [
             {
               "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
             }
-          ],
-          "snapOnPause": true
+          ]
         }
       }
     ],
@@ -213,12 +218,11 @@
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
+              "effectType": "DISTORT"
             },
             {
               "effectType": "ROTATE",
-              "effectProps": { "speed": 0.8 }
+              "effectProps": { "speed": 0.6 }
             }
           ],
           "fragmentEffectConfigs": [
@@ -278,12 +282,12 @@
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
+        "url": "../assets/video/strobe/Crucible.mp4",
         "assetType": "VIDEO"
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "url": "../assets/textures/matcaps/hot-cloud.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -295,9 +299,8 @@
         "geometryId": "wise-1",
         "meshType": "MESH",
         "geometryConfig": {
-          "scale": 10
+          "scale": 25
         },
-
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "distortion-material"
       }
@@ -308,16 +311,19 @@
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationProperties": {
-          "animationDurationMilis": 15000,
+          "animationDurationMilis": 8000,
           "animationPauseMilis": 0,
           "repeatAnimation": true,
           "animationLoopConfig": [
             {
               "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
             }
-          ],
-          "snapOnPause": true
+          ]
         }
       }
     ],
@@ -411,12 +417,12 @@
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
+        "url": "../assets/video/strobe/Hands.mp4",
         "assetType": "VIDEO"
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "url": "../assets/textures/matcaps/dark-chrome-3.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -428,7 +434,7 @@
         "geometryId": "wise-2",
         "meshType": "MESH",
         "geometryConfig": {
-          "scale": 10
+          "scale": 0.13
         },
 
         "rotation": { "x": 0, "y": -0, "z": -0 },
@@ -441,16 +447,19 @@
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationProperties": {
-          "animationDurationMilis": 15000,
+          "animationDurationMilis": 8000,
           "animationPauseMilis": 0,
           "repeatAnimation": true,
           "animationLoopConfig": [
             {
               "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
             }
-          ],
-          "snapOnPause": true
+          ]
         }
       }
     ],
@@ -479,12 +488,11 @@
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
+              "effectType": "DISTORT"
             },
             {
               "effectType": "ROTATE",
-              "effectProps": { "speed": 0.8 }
+              "effectProps": { "speed": 0.6 }
             }
           ],
           "fragmentEffectConfigs": [
@@ -544,12 +552,12 @@
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
+        "url": "../assets/video/strobe/chains-and-spikes.mp4",
         "assetType": "VIDEO"
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "url": "../assets/textures/matcaps/blue-magic.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -561,9 +569,8 @@
         "geometryId": "wise-3",
         "meshType": "MESH",
         "geometryConfig": {
-          "scale": 10
+          "scale": 0.13
         },
-
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "distortion-material"
       }
@@ -574,16 +581,19 @@
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationProperties": {
-          "animationDurationMilis": 15000,
+          "animationDurationMilis": 8000,
           "animationPauseMilis": 0,
           "repeatAnimation": true,
           "animationLoopConfig": [
             {
               "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
             }
-          ],
-          "snapOnPause": true
+          ]
         }
       }
     ],
@@ -612,12 +622,11 @@
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
+              "effectType": "DISTORT"
             },
             {
               "effectType": "ROTATE",
-              "effectProps": { "speed": 0.8 }
+              "effectProps": { "speed": 0.6 }
             }
           ],
           "fragmentEffectConfigs": [
@@ -671,18 +680,18 @@
     "assets": [
       {
         "name": "geometry-1",
-        "url": "../assets/models/barba/la-novena/barba-geometry.obj",
+        "url": "../assets/models/barba/la-novena/donkey-geometry.obj",
         "assetType": "MODEL3D"
       },
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/strobe/diffuse-1.mp4",
+        "url": "../assets/video/strobe/diffuse-2.mp4",
         "assetType": "VIDEO"
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/blue-green.jpg",
+        "url": "../assets/textures/matcaps/starfish.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -691,12 +700,11 @@
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
-        "geometryId": "barba",
+        "geometryId": "donkey",
         "meshType": "MESH",
         "geometryConfig": {
-          "scale": 10
+          "scale": 0.13
         },
-
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "distortion-material"
       }
@@ -707,16 +715,19 @@
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationProperties": {
-          "animationDurationMilis": 15000,
+          "animationDurationMilis": 8000,
           "animationPauseMilis": 0,
           "repeatAnimation": true,
           "animationLoopConfig": [
             {
               "uniform": "uAngle",
-              "loopType": "ZERO_TO_ZERO"
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
             }
-          ],
-          "snapOnPause": true
+          ]
         }
       }
     ],
@@ -745,8 +756,7 @@
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "DISTORT",
-              "effectProps": { "speed": 0.8 }
+              "effectType": "DISTORT"
             },
             {
               "effectType": "ROTATE",

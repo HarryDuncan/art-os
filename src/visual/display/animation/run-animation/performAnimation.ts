@@ -2,6 +2,7 @@ import { MathUtils, Object3D } from "three";
 import {
   AnimationProperties,
   AnimationType,
+  FallAnimationConfig,
   MoveAnimationConfig,
   ObjectUpdateProperty,
   // FallAnimationConfig,
@@ -16,14 +17,13 @@ import {
 } from "../animation.constants";
 import { traverseThroughtArray } from "../animation-functions/mesh-animations/traversal/traverseThroughArray";
 import { rotateMeshAlongAxis } from "../animation-functions/rotation/rotateMeshAlongAxis";
-
 import { updateObject } from "../animation-functions/mesh-animations/update-object/updateObject";
 import { spinMeshAlongAxis } from "../animation-functions/rotation/spinMeshAlongAxis";
-import { fall } from "../animation-functions/mesh-animations/fall";
 import { MeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { updateTimeStamp } from "../animation-functions/mesh-animations/trigonometric/updateTimestampTrigonometric";
 import { easeOut } from "visual/utils/maths/maths";
 import { moveObject } from "../animation-functions/mesh-animations/move/moveObject";
+import { fallAnimation } from "../animation-functions/mesh-animations/fall/fallAnimation";
 
 export const performAnimation = (
   animationType: AnimationType,
@@ -69,7 +69,8 @@ export const performAnimation = (
     );
   }
   if (animationType === ANIMATION_TYPES.FALL) {
-    fall(object as MeshObject, progress);
+    const { fallParams } = animationProperties as FallAnimationConfig;
+    fallAnimation(object as MeshObject, progress, fallParams);
   }
   if (animationType === ANIMATION_TYPES.MOVE) {
     const {

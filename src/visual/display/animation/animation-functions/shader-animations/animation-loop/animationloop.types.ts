@@ -4,13 +4,19 @@ export type AnimationLoopType = keyof typeof ANIMATION_LOOP_TYPES;
 export interface AnimationLoopConfigItem {
   loopType: AnimationLoopType;
   uniform: string;
-  duration?: number;
-  steepness?: number;
   toMaterial?: string;
-  loopLimit?: number;
+  duration?: number;
+  loopProps: Partial<LoopProps>;
 }
 
 export type AnimationLoopKeyPoint = {
   start: number;
   end: number;
 };
+
+export interface LoopProps {
+  steepness: number;
+  loopLimit: number;
+  maxPeak: number;
+  minTrough: number;
+}

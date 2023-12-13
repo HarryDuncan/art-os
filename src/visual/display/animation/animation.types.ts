@@ -55,7 +55,15 @@ export interface ShaderAnimationConfig extends AnimationPropertiesConfig {
   animationLoopConfig: AnimationLoopConfigItem[];
 }
 
-export type FallAnimationConfig = AnimationPropertiesConfig;
+export type FallParams = {
+  bottom: number;
+  top: number;
+  speed: number;
+  direction: number;
+};
+export interface FallAnimationConfig extends AnimationPropertiesConfig {
+  fallParams: FallParams;
+}
 
 export type TrigFunctionType = keyof typeof TRIG_FUNCTION_TYPES;
 export type ObjectUpdateProperty = keyof typeof OBJECT_UPDATE_PROPERTY;
@@ -73,6 +81,7 @@ export type AnimationProperties =
   | TraversalAnimationConfig
   | TrigonometricAnimationConfig
   | ShaderAnimationConfig
-  | MoveAnimationConfig;
+  | MoveAnimationConfig
+  | FallAnimationConfig;
 
 export type AnimationType = keyof typeof ANIMATION_TYPES;
