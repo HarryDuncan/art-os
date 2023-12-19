@@ -17,10 +17,3 @@ export type MorphObject = {
   pointName: string;
   normalName: string;
 };
-
-export type PointPerspectiveConfig = {
-  floor: number;
-  ceiling: number;
-  scaleFactor: number;
-  divisor: number;
-};

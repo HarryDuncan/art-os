@@ -16,8 +16,8 @@ HEIGHT = 480
 def get_keypoints(frame, keypoints, confidence_threshold):
     y, x, c = frame.shape
     shaped = np.squeeze(np.multiply(keypoints, [y,x,1]))
-    right_wrist = shaped[9]
-    ky, kx, kp_conf = right_wrist
+    selected_keypoint = shaped[0]
+    ky, kx, kp_conf = selected_keypoint
     if(kp_conf > confidence_threshold):
         coords = convert_to_scale(kx, ky)
         return coords
@@ -25,7 +25,7 @@ def get_keypoints(frame, keypoints, confidence_threshold):
         return None
    
 def convert_to_scale(x, y):
-    return ({'x' :  round(abs((x / 640)  - 1), 2) , 'y' : round(abs((y / 480)  -1), 2)})
+    return ({'x' :  round(abs((x / WIDTH)  - 1), 2) , 'y' : round(abs((y / HEIGHT)  -1), 2)})
 
 def loop_through_people(frame, keypoints_with_scores,confidence_threshold):
     points = []
@@ -35,20 +35,7 @@ def loop_through_people(frame, keypoints_with_scores,confidence_threshold):
             points.append(key_points_for_person)
     return points
 
-def group_data(points):
-    grouped_data = {}
-    for d in points:
-        key = None
-        for k in grouped_data.keys():
-            if abs(k[0] - d['x']) <= 0.02 and abs(k[1] - d['y']) <= 0.02:
-                key = k
-                break
-        if key:
-            grouped_data[key].append(d)
-        else:
-            grouped_data[(d['x'], d['y'])] = [d]
-    result = list(grouped_data.values())
-    return result
+
 
 def run_stream(isRunning, queue):
     model = hub.load('https://tfhub.dev/google/movenet/multipose/lightning/1')
@@ -61,7 +48,7 @@ def run_stream(isRunning, queue):
         input_image = tf.cast(img, dtype=tf.int32)
         results = movenet(input_image)
         keypoints_with_scores = results['output_0'].numpy()[:,:,:51].reshape((6,17,3))
-        selected_points = loop_through_people(frame, keypoints_with_scores, 0.1)
+        selected_points = loop_through_people(frame, keypoints_with_scores, 0.45)
         queue.put(selected_points)
         if isRunning == False:
             break

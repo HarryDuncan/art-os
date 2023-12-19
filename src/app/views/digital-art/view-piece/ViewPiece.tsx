@@ -8,6 +8,7 @@ interface ViewPieceProps {
 }
 export const ViewPiece = ({ configId }: ViewPieceProps) => {
   const sceneParameters = useSceneParameters(configId);
+  console.log(sceneParameters);
   return (
     <ViewPieceContainer>
       <Suspense>

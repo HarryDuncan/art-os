@@ -2,7 +2,10 @@ import { useAppSelector } from "app/redux/store";
 import { dispatchInteractionEvent } from "interaction/external/dispatched-event";
 import { RunAlgorithmRequest } from "interaction/external/protos/interactionNode_pb";
 import { useCallback } from "react";
-import { INTERACTION_NODE_CLIENT } from "../interactions.constants";
+import {
+  EXTERNAL_INTERACTION_EVENT_KEYS,
+  INTERACTION_NODE_CLIENT,
+} from "../interactions.constants";
 
 export const useRunAlgorithm = () => {
   const { isInitialized, isAlgorithmInitialized } = useAppSelector(
@@ -20,12 +23,13 @@ export const useRunAlgorithm = () => {
     const client = INTERACTION_NODE_CLIENT;
     const stream = client.runAlgorithm(request);
     stream.on("data", (response) => {
-      console.log(response);
       // handle each response message here
       const points = response.getPointsList();
       const pointData = getPoints(points);
-      console.log(pointData);
-      dispatchInteractionEvent("update:position", pointData);
+      dispatchInteractionEvent(
+        EXTERNAL_INTERACTION_EVENT_KEYS.POSITION_UPDATE,
+        pointData
+      );
     });
 
     stream.on("error", (error) => {

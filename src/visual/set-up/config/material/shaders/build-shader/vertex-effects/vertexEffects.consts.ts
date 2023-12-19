@@ -7,6 +7,7 @@ export const VERTEX_EFFECTS = {
   ROTATE: "ROTATE",
   MORPH: "MORPH",
   DISTORT: "DISTORT",
+  INTERACTION: "INTERACTION",
 };
 export const VERTEX_EFFECT_POINT_NAMES = {
   DEFAULT_POINT: "position",
@@ -15,6 +16,7 @@ export const VERTEX_EFFECT_POINT_NAMES = {
   FILTERED_POINT: "filteredPoint",
   ROTATED_POINT: "rotatedPoint",
   MORPHED_POINT: "morphedPoint",
+  INTERACTED_POINT: "interactedPoint",
 };
 
 export const DEFAULT_ROTATE_EFFECT_CONFIG = {

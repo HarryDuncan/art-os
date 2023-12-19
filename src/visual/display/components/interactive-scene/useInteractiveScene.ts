@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import {
   InteractiveScene,
   InteractiveSceneFunctions,
+  SceneInteraction,
 } from "./InteractiveScene";
 import { EventConfig } from "interaction/interactions.types";
 import { AnimationConfig } from "visual/display/animation/animation.types";
@@ -19,7 +20,8 @@ export const useInteractiveScene = (
   lights: SceneLight[],
   sceneComponents: Object3D[],
   orbitControls: OrbitControls | null,
-  sceneProperties: SceneProperties
+  sceneProperties: SceneProperties,
+  interactionEvents: SceneInteraction[]
 ): null | InteractiveScene => {
   const [initializedScene, setScene] = useState<null | InteractiveScene>(null);
   const setUpSceneObjects = useCallback(
@@ -38,12 +40,19 @@ export const useInteractiveScene = (
       const scene = new InteractiveScene(
         sceneFunction,
         eventConfig,
-        animationConfig
+        animationConfig,
+        interactionEvents
       );
       await setUpSceneObjects(scene);
     }
     setUpScene();
-  }, [sceneFunction, eventConfig, animationConfig, setUpSceneObjects]);
+  }, [
+    sceneFunction,
+    eventConfig,
+    animationConfig,
+    setUpSceneObjects,
+    interactionEvents,
+  ]);
 
   return initializedScene;
 };

@@ -30,6 +30,7 @@ class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
         if self.isRunning == False:
             if(request.algorithm_type == "POSENET"):
                 print('setting to posenet')
+                print(request)
                 self.currentAlgorithm = Posenet.Posenet()
                 initialized = True
         else:

@@ -24,7 +24,7 @@ export const DEFAULT_UNIFORMS = {
   },
   uStrength: {
     valueType: ShaderPropertyValueTypes.FLOAT,
-    defaultValue: 4.0,
+    defaultValue: 8.0,
   },
   uLoopCount: {
     valueType: ShaderPropertyValueTypes.INT,

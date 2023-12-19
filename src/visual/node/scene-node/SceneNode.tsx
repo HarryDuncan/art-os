@@ -7,6 +7,7 @@ import { useThreeJs } from "visual/display/hooks/use-three-js/useThreeJs";
 const SceneNode = ({
   sceneFunctions,
   animations = [],
+  interactionEvents = [],
   events,
   sceneData: { threeJs, lights, meshes, sceneComponents, sceneProperties },
 }: SceneNodeProps) => {
@@ -26,7 +27,8 @@ const SceneNode = ({
     lights,
     sceneComponents,
     orbitControls,
-    sceneProperties
+    sceneProperties,
+    interactionEvents
   );
 
   useThreadWithPostProcessor(currentFrameRef, scene, camera, renderer, []);

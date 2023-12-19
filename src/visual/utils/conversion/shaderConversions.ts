@@ -26,4 +26,4 @@ export const shaderSafeVector4 = (
   })`;
 };
 
-const isVariableName = (value: number | string) => isNaN(Number(value));
+const isVariableName = (value: number | string) => Number.isNaN(Number(value));

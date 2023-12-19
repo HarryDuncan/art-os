@@ -7,6 +7,7 @@ import { VertexEffectData } from "../vertexEffects.types";
 import { distort } from "./displacement/distort/distort";
 import { explode } from "./displacement/explode/explode";
 import { vertexFilter } from "./filter-vertex/filterVertex";
+import { interactiveEffect } from "./interactive/interactiveEffect";
 import { morphVertex } from "./morph/morphVertex";
 import { pointsVertex } from "./points/pointsVertex";
 import { rotationVertex } from "./rotation/rotation";
@@ -30,6 +31,9 @@ export const getVertexEffect = (
     }
     case VERTEX_EFFECTS.DISTORT: {
       return distort(transformPointName);
+    }
+    case VERTEX_EFFECTS.INTERACTION: {
+      return interactiveEffect(transformPointName);
     }
     case VERTEX_EFFECTS.ROTATE: {
       return rotationVertex(

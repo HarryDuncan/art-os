@@ -38,3 +38,7 @@ export const EVENT_BINDING_TYPE = {
   SCENE: "SCENE",
   MATERIAL: "MATERIAL",
 };
+
+export const EXTERNAL_INTERACTION_EVENT_KEYS = {
+  POSITION_UPDATE: "position:update",
+};

@@ -28,47 +28,5 @@
     "configId": "palestine-flag",
     "configPath": "scenes/hjd-art/palestine-flag",
     "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "Morph",
-    "configId": "barba-morph",
-    "configPath": "scenes/barba/la-novena/morph",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "Morph Material",
-    "configId": "barba-morph-2",
-    "configPath": "scenes/barba/la-novena/morph-material",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "Distortion Material",
-    "configId": "barba-distort-3",
-    "configPath": "scenes/barba/la-novena/distortion",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "Distortion Points",
-    "configId": "barba-distort-3-points",
-    "configPath": "scenes/barba/la-novena/distortion-points",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "Statue and Fall",
-    "configId": "barba-distort-4",
-    "configPath": "scenes/barba/la-novena/statue-and-fall",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "Fan 1",
-    "configId": "Fan 1",
-    "configPath": "scenes/barba/la-novena/fan-1",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "Fan 2",
-    "configId": "barba-distort-fan",
-    "configPath": "scenes/barba/la-novena/fan-2",
-    "componentId": "InteractiveSceneContainer"
   }
 ]

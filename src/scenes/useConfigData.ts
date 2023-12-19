@@ -41,7 +41,8 @@ const useMasterSceneData = (
     const selectedScene = sceneConfigData[sceneIndex];
     if (master && selectedScene) {
       return { ...master, ...selectedScene };
-    } else if (selectedScene) {
+    }
+    if (selectedScene) {
       return selectedScene;
     }
     console.warn(`error retrieving scene config at index ${sceneIndex}`);

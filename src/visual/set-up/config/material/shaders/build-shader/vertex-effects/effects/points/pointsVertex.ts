@@ -1,10 +1,7 @@
 import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
 import { PointsEffectProps } from "../../../buildShader.types";
 import { EMPTY_UNIFORM_CONFIG } from "../../../shader-properties/uniforms/uniforms.consts";
-import {
-  DEFAULT_POINT_EFFECT_CONFIG,
-  VERTEX_EFFECT_POINT_NAMES,
-} from "../../vertexEffects.consts";
+import { DEFAULT_POINT_EFFECT_CONFIG } from "../../vertexEffects.consts";
 import { pointsPerspective } from "./pointsPerspective";
 
 export const pointsVertex = (
