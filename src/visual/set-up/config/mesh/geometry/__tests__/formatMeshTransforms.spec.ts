@@ -96,3 +96,22 @@ test("adds mapped attributes to the transform based on material id", () => {
     },
   ]);
 });
+
+test("if no mesh transforms are declared a new one with custom attributes will be created", () => {
+  const UPDATED_MOCK = [];
+  const updatedConfig = [
+    { ...MOCK_ATTRIBUTE_CONFIG[0], materialId: "morphing-material2" },
+  ];
+  const formatted = formatMeshTransforms(UPDATED_MOCK, updatedConfig);
+  expect(formatted).toEqual([
+    {
+      type: "CUSTOM_ATTRIBUTES",
+      transformedMeshIds: [],
+      materialId: "morphing-material2",
+      attributeConfig: [
+        { id: "pointType", valueType: "FLOAT" },
+        { id: "pointDisplay", valueType: "FLOAT" },
+      ],
+    },
+  ]);
+});

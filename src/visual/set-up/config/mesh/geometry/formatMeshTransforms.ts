@@ -1,11 +1,28 @@
 import { MeshTransformConfig } from "../../config.types";
 import { ShaderAttributeConfig } from "../../material/shaders/build-shader/buildShader.types";
+import { MESH_TRANSFORM } from "../mesh.consts";
 
 export const formatMeshTransforms = (
   meshTransforms: MeshTransformConfig[],
   shaderAttributeConfigs: ShaderAttributeConfig[]
-) =>
-  meshTransforms.map((transform) => {
+) => {
+  const transformMaterialIds = meshTransforms.flatMap(
+    ({ materialId }) => materialId ?? []
+  );
+  const addedTransforms = shaderAttributeConfigs.flatMap(
+    ({ materialId, attributeConfigs }) => {
+      if (!transformMaterialIds.includes(materialId)) {
+        return {
+          type: MESH_TRANSFORM.CUSTOM_ATTRIBUTES,
+          transformedMeshIds: [],
+          materialId,
+          attributeConfig: attributeConfigs,
+        };
+      }
+      return [];
+    }
+  );
+  const formattedTransforms = meshTransforms.map((transform) => {
     if (transform.materialId) {
       const shaderAttributes = shaderAttributeConfigs.find(
         ({ materialId }) => materialId === transform.materialId
@@ -22,3 +39,6 @@ export const formatMeshTransforms = (
     }
     return transform;
   });
+
+  return [...formattedTransforms, ...addedTransforms];
+};

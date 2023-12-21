@@ -28,5 +28,11 @@
     "configId": "palestine-flag",
     "configPath": "scenes/hjd-art/palestine-flag",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Chromatic",
+    "configId": "chromatic-1",
+    "configPath": "scenes/hjd-art/chromatic-diversity/chromatic-1",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

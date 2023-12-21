@@ -4,7 +4,7 @@ import { AttributeConfig } from "visual/set-up/config/material/shaders/build-sha
 
 const RANDOM_ATTRIBUTE_IDS = ["randomAngle", "random", "pointType"];
 const INDEX_ATTRIBUTE_IDS = ["pointIndex", "index"];
-const RANDOMIZED_ATTRIBUTE_IDS = ["pointDisplay"];
+const RANDOMIZED_ATTRIBUTE_IDS = ["pointDisplay", "signDirection"];
 
 export const setAttributes = (
   bufferGeometry: BufferGeometry,

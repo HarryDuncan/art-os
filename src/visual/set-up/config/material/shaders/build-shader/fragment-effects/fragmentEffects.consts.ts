@@ -3,6 +3,7 @@ export const FRAGMENT_EFFECT = {
   COLOR: "COLOR",
   MATERIAL: "MATERIAL",
   POINT_MATERIAL: "POINT_MATERIAL",
+  INTERACTIVE: "INTERACTIVE",
 };
 
 export const FRAGMENT_COLOR_NAMES = {
@@ -10,6 +11,7 @@ export const FRAGMENT_COLOR_NAMES = {
   MATERIAL: "fragMaterialColor",
   POINT_MATERIAL: "fragPointMaterial",
   COLOR: "fragColouredColor",
+  INTERACTIVE: "fragInteractive",
 };
 export const DEFAULT_FRAG_COLOR = "#ff1205";
 export const DEFAULT_POINT_MATERIAL = {

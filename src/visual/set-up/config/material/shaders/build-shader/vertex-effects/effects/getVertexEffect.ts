@@ -32,7 +32,7 @@ export const getVertexEffect = (
     case VERTEX_EFFECTS.DISTORT: {
       return distort(transformPointName);
     }
-    case VERTEX_EFFECTS.INTERACTION: {
+    case VERTEX_EFFECTS.INTERACTIVE: {
       return interactiveEffect(transformPointName);
     }
     case VERTEX_EFFECTS.ROTATE: {

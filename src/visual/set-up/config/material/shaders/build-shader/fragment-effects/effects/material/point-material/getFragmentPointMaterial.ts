@@ -49,7 +49,9 @@ const getPointTextureInstantiations = (
     .map(({ id, pointColor }, index) => {
       const lowerBound = (index * increment).toFixed(1);
       const upperBound = ((index + 1) * increment).toFixed(1);
-      return `if(vPointType > ${lowerBound} && vPointType < ${upperBound}){
+      return `if(vPointType > ${lowerBound} && vPointType < ${
+        upperBound === "1.0" ? "1.1" : upperBound
+      }){
             ${fragmentColorName} = ${createColorVectorString(
         pointColor,
         true

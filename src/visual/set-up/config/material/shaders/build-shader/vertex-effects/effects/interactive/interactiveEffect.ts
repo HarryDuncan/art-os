@@ -11,7 +11,14 @@ export const interactiveEffect = (transformName: string) => {
     defaultUniforms: ["uPosition", "uStrength"],
     customUniforms: [],
   } as UniformConfig;
-  const varyingConfig = [];
+  const varyingConfig = [
+    {
+      id: "vAffected",
+      valueType: "FLOAT",
+      varyingType: "CUSTOM",
+      value: "isAffected",
+    },
+  ];
   const transformation = `
   // uPosition will be set to 2000 is there is no detections made
   // Convert screen coordinates to NDC
@@ -19,16 +26,22 @@ export const interactiveEffect = (transformName: string) => {
   // Assuming zero depth for simplicity
   vec3 ndcPosition = vec3(ndcCoords, 0.0);
   vec3 ${pointName} = ${transformName}.xyz;
+  float isAffected = 0.0;
   if( ndcPosition.x > -2000.0){
     vec3 displacedPosition = vec3(${transformName}.xy, 0);
     vec3 effect = vec3(ndcPosition.xy, 0);
     vec3 effectDistanceVector =  effect - displacedPosition;
     float effectDistanceLength = length(effectDistanceVector);
-    float effectStrength =  1.5 * uStrength;
-    if(effectDistanceLength <= 1.25 * uStrength){
+    float effectStrength =  0.5 * uStrength;
+    if(effectDistanceLength <= 0.9 * uStrength){
+      float effectDirection =  signDirection;
+      if(effectDirection == 0.0){
+       effectDirection = -1.0; 
+      }
       float rand = random(uTime);
-      ${pointName}.x += cos(randomAngle) * effectStrength;
-      ${pointName}.y += sin(randomAngle) * effectStrength;
+      ${pointName}.x += cos(randomAngle * rand) * effectStrength * effectDirection;
+      ${pointName}.y += sin(randomAngle * rand) * effectStrength * effectDirection;
+      isAffected = 1.0;
     }
   } `;
   const requiredFunctions = [
@@ -36,6 +49,7 @@ export const interactiveEffect = (transformName: string) => {
   ];
   const attributeConfig = [
     { id: "randomAngle", valueType: ShaderPropertyValueTypes.FLOAT },
+    { id: "signDirection", valueType: ShaderPropertyValueTypes.FLOAT },
   ] as AttributeConfig[];
   return {
     requiredFunctions,

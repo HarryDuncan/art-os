@@ -4,6 +4,7 @@ import {
 } from "../../buildShader.types";
 import { FRAGMENT_EFFECT } from "../fragmentEffects.consts";
 import { defaultFragmentEffect } from "./defaultFragmentEffect/defaultFragmentEffect";
+import { getInteractiveEffects } from "./interactive/interactive";
 import { matcapMaterial } from "./material/matcap/matcapMaterial";
 import { getFragmentPointMaterial } from "./material/point-material/getFragmentPointMaterial";
 
@@ -17,6 +18,8 @@ export const getFragmentEffects = (
       return matcapMaterial(transformColorName);
     case FRAGMENT_EFFECT.POINT_MATERIAL:
       return getFragmentPointMaterial(effect.effectProps, transformColorName);
+    case FRAGMENT_EFFECT.INTERACTIVE:
+      return getInteractiveEffects(effect.effectProps, transformColorName);
     case FRAGMENT_EFFECT.DEFAULT:
     default:
       return defaultFragmentEffect();

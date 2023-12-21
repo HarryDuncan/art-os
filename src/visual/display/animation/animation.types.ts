@@ -44,8 +44,8 @@ export interface MoveAnimationConfig extends AnimationPropertiesConfig {
   moveFrom: Position3d;
 }
 export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
-  startPosition: Vector3;
-  endPosition: Vector3;
+  startPosition: Position3d;
+  endPosition: Position3d;
   curveSize: number;
   curve?: Vector3[];
 }

@@ -1,5 +1,5 @@
 import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
-import { PointPerspectiveConfig } from "../../vertexEffects.types";
+import { PointPerspectiveConfig } from "../../../buildShader.types";
 
 export const pointsPerspective = (
   pointName: string,
