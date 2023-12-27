@@ -1,5 +1,5 @@
 export const rotateZ = `
-    mat4 zRotate(float time){
+    mat4 rotateZ(float time){
         float angle = time * 0.2;
         float c = cos(angle);
         float s = sin(angle);
@@ -14,7 +14,7 @@ export const rotateZ = `
 `;
 
 export const rotateX = `
-mat4 xRotate(float time){
+mat4 rotateX(float time){
     float angle = time * 0.2;
     float c = cos(angle);
     float s = sin(angle);

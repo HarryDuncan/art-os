@@ -2,8 +2,8 @@
 import multiprocessing
 import tensorflow_hub as hub;
 import tensorflow as tf
-import cv2
 import numpy as np
+import cv2
 
 from detection.detection_algorithm import DetectionAlgorithim
 
@@ -37,11 +37,10 @@ def loop_through_people(frame, keypoints_with_scores,confidence_threshold):
 
 
 
-def run_stream(isRunning, queue):
+def run_stream( queue):
     model = hub.load('https://tfhub.dev/google/movenet/multipose/lightning/1')
     movenet = model.signatures['serving_default']
     cap = cv2.VideoCapture('udp://127.0.0.1:1235', )
-    fps = round(cap.get(cv2.CAP_PROP_FPS))
     while cap.isOpened():
         ret,frame = cap.read()
         img = tf.image.resize_with_pad(tf.expand_dims(frame, axis=0), 256,256)
@@ -50,8 +49,6 @@ def run_stream(isRunning, queue):
         keypoints_with_scores = results['output_0'].numpy()[:,:,:51].reshape((6,17,3))
         selected_points = loop_through_people(frame, keypoints_with_scores, 0.45)
         queue.put(selected_points)
-        if isRunning == False:
-            break
     cap.release()
 
 
@@ -61,13 +58,15 @@ class Posenet(DetectionAlgorithim):
         super().__init__()
         self.cluster_buffer_data = []
         self.window_size = 3
-        self.queue = None
-        self.process = None
-
+      
+    def set_config(self, algorithm_config):
+        print(algorithm_config)
+        self.algorithm_config = algorithm_config
+    
     def run_algorithm(self):
         self.isRunning = True
         self.queue = multiprocessing.Queue()
-        self.process = multiprocessing.Process(target=run_stream, args=(self.isRunning, self.queue,))
+        self.process = multiprocessing.Process(target=run_stream, args=(self.queue,))
         self.process.start()
        
     def get_cluster_coords(self):

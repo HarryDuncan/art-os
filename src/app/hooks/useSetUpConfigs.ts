@@ -1,3 +1,4 @@
+import { ROOT } from "app/constants";
 import {
   setDefaultSceneConfigs,
   setSceneConfigs,
@@ -25,10 +26,12 @@ export const useAppConfigs = () => {
 
   useEffect(() => {
     const retrieveAppData = async () => {
-      const sceneConfigsUrl = `config/scenes${isTest ? ".test" : ""}.json`;
+      const sceneConfigsUrl = `${ROOT}config/scenes${
+        isTest ? ".test" : ""
+      }.json`;
       const sceneConfigs = await fetchData(sceneConfigsUrl);
       dispatch(setSceneConfigs(sceneConfigs));
-      const defaultSceneConfigsUrl = "config/defaults/scenes.json";
+      const defaultSceneConfigsUrl = `${ROOT}config/defaults/scenes.json`;
       const defaultScenes = await fetchData(defaultSceneConfigsUrl);
       dispatch(setDefaultSceneConfigs(defaultScenes));
     };

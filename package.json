@@ -5,7 +5,6 @@
   "version": "0.2.7",
   "private": true,
   "dependencies": {
-    "@chakra-ui/react": "^2.8.2",
     "@improbable-eng/grpc-web": "^0.15.0",
     "@mediapipe/selfie_segmentation": "^0.1.1632777926",
     "@reduxjs/toolkit": "^1.8.1",

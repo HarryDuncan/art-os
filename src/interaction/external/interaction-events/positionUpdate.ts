@@ -9,8 +9,8 @@ export type Position = {
   y: number;
 };
 const TARGET_IDENTIFIER = "geometry";
-const UPDATE_THRESHOLD = 0.45;
-const DURATION = 400;
+const UPDATE_THRESHOLD = 0.85;
+const DURATION = 50;
 const POSITION_DISTANCE = 0.5;
 const xC = -0.0060863494873046875;
 const yC = 1.2412681579589844;

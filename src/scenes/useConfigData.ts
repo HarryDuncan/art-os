@@ -1,3 +1,4 @@
+import { ROOT } from "app/constants";
 import { useAppSelector } from "app/redux/store";
 import { useMemo } from "react";
 import { SceneConfigType } from "visual/set-up/config/config.constants";
@@ -5,14 +6,13 @@ import { SceneConfig } from "visual/set-up/config/config.types";
 import { useFetchConfig } from "visual/set-up/config/useFetchConfig";
 
 export const useConfigData = (sceneConfigId: string) => {
-  const { sceneIndex } = useAppSelector((state) => state.sceneData);
   const selectedSceneConfig = useSceneConfig(sceneConfigId);
   const selectedSceneFilePath = selectedSceneConfig?.configPath ?? "";
   const configPath = selectedSceneFilePath
-    ? `config/${selectedSceneFilePath}.json`
+    ? `${ROOT}config/${selectedSceneFilePath}.json`
     : "";
   const sceneConfigData = useFetchConfig(configPath);
-  const configData = useMasterSceneData(sceneIndex, sceneConfigData);
+  const configData = useMasterSceneData(sceneConfigData);
   return configData;
 };
 
@@ -20,25 +20,31 @@ const useSceneConfig = (sceneConfigId: string) => {
   const { configuredScenes, defaultScenes } = useAppSelector(
     (state) => state.sceneData
   );
-  const defaultScene = defaultScenes.find(
-    (scene) => scene.configId === sceneConfigId
-  );
-  const selectedScene = configuredScenes.find(
-    (scene) => scene.configId === sceneConfigId
-  );
-  return defaultScene ?? selectedScene ?? null;
+  if (defaultScenes && configuredScenes) {
+    const defaultScene = defaultScenes.find(
+      (scene) => scene.configId === sceneConfigId
+    );
+    const selectedScene = configuredScenes.find(
+      (scene) => scene.configId === sceneConfigId
+    );
+    return defaultScene ?? selectedScene ?? null;
+  }
+  return null;
 };
 
-const useMasterSceneData = (
-  sceneIndex: number,
-  sceneConfigData: SceneConfig[] | undefined
-) =>
-  useMemo(() => {
+const useMasterSceneData = (sceneConfigData: SceneConfig[] | undefined) => {
+  const { sceneIndex, isUsingLastScene } = useAppSelector(
+    (state) => state.sceneData
+  );
+  return useMemo(() => {
     if (!sceneConfigData) return null;
     const master = sceneConfigData.find(
       ({ sceneConfigType }) => sceneConfigType === SceneConfigType.Master
     );
-    const selectedScene = sceneConfigData[sceneIndex];
+    const selectedIndex = isUsingLastScene
+      ? sceneConfigData.length - 1
+      : sceneIndex;
+    const selectedScene = sceneConfigData[selectedIndex];
     if (master && selectedScene) {
       return { ...master, ...selectedScene };
     }
@@ -47,4 +53,5 @@ const useMasterSceneData = (
     }
     console.warn(`error retrieving scene config at index ${sceneIndex}`);
     return sceneConfigData[0];
-  }, [sceneConfigData, sceneIndex]);
+  }, [sceneConfigData, sceneIndex, isUsingLastScene]);
+};

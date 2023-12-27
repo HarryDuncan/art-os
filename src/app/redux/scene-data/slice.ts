@@ -5,6 +5,7 @@ import { SceneItem } from "scenes/types";
 export type SceneState = {
   configIndex: number;
   sceneIndex: number;
+  isUsingLastScene: boolean;
   configId: string | null;
   data: SceneItem | null;
   configuredScenes: AnimatedScene[];
@@ -13,7 +14,8 @@ export type SceneState = {
 
 export const INITIAL_STATE: SceneState = {
   configIndex: 0,
-  sceneIndex: 4,
+  sceneIndex: 1,
+  isUsingLastScene: true,
   configId: null,
   data: null,
   configuredScenes: [],

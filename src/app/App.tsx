@@ -5,7 +5,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 // Containers
 import { Provider } from "react-redux";
 import styled, { ThemeProvider } from "styled-components/macro";
-import { DigitalArt } from "./views/digital-art/DigitalArt";
 import { Landing } from "./views/landing/Landing";
 // Components
 import { Navigation } from "./views/navigation/Navigation";
@@ -20,15 +19,9 @@ import { useInteractionNode } from "interaction/external/useInteractionNode";
 import { GeometryPreprocess } from "./views/asset-editor/GeometryPreprocess";
 import { ViewObject } from "./views/view-object/ViewObject";
 import { WindowStateProvider } from "visual/compat/window-state/windowStateProvider";
-
-export const AppContainer = styled.div`
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-`;
+import { ViewPiece } from "./views/digital-art/view-piece/ViewPiece";
+import { DigitalArtGallery } from "./views/digital-art/digital-art-gallery/DigitalArtGallery";
+import { UtilityBar } from "./views/utility-bar/UtilityBar";
 
 export function App() {
   return (
@@ -49,20 +42,19 @@ export const AppContent = () => {
   useInteractionNode();
   useAppConfigs();
   return (
-    <AppContainer>
-      <Navigation />
-      <Switch>
-        <Route exact path="/digital-art" component={DigitalArt} />
-        <Route exact path="/sandbox" component={Sandbox} />
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/view-object" component={ViewObject} />
-        <Route
-          exact
-          path="/geometry-preprocess"
-          component={GeometryPreprocess}
-        />
-      </Switch>
-      <AppendContainer />
-    </AppContainer>
+    <Switch>
+      <Route exact path="/digital-art" component={DigitalArtGallery} />
+      <Route exact path="/sandbox" component={Sandbox} />
+      <Route exact path="/" component={Landing} />
+      <Route exact path="/view-object" component={ViewObject} />
+      <Route exact path="/geometry-preprocess" component={GeometryPreprocess} />
+      <Route path="/digital-art/:sceneid">
+        <>
+          <UtilityBar />
+          <ViewPiece />
+          <AppendContainer />
+        </>
+      </Route>
+    </Switch>
   );
 };

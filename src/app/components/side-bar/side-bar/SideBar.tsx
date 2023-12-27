@@ -8,9 +8,7 @@ interface ISideBarProps {
 
 function SideBar({ children, isSidebarVisible }: ISideBarProps) {
   return (
-    <StyledSideBar $isVisible={isSidebarVisible ?? true}>
-      {children}
-    </StyledSideBar>
+    <StyledSideBar $isVisible={isSidebarVisible}>{children}</StyledSideBar>
   );
 }
 

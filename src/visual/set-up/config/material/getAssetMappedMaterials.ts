@@ -21,6 +21,7 @@ export const getAssetMappedMaterials = (
     if (!ASSET_MAPPED_MATERIALS.includes(configItem.materialType)) {
       return [];
     }
+
     const mappedAsset = assets.find(
       (asset) => asset.id === configItem.materialProps.assetId
     );

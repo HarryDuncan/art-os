@@ -1,0 +1,20 @@
+[
+  {
+    "id": "r",
+    "name": "r-geometry",
+    "url": "../assets/models/hjd/rgb/r.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "g",
+    "name": "g-geometry",
+    "url": "../assets/models/hjd/rgb/g.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "b",
+    "name": "b-geometry",
+    "url": "../assets/models/hjd/rgb/b.obj",
+    "assetType": "MODEL3D"
+  }
+]

@@ -22,16 +22,22 @@ class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
     def InitializeInteractionNode(self, request, context):
         self.isRunning = False
         if self.currentAlgorithm != None:
-            self.currentAlgorithm.stop()
+            self.currentAlgorithm.stop_running()
         return pb2.InitializeInteractionNodeResponse(is_initialized=True)
 
+    def StopAlgorithm(self, request, context):
+        self.isRunning = False
+        if self.currentAlgorithm != None:
+            self.currentAlgorithm.stop_running()
+        return pb2.StopAlgorithmResponse()
+    
     def InitalizeAlgorithm(self, request, context):
         initialized = False
         if self.isRunning == False:
             if(request.algorithm_type == "POSENET"):
                 print('setting to posenet')
-                print(request)
                 self.currentAlgorithm = Posenet.Posenet()
+                self.currentAlgorithm.set_config(request.algorithm_config)
                 initialized = True
         else:
             initialized = True

@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   SideBarLinkList,
   SideBarTitleContainer,
@@ -6,6 +6,7 @@ import {
 import { NavItem } from "./nav-item/NavItem";
 import { useIdleTimer } from "react-idle-timer";
 import SideBar from "app/components/side-bar/side-bar/SideBar";
+import { useIsSceneActive } from "app/hooks/useIsSceneActive";
 
 const IDLE_TIMER_TIMEOUT = 5000;
 const NAVIGATION_ITEMS = [
@@ -35,7 +36,7 @@ const NAVIGATION_ITEMS = [
     link: "sandbox",
   },
 ];
-export function Navigation() {
+export const Navigation = () => {
   const isNavVisible = useNavigationBarVisibility();
   return (
     <SideBar isSidebarVisible={isNavVisible}>
@@ -47,20 +48,23 @@ export function Navigation() {
       </SideBarLinkList>
     </SideBar>
   );
-}
+};
 
 const useNavigationBarVisibility = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
   const toggleSideBarVisibility = useCallback((visibility: boolean) => {
     setIsSidebarVisible(visibility);
   }, []);
-
+  const isSceneActive = useIsSceneActive();
   useIdleTimer({
     timeout: IDLE_TIMER_TIMEOUT,
     onAction: () => toggleSideBarVisibility(true),
     onActive: () => toggleSideBarVisibility(true),
     onIdle: () => toggleSideBarVisibility(false),
   });
-
-  return isSidebarVisible;
+  console.log(isSceneActive);
+  return useMemo(() => (isSceneActive ? false : isSidebarVisible), [
+    isSceneActive,
+    isSidebarVisible,
+  ]);
 };

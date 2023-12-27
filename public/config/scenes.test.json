@@ -34,5 +34,11 @@
     "configId": "chromatic-1",
     "configPath": "scenes/hjd-art/chromatic-diversity/chromatic-1",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Chromatic 2",
+    "configId": "chromatic-2",
+    "configPath": "scenes/hjd-art/chromatic-diversity/chromatic-2",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

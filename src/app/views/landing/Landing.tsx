@@ -1,6 +1,6 @@
-import React from "react";
 import { Overlay } from "../../components/overlay/Overlay";
 import { LandingContainer, LandingPageTitle } from "./Landing.styles";
+import { AppContainer } from "app/components/containers/AppContainer";
 
 export function Landing() {
   // const shaderSceneNames = ["liquid", "cosmic"];
@@ -12,10 +12,12 @@ export function Landing() {
   // }));
 
   return (
-    <LandingContainer>
-      <Overlay>
-        <LandingPageTitle>Art-OS</LandingPageTitle>
-      </Overlay>
-    </LandingContainer>
+    <AppContainer>
+      <LandingContainer>
+        <Overlay>
+          <LandingPageTitle>Art-OS</LandingPageTitle>
+        </Overlay>
+      </LandingContainer>
+    </AppContainer>
   );
 }

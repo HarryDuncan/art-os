@@ -1,10 +1,9 @@
-import {
-  SIDE_BAR_TRANSITION_SPEED,
-  SIDE_BAR_WIDTH,
-} from "app/components/side-bar/side-bar/SideBar.styles";
+import { SIDE_BAR_TRANSITION_SPEED } from "app/components/draw-components/DrawComponent.styles";
+import { SIDE_BAR_WIDTH } from "app/components/side-bar/side-bar/SideBar.styles";
 import styled from "styled-components/macro";
 
 const HEADER_HEIGHT = 100;
+const GALLERY_SIDE_MARGIN = 100;
 export const DigitalArtContainer = styled.div`
   width: 100vw;
   height: 100vh;
@@ -23,7 +22,7 @@ export const DigitalArtHeader = styled.div<{ $isVisible: boolean }>`
 `;
 export const GalleryContainer = styled.div`
   width: 70%;
-  margin: 0 auto;
+  margin-left: ${SIDE_BAR_WIDTH + GALLERY_SIDE_MARGIN}px;
 `;
 
 export const FullScreenContainer = styled.div`

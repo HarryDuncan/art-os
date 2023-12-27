@@ -22,7 +22,7 @@ const preTranformConfig = {
   centerGeometry: true,
 };
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/la-novena.json`);
+  const assets = useFetchData(`${CONFIG}assets/rbg.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );

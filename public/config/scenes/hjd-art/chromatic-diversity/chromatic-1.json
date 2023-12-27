@@ -625,15 +625,147 @@
         "position": { "x": 0, "y": -0, "z": 0 },
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 905000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
       },
       {
-        "id": "title-geometry",
-        "geometryId": "title",
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {},
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "pointSize": 16
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDefinitions": [
+                  { "id": "uTextureR", "pointColor": "#f20202" },
+                  { "id": "uTextureB", "pointColor": "#024ef2" },
+                  { "id": "uTextureG", "pointColor": "#02c23f" }
+                ]
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.004 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTextureR",
+            "assetId": "r-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTextureB",
+            "assetId": "b-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTextureG",
+            "assetId": "g-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "CUSTOM_ATTRIBUTES",
+        "transformedMeshIds": ["mercury-geometry"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": []
+  },
+  {
+    "sceneConfigType": "Master",
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 7.5 } }
+    },
+    "assets": [
+      {
+        "name": "mercury-geometry",
+        "url": "../assets/models/sculptures/mercury.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "r-texture",
+        "url": "../assets/textures/point-textures/r.png",
+        "assetType": "TEXTURE",
+        "id": "r-texture"
+      },
+      {
+        "name": "b-texture",
+        "url": "../assets/textures/point-textures/b.png",
+        "assetType": "TEXTURE",
+        "id": "b-texture"
+      },
+      {
+        "name": "g-texture",
+        "url": "../assets/textures/point-textures/g.png",
+        "assetType": "TEXTURE",
+        "id": "g-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "mercury-geometry",
+        "geometryId": "mercury-statue",
         "geometryConfig": {
           "scale": 1.2
         },
+        "meshType": "POINTS",
         "position": { "x": 0, "y": -0, "z": 0 },
-        "rotation": { "x": 0, "y": -0, "z": -0 }
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
       }
     ],
     "animationConfig": [
@@ -736,6 +868,148 @@
         "materialId": "morphing-material"
       }
     ],
-    "sceneComponentConfigs": []
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": { "backgroundColor": "white" }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 7.5 } }
+    },
+    "assets": [
+      {
+        "name": "mercury-geometry",
+        "url": "../assets/models/sculptures/mercury.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "r-texture",
+        "url": "../assets/textures/point-textures/r.png",
+        "assetType": "TEXTURE",
+        "id": "r-texture"
+      },
+      {
+        "name": "b-texture",
+        "url": "../assets/textures/point-textures/b.png",
+        "assetType": "TEXTURE",
+        "id": "b-texture"
+      },
+      {
+        "name": "g-texture",
+        "url": "../assets/textures/point-textures/g.png",
+        "assetType": "TEXTURE",
+        "id": "g-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "mercury-geometry",
+        "geometryId": "mercury-statue",
+        "geometryConfig": {
+          "scale": 1.2
+        },
+        "meshType": "POINTS",
+        "position": { "x": 0, "y": -0, "z": 0 },
+        "rotation": { "x": 0, "y": -180, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 905000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {},
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "pointSize": 16
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDefinitions": [
+                  { "id": "uTextureR", "pointColor": "#f20202" },
+                  { "id": "uTextureB", "pointColor": "#024ef2" },
+                  { "id": "uTextureG", "pointColor": "#02c23f" }
+                ]
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.0002 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTextureR",
+            "assetId": "r-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTextureB",
+            "assetId": "b-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTextureG",
+            "assetId": "g-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "CUSTOM_ATTRIBUTES",
+        "transformedMeshIds": ["mercury-geometry"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": { "backgroundColor": "white" }
   }
 ]

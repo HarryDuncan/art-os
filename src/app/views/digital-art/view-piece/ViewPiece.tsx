@@ -2,18 +2,26 @@ import { Suspense } from "react";
 import { ViewPieceContainer } from "./ViewPiece.styles";
 import { useSceneParameters } from "scenes/useSceneParameters";
 import SceneNode from "visual/node/scene-node/SceneNode";
+import { WindowStateProvider } from "visual/compat/window-state/windowStateProvider";
+import { useParams } from "react-router";
+import { AppContainer } from "app/components/containers/AppContainer";
 
-interface ViewPieceProps {
-  configId: string;
-}
-export const ViewPiece = ({ configId }: ViewPieceProps) => {
-  const sceneParameters = useSceneParameters(configId);
-  console.log(sceneParameters);
+export const ViewPiece = () => (
+  <WindowStateProvider>
+    <ViewPieceContent />
+  </WindowStateProvider>
+);
+
+const ViewPieceContent = () => {
+  const { sceneid } = useParams();
+  const sceneParameters = useSceneParameters(sceneid);
   return (
-    <ViewPieceContainer>
-      <Suspense>
-        {sceneParameters ? <SceneNode {...sceneParameters} /> : null}
-      </Suspense>
-    </ViewPieceContainer>
+    <AppContainer>
+      <ViewPieceContainer>
+        <Suspense>
+          {sceneParameters ? <SceneNode {...sceneParameters} /> : null}
+        </Suspense>
+      </ViewPieceContainer>
+    </AppContainer>
   );
 };

@@ -8,6 +8,7 @@ import { getObjectGeometries } from "visual/set-up/config/mesh/geometry/getAsset
 import { Mesh, MeshStandardMaterial } from "three";
 import { onMeshAdded } from "visual/display/engine/engineEvents";
 import { LoadedGroup } from "visual/set-up/assets/asset.types";
+import { AppContainer } from "app/components/containers/AppContainer";
 
 export const ViewObject = () => {
   const onFileLoaded = async (file) => {
@@ -22,12 +23,14 @@ export const ViewObject = () => {
   };
   const sceneParameters = useSceneParameters();
   return (
-    <Container>
-      <AssetFileUpload onFileLoad={onFileLoaded}>
-        <Suspense>
-          {sceneParameters ? <SceneNode {...sceneParameters} /> : null}
-        </Suspense>
-      </AssetFileUpload>
-    </Container>
+    <AppContainer>
+      <Container>
+        <AssetFileUpload onFileLoad={onFileLoaded}>
+          <Suspense>
+            {sceneParameters ? <SceneNode {...sceneParameters} /> : null}
+          </Suspense>
+        </AssetFileUpload>
+      </Container>
+    </AppContainer>
   );
 };
