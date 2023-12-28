@@ -9,4 +9,4 @@ class DetectionAlgorithim():
       
    def stop_running(self):
          self.isRunning = False
-         self.process.stop()
+         self.process.terminate()

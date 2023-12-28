@@ -520,24 +520,13 @@
         "materialType": "BUILT_SHADER",
 
         "builtShaderConfig": {
-          "vertexEffectConfigs": [
-            {
-              "effectType": "ROTATE",
-              "effectProps": { "speed": 0.2 }
-            }
-          ],
+          "vertexEffectConfigs": [],
           "fragmentEffectConfigs": [
             {
               "effectType": "MATERIAL"
             }
           ],
-          "attributeConfig": [
-            {
-              "id": "pointDisplay",
-              "valueType": "FLOAT",
-              "valueConfig": { "randomizedPercentage": 0.0003 }
-            }
-          ]
+          "attributeConfig": []
         },
         "assetMapping": [
           {
@@ -605,13 +594,6 @@
         "url": "../assets/textures/point-textures/g.png",
         "assetType": "TEXTURE",
         "id": "g-texture"
-      },
-      {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/hot-cloud-green.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
       }
     ],
     "meshComponentConfigs": [
@@ -898,6 +880,13 @@
         "url": "../assets/textures/point-textures/g.png",
         "assetType": "TEXTURE",
         "id": "g-texture"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/hot-cloud-red.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
       }
     ],
     "meshComponentConfigs": [
@@ -907,7 +896,6 @@
         "geometryConfig": {
           "scale": 1.2
         },
-        "meshType": "POINTS",
         "position": { "x": 0, "y": -0, "z": 0 },
         "rotation": { "x": 0, "y": -180, "z": -0 },
         "materialId": "morphing-material"
@@ -953,37 +941,22 @@
       {
         "id": "morphing-material",
         "materialType": "BUILT_SHADER",
-        "blendingConfig": {},
+
         "builtShaderConfig": {
-          "vertexEffectConfigs": [
-            {
-              "effectType": "POINTS",
-              "effectProps": {
-                "pointSize": 16
-              }
-            }
-          ],
+          "vertexEffectConfigs": [],
           "fragmentEffectConfigs": [
             {
-              "effectType": "POINT_MATERIAL",
-              "effectProps": {
-                "pointDefinitions": [
-                  { "id": "uTextureR", "pointColor": "#f20202" },
-                  { "id": "uTextureB", "pointColor": "#024ef2" },
-                  { "id": "uTextureG", "pointColor": "#02c23f" }
-                ]
-              }
+              "effectType": "MATERIAL"
             }
           ],
-          "attributeConfig": [
-            {
-              "id": "pointDisplay",
-              "valueType": "FLOAT",
-              "valueConfig": { "randomizedPercentage": 0.0002 }
-            }
-          ]
+          "attributeConfig": []
         },
         "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          },
           {
             "uniform": "uTextureR",
             "assetId": "r-texture",
@@ -1010,6 +983,6 @@
       }
     ],
     "sceneComponentConfigs": [],
-    "scenePropertiesConfig": { "backgroundColor": "white" }
+    "scenePropertiesConfig": { "backgroundColor": "#02c23f" }
   }
 ]

@@ -2,7 +2,8 @@ import { StyledTopBar } from "app/components/draw-components/top-bar/TopBar.styl
 import { KEYS } from "interaction/interactions.consts";
 import { useKeyListener } from "interaction/internal/useSetUpKeyListener";
 import { useCallback, useMemo, useState } from "react";
-import { NavItem } from "../navigation/nav-item/NavItem";
+import { useStopAlgorithm } from "interaction/external/interaction-node-requests/useStopAlgorithm";
+import { useHistory } from "react-router";
 
 const BACK = {
   key: "digital-art",
@@ -12,9 +13,15 @@ const BACK = {
 
 export const UtilityBar = () => {
   const isUtilityBarVisible = useIsUtilityBarVisible();
+  const history = useHistory();
+  const stop = useStopAlgorithm();
+  const handleClick = () => {
+    history.push(BACK.link);
+    stop();
+  };
   return (
     <StyledTopBar $isVisible={isUtilityBarVisible}>
-      <NavItem key={BACK.key} title={BACK.title} link={BACK.link} />
+      <button onClick={handleClick}>Back</button>
     </StyledTopBar>
   );
 };

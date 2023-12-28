@@ -28,6 +28,7 @@ class InteractionNode(pb2_grpc.InteractionNodeServiceServicer):
     def StopAlgorithm(self, request, context):
         self.isRunning = False
         if self.currentAlgorithm != None:
+            print('stopping')
             self.currentAlgorithm.stop_running()
         return pb2.StopAlgorithmResponse()
     
