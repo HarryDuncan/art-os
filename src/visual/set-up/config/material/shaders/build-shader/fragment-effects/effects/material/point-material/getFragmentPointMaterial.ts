@@ -65,6 +65,7 @@ const ATTRIBUTE_CONFIG = [
   { id: "pointType", valueType: ShaderPropertyValueTypes.FLOAT },
   { id: "pointDisplay", valueType: ShaderPropertyValueTypes.FLOAT },
 ] as AttributeConfig[];
+
 export const getFragmentPointMaterial = (
   effectProps: Partial<PointMaterialEffectProps> | undefined,
   _transformColorName

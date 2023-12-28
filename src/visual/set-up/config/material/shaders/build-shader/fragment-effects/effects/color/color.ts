@@ -1,8 +1,15 @@
 import { Vector3 } from "three";
 import { ShaderPropertyValueTypes } from "../../../buildShader.constants";
-import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
+import {
+  DEFAULT_FRAG_COLOR,
+  FRAGMENT_COLOR_NAMES,
+} from "../../fragmentEffects.consts";
 import { colorTransformation } from "./colorTransformation";
-import { FragmentEffectData, UniformConfig } from "../../../buildShader.types";
+import {
+  ColorEffectProps,
+  FragmentEffectData,
+  UniformConfig,
+} from "../../../buildShader.types";
 
 export const colorFunctions = () => [];
 
@@ -19,11 +26,18 @@ export const colorUniforms = () => ({
 
 export const colorVaryings = () => [];
 
-export const color = (transformColorName: string): FragmentEffectData => {
-  const colorName = FRAGMENT_COLOR_NAMES.COLOR;
+export const color = (
+  _transformColorName: string,
+  effectProps: Partial<ColorEffectProps>
+): FragmentEffectData => {
+  const formattedEffectProps = formatEffectProps(effectProps);
+  const fragmentColorName = FRAGMENT_COLOR_NAMES.COLOR;
   const uniformConfig = colorUniforms() as UniformConfig;
   const varyingConfig = colorVaryings();
-  const transformation = colorTransformation(transformColorName, colorName);
+  const transformation = colorTransformation(
+    fragmentColorName,
+    formattedEffectProps
+  );
   const requiredFunctions = colorFunctions();
   return {
     requiredFunctions,
@@ -31,6 +45,9 @@ export const color = (transformColorName: string): FragmentEffectData => {
     transformation,
     varyingConfig,
     attributeConfig: [],
-    fragmentColorName: "pointName",
+    fragmentColorName,
   };
+};
+const formatEffectProps = (parsedEffectProps: Partial<ColorEffectProps>) => {
+  return { color: DEFAULT_FRAG_COLOR, ...parsedEffectProps };
 };

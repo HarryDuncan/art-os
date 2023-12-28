@@ -13,12 +13,14 @@ WIDTH = 640
 HEIGHT = 480
 #  [nose, left eye, right eye, left ear, right ear, left shoulder, right shoulder, left elbow, right elbow, left wrist,
 #  right wrist, left hip, right hip, left knee, right knee, left ankle, right ankle]
-def get_keypoints(frame, keypoints, confidence_threshold):
+def get_keypoints(frame, keypoints, algorithm_config):
     y, x, c = frame.shape
     shaped = np.squeeze(np.multiply(keypoints, [y,x,1]))
-    selected_keypoint = shaped[0]
+    threshold = algorithm_config.threshold
+    keypoint = algorithm_config.key_points[0]
+    selected_keypoint = shaped[keypoint]
     ky, kx, kp_conf = selected_keypoint
-    if(kp_conf > confidence_threshold):
+    if(kp_conf > threshold):
         coords = convert_to_scale(kx, ky)
         return coords
     else:
@@ -27,17 +29,17 @@ def get_keypoints(frame, keypoints, confidence_threshold):
 def convert_to_scale(x, y):
     return ({'x' :  round(abs((x / WIDTH)  - 1), 2) , 'y' : round(abs((y / HEIGHT)  -1), 2)})
 
-def loop_through_people(frame, keypoints_with_scores,confidence_threshold):
+def loop_through_people(frame, keypoints_with_scores,algorithm_config):
     points = []
     for person in keypoints_with_scores:
-        key_points_for_person = get_keypoints(frame, person, confidence_threshold)
+        key_points_for_person = get_keypoints(frame, person,algorithm_config)
         if(key_points_for_person != None):
             points.append(key_points_for_person)
     return points
 
 
 
-def run_stream( queue):
+def run_stream( queue, algorithm_config):
     model = hub.load('https://tfhub.dev/google/movenet/multipose/lightning/1')
     movenet = model.signatures['serving_default']
     cap = cv2.VideoCapture('udp://127.0.0.1:1235', )
@@ -47,7 +49,7 @@ def run_stream( queue):
         input_image = tf.cast(img, dtype=tf.int32)
         results = movenet(input_image)
         keypoints_with_scores = results['output_0'].numpy()[:,:,:51].reshape((6,17,3))
-        selected_points = loop_through_people(frame, keypoints_with_scores, 0.45)
+        selected_points = loop_through_people(frame, keypoints_with_scores, algorithm_config)
         queue.put(selected_points)
     cap.release()
 
@@ -60,13 +62,13 @@ class Posenet(DetectionAlgorithim):
         self.window_size = 3
       
     def set_config(self, algorithm_config):
-        print(algorithm_config)
         self.algorithm_config = algorithm_config
     
     def run_algorithm(self):
         self.isRunning = True
         self.queue = multiprocessing.Queue()
-        self.process = multiprocessing.Process(target=run_stream, args=(self.queue,))
+        print(self.algorithm_config)
+        self.process = multiprocessing.Process(target=run_stream, args=(self.queue,self.algorithm_config,))
         self.process.start()
        
     def get_cluster_coords(self):

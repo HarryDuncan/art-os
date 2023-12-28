@@ -11,7 +11,7 @@ import { INTERACTION_ALGORITHIMS, KEYPOINT } from "./interactions.constants";
 const CONFIG = {
   algorithmType: INTERACTION_ALGORITHIMS.POSENET,
   algorithmConfig: {
-    threshold: 0.8,
+    threshold: 0.45,
     keypoints: [KEYPOINT.LEFT_WRIST],
   },
   dataTransformType: "keypoint-positions",

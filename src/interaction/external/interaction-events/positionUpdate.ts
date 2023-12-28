@@ -2,7 +2,8 @@ import { InteractiveScene } from "visual/display/components/interactive-scene/In
 import { EXTERNAL_INTERACTION_EVENT_KEYS } from "../interactions.constants";
 import { getSceneElementByName } from "visual/utils/scene/getSceneElementByName";
 import { updateObjectUniformByKey } from "visual/display/animation/animation-functions/shader-animations/uniforms/updateObjectUniformByKey";
-import { Vector3 } from "three";
+import { BufferGeometry, Vector3 } from "three";
+import { getCentroid } from "visual/utils/three-dimension-space/getCentroid";
 
 export type Position = {
   x: number;
@@ -11,24 +12,48 @@ export type Position = {
 const TARGET_IDENTIFIER = "geometry";
 const UPDATE_THRESHOLD = 0.85;
 const DURATION = 50;
-const POSITION_DISTANCE = 0.5;
-const xC = -0.0060863494873046875;
-const yC = 1.2412681579589844;
-const rad = 34.856733081855715;
+const POSITION_DISTANCE = 0.2;
 
+let sceneDimensions = { x: 0, y: 0, radiusX: 0, radiusY: 0 };
+let isCalculated = false;
 const positionUpdateFunction = (scene: InteractiveScene, eventDetails) => {
   const positions = eventDetails;
+
   const animatedObjects = getSceneElementByName(scene, TARGET_IDENTIFIER);
+  if (!isCalculated) {
+    calculateEffectParams(animatedObjects);
+  }
   const random = Math.random();
   if (animatedObjects[0] && positions[0] && random < UPDATE_THRESHOLD) {
     const { x, y } = positions[0];
-    const xPos = getValueFromPercentage(x, xC - rad, xC + rad);
-    const yPos = getValueFromPercentage(y, yC - rad, yC + rad);
+    const xPos = getValueFromPercentage(
+      x,
+      sceneDimensions.x - sceneDimensions.radiusX,
+      sceneDimensions.radiusX + sceneDimensions.radiusX
+    );
+    const yPos = getValueFromPercentage(
+      y,
+      sceneDimensions.y - sceneDimensions.radiusY,
+      sceneDimensions.y + sceneDimensions.radiusY
+    );
     const pos = new Vector3(xPos, yPos, 0);
     slideTo(pos, animatedObjects[0]);
   }
 };
 
+const calculateEffectParams = (animatedObjects) => {
+  console.log(animatedObjects);
+  const obj = animatedObjects[0];
+  const geometry: BufferGeometry = obj.geometry;
+  const max = geometry.boundingBox?.max;
+  const min = geometry.boundingBox?.min;
+  const center = getCentroid([max, min]);
+  isCalculated = true;
+  sceneDimensions.x = center.x;
+  sceneDimensions.y = center.y;
+  sceneDimensions.radiusX = Math.abs(max.x - center.x);
+  sceneDimensions.radiusY = Math.abs(max.y - center.y);
+};
 export const positionUpdateInteraction = {
   eventKey: EXTERNAL_INTERACTION_EVENT_KEYS.POSITION_UPDATE,
   onEvent: positionUpdateFunction,

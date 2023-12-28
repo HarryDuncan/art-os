@@ -98,7 +98,16 @@ export type PointMaterialEffectProps = {
   defaultColor?: string;
   pointDefinitions: PointDefinition[];
 };
-export type FragmentEffectProps = PointMaterialEffectProps;
+export type MaterialEffectProps = {
+  opacity?: boolean;
+};
+export type ColorEffectProps = {
+  color: string;
+};
+export type FragmentEffectProps =
+  | PointMaterialEffectProps
+  | MaterialEffectProps
+  | ColorEffectProps;
 export type FragmentEffectConfig = {
   effectType: FragmentEffectType;
   effectProps?: FragmentEffectProps;

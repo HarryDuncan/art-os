@@ -1,0 +1,387 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": -2, "y": -2, "z": 15 } },
+      "controls": {
+        "minDistance": 10,
+        "maxDistance": 25
+      }
+    },
+    "assets": [
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      },
+      {
+        "name": "metal-materials",
+        "url": "../assets/textures/matcaps/neon-orange.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome"
+      },
+      {
+        "id": "art-geometry",
+        "name": "art-geometry",
+        "url": "../assets/models/website/art-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "id": "magic-geometry",
+        "name": "magic-geometry",
+        "url": "../assets/models/website/magic-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "id": "tech-geometry",
+        "name": "tech-geometry",
+        "url": "../assets/models/website/tech-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
+        "name": "hjdcurves1-geometry",
+        "url": "../assets/models/hjd-lines/line-1.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves2-geometry",
+        "url": "../assets/models/hjd-lines/line-2.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves3-geometry",
+        "url": "../assets/models/hjd-lines/line-3.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves4-geometry",
+        "url": "../assets/models/hjd-lines/line-4.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "hjdcurves1",
+        "geometryId": "Cube",
+        "size": 50,
+        "position": { "x": -0.5, "y": 0, "z": 0 },
+        "rotation": { "x": 90, "y": -30, "z": 40 },
+
+        "materialId": "phong-red"
+      },
+      {
+        "id": "hjdcurves2",
+        "geometryId": "Cube.003",
+        "size": 50,
+        "position": { "x": -5.5, "z": -20.2 },
+        "rotation": { "x": 20, "y": -10, "z": 0 },
+        "materialId": "phong-red"
+      },
+      {
+        "id": "hjdcurves3",
+        "geometryId": "Cube.001",
+        "size": 50,
+        "position": { "x": 0.5, "y": 5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 80, "z": -0 },
+        "materialId": "phong-blue"
+      },
+      {
+        "id": "hjdcurves4",
+        "geometryId": "Cube.002",
+        "size": 50,
+        "position": { "x": 3.5, "z": -3 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "phong-blue"
+      },
+
+      {
+        "id": "magic-geometry-2",
+        "geometryId": "magic-geometry",
+        "meshType": "NONE",
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "materialId": "morphing-material-2"
+      },
+      {
+        "id": "tech-geometry-2",
+        "geometryId": "tech-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material-2"
+      },
+      {
+        "id": "art-geometry-2",
+        "geometryId": "art-geometry",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material-2"
+      },
+      {
+        "id": "magic-geometry",
+        "geometryId": "magic-geometry",
+        "meshType": "NONE",
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "materialId": "morphing-material-1"
+      },
+      {
+        "id": "tech-geometry",
+        "geometryId": "tech-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+
+        "materialId": "morphing-material-1"
+      },
+      {
+        "id": "art-geometry",
+        "geometryId": "art-geometry",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "meshType": "MESH",
+        "position": { "x": 0, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material-1"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "materialId": "morphing-material-2",
+        "transformedMeshIds": [
+          "art-geometry-2",
+          "tech-geometry-2",
+          "magic-geometry-2"
+        ]
+      },
+      {
+        "type": "MORPH",
+        "transformedMeshIds": [
+          "art-geometry",
+          "tech-geometry",
+          "magic-geometry"
+        ]
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "compute-background",
+        "materialProps": {
+          "color": "#111111",
+          "specular": "#bfbfbf",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-blue",
+        "materialProps": {
+          "color": "#1902b0",
+          "specular": "#0000ff",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-red",
+        "materialProps": {
+          "color": "#f50733",
+          "specular": "#fa0536",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "morphing-material-1",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {
+          "blendSrcKey": "ONE",
+          "blendDstKey": "SRC_APLHA",
+          "depthTest": false,
+          "transparent": true
+        },
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            }
+          ],
+          "fragmentEffectConfigs": [
+            { "effectType": "OPACITY" },
+            {
+              "effectType": "COLOR",
+              "effectProps": { "color": "#0d0d0d", "opacity": true }
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": []
+      },
+      {
+        "id": "morphing-material-2",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {
+          "blendSrcKey": "SRC_ALPHA",
+          "blendDstKey": "ONE",
+          "depthTest": false,
+          "transparent": true
+        },
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 14,
+                  "ceiling": 18,
+                  "scaleFactor": 16,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#8e00fa" },
+                  { "id": "uTexture2", "pointColor": "#8e00fa" }
+                ],
+                "pointColor": "#8e00fa"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.65 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "uTime",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 3000,
+          "animationPauseMilis": 100,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ONE"
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "ONE_TO_ONE",
+              "toMaterial": "morphing-material-1"
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "ZERO_TO_ZERO",
+              "toMaterial": "morphing-material-2"
+            },
+            {
+              "uniform": "uLoopCount",
+              "loopType": "COUNT",
+              "loopProps": {
+                "loopLimit": 3
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "curve",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "SPIN",
+          "speed": 0.0006,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 20, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 20, "z": 100 } }
+      }
+    ],
+    "scenePropertiesConfig": {
+      "position": "fixed"
+    },
+    "sceneComponentConfigs": [],
+    "interactionConfig": [],
+    "screenSizeAdjustments": [
+      {
+        "screenType": "MOBILE",
+        "threeJsConfig": {
+          "camera": { "position": { "x": -3.5, "y": -2, "z": 20 } }
+        }
+      }
+    ]
+  }
+]

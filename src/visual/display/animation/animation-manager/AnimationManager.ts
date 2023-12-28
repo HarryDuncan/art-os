@@ -61,7 +61,6 @@ export class AnimationManager {
     }
 
     if (animation.isRunning === false) {
-      console.log("running camera animation");
       const initializedAnimationConfig = setUpAnimationConfig(animation);
       animation.isRunning = true;
       runCameraAnimation(camera, initializedAnimationConfig);

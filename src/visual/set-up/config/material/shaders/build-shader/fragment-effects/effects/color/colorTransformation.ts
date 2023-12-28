@@ -1,5 +1,11 @@
-export const colorTransformation = (_transformColorName, _colorName) => {
+import { createColorVectorString } from "../../../helpers/createColorVectorString";
+
+export const colorTransformation = (colorName, effectProps) => {
+  const colorAsVector = createColorVectorString(
+    effectProps.color,
+    effectProps.opacity
+  );
   return `
-        
+        vec4 ${colorName} = ${colorAsVector};
         `;
 };

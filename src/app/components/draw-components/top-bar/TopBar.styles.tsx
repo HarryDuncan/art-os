@@ -6,6 +6,6 @@ export const StyledTopBar = styled(DrawComponent)`
   height: ${({ $isVisible }) => ($isVisible ? TOP_BAR_HEIGHT : 0)}px;
   width: 100vw;
   button {
-    display: ${({ $isVisible }) => ($isVisible ? "none" : "flex")};
+    display: ${({ $isVisible }) => ($isVisible ? "flex" : "none")};
   }
 `;
