@@ -1,8 +1,8 @@
-import { RootContainer } from "../root/root-container";
+import { RootContainer } from "../../../visual/node/root/root-container";
 import { useInteractiveScene } from "visual/display/components/interactive-scene/useInteractiveScene";
 import { useThreadWithPostProcessor } from "visual/display/hooks/use-thread";
 import { useThreeJs } from "visual/display/hooks/use-three-js/useThreeJs";
-import { NodeProps } from "../node.types";
+import { NodeProps } from "../../../visual/node/node.types";
 import { useEffect } from "react";
 import { useRunAlgorithm } from "interaction/external/interaction-node-requests/useRunAlgorithm";
 
