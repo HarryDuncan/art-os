@@ -62,7 +62,7 @@ const useNavigationBarVisibility = () => {
     onActive: () => toggleSideBarVisibility(true),
     onIdle: () => toggleSideBarVisibility(false),
   });
-  console.log(isSceneActive);
+
   return useMemo(() => (isSceneActive ? false : isSidebarVisible), [
     isSceneActive,
     isSidebarVisible,

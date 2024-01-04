@@ -58,8 +58,7 @@ const loadAsset = async (asset: Asset) => {
       return image;
     }
     case ASSET_TYPES.VIDEO: {
-      // todo - check if url actually exists
-      return "";
+      return path;
     }
     case ASSET_TYPES.FONT: {
       const loadedFont = await loadFont(path);

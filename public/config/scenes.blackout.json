@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Website Home Scene",
+    "configId": "home",
+    "configPath": "scenes/website/home",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Video",
+    "configId": "video",
+    "configPath": "scenes/blackout/takeover/video",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Morhp1",
+    "configId": "morph",
+    "configPath": "scenes/blackout/takeover/morph",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Distort",
+    "configId": "distort",
+    "configPath": "scenes/blackout/takeover/distort-material",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Distort Points",
+    "configId": "distort-points",
+    "configPath": "scenes/blackout/takeover/distort-points",
+    "componentId": "InteractiveSceneContainer"
+  }
+]

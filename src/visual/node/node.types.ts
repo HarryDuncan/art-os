@@ -6,7 +6,7 @@ import {
 } from "visual/display/components/interactive-scene/InteractiveScene";
 import { SceneData } from "visual/set-up/config/config.types";
 
-export interface SceneNodeProps {
+export interface NodeProps {
   sceneFunctions: InteractiveSceneFunctions;
   events: EventConfig[];
   interactionEvents: SceneInteraction[];

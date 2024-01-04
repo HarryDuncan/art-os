@@ -19,4 +19,5 @@ export interface LoopProps {
   loopLimit: number;
   maxPeak: number;
   minTrough: number;
+  speed: number;
 }

@@ -1,7 +1,7 @@
 [
   {
     "threeJsConfig": {
-      "camera": { "position": { "x": -2, "y": -2, "z": 15 } },
+      "camera": { "position": { "x": 0, "y": -2, "z": 15 } },
       "controls": {
         "minDistance": 10,
         "maxDistance": 25
@@ -22,47 +22,47 @@
       },
       {
         "name": "metal-materials",
-        "url": "../assets/textures/matcaps/neon-orange.jpg",
+        "url": "../assets/textures/matcaps/dark-chrome-2.jpg",
         "assetType": "TEXTURE",
         "id": "chrome"
       },
       {
         "id": "art-geometry",
         "name": "art-geometry",
-        "url": "../assets/models/website/art-geometry.obj",
+        "url": "../assets/models/website/art-geometry.glb",
         "assetType": "MODEL3D"
       },
       {
         "id": "magic-geometry",
         "name": "magic-geometry",
-        "url": "../assets/models/website/magic-geometry.obj",
+        "url": "../assets/models/website/magic-geometry.glb",
         "assetType": "MODEL3D"
       },
       {
         "id": "tech-geometry",
         "name": "tech-geometry",
-        "url": "../assets/models/website/tech-geometry.obj",
+        "url": "../assets/models/website/tech-geometry.glb",
         "assetType": "MODEL3D"
       },
 
       {
         "name": "hjdcurves1-geometry",
-        "url": "../assets/models/hjd-lines/line-1.obj",
+        "url": "../assets/models/hjd-lines/line-1.glb",
         "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves2-geometry",
-        "url": "../assets/models/hjd-lines/line-2.obj",
+        "url": "../assets/models/hjd-lines/line-2.glb",
         "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves3-geometry",
-        "url": "../assets/models/hjd-lines/line-3.obj",
+        "url": "../assets/models/hjd-lines/line-3.glb",
         "assetType": "MODEL3D"
       },
       {
         "name": "hjdcurves4-geometry",
-        "url": "../assets/models/hjd-lines/line-4.obj",
+        "url": "../assets/models/hjd-lines/line-4.glb",
         "assetType": "MODEL3D"
       }
     ],
@@ -78,7 +78,7 @@
       },
       {
         "id": "hjdcurves2",
-        "geometryId": "Cube.003",
+        "geometryId": "Cube001",
         "size": 50,
         "position": { "x": -5.5, "z": -20.2 },
         "rotation": { "x": 20, "y": -10, "z": 0 },
@@ -86,7 +86,7 @@
       },
       {
         "id": "hjdcurves3",
-        "geometryId": "Cube.001",
+        "geometryId": "Cube003",
         "size": 50,
         "position": { "x": 0.5, "y": 5, "z": -2.5 },
         "rotation": { "x": 90, "y": 80, "z": -0 },
@@ -94,7 +94,7 @@
       },
       {
         "id": "hjdcurves4",
-        "geometryId": "Cube.002",
+        "geometryId": "Cube002",
         "size": 50,
         "position": { "x": 3.5, "z": -3 },
         "rotation": { "x": 90, "y": 0, "z": -0 },
@@ -108,7 +108,7 @@
         "position": { "x": 0, "z": 4 },
         "rotation": { "x": 0, "y": 0, "z": -0 },
         "geometryConfig": {
-          "scale": 2.5
+          "scale": 3.5
         },
         "materialId": "morphing-material-2"
       },
@@ -117,10 +117,10 @@
         "geometryId": "tech-geometry",
         "meshType": "NONE",
         "geometryConfig": {
-          "scale": 2.5
+          "scale": 3.5
         },
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
         "materialId": "morphing-material-2"
       },
       {
@@ -128,10 +128,10 @@
         "geometryId": "art-geometry",
         "meshType": "POINTS",
         "geometryConfig": {
-          "scale": 2.5
+          "scale": 3.5
         },
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
         "materialId": "morphing-material-2"
       },
       {
@@ -139,9 +139,9 @@
         "geometryId": "magic-geometry",
         "meshType": "NONE",
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
         "geometryConfig": {
-          "scale": 2.5
+          "scale": 3.5
         },
         "materialId": "morphing-material-1"
       },
@@ -150,10 +150,10 @@
         "geometryId": "tech-geometry",
         "meshType": "NONE",
         "geometryConfig": {
-          "scale": 2.5
+          "scale": 3.5
         },
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
 
         "materialId": "morphing-material-1"
       },
@@ -161,11 +161,11 @@
         "id": "art-geometry",
         "geometryId": "art-geometry",
         "geometryConfig": {
-          "scale": 2.5
+          "scale": 3.5
         },
         "meshType": "MESH",
         "position": { "x": 0, "z": 4 },
-        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
         "materialId": "morphing-material-1"
       }
     ],
@@ -220,8 +220,8 @@
         "id": "morphing-material-1",
         "materialType": "BUILT_SHADER",
         "blendingConfig": {
-          "blendSrcKey": "ONE",
-          "blendDstKey": "SRC_APLHA",
+          "blendSrcKey": "SRC_ALPHA",
+          "blendDstKey": "DST_ALPHA",
           "depthTest": false,
           "transparent": true
         },
@@ -235,13 +235,19 @@
           "fragmentEffectConfigs": [
             { "effectType": "OPACITY" },
             {
-              "effectType": "COLOR",
-              "effectProps": { "color": "#0d0d0d", "opacity": true }
+              "effectType": "MATERIAL",
+              "effectProps": { "opacity": true }
             }
           ],
           "attributeConfig": []
         },
-        "assetMapping": []
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome",
+            "relationship": "MATCAP"
+          }
+        ]
       },
       {
         "id": "morphing-material-2",
@@ -262,8 +268,8 @@
               "effectType": "POINTS",
               "effectProps": {
                 "perspectiveConfig": {
-                  "floor": 14,
-                  "ceiling": 18,
+                  "floor": 24,
+                  "ceiling": 32,
                   "scaleFactor": 16,
                   "divisor": 9
                 }
@@ -275,10 +281,9 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDefinitions": [
-                  { "id": "uTexture1", "pointColor": "#8e00fa" },
-                  { "id": "uTexture2", "pointColor": "#8e00fa" }
-                ],
-                "pointColor": "#8e00fa"
+                  { "id": "uTexture1", "pointColor": "#f50733" },
+                  { "id": "uTexture2", "pointColor": "#1902b0" }
+                ]
               }
             }
           ],
@@ -286,7 +291,7 @@
             {
               "id": "pointDisplay",
               "valueType": "FLOAT",
-              "valueConfig": { "randomizedPercentage": 0.65 }
+              "valueConfig": { "randomizedPercentage": 0.015 }
             }
           ]
         },

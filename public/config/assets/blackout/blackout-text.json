@@ -1,0 +1,20 @@
+[
+  {
+    "name": "blackout-geometry",
+    "id": "blackout",
+    "url": "../assets/models/blackout/takeover/blackout.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "blackout-t-geometry",
+    "id": "blackout-t",
+    "url": "../assets/models/blackout/takeover/blackout-takeover.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "barba-geometry",
+    "id": "barba",
+    "url": "../assets/models/blackout/takeover/barba-logo.obj",
+    "assetType": "MODEL3D"
+  }
+]

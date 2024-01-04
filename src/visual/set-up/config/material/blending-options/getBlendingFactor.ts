@@ -39,6 +39,5 @@ export const getBlendingFactor = (blendMode) => {
       return SrcAlphaSaturateFactor;
     default:
       console.error("Unknown blending mode:", blendMode);
-      return;
   }
 };

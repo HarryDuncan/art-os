@@ -22,7 +22,6 @@ export const opacity = (transformColorName: string): FragmentEffectData => {
   const fragmentColorName = FRAGMENT_COLOR_NAMES.OPACITY;
   const uniformConfig = opacityUniforms() as UniformConfig;
   const varyingConfig = colorVaryings();
-  console.log(transformColorName);
   const transformation = opacityTransformation(
     fragmentColorName,
     transformColorName

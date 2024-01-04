@@ -9,7 +9,7 @@ export const getLoopType = (
   duration: number,
   loopProps: Partial<LoopProps>
 ) => {
-  const { steepness, loopLimit, minTrough, maxPeak } = formatLoopProps(
+  const { steepness, speed, loopLimit, minTrough, maxPeak } = formatLoopProps(
     loopProps
   );
   switch (loopType) {
@@ -29,7 +29,10 @@ export const getLoopType = (
       };
     case ANIMATION_LOOP_TYPES.MIN_MAX:
       return (time: number) =>
-        Math.max(Math.min(Math.cos(time) * 1.2 + 0.5, maxPeak), minTrough);
+        Math.max(
+          Math.min(Math.cos(time * speed) * steepness + 0.5, maxPeak),
+          minTrough
+        );
     case ANIMATION_LOOP_TYPES.LINEAR:
     default:
       return (time: number) => time;

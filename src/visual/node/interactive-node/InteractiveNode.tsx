@@ -3,8 +3,10 @@ import { useInteractiveScene } from "visual/display/components/interactive-scene
 import { useThreadWithPostProcessor } from "visual/display/hooks/use-thread";
 import { useThreeJs } from "visual/display/hooks/use-three-js/useThreeJs";
 import { NodeProps } from "../node.types";
+import { useEffect } from "react";
+import { useRunAlgorithm } from "interaction/external/interaction-node-requests/useRunAlgorithm";
 
-const SceneNode = ({
+const InteractiveNode = ({
   sceneFunctions,
   animations = [],
   interactionEvents = [],
@@ -32,10 +34,13 @@ const SceneNode = ({
   );
 
   useThreadWithPostProcessor(currentFrameRef, scene, camera, renderer, []);
-
+  const runAlgorithm = useRunAlgorithm();
+  useEffect(() => {
+    runAlgorithm();
+  }, []);
   return (
     <RootContainer containerRef={container} sceneProperties={sceneProperties} />
   );
 };
 
-export default SceneNode;
+export default InteractiveNode;

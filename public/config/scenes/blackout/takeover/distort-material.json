@@ -1,0 +1,654 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25 } }
+    },
+    "assets": [
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg2.mp4",
+        "assetType": "VIDEO"
+      },
+
+      {
+        "name": "mermaid-2-geometry",
+        "url": "../assets/models/blackout/takeover/mermaid-2-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/red-jelly.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "mermaid-2-geometry",
+        "geometryId": "mermaid-2",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.045
+        },
+        "position": { "x": 2, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -90 },
+        "materialId": "distort-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "distort-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uAngle",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 15,
+                "minTrough": 0,
+                "speed": 0.5,
+                "steepness": 5
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATERIAL"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "distort-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.2 }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATERIAL"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["1-geometry-morph", "2-geometry-morph"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": { "backgroundColor": "white" }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 15 } }
+    },
+    "assets": [
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg4.mp4",
+        "assetType": "VIDEO"
+      },
+
+      {
+        "name": "mermaid-2-geometry",
+        "url": "../assets/models/blackout/takeover/mermaid-1-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/pink-jelly.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "mermaid-2-geometry",
+        "geometryId": "mermaid-1",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.045
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "materialId": "distort-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "distort-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uAngle",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 15,
+                "minTrough": 0,
+                "speed": 0.5,
+                "steepness": 5
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATERIAL"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "distort-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.2 }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATERIAL"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["1-geometry-morph", "2-geometry-morph"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": { "backgroundColor": "white" }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 15 } }
+    },
+    "assets": [
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg4.mp4",
+        "assetType": "VIDEO"
+      },
+
+      {
+        "name": "mermaid-2-geometry",
+        "url": "../assets/models/blackout/takeover/twins-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/green-jelly.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "mermaid-2-geometry",
+        "geometryId": "twins",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.055
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -90 },
+        "materialId": "distort-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "distort-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uAngle",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 15,
+                "minTrough": 0,
+                "speed": 0.5,
+                "steepness": 5
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATERIAL"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "distort-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.2 }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATERIAL"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["1-geometry-morph", "2-geometry-morph"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": { "backgroundColor": "white" }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25 } }
+    },
+    "assets": [
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg3.mp4",
+        "assetType": "VIDEO"
+      },
+
+      {
+        "name": "mermaid-2-geometry",
+        "url": "../assets/models/blackout/takeover/person-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/red-jelly.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "mermaid-2-geometry",
+        "geometryId": "person",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.1
+        },
+        "position": { "x": 0, "y": 2, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -180 },
+        "materialId": "distort-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "distort-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uAngle",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 15,
+                "minTrough": 0,
+                "speed": 0.5,
+                "steepness": 5
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATERIAL"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "distort-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.2 }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATERIAL"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["1-geometry-morph", "2-geometry-morph"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -6 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": { "backgroundColor": "white" }
+  }
+]

@@ -19,16 +19,15 @@ const fetchData = async (filePath: string) => {
   }
 };
 
+const DEFAULT_CONFIG_URL = "config/scenes.json";
+const BARBA_URL = "config/scenes.barba.json";
+const BLACKOUT_URL = "config/scenes.blackout.json";
 export const useAppConfigs = () => {
   const dispatch = useAppDispatch();
-  // TODO - toggle test vs production data
-  const isTest = true;
 
   useEffect(() => {
     const retrieveAppData = async () => {
-      const sceneConfigsUrl = `${ROOT}config/scenes${
-        isTest ? ".test" : ""
-      }.json`;
+      const sceneConfigsUrl = `${ROOT}${BLACKOUT_URL}`;
       const sceneConfigs = await fetchData(sceneConfigsUrl);
       dispatch(setSceneConfigs(sceneConfigs));
       const defaultSceneConfigsUrl = `${ROOT}config/defaults/scenes.json`;

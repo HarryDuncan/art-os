@@ -1,4 +1,3 @@
-import { useRunAlgorithm } from "interaction/external/interaction-node-requests/useRunAlgorithm";
 import { MutableRefObject, useCallback, useEffect, useRef } from "react";
 import { Camera, WebGLRenderer } from "three";
 import { Pass } from "three/examples/jsm/postprocessing/Pass";
@@ -14,7 +13,7 @@ export const useThreadWithPostProcessor = (
   passes: Pass[]
 ) => {
   const postProcessor: MutableRefObject<null | PostProcessor> = useRef(null);
-  const runAlgorithm = useRunAlgorithm();
+
   const update = useCallback(() => {
     sceneUpdateEvent();
     if (scene) {
@@ -46,7 +45,6 @@ export const useThreadWithPostProcessor = (
         camera,
         passes,
       });
-      runAlgorithm();
     }
   }, [scene, camera, renderer, postProcessor, passes]);
 

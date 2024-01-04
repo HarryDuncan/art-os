@@ -11,39 +11,19 @@ import { useAssets } from "visual/set-up/assets/useAssets";
 import { setSameVertexCount } from "./geometry/vertex/setSameVertexCount";
 import { addAdditionalVerticies } from "./geometry/vertex/add-shapes/addAdditionalVertices";
 import { preTransformGeometry } from "./pre-transform/preTransform";
-// import { getEdgesGeometry } from "./geometry/edges-geometry/getEdgesGeometry";
-// import {
-//   AXIS,
-//   Axis,
-// } from "visual/utils/three-dimension-space/position/position.types";
-// import { subdivideByVertexDistance } from "./geometry/vertex/subdivide/subdivideByVertexDistance";
+import { AppContainer } from "app/components/containers/AppContainer";
 
 const preTranformConfig = {
   centerGeometry: true,
 };
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/rbg.json`);
+  const assets = useFetchData(
+    `${CONFIG}assets/blackout/blackout-creatures.json`
+  );
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );
 
-  // const transformConfig = {
-  //   vertexPositionsCount: 1,
-  //   vertexPositionAxis: AXIS.X as Axis,
-  // };
-  // const centerToOrigin = () => {
-  //   const preTransformed = preTransform(initializedAssets, preTranformConfig);
-  //   const transformedGeometry = preTransformed.flatMap((asset) => {
-  //     const bufferGeometry = getAssetBufferGeometry(asset);
-  //     return bufferGeometry ?? [];
-  //   });
-  //   transformedGeometry.forEach((transformed, index) => {
-  //     const fileName = initializedAssets[index].name;
-  //     const asObj3d = new Mesh(transformed);
-  //     asObj3d.name = initializedAssets[index].id;
-  //     // handleExportClick(asObj3d, fileName);
-  //   });
-  // };
   const sameVertices = useCallback(() => {
     const preTransformed = preTransformGeometry(
       initializedAssets,
@@ -149,33 +129,35 @@ export const GeometryPreprocess = () => {
   // };
 
   return (
-    <Container>
-      <h1>Geometry Preprocess</h1>
-      <h1>Assets Initialized : {areAssetsInitialized ? "yes" : "no"} </h1>
-      <h1>Assets : {initializedAssets.map(({ name }) => `${name} `)} </h1>
-      <h2>Same Vertices</h2>
-      <button
-        type="button"
-        onClick={sameVertices}
-        disabled={!areAssetsInitialized}
-      >
-        Same Vertices
-      </button>
-      <button
-        type="button"
-        onClick={addVertices}
-        disabled={!areAssetsInitialized}
-      >
-        add Vertices
-      </button>
-      <h2>Extract Metadata</h2>
-      <button
-        type="button"
-        onClick={extractAssetMetadata}
-        disabled={!areAssetsInitialized}
-      >
-        Extract Metadata
-      </button>
-    </Container>
+    <AppContainer>
+      <Container>
+        <h1>Geometry Preprocess</h1>
+        <h1>Assets Initialized : {areAssetsInitialized ? "yes" : "no"} </h1>
+        <h1>Assets : {initializedAssets.map(({ name }) => `${name} `)} </h1>
+        <h2>Same Vertices</h2>
+        <button
+          type="button"
+          onClick={sameVertices}
+          disabled={!areAssetsInitialized}
+        >
+          Same Vertices
+        </button>
+        <button
+          type="button"
+          onClick={addVertices}
+          disabled={!areAssetsInitialized}
+        >
+          add Vertices
+        </button>
+        <h2>Extract Metadata</h2>
+        <button
+          type="button"
+          onClick={extractAssetMetadata}
+          disabled={!areAssetsInitialized}
+        >
+          Extract Metadata
+        </button>
+      </Container>
+    </AppContainer>
   );
 };

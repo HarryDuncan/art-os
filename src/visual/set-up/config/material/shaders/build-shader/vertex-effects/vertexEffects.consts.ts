@@ -7,11 +7,13 @@ export const VERTEX_EFFECTS = {
   ROTATE: "ROTATE",
   MORPH: "MORPH",
   DISTORT: "DISTORT",
+  ALIEN: "ALIEN",
   INTERACTIVE: "INTERACTIVE",
 };
 export const VERTEX_EFFECT_POINT_NAMES = {
   DEFAULT_POINT: "position",
   DISTORT_POINT: "distortPoint",
+  ALIEN_DISTORT: "alienPoint",
   EXPLODED_POINT: "explodedPoint",
   FILTERED_POINT: "filteredPoint",
   ROTATED_POINT: "rotatedPoint",

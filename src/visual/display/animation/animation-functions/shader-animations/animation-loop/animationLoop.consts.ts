@@ -17,6 +17,7 @@ export const DEFAULT_LOOP_PROPS = {
   loopLimit: DEFAULT_LOOP_LIMIT,
   maxPeak: 1,
   minTrough: -1,
+  speed: 1,
 };
 export const ANIMATION_LOOP_KEYPOINTS = {
   oneToOne: {

@@ -69,7 +69,6 @@ export class InteractiveScene extends Scene {
   }
 
   addInteractionEvents(interactionEvents: SceneInteraction[]) {
-    console.log(interactionEvents);
     interactionEvents.forEach(({ eventKey, onEvent }) => {
       document.addEventListener(eventKey, (e) => {
         const { detail } = e as InteractionEvent;
