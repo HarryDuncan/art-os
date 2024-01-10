@@ -4,4 +4,7 @@ export const {
   setSelectedConfigId,
   setSceneConfigs,
   setDefaultSceneConfigs,
+  setSceneCounts,
+  setSceneIndex,
+  setScenePlayState,
 } = slice.actions;

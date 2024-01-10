@@ -5,9 +5,13 @@ import { useSceneData } from "visual/set-up/config/useSceneData";
 import { defaultScene } from "./set-up-scene-parameters/default";
 import { useConfigData } from "./useConfigData";
 import { useAssets } from "visual/set-up/assets/useAssets";
+import { useAppSelector } from "app/redux/store";
 
 export const useSceneParameters = (configId = "default") => {
   const configData = useConfigData(configId);
+  const {
+    sceneControls: { sceneIndex },
+  } = useAppSelector((state) => state.sceneData);
   const { areAssetsInitialized, initializedAssets } = useAssets(
     configData?.assets
   );
@@ -29,7 +33,7 @@ export const useSceneParameters = (configId = "default") => {
       assets: initializedAssets,
       ...sceneParams,
     };
-  }, [configId, initializedAssets, sceneData]);
+  }, [configId, initializedAssets, sceneData, sceneIndex]);
 };
 
 const setUpParams = (configId, configData, sceneData) => {

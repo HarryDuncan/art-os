@@ -2,21 +2,32 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AnimatedScene } from "./types";
 import { SceneItem } from "scenes/types";
 
+export enum ScenePlayState {
+  PAUSE = "PAUSE",
+  PLAY = "PLAY",
+  STOP = "STOP",
+}
 export type SceneState = {
-  configIndex: number;
-  sceneIndex: number;
-  isUsingLastScene: boolean;
-  configId: string | null;
+  sceneControls: {
+    sceneIndex: number;
+    sceneCount: number;
+    isUsingLastScene: boolean;
+    scenePlayState: ScenePlayState;
+  };
+  selectedConfigId: string | null;
   data: SceneItem | null;
   configuredScenes: AnimatedScene[];
   defaultScenes: AnimatedScene[];
 };
 
 export const INITIAL_STATE: SceneState = {
-  configIndex: 0,
-  sceneIndex: 3,
-  isUsingLastScene: false,
-  configId: null,
+  sceneControls: {
+    sceneCount: 0,
+    sceneIndex: 0,
+    isUsingLastScene: false,
+    scenePlayState: ScenePlayState.PLAY,
+  },
+  selectedConfigId: null,
   data: null,
   configuredScenes: [],
   defaultScenes: [],
@@ -45,6 +56,34 @@ export const slice = createSlice({
       return {
         ...state,
         defaultScenes: payload,
+      };
+    },
+    setSceneIndex: (state, { payload }: PayloadAction<number>) => {
+      return {
+        ...state,
+        sceneControls: {
+          ...state.sceneControls,
+          sceneIndex: payload,
+          isUsingLastScene: false,
+        },
+      };
+    },
+    setSceneCounts: (state, { payload }: PayloadAction<number>) => {
+      return {
+        ...state,
+        sceneControls: {
+          ...state.sceneControls,
+          sceneCount: payload,
+        },
+      };
+    },
+    setScenePlayState: (state, { payload }: PayloadAction<ScenePlayState>) => {
+      return {
+        ...state,
+        sceneControls: {
+          ...state.sceneControls,
+          scenePlayState: payload,
+        },
       };
     },
   },
