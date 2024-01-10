@@ -1,9 +1,9 @@
-import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
-import { EXTERNAL_INTERACTION_EVENT_KEYS } from "../interactions.constants";
-import { getSceneElementByName } from "visual/utils/scene/getSceneElementByName";
+import { Vector3, BufferGeometry } from "three";
 import { updateObjectUniformByKey } from "visual/display/animation/animation-functions/shader-animations/uniforms/updateObjectUniformByKey";
-import { BufferGeometry, Vector3 } from "three";
+import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
+import { getSceneElementByName } from "visual/utils/scene/getSceneElementByName";
 import { getCentroid } from "visual/utils/three-dimension-space/getCentroid";
+import { EXTERNAL_INTERACTION_EVENT_KEYS } from "../interactions.constants";
 
 export type Position = {
   x: number;
@@ -14,7 +14,7 @@ const UPDATE_THRESHOLD = 0.85;
 const DURATION = 50;
 const POSITION_DISTANCE = 0.2;
 
-let sceneDimensions = { x: 0, y: 0, radiusX: 0, radiusY: 0 };
+const sceneDimensions = { x: 0, y: 0, radiusX: 0, radiusY: 0 };
 let isCalculated = false;
 const positionUpdateFunction = (scene: InteractiveScene, eventDetails) => {
   const positions = eventDetails;
@@ -42,11 +42,10 @@ const positionUpdateFunction = (scene: InteractiveScene, eventDetails) => {
 };
 
 const calculateEffectParams = (animatedObjects) => {
-  console.log(animatedObjects);
   const obj = animatedObjects[0];
-  const geometry: BufferGeometry = obj.geometry;
-  const max = geometry.boundingBox?.max;
-  const min = geometry.boundingBox?.min;
+  const { geometry }: { geometry: BufferGeometry } = obj;
+  const max = geometry.boundingBox?.max ?? new Vector3(0, 0, 0);
+  const min = geometry.boundingBox?.min ?? new Vector3(0, 0, 0);
   const center = getCentroid([max, min]);
   isCalculated = true;
   sceneDimensions.x = center.x;

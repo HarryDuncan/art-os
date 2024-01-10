@@ -1,14 +1,14 @@
 import { CustomBlending } from "three";
 import { BlendingConfig } from "./blendingOptions.types";
 import { DEFAULT_BLENDING_OPTIONS } from "./blendingOptions.consts";
-import { getBlendingFactor } from "./getBlendingFactor";
+import { getBlendingDstFactor, getBlendingFactor } from "./getBlendingFactor";
 
 export const configureBlendingOptions = (
   blendingConfig: Partial<BlendingConfig> | undefined
 ) => {
   if (!blendingConfig) return {};
   const formattedBlendingConfig = formatBlendingConfig(blendingConfig);
-  const blendDst = getBlendingFactor(formattedBlendingConfig.blendDstKey);
+  const blendDst = getBlendingDstFactor(formattedBlendingConfig.blendDstKey);
   const blendSrc = getBlendingFactor(formattedBlendingConfig.blendSrcKey);
   return {
     blending: CustomBlending,

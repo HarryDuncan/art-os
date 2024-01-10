@@ -1,44 +1,60 @@
-import 'styled-components';
+import "styled-components";
 
-declare module 'styled-components' {
+declare module "styled-components" {
   export interface DefaultTheme {
     spacing: (multiple?: number) => number;
     colors: {
       mono: {
-        ui01: '#171719';
-        ui02: '#202123';
-        ui03: '#262a2d';
-        ui04: '#373d43';
-        ui05: '#5a6872';
-        ui06: '#c6cdd2';
-        text01: '#fff';
-        text02: '#c6cdd2';
-        text03: '#98a5ae';
+        background: string;
+        lightText: "#fffcfc";
+        darkText: "#030303";
+        lightGray: "#949292";
       };
-      threshold: {
-        low: '#a0f751';
-        lowmid: '#d1d40e';
-        mid: '#f9ef00';
-        midhigh: '#ff7326';
-        high: '#dc4545';
-      };
+
       brand: {
-        brand01: '#0081a1';
-        brand02: '#59cbe8';
+        brand01: "#0081a1";
+        brand02: "#59cbe8";
+      };
+      gradients: {
+        light: `linear-gradient(
+                0deg,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(205, 205, 205, 1) 10%,
+                rgba(133, 133, 133, 1) 14%,
+                rgba(219, 219, 219, 1) 50%,
+                rgba(255, 255, 255, 1) 100%
+              );`;
+        dark: `linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.8911939775910365) 100%);`;
       };
     };
     font: {
+      size: {
+        xSmall: "1rem";
+        small: "1.5rem";
+        medium: "3rem";
+        mediumLarge: "4rem";
+        large: "5rem";
+        xLarge: "7rem";
+      };
+      weight: {
+        light: 200;
+        normal: 400;
+        bold: 700;
+      };
       default: {
-        family: 'Inter, Arial, Helvetica, sans-serif';
-        weight: {
-          light: 200;
-          normal: 400;
-          bold: 700;
-        };
+        family: "Courier New";
       };
       alternative: {
-        family: '"Source Sans Pro", monospace';
+        family: "var(--font-hjd)";
       };
+    };
+    breakpoints: {
+      wideScreen: 1500;
+      desktop: 1280;
+      laptop: 1080;
+      tablet: 850;
+      mobile: 600;
+      smallMobile: 350;
     };
   }
 }

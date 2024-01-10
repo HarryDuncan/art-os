@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { DrawComponent } from "app/components/draw-components/DrawComponent.styles";
 
 export const SIDE_BAR_WIDTH = 220;
-
-const SIDE_BAR_WIDTH_OPEN = 220;
 const SIDE_BAR_LINK_HEIGHT = 65;
 const SIDE_BAR_LINK_FONT_SIZE = "1.6rem";
 const LOGO_HEIGHT = 40;

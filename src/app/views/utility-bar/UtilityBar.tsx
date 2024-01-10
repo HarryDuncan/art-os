@@ -1,4 +1,7 @@
-import { StyledTopBar } from "app/components/draw-components/top-bar/TopBar.styles";
+import {
+  StyledTopBar,
+  TopBarItem,
+} from "app/components/draw-components/top-bar/TopBar.styles";
 import { KEYS } from "interaction/interactions.consts";
 import { useKeyListener } from "interaction/internal/useSetUpKeyListener";
 import { useCallback, useMemo, useState } from "react";
@@ -43,7 +46,11 @@ const StopButton = () => {
     history.push(BACK.link);
     stop();
   };
-  return <button onClick={handleClick}>Back</button>;
+  return (
+    <TopBarItem>
+      <button onClick={handleClick}>Back</button>
+    </TopBarItem>
+  );
 };
 
 const UpdateSceneSpin = () => {
@@ -57,11 +64,13 @@ const UpdateSceneSpin = () => {
     appDispatch(setSceneIndex(updatedValue));
   };
   return (
-    <SpinButton
-      value={sceneIndex}
-      min={0}
-      max={sceneCount}
-      onChange={handleChange}
-    />
+    <TopBarItem>
+      <SpinButton
+        value={sceneIndex}
+        min={0}
+        max={sceneCount}
+        onChange={handleChange}
+      />
+    </TopBarItem>
   );
 };

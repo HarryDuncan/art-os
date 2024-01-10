@@ -8,6 +8,7 @@ const NON_SCENE_ROUTES = [
   "texture-preprocess",
 ];
 export const useIsSceneActive = () => {
+  // @ts-ignore
   const { sceneid } = useParams();
   return useMemo(() => {
     return !NON_SCENE_ROUTES.includes(sceneid) && sceneid !== undefined;

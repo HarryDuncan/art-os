@@ -1,4 +1,6 @@
 import {
+  MorphEffectProps,
+  PointsEffectProps,
   RotationEffectProps,
   VertexEffectConfig,
 } from "../../buildShader.types";
@@ -24,10 +26,16 @@ export const getVertexEffect = (
       return vertexFilter(transformPointName);
     }
     case VERTEX_EFFECTS.POINTS: {
-      return pointsVertex(transformPointName, effect.effectProps);
+      return pointsVertex(
+        transformPointName,
+        effect.effectProps as Partial<PointsEffectProps> | undefined
+      );
     }
     case VERTEX_EFFECTS.MORPH: {
-      return morphVertex(transformPointName, effect.effectProps);
+      return morphVertex(
+        transformPointName,
+        effect.effectProps as Partial<MorphEffectProps> | undefined
+      );
     }
     case VERTEX_EFFECTS.DISTORT: {
       return distort(transformPointName);

@@ -10,3 +10,8 @@ export const StyledTopBar = styled(DrawComponent)`
     display: ${({ $isVisible }) => ($isVisible ? "flex" : "none")};
   }
 `;
+
+export const TopBarItem = styled.div`
+  min-width: 40px;
+  padding: 1rem;
+`;

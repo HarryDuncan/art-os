@@ -1,7 +1,7 @@
 import { EMPTY_UNIFORM_CONFIG } from "../../../shader-properties/uniforms/uniforms.consts";
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 
-export const getInteractiveEffects = (effectProps, transformName) => {
+export const getInteractiveEffects = (transformName: string, _effectProps) => {
   const fragmentColorName = FRAGMENT_COLOR_NAMES.INTERACTIVE;
   const transformation = `
         vec4 ${fragmentColorName} = ${transformName};

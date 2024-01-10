@@ -1,4 +1,3 @@
-import { initializeVideos } from "visual/set-up/assets/animated-texture/setUpVideos";
 import { formatSceneComponentConfigs } from "visual/set-up/config/components/formatSceneComponentConfigs";
 import { getLightsFromConfig } from "visual/set-up/config/lights/getLightsFromConfig";
 import { formatGlobalMaterials } from "visual/set-up/config/material/formatGlobalMaterials";
@@ -10,13 +9,14 @@ import { useThreeJsFromConfig } from "./three-js/useThreeJsFromConfig";
 import { useMemo } from "react";
 import { useScreenSizeProperties } from "./scene-properties/useScreenSizeProperties";
 import { useWindowState } from "visual/compat/window-state/windowStateProvider";
+import { useInitializeVideos } from "../assets/animated-texture/useInitializeVideos";
 
 export const useSceneData = (
   config: SceneConfig | undefined | null,
   assets: Asset[],
   areAssetsInitialized: boolean
 ): SceneData | null => {
-  initializeVideos(assets, areAssetsInitialized);
+  useInitializeVideos(assets, areAssetsInitialized);
   const setUpThreeJs = useThreeJsFromConfig();
   const {
     state: { screenType },

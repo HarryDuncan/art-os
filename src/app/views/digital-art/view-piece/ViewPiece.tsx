@@ -20,6 +20,7 @@ export const ViewPiece = () => {
 };
 
 const ViewPieceContent = () => {
+  // @ts-ignore
   const { sceneid } = useParams();
   const sceneParameters = useSceneParameters(sceneid);
   const {

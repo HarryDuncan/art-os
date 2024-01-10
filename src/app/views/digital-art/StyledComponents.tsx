@@ -1,5 +1,5 @@
 import { SIDE_BAR_TRANSITION_SPEED } from "app/components/draw-components/DrawComponent.styles";
-import { SIDE_BAR_WIDTH } from "app/components/side-bar/side-bar/SideBar.styles";
+import { SIDE_BAR_WIDTH } from "app/components/draw-components/side-bar/SideBar.styles";
 import styled from "styled-components/macro";
 
 const HEADER_HEIGHT = 100;
@@ -15,7 +15,7 @@ export const DigitalArtContainer = styled.div`
 export const DigitalArtHeader = styled.div<{ $isVisible: boolean }>`
   display: flex;
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.colors.mono.ui01};
+  background-color: ${({ theme }) => theme.colors.mono.darkText};
   height: ${({ $isVisible }) => ($isVisible ? HEADER_HEIGHT : 0)}px;
   transition: width ${SIDE_BAR_TRANSITION_SPEED}s ease-out,
     box-shadow ${SIDE_BAR_TRANSITION_SPEED}s ease-out;

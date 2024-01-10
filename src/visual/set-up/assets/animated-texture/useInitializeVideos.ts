@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { ASSET_TYPES, Asset } from "../asset.types";
 import { setupVideo } from "./setUpVideo";
 
-export const initializeVideos = (
+export const useInitializeVideos = (
   loadedAssets: Asset[],
   isInitialized = true
 ) => {

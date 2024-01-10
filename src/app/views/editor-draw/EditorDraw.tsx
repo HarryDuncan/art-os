@@ -1,4 +1,4 @@
-import SideBar from "app/components/side-bar/side-bar/SideBar";
+import SideBar from "app/components/draw-components/side-bar/SideBar";
 import { useCallback, useEffect, useState } from "react";
 
 export const EditorDraw = () => {
