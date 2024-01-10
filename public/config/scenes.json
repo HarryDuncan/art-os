@@ -40,5 +40,11 @@
     "configId": "interactive-2",
     "configPath": "scenes/hjd-art/interactive/interactive-2",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Slow Morph",
+    "configId": "hjd-slow-morph",
+    "configPath": "scenes/hjd-art/hjd-morph-slow",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

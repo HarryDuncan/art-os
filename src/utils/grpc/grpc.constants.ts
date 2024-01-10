@@ -1,3 +1,4 @@
 export const PORT_NUMBERS = {
   INTERACTION_NODE: 8000,
+  SCENE_CAPTURE: 8100,
 };

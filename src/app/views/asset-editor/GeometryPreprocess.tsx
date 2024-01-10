@@ -5,21 +5,19 @@ import { CONFIG } from "app/constants";
 import { useFetchData } from "app/hooks/useFetchData";
 import { extractMetadata } from "./geometry/extract-metadata/extractMetadata";
 import { downloadJsonFile } from "./export/downloadJson";
-import { Asset } from "visual/set-up/assets/asset.types";
-import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
-import { useAssets } from "visual/set-up/assets/useAssets";
 import { setSameVertexCount } from "./geometry/vertex/setSameVertexCount";
 import { addAdditionalVerticies } from "./geometry/vertex/add-shapes/addAdditionalVertices";
 import { preTransformGeometry } from "./pre-transform/preTransform";
 import { AppContainer } from "app/components/containers/AppContainer";
+import { useAssets } from "visual/set-up/assets/useAssets";
+import { Asset } from "visual/set-up/assets/asset.types";
+import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
 
 const preTranformConfig = {
   centerGeometry: true,
 };
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(
-    `${CONFIG}assets/blackout/blackout-creatures.json`
-  );
+  const assets = useFetchData(`${CONFIG}assets/statues.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );

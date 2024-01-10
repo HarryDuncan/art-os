@@ -2,13 +2,13 @@
   {
     "name": "statue1-geometry",
     "id": "statue1",
-    "url": "../assets/models/sculptures/hercules-bust-1.obj",
+    "url": "../assets/models/sculptures/NymphFixed.obj",
     "assetType": "MODEL3D"
   },
   {
     "name": "statue2-geometry",
     "id": "statue2",
-    "url": "../assets/models/sculptures/aphrodite-bust-2.obj",
+    "url": "../assets/models/sculptures/Philop.obj",
     "assetType": "MODEL3D"
   }
 ]

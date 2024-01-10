@@ -1,0 +1,43 @@
+syntax = "proto3";
+package sceneCapture;
+
+
+
+/* Visual Input Node Service */
+
+service SceneCaptureService {
+
+// <------------------- Initialization -------------------------------->
+  rpc InitializeSceneCapture (InitializeSceneCaptureRequest) returns (InitializeSceneCaptureResponse);
+
+  rpc RunCapture (RunCaptureRequest) returns (stream RunCaptureResponse);
+
+  rpc StopCapture (StopCaptureRequest) returns (StopCaptureResponse);
+  
+}
+
+
+
+message InitializeSceneCaptureRequest {
+}
+message InitializeSceneCaptureResponse {
+  bool is_initialized = 1;
+}
+
+
+
+message RunCaptureRequest {
+    string capture_name = 1;
+  
+}
+message RunCaptureResponse {
+}
+
+
+message StopCaptureRequest {
+
+}
+
+message StopCaptureResponse {
+  
+}
