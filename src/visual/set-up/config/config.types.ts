@@ -28,15 +28,17 @@ import { Position3d } from "visual/utils/three-dimension-space/position/position
 import { AttributeConfig } from "./material/shaders/build-shader/buildShader.types";
 import { SceneConfigType } from "./config.constants";
 
-export type RandomizationConfig = {
+export type MultipleConfig = {
   instanceCount: number;
-  randomRotation?: boolean;
   boundingBoxConfig: {
     width: number;
     height: number;
     depth: number;
     center: Partial<Position3d>;
   };
+};
+export type RandomizationConfig = MultipleConfig & {
+  randomRotation?: boolean;
 };
 
 export type SceneComponentConfig = {
@@ -51,6 +53,7 @@ export type MeshComponentConfig = {
   materialId?: string;
   rotation?: Partial<Position3d>;
   position?: Partial<Position3d>;
+  multipleConfig?: MultipleConfig;
   randomizationConfig?: RandomizationConfig;
   geometryConfig?: GeometryConfig;
   groupId?: string;

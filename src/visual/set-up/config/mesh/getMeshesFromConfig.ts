@@ -8,6 +8,7 @@ import { SceneConfig } from "../config.types";
 import { transformGeometry } from "./geometry/transform-geometries/transformGeometries";
 import { ShaderAttributeConfig } from "../material/shaders/build-shader/buildShader.types";
 import { formatMeshTransforms } from "./geometry/formatMeshTransforms";
+import { multipleMeshes } from "./multiple-meshes/multipleMeshes";
 
 export const getMeshesFromConfig = (
   assets: Asset[],
@@ -21,8 +22,12 @@ export const getMeshesFromConfig = (
       (meshConfig) => !meshConfig.randomizationConfig
     ) ?? [];
   const randomizedMeshes = setUpRandomizedMeshConfigs(meshComponentConfigs);
-  const allMeshes = [...meshConfigs, ...randomizedMeshes];
-
+  const multipleMeshConfigs = multipleMeshes(meshComponentConfigs);
+  const allMeshes = [
+    ...meshConfigs,
+    ...randomizedMeshes,
+    ...multipleMeshConfigs,
+  ];
   const formattedGeometry = formatGeometry(assets, allMeshes);
   const formattedTransforms = formatMeshTransforms(
     meshTransforms ?? [],
