@@ -22,12 +22,13 @@ const fetchData = async (filePath: string) => {
 const DEFAULT_CONFIG_URL = "config/scenes.json";
 const BARBA_URL = "config/scenes.barba.json";
 const BLACKOUT_URL = "config/scenes.blackout.json";
+const LTW_URL = "config/scenes.ltw.json";
 export const useAppConfigs = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const retrieveAppData = async () => {
-      const sceneConfigsUrl = `${ROOT}${DEFAULT_CONFIG_URL}`;
+      const sceneConfigsUrl = `${ROOT}${LTW_URL}`;
       const sceneConfigs = await fetchData(sceneConfigsUrl);
       dispatch(setSceneConfigs(sceneConfigs));
       const defaultSceneConfigsUrl = `${ROOT}config/defaults/scenes.json`;

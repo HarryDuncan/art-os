@@ -77,12 +77,12 @@ const ChevronDownIcon = () => (
 
 export const SpinButton = ({ value, onChange, max, min }: SpinButtonProps) => {
   const increment = () => {
-    if (!max || value + 1 < max) {
+    if (!max || value + 1 <= max) {
       onChange(value + 1);
     }
   };
   const decrement = () => {
-    if (min === undefined || value + 1 < min) {
+    if (min === undefined || value + 1 <= min) {
       onChange(value - 1);
     }
   };
