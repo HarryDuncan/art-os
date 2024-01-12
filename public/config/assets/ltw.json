@@ -1,0 +1,56 @@
+[
+  {
+    "id": "logo",
+    "name": "logo-geometry",
+    "url": "../assets/models/ltw/19/LTW.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "marsh",
+    "name": "marsh-geometry",
+    "url": "../assets/models/ltw/19/MARSH_LONG.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "binofski",
+    "name": "binofski-geometry",
+    "url": "../assets/models/ltw/19/BINOFSKI.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "exray",
+    "name": "exray-geometry",
+    "url": "../assets/models/ltw/19/EXRAY.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "charlotte",
+    "name": "charlotte-geometry",
+    "url": "../assets/models/ltw/19/CHARLOTTE_ROONEY.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "noah",
+    "name": "noah-geometry",
+    "url": "../assets/models/ltw/19/NOAH_POWER.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "valerie",
+    "name": "valerie-geometry",
+    "url": "../assets/models/ltw/19/VALERIE.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "willem",
+    "name": "willem-geometry",
+    "url": "../assets/models/ltw/19/WILLEM.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "plane",
+    "name": "plane-geometry",
+    "url": "../assets/models/plane.obj",
+    "assetType": "MODEL3D"
+  }
+]

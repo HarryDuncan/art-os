@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Willem",
+    "configId": "willem",
+    "configPath": "scenes/ltw/willem",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "marsh",
+    "configId": "marsh",
+    "configPath": "scenes/ltw/marsh",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "binofski",
+    "configId": "binofski",
+    "configPath": "scenes/ltw/binofski",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "valerie",
+    "configId": "valerie",
+    "configPath": "scenes/ltw/valerie",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "noah",
+    "configId": "noah",
+    "configPath": "scenes/ltw/noah",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "charlotte",
+    "configId": "charlotte",
+    "configPath": "scenes/ltw/charlotte",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "exray",
+    "configId": "exray",
+    "configPath": "scenes/ltw/exray",
+    "componentId": "InteractiveSceneContainer"
+  }
+]

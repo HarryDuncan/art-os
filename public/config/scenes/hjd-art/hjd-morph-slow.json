@@ -1,7 +1,7 @@
 [
   {
     "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 2, "z": 6.5 } }
+      "camera": { "position": { "x": 0, "y": 0, "z": 8.5 } }
     },
     "assets": [
       {
@@ -17,7 +17,7 @@
 
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/pink-jelly.jpg",
+        "url": "../assets/textures/matcaps/hot-cloud-red.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -37,7 +37,7 @@
         "geometryConfig": {
           "scale": 1.5
         },
-        "position": { "x": 0, "y": -2, "z": 0 },
+        "position": { "x": 0, "y": 1, "z": 0 },
         "rotation": { "x": 0, "y": -15, "z": -0 },
         "materialId": "morphing-material"
       },
@@ -46,9 +46,9 @@
         "geometryId": "statue2",
         "meshType": "NONE",
         "geometryConfig": {
-          "scale": 0.08
+          "scale": 0.03
         },
-        "position": { "x": 0, "y": -2, "z": 0 },
+        "position": { "x": 0, "y": 1, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": -0 },
         "materialId": "morphing-material"
       }
@@ -69,7 +69,7 @@
               "loopProps": {
                 "maxPeak": 1,
                 "minTrough": 0,
-                "speed": 0.04
+                "speed": 0.08
               }
             }
           ]
@@ -113,7 +113,7 @@
             },
             {
               "effectType": "ROTATE",
-              "effectProps": { "speed": 1.2 }
+              "effectProps": { "speed": 0.8 }
             }
           ],
           "fragmentEffectConfigs": [
