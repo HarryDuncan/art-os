@@ -1,7 +1,7 @@
 import { Asset } from "visual/set-up/assets/asset.types";
 import { SceneConfig } from "../../config.types";
 import { MATERIAL_TYPES } from "visual/display/materials/materials.consts";
-import { ShaderMaterial } from "three";
+import { DoubleSide, ShaderMaterial } from "three";
 import { buildShader } from "./build-shader/buildShader";
 import { formatBuiltShaderConfig } from "./shader-formatting/formatBuiltShaderConfig";
 import { formatBuiltShaderUniforms } from "./shader-formatting/formatBuiltShaderUniforms";
@@ -44,6 +44,7 @@ export const getBuiltShaderMaterials = (
           vertexShader,
           fragmentShader,
           ...blendingOptions,
+          side: DoubleSide,
         });
         shader.name = materialConfig.id;
         return { shader, attributeConfigs };

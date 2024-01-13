@@ -9,7 +9,7 @@ import {
   ShaderMaterialProps,
 } from "visual/set-up/config/material/materials.types";
 import { configureShaders } from "visual/display/materials/webgl-shaders/shader-setup/configureShaders";
-import { ShaderMaterial } from "three";
+import { DoubleSide, ShaderMaterial } from "three";
 import { configureBlendingOptions } from "./blending-options/configureBlendingOptions";
 
 export const getShaderMaterials = (config: SceneConfig, assets: Asset[]) => {
@@ -31,8 +31,10 @@ const setUpShaderMaterial = (
   materialConfig: MaterialConfig,
   assets: Asset[]
 ) => {
-  const { shaderConfig, uniforms } =
-    materialConfig.materialProps as ShaderMaterialProps;
+  const {
+    shaderConfig,
+    uniforms,
+  } = materialConfig.materialProps as ShaderMaterialProps;
   const { vertexShader, fragmentShader, configuredUniforms } = configureShaders(
     shaderConfig,
     uniforms,
@@ -47,6 +49,7 @@ const setUpShaderMaterial = (
         uniforms: configuredUniforms,
         vertexShader,
         fragmentShader,
+        side: DoubleSide,
         ...blendingOptions,
       });
     }
