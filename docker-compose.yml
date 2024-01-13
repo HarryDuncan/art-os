@@ -13,7 +13,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "1995:1995"
-      - "1996:1996"
       - "1235:1235/udp"
     depends_on:
       - proxy
@@ -24,12 +23,4 @@ services:
             - driver: nvidia
               count : 1
               capabilities: [gpu]
-  screen_recorder:
-    privileged: true
-    build:
-      context: ./external_services/scene_capture
-      dockerfile: Dockerfile
-    ports:
-      - "1996:1996"
-    depends_on:
-      - proxy
+ 

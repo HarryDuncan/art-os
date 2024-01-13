@@ -11,6 +11,7 @@ import { SpinButton } from "app/components/inputs/spin-button/SpinButton";
 import { useAppDispatch, useAppSelector } from "app/redux/store";
 import { setSceneIndex } from "app/redux/scene-data/actions";
 import { useRestartScene } from "app/hooks/useRestartScene";
+import { SceneCaptureController } from "external-services/scene-capture/components/SceneCaptureController";
 
 const BACK = {
   key: "digital-art",
@@ -24,6 +25,9 @@ export const UtilityBar = () => {
     <StyledTopBar $isVisible={isUtilityBarVisible}>
       <StopButton />
       <UpdateSceneSpin />
+      <TopBarItem>
+        <SceneCaptureController />
+      </TopBarItem>
     </StyledTopBar>
   );
 };

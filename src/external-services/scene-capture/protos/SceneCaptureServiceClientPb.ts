@@ -84,7 +84,7 @@ export class SceneCaptureServiceClient {
 
   methodDescriptorRunCapture = new grpcWeb.MethodDescriptor(
     '/sceneCapture.SceneCaptureService/RunCapture',
-    grpcWeb.MethodType.SERVER_STREAMING,
+    grpcWeb.MethodType.UNARY,
     protos_sceneCapture_pb.RunCaptureRequest,
     protos_sceneCapture_pb.RunCaptureResponse,
     (request: protos_sceneCapture_pb.RunCaptureRequest) => {
@@ -95,13 +95,34 @@ export class SceneCaptureServiceClient {
 
   runCapture(
     request: protos_sceneCapture_pb.RunCaptureRequest,
-    metadata?: grpcWeb.Metadata): grpcWeb.ClientReadableStream<protos_sceneCapture_pb.RunCaptureResponse> {
-    return this.client_.serverStreaming(
-      this.hostname_ +
-        '/sceneCapture.SceneCaptureService/RunCapture',
-      request,
-      metadata || {},
-      this.methodDescriptorRunCapture);
+    metadata: grpcWeb.Metadata | null): Promise<protos_sceneCapture_pb.RunCaptureResponse>;
+
+  runCapture(
+    request: protos_sceneCapture_pb.RunCaptureRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: protos_sceneCapture_pb.RunCaptureResponse) => void): grpcWeb.ClientReadableStream<protos_sceneCapture_pb.RunCaptureResponse>;
+
+  runCapture(
+    request: protos_sceneCapture_pb.RunCaptureRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: protos_sceneCapture_pb.RunCaptureResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/sceneCapture.SceneCaptureService/RunCapture',
+        request,
+        metadata || {},
+        this.methodDescriptorRunCapture,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/sceneCapture.SceneCaptureService/RunCapture',
+    request,
+    metadata || {},
+    this.methodDescriptorRunCapture);
   }
 
   methodDescriptorStopCapture = new grpcWeb.MethodDescriptor(

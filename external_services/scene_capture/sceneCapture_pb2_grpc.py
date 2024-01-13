@@ -21,7 +21,7 @@ class SceneCaptureServiceStub(object):
                 request_serializer=sceneCapture__pb2.InitializeSceneCaptureRequest.SerializeToString,
                 response_deserializer=sceneCapture__pb2.InitializeSceneCaptureResponse.FromString,
                 )
-        self.RunCapture = channel.unary_stream(
+        self.RunCapture = channel.unary_unary(
                 '/sceneCapture.SceneCaptureService/RunCapture',
                 request_serializer=sceneCapture__pb2.RunCaptureRequest.SerializeToString,
                 response_deserializer=sceneCapture__pb2.RunCaptureResponse.FromString,
@@ -65,7 +65,7 @@ def add_SceneCaptureServiceServicer_to_server(servicer, server):
                     request_deserializer=sceneCapture__pb2.InitializeSceneCaptureRequest.FromString,
                     response_serializer=sceneCapture__pb2.InitializeSceneCaptureResponse.SerializeToString,
             ),
-            'RunCapture': grpc.unary_stream_rpc_method_handler(
+            'RunCapture': grpc.unary_unary_rpc_method_handler(
                     servicer.RunCapture,
                     request_deserializer=sceneCapture__pb2.RunCaptureRequest.FromString,
                     response_serializer=sceneCapture__pb2.RunCaptureResponse.SerializeToString,
@@ -115,7 +115,7 @@ class SceneCaptureService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/sceneCapture.SceneCaptureService/RunCapture',
+        return grpc.experimental.unary_unary(request, target, '/sceneCapture.SceneCaptureService/RunCapture',
             sceneCapture__pb2.RunCaptureRequest.SerializeToString,
             sceneCapture__pb2.RunCaptureResponse.FromString,
             options, channel_credentials,

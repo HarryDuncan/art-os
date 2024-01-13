@@ -1,0 +1,26 @@
+version: "2"
+services:
+  proxy:
+    build:
+      context: ./envoy
+      dockerfile: Dockerfile
+    ports:
+      - "8100:8100"
+  screen_recorder:
+    privileged: true
+    volumes:
+      - C:\Users\harry\Videos\output:/app/Videos/output 
+    build:
+      context: ./external_services/scene_capture
+      dockerfile: Dockerfile
+    ports:
+      - "1996:1996"
+    depends_on:
+      - proxy
+  xserver:
+    image: x11docker/xorg
+    environment:
+      - HOME=/tmp  # Set HOME directory for x11docker/xorg
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    command: --dbus --xorg

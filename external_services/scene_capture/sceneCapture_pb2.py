@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12sceneCapture.proto\x12\x0csceneCapture\"\x1f\n\x1dInitializeSceneCaptureRequest\"8\n\x1eInitializeSceneCaptureResponse\x12\x16\n\x0eis_initialized\x18\x01 \x01(\x08\")\n\x11RunCaptureRequest\x12\x14\n\x0c\x63\x61pture_name\x18\x01 \x01(\t\"\x14\n\x12RunCaptureResponse\"\x14\n\x12StopCaptureRequest\"\x15\n\x13StopCaptureResponse2\xb1\x02\n\x13SceneCaptureService\x12s\n\x16InitializeSceneCapture\x12+.sceneCapture.InitializeSceneCaptureRequest\x1a,.sceneCapture.InitializeSceneCaptureResponse\x12Q\n\nRunCapture\x12\x1f.sceneCapture.RunCaptureRequest\x1a .sceneCapture.RunCaptureResponse0\x01\x12R\n\x0bStopCapture\x12 .sceneCapture.StopCaptureRequest\x1a!.sceneCapture.StopCaptureResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12sceneCapture.proto\x12\x0csceneCapture\"\x1f\n\x1dInitializeSceneCaptureRequest\"8\n\x1eInitializeSceneCaptureResponse\x12\x16\n\x0eis_initialized\x18\x01 \x01(\x08\")\n\x11RunCaptureRequest\x12\x14\n\x0c\x63\x61pture_name\x18\x01 \x01(\t\"\x14\n\x12RunCaptureResponse\"\x14\n\x12StopCaptureRequest\"\x15\n\x13StopCaptureResponse2\xaf\x02\n\x13SceneCaptureService\x12s\n\x16InitializeSceneCapture\x12+.sceneCapture.InitializeSceneCaptureRequest\x1a,.sceneCapture.InitializeSceneCaptureResponse\x12O\n\nRunCapture\x12\x1f.sceneCapture.RunCaptureRequest\x1a .sceneCapture.RunCaptureResponse\x12R\n\x0bStopCapture\x12 .sceneCapture.StopCaptureRequest\x1a!.sceneCapture.StopCaptureResponseb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'sceneCapture_pb2', globals())
@@ -33,5 +33,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _STOPCAPTURERESPONSE._serialized_start=214
   _STOPCAPTURERESPONSE._serialized_end=235
   _SCENECAPTURESERVICE._serialized_start=238
-  _SCENECAPTURESERVICE._serialized_end=543
+  _SCENECAPTURESERVICE._serialized_end=541
 # @@protoc_insertion_point(module_scope)

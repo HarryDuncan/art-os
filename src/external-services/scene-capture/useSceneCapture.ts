@@ -16,7 +16,7 @@ export const useSceneCapture = () => {
     const client = SCENE_CAPTURE_SERVICE;
     const request = new InitializeSceneCaptureRequest();
     try {
-      client.initializeInteractionNode(request, {}, (err, response) => {
+      client.initializeSceneCapture(request, {}, (err, response) => {
         if (err) {
           console.error(err);
         }
