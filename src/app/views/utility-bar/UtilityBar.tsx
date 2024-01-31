@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from "app/redux/store";
 import { setSceneIndex } from "app/redux/scene-data/actions";
 import { useRestartScene } from "app/hooks/useRestartScene";
 import { SceneCaptureController } from "external-services/scene-capture/components/SceneCaptureController";
+import { useLoopThroughScenes } from "app/hooks/loop-through/useLoopThroughScenes";
 
 const BACK = {
   key: "digital-art",
@@ -27,6 +28,9 @@ export const UtilityBar = () => {
       <UpdateSceneSpin />
       <TopBarItem>
         <SceneCaptureController />
+      </TopBarItem>
+      <TopBarItem>
+        <LoopThrough />
       </TopBarItem>
     </StyledTopBar>
   );
@@ -52,7 +56,9 @@ const StopButton = () => {
   };
   return (
     <TopBarItem>
-      <button onClick={handleClick}>Back</button>
+      <button type="submit" onClick={handleClick}>
+        Back
+      </button>
     </TopBarItem>
   );
 };
@@ -75,6 +81,17 @@ const UpdateSceneSpin = () => {
         max={sceneCount}
         onChange={handleChange}
       />
+    </TopBarItem>
+  );
+};
+
+const LoopThrough = () => {
+  const loopThroughScenes = useLoopThroughScenes();
+  return (
+    <TopBarItem>
+      <button type="submit" onClick={loopThroughScenes}>
+        Loop Through
+      </button>
     </TopBarItem>
   );
 };

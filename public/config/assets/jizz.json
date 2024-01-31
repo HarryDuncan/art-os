@@ -1,0 +1,32 @@
+[
+  {
+    "id": "jizz-geometry",
+    "name": "jizz-geometry",
+    "url": "../assets/models/barba/jizz/jizz.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "barba-geometry",
+    "name": "barba-geometry",
+    "url": "../assets/models/barba/jizz/barba.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "plane-small-geometry",
+    "name": "plane-small-geometry",
+    "url": "../assets/models/barba/jizz/plane-small.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "abstract-1-geometry",
+    "name": "abstract-1-geometry",
+    "url": "../assets/models/barba/jizz/abstract-1.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "abstract-2-geometry",
+    "name": "abstract-2-geometry",
+    "url": "../assets/models/barba/jizz/abstract-2.obj",
+    "assetType": "MODEL3D"
+  }
+]

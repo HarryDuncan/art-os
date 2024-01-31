@@ -1,1 +1,779 @@
-[{}]
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/ltw/19/logo-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/ltw/19/willem-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_4.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/ltw/bg-vid_0.mp4",
+        "assetType": "VIDEO"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "logo",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 7
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-2",
+        "geometryId": "willem",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 4
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-rotate-1",
+        "geometryId": "logo",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 3
+        },
+        "position": { "x": 6, "y": -4, "z": 0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "rotating-material"
+      },
+      {
+        "id": "geometry-rotate-2",
+        "geometryId": "logo",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 3
+        },
+        "position": { "x": -6, "y": 4, "z": 0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "rotating-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "rotating-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -10 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 45 } }
+    },
+    "assets": [
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/ltw/bg-vid_9.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "geometry-obj",
+        "url": "../assets/models/ltw/19/model.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/ltw/19/logo-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_4.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-obj",
+        "geometryId": "Cube.15",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.12
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": -90 },
+        "materialId": "distort-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "distort-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uAngle",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 15,
+                "minTrough": 0,
+                "speed": 0.5,
+                "steepness": 5
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      },
+      {
+        "id": "distort-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.2 }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "rotating-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["1-geometry-morph", "2-geometry-morph"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": { "backgroundColor": "black" }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/ltw/19/logo-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/ltw/19/plane-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/ltw/bg-vid_9.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/x.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/o.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "logo",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 5
+        },
+
+        "rotation": { "x": 90, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-2",
+        "geometryId": "plane",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 20
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.4
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {
+          "blendSrcKey": "SRC_ALPHA",
+          "blendDstKey": "ONE",
+          "transparent": false,
+          "depthTest": true
+        },
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.9 }
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 25,
+                  "ceiling": 32,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.003,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#ff2200" },
+                  { "id": "uTexture2", "pointColor": "#ff2200" }
+                ],
+                "pointColor": "#ff2200"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.003 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/ltw/19/willem-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/ltw/bg-vid_0.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "geometry-obj",
+        "url": "../assets/models/ltw/19/model.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_4.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-willem",
+        "geometryId": "willem",
+
+        "geometryConfig": {
+          "scale": 2
+        },
+        "multipleConfig": {
+          "instanceCount": 2,
+          "boundingBoxConfig": {
+            "width": 10,
+            "height": 40,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
+        "rotation": { "x": 90, "y": -0, "z": -0 },
+        "materialId": "distort-material"
+      },
+      {
+        "id": "geometry-rotate-1",
+        "geometryId": "Cube.15",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.04
+        },
+        "position": { "x": 7, "y": -5, "z": -5 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "rotating-material"
+      },
+      {
+        "id": "geometry-rotate-2",
+        "geometryId": "Cube.15",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.04
+        },
+        "position": { "x": -7, "y": 5, "z": -5 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "rotating-material"
+      },
+      {
+        "id": "geometry-rotate-2",
+        "geometryId": "Cube.15",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 0.04
+        },
+        "position": { "x": 0, "y": 0, "z": -5 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "rotating-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "distort-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uAngle",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 15,
+                "minTrough": 0,
+                "speed": 0.5,
+                "steepness": 5
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "animationId": "fall-geometry",
+        "targetIdentifier": "willem",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL",
+          "fallParams": {
+            "bottom": -15,
+            "top": 15,
+            "speed": 0.03,
+            "direction": -1,
+            "xMovement": 0
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "distort-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.2 }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "rotating-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": [
+          "geometry-1-1",
+          "geometry-1-2",
+          "geometry-1-3",
+          "geometry-1-4",
+          "geometry-1-5"
+        ],
+        "materialId": "distort-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "size": { "x": 80, "y": 80 },
+          "position": { "x": 0, "y": -5, "z": -10 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]

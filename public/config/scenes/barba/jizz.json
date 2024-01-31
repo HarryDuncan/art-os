@@ -1,0 +1,1339 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/jizz/jizz-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/jizz/barba-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_1.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/aurora/jizz-1.mp4",
+        "assetType": "VIDEO"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "jizz-geometry",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 6
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-2",
+        "geometryId": "barba-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 6
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": -90, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "rotating-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -10 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/jizz/jizz-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/jizz/barba-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_3.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/aurora/jizz-2.mp4",
+        "assetType": "VIDEO"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "jizz-geometry",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 6
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-2",
+        "geometryId": "barba-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 6
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": -90, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "rotating-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -10 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/jizz/jizz-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/jizz/plane-small-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/aurora/jizz-1.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/sperm.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/sperm.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "jizz-geometry",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 10
+        },
+        "rotation": { "x": 90, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-2",
+        "geometryId": "plane-small-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 20
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.4
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {
+          "blendSrcKey": "SRC_ALPHA",
+          "blendDstKey": "ONE",
+          "transparent": false,
+          "depthTest": true
+        },
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.4 }
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 22,
+                  "ceiling": 42,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.007,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#03fc24" },
+                  { "id": "uTexture2", "pointColor": "#03fc24" }
+                ],
+                "pointColor": "#03fc24"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.007 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "size": { "x": 80, "y": 80 },
+          "position": { "x": 0, "y": -5, "z": -10 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/jizz/jizz-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/jizz/plane-small-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/aurora/jizz-2.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/sperm.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/sperm.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "jizz-geometry",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 10
+        },
+
+        "rotation": { "x": 90, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-2",
+        "geometryId": "plane-small-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 20
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.4
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {
+          "blendSrcKey": "SRC_ALPHA",
+          "blendDstKey": "ONE",
+          "transparent": false,
+          "depthTest": true
+        },
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.4 }
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 32,
+                  "ceiling": 45,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.007,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#fcba03" },
+                  { "id": "uTexture2", "pointColor": "#fcba03" }
+                ],
+                "pointColor": "#fcba03"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.007 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "size": { "x": 80, "y": 80 },
+          "position": { "x": 0, "y": -5, "z": -10 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/jizz/jizz-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/jizz/abstract-1-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/jizz/plane-small-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_4.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/sperm.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/sperm.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/aurora/jizz-1.mp4",
+        "assetType": "VIDEO"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "jizz-geometry",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 7
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-2",
+        "geometryId": "abstract-1-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 0.014
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-3-plane",
+        "geometryId": "plane-small-geometry",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 30
+        },
+        "multipleConfig": {
+          "instanceCount": 2,
+          "boundingBoxConfig": {
+            "width": 10,
+            "height": 80,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
+        "rotation": { "x": 90, "y": -90, "z": -0 },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "materialId": "point-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            }
+          ]
+        }
+      },
+      {
+        "animationId": "fall-geometry",
+        "targetIdentifier": "plane",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL",
+          "fallParams": {
+            "bottom": -15,
+            "top": 15,
+            "speed": 0.03,
+            "direction": -1,
+            "xMovement": 0
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "rotating-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "point-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {
+          "blendSrcKey": "SRC_ALPHA",
+          "blendDstKey": "ONE",
+          "transparent": false,
+          "depthTest": true
+        },
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 52,
+                  "ceiling": 55,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.003,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#fcba03" },
+                  { "id": "uTexture2", "pointColor": "#fcba03" }
+                ],
+                "pointColor": "#fcba03"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.003 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      },
+      {
+        "type": "CUSTOM_ATTRIBUTES",
+        "transformedMeshIds": ["geometry-3-plane"],
+        "materialId": "point-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -10 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 15.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/jizz/barba-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/jizz/abstract-1-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "geometry-2",
+        "url": "../assets/models/barba/jizz/plane-small-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_2.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/sperm.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/sperm.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/aurora/jizz-2.mp4",
+        "assetType": "VIDEO"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "barba-geometry",
+        "meshType": "MESH",
+        "geometryConfig": {
+          "scale": 6
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-2",
+        "geometryId": "abstract-1-geometry",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 0.012
+        },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "geometry-3-plane",
+        "geometryId": "plane-small-geometry",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 30
+        },
+        "multipleConfig": {
+          "instanceCount": 2,
+          "boundingBoxConfig": {
+            "width": 10,
+            "height": 80,
+            "depth": 1,
+            "center": { "x": 0, "y": 0, "z": 2 }
+          }
+        },
+        "rotation": { "x": 90, "y": -90, "z": -0 },
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "materialId": "point-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            }
+          ]
+        }
+      },
+      {
+        "animationId": "fall-geometry",
+        "targetIdentifier": "plane",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Z",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationType": "FALL",
+          "fallParams": {
+            "bottom": -15,
+            "top": 15,
+            "speed": 0.03,
+            "direction": -1,
+            "xMovement": 0
+          }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "rotating-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 2.3, "axis": "Z" }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "point-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {
+          "blendSrcKey": "SRC_ALPHA",
+          "blendDstKey": "ONE",
+          "transparent": false,
+          "depthTest": true
+        },
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 52,
+                  "ceiling": 55,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.003,
+                "pointDefinitions": [
+                  { "id": "uTexture1", "pointColor": "#fcba03" },
+                  { "id": "uTexture2", "pointColor": "#fcba03" }
+                ],
+                "pointColor": "#fcba03"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.003 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      },
+      {
+        "type": "CUSTOM_ATTRIBUTES",
+        "transformedMeshIds": ["geometry-3-plane"],
+        "materialId": "point-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "position": { "x": 0, "y": -5, "z": -10 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]

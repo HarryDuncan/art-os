@@ -6,5 +6,6 @@ export const {
   setDefaultSceneConfigs,
   setSceneCounts,
   setSceneIndex,
+  incrementSceneIndex,
   setScenePlayState,
 } = slice.actions;

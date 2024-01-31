@@ -68,6 +68,15 @@ export const slice = createSlice({
         },
       };
     },
+    incrementSceneIndex: (state) => {
+      return {
+        ...state,
+        sceneControls: {
+          ...state.sceneControls,
+          sceneIndex: state.sceneControls.sceneIndex + 1,
+        },
+      };
+    },
     setSceneCounts: (state, { payload }: PayloadAction<number>) => {
       return {
         ...state,

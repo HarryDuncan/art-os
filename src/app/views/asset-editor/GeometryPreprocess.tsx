@@ -17,7 +17,7 @@ const preTranformConfig = {
   centerGeometry: true,
 };
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/ltw.json`);
+  const assets = useFetchData(`${CONFIG}assets/jizz.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );

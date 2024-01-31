@@ -1,8 +1,8 @@
 [
   {
-    "title": "Morph",
-    "configId": "barba-morph",
-    "configPath": "scenes/barba/la-novena/morph",
+    "title": "Jizz",
+    "configId": "jizz",
+    "configPath": "scenes/barba/jizz",
     "componentId": "InteractiveSceneContainer"
   }
 ]

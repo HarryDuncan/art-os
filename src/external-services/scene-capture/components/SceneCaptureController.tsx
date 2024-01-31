@@ -1,43 +1,118 @@
-import { useCallback, useState } from "react";
-import { RunCaptureRequest } from "../protos/sceneCapture_pb";
-import {
-  SCENE_CAPTURE_SERVICE,
-  SCENE_CAPTURE_STATES,
-} from "../sceneCapture.constants";
-import { useSceneCapture } from "../useSceneCapture";
+// import { useEffect, useRef, useState } from "react";
+// const { desktopCapturer, remote } = window.require("electron");
 
 export const SceneCaptureController = () => {
-  useSceneCapture();
-  const { screenCaptureState, toggleSceneRecording } = useStartStop();
-  return (
-    <div>
-      <button onClick={toggleSceneRecording}>
-        Capture Scene : {screenCaptureState}
-      </button>
-    </div>
-  );
-};
+  return <div />;
+  // const [selectContent, setSelectContent] = useState("Select Source");
+  // const [isRecording, setIsRecording] = useState(false);
+  // const videoPreview = useRef(null);
 
-const useStartStop = () => {
-  const [screenCaptureState, setSceneCaptureState] = useState<string>(
-    SCENE_CAPTURE_STATES.STOPPED
-  );
+  // const { Menu } = remote ?? {};
+  // const { writeFile } = window.require("fs");
+  // const { dialog } = remote ?? {};
+  // let [mediaRecorder, setMediaRecorder] = useState(null);
+  // const recordedChunks = [];
 
-  const startCapture = useCallback(() => {
-    const request = new RunCaptureRequest();
-    const client = SCENE_CAPTURE_SERVICE;
-    client.runCapture(request);
-  }, []);
+  // const startVideo = () => {
+  //   if (mediaRecorder == null) {
+  //     alert("Select a source to record.");
+  //   } else if (mediaRecorder.state === "recording") {
+  //     alert("You must stop recording first.");
+  //   } else {
+  //     mediaRecorder.start();
+  //     setIsRecording(true);
+  //   }
+  // };
 
-  const stopCapture = useCallback(() => {}, []);
-  const toggleSceneRecording = useCallback(() => {
-    if (screenCaptureState === SCENE_CAPTURE_STATES.STOPPED) {
-      setSceneCaptureState(SCENE_CAPTURE_STATES.RECORDING);
-      startCapture();
-    } else {
-      setSceneCaptureState(SCENE_CAPTURE_STATES.STOPPED);
-      stopCapture;
-    }
-  }, [screenCaptureState, startCapture, stopCapture]);
-  return { screenCaptureState, toggleSceneRecording };
+  // const stopVideo = () => {
+  //   if (mediaRecorder == null) {
+  //     alert("Select a source and start recording first.");
+  //   } else if (mediaRecorder.state === "inactive") {
+  //     alert("You must start recording first.");
+  //   } else {
+  //     mediaRecorder.stop();
+  //     setIsRecording(false);
+  //   }
+  // };
+
+  // const getSources = async () => {
+  //   const inputSources = await desktopCapturer.getSources({
+  //     types: ["window", "screen"],
+  //   });
+
+  //   const videoOptionsMenu = Menu.buildFromTemplate(
+  //     inputSources.map((source) => {
+  //       return {
+  //         label: source.name,
+  //         click: () => selectSource(source),
+  //       };
+  //     })
+  //   );
+  //   videoOptionsMenu.popup();
+  // };
+
+  // const selectSource = async (source) => {
+  //   setSelectContent(source.name);
+
+  //   const contstraints = {
+  //     audio: false,
+  //     video: {
+  //       mandatory: {
+  //         chromeMediaSource: "desktop",
+  //         chromeMediaSourceId: source.id,
+  //       },
+  //     },
+  //   };
+
+  //   await navigator.mediaDevices
+  //     .getUserMedia(contstraints)
+  //     .then((stream) => {
+  //       videoPreview.current.srcObject = stream;
+  //       videoPreview.current.play();
+
+  //       const options = { mimeType: "video/webm; codecs=vp9" };
+  //       mediaRecorder = new MediaRecorder(stream, options);
+  //       mediaRecorder.ondataavailable = handleDataAvailable;
+  //       mediaRecorder.onstop = handleStop;
+  //       setMediaRecorder(mediaRecorder);
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
+
+  // const handleDataAvailable = (e) => {
+  //   recordedChunks.push(e.data);
+  // };
+
+  // const handleStop = async (e) => {
+  //   const blob = new Blob(recordedChunks, {
+  //     type: "video/webm; codecs=vp9",
+  //   });
+
+  //   const buffer = Buffer.from(await blob.arrayBuffer());
+
+  //   const { filePath } = await dialog.showSaveDialog({
+  //     buttonLabel: "Save video",
+  //     defaultPath: `vid-${Date.now()}.webm`,
+  //   });
+
+  //   writeFile(filePath, buffer, () => {
+  //     console.log("Video saved successfully");
+  //   });
+  // };
+  // useEffect(() => {
+  //   console.log(desktopCapturer);
+  //   selectSource("screen");
+  // }, [desktopCapturer]);
+  // return (
+  //   <div>
+  //     {isRecording ? (
+  //       <button onClick={stopVideo}>Stop Recording</button>
+  //     ) : (
+  //       <button onClick={startVideo}>Start Recording</button>
+  //     )}
+  //     <button id="selectVideo" onClick={getSources}>
+  //       Source: {selectContent}
+  //     </button>
+  //   </div>
+  // );
 };
