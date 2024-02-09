@@ -1,6 +1,10 @@
 import { randomFloat } from "visual/display/materials/webgl-shaders/shader-functions/random/random";
 import { ShaderPropertyValueTypes } from "../../../buildShader.constants";
-import { AttributeConfig, UniformConfig } from "../../../buildShader.types";
+import {
+  AttributeConfig,
+  UniformConfig,
+  VaryingConfig,
+} from "../../../buildShader.types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
 
 export const interactiveEffect = (transformName: string) => {
@@ -18,7 +22,7 @@ export const interactiveEffect = (transformName: string) => {
       varyingType: "CUSTOM",
       value: "isAffected",
     },
-  ];
+  ] as VaryingConfig[];
   const transformation = `
   // uPosition will be set to 2000 is there is no detections made
   // Convert screen coordinates to NDC

@@ -2,6 +2,7 @@ import { ShaderPropertyTypes } from "../../buildShader.constants";
 import {
   DefaultUniform,
   UniformConfig,
+  UniformObject,
   UniformValueConfig,
 } from "../../buildShader.types";
 import { createDeclarationString } from "../../helpers/createDeclarationString";
@@ -26,7 +27,7 @@ export const buildUniforms = (uniformConfig: UniformConfig) => {
 };
 
 const setUpDefaultUniforms = (uniformConfig: DefaultUniform[]) => {
-  const defaultUniforms = { uTime: { value: 0.0 } };
+  const defaultUniforms: UniformObject = { uTime: { value: 0.0 } };
   const defaultStrings = [`uniform float uTime;`];
   uniformConfig.forEach((uniformKey) => {
     const defaultUniform = DEFAULT_UNIFORMS[uniformKey];
@@ -54,11 +55,12 @@ const setUpCustom = (config: UniformValueConfig[] = []) => {
   return { customUniforms: customProperties, customStrings };
 };
 
-const getDefaultUniformValue = (uniformKey) => {
+const getDefaultUniformValue = (uniformKey: string) => {
   switch (uniformKey) {
     case "uResolution":
       return getResolution();
     default:
-      return DEFAULT_UNIFORMS[uniformKey].defaultValue;
+      return DEFAULT_UNIFORMS[uniformKey as keyof typeof DEFAULT_UNIFORMS]
+        .defaultValue;
   }
 };

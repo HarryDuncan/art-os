@@ -4,10 +4,10 @@ import {
   ShaderPropertyValueTypes,
 } from "../../../buildShader.constants";
 import { createDeclarationString } from "../../../helpers/createDeclarationString";
-import { UniformValueConfig } from "../../../buildShader.types";
+import { UniformObject, UniformValueConfig } from "../../../buildShader.types";
 
 export const setUpCustom = (config: UniformValueConfig[] = []) => {
-  const customUniforms = {};
+  const customUniforms: UniformObject = {};
   const customStrings: string[] = [];
   config.forEach(({ value, id, valueType }) => {
     switch (valueType) {

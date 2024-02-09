@@ -101,9 +101,10 @@ export type PointMaterialEffectProps = {
 export type MaterialEffectProps = {
   opacity?: boolean;
 };
-export type ColorEffectProps = {
+export type ColorEffectProps = MaterialEffectProps & {
   color: string;
 };
+
 export type FragmentEffectProps =
   | PointMaterialEffectProps
   | MaterialEffectProps
@@ -146,7 +147,9 @@ export type AttributeConfig = ShaderPropertyConfig & {
 // <-------------------------------------UNIFORMS ---------------------------------->
 
 export type DefaultUniform = keyof typeof DEFAULT_UNIFORMS;
-
+export type UniformObject = {
+  [key: string]: { value: unknown };
+};
 export type UniformValueConfig = ShaderPropertyConfig;
 export type UniformConfig = {
   defaultUniforms: DefaultUniform[];

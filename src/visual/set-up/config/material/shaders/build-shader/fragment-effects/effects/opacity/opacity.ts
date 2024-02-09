@@ -14,7 +14,10 @@ export const opacityUniforms = () => ({
 
 export const colorVaryings = () => [];
 
-const opacityTransformation = (transformColorName, currentName) => `
+const opacityTransformation = (
+  transformColorName: string,
+  currentName: string
+) => `
     float opacity = uOpacity;
     vec4 ${transformColorName} = vec4(${currentName}.x, ${currentName}.y, ${currentName}.z, opacity);
 `;

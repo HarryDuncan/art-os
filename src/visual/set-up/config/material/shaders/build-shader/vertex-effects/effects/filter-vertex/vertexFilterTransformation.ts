@@ -1,4 +1,7 @@
-export const vertexFilterTransformation = (transformPointName, pointName) => {
+export const vertexFilterTransformation = (
+  transformPointName: string,
+  pointName: string
+) => {
   return `
 // FILTER
 if(mod(pointIndex, uReduced) == 0.0){

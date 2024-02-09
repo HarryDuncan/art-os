@@ -1,4 +1,6 @@
-export const mergeArraysWithoutDuplicates = <T>(
+export const mergeArraysWithoutDuplicates = <
+  T extends { [key: string]: unknown }
+>(
   first: Array<T>,
   second: Array<T>,
   key = "id"

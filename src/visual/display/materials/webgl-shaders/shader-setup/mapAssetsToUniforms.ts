@@ -1,10 +1,11 @@
 import { Asset } from "visual/set-up/assets/asset.types";
 import { AssetMap } from "../shaders.types";
+import { UniformObject } from "visual/set-up/config/material/shaders/build-shader/buildShader.types";
 
 export const mapAssetsToUniforms = (
   assetMapping: AssetMap[],
   assets: Asset[],
-  uniforms: Record<string, unknown> = {}
+  uniforms: UniformObject = {}
 ) => {
   if (assetMapping) {
     assetMapping.forEach((mapping) => {

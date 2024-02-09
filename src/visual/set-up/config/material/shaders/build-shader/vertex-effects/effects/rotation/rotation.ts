@@ -1,4 +1,7 @@
-import { AXIS } from "visual/utils/three-dimension-space/position/position.types";
+import {
+  AXIS,
+  Axis,
+} from "visual/utils/three-dimension-space/position/position.types";
 import { RotationEffectProps } from "../../../buildShader.types";
 import {
   DEFAULT_ROTATE_EFFECT_CONFIG,
@@ -11,7 +14,7 @@ import {
 } from "visual/display/materials/webgl-shaders/shader-functions/rotation/rotationFunctions";
 import { ShaderPropertyValueTypes } from "../../../buildShader.constants";
 
-const getRequiredFunctions = (axis) => {
+const getRequiredFunctions = (axis: Axis) => {
   switch (axis) {
     case AXIS.X:
       return [{ id: "rotateX", functionDefinition: rotateX }];
@@ -22,7 +25,7 @@ const getRequiredFunctions = (axis) => {
       return [{ id: "rotateZ", functionDefinition: rotateZ }];
   }
 };
-const getFunctionName = (axis) => {
+const getFunctionName = (axis: Axis) => {
   switch (axis) {
     case AXIS.X:
       return "rotateX";
@@ -50,18 +53,18 @@ export const rotationVertex = (
       },
     ],
   };
-  const varyingConfig = [];
+
   const transformation = `
     float rotationAngle = uTime * uRotationSpeed;
-  mat4 rotationMatrix = ${getFunctionName(axis)}(rotationAngle);
+  mat4 rotationMatrix = ${getFunctionName(axis as Axis)}(rotationAngle);
   vec4 ${pointName} = vec4(${transformName}.xyz,1.0) * rotationMatrix; 
   `;
-  const requiredFunctions = getRequiredFunctions(axis);
+  const requiredFunctions = getRequiredFunctions(axis as Axis);
   return {
     requiredFunctions,
     uniformConfig,
     transformation,
-    varyingConfig,
+    varyingConfig: [],
     pointName,
   };
 };

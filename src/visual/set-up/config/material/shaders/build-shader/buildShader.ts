@@ -86,9 +86,9 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
 const formatVertexShader = (
   attributes: string,
   uniformDeclarations: string,
-  varyingDeclaration,
-  varyingInstantiation,
-  vertexFunctions,
+  varyingDeclaration: string,
+  varyingInstantiation: string,
+  vertexFunctions: ShaderFunction[],
   vertexTransformations: string,
   viewMatrix: string
 ) => {

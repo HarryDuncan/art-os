@@ -2,9 +2,10 @@ import { IUniform, Vector2 } from "three";
 import { mapAssetsToUniforms } from "visual/display/materials/webgl-shaders/shader-setup/mapAssetsToUniforms";
 import { AssetMap } from "visual/display/materials/webgl-shaders/shaders.types";
 import { Asset } from "visual/set-up/assets/asset.types";
+import { UniformObject } from "../build-shader/buildShader.types";
 
 export const formatBuiltShaderUniforms = (
-  uniforms,
+  uniforms: UniformObject,
   assetMapping: AssetMap[],
   assets: Asset[]
 ): { [uniform: string]: IUniform<unknown> } => {
@@ -13,7 +14,7 @@ export const formatBuiltShaderUniforms = (
   return formattedUniforms;
 };
 
-const formatDefaultShaderValues = (uniforms) => {
+const formatDefaultShaderValues = (uniforms: UniformObject) => {
   if (uniforms.uResolution) {
     uniforms.uResolution = {
       value: new Vector2(window.innerWidth, window.innerHeight).multiplyScalar(

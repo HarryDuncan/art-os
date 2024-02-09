@@ -1,4 +1,4 @@
-import { UniformConfig } from "../../../../buildShader.types";
+import { UniformConfig, VaryingConfig } from "../../../../buildShader.types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";
 import { explodeTransformation } from "./explodeTransformation";
@@ -10,9 +10,10 @@ export const explodeUniforms = () => ({
   customUniforms: [{ id: "uPower", valueType: "FLOAT", value: 1.5 }],
 });
 
-export const explodeVaryings = () => [
-  { id: "vPointId", valueType: "FLOAT", varyingType: "ATTRIBUTE" },
-];
+export const explodeVaryings = () =>
+  [
+    { id: "vPointId", valueType: "FLOAT", varyingType: "ATTRIBUTE" },
+  ] as VaryingConfig[];
 
 export const explode = (transformPointName: string): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.EXPLODED_POINT;

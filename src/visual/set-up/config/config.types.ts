@@ -4,10 +4,7 @@ import {
   SceneLight,
 } from "visual/display/scene-elements/lights/lights.types";
 import { MaterialConfig } from "visual/set-up/config/material/materials.types";
-import {
-  ExternalInteractionConfig,
-  InteractionConfig,
-} from "interaction/interactions.types";
+import { InteractionConfig } from "interaction/interactions.types";
 import { Asset } from "visual/set-up/assets/asset.types";
 import { GeometryConfig } from "../assets/geometry/geometry.types";
 import { CameraConfig } from "visual/set-up/config/three-js/use-camera/camera.types";
@@ -133,7 +130,6 @@ export type SceneConfig = {
   lightConfig: LightConfigs[];
   sceneComponentConfigs?: SceneComponentConfig[];
   interactionConfig?: InteractionConfig[];
-  externalInteractionConfig?: ExternalInteractionConfig;
   threeJsConfig: ThreeJSConfig;
   scenePropertiesConfig: ScenePropertiesConfig;
   screenSizeAdjustments?: ScreenSizeAdjustmentConfig[];

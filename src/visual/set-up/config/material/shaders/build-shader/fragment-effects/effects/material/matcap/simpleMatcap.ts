@@ -1,13 +1,9 @@
-import {
-  calculateNormal,
-  diffuseFactor,
-} from "visual/display/materials/webgl-shaders/shader-functions";
+import { calculateNormal } from "visual/display/materials/webgl-shaders/shader-functions";
 import { ShaderPropertyValueTypes } from "../../../../buildShader.constants";
 import {
   DefaultUniform,
   FragmentEffectData,
   MaterialEffectProps,
-  ShaderFunction,
   VaryingConfig,
 } from "../../../../buildShader.types";
 import { FRAGMENT_COLOR_NAMES } from "../../../fragmentEffects.consts";
@@ -20,12 +16,6 @@ const getCustomUniforms = () => [
     valueType: ShaderPropertyValueTypes.VEC2,
   },
 ];
-
-const getRequiredFunctions = () =>
-  [
-    { id: "diffuseFactor", functionDefinition: diffuseFactor },
-    { id: "calculateNormal", functionDefinition: calculateNormal },
-  ] as ShaderFunction[];
 
 const getVaryings = () =>
   [
@@ -58,7 +48,7 @@ const getOpacity = (opacity?: boolean | undefined) => {
   return `matcapColor.a`;
 };
 export const simpleMatcap = (
-  _transformColorName,
+  _transformColorName: string,
   fragmentEffects: Partial<MaterialEffectProps> | undefined
 ): FragmentEffectData => {
   const fragmentColorName = FRAGMENT_COLOR_NAMES.MATERIAL;
@@ -77,8 +67,6 @@ export const simpleMatcap = (
     fragmentEffects?.opacity
   )});`;
 
-  const attributeConfig = [];
-
   return {
     requiredFunctions: [
       { id: "calculateNormal", functionDefinition: calculateNormal },
@@ -87,7 +75,7 @@ export const simpleMatcap = (
     uniformConfig,
     transformation,
     varyingConfig,
-    attributeConfig,
+    attributeConfig: [],
     fragmentColorName,
   };
 };

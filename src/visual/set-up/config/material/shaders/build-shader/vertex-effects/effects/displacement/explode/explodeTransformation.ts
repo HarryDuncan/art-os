@@ -1,4 +1,7 @@
-export const explodeTransformation = (transformPointName, pointName) => {
+export const explodeTransformation = (
+  transformPointName: string,
+  pointName: string
+) => {
   return `
     // EXPLODE AT POSITION
     vec3 ${pointName} = ${transformPointName};

@@ -1,6 +1,5 @@
 import { AXIS, Axis, BoundingBox, Position3d } from "./position.types";
 
-const PADDING = 10;
 export const getEquidistantCoordinates = (
   numCoordinates: number,
   boundingBox: BoundingBox,

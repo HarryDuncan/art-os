@@ -57,7 +57,7 @@ export const getVertexEffect = (
         requiredFunctions: [],
         uniformConfig: { defaultUniforms: [] },
         transformation: "",
-        varyingConfig: {},
+        varyingConfig: [],
         pointName: transformPointName,
       };
   }

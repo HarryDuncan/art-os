@@ -82,6 +82,7 @@ const getDefaultVaryingString = (
         strings.push(
           `vEye = normalize(vec3(modelViewMatrix * vec4(${vertexTransformationName}.xyz, 1.0)));`
         );
+        break;
       default:
         console.warn(`nothing made for default varying ${item.id}`);
     }

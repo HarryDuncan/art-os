@@ -37,7 +37,7 @@ export const getAssetMappedMaterials = (
     return [];
   });
 
-const formatMaterial = (configItem, mappedAsset) => {
+const formatMaterial = (configItem: MaterialConfig, mappedAsset: Asset) => {
   switch (configItem.materialType) {
     case MATERIAL_TYPES.ENV_MAP: {
       getEnvMapMaterial(

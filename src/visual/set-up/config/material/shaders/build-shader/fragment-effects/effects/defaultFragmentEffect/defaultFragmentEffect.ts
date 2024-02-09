@@ -5,14 +5,12 @@ import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 export const defaultFragmentEffect = (): FragmentEffectData => {
   const fragmentColorName = FRAGMENT_COLOR_NAMES.DEFAULT;
   const uniformConfig = { ...EMPTY_UNIFORM_CONFIG };
-  const varyingConfig = [];
   const transformation = `vec4 ${fragmentColorName} = vec4(1.0,0,0,1.0);`;
-  const requiredFunctions = [];
   return {
-    requiredFunctions,
+    requiredFunctions: [],
     uniformConfig,
     transformation,
-    varyingConfig,
+    varyingConfig: [],
     attributeConfig: [],
     fragmentColorName,
   };

@@ -6,11 +6,14 @@ import {
 import { ShaderPropertyConfig } from "../buildShader.types";
 import { createDeclarationString } from "./createDeclarationString";
 
+interface CustomProperties {
+  [key: string]: { value: unknown };
+}
 export const setUpCustomPropertyValues = (
   config: ShaderPropertyConfig[],
   propertyType: ShaderPropertyTypes
 ) => {
-  const customProperties = {};
+  const customProperties: CustomProperties = {};
   const customStrings: string[] = [];
   config.forEach(({ value, id, valueType }) => {
     switch (valueType) {

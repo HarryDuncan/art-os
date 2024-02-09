@@ -10,17 +10,15 @@ export const pointsVertex = (
 ) => {
   const { pointSize, perspectiveConfig } = formatPointsProps(effectProps);
   const uniformConfig = { ...EMPTY_UNIFORM_CONFIG };
-  const varyingConfig = [];
   const perspective = pointsPerspective(transformPointName, perspectiveConfig);
   const transformation = `gl_PointSize = ${
     perspective.length ? perspective : shaderSafeFloat(pointSize)
   };`;
-  const requiredFunctions = [];
   return {
-    requiredFunctions,
+    requiredFunctions: [],
     uniformConfig,
     transformation,
-    varyingConfig,
+    varyingConfig: [],
     pointName: transformPointName,
   };
 };

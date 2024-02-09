@@ -1,6 +1,9 @@
 import { BufferAttribute, BufferGeometry } from "three";
 import { getVerticesCount } from "../attribute.functions";
-import { AttributeConfig } from "visual/set-up/config/material/shaders/build-shader/buildShader.types";
+import {
+  AttributeConfig,
+  AttributeValueConfig,
+} from "visual/set-up/config/material/shaders/build-shader/buildShader.types";
 
 const RANDOM_ATTRIBUTE_IDS = ["randomAngle", "random", "pointType"];
 const INDEX_ATTRIBUTE_IDS = ["pointIndex", "index"];
@@ -23,17 +26,25 @@ export const setAttributes = (
   return bufferGeometry;
 };
 
-const checkIds = (id, allowedIds) =>
+const checkIds = (id: string, allowedIds: string[]) =>
   allowedIds.some((allowedId) => id.indexOf(allowedId) !== -1);
 
-const setIndexValues = (attributeId, vertexCount, bufferGeometry) => {
+const setIndexValues = (
+  attributeId: string,
+  vertexCount: number,
+  bufferGeometry: BufferGeometry
+) => {
   const pointIds = new Float32Array(vertexCount);
   pointIds.forEach((_value, index) => {
     pointIds[index] = Number(index.toFixed(1));
   });
   bufferGeometry.setAttribute(attributeId, new BufferAttribute(pointIds, 1));
 };
-const setRandomValues = (attributeId, vertexCount, bufferGeometry) => {
+const setRandomValues = (
+  attributeId: string,
+  vertexCount: number,
+  bufferGeometry: BufferGeometry
+) => {
   const angles = new Float32Array(vertexCount);
   angles.forEach((_value, index) => {
     angles[index] = Math.random();
@@ -42,10 +53,10 @@ const setRandomValues = (attributeId, vertexCount, bufferGeometry) => {
 };
 
 const setRandomizedPercentage = (
-  attributeId,
-  vertexCount,
-  bufferGeometry,
-  valueConfig
+  attributeId: string,
+  vertexCount: number,
+  bufferGeometry: BufferGeometry,
+  valueConfig?: AttributeValueConfig
 ) => {
   const { randomizedPercentage } = valueConfig ?? {
     randomizedPercentage: 0.5,
