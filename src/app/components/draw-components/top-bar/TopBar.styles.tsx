@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { DrawComponent } from "../DrawComponent.styles";
 
 const TOP_BAR_HEIGHT = 100;

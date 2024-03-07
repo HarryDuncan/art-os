@@ -1,7 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { GUI } from "three/examples/jsm/libs/dat.gui.module.js";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
+import { GUI } from "dat.gui";
 
 export const Test = () => {
   const params = {
@@ -23,20 +24,24 @@ export const Test = () => {
 
   let camera, scene, renderer;
 
-  let mesh, material;
+  let mesh;
+
+  const material = new THREE.MeshPhysicalMaterial({
+    color: 0xff0000, // Initial color
+    transmission: 0.5, // Initial transmission value
+  });
 
   const hdrEquirect = new RGBELoader()
-    .setPath("textures/equirectangular/")
+    .setPath("assets/textures/hdr/")
     .load("royal_esplanade_1k.hdr", function() {
       hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-
       new GLTFLoader()
-        .setPath("models/gltf/")
-        .load("DragonAttenuation.glb", function(gltf) {
+        .setPath("assets/models/")
+        .load("test.glb", function(gltf) {
           gltf.scene.traverse(function(child) {
-            if (child.isMesh && child.material.isMeshPhysicalMaterial) {
+            if (child.isMesh) {
               mesh = child;
-              material = mesh.material;
+              mesh.material = material;
 
               const color = new THREE.Color();
 
@@ -53,6 +58,7 @@ export const Test = () => {
                 .copy(mesh.material.attenuationColor)
                 .getHex();
               params.attenuationDistance = mesh.material.attenuationDistance;
+              // addGUI(mesh);
             }
           });
 
@@ -73,7 +79,7 @@ export const Test = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.shadowMap.enabled = true;
     document.body.appendChild(renderer.domElement);
-
+    renderer.setClearColor(0x000000, 0);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = params.exposure;
 
@@ -93,18 +99,15 @@ export const Test = () => {
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener("change", render); // use if there is no animation loop
-    controls.minDistance = 5;
+    controls.minDistance = 0;
     controls.maxDistance = 20;
     controls.target.y = 0.5;
     controls.update();
 
     window.addEventListener("resize", onWindowResize);
 
-    //
-
     const gui = new GUI();
-
-    gui.addColor(params, "color").onChange(function() {
+    gui.addColor(params, "color").onChange(function(data) {
       material.color.set(params.color);
       render();
     });
@@ -181,8 +184,6 @@ export const Test = () => {
       renderer.toneMappingExposure = params.exposure;
       render();
     });
-
-    gui.open();
   }
 
   function onWindowResize() {
@@ -202,4 +203,12 @@ export const Test = () => {
   function render() {
     renderer.render(scene, camera);
   }
+
+  //   const addGUI = (model: THREE.Mesh) => {
+  //     const gui = new GUI();
+  //     console.log(model);
+  //     const modelMaterial = gui.addFolder("Material");
+  //     modelMaterial.add(model.material.color, "color");
+  //     modelMaterial.open();
+  //   };
 };

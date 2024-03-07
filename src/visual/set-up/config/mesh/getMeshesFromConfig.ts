@@ -9,14 +9,16 @@ import { transformGeometry } from "./geometry/transform-geometries/transformGeom
 import { ShaderAttributeConfig } from "../material/shaders/build-shader/buildShader.types";
 import { formatMeshTransforms } from "./geometry/formatMeshTransforms";
 import { multipleMeshes } from "./multiple-meshes/multipleMeshes";
+import { setUpAdvancedMeshes } from "./advanced-mesh/setUpAdvancedMeshes";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 
 export const getMeshesFromConfig = (
   assets: Asset[],
   materials: Material[],
   config: SceneConfig,
   attributeConfigs: ShaderAttributeConfig[]
-): Object3D[] => {
-  const { meshComponentConfigs, meshTransforms } = config;
+): Object3D[] | GLTF[] => {
+  const { meshComponentConfigs, advancedMeshConfigs, meshTransforms } = config;
   const meshConfigs =
     meshComponentConfigs?.filter(
       (meshConfig) => !meshConfig.randomizationConfig
@@ -44,5 +46,14 @@ export const getMeshesFromConfig = (
     allMeshes
   );
   const meshes = setUpMeshes(geometriesWithMaterials);
-  return meshes;
+  console.log(assets);
+  const advancedMeshes = setUpAdvancedMeshes(
+    assets,
+    advancedMeshConfigs,
+    materials,
+    meshTransforms,
+    attributeConfigs
+  ) as GLTF[];
+
+  return [...meshes, ...advancedMeshes] as Object3D[];
 };

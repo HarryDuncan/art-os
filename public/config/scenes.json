@@ -46,5 +46,11 @@
     "configId": "hjd-slow-morph",
     "configPath": "scenes/hjd-art/hjd-morph-slow",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Binary",
+    "configId": "binary",
+    "configPath": "scenes/hjd-art/binary",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

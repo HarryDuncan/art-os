@@ -11,7 +11,6 @@ export const configureBlendingOptions = (
   const blendDst = getBlendingDstFactor(formattedBlendingConfig.blendDstKey);
   const blendSrc = getBlendingFactor(formattedBlendingConfig.blendSrcKey);
   return {
-    blending: CustomBlending,
     blendSrc,
     blendDst,
     transparent: formattedBlendingConfig.transparent,

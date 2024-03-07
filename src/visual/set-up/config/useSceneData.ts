@@ -43,6 +43,7 @@ export const useSceneData = (
     const sceneProperties = getScenePropertiesFromConfig(
       formattedConfig.scenePropertiesConfig
     );
+
     return {
       threeJs,
       meshes: meshes ?? [],

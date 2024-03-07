@@ -1,3 +1,4 @@
+import { Test } from "./Test";
 import { SandboxContainer } from "./sandbox.styles";
 import { WindowStateProvider } from "visual/compat/window-state/windowStateProvider";
 
@@ -8,5 +9,9 @@ export const Sandbox = () => (
 );
 
 const SandboxContent = () => {
-  return <SandboxContainer></SandboxContainer>;
+  return (
+    <SandboxContainer>
+      <Test />
+    </SandboxContainer>
+  );
 };

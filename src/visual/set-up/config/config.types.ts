@@ -24,6 +24,8 @@ import { RendererParams } from "visual/display/hooks/use-three-js/renderer/types
 import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
 import { AttributeConfig } from "./material/shaders/build-shader/buildShader.types";
 import { SceneConfigType } from "./config.constants";
+import { AdvancedMeshConfig } from "./mesh/advanced-mesh/advancedMesh.types";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 
 export type MultipleConfig = {
   instanceCount: number;
@@ -44,9 +46,8 @@ export type SceneComponentConfig = {
   componentProps: ComponentProps;
   materialId?: string;
 };
-export type MeshComponentConfig = {
+export type MeshConfig = {
   id: string;
-  geometryId?: string;
   materialId?: string;
   rotation?: Partial<Position3d>;
   position?: Partial<Position3d>;
@@ -55,6 +56,9 @@ export type MeshComponentConfig = {
   geometryConfig?: GeometryConfig;
   groupId?: string;
   meshType: string;
+};
+export type MeshComponentConfig = MeshConfig & {
+  geometryId?: string;
 };
 
 export type ControlConfig = {
@@ -124,6 +128,7 @@ export type SceneConfig = {
   sceneConfigType?: SceneConfigType;
   assets?: Asset[];
   meshComponentConfigs: MeshComponentConfig[];
+  advancedMeshConfigs?: AdvancedMeshConfig[];
   meshTransforms?: MeshTransformConfig[];
   globalMaterialConfigs: MaterialConfig[];
   animationConfig: AnimationConfig[];
@@ -155,7 +160,7 @@ export type ThreeJsParams = {
 
 export type SceneData = {
   threeJs: ThreeJsParams;
-  meshes: Object3D[];
+  meshes: Object3D[] | GLTF[];
   sceneComponents: Object3D[];
   lights: SceneLight[];
   sceneProperties: SceneProperties;

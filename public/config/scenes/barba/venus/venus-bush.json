@@ -1,0 +1,566 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 31 } }
+    },
+    "assets": [
+      {
+        "name": "geometry",
+        "id": "flytrap",
+        "url": "../assets/models/barba/venus/venus-fly-trap.glb",
+        "assetType": "ADVANCED_3D"
+      },
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/venus/venus-head.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/barba/bg-vid_0.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_3.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "venus-head",
+        "geometryConfig": {
+          "scale": 11
+        },
+        "position": { "x": -3, "y": -16, "z": -4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "advancedMeshConfigs": [
+      {
+        "id": "venus-trap",
+        "assetId": "flytrap",
+
+        "geometryConfig": {
+          "scale": 3
+        },
+        "position": { "x": 0, "y": 2 },
+        "rotation": { "x": 160, "y": 110, "z": 90 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "venus-trap-2",
+        "assetId": "flytrap",
+        "geometryConfig": {
+          "scale": 3
+        },
+        "position": { "x": 5, "y": 2 },
+        "rotation": { "x": 160, "y": 180, "z": 70 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "venus-trap-3",
+        "assetId": "flytrap",
+        "geometryConfig": {
+          "scale": 2
+        },
+        "position": { "x": -4, "y": 1 },
+        "rotation": { "x": 210, "y": -30, "z": 70 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "venus-trap-3",
+        "assetId": "flytrap",
+        "geometryConfig": {
+          "scale": 4
+        },
+        "position": { "x": -1, "y": 5, "z": -2 },
+        "rotation": { "x": 220, "y": -80, "z": 110 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "rig-geometry",
+        "targetIdentifier": "venus-trap",
+        "animationFunctionType": "RIGGED",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "MATCAP",
+        "materialProps": {
+          "assetId": "chrome-material"
+        }
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["venus-trap"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "size": { "x": 80, "y": 80 },
+          "position": { "x": 0, "y": -5, "z": -80 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 31 } }
+    },
+    "assets": [
+      {
+        "name": "geometry",
+        "id": "flytrap",
+        "url": "../assets/models/barba/venus/venus-fly-trap.glb",
+        "assetType": "ADVANCED_3D"
+      },
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/venus/venus-head.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/barba/3.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_1.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "venus-head",
+        "geometryConfig": {
+          "scale": 11
+        },
+        "position": { "x": -3, "y": -16, "z": -4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "advancedMeshConfigs": [
+      {
+        "id": "venus-trap",
+        "assetId": "flytrap",
+
+        "geometryConfig": {
+          "scale": 3
+        },
+        "position": { "x": 0, "y": 2 },
+        "rotation": { "x": 160, "y": 110, "z": 90 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "venus-trap-2",
+        "assetId": "flytrap",
+        "geometryConfig": {
+          "scale": 3
+        },
+        "position": { "x": 5, "y": 2 },
+        "rotation": { "x": 160, "y": 180, "z": 70 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "venus-trap-3",
+        "assetId": "flytrap",
+        "geometryConfig": {
+          "scale": 2
+        },
+        "position": { "x": -4, "y": 1 },
+        "rotation": { "x": 210, "y": -30, "z": 70 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "venus-trap-3",
+        "assetId": "flytrap",
+        "geometryConfig": {
+          "scale": 4
+        },
+        "position": { "x": -1, "y": 5, "z": -2 },
+        "rotation": { "x": 220, "y": -80, "z": 110 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "rig-geometry",
+        "targetIdentifier": "venus-trap",
+        "animationFunctionType": "RIGGED",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "MATCAP",
+        "materialProps": {
+          "assetId": "chrome-material"
+        }
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["venus-trap"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "size": { "x": 80, "y": 80 },
+          "position": { "x": 0, "y": -5, "z": -80 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 31 } }
+    },
+    "assets": [
+      {
+        "name": "geometry",
+        "id": "flytrap",
+        "url": "../assets/models/barba/venus/venus-fly-trap.glb",
+        "assetType": "ADVANCED_3D"
+      },
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/venus/venus-head.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/barba/2.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_4.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "venus-head",
+        "geometryConfig": {
+          "scale": 11
+        },
+        "position": { "x": -3, "y": -16, "z": -4 },
+        "rotation": { "x": 0, "y": -90, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "advancedMeshConfigs": [
+      {
+        "id": "venus-trap",
+        "assetId": "flytrap",
+
+        "geometryConfig": {
+          "scale": 3
+        },
+        "position": { "x": 0, "y": 2 },
+        "rotation": { "x": 160, "y": 110, "z": 90 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "venus-trap-2",
+        "assetId": "flytrap",
+        "geometryConfig": {
+          "scale": 3
+        },
+        "position": { "x": 5, "y": 2 },
+        "rotation": { "x": 160, "y": 180, "z": 70 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "venus-trap-3",
+        "assetId": "flytrap",
+        "geometryConfig": {
+          "scale": 2
+        },
+        "position": { "x": -4, "y": 1 },
+        "rotation": { "x": 210, "y": -30, "z": 70 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "venus-trap-3",
+        "assetId": "flytrap",
+        "geometryConfig": {
+          "scale": 4
+        },
+        "position": { "x": -1, "y": 5, "z": -2 },
+        "rotation": { "x": 220, "y": -80, "z": 110 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "rig-geometry",
+        "targetIdentifier": "venus-trap",
+        "animationFunctionType": "RIGGED",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      },
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "MATCAP",
+        "materialProps": {
+          "assetId": "chrome-material"
+        }
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["venus-trap"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "size": { "x": 80, "y": 80 },
+          "position": { "x": 0, "y": -5, "z": -80 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]

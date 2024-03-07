@@ -13,6 +13,7 @@ export const ANIMATION_FUNCTION_TYPES = {
   ALL: "ALL",
   TARGET: "TARGET",
   UTIME: "UTIME",
+  RIGGED: "RIGGED",
 };
 
 export const ANIMATION_TYPES = {
