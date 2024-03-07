@@ -1,17 +1,12 @@
 import { FILE_TYPES } from "visual/consts";
-import { loadGLTF } from "./loadGLTF";
-import { loadObject } from "./loadObject";
+import { loadGLTF } from "../geometry/load-model/loadGLTF";
 
-export const loadModel = async (path: string, fileType: string) => {
+export const loadAdvancedScene = async (path: string, fileType: string) => {
   switch (fileType) {
     case FILE_TYPES.MODELS.GLTF:
     case FILE_TYPES.MODELS.GLB: {
       const gltf = await loadGLTF(path);
-      return gltf.scene;
-    }
-    case FILE_TYPES.MODELS.OBJ: {
-      const object = await loadObject(path);
-      return object;
+      return gltf;
     }
     case "":
     default: {

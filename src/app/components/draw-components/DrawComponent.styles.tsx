@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const SIDE_BAR_TRANSITION_SPEED = 0.2;
 

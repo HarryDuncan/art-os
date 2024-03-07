@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 // Styled components
 const SpinButtonContainer = styled.div`

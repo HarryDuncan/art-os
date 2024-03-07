@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const StyledAppContainer = styled.div`
   margin: 0;
@@ -7,4 +7,5 @@ export const StyledAppContainer = styled.div`
   top: 0;
   left: 0;
   overflow: hidden;
+  width: 100%;
 `;

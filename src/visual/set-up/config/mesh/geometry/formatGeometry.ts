@@ -1,4 +1,3 @@
-import { DEFAULT_POSITION } from "visual/consts/threejs";
 import { BufferGeometry, Vector3 } from "three";
 import { Asset } from "visual/set-up/assets/asset.types";
 import {
@@ -9,7 +8,11 @@ import {
 import { DEFAULT_MODEL3D_CONFIG } from "visual/set-up/assets/assets.constants";
 import { MeshComponentConfig } from "../../config.types";
 import { getAssetGeometries } from "visual/set-up/config/mesh/geometry/getAssetGeometries";
-import { vector3DegreesToEuler } from "visual/utils/three-dimension-space/degreesToEuler";
+
+import {
+  formatPositionFromConfig,
+  formatRotationFromConfig,
+} from "visual/utils/three-dimension-space/formatFromConfig";
 
 export const formatGeometry = (
   loadedAssets: Asset[],
@@ -25,8 +28,8 @@ export const formatGeometry = (
       return [];
     }
 
-    const position = formatPosition(meshConfig);
-    const rotation = formatRotation(meshConfig);
+    const position = formatPositionFromConfig(meshConfig);
+    const rotation = formatRotationFromConfig(meshConfig);
     const configuredGeometry = configureGeometry(
       geometry.geometry,
       meshConfig.geometryConfig
@@ -73,24 +76,9 @@ const getGeometryForMeshConfig = (
       geometry names ${geometries.map(({ name }) => name)}`
     );
   }
+  console.log(geometries);
   return {
     ...meshGeometry,
     geometry: meshGeometry?.geometry.clone(),
   };
-};
-
-const formatRotation = (config: MeshComponentConfig) => {
-  const rotation = new Vector3(0, 0, 0);
-  rotation.setX(config.rotation?.x ?? 0);
-  rotation.setY(config.rotation?.y ?? 0);
-  rotation.setZ(config.rotation?.z ?? 0);
-  const eulerRotation = vector3DegreesToEuler(rotation);
-  return eulerRotation;
-};
-const formatPosition = (config: MeshComponentConfig) => {
-  const position = { ...DEFAULT_POSITION };
-  position.x = config?.position?.x ?? 0;
-  position.y = config?.position?.y ?? 0;
-  position.z = config?.position?.z ?? 0;
-  return new Vector3(position.x, position.y, position.z);
 };

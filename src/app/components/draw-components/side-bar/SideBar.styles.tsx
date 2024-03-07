@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { DrawComponent } from "app/components/draw-components/DrawComponent.styles";
 
