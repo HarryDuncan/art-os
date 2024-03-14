@@ -1,5 +1,4 @@
 import { BufferAttribute, BufferGeometry } from "three";
-import { AssetMetaData } from "visual/set-up/assets/asset.types";
 import {
   getPositionsLength,
   getVertexArray,

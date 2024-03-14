@@ -27,20 +27,24 @@ export const handleExportLargeFile = async (geometry, geometryId, fileName) => {
 
 // Handle export button click
 export const handleExportClick = async (geometry, geometryId, fileName) => {
-  const mesh = new Mesh(geometry);
-  mesh.name = geometryId;
-  const exporter = new OBJExporter();
-  const objData = exporter.parse(mesh);
+  try {
+    const mesh = new Mesh(geometry);
+    mesh.name = geometryId;
+    const exporter = new OBJExporter();
+    const objData = exporter.parse(mesh);
 
-  // Create a Blob and a download link
-  const blob = new Blob([objData], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
+    // Create a Blob and a download link
+    const blob = new Blob([objData], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
 
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `${fileName}.obj`;
-  link.click();
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${fileName}.obj`;
+    link.click();
 
-  // Clean up
-  URL.revokeObjectURL(url);
+    // Clean up
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    handleExportLargeFile(geometry, geometryId, fileName);
+  }
 };

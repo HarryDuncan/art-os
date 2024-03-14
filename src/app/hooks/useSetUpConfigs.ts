@@ -28,7 +28,7 @@ export const useAppConfigs = () => {
 
   useEffect(() => {
     const retrieveAppData = async () => {
-      const sceneConfigsUrl = `${ROOT}${BARBA_URL}`;
+      const sceneConfigsUrl = `${ROOT}${DEFAULT_CONFIG_URL}`;
       const sceneConfigs = await fetchData(sceneConfigsUrl);
       dispatch(setSceneConfigs(sceneConfigs));
       const defaultSceneConfigsUrl = `${ROOT}config/defaults/scenes.json`;

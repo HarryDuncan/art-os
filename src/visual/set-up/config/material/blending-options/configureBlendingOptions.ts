@@ -1,4 +1,4 @@
-import { CustomBlending } from "three";
+import { AdditiveBlending } from "three";
 import { BlendingConfig } from "./blendingOptions.types";
 import { DEFAULT_BLENDING_OPTIONS } from "./blendingOptions.consts";
 import { getBlendingDstFactor, getBlendingFactor } from "./getBlendingFactor";
@@ -11,7 +11,6 @@ export const configureBlendingOptions = (
   const blendDst = getBlendingDstFactor(formattedBlendingConfig.blendDstKey);
   const blendSrc = getBlendingFactor(formattedBlendingConfig.blendSrcKey);
   return {
-    blending: CustomBlending,
     blendSrc,
     blendDst,
     transparent: formattedBlendingConfig.transparent,
