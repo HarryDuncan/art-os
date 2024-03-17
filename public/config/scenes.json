@@ -46,5 +46,17 @@
     "configId": "hjd-slow-morph",
     "configPath": "scenes/hjd-art/hjd-morph-slow",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Sand Morph",
+    "configId": "hjd-sand-morph",
+    "configPath": "scenes/hjd-art/hjd-sand-morph",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "HJD Background",
+    "configId": "hjd-background",
+    "configPath": "scenes/hjd-art/backgrounds/hjd-background",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

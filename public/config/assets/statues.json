@@ -1,14 +1,14 @@
 [
   {
-    "name": "statue1-geometry",
-    "id": "statue1",
-    "url": "../assets/models/sculptures/athena-statue.obj",
+    "name": "statue3-geometry",
+    "id": "statue3",
+    "url": "../assets/models/hjd/sand/zeus.obj",
     "assetType": "MODEL3D"
   },
   {
-    "name": "statue2-geometry",
-    "id": "statue2",
-    "url": "../assets/models/sculptures/mercury-statue.obj",
+    "name": "statue4-geometry",
+    "id": "statue4",
+    "url": "../assets/models/hjd/sand/apollo2.obj",
     "assetType": "MODEL3D"
   }
 ]

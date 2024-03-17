@@ -67,7 +67,7 @@
               "loopProps": {
                 "maxPeak": 1,
                 "minTrough": 0,
-                "speed": 0.15
+                "speed": 0.25
               }
             }
           ]
@@ -123,8 +123,8 @@
               "effectProps": {
                 "perspectiveConfig": {
                   "floor": 8,
-                  "ceiling": 12,
-                  "scaleFactor": 16,
+                  "ceiling": 16,
+                  "scaleFactor": 18,
                   "divisor": 9
                 }
               }
@@ -146,7 +146,7 @@
             {
               "id": "pointDisplay",
               "valueType": "FLOAT",
-              "valueConfig": { "randomizedPercentage": 0.0004 }
+              "valueConfig": { "randomizedPercentage": 0.0002 }
             }
           ]
         },

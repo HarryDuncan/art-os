@@ -6,8 +6,10 @@ import {
 } from "../../buildShader.types";
 import { VERTEX_EFFECTS } from "../vertexEffects.consts";
 import { VertexEffectData } from "../vertexEffects.types";
+import { cloudEffect } from "./displacement/cloud/cloudTransform";
 import { distort } from "./displacement/distort/distort";
 import { explode } from "./displacement/explode/explode";
+import { traverseTransform } from "./displacement/traverse/traverseTransform";
 import { vertexFilter } from "./filter-vertex/filterVertex";
 import { interactiveEffect } from "./interactive/interactiveEffect";
 import { morphVertex } from "./morph/morphVertex";
@@ -31,11 +33,17 @@ export const getVertexEffect = (
         effect.effectProps as Partial<PointsEffectProps> | undefined
       );
     }
+    case VERTEX_EFFECTS.CLOUD: {
+      return cloudEffect(transformPointName);
+    }
     case VERTEX_EFFECTS.MORPH: {
       return morphVertex(
         transformPointName,
         effect.effectProps as Partial<MorphEffectProps> | undefined
       );
+    }
+    case VERTEX_EFFECTS.TRAVERSE: {
+      return traverseTransform(transformPointName);
     }
     case VERTEX_EFFECTS.DISTORT: {
       return distort(transformPointName);

@@ -8,7 +8,9 @@ export const VERTEX_EFFECTS = {
   MORPH: "MORPH",
   DISTORT: "DISTORT",
   ALIEN: "ALIEN",
+  CLOUD: "CLOUD",
   INTERACTIVE: "INTERACTIVE",
+  TRAVERSE: "TRAVERSE",
 };
 export const VERTEX_EFFECT_POINT_NAMES = {
   DEFAULT_POINT: "position",
@@ -17,8 +19,10 @@ export const VERTEX_EFFECT_POINT_NAMES = {
   EXPLODED_POINT: "explodedPoint",
   FILTERED_POINT: "filteredPoint",
   ROTATED_POINT: "rotatedPoint",
+  CLOUD_POINT: "cloudPoint",
   MORPHED_POINT: "morphedPoint",
   INTERACTED_POINT: "interactedPoint",
+  TRAVERSE_POINT: "traversePoint",
 };
 
 export const DEFAULT_ROTATE_EFFECT_CONFIG = {
