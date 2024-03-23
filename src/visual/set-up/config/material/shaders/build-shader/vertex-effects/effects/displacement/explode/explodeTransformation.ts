@@ -1,20 +1,27 @@
+import { ExplodeEffectProps } from "../../../../buildShader.types";
+
 export const explodeTransformation = (
   transformPointName: string,
-  pointName: string
+  pointName: string,
+  explodeParameters: ExplodeEffectProps
 ) => {
+  const { effectDistanceMinLength, effectStrength } = explodeParameters;
   return `
-    // EXPLODE AT POSITION
-    vec3 ${pointName} = ${transformPointName};
-    if(uPosition.x > -2000.0){
-      vec3 effectPosition = uPosition;
-      vec3 effectDistanceVector =  effectPosition - ${transformPointName};
+      // EXPLODE POINTS
+      vec3 displacedPosition = vec3( ${transformPointName}.xy, 0);
+      vec3 effect = vec3(ndcPosition.xy, 0);
+      vec3 effectDistanceVector =  effect - displacedPosition;
       float effectDistanceLength = length(effectDistanceVector);
-      float effectStrength =  1.5 * uPower;
-      if(effectDistanceLength <= 1.25 * uPower){
+      float effectStrength =  ${effectStrength} * uStrength;
+      if(effectDistanceLength <=  ${effectDistanceMinLength} * uStrength){
+        float effectDirection =  signDirection;
+        if(effectDirection == 0.0){
+          effectDirection = -1.0; 
+        }
         float rand = random(uTime);
-        ${pointName}.x += cos(angle) * effectStrength;
-        ${pointName}.y += sin(angle) * effectStrength;
-        vAffected = 1.0;
-      }
-    }`;
+        ${pointName}.x += cos(randomAngle * rand) * effectStrength * effectDirection;
+        ${pointName}.y += sin(randomAngle * rand) * effectStrength * effectDirection;
+        isAffected = 1.0;
+    }
+    `;
 };

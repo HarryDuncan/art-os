@@ -35,7 +35,9 @@ export const getMeshesFromConfig = (
     meshTransforms ?? [],
     attributeConfigs
   );
-
+  console.log(attributeConfigs);
+  console.log(formattedTransforms);
+  console.log(meshTransforms);
   const transformedGeometry = transformGeometry(
     formattedTransforms,
     formattedGeometry
@@ -46,7 +48,7 @@ export const getMeshesFromConfig = (
     allMeshes
   );
   const meshes = setUpMeshes(geometriesWithMaterials);
-  console.log(assets);
+
   const advancedMeshes = setUpAdvancedMeshes(
     assets,
     advancedMeshConfigs,

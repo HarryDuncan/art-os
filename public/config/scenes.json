@@ -58,5 +58,17 @@
     "configId": "hjd-background",
     "configPath": "scenes/hjd-art/backgrounds/hjd-background",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "HJD Venus",
+    "configId": "hjd-venus",
+    "configPath": "scenes/hjd-art/hjd-venus",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "HJD With BG",
+    "configId": "with-bg",
+    "configPath": "scenes/hjd-art/interactive/with-bg",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

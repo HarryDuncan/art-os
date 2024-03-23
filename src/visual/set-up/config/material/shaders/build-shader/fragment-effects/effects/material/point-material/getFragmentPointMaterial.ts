@@ -85,6 +85,7 @@ export const getFragmentPointMaterial = (
   }
   ${getPointColor(fragmentColorName, defaultColor)}       
   ${getPointTextureInstantiations(fragmentColorName, pointDefinitions)}
+  if(${fragmentColorName}.a < 0.5) discard;
   `;
   const requiredFunctions = getRequiredFunctions();
   return {

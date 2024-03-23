@@ -4,6 +4,8 @@ import {
 } from "visual/utils/three-dimension-space/position/position.types";
 import {
   DISPLACEMENT_TYPES,
+  INTERACTION_FRAGMENT_EFFECT,
+  INTERACTION_VERTEX_EFFECT,
   ShaderPropertyValueTypes,
 } from "./buildShader.constants";
 import { FRAGMENT_EFFECT } from "./fragment-effects/fragmentEffects.consts";
@@ -35,6 +37,11 @@ export type DisplacementEffectProps = {
   };
 };
 
+export type ExplodeEffectProps = {
+  effectDistanceMinLength: number;
+  effectStrength: number;
+};
+
 export type RotationEffectProps = {
   speed: number;
   axis: Axis;
@@ -56,11 +63,37 @@ export type PointsEffectProps = {
   pointSize: number;
   perspectiveConfig: PointPerspectiveConfig;
 };
+
+export type PointColorEffectProps = {
+  pointColor: string;
+};
+// <--------------------- Interactive ---------------------------------------->
+export type InteractiveVertexEffectProps =
+  | DisplacementEffectProps
+  | ExplodeEffectProps;
+export type InteractiveVertexEffectType = keyof typeof INTERACTION_VERTEX_EFFECT;
+export type InteractiveVertexEffect = {
+  effectType: InteractiveVertexEffect;
+  effectProps: InteractiveVertexEffectProps;
+};
+
+export type InteractiveFragmentEffectProps = PointColorEffectProps;
+export type InteractiveFragmentEffectType = keyof typeof INTERACTION_FRAGMENT_EFFECT;
+export type InteractiveFragmentEffect = {
+  effectType: InteractiveFragmentEffectType;
+  effectProps: InteractiveFragmentEffectProps;
+};
+
+export type InteractiveEffectProps =
+  | InteractiveFragmentEffect
+  | InteractiveVertexEffect;
+
 export type VertexEffectProps =
   | RotationEffectProps
   | DisplacementEffectProps
   | MorphEffectProps
-  | PointsEffectProps;
+  | PointsEffectProps
+  | InteractiveEffectProps;
 
 export type VertexEffectConfig = {
   effectType: DisplacementType;
@@ -121,6 +154,7 @@ export interface FragmentEffectData {
   attributeConfig: AttributeConfig[];
   transformation: string;
   fragmentColorName: string;
+  defaultInstantiation?: string;
 }
 
 // <---------------------------------------- VARYING ------------------------>

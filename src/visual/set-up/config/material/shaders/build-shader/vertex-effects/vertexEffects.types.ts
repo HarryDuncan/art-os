@@ -11,7 +11,8 @@ export interface VertexEffectData {
   varyingConfig: VaryingConfig[];
   transformation: string;
   pointName: string;
-  attributeConfig?: AttributeConfig[];
+  attributeConfig: AttributeConfig[];
+  defaultInstantiation?: string;
 }
 
 export type MorphObject = {

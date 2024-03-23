@@ -29,3 +29,20 @@ export const DISPLACEMENT_TYPES = {
 
 export const MAIN_START = "void main() {";
 export const MAIN_END = "}";
+
+export const INTERACTION_VERTEX_EFFECT = {
+  DISPLACE: "DISPLACE",
+  WARP: "WARP",
+};
+
+export const INTERACTION_FRAGMENT_EFFECT = {
+  COLOR: "COLOR",
+};
+export const DEFAULT_VERTEX_EFFECT = {
+  requiredFunctions: [],
+  uniformConfig: { defaultUniforms: [] },
+  transformation: "",
+  varyingConfig: [],
+  attributeConfig: [],
+  pointName: "",
+};

@@ -40,8 +40,8 @@ export const cloudEffect = (transformPointName: string): VertexEffectData => {
 
 export const noiseCloudTransform = (transformPointName: string, pointName) => {
   return `// Generate random offset for each vertex (compute once)
-  float randomOffsetX = noise3D(${transformPointName}.xyz + vec3(0.0, 0.0, 0.0) ) * 1.0 * uStrength;
-  float randomOffsetY = noise3D(${transformPointName}.xyz + vec3(1.0, 1.0, 1.0)) * 1.0 * 0.0;
+  float randomOffsetX = noise3D(${transformPointName}.xyz + vec3(0.0, 0.0, 0.0) ) * 1.0 * 0.0;
+  float randomOffsetY = noise3D(${transformPointName}.xyz + vec3(1.0, 1.0, 1.0)) * 1.0 * uStrength;
   float randomOffsetZ = noise3D(${transformPointName}.xyz + vec3(2.0, 2.0, 2.0)) * 1.0 * uStrength;
 
   // Apply random offset to the vertex position

@@ -1,4 +1,6 @@
 import {
+  ExplodeEffectProps,
+  InteractiveEffectProps,
   MorphEffectProps,
   PointsEffectProps,
   RotationEffectProps,
@@ -22,7 +24,10 @@ export const getVertexEffect = (
 ): VertexEffectData => {
   switch (effect.effectType) {
     case VERTEX_EFFECTS.EXPLODE: {
-      return explode(transformPointName);
+      return explode(
+        transformPointName,
+        effect.effectProps as Partial<ExplodeEffectProps>
+      );
     }
     case VERTEX_EFFECTS.FILTER: {
       return vertexFilter(transformPointName);
@@ -49,7 +54,10 @@ export const getVertexEffect = (
       return distort(transformPointName);
     }
     case VERTEX_EFFECTS.INTERACTIVE: {
-      return interactiveEffect(transformPointName);
+      return interactiveEffect(
+        transformPointName,
+        effect.effectProps as InteractiveEffectProps
+      );
     }
     case VERTEX_EFFECTS.ROTATE: {
       return rotationVertex(

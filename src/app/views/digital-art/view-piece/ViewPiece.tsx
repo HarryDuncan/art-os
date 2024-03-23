@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { AppContainer } from "app/components/containers/AppContainer";
 import { useAppSelector } from "app/redux/store";
 import { ScenePlayState } from "app/redux/scene-data/slice";
+import InteractiveNode from "interaction/external/interactive-node/InteractiveNode";
 
 export const ViewPiece = () => {
   const {
@@ -26,12 +27,19 @@ const ViewPieceContent = () => {
   const {
     sceneControls: { sceneIndex },
   } = useAppSelector((state) => state.sceneData);
+  const isInteractive = true;
   return (
     <AppContainer>
       <ViewPieceContainer>
         <Suspense>
           {sceneParameters ? (
-            <SceneNode {...sceneParameters} key={sceneIndex} />
+            <>
+              {isInteractive ? (
+                <InteractiveNode {...sceneParameters} key={sceneIndex} />
+              ) : (
+                <SceneNode {...sceneParameters} key={sceneIndex} />
+              )}
+            </>
           ) : null}
         </Suspense>
       </ViewPieceContainer>
