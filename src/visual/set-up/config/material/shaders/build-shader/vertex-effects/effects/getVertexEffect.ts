@@ -1,22 +1,28 @@
 import {
+  ExpandEffectProps,
   ExplodeEffectProps,
   InteractiveEffectProps,
   MorphEffectProps,
+  NoiseEffectProps,
   PointsEffectProps,
   RotationEffectProps,
+  TriggeredVertexEffectProps,
   VertexEffectConfig,
 } from "../../buildShader.types";
 import { VERTEX_EFFECTS } from "../vertexEffects.consts";
 import { VertexEffectData } from "../vertexEffects.types";
 import { cloudEffect } from "./displacement/cloud/cloudTransform";
 import { distort } from "./displacement/distort/distort";
+import { expand } from "./displacement/expand/expand";
 import { explode } from "./displacement/explode/explode";
+import { noise } from "./displacement/noise/noise";
 import { traverseTransform } from "./displacement/traverse/traverseTransform";
 import { vertexFilter } from "./filter-vertex/filterVertex";
 import { interactiveEffect } from "./interactive/interactiveEffect";
 import { morphVertex } from "./morph/morphVertex";
 import { pointsVertex } from "./points/pointsVertex";
 import { rotationVertex } from "./rotation/rotation";
+import { triggeredEffect } from "./triggered-effect/triggeredEffect";
 
 export const getVertexEffect = (
   effect: VertexEffectConfig,
@@ -59,10 +65,25 @@ export const getVertexEffect = (
         effect.effectProps as InteractiveEffectProps
       );
     }
+    case VERTEX_EFFECTS.EXPAND: {
+      return expand(
+        transformPointName,
+        effect.effectProps as ExpandEffectProps
+      );
+    }
+    case VERTEX_EFFECTS.NOISE: {
+      return noise(transformPointName, effect.effectProps as NoiseEffectProps);
+    }
     case VERTEX_EFFECTS.ROTATE: {
       return rotationVertex(
         transformPointName,
         effect.effectProps as RotationEffectProps
+      );
+    }
+    case VERTEX_EFFECTS.TRIGGERED_EFFECT: {
+      return triggeredEffect(
+        transformPointName,
+        effect.effectProps as TriggeredVertexEffectProps
       );
     }
     default:

@@ -1,18 +1,13 @@
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 import {
-  DefaultUniform,
   FragmentEffectData,
-  UniformConfig,
+  OpacityEffectProps,
 } from "../../../buildShader.types";
-
-export const colorFunctions = () => [];
-
-export const opacityUniforms = () => ({
-  defaultUniforms: ["uOpacity"] as DefaultUniform[],
-  customUniforms: [],
-});
-
-export const colorVaryings = () => [];
+import {
+  OPACITY_UNIFORMS,
+  OPACITY_VARYINGS,
+  OPACITY_FUNCTIONS,
+} from "./opacity.consts";
 
 const opacityTransformation = (
   transformColorName: string,
@@ -21,15 +16,18 @@ const opacityTransformation = (
     float opacity = uOpacity;
     vec4 ${transformColorName} = vec4(${currentName}.x, ${currentName}.y, ${currentName}.z, opacity);
 `;
-export const opacity = (transformColorName: string): FragmentEffectData => {
+export const opacity = (
+  transformColorName: string,
+  effectProps: Partial<OpacityEffectProps>
+): FragmentEffectData => {
   const fragmentColorName = FRAGMENT_COLOR_NAMES.OPACITY;
-  const uniformConfig = opacityUniforms() as UniformConfig;
-  const varyingConfig = colorVaryings();
+  const uniformConfig = OPACITY_UNIFORMS;
+  const varyingConfig = OPACITY_VARYINGS;
   const transformation = opacityTransformation(
     fragmentColorName,
     transformColorName
   );
-  const requiredFunctions = colorFunctions();
+  const requiredFunctions = OPACITY_FUNCTIONS;
   return {
     requiredFunctions,
     uniformConfig,

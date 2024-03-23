@@ -4,6 +4,7 @@ import {
   FragmentEffectData,
   MaterialEffectProps,
   PointMaterialEffectProps,
+  TriggeredFragmentEffect,
 } from "../../buildShader.types";
 import { FRAGMENT_EFFECT } from "../fragmentEffects.consts";
 import { color } from "./color/color";
@@ -13,6 +14,7 @@ import { matcapMaterial } from "./material/matcap/matcapMaterial";
 import { simpleMatcap } from "./material/matcap/simpleMatcap";
 import { getFragmentPointMaterial } from "./material/point-material/getFragmentPointMaterial";
 import { opacity } from "./opacity/opacity";
+import { triggeredEffect } from "./triggered-effect/triggeredEffect";
 
 export const getFragmentEffects = (
   effect: FragmentEffectConfig,
@@ -43,6 +45,13 @@ export const getFragmentEffects = (
       );
     case FRAGMENT_EFFECT.INTERACTIVE:
       return getInteractiveEffects(transformColorName, effect.effectProps);
+    case FRAGMENT_EFFECT.TRIGGERED: {
+      return triggeredEffect(
+        transformColorName,
+        effect.effectProps as Partial<TriggeredFragmentEffect>
+      );
+    }
+
     case FRAGMENT_EFFECT.DEFAULT:
     default:
       return defaultFragmentEffect();

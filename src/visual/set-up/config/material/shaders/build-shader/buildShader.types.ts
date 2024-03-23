@@ -6,12 +6,16 @@ import {
   DISPLACEMENT_TYPES,
   INTERACTION_FRAGMENT_EFFECT,
   INTERACTION_VERTEX_EFFECT,
+  POINT_PARENTS,
   ShaderPropertyValueTypes,
+  TRIGGERED_FRAGMENT_EFFECT,
+  TRIGGERED_VERTEX_EFFECT,
 } from "./buildShader.constants";
 import { FRAGMENT_EFFECT } from "./fragment-effects/fragmentEffects.consts";
 import { DEFAULT_UNIFORMS } from "./shader-properties/uniforms/uniforms.consts";
 import { VARYING_TYPES } from "./shader-properties/varyings/varyings.consts";
 import { TransformTypes } from "./vertex-effects/vertexEffects.consts";
+import { NOISE_EFFECT_TYPES } from "./vertex-effects/effects/displacement/noise/noise.consts";
 
 // GENERAL TYPES
 export type ShaderFunction = {
@@ -36,12 +40,26 @@ export type DisplacementEffectProps = {
     };
   };
 };
-
-export type ExplodeEffectProps = {
+export type PointParent = keyof typeof POINT_PARENTS;
+export type VertexEffectParameters = {
+  declareInTransform?: boolean;
+  pointParent?: PointParent;
+};
+export type ExplodeEffectProps = VertexEffectParameters & {
   effectDistanceMinLength: number;
   effectStrength: number;
 };
 
+export type ExpandEffectProps = VertexEffectParameters & {
+  effectDistanceMinLength: number;
+  effectStrength: number;
+};
+
+export type NoiseEffectTypes = keyof typeof NOISE_EFFECT_TYPES;
+export type NoiseEffectProps = VertexEffectParameters & {
+  noiseType: NoiseEffectTypes;
+  effectStrength: number;
+};
 export type RotationEffectProps = {
   speed: number;
   axis: Axis;
@@ -67,6 +85,33 @@ export type PointsEffectProps = {
 export type PointColorEffectProps = {
   pointColor: string;
 };
+
+export type OpacityEffectProps = {
+  opacity: number;
+};
+
+// <----------------------Triggered ----------------------------------------->
+export type TriggeredVertexEffectProps =
+  | DisplacementEffectProps
+  | ExplodeEffectProps
+  | ExpandEffectProps;
+export type TriggeredVertexEffectType = keyof typeof TRIGGERED_VERTEX_EFFECT;
+export type TriggeredVertexEffect = {
+  effectType: TriggeredVertexEffect;
+  effectProps: TriggeredVertexEffectProps;
+};
+
+export type TriggeredFragmentEffectProps = PointColorEffectProps;
+export type TriggeredFragmentEffectType = keyof typeof TRIGGERED_FRAGMENT_EFFECT;
+export type TriggeredFragmentEffect = {
+  effectType: TriggeredFragmentEffectType;
+  effectProps: TriggeredFragmentEffectProps;
+};
+
+export type TriggeredEffectProps =
+  | TriggeredFragmentEffect
+  | TriggeredVertexEffect;
+
 // <--------------------- Interactive ---------------------------------------->
 export type InteractiveVertexEffectProps =
   | DisplacementEffectProps
@@ -93,7 +138,9 @@ export type VertexEffectProps =
   | DisplacementEffectProps
   | MorphEffectProps
   | PointsEffectProps
-  | InteractiveEffectProps;
+  | InteractiveEffectProps
+  | ExpandEffectProps
+  | NoiseEffectProps;
 
 export type VertexEffectConfig = {
   effectType: DisplacementType;
@@ -154,7 +201,7 @@ export interface FragmentEffectData {
   attributeConfig: AttributeConfig[];
   transformation: string;
   fragmentColorName: string;
-  defaultInstantiation?: string;
+  fragmentColorInstantiation?: string;
 }
 
 // <---------------------------------------- VARYING ------------------------>

@@ -7,7 +7,6 @@ import {
 import { reduceFunctions } from "../../../helpers/reduceFunctions";
 import { mergeAttributeConfigs } from "../../../shader-properties/attributes/helpers/mergeAttributeConfigs";
 import { mergeUniformConfigs } from "../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
-import { EMPTY_UNIFORM_CONFIG } from "../../../shader-properties/uniforms/uniforms.consts";
 import { mergeVaryingConfigs } from "../../../shader-properties/varyings/helpers/mergeVaryingConfigs";
 import {
   FRAGMENT_COLOR_NAMES,
@@ -29,12 +28,12 @@ export const getInteractiveEffects = (
     fragmentColorName: effectPointName,
     requiredFunctions: effectFunctions,
     attributeConfig: effectAttributes,
-    defaultInstantiation,
+    vertexPointInstantiation,
   } = getEffectData(fragmentColorName, effectProps);
 
   const transformation = `
         vec4 ${effectPointName} = ${transformName};
-        ${defaultInstantiation}
+        ${vertexPointInstantiation}
         if(vAffected == 1.0){
             ${effectTransformation};
         }

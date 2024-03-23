@@ -30,7 +30,7 @@ export const getBuiltShaderMaterials = (
           attributeConfigs,
         } = buildShader(shaderConfig);
         console.log(vertexShader);
-        // console.log(fragmentShader);
+        console.log(fragmentShader);
         const formattedUniforms = formatBuiltShaderUniforms(
           uniforms,
           assetMapping ?? [],

@@ -28,5 +28,11 @@
     "configId": "distort-points",
     "configPath": "scenes/blackout/takeover/distort-points",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Unleashed",
+    "configId": "unleashed",
+    "configPath": "scenes/blackout/unleashed/unleashed",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

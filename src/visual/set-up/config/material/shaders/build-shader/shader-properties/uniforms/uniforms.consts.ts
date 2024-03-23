@@ -30,6 +30,14 @@ export const DEFAULT_UNIFORMS = {
     valueType: ShaderPropertyValueTypes.INT,
     defaultValue: 0,
   },
+  uCenter: {
+    valueType: ShaderPropertyValueTypes.VEC3,
+    defaultValue: new Vector3(0, 0, 0),
+  },
+  uIsTriggered: {
+    valueType: ShaderPropertyValueTypes.FLOAT,
+    defaultValue: 0.0,
+  },
 };
 
 export const UNIFORM_DECLARATION = "// UNIFORM DECLARATION";

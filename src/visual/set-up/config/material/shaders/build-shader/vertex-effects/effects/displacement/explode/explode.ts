@@ -4,6 +4,7 @@ import {
   ExplodeEffectProps,
   UniformConfig,
 } from "../../../../buildShader.types";
+import { formatVertexParameters } from "../../../../helpers/formatDefaultVertexParameters";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";
 import {
@@ -18,7 +19,10 @@ export const explode = (
   transformPointName: string,
   effectProps: Partial<ExplodeEffectProps> | undefined
 ): VertexEffectData => {
-  const explodeEffectProps = formatProps(effectProps ?? {});
+  const explodeEffectProps = formatVertexParameters(
+    effectProps ?? {},
+    DEFAULT_EXPLODE_PARAMETERS
+  ) as ExplodeEffectProps;
   const pointName = VERTEX_EFFECT_POINT_NAMES.EXPLODED_POINT;
   const uniformConfig = EXPLODE_UNIFORMS as UniformConfig;
   const varyingConfig = EXPLODE_VARYINGS;
@@ -32,7 +36,7 @@ export const explode = (
     { id: "randomAngle", valueType: ShaderPropertyValueTypes.FLOAT },
     { id: "signDirection", valueType: ShaderPropertyValueTypes.FLOAT },
   ] as AttributeConfig[];
-  const defaultInstantiation = `vec3 ${pointName} = ${transformPointName}.xyz;`;
+  const vertexPointInstantiation = `vec3 ${pointName} = ${transformPointName}.xyz;`;
   return {
     attributeConfig,
     requiredFunctions,
@@ -40,10 +44,6 @@ export const explode = (
     transformation,
     varyingConfig,
     pointName,
-    defaultInstantiation,
+    vertexPointInstantiation,
   };
-};
-
-const formatProps = (parsedEffectProps: Partial<ExplodeEffectProps>) => {
-  return { ...DEFAULT_EXPLODE_PARAMETERS, ...parsedEffectProps };
 };

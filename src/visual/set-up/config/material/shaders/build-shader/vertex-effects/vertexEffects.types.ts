@@ -12,7 +12,7 @@ export interface VertexEffectData {
   transformation: string;
   pointName: string;
   attributeConfig: AttributeConfig[];
-  defaultInstantiation?: string;
+  vertexPointInstantiation?: string;
 }
 
 export type MorphObject = {

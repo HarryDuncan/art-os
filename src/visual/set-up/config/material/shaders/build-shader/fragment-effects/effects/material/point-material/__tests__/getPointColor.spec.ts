@@ -1,23 +1,25 @@
+import { getPointColor } from "../getPointColor";
+
 const mockPointDefinitions = [
   { id: "uTexture1", pointColor: "#ff1205" },
   { id: "uTexture2", pointColor: "#ff1005" },
 ];
-const transformPointName = "mockPoint";
+const fragmentColorName = "mockPoint";
 const mockPointColor = "";
 describe("coordinateObjectToArray", () => {
   test("returns the default color if no point color is specified", () => {
-    const result = getPointColor(transformPointName, []);
+    const result = getPointColor(fragmentColorName, []);
     expect(result).toEqual(`vec4 mockPoint =  vec4(1.0, 0.0, 0.0, opacity);`);
   });
   test("returns a parsed color if no point color is specified and parsed color is parsed", () => {
-    const result = getPointColor(transformPointName, [], mockPointColor);
+    const result = getPointColor(fragmentColorName, [], mockPointColor);
     expect(result).toEqual(
       `vec4 ${fragmentColorName} =  vec4(1.0, 0.0, 0.0, opacity);`
     );
   });
   test("returns specified colors based on the point type", () => {
     const result = getPointColor(
-      transformPointName,
+      fragmentColorName,
       mockPointDefinitions,
       mockPointColor
     );
@@ -32,7 +34,7 @@ describe("coordinateObjectToArray", () => {
       pointColor: "#rrrrrrrrr",
     });
     const result = getPointColor(
-      transformPointName,
+      fragmentColorName,
       updatedPointDefs,
       mockPointColor
     );

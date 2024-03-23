@@ -29,6 +29,15 @@ export const DISPLACEMENT_TYPES = {
 
 export const MAIN_START = "void main() {";
 export const MAIN_END = "}";
+export const TRIGGERED_VERTEX_EFFECT = {
+  DISPLACE: "DISPLACE",
+  WARP: "WARP",
+};
+export const TRIGGERED_FRAGMENT_EFFECT = {
+  COLOR: "COLOR",
+  OPACITY: "OPACITY",
+  EMPTY: "EMPTY",
+};
 
 export const INTERACTION_VERTEX_EFFECT = {
   DISPLACE: "DISPLACE",
@@ -37,6 +46,11 @@ export const INTERACTION_VERTEX_EFFECT = {
 
 export const INTERACTION_FRAGMENT_EFFECT = {
   COLOR: "COLOR",
+};
+
+export const POINT_PARENTS = {
+  INTERACTIVE: "INTERACTIVE",
+  TRIGGERED: "TRIGGERED",
 };
 export const DEFAULT_VERTEX_EFFECT = {
   requiredFunctions: [],
