@@ -48,7 +48,6 @@ export const getMeshesFromConfig = (
     allMeshes
   );
   const meshes = setUpMeshes(geometriesWithMaterials);
-
   const advancedMeshes = setUpAdvancedMeshes(
     assets,
     advancedMeshConfigs,
