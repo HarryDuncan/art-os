@@ -48,7 +48,7 @@ const getOpacity = (opacity?: boolean | undefined) => {
   return `matcapColor.a`;
 };
 export const simpleMatcap = (
-  _transformColorName: string,
+  _previousFragName: string,
   fragmentEffects: Partial<MaterialEffectProps> | undefined
 ): FragmentEffectData => {
   const fragName = FRAGMENT_COLOR_NAMES.MATERIAL;

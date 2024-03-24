@@ -51,9 +51,9 @@
         "geometryId": "demon",
         "meshType": "MESH",
         "geometryConfig": {
-          "scale": 0.04
+          "scale": 0.03
         },
-        "position": { "x": 0, "y": 2, "z": 0 },
+        "position": { "x": 0, "y": 0, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": -0 },
         "materialId": "display-material"
       }
@@ -114,6 +114,15 @@
           "animationPauseMilis": 0,
           "repeatAnimation": true,
           "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.04
+              }
+            },
             {
               "uniform": "uIsTriggered",
               "loopType": "LINEAR",
@@ -253,6 +262,9 @@
                   "asUniform": false
                 }
               }
+            },
+            {
+              "effectType": "VANISH"
             }
           ],
           "attributeConfig": []

@@ -27,7 +27,7 @@ export const colorUniforms = () => ({
 export const colorVaryings = () => [];
 
 export const color = (
-  _transformColorName: string,
+  _previousFragName: string,
   effectProps: Partial<ColorEffectProps>
 ): FragmentEffectData => {
   const formattedEffectProps = formatEffectProps(effectProps);

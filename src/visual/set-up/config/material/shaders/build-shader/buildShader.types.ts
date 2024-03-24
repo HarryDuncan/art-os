@@ -183,6 +183,7 @@ export type ColorEffectProps = EffectParameters & {
   opacity?: number;
 };
 
+export type VanishEffectProps = EffectParameters & {};
 export type OpacityEffectProps = EffectParameters & {
   opacity: number;
   asUniform: boolean;
@@ -192,6 +193,7 @@ export type FragmentEffectProps =
   | PointMaterialEffectProps
   | ColorEffectProps
   | OpacityEffectProps
+  | VanishEffectProps
   | TriggeredFragmentEffect;
 
 export type FragmentEffectConfig = {
