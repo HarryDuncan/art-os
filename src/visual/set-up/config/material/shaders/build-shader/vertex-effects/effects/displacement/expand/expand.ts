@@ -16,7 +16,7 @@ import {
 import { expandTransformation } from "./expandTransformation";
 
 export const expand = (
-  transformPointName: string,
+  previousPointName: string,
   effectProps: Partial<ExpandEffectProps> | undefined
 ): VertexEffectData => {
   const expandEffectProps = formatVertexParameters(
@@ -30,7 +30,7 @@ export const expand = (
   const uniformConfig = EXPAND_UNIFORMS as UniformConfig;
   const varyingConfig = EXPAND_VARYINGS;
   const { transformation, vertexPointInstantiation } = expandTransformation(
-    transformPointName,
+    previousPointName,
     pointName,
     expandEffectProps
   );

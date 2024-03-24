@@ -22,7 +22,6 @@ import { mergeAttributeConfigs } from "../../../shader-properties/attributes/hel
 import { VertexEffectData } from "../../vertexEffects.types";
 import {
   DEFAULT_TRIGGERED_EFFECT,
-  EMPTY_EFFECT,
   TRIGGERED_UNIFORM_CONFIG,
   TRIGGERED_VARYING_CONFIG,
 } from "./triggeredEffect.consts";
@@ -30,7 +29,7 @@ import { expand } from "../displacement/expand/expand";
 import { generateUniquePointName } from "../../../helpers/generateUniquePointName";
 
 export const triggeredEffect = (
-  transformName: string,
+  previousPointName: string,
   effectProps: InteractiveEffectProps
 ) => {
   const pointName = generateUniquePointName(
@@ -54,7 +53,7 @@ export const triggeredEffect = (
 
   const transformation = formatTransform(
     pointName,
-    transformName,
+    previousPointName,
     vertexPointInstantiation,
     effectTransformation
   );

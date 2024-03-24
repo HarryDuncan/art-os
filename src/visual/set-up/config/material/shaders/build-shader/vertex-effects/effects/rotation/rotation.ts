@@ -37,7 +37,7 @@ const getFunctionName = (axis: Axis) => {
   }
 };
 export const rotationVertex = (
-  transformName: string,
+  previousPointName: string,
   effectProps: Partial<RotationEffectProps> | undefined = {}
 ) => {
   const formattedProps = mergeWithDefault(effectProps);
@@ -57,7 +57,7 @@ export const rotationVertex = (
   const transformation = `
     float rotationAngle = uTime * uRotationSpeed;
   mat4 rotationMatrix = ${getFunctionName(axis as Axis)}(rotationAngle);
-  vec4 ${pointName} = vec4(${transformName}.xyz,1.0) * rotationMatrix; 
+  vec4 ${pointName} = vec4(${previousPointName}.xyz,1.0) * rotationMatrix; 
   `;
   const requiredFunctions = getRequiredFunctions(axis as Axis);
   return {

@@ -24,11 +24,11 @@ export const distortVaryings = () =>
     },
   ] as VaryingConfig[];
 
-export const distort = (transformPointName: string): VertexEffectData => {
+export const distort = (previousPointName: string): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.DISTORT_POINT;
   const uniformConfig = distortUniforms() as UniformConfig;
   const varyingConfig = distortVaryings();
-  const transformation = distortTransform(transformPointName, pointName);
+  const transformation = distortTransform(previousPointName, pointName);
   const requiredFunctions = distortFunctions();
   return {
     requiredFunctions,

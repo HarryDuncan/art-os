@@ -16,7 +16,7 @@ import {
 import { explodeTransformation } from "./explodeTransformation";
 
 export const explode = (
-  transformPointName: string,
+  previousPointName: string,
   effectProps: Partial<ExplodeEffectProps> | undefined
 ): VertexEffectData => {
   const explodeEffectProps = formatVertexParameters(
@@ -27,7 +27,7 @@ export const explode = (
   const uniformConfig = EXPLODE_UNIFORMS as UniformConfig;
   const varyingConfig = EXPLODE_VARYINGS;
   const transformation = explodeTransformation(
-    transformPointName,
+    previousPointName,
     pointName,
     explodeEffectProps
   );
@@ -36,7 +36,7 @@ export const explode = (
     { id: "randomAngle", valueType: ShaderPropertyValueTypes.FLOAT },
     { id: "signDirection", valueType: ShaderPropertyValueTypes.FLOAT },
   ] as AttributeConfig[];
-  const vertexPointInstantiation = `vec3 ${pointName} = ${transformPointName}.xyz;`;
+  const vertexPointInstantiation = `vec3 ${pointName} = ${previousPointName}.xyz;`;
   return {
     attributeConfig,
     requiredFunctions,

@@ -23,11 +23,11 @@ export const distortVaryings = () =>
     },
   ] as VaryingConfig[];
 
-export const cloudEffect = (transformPointName: string): VertexEffectData => {
+export const cloudEffect = (previousPointName: string): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.CLOUD_POINT;
   const uniformConfig = distortUniforms() as UniformConfig;
   const varyingConfig = [];
-  const transformation = noiseCloudTransform(transformPointName, pointName);
+  const transformation = noiseCloudTransform(previousPointName, pointName);
   const requiredFunctions = distortFunctions();
   return {
     requiredFunctions,
@@ -38,26 +38,26 @@ export const cloudEffect = (transformPointName: string): VertexEffectData => {
   };
 };
 
-export const noiseCloudTransform = (transformPointName: string, pointName) => {
+export const noiseCloudTransform = (previousPointName: string, pointName) => {
   return `// Generate random offset for each vertex (compute once)
-  float randomOffsetX = noise3D(${transformPointName}.xyz + vec3(0.0, 0.0, 0.0) ) * 1.0 * 0.0;
-  float randomOffsetY = noise3D(${transformPointName}.xyz + vec3(1.0, 1.0, 1.0)) * 1.0 * uStrength;
-  float randomOffsetZ = noise3D(${transformPointName}.xyz + vec3(2.0, 2.0, 2.0)) * 1.0 * uStrength;
+  float randomOffsetX = noise3D(${previousPointName}.xyz + vec3(0.0, 0.0, 0.0) ) * 1.0 * 0.0;
+  float randomOffsetY = noise3D(${previousPointName}.xyz + vec3(1.0, 1.0, 1.0)) * 1.0 * uStrength;
+  float randomOffsetZ = noise3D(${previousPointName}.xyz + vec3(2.0, 2.0, 2.0)) * 1.0 * uStrength;
 
   // Apply random offset to the vertex position
-  vec4 ${pointName} = vec4(${transformPointName}.xyz + vec3(randomOffsetX, randomOffsetY, randomOffsetZ), 1.0);
+  vec4 ${pointName} = vec4(${previousPointName}.xyz + vec3(randomOffsetX, randomOffsetY, randomOffsetZ), 1.0);
 `;
 };
 export const cloudTransform = (
-  transformPointName: string,
+  previousPointName: string,
   pointName: string
 ) => {
   return `// Generate random offset for each vertex (compute once)
-       float randomOffsetX = (fract(sin(dot(${transformPointName}.xyz, vec3(12.9898, 78.233, 45.543))) * 43758.5453) - 0.5) * 1.0 * uStrength;
-       float randomOffsetY = (fract(sin(dot(${transformPointName}.xyz, vec3(12.9898, 78.233, 45.543) + 1.0)) * 43758.5453) - 0.5) * 1.0 * 0;
-       float randomOffsetZ = (fract(sin(dot(${transformPointName}.xyz, vec3(12.9898, 78.233, 45.543) + 2.0)) * 43758.5453) - 0.5) * 1.0 * 0;
+       float randomOffsetX = (fract(sin(dot(${previousPointName}.xyz, vec3(12.9898, 78.233, 45.543))) * 43758.5453) - 0.5) * 1.0 * uStrength;
+       float randomOffsetY = (fract(sin(dot(${previousPointName}.xyz, vec3(12.9898, 78.233, 45.543) + 1.0)) * 43758.5453) - 0.5) * 1.0 * 0;
+       float randomOffsetZ = (fract(sin(dot(${previousPointName}.xyz, vec3(12.9898, 78.233, 45.543) + 2.0)) * 43758.5453) - 0.5) * 1.0 * 0;
    
        // Apply random offset to the vertex position
-       vec4 ${pointName} = vec4(${transformPointName}.xyz + vec3(randomOffsetX, randomOffsetY, randomOffsetZ), 1.0);
+       vec4 ${pointName} = vec4(${previousPointName}.xyz + vec3(randomOffsetX, randomOffsetY, randomOffsetZ), 1.0);
    `;
 };

@@ -1,28 +1,38 @@
-import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
 import { PointsEffectProps } from "../../../buildShader.types";
-import { EMPTY_UNIFORM_CONFIG } from "../../../shader-properties/uniforms/uniforms.consts";
-import { DEFAULT_POINT_EFFECT_CONFIG } from "../../vertexEffects.consts";
-import { pointsPerspective } from "./pointsPerspective";
+import {
+  DEFAULT_POINT_EFFECT_CONFIG,
+  POINTS_ATTRIBUTES,
+  POINTS_FUNCTIONS,
+  POINTS_UNIFORMS,
+  POINTS_VARYINGS,
+} from "./points.consts";
+import { formatVertexParameters } from "../../../helpers/formatDefaultVertexParameters";
+import { VertexEffectData } from "../../vertexEffects.types";
+import { pointsTransform } from "./pointsTransform";
 
 export const pointsVertex = (
-  transformPointName: string,
+  previousPointName: string,
   effectProps: Partial<PointsEffectProps> = {}
-) => {
-  const { pointSize, perspectiveConfig } = formatPointsProps(effectProps);
-  const uniformConfig = { ...EMPTY_UNIFORM_CONFIG };
-  const perspective = pointsPerspective(transformPointName, perspectiveConfig);
-  const transformation = `gl_PointSize = ${
-    perspective.length ? perspective : shaderSafeFloat(pointSize)
-  };`;
+): VertexEffectData => {
+  const formattedEffectProps = formatVertexParameters(
+    effectProps,
+    DEFAULT_POINT_EFFECT_CONFIG
+  ) as PointsEffectProps;
+  const uniformConfig = POINTS_UNIFORMS;
+  const requiredFunctions = POINTS_FUNCTIONS;
+  const varyingConfig = POINTS_VARYINGS;
+  const attributeConfigs = POINTS_ATTRIBUTES;
+  const transformation = pointsTransform(
+    previousPointName,
+    formattedEffectProps
+  );
+
   return {
-    requiredFunctions: [],
+    requiredFunctions,
     uniformConfig,
     transformation,
-    varyingConfig: [],
-    pointName: transformPointName,
+    varyingConfig,
+    attributeConfigs,
+    pointName: previousPointName,
   };
-};
-
-const formatPointsProps = (parsedEffectProps: Partial<PointsEffectProps>) => {
-  return { ...DEFAULT_POINT_EFFECT_CONFIG, ...parsedEffectProps };
 };

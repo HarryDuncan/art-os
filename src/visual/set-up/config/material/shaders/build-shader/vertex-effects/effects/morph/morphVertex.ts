@@ -19,7 +19,7 @@ const getAttributeConfig = (morphCount: number) =>
     },
   ]);
 export const morphVertex = (
-  transformName: string,
+  previousPointName: string,
   effectProps: Partial<MorphEffectProps> | undefined = {}
 ) => {
   const formattedProps = mergeWithDefault(effectProps);
@@ -35,12 +35,12 @@ export const morphVertex = (
     preTransformConfigs
   );
   const transformation = `
-    vec3 currentPosition = ${transformName}.xyz;
+    vec3 currentPosition = ${previousPointName}.xyz;
     vec3 currentNormal = normal;
     ${transforms.map((value) => `${value} \n `).join(" \n ")}
     vec3 effect_direction = ${morphObjects[0].pointName} - currentPosition;
     vec3 normal_effect_direction = ${morphObjects[0].normalName} - normal;
-    ${buildMorphTransforms(morphObjects, transformName)}
+    ${buildMorphTransforms(morphObjects, previousPointName)}
     vec3 ${pointName} = currentPosition + (effect_direction * (uProgress));
     `;
   return {

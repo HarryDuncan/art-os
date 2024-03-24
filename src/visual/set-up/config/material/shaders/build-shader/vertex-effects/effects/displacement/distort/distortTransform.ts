@@ -1,9 +1,12 @@
-export const distortTransform = (transformName: string, pointName: string) => `
-    float howFarUp = ${transformName}.y;
+export const distortTransform = (
+  previousPointName: string,
+  pointName: string
+) => `
+    float howFarUp = ${previousPointName}.y;
     vec3 cXaxis = vec3(1.0, 0.0, 0.0);
     vec3 cYaxis = vec3(0.0, 1.0, 0.0);
     vec3 cZaxis = vec3(0.0, 0.0, 1.0);
-    vec3 directionVec = normalize(vec3(${transformName}.xyz));
+    vec3 directionVec = normalize(vec3(${previousPointName}.xyz));
     
 	float xangle = dot(cXaxis, directionVec) * 5.0;
 	float yangle = dot(cYaxis, directionVec) * 6.0;

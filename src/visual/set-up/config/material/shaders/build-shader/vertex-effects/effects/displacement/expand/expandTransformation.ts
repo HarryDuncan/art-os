@@ -2,12 +2,12 @@ import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
 import { ExpandEffectProps } from "../../../../buildShader.types";
 
 export const expandTransformation = (
-  transformPointName: string,
+  previousPointName: string,
   pointName: string,
   expandParameters: ExpandEffectProps
 ) => {
   const { effectStrength, declareInTransform } = expandParameters;
-  const vertexPointInstantiation = `vec3 ${pointName} = ${transformPointName}.xyz;`;
+  const vertexPointInstantiation = `vec3 ${pointName} = ${previousPointName}.xyz;`;
   const transformation = `
         // EXPAND VERTEX POSITIONS
         ${declareInTransform ? vertexPointInstantiation : ""}

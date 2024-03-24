@@ -111,10 +111,6 @@
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "MORPH",
-              "effectProps": {}
-            },
-            {
               "effectType": "ROTATE",
               "effectProps": { "speed": 0.8 }
             },
@@ -122,9 +118,9 @@
               "effectType": "POINTS",
               "effectProps": {
                 "perspectiveConfig": {
-                  "floor": 8,
+                  "floor": 28,
                   "ceiling": 16,
-                  "scaleFactor": 18,
+                  "scaleFactor": 28,
                   "divisor": 9
                 }
               }

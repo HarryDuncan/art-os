@@ -1,14 +1,14 @@
 import { ExplodeEffectProps } from "../../../../buildShader.types";
 
 export const explodeTransformation = (
-  transformPointName: string,
+  previousPointName: string,
   pointName: string,
   explodeParameters: ExplodeEffectProps
 ) => {
   const { effectDistanceMinLength, effectStrength } = explodeParameters;
   return `
       // EXPLODE POINTS
-      vec3 displacedPosition = vec3( ${transformPointName}.xy, 0);
+      vec3 displacedPosition = vec3( ${previousPointName}.xy, 0);
       vec3 effect = vec3(ndcPosition.xy, 0);
       vec3 effectDistanceVector =  effect - displacedPosition;
       float effectDistanceLength = length(effectDistanceVector);

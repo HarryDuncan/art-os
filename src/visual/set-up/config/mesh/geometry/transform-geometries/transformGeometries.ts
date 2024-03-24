@@ -60,7 +60,6 @@ export const transformGeometry = (
             );
             return { ...formattedGeometry, geometry: setAttributeGeometry };
           });
-          console.log(attributesSet);
           return attributesSet;
         }
         case MESH_TRANSFORM.DEFAULT:

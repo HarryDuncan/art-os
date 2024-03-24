@@ -26,63 +26,60 @@ import { triggeredEffect } from "./triggered-effect/triggeredEffect";
 
 export const getVertexEffect = (
   effect: VertexEffectConfig,
-  transformPointName: string
+  previousPointName: string
 ): VertexEffectData => {
   switch (effect.effectType) {
     case VERTEX_EFFECTS.EXPLODE: {
       return explode(
-        transformPointName,
+        previousPointName,
         effect.effectProps as Partial<ExplodeEffectProps>
       );
     }
     case VERTEX_EFFECTS.FILTER: {
-      return vertexFilter(transformPointName);
+      return vertexFilter(previousPointName);
     }
     case VERTEX_EFFECTS.POINTS: {
       return pointsVertex(
-        transformPointName,
+        previousPointName,
         effect.effectProps as Partial<PointsEffectProps> | undefined
       );
     }
     case VERTEX_EFFECTS.CLOUD: {
-      return cloudEffect(transformPointName);
+      return cloudEffect(previousPointName);
     }
     case VERTEX_EFFECTS.MORPH: {
       return morphVertex(
-        transformPointName,
+        previousPointName,
         effect.effectProps as Partial<MorphEffectProps> | undefined
       );
     }
     case VERTEX_EFFECTS.TRAVERSE: {
-      return traverseTransform(transformPointName);
+      return traverseTransform(previousPointName);
     }
     case VERTEX_EFFECTS.DISTORT: {
-      return distort(transformPointName);
+      return distort(previousPointName);
     }
     case VERTEX_EFFECTS.INTERACTIVE: {
       return interactiveEffect(
-        transformPointName,
+        previousPointName,
         effect.effectProps as InteractiveEffectProps
       );
     }
     case VERTEX_EFFECTS.EXPAND: {
-      return expand(
-        transformPointName,
-        effect.effectProps as ExpandEffectProps
-      );
+      return expand(previousPointName, effect.effectProps as ExpandEffectProps);
     }
     case VERTEX_EFFECTS.NOISE: {
-      return noise(transformPointName, effect.effectProps as NoiseEffectProps);
+      return noise(previousPointName, effect.effectProps as NoiseEffectProps);
     }
     case VERTEX_EFFECTS.ROTATE: {
       return rotationVertex(
-        transformPointName,
+        previousPointName,
         effect.effectProps as RotationEffectProps
       );
     }
     case VERTEX_EFFECTS.TRIGGERED_EFFECT: {
       return triggeredEffect(
-        transformPointName,
+        previousPointName,
         effect.effectProps as TriggeredVertexEffectProps
       );
     }
@@ -95,7 +92,7 @@ export const getVertexEffect = (
         uniformConfig: { defaultUniforms: [] },
         transformation: "",
         varyingConfig: [],
-        pointName: transformPointName,
+        pointName: previousPointName,
       };
   }
 };

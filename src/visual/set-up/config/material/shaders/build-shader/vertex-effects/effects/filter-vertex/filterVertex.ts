@@ -12,12 +12,12 @@ export const vertexFilterUniforms = () => ({
 
 export const vertexFilterVaryings = () => [];
 
-export const vertexFilter = (transformPointName: string): VertexEffectData => {
+export const vertexFilter = (previousPointName: string): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.FILTERED_POINT;
   const uniformConfig = vertexFilterUniforms() as UniformConfig;
   const varyingConfig = vertexFilterVaryings();
   const transformation = vertexFilterTransformation(
-    transformPointName,
+    previousPointName,
     pointName
   );
   const requiredFunctions = vertexFilterFunctions();

@@ -22,7 +22,7 @@ import { mergeAttributeConfigs } from "../../../shader-properties/attributes/hel
 import { VertexEffectData } from "../../vertexEffects.types";
 
 export const interactiveEffect = (
-  transformName: string,
+  previousPointName: string,
   effectProps: InteractiveEffectProps
 ) => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.INTERACTED_POINT;
@@ -53,7 +53,7 @@ export const interactiveEffect = (
   vec2 ndcCoords = (uPosition.xy - 0.5) * 2.0;
   // Assuming zero depth for simplicity
   vec3 ndcPosition = vec3(ndcCoords, 0.0);
-  vec3 ${pointName} = ${transformName}.xyz;
+  vec3 ${pointName} = ${previousPointName}.xyz;
   float isAffected = 0.0;
   ${vertexPointInstantiation};
   if( ndcPosition.x > -2000.0){

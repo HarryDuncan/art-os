@@ -15,7 +15,7 @@ import {
 import { noiseTransformation } from "./noiseTransformation";
 
 export const noise = (
-  transformPointName: string,
+  previousPointName: string,
   effectProps: Partial<NoiseEffectProps> | undefined
 ): VertexEffectData => {
   const noiseEffectProps = formatVertexParameters(
@@ -26,7 +26,7 @@ export const noise = (
   const uniformConfig = NOISE_UNIFORMS as UniformConfig;
   const varyingConfig = NOISE_VARYINGS;
   const { transformation, vertexPointInstantiation } = noiseTransformation(
-    transformPointName,
+    previousPointName,
     pointName,
     noiseEffectProps
   );

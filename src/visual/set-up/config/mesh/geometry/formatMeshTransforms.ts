@@ -40,6 +40,5 @@ export const formatMeshTransforms = (
     return transform;
   });
 
-  console.log(formattedTransforms);
   return [...formattedTransforms, ...addedTransforms];
 };

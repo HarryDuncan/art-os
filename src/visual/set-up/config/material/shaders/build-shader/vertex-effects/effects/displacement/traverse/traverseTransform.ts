@@ -24,12 +24,12 @@ export const distortVaryings = () =>
   ] as VaryingConfig[];
 
 export const traverseTransform = (
-  transformPointName: string
+  previousPointName: string
 ): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.TRAVERSE_POINT;
   const uniformConfig = distortUniforms() as UniformConfig;
   const varyingConfig = [];
-  const transformation = traverseDownTransform(transformPointName, pointName);
+  const transformation = traverseDownTransform(previousPointName, pointName);
   const requiredFunctions = distortFunctions();
   return {
     requiredFunctions,
@@ -41,24 +41,24 @@ export const traverseTransform = (
 };
 
 export const traverseDownTransform = (
-  transformPointName: string,
+  previousPointName: string,
   pointName: string
 ) => {
   return `
     // Generate random offset for each vertex (compute once)
-    float randomOffsetX = (${transformPointName}.xyz.x + 0.0) * 1.0 * uTraverseProgress;
-    float randomOffsetY = (${transformPointName}.xyz.y + 100.0) * 1.0 * uTraverseProgress;
-    float randomOffsetZ = (${transformPointName}.xyz.z + 0.0) * 1.0 * uTraverseProgress;
+    float randomOffsetX = (${previousPointName}.xyz.x + 0.0) * 1.0 * uTraverseProgress;
+    float randomOffsetY = (${previousPointName}.xyz.y + 100.0) * 1.0 * uTraverseProgress;
+    float randomOffsetZ = (${previousPointName}.xyz.z + 0.0) * 1.0 * uTraverseProgress;
   
     // Apply random offset to the vertex position with downward displacement
     vec4 ${pointName} = vec4(
-      ${transformPointName}.xyz + vec3(randomOffsetX, randomOffsetY, randomOffsetZ),
+      ${previousPointName}.xyz + vec3(randomOffsetX, randomOffsetY, randomOffsetZ),
       1.0
     );
   
     // If the vertex has fallen completely, reset its position
     if (uTraverseProgress >= 1.0) {
-      ${pointName}.xyz = ${transformPointName}.xyz;
+      ${pointName}.xyz = ${previousPointName}.xyz;
     }
     `;
 };
