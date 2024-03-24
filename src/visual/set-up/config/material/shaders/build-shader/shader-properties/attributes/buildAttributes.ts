@@ -1,4 +1,4 @@
-import { ShaderPropertyTypes } from "../../buildShader.constants";
+import { ShaderPropertyTypes } from "../../buildShader.consts";
 import { AttributeConfig } from "../../buildShader.types";
 import { createDeclarationString } from "../../helpers/createDeclarationString";
 

@@ -10,9 +10,8 @@ import {
   ShaderPropertyValueTypes,
   TRIGGERED_FRAGMENT_EFFECT,
   TRIGGERED_VERTEX_EFFECT,
-} from "./buildShader.constants";
+} from "./buildShader.consts";
 import { FRAGMENT_EFFECT } from "./fragment-effects/fragmentEffects.consts";
-import { DEFAULT_UNIFORMS } from "./shader-properties/uniforms/uniforms.consts";
 import { VARYING_TYPES } from "./shader-properties/varyings/varyings.consts";
 import { TransformTypes } from "./vertex-effects/vertexEffects.consts";
 import { NOISE_EFFECT_TYPES } from "./vertex-effects/effects/displacement/noise/noise.consts";
@@ -22,6 +21,12 @@ export type ShaderFunction = {
   id: string;
   functionDefinition: string;
 };
+
+export type EffectParameters = {
+  declareInTransform?: boolean;
+  pointParent?: PointParent;
+};
+
 // <--------------------- VERTEX ---------------------------->
 export type VertexEffectType = unknown;
 export type DisplacementType = keyof typeof DISPLACEMENT_TYPES;
@@ -41,22 +46,19 @@ export type DisplacementEffectProps = {
   };
 };
 export type PointParent = keyof typeof POINT_PARENTS;
-export type VertexEffectParameters = {
-  declareInTransform?: boolean;
-  pointParent?: PointParent;
-};
-export type ExplodeEffectProps = VertexEffectParameters & {
+
+export type ExplodeEffectProps = EffectParameters & {
   effectDistanceMinLength: number;
   effectStrength: number;
 };
 
-export type ExpandEffectProps = VertexEffectParameters & {
+export type ExpandEffectProps = EffectParameters & {
   effectDistanceMinLength: number;
   effectStrength: number;
 };
 
 export type NoiseEffectTypes = keyof typeof NOISE_EFFECT_TYPES;
-export type NoiseEffectProps = VertexEffectParameters & {
+export type NoiseEffectProps = EffectParameters & {
   noiseType: NoiseEffectTypes;
   effectStrength: number;
 };
@@ -82,14 +84,6 @@ export type PointsEffectProps = {
   perspectiveConfig: PointPerspectiveConfig;
 };
 
-export type PointColorEffectProps = {
-  pointColor: string;
-};
-
-export type OpacityEffectProps = {
-  opacity: number;
-};
-
 // <----------------------Triggered ----------------------------------------->
 export type TriggeredVertexEffectProps =
   | DisplacementEffectProps
@@ -101,7 +95,9 @@ export type TriggeredVertexEffect = {
   effectProps: TriggeredVertexEffectProps;
 };
 
-export type TriggeredFragmentEffectProps = PointColorEffectProps;
+export type TriggeredFragmentEffectProps =
+  | PointColorEffectProps
+  | OpacityEffectProps;
 export type TriggeredFragmentEffectType = keyof typeof TRIGGERED_FRAGMENT_EFFECT;
 export type TriggeredFragmentEffect = {
   effectType: TriggeredFragmentEffectType;
@@ -173,22 +169,31 @@ export type PointDefinition = {
   id: string;
   pointColor: string;
 };
-export type PointMaterialEffectProps = {
+export type PointColorEffectProps = EffectParameters & {
+  pointColor: string;
+};
+export type PointMaterialEffectProps = EffectParameters & {
   pointDisplayPercentage: number;
   defaultColor?: string;
   pointDefinitions: PointDefinition[];
 };
-export type MaterialEffectProps = {
-  opacity?: boolean;
-};
-export type ColorEffectProps = MaterialEffectProps & {
+
+export type ColorEffectProps = EffectParameters & {
   color: string;
+  opacity?: number;
+};
+
+export type OpacityEffectProps = EffectParameters & {
+  opacity: number;
+  asUniform: boolean;
 };
 
 export type FragmentEffectProps =
   | PointMaterialEffectProps
-  | MaterialEffectProps
-  | ColorEffectProps;
+  | ColorEffectProps
+  | OpacityEffectProps
+  | TriggeredFragmentEffect;
+
 export type FragmentEffectConfig = {
   effectType: FragmentEffectType;
   effectProps?: FragmentEffectProps;
@@ -200,7 +205,7 @@ export interface FragmentEffectData {
   varyingConfig: VaryingConfig[];
   attributeConfig: AttributeConfig[];
   transformation: string;
-  fragmentColorName: string;
+  fragName: string;
   fragmentColorInstantiation?: string;
 }
 

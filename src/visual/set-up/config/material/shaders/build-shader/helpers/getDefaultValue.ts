@@ -1,5 +1,5 @@
 import { Matrix3, Matrix4, Vector2, Vector3, Vector4 } from "three";
-import { ShaderPropertyValueTypes } from "../buildShader.constants";
+import { ShaderPropertyValueTypes } from "../buildShader.consts";
 
 export const getDefaultValue = (valueType: ShaderPropertyValueTypes) => {
   switch (valueType) {

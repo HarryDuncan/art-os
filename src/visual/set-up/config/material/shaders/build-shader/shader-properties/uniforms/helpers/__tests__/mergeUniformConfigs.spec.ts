@@ -34,4 +34,14 @@ describe("mergeUniformConfigs", () => {
     };
     expect(result).toStrictEqual(expected);
   });
+
+  test("returns merged uniform config filtering undefined or null values", () => {
+    const testUniformConfigArray = [...uniformConfigs[2], undefined, null];
+    const result = mergeUniformConfigs(testUniformConfigArray);
+    const expected = {
+      defaultUniforms: ["uPosition"],
+      customUniforms: [{ id: "uPower", valueType: "FLOAT", value: 1.5 }],
+    };
+    expect(result).toStrictEqual(expected);
+  });
 });

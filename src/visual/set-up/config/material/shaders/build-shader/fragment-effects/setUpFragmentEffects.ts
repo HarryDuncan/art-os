@@ -43,7 +43,7 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
       varyingConfig,
       uniformConfig,
       transformation,
-      fragmentColorName,
+      fragName,
       requiredFunctions,
       attributeConfig,
     } = getFragmentEffects(effect, currentFragmentColorName);
@@ -52,7 +52,7 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
     unmergedAttributeConfigs.push(attributeConfig);
     unmergedTransformations.push(transformation);
     allRequiredFunctions.push(requiredFunctions);
-    currentFragmentColorName = fragmentColorName;
+    currentFragmentColorName = fragName;
   });
   // console.log(fragmentEffects);
   // console.log(unmergedTransformations);
@@ -74,8 +74,12 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
 };
 
 const setUpInitialParameters = () => {
-  const { varyingConfig, uniformConfig, transformation, attributeConfig } =
-    defaultFragmentEffect();
+  const {
+    varyingConfig,
+    uniformConfig,
+    transformation,
+    attributeConfig,
+  } = defaultFragmentEffect();
   const unmergedVaryingConfigs = [varyingConfig];
   const unmergedUniformConfigs = [uniformConfig];
   const unmergedTransformations = [transformation];

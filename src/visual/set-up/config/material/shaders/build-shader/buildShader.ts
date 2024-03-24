@@ -1,4 +1,4 @@
-import { MAIN_END, MAIN_START } from "./buildShader.constants";
+import { MAIN_END, MAIN_START } from "./buildShader.consts";
 import {
   AttributeConfig,
   BuiltShaderConfig,

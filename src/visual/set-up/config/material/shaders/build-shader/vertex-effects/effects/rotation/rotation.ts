@@ -12,7 +12,7 @@ import {
   rotateY,
   rotateZ,
 } from "visual/display/materials/webgl-shaders/shader-functions/rotation/rotationFunctions";
-import { ShaderPropertyValueTypes } from "../../../buildShader.constants";
+import { ShaderPropertyValueTypes } from "../../../buildShader.consts";
 
 const getRequiredFunctions = (axis: Axis) => {
   switch (axis) {

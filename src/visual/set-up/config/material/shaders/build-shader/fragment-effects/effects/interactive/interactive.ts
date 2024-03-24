@@ -19,17 +19,17 @@ export const getInteractiveEffects = (
   transformName: string,
   effectProps: InteractiveFragmentEffect
 ) => {
-  const fragmentColorName = FRAGMENT_COLOR_NAMES.INTERACTIVE;
+  const fragName = FRAGMENT_COLOR_NAMES.INTERACTIVE;
 
   const {
     uniformConfig: effectUniforms,
     varyingConfig: effectVaryings,
     transformation: effectTransformation,
-    fragmentColorName: effectPointName,
+    fragName: effectPointName,
     requiredFunctions: effectFunctions,
     attributeConfig: effectAttributes,
     vertexPointInstantiation,
-  } = getEffectData(fragmentColorName, effectProps);
+  } = getEffectData(fragName, effectProps);
 
   const transformation = `
         vec4 ${effectPointName} = ${transformName};
@@ -49,7 +49,7 @@ export const getInteractiveEffects = (
     transformation,
     varyingConfig: mergedVaryingConfigs,
     attributeConfig: mergedAttributeConfigs,
-    fragmentColorName: effectPointName,
+    fragName: effectPointName,
   };
 };
 

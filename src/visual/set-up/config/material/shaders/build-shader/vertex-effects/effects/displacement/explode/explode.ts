@@ -1,4 +1,4 @@
-import { ShaderPropertyValueTypes } from "../../../../buildShader.constants";
+import { ShaderPropertyValueTypes } from "../../../../buildShader.consts";
 import {
   AttributeConfig,
   ExplodeEffectProps,

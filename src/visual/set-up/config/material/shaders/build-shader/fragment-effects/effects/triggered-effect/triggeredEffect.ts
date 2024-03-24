@@ -1,12 +1,7 @@
-import { POINT_PARENTS } from "../../../buildShader.constants";
+import { POINT_PARENTS } from "../../../buildShader.consts";
 import {
-  AttributeConfig,
-  ColorEffectProps,
   FragmentEffectData,
-  InteractiveEffectProps,
-  OpacityEffectProps,
   TriggeredFragmentEffect,
-  TriggeredFragmentEffectProps,
 } from "../../../buildShader.types";
 import { mergeUniformConfigs } from "../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { mergeVaryingConfigs } from "../../../shader-properties/varyings/helpers/mergeVaryingConfigs";
@@ -15,112 +10,62 @@ import { mergeAttributeConfigs } from "../../../shader-properties/attributes/hel
 
 import {
   DEFAULT_TRIGGERED_EFFECT,
+  TRIGGERED_ATTRIBUTE_CONFIGS,
+  TRIGGERED_FUNCTIONS,
   TRIGGERED_UNIFORM_CONFIG,
   TRIGGERED_VARYING_CONFIG,
 } from "./triggeredEffect.consts";
 
 import { generateUniquePointName } from "../../../helpers/generateUniquePointName";
-import {
-  FRAGMENT_COLOR_NAMES,
-  FRAGMENT_EFFECT,
-} from "../../fragmentEffects.consts";
-import { color } from "../color/color";
-import { defaultFragmentEffect } from "../defaultFragmentEffect/defaultFragmentEffect";
-import { opacity } from "../opacity/opacity";
+import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
+import { triggeredEffectTransform } from "./triggeredEffectTransform";
+import { formatFragmentParameters } from "../../../helpers/formatFragmentParameters";
 
 export const triggeredEffect = (
-  transformName: string,
-  effectProps: TriggeredFragmentEffect
-) => {
-  const fragmentColorName = generateUniquePointName(
+  previousFragName: string,
+  effectProps: Partial<TriggeredFragmentEffect>
+): FragmentEffectData => {
+  const fragName = generateUniquePointName(
     FRAGMENT_COLOR_NAMES.TRIGGERED,
     POINT_PARENTS.TRIGGERED
   );
-  const uniformConfig = TRIGGERED_UNIFORM_CONFIG;
-  const varyingConfig = TRIGGERED_VARYING_CONFIG;
+  const effectParams = formatFragmentParameters(
+    effectProps,
+    DEFAULT_TRIGGERED_EFFECT
+  ) as TriggeredFragmentEffect;
   const {
-    uniformConfig: effectUniforms,
-    varyingConfig: effectVaryings,
-    transformation: effectTransformation,
-    fragmentColorName: effectPointName,
-    requiredFunctions: effectFunctions,
-    attributeConfig: effectAttributes,
+    effectUniforms,
+    effectVaryings,
+    effectFunctions,
+    transformation,
+    effectAttributes,
+    fragEffectName,
     fragmentColorInstantiation,
-  } = getEffectData(fragmentColorName, effectProps);
+  } = triggeredEffectTransform(fragName, previousFragName, effectParams);
 
-  const requiredFunctions = [];
-  const attributeConfig = [] as AttributeConfig[];
-
-  const transformation = formatTransform(
-    effectPointName,
-    transformName,
-    fragmentColorInstantiation,
-    effectTransformation
-  );
   const mergedUniformConfigs = mergeUniformConfigs([
     effectUniforms,
-    uniformConfig,
+    TRIGGERED_UNIFORM_CONFIG,
   ]);
   const mergedVaryingConfigs = mergeVaryingConfigs([
     effectVaryings,
-    varyingConfig,
+    TRIGGERED_VARYING_CONFIG,
   ]);
   const mergedRequiredFunction = reduceFunctions([
     effectFunctions,
-    requiredFunctions,
+    TRIGGERED_FUNCTIONS,
   ]);
   const mergedAttributeConfigs = mergeAttributeConfigs([
-    attributeConfig,
     effectAttributes,
+    TRIGGERED_ATTRIBUTE_CONFIGS,
   ]);
   return {
     requiredFunctions: mergedRequiredFunction,
     uniformConfig: mergedUniformConfigs,
     attributeConfig: mergedAttributeConfigs,
-    transformation,
     varyingConfig: mergedVaryingConfigs,
-    pointName: effectPointName,
+    transformation,
+    fragName: fragEffectName,
+    fragmentColorInstantiation,
   };
-};
-
-const formatTransform = (
-  pointName,
-  transformPoint,
-  fragmentColorInstantiation,
-  transform
-) => {
-  return `vec3 ${pointName} = ${transformPoint}.xyz;
-            ${fragmentColorInstantiation ?? ""}
-            float isTriggered = 0.0;
-            if(uIsTriggered >= 1.0){
-                ${transform}
-                isTriggered = 1.0;
-            }
-            `;
-};
-
-const getEffectData = (
-  pointName: string,
-  triggeredEffectProps: TriggeredFragmentEffect
-): FragmentEffectData => {
-  const { effectType, effectProps } = triggeredEffectProps;
-  const formattedEffectProps = {
-    ...DEFAULT_TRIGGERED_EFFECT,
-    ...effectProps,
-  };
-  switch (effectType) {
-    case FRAGMENT_EFFECT.COLOR:
-      return color(
-        pointName,
-        formattedEffectProps as Partial<ColorEffectProps>
-      );
-    case FRAGMENT_EFFECT.OPACITY:
-      return opacity(
-        pointName,
-        formattedEffectProps as Partial<OpacityEffectProps>
-      );
-    default:
-      console.warn(`No interactive effect configured for ${effectProps}`);
-      return defaultFragmentEffect();
-  }
 };

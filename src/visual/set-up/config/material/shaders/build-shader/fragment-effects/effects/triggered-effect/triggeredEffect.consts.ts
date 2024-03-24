@@ -1,8 +1,12 @@
 import {
   POINT_PARENTS,
   TRIGGERED_FRAGMENT_EFFECT,
-} from "../../../buildShader.constants";
-import { UniformConfig, VaryingConfig } from "../../../buildShader.types";
+} from "../../../buildShader.consts";
+import {
+  TriggeredFragmentEffect,
+  UniformConfig,
+  VaryingConfig,
+} from "../../../buildShader.types";
 
 export const TRIGGERED_UNIFORM_CONFIG = {
   defaultUniforms: ["uIsTriggered"],
@@ -18,8 +22,12 @@ export const TRIGGERED_VARYING_CONFIG = [
   },
 ] as VaryingConfig[];
 
+export const TRIGGERED_FUNCTIONS = [];
+export const TRIGGERED_ATTRIBUTE_CONFIGS = [];
+
 export const DEFAULT_TRIGGERED_EFFECT = {
   declareInTransform: false,
   pointParent: POINT_PARENTS.TRIGGERED,
   effectType: TRIGGERED_FRAGMENT_EFFECT.EMPTY,
-};
+  effectProps: {},
+} as TriggeredFragmentEffect;

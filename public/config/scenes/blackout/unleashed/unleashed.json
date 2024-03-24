@@ -92,6 +92,27 @@
             }
           ]
         }
+      },
+      {
+        "animationId": "trigger-geometry",
+        "targetIdentifier": "inner",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uIsTriggered",
+              "loopType": "LINEAR",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.04
+              }
+            }
+          ]
+        }
       }
     ],
     "lightConfig": [
@@ -151,6 +172,9 @@
       {
         "id": "display-material",
         "materialType": "BUILT_SHADER",
+        "blendingConfig": {
+          "transparent": true
+        },
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
@@ -163,8 +187,21 @@
               "effectType": "MATCAP"
             },
             {
+              "effectType": "OPACITY",
+              "effectProps": {
+                "opacity": 0.0,
+                "asUniform": false
+              }
+            },
+            {
               "effectType": "TRIGGERED",
-              "effectProps": {}
+              "effectProps": {
+                "effectType": "OPACITY",
+                "effectProps": {
+                  "opacity": 1.0,
+                  "asUniform": false
+                }
+              }
             }
           ],
           "attributeConfig": []

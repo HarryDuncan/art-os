@@ -1,5 +1,5 @@
 import { calculateNormal } from "visual/display/materials/webgl-shaders/shader-functions";
-import { ShaderPropertyValueTypes } from "../../../../buildShader.constants";
+import { ShaderPropertyValueTypes } from "../../../../buildShader.consts";
 import {
   DefaultUniform,
   FragmentEffectData,
@@ -51,7 +51,7 @@ export const simpleMatcap = (
   _transformColorName: string,
   fragmentEffects: Partial<MaterialEffectProps> | undefined
 ): FragmentEffectData => {
-  const fragmentColorName = FRAGMENT_COLOR_NAMES.MATERIAL;
+  const fragName = FRAGMENT_COLOR_NAMES.MATERIAL;
   const uniformConfig = {
     defaultUniforms: ["uMaterial", "uResolution"] as DefaultUniform[],
     customUniforms: getCustomUniforms(),
@@ -63,7 +63,7 @@ export const simpleMatcap = (
     vec3 y = cross( vEye, x );
     vec2 uv = vec2( dot( x, newNormal ), dot( y, newNormal ) ) * 0.495 + 0.5; 
     vec4 matcapColor = texture2D(uMaterial, uv);
-    vec4 ${fragmentColorName} = vec4( matcapColor.rgb, ${getOpacity(
+    vec4 ${fragName} = vec4( matcapColor.rgb, ${getOpacity(
     fragmentEffects?.opacity
   )});`;
 
@@ -76,6 +76,6 @@ export const simpleMatcap = (
     transformation,
     varyingConfig,
     attributeConfig: [],
-    fragmentColorName,
+    fragName,
   };
 };

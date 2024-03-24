@@ -1,5 +1,6 @@
 export const FRAGMENT_EFFECT = {
   DEFAULT: "DEFAULT",
+  EMPTY: "EMPTY",
   COLOR: "COLOR",
   MATCAP: "MATCAP",
   MATERIAL: "MATERIAL",
@@ -26,4 +27,8 @@ export const DEFAULT_POINT_MATERIAL = {
     { id: "uTexture2", pointColor: "#ff1005" },
   ],
   pointColor: "#ff1205",
+};
+
+export const DEFAULT_FRAGMENT_EFFECT_PARAMS = {
+  declareInTransform: true,
 };

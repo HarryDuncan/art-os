@@ -1,4 +1,4 @@
-import { ShaderPropertyValueTypes } from "../../../buildShader.constants";
+import { ShaderPropertyValueTypes } from "../../../buildShader.consts";
 import { MorphEffectProps, UniformConfig } from "../../../buildShader.types";
 import {
   DEFAULT_MORPH_EFFECT_CONFIG,

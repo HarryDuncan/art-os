@@ -1,4 +1,4 @@
-import { ShaderPropertyValueTypes } from "../../../../buildShader.constants";
+import { ShaderPropertyValueTypes } from "../../../../buildShader.consts";
 import {
   AttributeConfig,
   DefaultUniform,
@@ -41,7 +41,7 @@ const getVaryings = () =>
   ] as VaryingConfig[];
 
 const getPointTextureInstantiations = (
-  fragmentColorName: string,
+  fragName: string,
   pointDefinitions: PointDefinition[]
 ) => {
   const increment = 1 / pointDefinitions.length;
@@ -52,7 +52,7 @@ const getPointTextureInstantiations = (
       return `if(vPointType > ${lowerBound} && vPointType < ${
         upperBound === "1.0" ? "1.1" : upperBound
       }){
-            ${fragmentColorName} = ${createColorVectorString(
+            ${fragName} = ${createColorVectorString(
         pointColor,
         true
       )} * texture2D(${id}, gl_PointCoord);
@@ -72,7 +72,7 @@ export const getFragmentPointMaterial = (
 ): FragmentEffectData => {
   const formattedEffectProps = formatWithDefaultEffectProps(effectProps);
   const { pointDefinitions, defaultColor } = formattedEffectProps;
-  const fragmentColorName = FRAGMENT_COLOR_NAMES.POINT_MATERIAL;
+  const fragName = FRAGMENT_COLOR_NAMES.POINT_MATERIAL;
   const uniformConfig = {
     defaultUniforms: ["uOpacity"] as DefaultUniform[],
     customUniforms: getCustomUniforms(pointDefinitions),
@@ -83,9 +83,9 @@ export const getFragmentPointMaterial = (
   if(vPointDisplay == 0.0 ){
       opacity = 0.0;
   }
-  ${getPointColor(fragmentColorName, defaultColor)}       
-  ${getPointTextureInstantiations(fragmentColorName, pointDefinitions)}
-  if(${fragmentColorName}.a < 0.5) discard;
+  ${getPointColor(fragName, defaultColor)}       
+  ${getPointTextureInstantiations(fragName, pointDefinitions)}
+  if(${fragName}.a < 0.5) discard;
   `;
   const requiredFunctions = getRequiredFunctions();
   return {
@@ -94,7 +94,7 @@ export const getFragmentPointMaterial = (
     transformation,
     varyingConfig,
     attributeConfig: ATTRIBUTE_CONFIG,
-    fragmentColorName,
+    fragName,
   };
 };
 

@@ -2,7 +2,7 @@ import { randomFloat } from "visual/display/materials/webgl-shaders/shader-funct
 import {
   DEFAULT_VERTEX_EFFECT,
   ShaderPropertyValueTypes,
-} from "../../../buildShader.constants";
+} from "../../../buildShader.consts";
 import {
   AttributeConfig,
   ExplodeEffectProps,

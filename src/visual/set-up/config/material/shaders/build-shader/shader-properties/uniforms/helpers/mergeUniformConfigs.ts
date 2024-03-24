@@ -5,9 +5,14 @@ import {
 } from "../../../buildShader.types";
 import { EMPTY_UNIFORM_CONFIG } from "../uniforms.consts";
 
-export const mergeUniformConfigs = (uniformConfigArray: UniformConfig[]) => {
+export const mergeUniformConfigs = (
+  uniformConfigArray: (UniformConfig | undefined | null)[]
+) => {
+  const filteredUniformConfigs = uniformConfigArray.flatMap(
+    (config) => config ?? []
+  );
   const mergedUniformConfig = { ...EMPTY_UNIFORM_CONFIG } as UniformConfig;
-  uniformConfigArray.forEach(({ defaultUniforms, customUniforms }) => {
+  filteredUniformConfigs.forEach(({ defaultUniforms, customUniforms }) => {
     const {
       defaultUniforms: currentDefaults,
       customUniforms: currentCustom,

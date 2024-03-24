@@ -1,7 +1,7 @@
 import {
   POINT_PARENTS,
   TRIGGERED_FRAGMENT_EFFECT,
-} from "../../../buildShader.constants";
+} from "../../../buildShader.consts";
 import { UniformConfig, VaryingConfig } from "../../../buildShader.types";
 
 export const TRIGGERED_UNIFORM_CONFIG = {

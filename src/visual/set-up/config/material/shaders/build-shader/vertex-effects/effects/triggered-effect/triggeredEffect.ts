@@ -2,7 +2,7 @@ import {
   DEFAULT_VERTEX_EFFECT,
   POINT_PARENTS,
   TRIGGERED_FRAGMENT_EFFECT,
-} from "../../../buildShader.constants";
+} from "../../../buildShader.consts";
 import {
   AttributeConfig,
   ExpandEffectProps,
