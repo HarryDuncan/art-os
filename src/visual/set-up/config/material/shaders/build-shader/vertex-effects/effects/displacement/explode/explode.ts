@@ -4,7 +4,7 @@ import {
   ExplodeEffectProps,
   UniformConfig,
 } from "../../../../buildShader.types";
-import { formatVertexParameters } from "../../../../helpers/formatDefaultVertexParameters";
+import { formatVertexParameters } from "../../../../helpers/formatVertexParameters";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";
 import {
@@ -13,7 +13,7 @@ import {
   EXPLODE_UNIFORMS,
   EXPLODE_VARYINGS,
 } from "./explode.consts";
-import { explodeTransformation } from "./explodeTransformation";
+import { explodeTransform } from "./explodeTransform";
 
 export const explode = (
   previousPointName: string,
@@ -26,7 +26,7 @@ export const explode = (
   const pointName = VERTEX_EFFECT_POINT_NAMES.EXPLODED_POINT;
   const uniformConfig = EXPLODE_UNIFORMS as UniformConfig;
   const varyingConfig = EXPLODE_VARYINGS;
-  const transformation = explodeTransformation(
+  const transformation = explodeTransform(
     previousPointName,
     pointName,
     explodeEffectProps

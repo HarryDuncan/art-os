@@ -1,6 +1,6 @@
 import { ExplodeEffectProps } from "../../../../buildShader.types";
 
-export const explodeTransformation = (
+export const explodeTransform = (
   previousPointName: string,
   pointName: string,
   explodeParameters: ExplodeEffectProps

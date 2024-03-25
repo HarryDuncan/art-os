@@ -18,7 +18,7 @@ describe("setUpVertexEffects", () => {
       requiredFunctions: {},
       attributeConfigs: [],
       transformations: "",
-      transformPoint: "explodedPoint",
+      previousPointName: "explodedPoint",
       uniformConfigs: EMPTY_UNIFORM_CONFIG,
       varyingConfigs: [],
       viewMatrix: `gl_Position = projectionMatrix * modelViewMatrix * position;`,

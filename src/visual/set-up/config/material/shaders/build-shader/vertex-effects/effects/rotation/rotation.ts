@@ -1,75 +1,42 @@
-import {
-  AXIS,
-  Axis,
-} from "visual/utils/three-dimension-space/position/position.types";
 import { RotationEffectProps } from "../../../buildShader.types";
+import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
+import { formatVertexParameters } from "../../../helpers/formatVertexParameters";
 import {
-  DEFAULT_ROTATE_EFFECT_CONFIG,
-  VERTEX_EFFECT_POINT_NAMES,
-} from "../../vertexEffects.consts";
-import {
-  rotateX,
-  rotateY,
-  rotateZ,
-} from "visual/display/materials/webgl-shaders/shader-functions/rotation/rotationFunctions";
-import { ShaderPropertyValueTypes } from "../../../buildShader.consts";
+  DEFAULT_ROTATION_EFFECT_CONFIG,
+  ROTATION_ATTRIBUTES,
+  ROTATION_VARYINGS,
+} from "./rotation.consts";
+import { VertexEffectData } from "../../vertexEffects.types";
+import { generateUniquePointName } from "../../../helpers/generateUniquePointName";
+import { rotationTansform, rotationTransform } from "./rotationTransform";
 
-const getRequiredFunctions = (axis: Axis) => {
-  switch (axis) {
-    case AXIS.X:
-      return [{ id: "rotateX", functionDefinition: rotateX }];
-    case AXIS.Y:
-      return [{ id: "rotateY", functionDefinition: rotateY }];
-    case AXIS.Z:
-    default:
-      return [{ id: "rotateZ", functionDefinition: rotateZ }];
-  }
-};
-const getFunctionName = (axis: Axis) => {
-  switch (axis) {
-    case AXIS.X:
-      return "rotateX";
-    case AXIS.Y:
-      return "rotateY";
-    case AXIS.Z:
-    default:
-      return "rotateZ";
-  }
-};
-export const rotationVertex = (
+export const rotationEffect = (
   previousPointName: string,
-  effectProps: Partial<RotationEffectProps> | undefined = {}
-) => {
-  const formattedProps = mergeWithDefault(effectProps);
-  const { axis, speed } = formattedProps;
-  const pointName = VERTEX_EFFECT_POINT_NAMES.ROTATED_POINT;
-  const uniformConfig = {
-    defaultUniforms: [],
-    customUniforms: [
-      {
-        id: "uRotationSpeed",
-        valueType: ShaderPropertyValueTypes.FLOAT,
-        value: speed,
-      },
-    ],
-  };
+  effectProps: Partial<RotationEffectProps> = {}
+): VertexEffectData => {
+  const pointName = generateUniquePointName(
+    VERTEX_EFFECT_POINT_NAMES.ROTATED_POINT,
+    effectProps.pointParent
+  );
+  const formattedProps = formatVertexParameters(
+    effectProps,
+    DEFAULT_ROTATION_EFFECT_CONFIG
+  ) as RotationEffectProps;
 
-  const transformation = `
-    float rotationAngle = uTime * uRotationSpeed;
-  mat4 rotationMatrix = ${getFunctionName(axis as Axis)}(rotationAngle);
-  vec4 ${pointName} = vec4(${previousPointName}.xyz,1.0) * rotationMatrix; 
-  `;
-  const requiredFunctions = getRequiredFunctions(axis as Axis);
+  const {
+    uniformConfig,
+    requiredFunctions,
+    transformation,
+    vertexPointInstantiation,
+  } = rotationTransform(pointName, previousPointName, formattedProps);
+
   return {
     requiredFunctions,
     uniformConfig,
     transformation,
-    varyingConfig: [],
+    varyingConfig: ROTATION_VARYINGS,
+    attributeConfig: ROTATION_ATTRIBUTES,
+    vertexPointInstantiation,
     pointName,
   };
 };
-
-const mergeWithDefault = (effectProps: Partial<RotationEffectProps>) => ({
-  ...DEFAULT_ROTATE_EFFECT_CONFIG,
-  ...effectProps,
-});

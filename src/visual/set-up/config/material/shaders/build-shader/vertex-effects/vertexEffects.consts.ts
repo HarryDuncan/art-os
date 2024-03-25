@@ -31,11 +31,6 @@ export const VERTEX_EFFECT_POINT_NAMES = {
   TRIGGERED_POINT: "triggeredPoint",
 };
 
-export const DEFAULT_ROTATE_EFFECT_CONFIG = {
-  axis: AXIS.Y,
-  speed: 0.2,
-};
-
 export const DEFAULT_MORPH_EFFECT_CONFIG = {
   morphCount: 2,
   preTransformConfigs: [],

@@ -21,7 +21,7 @@ import { vertexFilter } from "./filter-vertex/filterVertex";
 import { interactiveEffect } from "./interactive/interactiveEffect";
 import { morphVertex } from "./morph/morphVertex";
 import { pointsVertex } from "./points/pointsVertex";
-import { rotationVertex } from "./rotation/rotation";
+import { rotationEffect } from "./rotation/rotation";
 import { triggeredEffect } from "./triggered-effect/triggeredEffect";
 
 export const getVertexEffect = (
@@ -72,7 +72,7 @@ export const getVertexEffect = (
       return noise(previousPointName, effect.effectProps as NoiseEffectProps);
     }
     case VERTEX_EFFECTS.ROTATE: {
-      return rotationVertex(
+      return rotationEffect(
         previousPointName,
         effect.effectProps as RotationEffectProps
       );

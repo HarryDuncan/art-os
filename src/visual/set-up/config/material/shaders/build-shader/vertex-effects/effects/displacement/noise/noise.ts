@@ -3,7 +3,7 @@ import {
   NoiseEffectProps,
   UniformConfig,
 } from "../../../../buildShader.types";
-import { formatVertexParameters } from "../../../../helpers/formatDefaultVertexParameters";
+import { formatVertexParameters } from "../../../../helpers/formatVertexParameters";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";
 import {
@@ -12,7 +12,7 @@ import {
   NOISE_UNIFORMS,
   NOISE_VARYINGS,
 } from "./noise.consts";
-import { noiseTransformation } from "./noiseTransformation";
+import { noiseTransform } from "./noiseTransform";
 
 export const noise = (
   previousPointName: string,
@@ -25,7 +25,7 @@ export const noise = (
   const pointName = VERTEX_EFFECT_POINT_NAMES.NOISE_POINT;
   const uniformConfig = NOISE_UNIFORMS as UniformConfig;
   const varyingConfig = NOISE_VARYINGS;
-  const { transformation, vertexPointInstantiation } = noiseTransformation(
+  const { transformation, vertexPointInstantiation } = noiseTransform(
     previousPointName,
     pointName,
     noiseEffectProps

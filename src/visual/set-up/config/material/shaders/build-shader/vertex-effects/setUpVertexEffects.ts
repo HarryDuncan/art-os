@@ -17,12 +17,12 @@ export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
     uniformConfigs,
     varyingConfigs,
     transformations,
-    transformPoint,
+    previousPointName,
     requiredFunctions,
     attributeConfigs,
   } = getVertexTransformations(vertexEffects);
 
-  const viewMatrix = `gl_Position = projectionMatrix * modelViewMatrix * vec4(${transformPoint}.xyz, 1.0);`;
+  const viewMatrix = `gl_Position = projectionMatrix * modelViewMatrix * vec4(${previousPointName}.xyz, 1.0);`;
 
   return {
     uniformConfigs,
@@ -30,13 +30,13 @@ export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
     transformations,
     requiredFunctions,
     viewMatrix,
-    transformPoint,
+    previousPointName,
     attributeConfigs,
   };
 };
 
 const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
-  let transformPoint = VERTEX_EFFECT_POINT_NAMES.DEFAULT_POINT;
+  let previousPointName = VERTEX_EFFECT_POINT_NAMES.DEFAULT_POINT;
   const unmergedUniformConfigs: UniformConfig[] = [];
   const unmergedVaryingConfigs: VaryingConfig[][] = [];
   const unmergedTransformations: string[] = [];
@@ -50,8 +50,8 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
       pointName,
       requiredFunctions,
       attributeConfig = [],
-    } = getVertexEffect(effect, transformPoint);
-    transformPoint = pointName;
+    } = getVertexEffect(effect, previousPointName);
+    previousPointName = pointName;
     unmergedUniformConfigs.push(uniformConfig);
     unmergedVaryingConfigs.push(varyingConfig);
     unmergedAttributeConfigs.push(attributeConfig);
@@ -70,7 +70,7 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
     uniformConfigs: mergedUniformConfigs,
     varyingConfigs: mergedVaryingConfigs,
     transformations,
-    transformPoint,
+    previousPointName,
     requiredFunctions: mergedRequiredFunction,
     attributeConfigs: mergedAttributeConfigs,
   };

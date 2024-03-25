@@ -6,7 +6,7 @@ import {
   POINTS_UNIFORMS,
   POINTS_VARYINGS,
 } from "./points.consts";
-import { formatVertexParameters } from "../../../helpers/formatDefaultVertexParameters";
+import { formatVertexParameters } from "../../../helpers/formatVertexParameters";
 import { VertexEffectData } from "../../vertexEffects.types";
 import { pointsTransform } from "./pointsTransform";
 

@@ -9,6 +9,7 @@ import {
   ExplodeEffectProps,
   InteractiveEffectProps,
   TriggeredEffectProps,
+  TriggeredVertexEffect,
 } from "../../../buildShader.types";
 import {
   VERTEX_EFFECTS,
@@ -25,13 +26,19 @@ import {
   TRIGGERED_UNIFORM_CONFIG,
   TRIGGERED_VARYING_CONFIG,
 } from "./triggeredEffect.consts";
-import { expand } from "../displacement/expand/expand";
+
 import { generateUniquePointName } from "../../../helpers/generateUniquePointName";
+import { triggeredEffectTransform } from "./triggeredEffectTransforms";
+import { formatVertexParameters } from "../../../helpers/formatVertexParameters";
 
 export const triggeredEffect = (
   previousPointName: string,
-  effectProps: InteractiveEffectProps
+  effectProps: TriggeredVertexEffect
 ) => {
+  const triggeredEffectProps = formatVertexParameters(
+    effectProps,
+    DEFAULT_TRIGGERED_EFFECT
+  ) as TriggeredVertexEffect;
   const pointName = generateUniquePointName(
     VERTEX_EFFECT_POINT_NAMES.TRIGGERED_POINT,
     POINT_PARENTS.TRIGGERED
@@ -39,24 +46,21 @@ export const triggeredEffect = (
   const uniformConfig = TRIGGERED_UNIFORM_CONFIG;
   const varyingConfig = TRIGGERED_VARYING_CONFIG;
   const {
-    uniformConfig: effectUniforms,
-    varyingConfig: effectVaryings,
-    transformation: effectTransformation,
-    pointName: effectPointName,
-    requiredFunctions: effectFunctions,
-    attributeConfig: effectAttributes,
-    vertexPointInstantiation,
-  } = getEffectData(pointName, effectProps);
+    transformation,
+    effectUniforms,
+    effectVaryings,
+    effectPointName,
+    effectFunctions,
+    effectAttributes,
+  } = triggeredEffectTransform(
+    pointName,
+    previousPointName,
+    triggeredEffectProps
+  );
 
   const requiredFunctions = [];
   const attributeConfig = [] as AttributeConfig[];
 
-  const transformation = formatTransform(
-    pointName,
-    previousPointName,
-    vertexPointInstantiation,
-    effectTransformation
-  );
   const mergedUniformConfigs = mergeUniformConfigs([
     effectUniforms,
     uniformConfig,
@@ -81,46 +85,4 @@ export const triggeredEffect = (
     varyingConfig: mergedVaryingConfigs,
     pointName: effectPointName,
   };
-};
-
-const formatTransform = (
-  pointName,
-  transformPoint,
-  vertexPointInstantiation,
-  transform
-) => {
-  return `vec3 ${pointName} = ${transformPoint}.xyz;
-            ${vertexPointInstantiation ?? ""}
-            float isTriggered = 0.0;
-            if(uIsTriggered >= 1.0){
-                ${transform}
-                isTriggered = 1.0;
-            }
-            `;
-};
-const getEffectData = (
-  pointName,
-  triggeredEffectProps: TriggeredEffectProps
-): VertexEffectData => {
-  const { effectType, effectProps } = triggeredEffectProps;
-  const formattedEffectProps = {
-    ...DEFAULT_TRIGGERED_EFFECT,
-    ...effectProps,
-  };
-  switch (effectType) {
-    case VERTEX_EFFECTS.EXPLODE:
-      return explode(
-        pointName,
-        formattedEffectProps as Partial<ExplodeEffectProps>
-      );
-    case VERTEX_EFFECTS.EXPAND:
-      return expand(
-        pointName,
-        formattedEffectProps as Partial<ExpandEffectProps>
-      );
-    case TRIGGERED_FRAGMENT_EFFECT.EMPTY:
-      return { ...DEFAULT_VERTEX_EFFECT, pointName };
-    default:
-      return { ...DEFAULT_VERTEX_EFFECT, pointName };
-  }
 };

@@ -56,7 +56,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   } = buildVaryings(
     mergedShaderVaryings,
     combinedAttributeConfigs,
-    vertexEffects.transformPoint
+    vertexEffects.previousPointName
   );
 
   const vertexShader = formatVertexShader(
