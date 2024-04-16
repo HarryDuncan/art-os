@@ -48,4 +48,6 @@ export const VANISH_VARYINGS = [
 
 export const VANISH_ATTRIBUTES = [];
 
-export const DEFAULT_VANISH_EFFECT_PARAMS = {};
+export const DEFAULT_VANISH_EFFECT_PARAMS = {
+  vanishHeight: 3.5,
+};

@@ -70,5 +70,11 @@
     "configId": "with-bg",
     "configPath": "scenes/hjd-art/interactive/with-bg",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "HJD Explosion",
+    "configId": "explosion",
+    "configPath": "scenes/hjd-art/explosion/explosion",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

@@ -53,6 +53,6 @@ export const getMeshesFromConfig = (
     meshTransforms,
     attributeConfigs
   ) as GLTF[];
-
+  console.log(advancedMeshes);
   return [...meshes, ...advancedMeshes] as Object3D[];
 };

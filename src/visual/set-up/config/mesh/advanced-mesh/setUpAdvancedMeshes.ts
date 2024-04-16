@@ -28,7 +28,7 @@ export const setUpAdvancedMeshes = (
       const { scene, animations } = data as AdvancedScene;
 
       // format any geometry data to mesh config while still being part of group
-
+      console.log(data);
       const formattedScene = formatScene(scene, meshConfig);
       formattedScene.animations = animations;
       loopThroughAllChildren(

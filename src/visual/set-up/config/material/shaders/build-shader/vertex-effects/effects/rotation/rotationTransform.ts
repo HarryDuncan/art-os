@@ -54,7 +54,7 @@ export const rotationTransform = (
     ${declareInTransform ? vertexPointInstantiation : ""}
     float rotationAngle = uTime * uRotationSpeed;
     mat4 rotationMatrix = ${getFunctionName(axis as Axis)}(rotationAngle);
-    vec4 ${pointName} = ${pointName} * rotationMatrix; 
+    ${pointName} = ${pointName} * rotationMatrix; 
   `;
 
   return {

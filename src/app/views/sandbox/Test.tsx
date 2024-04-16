@@ -33,7 +33,7 @@ export const Test = () => {
 
   const hdrEquirect = new RGBELoader()
     .setPath("assets/textures/hdr/")
-    .load("royal_esplanade_1k.hdr", function() {
+    .load("small_cathedral_02_1k.hdr", function() {
       hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
       new GLTFLoader()
         .setPath("assets/models/")
@@ -95,12 +95,15 @@ export const Test = () => {
       1,
       2000
     );
-    camera.position.set(-5, 0.5, 0);
-
+    camera.position.set(0, 150.5, 0);
+    const light = new THREE.AmbientLight();
+    scene.add(light);
+    const pLight = new THREE.DirectionalLight();
+    scene.add(pLight);
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener("change", render); // use if there is no animation loop
     controls.minDistance = 0;
-    controls.maxDistance = 20;
+    controls.maxDistance = 2000;
     controls.target.y = 0.5;
     controls.update();
 

@@ -16,9 +16,9 @@ import { rotationEffect } from "../rotation/rotation";
 import { DEFAULT_TRIGGERED_EFFECT } from "./triggeredEffect.consts";
 
 export const triggeredEffectTransform = (
-  pointName,
-  previousPointName,
-  triggeredEffectProps
+  pointName: string,
+  previousPointName: string,
+  triggeredEffectProps: TriggeredEffectProps
 ) => {
   const {
     uniformConfig: effectUniforms,

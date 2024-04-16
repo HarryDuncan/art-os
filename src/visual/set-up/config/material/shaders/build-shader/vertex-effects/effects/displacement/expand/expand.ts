@@ -17,16 +17,17 @@ import { expandTransformation } from "./expandTransformation";
 
 export const expand = (
   previousPointName: string,
-  effectProps: Partial<ExpandEffectProps> | undefined
+  effectProps: Partial<ExpandEffectProps>
 ): VertexEffectData => {
+  const pointName = generateUniquePointName(
+    VERTEX_EFFECT_POINT_NAMES.EXPANDED_POINT,
+    effectProps.pointParent
+  );
   const expandEffectProps = formatVertexParameters(
     effectProps ?? {},
     DEFAULT_EXPAND_PARAMETERS
   ) as ExpandEffectProps;
-  const pointName = generateUniquePointName(
-    VERTEX_EFFECT_POINT_NAMES.EXPANDED_POINT,
-    expandEffectProps.pointParent
-  );
+
   const uniformConfig = EXPAND_UNIFORMS as UniformConfig;
   const varyingConfig = EXPAND_VARYINGS;
   const { transformation, vertexPointInstantiation } = expandTransformation(

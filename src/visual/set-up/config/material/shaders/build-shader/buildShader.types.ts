@@ -55,6 +55,8 @@ export type ExplodeEffectProps = EffectParameters & {
 export type ExpandEffectProps = EffectParameters & {
   effectDistanceMinLength: number;
   effectStrength: number;
+  maxEffectStrength:number;
+  multiplier : 
 };
 
 export type NoiseEffectTypes = keyof typeof NOISE_EFFECT_TYPES;
@@ -183,7 +185,10 @@ export type ColorEffectProps = EffectParameters & {
   opacity?: number;
 };
 
-export type VanishEffectProps = EffectParameters & {};
+export type VanishEffectProps = EffectParameters & {
+  numberOfRings ?: number;
+  vanishHeight: number;
+};
 export type OpacityEffectProps = EffectParameters & {
   opacity: number;
   asUniform: boolean;

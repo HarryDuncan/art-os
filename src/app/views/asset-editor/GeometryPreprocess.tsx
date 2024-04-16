@@ -17,7 +17,7 @@ const preTranformConfig = {
   centerGeometry: true,
 };
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/venus.json`);
+  const assets = useFetchData(`${CONFIG}assets/blackout.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );
@@ -100,6 +100,32 @@ export const GeometryPreprocess = () => {
     downloadJsonFile(updatedAssetData, `asset-data`);
   };
 
+  const formatToSpec = useCallback(() => {
+    const preTransformed = preTransformGeometry(
+      initializedAssets,
+      preTranformConfig
+    );
+    const assetMetaData = extractMetadata(preTransformed);
+    const transformedGeometry = preTransformed.flatMap((asset, index) => {
+      const bufferGeometry = getAssetBufferGeometry(asset);
+      if (bufferGeometry) {
+        const { metaData } = assetMetaData[index];
+        if (!metaData) {
+          console.warn(`no metadata found for ${asset.name}`);
+          return [];
+        }
+        return getAssetBufferGeometry(initializedAssets[index]);
+      }
+      console.warn(`no buffer geometry found for ${asset.name}`);
+      return [];
+    });
+    transformedGeometry.forEach(async (transformed, index) => {
+      const fileName = initializedAssets[index].name;
+      const geometryId = initializedAssets[index].id;
+      await handleExportClick(transformed, geometryId, fileName);
+    });
+  }, [initializedAssets]);
+
   // const getEdges = () => {
   //   initializedAssets.forEach((asset) => {
   //     const bufferGeometry = getAssetBufferGeometry(asset);
@@ -139,6 +165,13 @@ export const GeometryPreprocess = () => {
           disabled={!areAssetsInitialized}
         >
           Same Vertices
+        </button>
+        <button
+          type="button"
+          onClick={formatToSpec}
+          disabled={!areAssetsInitialized}
+        >
+          Format To Spec
         </button>
         <button
           type="button"

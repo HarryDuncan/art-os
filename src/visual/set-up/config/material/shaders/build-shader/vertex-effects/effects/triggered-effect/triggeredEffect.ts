@@ -28,7 +28,7 @@ import {
 } from "./triggeredEffect.consts";
 
 import { generateUniquePointName } from "../../../helpers/generateUniquePointName";
-import { triggeredEffectTransform } from "./triggeredEffectTransforms";
+import { triggeredEffectTransform } from "./triggeredEffectTransform";
 import { formatVertexParameters } from "../../../helpers/formatVertexParameters";
 
 export const triggeredEffect = (

@@ -14,4 +14,5 @@ export const EXPAND_VARYINGS = [
 export const DEFAULT_EXPAND_PARAMETERS = {
   effectDistanceMinLength: 0.9,
   effectStrength: 1.0,
+  maxEffectStrength: 1000.0,
 };
