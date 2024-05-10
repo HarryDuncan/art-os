@@ -21,7 +21,7 @@ export const explode = (
 ): VertexEffectData => {
   const explodeEffectProps = formatVertexParameters(
     effectProps ?? {},
-    DEFAULT_EXPLODE_PARAMETERS
+    DEFAULT_EXPLODE_PARAMETERS as ExplodeEffectProps
   ) as ExplodeEffectProps;
   const pointName = VERTEX_EFFECT_POINT_NAMES.EXPLODED_POINT;
   const uniformConfig = EXPLODE_UNIFORMS as UniformConfig;

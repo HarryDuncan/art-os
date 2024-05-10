@@ -2,6 +2,7 @@ import {
   ColorEffectProps,
   FragmentEffectConfig,
   FragmentEffectData,
+  InteractiveFragmentEffect,
   MaterialEffectProps,
   OpacityEffectProps,
   PointMaterialEffectProps,
@@ -11,7 +12,7 @@ import {
 import { FRAGMENT_EFFECT } from "../fragmentEffects.consts";
 import { color } from "./color/color";
 import { defaultFragmentEffect } from "./defaultFragmentEffect/defaultFragmentEffect";
-import { getInteractiveEffects } from "./interactive/interactive";
+import { getInteractiveEffects } from "./interactive/interactiveEffect";
 import { matcapMaterial } from "./material/matcap/matcapMaterial";
 import { simpleMatcap } from "./material/matcap/simpleMatcap";
 import { getFragmentPointMaterial } from "./material/point-material/getFragmentPointMaterial";
@@ -48,7 +49,10 @@ export const getFragmentEffects = (
         effectProps as Partial<PointMaterialEffectProps> | undefined
       );
     case FRAGMENT_EFFECT.INTERACTIVE:
-      return getInteractiveEffects(previousFragName, effectProps);
+      return getInteractiveEffects(
+        previousFragName,
+        effectProps as Partial<InteractiveFragmentEffect>
+      );
     case FRAGMENT_EFFECT.VANISH:
       return vanishEffect(
         previousFragName,

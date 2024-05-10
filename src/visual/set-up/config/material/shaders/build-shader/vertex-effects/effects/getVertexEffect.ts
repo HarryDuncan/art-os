@@ -6,7 +6,7 @@ import {
   NoiseEffectProps,
   PointsEffectProps,
   RotationEffectProps,
-  TriggeredVertexEffectProps,
+  TriggeredVertexEffect,
   VertexEffectConfig,
 } from "../../buildShader.types";
 import { VERTEX_EFFECTS } from "../vertexEffects.consts";
@@ -80,7 +80,7 @@ export const getVertexEffect = (
     case VERTEX_EFFECTS.TRIGGERED_EFFECT: {
       return triggeredEffect(
         previousPointName,
-        effect.effectProps as TriggeredVertexEffectProps
+        effect.effectProps as TriggeredVertexEffect
       );
     }
     default:
@@ -88,6 +88,7 @@ export const getVertexEffect = (
         `no vertex transformations configured for ${effect.effectType}`
       );
       return {
+        attributeConfig: [],
         requiredFunctions: [],
         uniformConfig: { defaultUniforms: [] },
         transformation: "",

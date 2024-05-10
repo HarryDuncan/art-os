@@ -1,5 +1,3 @@
-import { AXIS } from "visual/utils/three-dimension-space/position/position.types";
-
 export const VERTEX_EFFECTS = {
   EXPLODE: "EXPLODE",
   FILTER: "FILTER_VERTEX",

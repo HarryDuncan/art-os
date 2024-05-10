@@ -10,17 +10,16 @@ import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { runShaderAnimations } from "../animation-functions/shader-animations/runShaderAnimations";
 import { getSceneElementByName } from "visual/utils/scene/getSceneElementByName";
 import { runRiggedAnimation } from "../animation-functions/rigged-animation/runRiggedAnimation";
+import { Mesh } from "three";
+import { RiggedAnimationConfig } from "../animation-functions/rigged-animation/riggedAnimations.types";
 
 export const runAnimation = (
   scene: AnimatedScene,
   animationConfig: AnimationConfig,
   animationId: string
 ) => {
-  const {
-    targetIdentifier,
-    animationFunctionType,
-    animationProperties,
-  } = animationConfig;
+  const { targetIdentifier, animationFunctionType, animationProperties } =
+    animationConfig;
 
   const animatedObjects = getSceneElementByName(scene, targetIdentifier);
   if (!animatedObjects.length) {
@@ -41,7 +40,11 @@ export const runAnimation = (
       );
       break;
     case ANIMATION_FUNCTION_TYPES.RIGGED:
-      runRiggedAnimation(animationProperties, animatedObjects, scene.clock);
+      runRiggedAnimation(
+        animationProperties as RiggedAnimationConfig,
+        animatedObjects as Mesh[]
+      );
+      break;
     case ANIMATION_FUNCTION_TYPES.ALL:
     default:
       animateAll(animationProperties, animatedObjects);

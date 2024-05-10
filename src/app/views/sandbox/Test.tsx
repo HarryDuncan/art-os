@@ -36,8 +36,8 @@ export const Test = () => {
     .load("small_cathedral_02_1k.hdr", function() {
       hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
       new GLTFLoader()
-        .setPath("assets/models/")
-        .load("test.glb", function(gltf) {
+        .setPath("assets/models/sculptures/")
+        .load("zeus.glb", function(gltf) {
           gltf.scene.traverse(function(child) {
             if (child.isMesh) {
               mesh = child;
@@ -95,7 +95,7 @@ export const Test = () => {
       1,
       2000
     );
-    camera.position.set(0, 150.5, 0);
+    camera.position.set(0, 950.5, 0);
     const light = new THREE.AmbientLight();
     scene.add(light);
     const pLight = new THREE.DirectionalLight();
@@ -104,7 +104,7 @@ export const Test = () => {
     controls.addEventListener("change", render); // use if there is no animation loop
     controls.minDistance = 0;
     controls.maxDistance = 2000;
-    controls.target.y = 0.5;
+    controls.target.y = 60.5;
     controls.update();
 
     window.addEventListener("resize", onWindowResize);

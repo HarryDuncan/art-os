@@ -93,7 +93,7 @@ export const interactiveEffect = (
 };
 
 const getEffectData = (
-  pointName,
+  pointName: string,
   interactiveEffectProps: InteractiveEffectProps
 ): VertexEffectData => {
   const { effectType, effectProps } = interactiveEffectProps;

@@ -22,6 +22,7 @@ export const vertexFilter = (previousPointName: string): VertexEffectData => {
   );
   const requiredFunctions = vertexFilterFunctions();
   return {
+    attributeConfig: [],
     requiredFunctions,
     uniformConfig,
     transformation,

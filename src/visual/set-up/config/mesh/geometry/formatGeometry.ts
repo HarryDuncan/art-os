@@ -76,7 +76,7 @@ const getGeometryForMeshConfig = (
       geometry names ${geometries.map(({ name }) => name)}`
     );
   }
-  console.log(geometries);
+
   return {
     ...meshGeometry,
     geometry: meshGeometry?.geometry.clone(),

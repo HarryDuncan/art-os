@@ -70,7 +70,7 @@ export const matcapMaterial = (
   vec3 finalColor = mix(surfaceColor, vec3(1.0), curvature);
   vec4 finalFrag = mix(uMaterialTex,vec4( finalColor, 1.0), 0.0);
   vec4 ${fragName} = vec4(finalFrag.rgb, ${getOpacity(
-    fragmentEffects?.opacity
+    !!fragmentEffects?.opacity
   )});`;
   const requiredFunctions = getRequiredFunctions();
   return {

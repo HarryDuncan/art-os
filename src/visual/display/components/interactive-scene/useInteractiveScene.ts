@@ -11,12 +11,13 @@ import { SceneLight } from "visual/display/scene-elements/lights/lights.types";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { SceneProperties } from "visual/set-up/config/config.types";
 import { setSceneProperties } from "visual/utils/scene/setSceneProperties";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 
 export const useInteractiveScene = (
   sceneFunction: InteractiveSceneFunctions,
   eventConfig: EventConfig[],
   animationConfig: AnimationConfig[],
-  meshes: Object3D[],
+  meshes: Object3D[] | GLTF[],
   lights: SceneLight[],
   sceneComponents: Object3D[],
   orbitControls: OrbitControls | null,
@@ -26,7 +27,7 @@ export const useInteractiveScene = (
   const [initializedScene, setScene] = useState<null | InteractiveScene>(null);
   const setUpSceneObjects = useCallback(
     async (scene: InteractiveScene) => {
-      meshes.forEach((mesh) => scene.add(mesh));
+      meshes.forEach((mesh) => scene.add(mesh as Object3D));
       lights.forEach((light) => scene.add(light));
       sceneComponents.forEach((component) => scene.add(component));
       scene.addOrbitControls(orbitControls);

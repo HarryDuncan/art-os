@@ -8,7 +8,7 @@ import {
 } from "./rotation.consts";
 import { VertexEffectData } from "../../vertexEffects.types";
 import { generateUniquePointName } from "../../../helpers/generateUniquePointName";
-import { rotationTansform, rotationTransform } from "./rotationTransform";
+import { rotationTransform } from "./rotationTransform";
 
 export const rotationEffect = (
   previousPointName: string,
@@ -20,7 +20,7 @@ export const rotationEffect = (
   );
   const formattedProps = formatVertexParameters(
     effectProps,
-    DEFAULT_ROTATION_EFFECT_CONFIG
+    DEFAULT_ROTATION_EFFECT_CONFIG as RotationEffectProps
   ) as RotationEffectProps;
 
   const {

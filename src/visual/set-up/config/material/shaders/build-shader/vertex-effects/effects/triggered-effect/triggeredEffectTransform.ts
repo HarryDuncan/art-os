@@ -47,7 +47,7 @@ export const triggeredEffectTransform = (
   };
 };
 const getEffectData = (
-  pointName,
+  pointName: string,
   triggeredEffectProps: TriggeredEffectProps
 ): VertexEffectData => {
   const { effectType, effectProps } = triggeredEffectProps;

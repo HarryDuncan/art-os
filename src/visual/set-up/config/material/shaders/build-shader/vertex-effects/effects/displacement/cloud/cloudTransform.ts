@@ -26,10 +26,11 @@ export const distortVaryings = () =>
 export const cloudEffect = (previousPointName: string): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.CLOUD_POINT;
   const uniformConfig = distortUniforms() as UniformConfig;
-  const varyingConfig = [];
+  const varyingConfig = [] as VaryingConfig[];
   const transformation = noiseCloudTransform(previousPointName, pointName);
   const requiredFunctions = distortFunctions();
   return {
+    attributeConfig: [],
     requiredFunctions,
     uniformConfig,
     transformation,
@@ -38,7 +39,10 @@ export const cloudEffect = (previousPointName: string): VertexEffectData => {
   };
 };
 
-export const noiseCloudTransform = (previousPointName: string, pointName) => {
+export const noiseCloudTransform = (
+  previousPointName: string,
+  pointName: string
+) => {
   return `// Generate random offset for each vertex (compute once)
   float randomOffsetX = noise3D(${previousPointName}.xyz + vec3(0.0, 0.0, 0.0) ) * 1.0 * 0.0;
   float randomOffsetY = noise3D(${previousPointName}.xyz + vec3(1.0, 1.0, 1.0)) * 1.0 * uStrength;

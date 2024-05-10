@@ -28,14 +28,14 @@ export const traverseTransform = (
 ): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.TRAVERSE_POINT;
   const uniformConfig = distortUniforms() as UniformConfig;
-  const varyingConfig = [];
   const transformation = traverseDownTransform(previousPointName, pointName);
   const requiredFunctions = distortFunctions();
   return {
     requiredFunctions,
     uniformConfig,
     transformation,
-    varyingConfig,
+    varyingConfig: [],
+    attributeConfig: [],
     pointName,
   };
 };

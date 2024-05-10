@@ -7,7 +7,7 @@ export const colorTransformation = (
 ) => {
   const colorAsVector = createColorVectorString(
     effectProps.color,
-    effectProps.opacity
+    !!effectProps.opacity
   );
   return `
         vec4 ${colorName} = ${colorAsVector};

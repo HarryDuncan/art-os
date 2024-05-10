@@ -4,7 +4,7 @@ import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 
 export const defaultFragmentEffect = (
   fragName: string = FRAGMENT_COLOR_NAMES.DEFAULT,
-  declareInTransform: boolean = true
+  declareInTransform = true
 ): FragmentEffectData => {
   const uniformConfig = { ...EMPTY_UNIFORM_CONFIG };
   const defaultFrag = `vec4 ${fragName} = vec4(1.0,0,0,1.0);`;

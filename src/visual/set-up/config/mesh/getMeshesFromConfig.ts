@@ -52,7 +52,7 @@ export const getMeshesFromConfig = (
     materials,
     meshTransforms,
     attributeConfigs
-  ) as GLTF[];
-  console.log(advancedMeshes);
+  ) as unknown as GLTF[];
+
   return [...meshes, ...advancedMeshes] as Object3D[];
 };

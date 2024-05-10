@@ -34,7 +34,7 @@ export const setupVideo = (url: string, identifier: string) => {
   );
 
   video.src = url;
-  console.log(video);
+
   const playPromise = video.play();
   if (playPromise !== undefined) {
     setTimeout(() => {

@@ -2,7 +2,11 @@ import {
   POINT_PARENTS,
   TRIGGERED_FRAGMENT_EFFECT,
 } from "../../../buildShader.consts";
-import { UniformConfig, VaryingConfig } from "../../../buildShader.types";
+import {
+  TriggeredVertexEffect,
+  UniformConfig,
+  VaryingConfig,
+} from "../../../buildShader.types";
 
 export const TRIGGERED_UNIFORM_CONFIG = {
   defaultUniforms: ["uIsTriggered"],
@@ -22,4 +26,4 @@ export const DEFAULT_TRIGGERED_EFFECT = {
   declareInTransform: false,
   pointParent: POINT_PARENTS.TRIGGERED,
   effectType: TRIGGERED_FRAGMENT_EFFECT.EMPTY,
-};
+} as unknown as Partial<TriggeredVertexEffect>;

@@ -64,7 +64,7 @@ export const simpleMatcap = (
     vec2 uv = vec2( dot( x, newNormal ), dot( y, newNormal ) ) * 0.495 + 0.5; 
     vec4 matcapColor = texture2D(uMaterial, uv);
     vec4 ${fragName} = vec4( matcapColor.rgb, ${getOpacity(
-    fragmentEffects?.opacity
+    !!fragmentEffects?.opacity
   )});`;
 
   return {

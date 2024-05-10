@@ -25,6 +25,7 @@ export const alienDistort = (previousPointName: string): VertexEffectData => {
   const transformation = alienTransform(previousPointName, pointName);
   const requiredFunctions = distortFunctions();
   return {
+    attributeConfig: [],
     requiredFunctions,
     uniformConfig,
     transformation,

@@ -4,6 +4,7 @@ import {
 } from "../../../buildShader.consts";
 import {
   TriggeredFragmentEffect,
+  TriggeredFragmentEffectProps,
   UniformConfig,
   VaryingConfig,
 } from "../../../buildShader.types";
@@ -29,5 +30,5 @@ export const DEFAULT_TRIGGERED_EFFECT = {
   declareInTransform: false,
   pointParent: POINT_PARENTS.TRIGGERED,
   effectType: TRIGGERED_FRAGMENT_EFFECT.EMPTY,
-  effectProps: {},
+  effectProps: {} as TriggeredFragmentEffectProps,
 } as TriggeredFragmentEffect;

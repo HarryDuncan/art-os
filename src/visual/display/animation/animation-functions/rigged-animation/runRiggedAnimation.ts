@@ -1,13 +1,10 @@
-import { AnimationClip, AnimationMixer } from "three";
+import { AnimationClip, AnimationMixer, Mesh } from "three";
+import { RiggedAnimationConfig } from "./riggedAnimations.types";
 
-let startTime = 0;
 export const runRiggedAnimation = (
-  riggedAnimationConfig,
-  selectedMesh,
-  clock
+  _riggedAnimationConfig: RiggedAnimationConfig,
+  selectedMesh: Mesh[]
 ) => {
-  console.log(selectedMesh);
-
   selectedMesh.forEach((mesh) => {
     const { animations } = mesh;
     const mixer = new AnimationMixer(mesh);

@@ -1,1 +1,3 @@
-export type RiggedAnimationConfig = {};
+export type RiggedAnimationConfig = {
+  id?: string;
+};

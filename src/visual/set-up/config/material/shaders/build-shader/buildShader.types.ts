@@ -3,6 +3,7 @@ import {
   Position3d,
 } from "visual/utils/three-dimension-space/position/position.types";
 import {
+  DEFAULT_UNIFORMS,
   DISPLACEMENT_TYPES,
   INTERACTION_FRAGMENT_EFFECT,
   INTERACTION_VERTEX_EFFECT,
@@ -55,8 +56,8 @@ export type ExplodeEffectProps = EffectParameters & {
 export type ExpandEffectProps = EffectParameters & {
   effectDistanceMinLength: number;
   effectStrength: number;
-  maxEffectStrength:number;
-  multiplier : 
+  maxEffectStrength: number;
+  multiplier: number;
 };
 
 export type NoiseEffectTypes = keyof typeof NOISE_EFFECT_TYPES;
@@ -91,6 +92,7 @@ export type TriggeredVertexEffectProps =
   | DisplacementEffectProps
   | ExplodeEffectProps
   | ExpandEffectProps;
+
 export type TriggeredVertexEffectType = keyof typeof TRIGGERED_VERTEX_EFFECT;
 export type TriggeredVertexEffect = {
   effectType: TriggeredVertexEffect;
@@ -100,7 +102,8 @@ export type TriggeredVertexEffect = {
 export type TriggeredFragmentEffectProps =
   | PointColorEffectProps
   | OpacityEffectProps;
-export type TriggeredFragmentEffectType = keyof typeof TRIGGERED_FRAGMENT_EFFECT;
+export type TriggeredFragmentEffectType =
+  keyof typeof TRIGGERED_FRAGMENT_EFFECT;
 export type TriggeredFragmentEffect = {
   effectType: TriggeredFragmentEffectType;
   effectProps: TriggeredFragmentEffectProps;
@@ -114,14 +117,18 @@ export type TriggeredEffectProps =
 export type InteractiveVertexEffectProps =
   | DisplacementEffectProps
   | ExplodeEffectProps;
-export type InteractiveVertexEffectType = keyof typeof INTERACTION_VERTEX_EFFECT;
+export type InteractiveVertexEffectType =
+  keyof typeof INTERACTION_VERTEX_EFFECT;
+
 export type InteractiveVertexEffect = {
   effectType: InteractiveVertexEffect;
   effectProps: InteractiveVertexEffectProps;
 };
 
 export type InteractiveFragmentEffectProps = PointColorEffectProps;
-export type InteractiveFragmentEffectType = keyof typeof INTERACTION_FRAGMENT_EFFECT;
+export type InteractiveFragmentEffectType =
+  keyof typeof INTERACTION_FRAGMENT_EFFECT;
+
 export type InteractiveFragmentEffect = {
   effectType: InteractiveFragmentEffectType;
   effectProps: InteractiveFragmentEffectProps;
@@ -138,7 +145,8 @@ export type VertexEffectProps =
   | PointsEffectProps
   | InteractiveEffectProps
   | ExpandEffectProps
-  | NoiseEffectProps;
+  | NoiseEffectProps
+  | ExplodeEffectProps;
 
 export type VertexEffectConfig = {
   effectType: DisplacementType;
@@ -180,13 +188,17 @@ export type PointMaterialEffectProps = EffectParameters & {
   pointDefinitions: PointDefinition[];
 };
 
+export type MaterialEffectProps = EffectParameters & {
+  opacity?: number;
+};
+
 export type ColorEffectProps = EffectParameters & {
   color: string;
   opacity?: number;
 };
 
 export type VanishEffectProps = EffectParameters & {
-  numberOfRings ?: number;
+  numberOfRings?: number;
   vanishHeight: number;
 };
 export type OpacityEffectProps = EffectParameters & {
@@ -199,7 +211,9 @@ export type FragmentEffectProps =
   | ColorEffectProps
   | OpacityEffectProps
   | VanishEffectProps
-  | TriggeredFragmentEffect;
+  | TriggeredFragmentEffect
+  | MaterialEffectProps
+  | InteractiveFragmentEffect;
 
 export type FragmentEffectConfig = {
   effectType: FragmentEffectType;

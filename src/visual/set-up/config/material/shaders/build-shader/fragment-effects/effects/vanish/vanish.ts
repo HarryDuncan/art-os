@@ -1,8 +1,8 @@
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 import {
   FragmentEffectData,
-  OpacityEffectProps,
   VanishEffectProps,
+  VaryingConfig,
 } from "../../../buildShader.types";
 
 import { formatFragmentParameters } from "../../../helpers/formatFragmentParameters";
@@ -29,7 +29,7 @@ export const vanishEffect = (
     formattedEffectParams.pointParent
   );
   const uniformConfig = VANISH_UNIFORMS;
-  const varyingConfig = VANISH_VARYINGS;
+  const varyingConfig = VANISH_VARYINGS as VaryingConfig[];
   const requiredFunctions = VANISH_FUNCTIONS;
   const attributeConfig = VANISH_ATTRIBUTES;
   const { fragmentColorInstantiation, transformation } = vanishTransform(

@@ -12,8 +12,8 @@ import { opacity } from "../opacity/opacity";
 import { DEFAULT_TRIGGERED_EFFECT } from "./triggeredEffect.consts";
 
 export const triggeredEffectTransform = (
-  fragColorName,
-  previousFragColorName,
+  fragColorName: string,
+  previousFragColorName: string,
   effectProps: TriggeredFragmentEffect
 ) => {
   const {
@@ -45,14 +45,14 @@ export const triggeredEffectTransform = (
 };
 
 const formatTransform = (
-  fragName,
-  previousFragColorName,
-  fragmentColorInstantiation,
-  transform
+  fragName: string,
+  previousFragColorName: string,
+  fragmentColorInstantiation: string | undefined,
+  transform: string
 ) => {
   return `// TRIGGERED FRAG
             vec4 ${fragName} = ${previousFragColorName};
-              ${fragmentColorInstantiation}
+              ${fragmentColorInstantiation ?? ""}
               float isTriggered = 0.0;
               if(uIsTriggered >= 1.0){
                   ${transform}

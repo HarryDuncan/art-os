@@ -1,4 +1,4 @@
-import { ShaderFunction, VaryingConfig } from "../../../../buildShader.types";
+import { VaryingConfig } from "../../../../buildShader.types";
 import { noise3D } from "../../../../shader-properties/functions/noise/noise3d";
 
 export const NOISE_EFFECT_TYPES = {

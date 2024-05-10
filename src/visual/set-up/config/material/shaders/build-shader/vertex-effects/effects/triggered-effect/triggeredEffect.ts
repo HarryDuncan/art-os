@@ -1,26 +1,14 @@
-import {
-  DEFAULT_VERTEX_EFFECT,
-  POINT_PARENTS,
-  TRIGGERED_FRAGMENT_EFFECT,
-} from "../../../buildShader.consts";
+import { POINT_PARENTS } from "../../../buildShader.consts";
 import {
   AttributeConfig,
-  ExpandEffectProps,
-  ExplodeEffectProps,
-  InteractiveEffectProps,
-  TriggeredEffectProps,
+  ShaderFunction,
   TriggeredVertexEffect,
 } from "../../../buildShader.types";
-import {
-  VERTEX_EFFECTS,
-  VERTEX_EFFECT_POINT_NAMES,
-} from "../../vertexEffects.consts";
-import { explode } from "../displacement/explode/explode";
+import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
 import { mergeUniformConfigs } from "../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { mergeVaryingConfigs } from "../../../shader-properties/varyings/helpers/mergeVaryingConfigs";
 import { reduceFunctions } from "../../../helpers/reduceFunctions";
 import { mergeAttributeConfigs } from "../../../shader-properties/attributes/helpers/mergeAttributeConfigs";
-import { VertexEffectData } from "../../vertexEffects.types";
 import {
   DEFAULT_TRIGGERED_EFFECT,
   TRIGGERED_UNIFORM_CONFIG,
@@ -37,7 +25,7 @@ export const triggeredEffect = (
 ) => {
   const triggeredEffectProps = formatVertexParameters(
     effectProps,
-    DEFAULT_TRIGGERED_EFFECT
+    DEFAULT_TRIGGERED_EFFECT as TriggeredVertexEffect
   ) as TriggeredVertexEffect;
   const pointName = generateUniquePointName(
     VERTEX_EFFECT_POINT_NAMES.TRIGGERED_POINT,
@@ -58,7 +46,7 @@ export const triggeredEffect = (
     triggeredEffectProps
   );
 
-  const requiredFunctions = [];
+  const requiredFunctions: ShaderFunction[] = [];
   const attributeConfig = [] as AttributeConfig[];
 
   const mergedUniformConfigs = mergeUniformConfigs([

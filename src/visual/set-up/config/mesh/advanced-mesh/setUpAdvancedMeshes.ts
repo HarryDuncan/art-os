@@ -1,11 +1,8 @@
 import { AdvancedScene, Asset } from "visual/set-up/assets/asset.types";
 import { AdvancedMeshConfig } from "./advancedMesh.types";
-import { formatMeshTransforms } from "../geometry/formatMeshTransforms";
-import { MeshTransformConfig } from "../../config.types";
-import { Material } from "three";
+import { MeshComponentConfig, MeshTransformConfig } from "../../config.types";
+import { Group, Material } from "three";
 import { ShaderAttributeConfig } from "../../material/shaders/build-shader/buildShader.types";
-import { transformGeometry } from "../geometry/transform-geometries/transformGeometries";
-import { addMaterials } from "../mesh-materials/addMaterials";
 import {
   formatPositionFromConfig,
   formatRotationFromConfig,
@@ -15,11 +12,11 @@ import { clone } from "three/examples/jsm/utils/SkeletonUtils";
 export const setUpAdvancedMeshes = (
   assets: Asset[],
   meshConfigs: AdvancedMeshConfig[] = [],
-  materials: Material[],
+  materials: Material[] = [],
   meshTransforms: MeshTransformConfig[] = [],
-  attributeConfigs: ShaderAttributeConfig[]
+  attributeConfigs: ShaderAttributeConfig[] = []
 ) =>
-  meshConfigs.map((meshConfig) => {
+  meshConfigs.flatMap((meshConfig) => {
     const selectedAsset = assets.find(
       (asset) => asset.id === meshConfig.assetId
     );
@@ -28,7 +25,7 @@ export const setUpAdvancedMeshes = (
       const { scene, animations } = data as AdvancedScene;
 
       // format any geometry data to mesh config while still being part of group
-      console.log(data);
+
       const formattedScene = formatScene(scene, meshConfig);
       formattedScene.animations = animations;
       loopThroughAllChildren(
@@ -42,47 +39,51 @@ export const setUpAdvancedMeshes = (
 
       return formattedScene;
     }
+    return [];
   });
 
 const loopThroughAllChildren = (
-  data,
-  materials,
-  meshTransforms,
-  attributeConfigs,
-  meshComponentConfigs
+  data: Group,
+  materials: Material[],
+  meshTransforms: MeshTransformConfig[],
+  attributeConfigs: ShaderAttributeConfig[],
+  meshComponentConfigs: MeshComponentConfig[]
 ) => {
   const { children } = data;
   children.forEach((child) => {
-    if (child.idGroup || child.children.length > 0) {
+    const { idGroup, isMesh } = child as unknown as {
+      idGroup: string | boolean;
+      isMesh: boolean;
+    };
+    if (idGroup || child.children.length > 0) {
       loopThroughAllChildren(
-        child,
+        child as Group,
         materials,
         meshTransforms,
         attributeConfigs,
         meshComponentConfigs
       );
     }
-    if (child.isMesh) {
-      // add any material data to mesh
-      const formattedTransforms = formatMeshTransforms(
-        meshTransforms ?? [],
-        attributeConfigs
-      );
-
-      const s = materials[0];
-      child.material = s;
-      // return group
+    if (isMesh) {
+      // // add any material data to mesh
+      // const formattedTransforms = formatMeshTransforms(
+      //   meshTransforms ?? [],
+      //   attributeConfigs as unknown as ShaderAttributeConfig[]
+      // );
+      // const shaderMaterial = materials[0];
+      // child.material = shaderMaterial;
+      // // return group
     }
   });
 };
 
-const formatScene = (scene, meshConfig) => {
+const formatScene = (scene: Group, meshConfig: AdvancedMeshConfig) => {
   const clonedScene = clone(scene);
   const position = formatPositionFromConfig(meshConfig);
   const rotation = formatRotationFromConfig(meshConfig);
   clonedScene.position.set(position.x, position.y, position.z);
   clonedScene.rotation.set(rotation.x, rotation.y, rotation.z);
-  const scale = meshConfig.geometryConfig.scale;
+  const scale = meshConfig.geometryConfig?.scale || 1;
   clonedScene.scale.set(scale, scale, scale);
-  return clonedScene;
+  return clonedScene as Group;
 };

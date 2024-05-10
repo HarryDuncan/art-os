@@ -1,4 +1,8 @@
-import { ShaderFunction, VaryingConfig } from "../../../../buildShader.types";
+import {
+  ExpandEffectProps,
+  ShaderFunction,
+  VaryingConfig,
+} from "../../../../buildShader.types";
 
 export const EXPAND_UNIFORMS = {
   defaultUniforms: ["uCenter"],
@@ -15,4 +19,4 @@ export const DEFAULT_EXPAND_PARAMETERS = {
   effectDistanceMinLength: 0.9,
   effectStrength: 1.0,
   maxEffectStrength: 1000.0,
-};
+} as ExpandEffectProps;

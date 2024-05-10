@@ -16,7 +16,7 @@ export const loadGLTF = (path: string) =>
         path,
         (gltf: GLTF) => {
           const result = gltf.scene;
-          const animations = gltf.animations;
+          const { animations } = gltf;
           resolve({ scene: result, animations });
         }, // On Progress
         () => null,
