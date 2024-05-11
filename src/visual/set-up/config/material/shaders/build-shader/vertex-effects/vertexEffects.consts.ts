@@ -27,6 +27,7 @@ export const VERTEX_EFFECT_POINT_NAMES = {
   TRAVERSE_POINT: "traversePoint",
   NOISE_POINT: "noisePoint",
   TRIGGERED_POINT: "triggeredPoint",
+  IMAGE_VERTEX_POINT: "imageVertexPoint",
 };
 
 export const DEFAULT_MORPH_EFFECT_CONFIG = {

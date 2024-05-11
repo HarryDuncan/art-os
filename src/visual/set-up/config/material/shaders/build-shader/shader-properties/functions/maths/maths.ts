@@ -57,3 +57,9 @@ vec3 hash33(vec3 p3) {
     return -1.0 + 2.0 * fract(vec3((p3.x + p3.y)*p3.z, (p3.x+p3.z)*p3.y, (p3.y+p3.z)*p3.x));
 }
 `;
+
+export const rand = `
+float rand(vec2 n) { 
+  return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+}
+`;

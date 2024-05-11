@@ -5,6 +5,7 @@ import {
 import {
   DEFAULT_UNIFORMS,
   DISPLACEMENT_TYPES,
+  IMAGE_VERTEX_EFFECT,
   INTERACTION_FRAGMENT_EFFECT,
   INTERACTION_VERTEX_EFFECT,
   POINT_PARENTS,
@@ -87,6 +88,16 @@ export type PointsEffectProps = {
   perspectiveConfig: PointPerspectiveConfig;
 };
 
+// <-------------------- Image Vertex Effects ---------------------------------->
+export type ImageVertexEffectProps = {};
+
+export type ImageVertexEffectType = keyof typeof IMAGE_VERTEX_EFFECT;
+export type ImageVertexEffect = {
+  pointParent: PointParent;
+  declareInTransform: boolean;
+  effectType: ImageVertexEffectType;
+  effectProps: ImageVertexEffectProps;
+};
 // <----------------------Triggered ----------------------------------------->
 export type TriggeredVertexEffectProps =
   | DisplacementEffectProps
@@ -102,8 +113,7 @@ export type TriggeredVertexEffect = {
 export type TriggeredFragmentEffectProps =
   | PointColorEffectProps
   | OpacityEffectProps;
-export type TriggeredFragmentEffectType =
-  keyof typeof TRIGGERED_FRAGMENT_EFFECT;
+export type TriggeredFragmentEffectType = keyof typeof TRIGGERED_FRAGMENT_EFFECT;
 export type TriggeredFragmentEffect = {
   effectType: TriggeredFragmentEffectType;
   effectProps: TriggeredFragmentEffectProps;
@@ -117,8 +127,7 @@ export type TriggeredEffectProps =
 export type InteractiveVertexEffectProps =
   | DisplacementEffectProps
   | ExplodeEffectProps;
-export type InteractiveVertexEffectType =
-  keyof typeof INTERACTION_VERTEX_EFFECT;
+export type InteractiveVertexEffectType = keyof typeof INTERACTION_VERTEX_EFFECT;
 
 export type InteractiveVertexEffect = {
   effectType: InteractiveVertexEffect;
@@ -126,8 +135,7 @@ export type InteractiveVertexEffect = {
 };
 
 export type InteractiveFragmentEffectProps = PointColorEffectProps;
-export type InteractiveFragmentEffectType =
-  keyof typeof INTERACTION_FRAGMENT_EFFECT;
+export type InteractiveFragmentEffectType = keyof typeof INTERACTION_FRAGMENT_EFFECT;
 
 export type InteractiveFragmentEffect = {
   effectType: InteractiveFragmentEffectType;
@@ -146,7 +154,8 @@ export type VertexEffectProps =
   | InteractiveEffectProps
   | ExpandEffectProps
   | NoiseEffectProps
-  | ExplodeEffectProps;
+  | ExplodeEffectProps
+  | ImageVertexEffect;
 
 export type VertexEffectConfig = {
   effectType: DisplacementType;
