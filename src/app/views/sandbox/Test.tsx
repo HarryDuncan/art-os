@@ -37,7 +37,7 @@ export const Test = () => {
       hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
       new GLTFLoader()
         .setPath("assets/models/sculptures/")
-        .load("zeus.glb", function(gltf) {
+        .load("seated-muse.glb", function(gltf) {
           gltf.scene.traverse(function(child) {
             if (child.isMesh) {
               mesh = child;

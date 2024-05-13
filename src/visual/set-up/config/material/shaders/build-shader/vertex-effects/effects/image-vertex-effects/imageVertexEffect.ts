@@ -1,9 +1,7 @@
-import { POINT_PARENTS } from "../../../buildShader.consts";
 import {
   AttributeConfig,
   ImageVertexEffect,
   ShaderFunction,
-  TriggeredVertexEffect,
 } from "../../../buildShader.types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
 import { mergeUniformConfigs } from "../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
@@ -32,7 +30,7 @@ export const imageVertexEffect = (
 
   const pointName = generateUniquePointName(
     VERTEX_EFFECT_POINT_NAMES.IMAGE_VERTEX_POINT,
-    POINT_PARENTS.IMAGE_EFFECT
+    imageVertexEffectProps.pointParent
   );
 
   const {

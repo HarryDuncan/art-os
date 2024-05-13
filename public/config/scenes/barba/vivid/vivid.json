@@ -1,0 +1,106 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25.5 } }
+    },
+    "assets": [
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/barba/bg-vid_0.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "image-texture",
+        "url": "../assets/textures/compute/images/Athena.jpg",
+        "assetType": "TEXTURE",
+        "id": "focal-texture"
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "QUAD",
+        "geometryConfig": {
+          "scale": 10
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "distort-material"
+      }
+    ],
+
+    "animationConfig": [],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "point-to-image-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "VERTEX_IMAGE_EFFECT",
+              "effectProps": {
+                "effectType": "IMAGE_TO_POINTS"
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINTS"
+            }
+          ]
+        }
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [],
+    "sceneComponentConfigs": [
+      {
+        "id": "scene-background",
+        "componentType": "PLANE",
+        "componentProps": {
+          "size": { "x": 80, "y": 80 },
+          "position": { "x": 0, "y": -5, "z": -80 }
+        },
+        "materialId": "bg-vid"
+      }
+    ],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]

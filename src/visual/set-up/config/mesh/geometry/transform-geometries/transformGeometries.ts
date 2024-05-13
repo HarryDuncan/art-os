@@ -1,9 +1,9 @@
 import { BufferAttribute } from "three";
-import { getGeometryAttributes } from "../attributes/attribute.functions";
+import { getGeometryAttributes } from "../../attributes/attribute.functions";
 import { MESH_TRANSFORM } from "../../mesh.consts";
 import { MeshTransformConfig } from "../../../config.types";
 import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types";
-import { setAttributes } from "../attributes/set-attributes/setAttributes";
+import { setAttributes } from "../../attributes/set-attributes/setAttributes";
 import { DEFAULT_MORPH_ATTRIBUTE_CONFIG } from "./transform.constants";
 import { mergeArraysWithoutDuplicates } from "visual/utils/mergeArraysWithoutDuplicates";
 import { AttributeConfig } from "visual/set-up/config/material/shaders/build-shader/buildShader.types";

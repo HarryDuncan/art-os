@@ -89,11 +89,13 @@ export type PointsEffectProps = {
 };
 
 // <-------------------- Image Vertex Effects ---------------------------------->
+
+export type ImageToPointsEffectProps = EffectParameters & {};
+
 export type ImageVertexEffectProps = {};
 
 export type ImageVertexEffectType = keyof typeof IMAGE_VERTEX_EFFECT;
 export type ImageVertexEffect = {
-  pointParent: PointParent;
   declareInTransform: boolean;
   effectType: ImageVertexEffectType;
   effectProps: ImageVertexEffectProps;
@@ -106,7 +108,7 @@ export type TriggeredVertexEffectProps =
 
 export type TriggeredVertexEffectType = keyof typeof TRIGGERED_VERTEX_EFFECT;
 export type TriggeredVertexEffect = {
-  effectType: TriggeredVertexEffect;
+  effectType: TriggeredVertexEffectType;
   effectProps: TriggeredVertexEffectProps;
 };
 

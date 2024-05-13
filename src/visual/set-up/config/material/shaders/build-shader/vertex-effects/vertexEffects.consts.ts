@@ -12,6 +12,8 @@ export const VERTEX_EFFECTS = {
   EXPAND: "EXPAND",
   NOISE: "NOISE",
   TRIGGERED_EFFECT: "TRIGGERED",
+  VERTEX_IMAGE_EFFECT: "VERTEX_IMAGE_EFFECT",
+  IMAGE_TO_POINT: "IMAGE_TO_POINT",
 };
 export const VERTEX_EFFECT_POINT_NAMES = {
   DEFAULT_POINT: "position",
@@ -28,6 +30,7 @@ export const VERTEX_EFFECT_POINT_NAMES = {
   NOISE_POINT: "noisePoint",
   TRIGGERED_POINT: "triggeredPoint",
   IMAGE_VERTEX_POINT: "imageVertexPoint",
+  IMAGE_TO_POINT: "imageToPoint",
 };
 
 export const DEFAULT_MORPH_EFFECT_CONFIG = {

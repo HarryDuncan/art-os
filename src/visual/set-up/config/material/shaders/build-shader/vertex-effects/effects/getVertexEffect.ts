@@ -1,6 +1,7 @@
 import {
   ExpandEffectProps,
   ExplodeEffectProps,
+  ImageVertexEffect,
   InteractiveEffectProps,
   MorphEffectProps,
   NoiseEffectProps,
@@ -18,6 +19,7 @@ import { explode } from "./displacement/explode/explode";
 import { noise } from "./displacement/noise/noise";
 import { traverseTransform } from "./displacement/traverse/traverseTransform";
 import { vertexFilter } from "./filter-vertex/filterVertex";
+import { imageVertexEffect } from "./image-vertex-effects/imageVertexEffect";
 import { interactiveEffect } from "./interactive/interactiveEffect";
 import { morphVertex } from "./morph/morphVertex";
 import { pointsVertex } from "./points/pointsVertex";
@@ -81,6 +83,12 @@ export const getVertexEffect = (
       return triggeredEffect(
         previousPointName,
         effect.effectProps as TriggeredVertexEffect
+      );
+    }
+    case VERTEX_EFFECTS.VERTEX_IMAGE_EFFECT: {
+      return imageVertexEffect(
+        previousPointName,
+        effect.effectProps as ImageVertexEffect
       );
     }
     default:

@@ -106,7 +106,7 @@ const getCustomVaryingStrings = (config: VaryingConfig[]) => {
 
 const getAttributeVaryingStrings = (
   config: VaryingConfig[],
-  attributeConfig: AttributeConfig[]
+  attributeConfig: AttributeConfig[] = []
 ) =>
   config.flatMap(({ id, attributeKey, varyingType }) => {
     if (varyingType === VARYING_TYPES.ATTRIBUTE) {

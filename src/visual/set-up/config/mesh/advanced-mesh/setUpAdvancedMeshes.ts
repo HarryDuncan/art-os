@@ -51,7 +51,7 @@ const loopThroughAllChildren = (
 ) => {
   const { children } = data;
   children.forEach((child) => {
-    const { idGroup, isMesh } = child as unknown as {
+    const { idGroup, isMesh } = (child as unknown) as {
       idGroup: string | boolean;
       isMesh: boolean;
     };
@@ -66,7 +66,7 @@ const loopThroughAllChildren = (
     }
     if (isMesh) {
       // // add any material data to mesh
-      // const formattedTransforms = formatMeshTransforms(
+      // const formattedTransforms = formatMeshAttributes(
       //   meshTransforms ?? [],
       //   attributeConfigs as unknown as ShaderAttributeConfig[]
       // );

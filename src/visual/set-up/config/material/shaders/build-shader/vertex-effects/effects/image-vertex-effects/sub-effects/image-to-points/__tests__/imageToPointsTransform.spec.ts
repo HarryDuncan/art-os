@@ -1,21 +1,18 @@
 import { expect, test, describe } from "vitest";
-import { imageVertexEffectTransform } from "../imageVertexEffectTransform";
-import { ImageVertexEffect } from "../../../../buildShader.types";
-import { DEFAULT_IMAGE_VERTEX_EFFECT_PROPS } from "../imageVertexEffects.consts";
+import { DEFAULT_IMAGE_TO_POINTS_EFFECT_PROPS } from "../imageToPoints.consts";
+import { imageToPointsTransform } from "../imageToPointsTransform";
+import { ImageToPointsEffectProps } from "visual/set-up/config/material/shaders/build-shader/buildShader.types";
 
 const MOCK_VERTEX_NAME = "mockVertexName";
 const MOCK_POINT = "mockPoint";
 
 describe("imageVertexTransform", () => {
   test("returns default image effect transformation when default is passed", () => {
-    const formattedEffectParams = DEFAULT_IMAGE_VERTEX_EFFECT_PROPS;
-    const {
-      vertexPointInstantiation,
-      transformation,
-    } = imageVertexEffectTransform(
+    const formattedEffectParams = DEFAULT_IMAGE_TO_POINTS_EFFECT_PROPS;
+    const { vertexPointInstantiation, transformation } = imageToPointsTransform(
       MOCK_VERTEX_NAME,
       MOCK_POINT,
-      formattedEffectParams as ImageVertexEffect
+      formattedEffectParams as ImageToPointsEffectProps
     );
     expect(vertexPointInstantiation).toContain(
       `vec4 mockVertexName = vec4(mockPoint.xyz, 1.0);`
@@ -26,18 +23,15 @@ describe("imageVertexTransform", () => {
   });
 
   test("returns separate vertexPointInstantiation that is not declared in the transform ", () => {
-    const formattedEffectParams = DEFAULT_IMAGE_VERTEX_EFFECT_PROPS;
+    const formattedEffectParams = DEFAULT_IMAGE_TO_POINTS_EFFECT_PROPS;
     const effectParams = {
       ...formattedEffectParams,
       declareInTransform: false,
     };
-    const {
-      vertexPointInstantiation,
-      transformation,
-    } = imageVertexEffectTransform(
+    const { vertexPointInstantiation, transformation } = imageToPointsTransform(
       MOCK_VERTEX_NAME,
       MOCK_POINT,
-      effectParams as ImageVertexEffect
+      effectParams as ImageToPointsEffectProps
     );
     expect(vertexPointInstantiation).toContain(
       `vec4 mockVertexName = vec4(mockPoint.xyz, 1.0);`

@@ -1,5 +1,12 @@
 [
   {
+    "title": "Vivid",
+    "configId": "vivid",
+    "configPath": "scenes/barba/vivid/vivid",
+    "componentId": "InteractiveSceneContainer"
+  },
+
+  {
     "title": "Jizz",
     "configId": "jizz",
     "configPath": "scenes/barba/jizz",

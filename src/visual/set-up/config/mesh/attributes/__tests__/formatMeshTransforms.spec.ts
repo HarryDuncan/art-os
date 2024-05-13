@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { formatMeshTransforms } from "../formatMeshTransforms";
+import { formatMeshAttributes } from "../formatMeshAttributes";
 
 const MOCK_TRANSFORM = [
   {
@@ -30,7 +30,7 @@ const MOCK_ATTRIBUTE_CONFIG = [
   },
 ];
 test("merges attributes from the transform based on material id", () => {
-  const formatted = formatMeshTransforms(MOCK_TRANSFORM, MOCK_ATTRIBUTE_CONFIG);
+  const formatted = formatMeshAttributes(MOCK_TRANSFORM, MOCK_ATTRIBUTE_CONFIG);
   expect(formatted).toEqual([
     {
       type: "MORPH",
@@ -66,7 +66,7 @@ test("adds mapped attributes to the transform based on material id", () => {
   const updatedConfig = [
     { ...MOCK_ATTRIBUTE_CONFIG[0], materialId: "morphing-material2" },
   ];
-  const formatted = formatMeshTransforms(UPDATED_MOCK, updatedConfig);
+  const formatted = formatMeshAttributes(UPDATED_MOCK, updatedConfig);
   expect(formatted).toEqual([
     {
       type: "MORPH",
@@ -102,7 +102,7 @@ test("if no mesh transforms are declared a new one with custom attributes will b
   const updatedConfig = [
     { ...MOCK_ATTRIBUTE_CONFIG[0], materialId: "morphing-material2" },
   ];
-  const formatted = formatMeshTransforms(UPDATED_MOCK, updatedConfig);
+  const formatted = formatMeshAttributes(UPDATED_MOCK, updatedConfig);
   expect(formatted).toEqual([
     {
       type: "CUSTOM_ATTRIBUTES",

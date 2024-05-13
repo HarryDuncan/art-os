@@ -60,6 +60,10 @@ export const DEFAULT_UNIFORMS = {
     valueType: ShaderPropertyValueTypes.FLOAT,
     defaultValue: 0.0,
   },
+  uTextureSize: {
+    valueType: ShaderPropertyValueTypes.VEC2,
+    defaultValue: new Vector3(0, 0),
+  },
 };
 
 export const DEFAULT_VARYINGS = {};
@@ -73,7 +77,7 @@ export const MAIN_START = "void main() {";
 export const MAIN_END = "}";
 
 export const IMAGE_VERTEX_EFFECT = {
-  POINTS: "POINTS",
+  IMAGE_TO_POINTS: "IMAGE_TO_POINTS",
 };
 
 export const IMAGE_FRAGMENT_EFFECT = {};
