@@ -1,5 +1,5 @@
-import { ShaderPropertyTypes } from "../../buildShader.consts";
-import { AttributeConfig, VaryingConfig } from "../../buildShader.types";
+import { ShaderPropertyTypes } from "../../constants/buildShader.consts";
+import { AttributeConfig, VaryingConfig } from "../../types";
 import { createDeclarationString } from "../../helpers/createDeclarationString";
 import { getDefaultValueAsString } from "../../helpers/getDefaultValue";
 import {

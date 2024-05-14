@@ -1,6 +1,6 @@
 import { expect, test, describe } from "vitest";
 import { imageVertexEffectTransform } from "../imageVertexEffectTransform";
-import { ImageVertexEffect } from "../../../../buildShader.types";
+import { ImageVertexEffect } from "../../../../types";
 import { DEFAULT_IMAGE_VERTEX_EFFECT_PROPS } from "../imageVertexEffects.consts";
 
 const MOCK_VERTEX_NAME = "mockVertexName";

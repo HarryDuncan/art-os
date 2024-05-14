@@ -3,7 +3,7 @@ import {
   FragmentEffectData,
   InteractiveEffectProps,
   InteractiveFragmentEffect,
-} from "../../../buildShader.types";
+} from "../../../types";
 import { reduceFunctions } from "../../../helpers/reduceFunctions";
 import { mergeAttributeConfigs } from "../../../shader-properties/attributes/helpers/mergeAttributeConfigs";
 import { mergeUniformConfigs } from "../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
@@ -28,12 +28,11 @@ export const getInteractiveEffects = (
     fragName: effectPointName,
     requiredFunctions: effectFunctions,
     attributeConfig: effectAttributes,
-    vertexPointInstantiation,
   } = getEffectData(fragName, effectProps);
 
   const transformation = `
         vec4 ${effectPointName} = ${transformName};
-        ${vertexPointInstantiation}
+      
         if(vAffected == 1.0){
             ${effectTransformation};
         }

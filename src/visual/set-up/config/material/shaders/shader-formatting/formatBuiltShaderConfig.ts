@@ -1,4 +1,4 @@
-import { BuiltShaderConfig } from "../build-shader/buildShader.types";
+import { BuiltShaderConfig } from "../build-shader/types";
 
 export const formatBuiltShaderConfig = (
   parsedConfig: Partial<BuiltShaderConfig>

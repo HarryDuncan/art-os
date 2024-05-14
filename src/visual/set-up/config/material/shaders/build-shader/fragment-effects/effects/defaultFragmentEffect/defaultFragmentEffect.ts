@@ -1,4 +1,4 @@
-import { FragmentEffectData } from "../../../buildShader.types";
+import { FragmentEffectData } from "../../../types";
 import { EMPTY_UNIFORM_CONFIG } from "../../../shader-properties/uniforms/uniforms.consts";
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 

@@ -2,7 +2,7 @@ import { AdvancedScene, Asset } from "visual/set-up/assets/asset.types";
 import { AdvancedMeshConfig } from "./advancedMesh.types";
 import { MeshComponentConfig, MeshTransformConfig } from "../../config.types";
 import { Group, Material } from "three";
-import { ShaderAttributeConfig } from "../../material/shaders/build-shader/buildShader.types";
+import { ShaderAttributeConfig } from "../../material/shaders/build-shader/types";
 import {
   formatPositionFromConfig,
   formatRotationFromConfig,

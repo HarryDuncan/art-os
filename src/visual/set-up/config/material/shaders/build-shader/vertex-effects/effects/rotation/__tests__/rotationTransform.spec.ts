@@ -1,11 +1,11 @@
 import { expect, test, describe } from "vitest";
 import { formatFragmentParameters } from "../../../../helpers/formatFragmentParameters";
-import { RotationEffectProps } from "../../../../buildShader.types";
+import { RotationEffectProps } from "../../../../types";
 import { DEFAULT_ROTATION_EFFECT_CONFIG } from "../rotation.consts";
 import { rotationTransform } from "../rotationTransform";
 import { rotateZ } from "../../../../shader-properties/functions/rotation/rotation";
 import { AXIS } from "visual/utils/three-dimension-space/position/position.types";
-import { ShaderPropertyValueTypes } from "../../../../buildShader.consts";
+import { ShaderPropertyValueTypes } from "../../../../constants/buildShader.consts";
 
 const MOCK_VERTEX_NAME = "mockVertexName";
 const MOCK_POINT = "mockPoint";

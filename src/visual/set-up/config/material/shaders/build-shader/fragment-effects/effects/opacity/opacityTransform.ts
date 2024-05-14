@@ -1,5 +1,5 @@
 import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
-import { OpacityEffectProps } from "../../../buildShader.types";
+import { OpacityEffectProps } from "../../../types";
 
 export const opacityTransform = (
   fragName: string,

@@ -1,7 +1,7 @@
 import { expect, test, describe } from "vitest";
 import { DEFAULT_IMAGE_TO_POINTS_EFFECT_PROPS } from "../imageToPoints.consts";
 import { imageToPointsTransform } from "../imageToPointsTransform";
-import { ImageToPointsEffectProps } from "visual/set-up/config/material/shaders/build-shader/buildShader.types";
+import { ImageToPointsEffectProps } from "visual/set-up/config/material/shaders/build-shader/types";
 
 const MOCK_VERTEX_NAME = "mockVertexName";
 const MOCK_POINT = "mockPoint";

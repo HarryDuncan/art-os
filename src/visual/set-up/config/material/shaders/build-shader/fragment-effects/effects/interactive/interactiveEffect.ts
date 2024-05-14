@@ -1,5 +1,5 @@
-import { POINT_PARENTS } from "../../../buildShader.consts";
-import { InteractiveFragmentEffect } from "../../../buildShader.types";
+import { POINT_PARENTS } from "../../../constants/buildShader.consts";
+import { InteractiveFragmentEffect } from "../../../types";
 import { formatFragmentParameters } from "../../../helpers/formatFragmentParameters";
 import { generateUniquePointName } from "../../../helpers/generateUniquePointName";
 import { reduceFunctions } from "../../../helpers/reduceFunctions";

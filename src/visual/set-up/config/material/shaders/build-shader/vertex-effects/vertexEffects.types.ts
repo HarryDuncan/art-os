@@ -3,7 +3,7 @@ import {
   ShaderFunction,
   UniformConfig,
   VaryingConfig,
-} from "../buildShader.types";
+} from "../types";
 
 export interface VertexEffectData {
   requiredFunctions: ShaderFunction[];

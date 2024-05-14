@@ -4,7 +4,7 @@ import {
   ColorEffectProps,
   OpacityEffectProps,
   TriggeredFragmentEffectProps,
-} from "../../../buildShader.types";
+} from "../../../types";
 import { FRAGMENT_EFFECT } from "../../fragmentEffects.consts";
 import { color } from "../color/color";
 import { defaultFragmentEffect } from "../defaultFragmentEffect/defaultFragmentEffect";

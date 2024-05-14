@@ -76,20 +76,19 @@ const getGeometryForMeshConfig = (
       {}
     );
     return { ...customGeometry };
-  } else {
-    const meshGeometry = geometries.find(
-      (geometry) => geometry.name === geometryId
-    );
-    if (!meshGeometry) {
-      console.warn(
-        `no geometry found for ${geometryId} this mesh will not be rendered
-        geometry names ${geometries.map(({ name }) => name)}`
-      );
-    }
-
-    return {
-      ...meshGeometry,
-      geometry: meshGeometry?.geometry.clone(),
-    };
   }
+  const meshGeometry = geometries.find(
+    (geometry) => geometry.name === geometryId
+  );
+  if (!meshGeometry) {
+    console.warn(
+      `no geometry found for ${geometryId} this mesh will not be rendered
+        geometry names ${geometries.map(({ name }) => name)}`
+    );
+  }
+
+  return {
+    ...meshGeometry,
+    geometry: meshGeometry?.geometry.clone(),
+  };
 };

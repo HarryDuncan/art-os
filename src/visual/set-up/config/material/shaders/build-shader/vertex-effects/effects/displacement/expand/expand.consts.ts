@@ -2,7 +2,7 @@ import {
   ExpandEffectProps,
   ShaderFunction,
   VaryingConfig,
-} from "../../../../buildShader.types";
+} from "../../../../types";
 
 export const EXPAND_UNIFORMS = {
   defaultUniforms: ["uCenter"],

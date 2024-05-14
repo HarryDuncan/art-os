@@ -1,9 +1,9 @@
-import { ShaderPropertyValueTypes } from "../../../../buildShader.consts";
+import { ShaderPropertyValueTypes } from "../../../../constants/buildShader.consts";
 import {
   AttributeConfig,
   ExplodeEffectProps,
   UniformConfig,
-} from "../../../../buildShader.types";
+} from "../../../../types";
 import { formatVertexParameters } from "../../../../helpers/formatVertexParameters";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";

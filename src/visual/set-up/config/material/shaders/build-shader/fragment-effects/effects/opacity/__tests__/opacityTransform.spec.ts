@@ -2,7 +2,7 @@ import { expect, test, describe, vi } from "vitest";
 import { opacityTransform } from "../opacityTransform";
 import { DEFAULT_OPACITY_EFFECT_PARAMS } from "../opacity.consts";
 import { formatFragmentParameters } from "../../../../helpers/formatFragmentParameters";
-import { OpacityEffectProps } from "../../../../buildShader.types";
+import { OpacityEffectProps } from "../../../../types";
 
 const MOCK_FRAG_COLOR_NAME = "mockColor";
 const MOCK_POINT = "mockPoint";

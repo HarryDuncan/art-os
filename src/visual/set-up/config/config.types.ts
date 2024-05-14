@@ -22,7 +22,7 @@ import {
 } from "three";
 import { RendererParams } from "visual/display/hooks/use-three-js/renderer/types";
 import { Position3d } from "visual/utils/three-dimension-space/position/position.types";
-import { AttributeConfig } from "./material/shaders/build-shader/buildShader.types";
+import { AttributeConfig } from "./material/shaders/build-shader/types";
 import { SceneConfigType } from "./config.constants";
 import { AdvancedMeshConfig } from "./mesh/advanced-mesh/advancedMesh.types";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";

@@ -2,7 +2,7 @@ import { defaultFragmentEffect } from "./effects/defaultFragmentEffect/defaultFr
 import { getFragmentEffects } from "./effects/getFragmentEffects";
 import { mergeUniformConfigs } from "../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { mergeVaryingConfigs } from "../shader-properties/varyings/helpers/mergeVaryingConfigs";
-import { FragmentEffectConfig, ShaderFunction } from "../buildShader.types";
+import { FragmentEffectConfig, ShaderFunction } from "../types";
 import { reduceFunctions } from "../helpers/reduceFunctions";
 import { mergeAttributeConfigs } from "../shader-properties/attributes/helpers/mergeAttributeConfigs";
 

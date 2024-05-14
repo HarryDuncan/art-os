@@ -45,3 +45,22 @@ export const enum TransformTypes {
 export const DEFAULT_VERTEX_EFFECT_PARAMS = {
   declareInTransform: true,
 };
+
+export const IMAGE_VERTEX_EFFECT = {
+  IMAGE_TO_POINTS: "IMAGE_TO_POINTS",
+};
+
+export const DISPLACEMENT_TYPES = {
+  EXPLODE: "EXPLODE",
+  IMPLODE: "IMPLODE",
+};
+
+export const TRIGGERED_VERTEX_EFFECT = {
+  DISPLACE: "DISPLACE",
+  WARP: "WARP",
+};
+
+export const INTERACTION_VERTEX_EFFECT = {
+  DISPLACE: "DISPLACE",
+  WARP: "WARP",
+};

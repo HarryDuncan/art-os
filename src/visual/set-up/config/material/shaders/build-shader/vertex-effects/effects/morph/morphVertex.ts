@@ -1,5 +1,5 @@
-import { ShaderPropertyValueTypes } from "../../../buildShader.consts";
-import { MorphEffectProps, UniformConfig } from "../../../buildShader.types";
+import { ShaderPropertyValueTypes } from "../../../constants/buildShader.consts";
+import { MorphEffectProps, UniformConfig } from "../../../types";
 import {
   DEFAULT_MORPH_EFFECT_CONFIG,
   VERTEX_EFFECT_POINT_NAMES,

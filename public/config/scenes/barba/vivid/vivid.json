@@ -5,16 +5,23 @@
     },
     "assets": [
       {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/venus/barba-logo.obj",
+        "assetType": "MODEL3D"
+      },
+
+      {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/barba/bg-vid_0.mp4",
+        "url": "../assets/video/barba/12.mp4",
         "assetType": "VIDEO"
       },
       {
-        "name": "image-texture",
-        "url": "../assets/textures/compute/images/Athena.jpg",
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_3.jpg",
         "assetType": "TEXTURE",
-        "id": "focal-texture"
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
       },
       {
         "name": "1-texture",
@@ -32,7 +39,7 @@
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
-        "geometryId": "QUAD",
+        "geometryId": "barba-logo",
         "geometryConfig": {
           "scale": 10
         },
@@ -40,8 +47,31 @@
         "materialId": "distort-material"
       }
     ],
-
-    "animationConfig": [],
+    "advancedMeshConfigs": [],
+    "animationConfig": [
+      {
+        "animationId": "distort-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uAngle",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 15,
+                "minTrough": 0,
+                "speed": 0.5,
+                "steepness": 5
+              }
+            }
+          ]
+        }
+      }
+    ],
     "lightConfig": [
       {
         "name": "ambient-light",
@@ -61,22 +91,40 @@
     ],
     "globalMaterialConfigs": [
       {
-        "id": "point-to-image-material",
+        "id": "distort-material",
         "materialType": "BUILT_SHADER",
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "VERTEX_IMAGE_EFFECT",
-              "effectProps": {
-                "effectType": "IMAGE_TO_POINTS"
-              }
+              "effectType": "DISTORT",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.2 }
             }
           ],
           "fragmentEffectConfigs": [
             {
-              "effectType": "POINTS"
-            }
-          ]
+              "effectType": "MATCAP"
+            },
+            { "effectType": "BLOOM" }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      },
+      {
+        "id": "morphing-material",
+        "materialType": "MATCAP",
+        "materialProps": {
+          "assetId": "chrome-material"
         }
       },
       {
@@ -87,14 +135,25 @@
         "materialType": "VIDEO"
       }
     ],
-    "meshTransforms": [],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["venus-trap"],
+        "materialId": "morphing-material"
+      },
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1"],
+        "materialId": "distort-material"
+      }
+    ],
     "sceneComponentConfigs": [
       {
         "id": "scene-background",
         "componentType": "PLANE",
         "componentProps": {
-          "size": { "x": 80, "y": 80 },
-          "position": { "x": 0, "y": -5, "z": -80 }
+          "size": { "x": 120, "y": 120 },
+          "position": { "x": 0, "y": -5, "z": -30 }
         },
         "materialId": "bg-vid"
       }

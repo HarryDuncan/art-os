@@ -2,9 +2,9 @@ import { Matrix3, Matrix4, Vector2, Vector3, Vector4 } from "three";
 import {
   ShaderPropertyTypes,
   ShaderPropertyValueTypes,
-} from "../../../buildShader.consts";
+} from "../../../constants/buildShader.consts";
 import { createDeclarationString } from "../../../helpers/createDeclarationString";
-import { UniformObject, UniformValueConfig } from "../../../buildShader.types";
+import { UniformObject, UniformValueConfig } from "../../../types";
 
 export const setUpCustom = (config: UniformValueConfig[] = []) => {
   const customUniforms: UniformObject = {};

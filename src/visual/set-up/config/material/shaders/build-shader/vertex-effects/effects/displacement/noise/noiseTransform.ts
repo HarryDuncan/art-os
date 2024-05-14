@@ -1,5 +1,5 @@
 import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
-import { NoiseEffectProps } from "../../../../buildShader.types";
+import { NoiseEffectProps } from "../../../../types";
 import { NOISE_EFFECT_TYPES } from "./noise.consts";
 
 export const noiseTransform = (

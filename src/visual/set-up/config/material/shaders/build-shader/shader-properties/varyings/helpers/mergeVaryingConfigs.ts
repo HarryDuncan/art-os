@@ -1,5 +1,5 @@
 import { removeDuplicatesByKey } from "visual/utils/removeDuplicatesByKey";
-import { VaryingConfig } from "../../../buildShader.types";
+import { VaryingConfig } from "../../../types";
 
 export const mergeVaryingConfigs = (
   varyingConfigArray: VaryingConfig[][]

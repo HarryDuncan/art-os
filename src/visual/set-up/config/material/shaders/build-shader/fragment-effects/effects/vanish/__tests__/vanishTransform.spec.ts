@@ -2,7 +2,7 @@ import { expect, test, describe } from "vitest";
 import { vanishTransform } from "../vanishTransform";
 import { DEFAULT_VANISH_EFFECT_PARAMS } from "../vanish.consts";
 import { formatFragmentParameters } from "../../../../helpers/formatFragmentParameters";
-import { OpacityEffectProps } from "../../../../buildShader.types";
+import { OpacityEffectProps } from "../../../../types";
 
 const MOCK_FRAG_COLOR_NAME = "mockColor";
 const MOCK_POINT = "mockPoint";

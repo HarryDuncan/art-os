@@ -3,7 +3,7 @@ import {
   FragmentEffectData,
   VanishEffectProps,
   VaryingConfig,
-} from "../../../buildShader.types";
+} from "../../../types";
 
 import { formatFragmentParameters } from "../../../helpers/formatFragmentParameters";
 import { generateUniqueFragName } from "../../../helpers/generateUniqueFragName";

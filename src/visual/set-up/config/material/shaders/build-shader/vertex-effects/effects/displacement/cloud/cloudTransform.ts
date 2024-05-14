@@ -1,4 +1,4 @@
-import { UniformConfig, VaryingConfig } from "../../../../buildShader.types";
+import { UniformConfig, VaryingConfig } from "../../../../types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";
 import { noise3D } from "visual/display/materials/webgl-shaders/shader-functions/noise/simplex/noise3D";

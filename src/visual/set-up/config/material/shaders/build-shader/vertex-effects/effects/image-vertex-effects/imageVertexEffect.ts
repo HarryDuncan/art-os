@@ -2,7 +2,7 @@ import {
   AttributeConfig,
   ImageVertexEffect,
   ShaderFunction,
-} from "../../../buildShader.types";
+} from "../../../types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
 import { mergeUniformConfigs } from "../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { mergeVaryingConfigs } from "../../../shader-properties/varyings/helpers/mergeVaryingConfigs";
@@ -24,8 +24,8 @@ export const imageVertexEffect = (
   effectProps: Partial<ImageVertexEffect>
 ) => {
   const imageVertexEffectProps = formatVertexParameters(
-    effectProps,
-    DEFAULT_IMAGE_VERTEX_EFFECT_PROPS as ImageVertexEffect
+    DEFAULT_IMAGE_VERTEX_EFFECT_PROPS as ImageVertexEffect,
+    effectProps as ImageVertexEffect
   ) as ImageVertexEffect;
 
   const pointName = generateUniquePointName(

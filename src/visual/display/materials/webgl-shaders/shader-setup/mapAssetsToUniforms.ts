@@ -1,6 +1,6 @@
 import { Asset } from "visual/set-up/assets/asset.types";
 import { AssetMap } from "../shaders.types";
-import { UniformObject } from "visual/set-up/config/material/shaders/build-shader/buildShader.types";
+import { UniformObject } from "visual/set-up/config/material/shaders/build-shader/types";
 
 export const mapAssetsToUniforms = (
   assetMapping: AssetMap[],

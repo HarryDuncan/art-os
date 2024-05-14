@@ -3,7 +3,7 @@ import { getVerticesCount } from "../attribute.functions";
 import {
   AttributeConfig,
   AttributeValueConfig,
-} from "visual/set-up/config/material/shaders/build-shader/buildShader.types";
+} from "visual/set-up/config/material/shaders/build-shader/types";
 
 const RANDOM_ATTRIBUTE_IDS = ["randomAngle", "random", "pointType"];
 const INDEX_ATTRIBUTE_IDS = ["pointIndex", "index"];

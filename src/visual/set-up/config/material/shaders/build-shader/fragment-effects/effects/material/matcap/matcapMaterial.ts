@@ -2,14 +2,14 @@ import {
   calculateNormal,
   diffuseFactor,
 } from "visual/display/materials/webgl-shaders/shader-functions";
-import { ShaderPropertyValueTypes } from "../../../../buildShader.consts";
+import { ShaderPropertyValueTypes } from "../../../../constants/buildShader.consts";
 import {
   DefaultUniform,
   FragmentEffectData,
   MaterialEffectProps,
   ShaderFunction,
   VaryingConfig,
-} from "../../../../buildShader.types";
+} from "../../../../types";
 import { FRAGMENT_COLOR_NAMES } from "../../../fragmentEffects.consts";
 import { VARYING_TYPES } from "../../../../shader-properties/varyings/varyings.consts";
 

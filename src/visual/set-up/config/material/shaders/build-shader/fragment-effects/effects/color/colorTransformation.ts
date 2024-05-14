@@ -1,4 +1,4 @@
-import { ColorEffectProps } from "../../../buildShader.types";
+import { ColorEffectProps } from "../../../types";
 import { createColorVectorString } from "../../../helpers/createColorVectorString";
 
 export const colorTransformation = (

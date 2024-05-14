@@ -1,11 +1,11 @@
-import { MAIN_END, MAIN_START } from "./buildShader.consts";
+import { MAIN_END, MAIN_START } from "./constants/buildShader.consts";
 import {
   AttributeConfig,
   BuiltShaderConfig,
   ShaderFunction,
   UniformConfig,
   VaryingConfig,
-} from "./buildShader.types";
+} from "./types";
 import { setUpFragmentEffects } from "./fragment-effects/setUpFragmentEffects";
 import { buildAttributes } from "./shader-properties/attributes/buildAttributes";
 import { mergeAttributeConfigs } from "./shader-properties/attributes/helpers/mergeAttributeConfigs";

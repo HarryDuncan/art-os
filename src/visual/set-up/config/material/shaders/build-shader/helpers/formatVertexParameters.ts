@@ -1,4 +1,4 @@
-import { VertexEffectProps } from "../buildShader.types";
+import { VertexEffectProps } from "../types";
 import { DEFAULT_VERTEX_EFFECT_PARAMS } from "../vertex-effects/vertexEffects.consts";
 
 export const formatVertexParameters = (

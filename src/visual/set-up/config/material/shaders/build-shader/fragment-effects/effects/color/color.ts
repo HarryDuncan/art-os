@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import { ShaderPropertyValueTypes } from "../../../buildShader.consts";
+import { ShaderPropertyValueTypes } from "../../../constants/buildShader.consts";
 import {
   DEFAULT_FRAG_COLOR,
   FRAGMENT_COLOR_NAMES,
@@ -9,7 +9,7 @@ import {
   ColorEffectProps,
   FragmentEffectData,
   UniformConfig,
-} from "../../../buildShader.types";
+} from "../../../types";
 
 export const colorFunctions = () => [];
 

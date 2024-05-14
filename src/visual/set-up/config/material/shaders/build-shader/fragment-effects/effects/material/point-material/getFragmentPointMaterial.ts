@@ -1,4 +1,4 @@
-import { ShaderPropertyValueTypes } from "../../../../buildShader.consts";
+import { ShaderPropertyValueTypes } from "../../../../constants/buildShader.consts";
 import {
   AttributeConfig,
   DefaultUniform,
@@ -7,7 +7,7 @@ import {
   PointMaterialEffectProps,
   ShaderFunction,
   VaryingConfig,
-} from "../../../../buildShader.types";
+} from "../../../../types";
 import {
   DEFAULT_POINT_MATERIAL,
   FRAGMENT_COLOR_NAMES,

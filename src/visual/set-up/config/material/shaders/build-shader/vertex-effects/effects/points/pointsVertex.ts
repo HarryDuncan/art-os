@@ -1,4 +1,4 @@
-import { AttributeConfig, PointsEffectProps } from "../../../buildShader.types";
+import { AttributeConfig, PointsEffectProps } from "../../../types";
 import {
   DEFAULT_POINT_EFFECT_CONFIG,
   POINTS_ATTRIBUTES,

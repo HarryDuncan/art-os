@@ -1,4 +1,4 @@
-import { VertexEffectConfig } from "../../buildShader.types";
+import { VertexEffectConfig } from "../../types";
 import { EMPTY_UNIFORM_CONFIG } from "../../shader-properties/uniforms/uniforms.consts";
 import { setUpVertexEffects } from "../setUpVertexEffects";
 import { expect, test, describe, vi } from "vitest";

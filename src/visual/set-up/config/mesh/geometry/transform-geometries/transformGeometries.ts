@@ -6,7 +6,7 @@ import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types"
 import { setAttributes } from "../../attributes/set-attributes/setAttributes";
 import { DEFAULT_MORPH_ATTRIBUTE_CONFIG } from "./transform.constants";
 import { mergeArraysWithoutDuplicates } from "visual/utils/mergeArraysWithoutDuplicates";
-import { AttributeConfig } from "visual/set-up/config/material/shaders/build-shader/buildShader.types";
+import { AttributeConfig } from "visual/set-up/config/material/shaders/build-shader/types";
 
 export const transformGeometry = (
   meshTransforms: MeshTransformConfig[] | undefined,

@@ -1,4 +1,4 @@
-import { ShaderFunction, VaryingConfig } from "../../../../buildShader.types";
+import { ShaderFunction, VaryingConfig } from "../../../../types";
 
 export const EXPLODE_UNIFORMS = {
   defaultUniforms: ["uPosition"],

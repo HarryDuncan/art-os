@@ -5,7 +5,7 @@ import { getShaderMaterials } from "./shaders/getShaderMaterials";
 import { Material } from "three";
 import { getAssetMappedMaterials } from "./getAssetMappedMaterials";
 import { getBuiltShaderMaterials } from "./shaders/getBuiltShaderMaterials";
-import { ShaderAttributeConfig } from "./shaders/build-shader/buildShader.types";
+import { ShaderAttributeConfig } from "./shaders/build-shader/types";
 
 export const formatGlobalMaterials = (
   assets: Asset[],

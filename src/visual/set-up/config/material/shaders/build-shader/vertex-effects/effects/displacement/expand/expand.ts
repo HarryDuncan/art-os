@@ -2,7 +2,7 @@ import {
   AttributeConfig,
   ExpandEffectProps,
   UniformConfig,
-} from "../../../../buildShader.types";
+} from "../../../../types";
 import { formatVertexParameters } from "../../../../helpers/formatVertexParameters";
 import { generateUniquePointName } from "../../../../helpers/generateUniquePointName";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";

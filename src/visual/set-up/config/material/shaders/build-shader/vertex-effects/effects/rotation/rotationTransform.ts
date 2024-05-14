@@ -2,7 +2,7 @@ import {
   AXIS,
   Axis,
 } from "visual/utils/three-dimension-space/position/position.types";
-import { RotationEffectProps } from "../../../buildShader.types";
+import { RotationEffectProps } from "../../../types";
 import {
   rotateX,
   rotateY,

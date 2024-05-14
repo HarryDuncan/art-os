@@ -1,5 +1,5 @@
 import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
-import { VanishEffectProps } from "../../../buildShader.types";
+import { VanishEffectProps } from "../../../types";
 
 export const vanishTransform = (
   fragName: string,

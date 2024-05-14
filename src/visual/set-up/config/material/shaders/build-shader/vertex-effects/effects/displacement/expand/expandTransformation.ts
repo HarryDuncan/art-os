@@ -1,5 +1,5 @@
 import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
-import { ExpandEffectProps } from "../../../../buildShader.types";
+import { ExpandEffectProps } from "../../../../types";
 
 export const expandTransformation = (
   previousPointName: string,

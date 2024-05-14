@@ -1,9 +1,10 @@
-import { POINT_PARENTS } from "../../../buildShader.consts";
+import { POINT_PARENTS } from "../../../constants/buildShader.consts";
 import {
   AttributeConfig,
   ShaderFunction,
   TriggeredVertexEffect,
-} from "../../../buildShader.types";
+  TriggeredVertexEffectProps,
+} from "../../../types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
 import { mergeUniformConfigs } from "../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { mergeVaryingConfigs } from "../../../shader-properties/varyings/helpers/mergeVaryingConfigs";
@@ -25,7 +26,7 @@ export const triggeredEffect = (
 ) => {
   const triggeredEffectProps = formatVertexParameters(
     effectProps,
-    DEFAULT_TRIGGERED_EFFECT as TriggeredVertexEffect
+    DEFAULT_TRIGGERED_EFFECT as TriggeredVertexEffectProps
   ) as TriggeredVertexEffect;
   const pointName = generateUniquePointName(
     VERTEX_EFFECT_POINT_NAMES.TRIGGERED_POINT,

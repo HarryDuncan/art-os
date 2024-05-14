@@ -1,5 +1,5 @@
 import { removeDuplicatesByKey } from "visual/utils/removeDuplicatesByKey";
-import { AttributeConfig } from "../../../buildShader.types";
+import { AttributeConfig } from "../../../types";
 
 export const mergeAttributeConfigs = (
   attributeConfig: AttributeConfig[][]

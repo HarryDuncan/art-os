@@ -1,8 +1,5 @@
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
-import {
-  FragmentEffectData,
-  OpacityEffectProps,
-} from "../../../buildShader.types";
+import { FragmentEffectData, OpacityEffectProps } from "../../../types";
 import {
   OPACITY_UNIFORMS,
   OPACITY_VARYINGS,

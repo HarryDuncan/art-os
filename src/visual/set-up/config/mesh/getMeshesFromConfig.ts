@@ -6,7 +6,7 @@ import { setUpRandomizedMeshConfigs } from "./randomized/setUpRandomizedMeshConf
 import { Asset } from "visual/set-up/assets/asset.types";
 import { SceneConfig } from "../config.types";
 import { transformGeometry } from "./geometry/transform-geometries/transformGeometries";
-import { ShaderAttributeConfig } from "../material/shaders/build-shader/buildShader.types";
+import { ShaderAttributeConfig } from "../material/shaders/build-shader/types";
 import { multipleMeshes } from "./multiple-meshes/multipleMeshes";
 import { setUpAdvancedMeshes } from "./advanced-mesh/setUpAdvancedMeshes";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";

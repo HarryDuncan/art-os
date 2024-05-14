@@ -1,13 +1,11 @@
-import {
-  TRIGGERED_FRAGMENT_EFFECT,
-  DEFAULT_VERTEX_EFFECT,
-} from "../../../buildShader.consts";
+import { DEFAULT_VERTEX_EFFECT } from "../../../constants";
+import { TRIGGERED_FRAGMENT_EFFECT } from "../../../fragment-effects/fragmentEffects.consts";
 import {
   TriggeredEffectProps,
   ExplodeEffectProps,
   ExpandEffectProps,
   RotationEffectProps,
-} from "../../../buildShader.types";
+} from "../../../types";
 import { VERTEX_EFFECTS } from "../../vertexEffects.consts";
 import { VertexEffectData } from "../../vertexEffects.types";
 import { expand } from "../displacement/expand/expand";

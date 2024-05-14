@@ -1,4 +1,4 @@
-import { RotationEffectProps } from "../../../buildShader.types";
+import { RotationEffectProps } from "../../../types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
 import { formatVertexParameters } from "../../../helpers/formatVertexParameters";
 import {

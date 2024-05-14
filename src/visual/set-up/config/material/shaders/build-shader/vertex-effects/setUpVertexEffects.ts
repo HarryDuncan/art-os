@@ -4,7 +4,7 @@ import {
   UniformConfig,
   VaryingConfig,
   VertexEffectConfig,
-} from "../buildShader.types";
+} from "../types";
 import { reduceFunctions } from "../helpers/reduceFunctions";
 import { mergeAttributeConfigs } from "../shader-properties/attributes/helpers/mergeAttributeConfigs";
 import { mergeUniformConfigs } from "../shader-properties/uniforms/helpers/mergeUniformConfigs";

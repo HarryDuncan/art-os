@@ -1,5 +1,5 @@
 import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
-import { PointsEffectProps } from "../../../buildShader.types";
+import { PointsEffectProps } from "../../../types";
 import { pointsPerspective } from "./pointsPerspective";
 
 export const pointsTransform = (

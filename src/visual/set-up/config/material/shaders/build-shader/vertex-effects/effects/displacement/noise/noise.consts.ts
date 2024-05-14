@@ -1,4 +1,3 @@
-import { VaryingConfig } from "../../../../buildShader.types";
 import { noise3D } from "../../../../shader-properties/functions/noise/noise3d";
 
 export const NOISE_EFFECT_TYPES = {
@@ -12,7 +11,7 @@ export const NOISE_UNIFORMS = {
 
 export const NOISE_VARYINGS = [
   { id: "vPointId", valueType: "FLOAT", varyingType: "ATTRIBUTE" },
-] as VaryingConfig[];
+];
 
 export const DEFAULT_NOISE_PARAMETERS = {
   noiseType: NOISE_EFFECT_TYPES.NORMAL,

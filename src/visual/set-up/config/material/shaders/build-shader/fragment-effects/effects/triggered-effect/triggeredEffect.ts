@@ -1,8 +1,5 @@
-import { POINT_PARENTS } from "../../../buildShader.consts";
-import {
-  FragmentEffectData,
-  TriggeredFragmentEffect,
-} from "../../../buildShader.types";
+import { POINT_PARENTS } from "../../../constants/buildShader.consts";
+import { FragmentEffectData, TriggeredFragmentEffect } from "../../../types";
 import { mergeUniformConfigs } from "../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { mergeVaryingConfigs } from "../../../shader-properties/varyings/helpers/mergeVaryingConfigs";
 import { reduceFunctions } from "../../../helpers/reduceFunctions";

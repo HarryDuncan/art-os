@@ -1,7 +1,7 @@
 import {
   ShaderPropertyTypes,
   ShaderPropertyValueTypes,
-} from "../buildShader.consts";
+} from "../constants/buildShader.consts";
 
 export const createDeclarationString = (
   propertyType: ShaderPropertyTypes,

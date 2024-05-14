@@ -1,4 +1,4 @@
-import { UniformConfig } from "../../../buildShader.types";
+import { UniformConfig } from "../../../types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
 import { VertexEffectData } from "../../vertexEffects.types";
 import { vertexFilterTransformation } from "./vertexFilterTransformation";

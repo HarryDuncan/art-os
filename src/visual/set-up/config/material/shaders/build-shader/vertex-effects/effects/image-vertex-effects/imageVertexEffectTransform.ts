@@ -1,5 +1,10 @@
-import { DEFAULT_VERTEX_EFFECT } from "../../../buildShader.consts";
-import { ImageVertexEffect } from "../../../buildShader.types";
+import { DEFAULT_VERTEX_EFFECT } from "../../../constants";
+import { POINT_PARENTS } from "../../../constants/buildShader.consts";
+import {
+  ImageVertexEffect,
+  ImageVertexEffectProps,
+  PointParent,
+} from "../../../types";
 import { VERTEX_EFFECTS } from "../../vertexEffects.consts";
 import { VertexEffectData } from "../../vertexEffects.types";
 import { imageToPoints } from "./sub-effects/image-to-points/imageToPoints";
@@ -9,7 +14,7 @@ export const imageVertexEffectTransform = (
   previousPointName: string,
   imageVertexEffectProps: ImageVertexEffect
 ) => {
-  const { declareInTransform } = imageVertexEffectProps;
+  const { declareInTransform, effectProps } = imageVertexEffectProps;
   const {
     uniformConfig: effectUniforms,
     varyingConfig: effectVaryings,
@@ -17,7 +22,7 @@ export const imageVertexEffectTransform = (
     pointName: effectPointName,
     requiredFunctions: effectFunctions,
     attributeConfig: effectAttributes,
-  } = getEffectData(previousPointName, imageVertexEffectProps);
+  } = getEffectData(previousPointName, effectProps);
 
   const vertexPointInstantiation = `vec4 ${pointName} = vec4(${previousPointName}.xyz, 1.0);`;
   const transformation = `
@@ -38,12 +43,17 @@ export const imageVertexEffectTransform = (
 
 const getEffectData = (
   pointName: string,
-  imageVertexEffectProps: ImageVertexEffect
+  imageVertexEffectProps: ImageVertexEffectProps
 ): VertexEffectData => {
-  const { effectType, effectProps } = imageVertexEffectProps;
+  const { effectType } = imageVertexEffectProps;
+  const formattedEffectProps = {
+    ...imageVertexEffectProps,
+    pointParent: POINT_PARENTS.IMAGE_EFFECT as PointParent,
+  };
+  console.log(formattedEffectProps);
   switch (effectType) {
     case VERTEX_EFFECTS.IMAGE_TO_POINT:
-      return imageToPoints(pointName, effectProps);
+      return imageToPoints(pointName, formattedEffectProps);
     default:
       return { ...DEFAULT_VERTEX_EFFECT, pointName };
   }
