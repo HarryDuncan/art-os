@@ -46,7 +46,7 @@
           "animationLoopConfig": [
             {
               "uniform": "uProgress",
-              "loopType": "MIN_MAX",
+              "loopType": "BRIGHTNESSESS",
               "loopProps": {
                 "maxPeak": 1,
                 "minTrough": 0,
@@ -129,8 +129,8 @@
               "effectProps": {
                 "pointDisplayPercentage": 0.0007,
                 "pointDefinitions": [
-                  { "id": "uTexture1", "pointColor": "#00a140" },
-                  { "id": "uTexture2", "pointColor": "#00a140" }
+                  { "id": "uTexture1", "pointColor": "#eb02c4" },
+                  { "id": "uTexture2", "pointColor": "#0267eb" }
                 ],
                 "pointColor": "#00a140"
               }
@@ -172,17 +172,7 @@
         "materialId": "morphing-material"
       }
     ],
-    "sceneComponentConfigs": [
-      {
-        "id": "scene-background",
-        "componentType": "PLANE",
-        "componentProps": {
-          "size": { "x": 80, "y": 80 },
-          "position": { "x": 0, "y": -5, "z": -10 }
-        },
-        "materialId": "bg-vid"
-      }
-    ],
+    "sceneComponentConfigs": [],
     "scenePropertiesConfig": {
       "backgroundColor": "black"
     }

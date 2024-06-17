@@ -1,5 +1,5 @@
 import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
-import { getLoopType } from "./getLoopTypes";
+import { getLoopType } from "./loops/getLoopTypes";
 import { updateObjectUniformByKey } from "../uniforms/updateObjectUniformByKey";
 import { AnimationLoopConfigItem } from "./animationloop.types";
 import { composeFunctions } from "../../../../../utils/composeFunctions";

@@ -23,6 +23,10 @@ export const DEFAULT_UNIFORMS = {
     valueType: ShaderPropertyValueTypes.FLOAT,
     defaultValue: 0.0,
   },
+  uBrightness: {
+    valueType: ShaderPropertyValueTypes.FLOAT,
+    defaultValue: 1.0,
+  },
   uStrength: {
     valueType: ShaderPropertyValueTypes.FLOAT,
     defaultValue: 8.0,

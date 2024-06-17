@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { Container } from "../views.styles";
 import { handleExportClick } from "./export/exportAsObj";
 import { CONFIG } from "app/constants";
@@ -16,8 +16,9 @@ import { getAssetBufferGeometry } from "visual/set-up/config/mesh/geometry/getAs
 const preTranformConfig = {
   centerGeometry: true,
 };
+
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/blackout.json`);
+  const assets = useFetchData(`${CONFIG}assets/vivid.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );

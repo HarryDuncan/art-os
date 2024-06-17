@@ -4,7 +4,7 @@ import {
   DefaultUniform,
   FragmentEffectData,
   PointDefinition,
-  PointMaterialEffectProps,
+  PointFragmentEffectProps,
   ShaderFunction,
   VaryingConfig,
 } from "../../../../types";
@@ -68,7 +68,7 @@ const ATTRIBUTE_CONFIG = [
 
 export const getFragmentPointMaterial = (
   _previousFragName: string,
-  effectProps: Partial<PointMaterialEffectProps> | undefined
+  effectProps: Partial<PointFragmentEffectProps> | undefined
 ): FragmentEffectData => {
   const formattedEffectProps = formatWithDefaultEffectProps(effectProps);
   const { pointDefinitions, defaultColor } = formattedEffectProps;
@@ -99,7 +99,7 @@ export const getFragmentPointMaterial = (
 };
 
 const formatWithDefaultEffectProps = (
-  parsedConfig: Partial<PointMaterialEffectProps> = {}
-): PointMaterialEffectProps => {
+  parsedConfig: Partial<PointFragmentEffectProps> = {}
+): PointFragmentEffectProps => {
   return { ...DEFAULT_POINT_MATERIAL, ...parsedConfig };
 };

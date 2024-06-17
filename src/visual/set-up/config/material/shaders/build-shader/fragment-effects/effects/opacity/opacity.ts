@@ -1,5 +1,5 @@
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
-import { FragmentEffectData, OpacityEffectProps } from "../../../types";
+import { FragmentEffectData, OpacityFragmentEffectProps } from "../../../types";
 import {
   OPACITY_UNIFORMS,
   OPACITY_VARYINGS,
@@ -13,12 +13,12 @@ import { generateUniqueFragName } from "../../../helpers/generateUniqueFragName"
 
 export const opacity = (
   previousFragName: string,
-  effectProps: Partial<OpacityEffectProps>
+  effectProps: Partial<OpacityFragmentEffectProps>
 ): FragmentEffectData => {
   const formattedEffectParams = formatFragmentParameters(
     effectProps,
     DEFAULT_OPACITY_EFFECT_PARAMS
-  ) as OpacityEffectProps;
+  ) as OpacityFragmentEffectProps;
   const fragName = generateUniqueFragName(
     FRAGMENT_COLOR_NAMES.OPACITY,
     formattedEffectParams.pointParent

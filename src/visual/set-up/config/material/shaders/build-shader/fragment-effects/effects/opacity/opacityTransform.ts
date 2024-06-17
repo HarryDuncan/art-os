@@ -1,10 +1,10 @@
 import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
-import { OpacityEffectProps } from "../../../types";
+import { OpacityFragmentEffectProps } from "../../../types";
 
 export const opacityTransform = (
   fragName: string,
   previousFragName: string,
-  opacityParameters: OpacityEffectProps
+  opacityParameters: OpacityFragmentEffectProps
 ) => {
   const { opacity, asUniform, declareInTransform } = opacityParameters;
   const fragmentColorInstantiation = `vec4 ${fragName} = ${previousFragName};`;

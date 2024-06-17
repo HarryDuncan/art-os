@@ -1,7 +1,7 @@
 import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 import {
   FragmentEffectData,
-  VanishEffectProps,
+  VanishFragmentEffectProps,
   VaryingConfig,
 } from "../../../types";
 
@@ -18,12 +18,12 @@ import { vanishTransform } from "./vanishTransform";
 
 export const vanishEffect = (
   previousFragName: string,
-  effectProps: Partial<VanishEffectProps>
+  effectProps: Partial<VanishFragmentEffectProps>
 ): FragmentEffectData => {
   const formattedEffectParams = formatFragmentParameters(
     effectProps,
     DEFAULT_VANISH_EFFECT_PARAMS
-  ) as VanishEffectProps;
+  ) as VanishFragmentEffectProps;
   const fragName = generateUniqueFragName(
     FRAGMENT_COLOR_NAMES.VANISH,
     formattedEffectParams.pointParent

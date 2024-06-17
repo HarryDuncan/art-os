@@ -9,6 +9,7 @@ export const FRAGMENT_EFFECT = {
   INTERACTIVE: "INTERACTIVE",
   TRIGGERED: "TRIGGERED",
   VANISH: "VANISH",
+  BRIGHTNESS: "BRIGHTNESS",
 };
 
 export const FRAGMENT_COLOR_NAMES = {
@@ -20,7 +21,7 @@ export const FRAGMENT_COLOR_NAMES = {
   INTERACTIVE: "fragInteractive",
   TRIGGERED: "fragTriggered",
   VANISH: "fragVanish",
-  BLOOM: "fragBloom",
+  BRIGHTNESS: "fragBrightness",
 };
 export const DEFAULT_FRAG_COLOR = "#ff1205";
 export const DEFAULT_POINT_MATERIAL = {

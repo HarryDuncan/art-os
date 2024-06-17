@@ -6,7 +6,7 @@ import {
 } from "../../fragmentEffects.consts";
 import { colorTransformation } from "./colorTransformation";
 import {
-  ColorEffectProps,
+  ColorFragmentEffectProps,
   FragmentEffectData,
   UniformConfig,
 } from "../../../types";
@@ -28,7 +28,7 @@ export const colorVaryings = () => [];
 
 export const color = (
   _previousFragName: string,
-  effectProps: Partial<ColorEffectProps>
+  effectProps: Partial<ColorFragmentEffectProps>
 ): FragmentEffectData => {
   const formattedEffectProps = formatEffectProps(effectProps);
   const fragName = FRAGMENT_COLOR_NAMES.COLOR;
@@ -45,6 +45,8 @@ export const color = (
     fragName,
   };
 };
-const formatEffectProps = (parsedEffectProps: Partial<ColorEffectProps>) => {
+const formatEffectProps = (
+  parsedEffectProps: Partial<ColorFragmentEffectProps>
+) => {
   return { color: DEFAULT_FRAG_COLOR, ...parsedEffectProps };
 };

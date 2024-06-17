@@ -1,5 +1,5 @@
 import {
-  ColorEffectProps,
+  ColorFragmentEffectProps,
   FragmentEffectData,
   InteractiveEffectProps,
   InteractiveFragmentEffect,
@@ -59,7 +59,7 @@ const getEffectData = (
   const { effectType, effectProps } = interactiveEffectProps;
   switch (effectType) {
     case FRAGMENT_EFFECT.COLOR:
-      return color(pointName, effectProps as Partial<ColorEffectProps>);
+      return color(pointName, effectProps as Partial<ColorFragmentEffectProps>);
     default:
       console.warn(`No interactive effect configured for ${effectProps}`);
       return defaultFragmentEffect();

@@ -5,37 +5,28 @@
     "configPath": "scenes/barba/vivid/vivid",
     "componentId": "InteractiveSceneContainer"
   },
-
   {
-    "title": "Jizz",
-    "configId": "jizz",
-    "configPath": "scenes/barba/jizz",
-    "componentId": "InteractiveSceneContainer"
-  },
-
-  {
-    "title": "Venus",
-    "configId": "venus-trap",
-    "configPath": "scenes/barba/venus/venus",
-    "componentId": "InteractiveSceneContainer"
-  },
-
-  {
-    "title": "Venus3",
-    "configId": "venus",
-    "configPath": "scenes/barba/venus/venus-sculpture",
+    "title": "Vivid Projection",
+    "configId": "projection",
+    "configPath": "scenes/barba/vivid/projection",
     "componentId": "InteractiveSceneContainer"
   },
   {
-    "title": "Venus Morph",
-    "configId": "venus-morph",
-    "configPath": "scenes/barba/venus/venus-morph",
+    "title": "Ball Morph",
+    "configId": "ball-morph",
+    "configPath": "scenes/barba/vivid/ball-morph",
     "componentId": "InteractiveSceneContainer"
   },
   {
-    "title": "Venus bush",
-    "configId": "venus-bush",
-    "configPath": "scenes/barba/venus/venus-bush",
+    "title": "Vanish",
+    "configId": "vanish",
+    "configPath": "scenes/barba/vivid/vanish",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Noise",
+    "configId": "noise",
+    "configPath": "scenes/barba/vivid/noise",
     "componentId": "InteractiveSceneContainer"
   }
 ]

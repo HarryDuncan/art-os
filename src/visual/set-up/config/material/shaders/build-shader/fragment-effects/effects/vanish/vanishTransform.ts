@@ -1,10 +1,10 @@
 import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
-import { VanishEffectProps } from "../../../types";
+import { VanishFragmentEffectProps } from "../../../types";
 
 export const vanishTransform = (
   fragName: string,
   previousFragName: string,
-  vanishParameters: VanishEffectProps
+  vanishParameters: VanishFragmentEffectProps
 ) => {
   const { declareInTransform, numberOfRings, vanishHeight } = vanishParameters;
   const fragmentColorInstantiation = `vec4 ${fragName} = ${previousFragName};`;

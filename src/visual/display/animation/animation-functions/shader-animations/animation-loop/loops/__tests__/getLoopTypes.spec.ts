@@ -1,6 +1,7 @@
-import { ANIMATION_LOOP_TYPES } from "../animationLoop.consts";
-import { getLoopType } from "../getLoopTypes";
 import { expect, test, describe } from "vitest";
+import { ANIMATION_LOOP_TYPES } from "../../animationLoop.consts";
+import { getLoopType } from "../getLoopTypes";
+import { AnimationLoopType } from "../../animationloop.types";
 
 const MOCK_START = 0;
 const MOCK_MID = 50;
@@ -8,7 +9,7 @@ const MOCK_END = 100;
 const MOCK_DURATION = 100;
 describe("getLoopTypes", () => {
   test("returns a correct one to one function with parsed and default params", () => {
-    const loopType = ANIMATION_LOOP_TYPES.ONE_TO_ONE;
+    const loopType = ANIMATION_LOOP_TYPES.ONE_TO_ONE as AnimationLoopType;
     const loopProps = {
       steepness: 2,
     };
