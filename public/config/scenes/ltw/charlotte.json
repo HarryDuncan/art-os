@@ -522,7 +522,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.003,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#b503fc" },
                   { "id": "uTexture2", "pointColor": "#b503fc" }
                 ],

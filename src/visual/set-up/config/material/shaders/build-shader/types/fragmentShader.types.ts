@@ -12,17 +12,17 @@ import {
 } from "./buildShader.types";
 
 export type FragmentEffectType = keyof typeof FRAGMENT_EFFECT;
-export type PointDefinition = {
+export type PointTexture = {
   id: string;
   pointColor: string;
 };
 export type PointColorFragmentEffectProps = EffectParameters & {
   pointColor: string;
 };
-export type PointFragmentEffectProps = EffectParameters & {
+export type PointMaterialFragmentEffectProps = EffectParameters & {
   pointDisplayPercentage: number;
   defaultColor?: string;
-  pointDefinitions: PointDefinition[];
+  pointTextures: PointTexture[];
 };
 
 export type MaterialEffectProps = EffectParameters & {
@@ -46,7 +46,7 @@ export type OpacityFragmentEffectProps = EffectParameters & {
 export type BrightnessFragmentEffectProps = EffectParameters & {};
 
 export type FragmentEffectProps =
-  | PointFragmentEffectProps
+  | PointMaterialEffectProps
   | ColorFragmentEffectProps
   | OpacityFragmentEffectProps
   | VanishFragmentEffectProps

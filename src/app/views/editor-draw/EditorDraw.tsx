@@ -1,8 +1,11 @@
 import SideBar from "app/components/draw-components/side-bar/SideBar";
-import { useCallback, useEffect, useState } from "react";
+import { KEYS } from "interaction/interactions.consts";
+import { useKeyListener } from "interaction/internal/useSetUpKeyListener";
+import { useCallback, useState } from "react";
 
 export const EditorDraw = () => {
   const isVisible = useSideBarVisibility();
+  console.log("asdasd");
   return (
     <SideBar isSidebarVisible={isVisible}>
       <EditorContent />
@@ -10,30 +13,16 @@ export const EditorDraw = () => {
   );
 };
 
-export const EditorContent = () => {
+const EditorContent = () => {
   return <div />;
 };
 
 const useSideBarVisibility = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
-  const toggleSideBarVisibility = useCallback((visibility: boolean) => {
-    setIsSidebarVisible(visibility);
-  }, []);
+  const toggleSideBarVisibility = useCallback(() => {
+    setIsSidebarVisible((prev) => !prev);
+  }, [setIsSidebarVisible]);
 
-  const handleKeyPress = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key) {
-        console.log(event.key);
-      }
-    },
-    [toggleSideBarVisibility]
-  );
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [handleKeyPress]);
+  useKeyListener(KEYS.F1, toggleSideBarVisibility);
   return isSidebarVisible;
 };

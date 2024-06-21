@@ -137,7 +137,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.02,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#f711dd" },
                   { "id": "uTexture2", "pointColor": "#f711dd" }
                 ],
@@ -324,7 +324,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.02,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#00f5c4" },
                   { "id": "uTexture2", "pointColor": "#00f5c4" }
                 ],
@@ -511,7 +511,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.01,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#f51d00" },
                   { "id": "uTexture2", "pointColor": "#f51d00" }
                 ],
@@ -698,7 +698,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.02,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#f500e1" },
                   { "id": "uTexture2", "pointColor": "#f500e1" }
                 ],

@@ -1,13 +1,10 @@
-import React from "react";
-
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // Containers
 import { Provider } from "react-redux";
-import styled, { ThemeProvider } from "styled-components/macro";
+import { ThemeProvider } from "styled-components/macro";
 import { Landing } from "./views/landing/Landing";
-// Components
-import { Navigation } from "./views/navigation/Navigation";
+
 // Redux
 import { store } from "./redux/store";
 import { THEME } from "theme/theme";
@@ -22,6 +19,7 @@ import { WindowStateProvider } from "visual/compat/window-state/windowStateProvi
 import { ViewPiece } from "./views/digital-art/view-piece/ViewPiece";
 import { DigitalArtGallery } from "./views/digital-art/digital-art-gallery/DigitalArtGallery";
 import { UtilityBar } from "./views/utility-bar/UtilityBar";
+import { EditorDraw } from "./views/editor-draw/EditorDraw";
 
 export function App() {
   return (
@@ -52,6 +50,7 @@ export const AppContent = () => {
         <>
           <UtilityBar />
           <ViewPiece />
+          <EditorDraw />
           <AppendContainer />
         </>
       </Route>

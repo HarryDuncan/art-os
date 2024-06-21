@@ -6,7 +6,6 @@ import {
   InteractiveFragmentEffect,
   MaterialEffectProps,
   OpacityFragmentEffectProps,
-  PointFragmentEffectProps,
   TriggeredFragmentEffect,
   VanishFragmentEffectProps,
 } from "../../types";
@@ -17,7 +16,7 @@ import { defaultFragmentEffect } from "./defaultFragmentEffect/defaultFragmentEf
 import { getInteractiveEffects } from "./interactive/interactiveEffect";
 import { matcapMaterial } from "./material/matcap/matcapMaterial";
 import { simpleMatcap } from "./material/matcap/simpleMatcap";
-import { getFragmentPointMaterial } from "./material/point-material/getFragmentPointMaterial";
+import { pointMaterial } from "./material/point-material/pointMaterial";
 import { opacity } from "./opacity/opacity";
 import { triggeredEffect } from "./triggered-effect/triggeredEffect";
 import { vanishEffect } from "./vanish/vanish";
@@ -41,17 +40,17 @@ export const getFragmentEffects = (
     case FRAGMENT_EFFECT.MATERIAL:
       return matcapMaterial(
         previousFragName,
-        effectProps as Partial<MaterialEffectProps> | undefined
+        effectProps as Partial<MaterialEffectProps>
       );
     case FRAGMENT_EFFECT.MATCAP:
       return simpleMatcap(
         previousFragName,
-        effectProps as Partial<MaterialEffectProps> | undefined
+        effectProps as Partial<MaterialEffectProps>
       );
     case FRAGMENT_EFFECT.POINT_MATERIAL:
-      return getFragmentPointMaterial(
+      return pointMaterial(
         previousFragName,
-        effectProps as Partial<PointFragmentEffectProps> | undefined
+        effectProps as Partial<MaterialEffectProps>
       );
     case FRAGMENT_EFFECT.INTERACTIVE:
       return getInteractiveEffects(

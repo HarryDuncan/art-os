@@ -112,7 +112,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.5,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#f53105" },
                   { "id": "uTexture2", "pointColor": "#f53105" }
                 ],
@@ -239,7 +239,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.5,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#00c8fa" },
                   { "id": "uTexture2", "pointColor": "#00c8fa" }
                 ],
@@ -346,7 +346,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.5,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#fa0a1a" },
                   { "id": "uTexture2", "pointColor": "#fa0a1a" }
                 ],
@@ -453,7 +453,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.5,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#f7ce00" },
                   { "id": "uTexture2", "pointColor": "#f7ce00" }
                 ],
@@ -560,7 +560,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.5,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#8e00fa" },
                   { "id": "uTexture2", "pointColor": "#8e00fa" }
                 ],
@@ -667,7 +667,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.5,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#006aff" },
                   { "id": "uTexture2", "pointColor": "#006aff" }
                 ],

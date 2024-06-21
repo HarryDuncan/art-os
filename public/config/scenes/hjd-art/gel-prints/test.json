@@ -1,0 +1,258 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": -1, "z": 50 } },
+      "controls": {
+        "hasOrbitControls": true
+      }
+    },
+    "assets": [
+      {
+        "name": "hera",
+        "url": "../assets/models/sculptures/hera.glb",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves1-geometry",
+        "url": "../assets/models/hjd-lines/line-1.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves2-geometry",
+        "url": "../assets/models/hjd-lines/line-2.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves3-geometry",
+        "url": "../assets/models/hjd-lines/line-3.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves4-geometry",
+        "url": "../assets/models/hjd-lines/line-4.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "hera",
+        "geometryId": "smk25-orig1120-head-of-hera-barberini",
+        "geometryConfig": {
+          "scale": 0.25
+        },
+        "rotation": { "z": 0 },
+        "position": { "x": -10, "y": -10 },
+        "meshType": "POINTS",
+        "materialId": "distortion-material"
+      },
+      {
+        "id": "hjdcurves1",
+        "geometryId": "Cube",
+        "size": 50,
+        "position": { "x": -0.5, "y": 7, "z": 50 },
+        "rotation": { "x": -90, "y": -130, "z": -40 },
+        "materialId": "phong-color-two"
+      },
+      {
+        "id": "hjdcurves2",
+        "geometryId": "Cube.003",
+        "size": 50,
+        "position": { "x": 1.5, "z": -3.2 },
+        "rotation": { "x": 110, "y": -10, "z": 10 },
+        "materialId": "phong-color-two"
+      },
+      {
+        "id": "hjdcurves3",
+        "geometryId": "hjdcurves3-geometry",
+        "size": 50,
+        "position": { "x": 0.5, "z": -2.5 },
+        "rotation": { "x": 90, "y": 40, "z": -0 },
+        "materialConfig": {
+          "materialById": "phong-color-one"
+        }
+      },
+      {
+        "id": "hjdcurves4",
+        "geometryId": "hjdcurves4-geometry",
+        "size": 50,
+        "position": { "x": -1.5, "z": -3 },
+        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "materialConfig": {
+          "materialById": "phong-color-two"
+        }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "compute-background",
+        "materialProps": {
+          "color": "#111111",
+          "specular": "#bfbfbf",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-one",
+        "materialProps": {
+          "color": "#1902b0",
+          "specular": "#0000ff",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "phong-color-two",
+        "materialProps": {
+          "color": "#c70606",
+          "specular": "#ff0303",
+          "shininess": 50
+        },
+        "materialType": "PHONG"
+      },
+      {
+        "id": "distortion-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {},
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 18,
+                  "ceiling": 32,
+                  "scaleFactor": 8,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointTextures": [
+                  { "id": "uTexture1", "pointColor": "#f53105" },
+                  { "id": "uTexture2", "pointColor": "#f53105" }
+                ],
+                "pointColor": "#f53105"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.0007 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "curve",
+        "animationFunctionType": "ALL",
+        "animationType": "SPIN",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "hera",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            },
+            {
+              "uniform": "uBrightness",
+              "loopType": "FLICKER",
+              "loopProps": {
+                "peak": 1.3,
+                "trough": 0,
+                "steepness": 20
+              }
+            },
+            {
+              "uniform": "uNoiseStrength",
+              "loopType": "FLICKER",
+              "loopProps": {
+                "flickerType": "FIXED",
+                "peak": 40,
+                "trough": 0,
+                "steepness": 20
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "CUSTOM_ATTRIBUTES",
+        "transformedMeshIds": ["hera"],
+        "materialId": "distortion-material"
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "sceneComponentConfigs": []
+  }
+]

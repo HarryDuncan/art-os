@@ -15,6 +15,7 @@ export type SceneState = {
     scenePlayState: ScenePlayState;
   };
   selectedConfigId: string | null;
+  isEditorEnabled: boolean;
   data: SceneItem | null;
   configuredScenes: AnimatedScene[];
   defaultScenes: AnimatedScene[];
@@ -27,6 +28,7 @@ export const INITIAL_STATE: SceneState = {
     isUsingLastScene: false,
     scenePlayState: ScenePlayState.PLAY,
   },
+  isEditorEnabled: false,
   selectedConfigId: null,
   data: null,
   configuredScenes: [],

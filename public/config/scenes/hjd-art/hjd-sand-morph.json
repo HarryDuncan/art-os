@@ -146,7 +146,7 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#ff0088" },
                   { "id": "uTexture2", "pointColor": "#ff0088" }
                 ],
@@ -513,7 +513,7 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#024ef2" },
                   { "id": "uTexture2", "pointColor": "#024ef2" }
                 ],
@@ -867,7 +867,7 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#00a140" },
                   { "id": "uTexture2", "pointColor": "#00a140" }
                 ],

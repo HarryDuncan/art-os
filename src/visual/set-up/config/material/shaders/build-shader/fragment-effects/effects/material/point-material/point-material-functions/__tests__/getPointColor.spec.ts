@@ -1,6 +1,6 @@
 import { getPointColor } from "../getPointColor";
 
-const mockPointDefinitions = [
+const mockPointTextures = [
   { id: "uTexture1", pointColor: "#ff1205" },
   { id: "uTexture2", pointColor: "#ff1005" },
 ];
@@ -16,16 +16,12 @@ describe("coordinateObjectToArray", () => {
     expect(result).toEqual(`vec4 ${fragName} =  vec4(1.0, 0.0, 0.0, opacity);`);
   });
   test("returns specified colors based on the point type", () => {
-    const result = getPointColor(
-      fragName,
-      mockPointDefinitions,
-      mockPointColor
-    );
+    const result = getPointColor(fragName, mockPointTextures, mockPointColor);
     expect(result).toEqual(`vec4 ${fragName} =  vec4(1.0, 0.0, 0.0, opacity);`);
   });
 
   test("if there is no valid point color associated with the point definition it will return the default", () => {
-    const updatedPointDefs = mockPointDefinitions.concat({
+    const updatedPointDefs = mockPointTextures.concat({
       id: "uTexture3",
       pointColor: "#rrrrrrrrr",
     });

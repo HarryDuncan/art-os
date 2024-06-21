@@ -100,7 +100,7 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTextureR", "pointColor": "#f20202" },
                   { "id": "uTextureB", "pointColor": "#024ef2" },
                   { "id": "uTextureG", "pointColor": "#02c23f" }
@@ -663,7 +663,7 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTextureR", "pointColor": "#f20202" },
                   { "id": "uTextureB", "pointColor": "#024ef2" },
                   { "id": "uTextureG", "pointColor": "#02c23f" }
@@ -808,7 +808,7 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTextureR", "pointColor": "#f20202" },
                   { "id": "uTextureB", "pointColor": "#024ef2" },
                   { "id": "uTextureG", "pointColor": "#02c23f" }

@@ -76,5 +76,11 @@
     "configId": "explosion",
     "configPath": "scenes/hjd-art/explosion/explosion",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "HJD Explosion",
+    "configId": "test",
+    "configPath": "scenes/hjd-art/gel-prints/test",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

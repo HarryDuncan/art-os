@@ -60,7 +60,6 @@ const calculateEffectParams = (animatedObjects) => {
     const min = geometry.boundingBox?.min ?? new Vector3(0, 0, 0);
     const center = getCentroid([max, min]);
     const sceneDimensions = { ...DEFAULT_SCENE_DIMENSIONS };
-    console.log(geometry);
     sceneDimensions.x = center.x;
     sceneDimensions.y = center.y;
     sceneDimensions.radiusX = Math.abs(max.x - center.x);
