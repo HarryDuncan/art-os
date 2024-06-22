@@ -7,7 +7,7 @@ import {
   AssetMap,
   ShaderConfig,
 } from "../../../display/materials/webgl-shaders/shaders.types";
-import { BuiltShaderConfig } from "./shaders/build-shader/buildShader.types";
+import { BuiltShaderConfig } from "./shaders/build-shader/types";
 
 export type MaterialType = keyof typeof MATERIAL_TYPES;
 export type EnvMapType = keyof typeof ENV_MAP_TYPES;

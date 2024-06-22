@@ -26,6 +26,7 @@ export const RootContainer = ({
         $fixed={sceneProperties.fixed}
         ref={containerRef}
         $backgroundColor={sceneProperties.backgroundColor}
+        $backgroundUrl={sceneProperties.backgroundUrl}
       />
       <VideoBackground videoSrc={sceneProperties.videoBackground} />
     </>

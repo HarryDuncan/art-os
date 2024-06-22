@@ -24,7 +24,7 @@
       {
         "name": "bg-vid",
         "id": "bg-vid",
-        "url": "../assets/video/aurora/jizz-1.mp4",
+        "url": "../assets/video/barba/bg-vid_1.mp4",
         "assetType": "VIDEO"
       }
     ],
@@ -489,7 +489,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.007,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#03fc24" },
                   { "id": "uTexture2", "pointColor": "#03fc24" }
                 ],
@@ -683,7 +683,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.007,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#fcba03" },
                   { "id": "uTexture2", "pointColor": "#fcba03" }
                 ],
@@ -976,7 +976,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.003,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#fcba03" },
                   { "id": "uTexture2", "pointColor": "#fcba03" }
                 ],
@@ -1273,7 +1273,7 @@
               "effectType": "POINT_MATERIAL",
               "effectProps": {
                 "pointDisplayPercentage": 0.003,
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#fcba03" },
                   { "id": "uTexture2", "pointColor": "#fcba03" }
                 ],

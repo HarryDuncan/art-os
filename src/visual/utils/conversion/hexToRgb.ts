@@ -1,6 +1,6 @@
 export const hexToRgb = (hexCode: string): number[] | null => {
   // Remove the '#' if present
-  const hex = hexCode.replace(/^#/, "");
+  const hex = String(hexCode).replace(/^#/, "");
 
   // Validate hex code
   const hexRegex = /^[0-9A-Fa-f]{6}$/;

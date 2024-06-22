@@ -1,5 +1,5 @@
 import { twister } from "visual/display/materials/webgl-shaders/shader-functions/noise/distortion/distortion";
-import { UniformConfig, VaryingConfig } from "../../../../buildShader.types";
+import { UniformConfig, VaryingConfig } from "../../../../types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";
 import { distortTransform } from "./distortTransform";
@@ -24,13 +24,14 @@ export const distortVaryings = () =>
     },
   ] as VaryingConfig[];
 
-export const distort = (transformPointName: string): VertexEffectData => {
+export const distort = (previousPointName: string): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.DISTORT_POINT;
   const uniformConfig = distortUniforms() as UniformConfig;
-  const varyingConfig = distortVaryings();
-  const transformation = distortTransform(transformPointName, pointName);
+  const varyingConfig = distortVaryings() as VaryingConfig[];
+  const transformation = distortTransform(previousPointName, pointName);
   const requiredFunctions = distortFunctions();
   return {
+    attributeConfig: [],
     requiredFunctions,
     uniformConfig,
     transformation,

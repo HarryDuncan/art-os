@@ -1,0 +1,20 @@
+[
+  {
+    "id": "venus-1",
+    "name": "venus-1",
+    "url": "../assets/models/barba/venus/venus-1.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "venus-head-geometry",
+    "name": "venus-head-geometry",
+    "url": "../assets/models/barba/venus/venus-head.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "barba-logo",
+    "name": "barba-logo",
+    "url": "../assets/models/barba/venus/barba-logo.obj",
+    "assetType": "MODEL3D"
+  }
+]

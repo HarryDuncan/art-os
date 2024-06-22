@@ -8,4 +8,5 @@ export const {
   setSceneIndex,
   incrementSceneIndex,
   setScenePlayState,
+  setWorkspaceId,
 } = slice.actions;

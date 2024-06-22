@@ -1,5 +1,5 @@
-import { ShaderPropertyTypes } from "../../buildShader.constants";
-import { AttributeConfig } from "../../buildShader.types";
+import { ShaderPropertyTypes } from "../../constants/buildShader.consts";
+import { AttributeConfig } from "../../types";
 import { createDeclarationString } from "../../helpers/createDeclarationString";
 
 export const buildAttributes = (config: AttributeConfig[]) => {

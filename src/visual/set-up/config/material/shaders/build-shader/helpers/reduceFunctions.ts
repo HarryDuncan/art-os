@@ -1,4 +1,4 @@
-import { ShaderFunction } from "../buildShader.types";
+import { ShaderFunction } from "../types";
 
 interface UniqueFunction {
   [key: string]: string;
@@ -7,7 +7,7 @@ export const reduceFunctions = (
   requiredFunctions: ShaderFunction[][]
 ): ShaderFunction[] => {
   const allFunctions = requiredFunctions.flatMap(
-    (functionArray) => functionArray
+    (functionArray) => functionArray ?? []
   );
   const uniqueFunctions: UniqueFunction = {};
   allFunctions.forEach(({ id, functionDefinition }) => {

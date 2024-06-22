@@ -1,4 +1,4 @@
-import { UniformConfig } from "../../../buildShader.types";
+import { UniformConfig } from "../../../types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
 import { VertexEffectData } from "../../vertexEffects.types";
 import { vertexFilterTransformation } from "./vertexFilterTransformation";
@@ -12,16 +12,17 @@ export const vertexFilterUniforms = () => ({
 
 export const vertexFilterVaryings = () => [];
 
-export const vertexFilter = (transformPointName: string): VertexEffectData => {
+export const vertexFilter = (previousPointName: string): VertexEffectData => {
   const pointName = VERTEX_EFFECT_POINT_NAMES.FILTERED_POINT;
   const uniformConfig = vertexFilterUniforms() as UniformConfig;
   const varyingConfig = vertexFilterVaryings();
   const transformation = vertexFilterTransformation(
-    transformPointName,
+    previousPointName,
     pointName
   );
   const requiredFunctions = vertexFilterFunctions();
   return {
+    attributeConfig: [],
     requiredFunctions,
     uniformConfig,
     transformation,

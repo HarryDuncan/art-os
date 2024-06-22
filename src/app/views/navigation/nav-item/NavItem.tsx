@@ -1,12 +1,11 @@
 import React, { useMemo } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-
 import { NavLink } from "./NavItem.styles";
 import {
-  SideBarIcon,
   SideBarLinkTitle,
-} from "app/components/draw-components/side-bar/SideBar.styles";
+  SideBarIcon,
+} from "app/components/drawer/vertical-drawer/VerticalDrawer.styles";
 
 export interface ISideBarItem {
   key: string;

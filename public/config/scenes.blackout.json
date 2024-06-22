@@ -28,5 +28,29 @@
     "configId": "distort-points",
     "configPath": "scenes/blackout/takeover/distort-points",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Unleashed",
+    "configId": "unleashed",
+    "configPath": "scenes/blackout/unleashed/unleashed",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Unleashed T",
+    "configId": "twist",
+    "configPath": "scenes/blackout/unleashed/twist",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Unleashed Morph",
+    "configId": "unleased-morph",
+    "configPath": "scenes/blackout/unleashed/morph",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Unleashed Fall",
+    "configId": "fall",
+    "configPath": "scenes/blackout/unleashed/fall",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

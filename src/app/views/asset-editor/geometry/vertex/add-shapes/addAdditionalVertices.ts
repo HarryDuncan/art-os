@@ -3,7 +3,7 @@ import { generateSinCurvePoints } from "./createCurves";
 import {
   getPositionsLength,
   getVertexArray,
-} from "visual/set-up/config/mesh/geometry/attributes/attribute.functions";
+} from "visual/set-up/config/mesh/attributes/attribute.functions";
 import { retrieveAdditionalVertices } from "../retrieve-additional-verticies/retrieveAdditionalVertices";
 
 export const addAdditionalVerticies = (

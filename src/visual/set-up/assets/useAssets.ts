@@ -7,6 +7,7 @@ import { loadImage } from "./image/load-image/LoadImage";
 import { LoadSvg } from "./svg/loadSvg";
 import { loadTexture } from "./texture/load-texture/loadTexture";
 import { loadModel } from "./geometry/load-model/LoadModel";
+import { loadAdvancedScene } from "./advanced-scene/loadAdvancedScene";
 
 export const useAssets = (assets: Asset[] | undefined | null) => {
   const [areAssetsInitialized, setAreAssetsInitialized] = useState(false);
@@ -22,7 +23,7 @@ export const useAssets = (assets: Asset[] | undefined | null) => {
   const initializeAssets = useCallback(async () => {
     if (!assets) return;
     const loadedAssets = await Promise.all(
-      assets.map(async (asset) => loadAssetData(asset))
+      assets.flatMap(async (asset) => loadAssetData(asset))
     );
     return loadedAssets as Asset[];
   }, [assets]);
@@ -48,6 +49,10 @@ const loadAsset = async (asset: Asset) => {
     case ASSET_TYPES.MODEL3D: {
       const geometry = await loadModel(path, fileType);
       return geometry;
+    }
+    case ASSET_TYPES.ADVANCED_3D: {
+      const advancedScene = await loadAdvancedScene(path, fileType);
+      return advancedScene;
     }
     case ASSET_TYPES.TEXTURE: {
       const texture = await loadTexture(path);

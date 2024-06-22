@@ -1,7 +1,7 @@
 import {
   ShaderPropertyTypes,
   ShaderPropertyValueTypes,
-} from "../../buildShader.constants";
+} from "../../constants/buildShader.consts";
 import { expect, test, describe } from "vitest";
 import { createDeclarationString } from "../createDeclarationString";
 

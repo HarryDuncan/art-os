@@ -1,4 +1,3 @@
-import { AdditiveBlending } from "three";
 import { BlendingConfig } from "./blendingOptions.types";
 import { DEFAULT_BLENDING_OPTIONS } from "./blendingOptions.consts";
 import { getBlendingDstFactor, getBlendingFactor } from "./getBlendingFactor";

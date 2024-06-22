@@ -1,0 +1,8 @@
+[
+  {
+    "title": "Website Home Scene",
+    "configId": "home",
+    "configPath": "scenes/website/home",
+    "componentId": "InteractiveSceneContainer"
+  }
+]

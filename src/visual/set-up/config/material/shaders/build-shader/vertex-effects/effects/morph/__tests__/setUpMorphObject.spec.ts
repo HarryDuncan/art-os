@@ -26,7 +26,7 @@ describe("setUpMorphObjects", () => {
       { pointName: "morphPosition1", normalName: "morphNormal1" },
       {
         pointName: "transformTest2",
-        normalName: "transformTest2",
+        normalName: "morphNormal2",
       },
     ]);
   });

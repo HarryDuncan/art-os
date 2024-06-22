@@ -6,8 +6,10 @@ import { Landing } from "../Landing";
 import { expect, test, describe, vi } from "vitest";
 
 vi.mock("../Landing.styles", () => ({
-  LandingContainer: vi.fn(),
-  LandingPageTitle: vi.fn(),
+  default: () => ({
+    LandingContainer: vi.fn(),
+    LandingPageTitle: vi.fn(),
+  }),
 }));
 
 describe("<Landing />", () => {

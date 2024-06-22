@@ -1,0 +1,33 @@
+[
+  {
+    "id": "aphrodite",
+    "name": "aphrodite",
+    "url": "../assets/models/barba/vivid/aphrodite.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "apollo",
+    "name": "apollo",
+    "url": "../assets/models/barba/vivid/apollo.obj",
+    "assetType": "MODEL3D"
+  },
+
+  {
+    "id": "man",
+    "name": "man",
+    "url": "../assets/models/barba/vivid/man.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "nymph",
+    "name": "nymph",
+    "url": "../assets/models/barba/vivid/nymph.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "barba",
+    "name": "barba",
+    "url": "../assets/models/barba/vivid/barba.obj",
+    "assetType": "MODEL3D"
+  }
+]

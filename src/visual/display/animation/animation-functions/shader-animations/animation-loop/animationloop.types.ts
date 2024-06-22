@@ -21,3 +21,19 @@ export interface LoopProps {
   minTrough: number;
   speed: number;
 }
+
+interface BaseLoopProps {
+  peak: number;
+  trough: number;
+}
+export type FlickerLoopProps = BaseLoopProps & {
+  flickerTimeAtMax: number;
+  flickerType: string;
+};
+
+export type TransitionLoopProps = BaseLoopProps & {
+  valueAtTrough: number;
+  valueAtPeak: number;
+};
+
+export type AnimationLoopProps = FlickerLoopProps | TransitionLoopProps;

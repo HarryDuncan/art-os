@@ -1,8 +1,32 @@
 [
   {
-    "title": "Jizz",
-    "configId": "jizz",
-    "configPath": "scenes/barba/jizz",
+    "title": "Vivid",
+    "configId": "vivid",
+    "configPath": "scenes/barba/vivid/vivid",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Vivid Projection",
+    "configId": "projection",
+    "configPath": "scenes/barba/vivid/projection",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Ball Morph",
+    "configId": "ball-morph",
+    "configPath": "scenes/barba/vivid/ball-morph",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Vanish",
+    "configId": "vanish",
+    "configPath": "scenes/barba/vivid/vanish",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Noise",
+    "configId": "noise",
+    "configPath": "scenes/barba/vivid/noise",
     "componentId": "InteractiveSceneContainer"
   }
 ]

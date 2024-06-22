@@ -2,8 +2,8 @@ import { Matrix3, Matrix4, Vector2, Vector3, Vector4 } from "three";
 import {
   ShaderPropertyTypes,
   ShaderPropertyValueTypes,
-} from "../buildShader.constants";
-import { ShaderPropertyConfig } from "../buildShader.types";
+} from "../constants/buildShader.consts";
+import { ShaderPropertyConfig } from "../types";
 import { createDeclarationString } from "./createDeclarationString";
 
 interface CustomProperties {

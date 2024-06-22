@@ -280,7 +280,7 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#f50733" },
                   { "id": "uTexture2", "pointColor": "#1902b0" }
                 ]

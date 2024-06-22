@@ -10,7 +10,7 @@ import {
   PreTransformConfig,
   PreTransformData,
   TranslateTransformProps,
-} from "../../../../buildShader.types";
+} from "../../../../types";
 
 export const preTransforms = (
   preTransformedItems: PreTransformConfig[]

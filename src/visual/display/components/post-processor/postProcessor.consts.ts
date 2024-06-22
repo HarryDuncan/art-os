@@ -1,7 +1,7 @@
 import { LinearFilter, RGBAFormat } from "three";
 
 export const POST_PROCESSOR_PASSES = {
-  BLOOM: "bloom",
+  BRIGHTNESS: "brightness",
 };
 export const defaultRenderTargetParameters = {
   minFilter: LinearFilter,

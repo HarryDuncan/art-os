@@ -1,5 +1,3 @@
-import { AXIS } from "visual/utils/three-dimension-space/position/position.types";
-
 export const VERTEX_EFFECTS = {
   EXPLODE: "EXPLODE",
   FILTER: "FILTER_VERTEX",
@@ -11,6 +9,11 @@ export const VERTEX_EFFECTS = {
   CLOUD: "CLOUD",
   INTERACTIVE: "INTERACTIVE",
   TRAVERSE: "TRAVERSE",
+  EXPAND: "EXPAND",
+  NOISE: "NOISE",
+  TRIGGERED_EFFECT: "TRIGGERED",
+  VERTEX_IMAGE_EFFECT: "VERTEX_IMAGE_EFFECT",
+  IMAGE_TO_POINT: "IMAGE_TO_POINT",
 };
 export const VERTEX_EFFECT_POINT_NAMES = {
   DEFAULT_POINT: "position",
@@ -21,13 +24,13 @@ export const VERTEX_EFFECT_POINT_NAMES = {
   ROTATED_POINT: "rotatedPoint",
   CLOUD_POINT: "cloudPoint",
   MORPHED_POINT: "morphedPoint",
+  EXPANDED_POINT: "expandedPoint",
   INTERACTED_POINT: "interactedPoint",
   TRAVERSE_POINT: "traversePoint",
-};
-
-export const DEFAULT_ROTATE_EFFECT_CONFIG = {
-  axis: AXIS.Y,
-  speed: 0.2,
+  NOISE_POINT: "noisePoint",
+  TRIGGERED_POINT: "triggeredPoint",
+  IMAGE_VERTEX_POINT: "imageVertexPoint",
+  IMAGE_TO_POINT: "imageToPoint",
 };
 
 export const DEFAULT_MORPH_EFFECT_CONFIG = {
@@ -35,9 +38,29 @@ export const DEFAULT_MORPH_EFFECT_CONFIG = {
   preTransformConfigs: [],
 };
 
-export const DEFAULT_POINT_EFFECT_CONFIG = {
-  pointSize: 20,
-};
 export const enum TransformTypes {
   TRANSLATE = "TRANSLATE",
 }
+
+export const DEFAULT_VERTEX_EFFECT_PARAMS = {
+  declareInTransform: true,
+};
+
+export const IMAGE_VERTEX_EFFECT = {
+  IMAGE_TO_POINTS: "IMAGE_TO_POINTS",
+};
+
+export const DISPLACEMENT_TYPES = {
+  EXPLODE: "EXPLODE",
+  IMPLODE: "IMPLODE",
+};
+
+export const TRIGGERED_VERTEX_EFFECT = {
+  DISPLACE: "DISPLACE",
+  WARP: "WARP",
+};
+
+export const INTERACTION_VERTEX_EFFECT = {
+  DISPLACE: "DISPLACE",
+  WARP: "WARP",
+};

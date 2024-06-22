@@ -111,10 +111,6 @@
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "MORPH",
-              "effectProps": {}
-            },
-            {
               "effectType": "ROTATE",
               "effectProps": { "speed": 0.8 }
             },
@@ -122,9 +118,9 @@
               "effectType": "POINTS",
               "effectProps": {
                 "perspectiveConfig": {
-                  "floor": 8,
+                  "floor": 28,
                   "ceiling": 16,
-                  "scaleFactor": 18,
+                  "scaleFactor": 28,
                   "divisor": 9
                 }
               }
@@ -134,7 +130,7 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDefinitions": [
+                "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#024ef2" },
                   { "id": "uTexture2", "pointColor": "#024ef2" }
                 ],

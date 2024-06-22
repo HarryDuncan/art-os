@@ -15,9 +15,11 @@ export type SceneState = {
     scenePlayState: ScenePlayState;
   };
   selectedConfigId: string | null;
+  isEditorEnabled: boolean;
   data: SceneItem | null;
   configuredScenes: AnimatedScene[];
   defaultScenes: AnimatedScene[];
+  workspaceId: string | null;
 };
 
 export const INITIAL_STATE: SceneState = {
@@ -27,6 +29,8 @@ export const INITIAL_STATE: SceneState = {
     isUsingLastScene: false,
     scenePlayState: ScenePlayState.PLAY,
   },
+  workspaceId: null,
+  isEditorEnabled: false,
   selectedConfigId: null,
   data: null,
   configuredScenes: [],
@@ -37,6 +41,12 @@ export const slice = createSlice({
   name: "scene-data",
   initialState: INITIAL_STATE,
   reducers: {
+    setWorkspaceId: (state, { payload }: PayloadAction<string | null>) => {
+      return {
+        ...state,
+        workspaceId: payload,
+      };
+    },
     setSelectedConfigId: (state, { payload }: PayloadAction<string | null>) => {
       return {
         ...state,

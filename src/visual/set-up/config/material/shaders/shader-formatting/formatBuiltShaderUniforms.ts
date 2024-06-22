@@ -2,7 +2,7 @@ import { IUniform, Vector2 } from "three";
 import { mapAssetsToUniforms } from "visual/display/materials/webgl-shaders/shader-setup/mapAssetsToUniforms";
 import { AssetMap } from "visual/display/materials/webgl-shaders/shaders.types";
 import { Asset } from "visual/set-up/assets/asset.types";
-import { UniformObject } from "../build-shader/buildShader.types";
+import { UniformObject } from "../build-shader/types";
 
 export const formatBuiltShaderUniforms = (
   uniforms: UniformObject,

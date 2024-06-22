@@ -1,0 +1,38 @@
+[
+  {
+    "id": "demon",
+    "name": "demon",
+    "url": "../assets/models/blackout/unleashed/demon.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "juanoz",
+    "name": "juanoz",
+    "url": "../assets/models/blackout/unleashed/JUANO_Z.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "mbvr",
+    "name": "mbvr",
+    "url": "../assets/models/blackout/unleashed/MBVR.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "wiser",
+    "name": "wiser",
+    "url": "../assets/models/blackout/unleashed/WISER.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "beluColombo",
+    "name": "beluColombo",
+    "url": "../assets/models/blackout/unleashed/BELU_COLOMBO.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "id": "decadance",
+    "name": "decadance",
+    "url": "../assets/models/blackout/unleashed/DECADANCE.obj",
+    "assetType": "MODEL3D"
+  }
+]

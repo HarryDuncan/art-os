@@ -1,0 +1,116 @@
+[
+    {
+        "id": "aphrodite-bust-2",
+        "name": "aphrodite-bust-2",
+        "url": "../assets/models/sculptures/aphrodite-bust-2.obj",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "AphroditeCapitolineBust",
+        "name": "AphroditeCapitolineBust",
+        "url": "../assets/models/sculptures/AphroditeCapitolineBust.obj",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "AphroditeKallypygosBust",
+        "name": "AphroditeKallypygosBust",
+        "url": "../assets/models/sculptures/AphroditeKallypygosBust.obj",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "ApolloBelvedereBust",
+        "name": "ApolloBelvedereBust",
+        "url": "../assets/models/sculptures/ApolloBelvedereBust.obj",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "broken-athlete",
+        "name": "broken-athlete",
+        "url": "../assets/models/sculptures/broken-athlete.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "crouching-venus",
+        "name": "crouching-venus",
+        "url": "../assets/models/sculptures/crouching-venus.obj",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "dionysus-bachus",
+        "name": "dionysus-bachus",
+        "url": "../assets/models/sculptures/dionysus-bachus.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "graces",
+        "name": "graces",
+        "url": "../assets/models/sculptures/graces.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "helmet",
+        "name": "helmet",
+        "url": "../assets/models/sculptures/helmet.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "hera",
+        "name": "hera",
+        "url": "../assets/models/sculptures/hera.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "jason",
+        "name": "jason",
+        "url": "../assets/models/sculptures/jason.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "kneeling",
+        "name": "kneeling",
+        "url": "../assets/models/sculptures/kneeling.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "nymph",
+        "name": "nymph",
+        "url": "../assets/models/sculptures/nymph.obj",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "seated-muse",
+        "name": "seated-muse",
+        "url": "../assets/models/sculptures/seated-muse.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "torn-torso",
+        "name": "torn-torso",
+        "url": "../assets/models/sculptures/torn-torso.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "venus-bust",
+        "name": "venus-bust",
+        "url": "../assets/models/sculptures/venus-bust.obj",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "venus-esquiline",
+        "name": "venus-esquiline",
+        "url": "../assets/models/sculptures/venus-esquiline.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "venus-with-apple",
+        "name": "venus-with-apple",
+        "url": "../assets/models/sculptures/venus-with-apple.glb",
+        "assetType": "MODEL3D"
+    },
+    {
+        "id": "zeus",
+        "name": "zeus",
+        "url": "../assets/models/sculptures/zeus.glb",
+        "assetType": "MODEL3D"
+    }
+]

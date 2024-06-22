@@ -6,8 +6,8 @@ export const loadModel = async (path: string, fileType: string) => {
   switch (fileType) {
     case FILE_TYPES.MODELS.GLTF:
     case FILE_TYPES.MODELS.GLB: {
-      const gltf = loadGLTF(path);
-      return gltf;
+      const gltf = await loadGLTF(path);
+      return gltf.scene;
     }
     case FILE_TYPES.MODELS.OBJ: {
       const object = await loadObject(path);

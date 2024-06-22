@@ -3,7 +3,7 @@ import { transformGeometry } from "../transformGeometries";
 import { MESH_TRANSFORM } from "../../../mesh.consts";
 import { FormattedGeometry } from "visual/set-up/assets/geometry/geometry.types";
 import { BufferAttribute, BufferGeometry } from "three";
-import { getAttributes } from "../../attributes/attribute.functions";
+import { getAttributes } from "../../../attributes/attribute.functions";
 
 const MOCK_MESH_TRANSFORM = [
   {

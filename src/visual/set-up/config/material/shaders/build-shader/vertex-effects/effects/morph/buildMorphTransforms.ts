@@ -2,7 +2,7 @@ import { MorphObject } from "../../vertexEffects.types";
 
 export const buildMorphTransforms = (
   morphObjects: MorphObject[],
-  transformName: string
+  previousPointName: string
 ) => {
   return morphObjects
     .map(({ pointName, normalName }, index) => {
@@ -13,7 +13,7 @@ export const buildMorphTransforms = (
             currentNormal = ${normalName};
             ${
               targetMorphIndex > morphObjects.length - 1
-                ? `effect_direction = ${transformName}.xyz - currentPosition;
+                ? `effect_direction = ${previousPointName}.xyz - currentPosition;
             normal_effect_direction = normal - currentNormal;`
                 : `effect_direction = ${morphObjects[targetMorphIndex].pointName} - currentPosition;
             normal_effect_direction = ${morphObjects[targetMorphIndex].normalName} - currentNormal;`

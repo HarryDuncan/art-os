@@ -1,4 +1,4 @@
-import { SIDE_BAR_TRANSITION_SPEED } from "app/components/draw-components/DrawComponent.styles";
+import { SIDE_BAR_TRANSITION_SPEED } from "app/components/drawer/DrawerComponent.styles";
 import styled, { css } from "styled-components/macro";
 
 const BORDER_WIDTH = 3;

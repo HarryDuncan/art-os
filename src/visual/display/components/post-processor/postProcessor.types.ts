@@ -12,9 +12,9 @@ export type Effects = {
   params: effectParam;
 };
 
-export type effectParam = BloomPassParams;
+export type effectParam = BrightnessPassParams;
 
-export type BloomPassParams = {
+export type BrightnessPassParams = {
   strength: number;
   radius: number;
   threshold: number;

@@ -1,0 +1,179 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": -10, "z": 90.5 } }
+    },
+    "assets": [
+      {
+        "name": "philo-geometry",
+        "url": "../assets/models/hjd/palestine/statue1-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "philo-2-geometry",
+        "url": "../assets/models/hjd/palestine/statue2-geometry.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "bg-vid",
+        "id": "bg-vid",
+        "url": "../assets/video/blackout/bg3.mp4",
+        "assetType": "VIDEO"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/hot-green.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "aphrodite-geometry",
+        "geometryId": "statue1",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      },
+      {
+        "id": "apollo-geometry",
+        "geometryId": "statue2",
+        "meshType": "NONE",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "position": { "x": 0, "y": 10, "z": 4 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 15000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "ZERO_TO_ZERO"
+            }
+          ],
+          "snapOnPause": true
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {},
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "MORPH",
+              "effectProps": {}
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": {}
+            },
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 10,
+                  "ceiling": 18,
+                  "scaleFactor": 16,
+                  "divisor": 9
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointTextures": [
+                  { "id": "uTexture1", "pointColor": "#8e00fa" },
+                  { "id": "uTexture2", "pointColor": "#8e00fa" }
+                ],
+                "pointColor": "#8e00fa"
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.495 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          },
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["aphrodite-geometry", "apollo-geometry"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {}
+  }
+]

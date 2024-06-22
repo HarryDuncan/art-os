@@ -34,16 +34,19 @@ export const setupVideo = (url: string, identifier: string) => {
   );
 
   video.src = url;
+
   const playPromise = video.play();
   if (playPromise !== undefined) {
-    playPromise
-      .then((_) => {
-        // Automatic playback started!
-        // Show playing UI.
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    setTimeout(() => {
+      playPromise
+        .then((_) => {
+          // Automatic playback started!
+          // Show playing UI.
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, 3000);
   }
 
   return video;

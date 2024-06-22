@@ -21,11 +21,11 @@ export const runShaderAnimations = (
   const animationLoop = setUpAnimationLoop(animationLoopConfig, duration);
   function step(timestamp: number) {
     if (startTime === 0) {
-      scene.clock.getDelta();
+      scene.clock.getElapsedTime();
     }
     if (!startTime) startTime = timestamp;
     const progress = timestamp - startTime;
-    shaderTime += scene.clock.getDelta();
+    shaderTime = scene.clock.getElapsedTime();
     animatedObjects.forEach((animatedObject) => {
       animationLoop(animatedObject, shaderTime);
     });

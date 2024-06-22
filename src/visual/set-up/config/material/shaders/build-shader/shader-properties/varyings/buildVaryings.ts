@@ -1,5 +1,5 @@
-import { ShaderPropertyTypes } from "../../buildShader.constants";
-import { AttributeConfig, VaryingConfig } from "../../buildShader.types";
+import { ShaderPropertyTypes } from "../../constants/buildShader.consts";
+import { AttributeConfig, VaryingConfig } from "../../types";
 import { createDeclarationString } from "../../helpers/createDeclarationString";
 import { getDefaultValueAsString } from "../../helpers/getDefaultValue";
 import {
@@ -106,7 +106,7 @@ const getCustomVaryingStrings = (config: VaryingConfig[]) => {
 
 const getAttributeVaryingStrings = (
   config: VaryingConfig[],
-  attributeConfig: AttributeConfig[]
+  attributeConfig: AttributeConfig[] = []
 ) =>
   config.flatMap(({ id, attributeKey, varyingType }) => {
     if (varyingType === VARYING_TYPES.ATTRIBUTE) {

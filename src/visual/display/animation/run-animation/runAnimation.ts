@@ -9,17 +9,18 @@ import { chainAnimation } from "./run-functions/chainAnimation";
 import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { runShaderAnimations } from "../animation-functions/shader-animations/runShaderAnimations";
 import { getSceneElementByName } from "visual/utils/scene/getSceneElementByName";
+import { runRiggedAnimation } from "../animation-functions/rigged-animation/runRiggedAnimation";
+import { Mesh } from "three";
+import { RiggedAnimationConfig } from "../animation-functions/rigged-animation/riggedAnimations.types";
 
 export const runAnimation = (
   scene: AnimatedScene,
   animationConfig: AnimationConfig,
   animationId: string
 ) => {
-  const {
-    targetIdentifier,
-    animationFunctionType,
-    animationProperties,
-  } = animationConfig;
+  const { targetIdentifier, animationFunctionType, animationProperties } =
+    animationConfig;
+
   const animatedObjects = getSceneElementByName(scene, targetIdentifier);
   if (!animatedObjects.length) {
     console.warn(
@@ -36,6 +37,12 @@ export const runAnimation = (
         scene,
         animationProperties as ShaderAnimationConfig,
         animatedObjects as ShaderMeshObject[]
+      );
+      break;
+    case ANIMATION_FUNCTION_TYPES.RIGGED:
+      runRiggedAnimation(
+        animationProperties as RiggedAnimationConfig,
+        animatedObjects as Mesh[]
       );
       break;
     case ANIMATION_FUNCTION_TYPES.ALL:
