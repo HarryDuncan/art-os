@@ -5,6 +5,7 @@
   "version": "0.2.7",
   "private": true,
   "dependencies": {
+    "@fluentui/react": "^8.118.8",
     "@improbable-eng/grpc-web": "^0.15.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^6.1.5",

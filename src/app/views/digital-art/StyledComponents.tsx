@@ -1,5 +1,5 @@
-import { SIDE_BAR_TRANSITION_SPEED } from "app/components/draw-components/DrawComponent.styles";
-import { SIDE_BAR_WIDTH } from "app/components/draw-components/side-bar/SideBar.styles";
+import { SIDE_BAR_TRANSITION_SPEED } from "app/components/drawer/DrawerComponent.styles";
+import { SIDE_BAR_WIDTH } from "app/components/drawer/vertical-drawer/VerticalDrawer.styles";
 import styled from "styled-components/macro";
 
 const HEADER_HEIGHT = 100;

@@ -1,10 +1,5 @@
-import {
-  StyledTopBar,
-  TopBarItem,
-} from "app/components/draw-components/top-bar/TopBar.styles";
+import { TopBarItem } from "app/components/drawer/horizontal-drawer/HorizontalDrawer.styles";
 import { KEYS } from "interaction/interactions.consts";
-import { useKeyListener } from "interaction/internal/useSetUpKeyListener";
-import { useCallback, useMemo, useState } from "react";
 import { useStopAlgorithm } from "interaction/external/interaction-node-requests/useStopAlgorithm";
 import { useHistory } from "react-router";
 import { SpinButton } from "app/components/inputs/spin-button/SpinButton";
@@ -13,6 +8,7 @@ import { setSceneIndex } from "app/redux/scene-data/actions";
 import { useRestartScene } from "app/hooks/useRestartScene";
 import { SceneCaptureController } from "external-services/scene-capture/components/SceneCaptureController";
 import { useLoopThroughScenes } from "app/hooks/loop-through/useLoopThroughScenes";
+import { HorizontalDraw } from "app/components/drawer/horizontal-drawer/HorizontalDrawer";
 
 const BACK = {
   key: "digital-art",
@@ -21,30 +17,20 @@ const BACK = {
 };
 
 export const UtilityBar = () => {
-  const isUtilityBarVisible = useIsUtilityBarVisible();
   return (
-    <StyledTopBar $isVisible={isUtilityBarVisible}>
-      <StopButton />
-      <UpdateSceneSpin />
-      <TopBarItem>
-        <SceneCaptureController />
-      </TopBarItem>
-      <TopBarItem>
-        <LoopThrough />
-      </TopBarItem>
-    </StyledTopBar>
+    <HorizontalDraw keyCode={KEYS.TAB}>
+      <>
+        <StopButton />
+        <UpdateSceneSpin />
+        <TopBarItem>
+          <SceneCaptureController />
+        </TopBarItem>
+        <TopBarItem>
+          <LoopThrough />
+        </TopBarItem>
+      </>
+    </HorizontalDraw>
   );
-};
-
-const useIsUtilityBarVisible = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const onTabPress = useCallback(() => {
-    setIsVisible(!isVisible);
-  }, [isVisible, setIsVisible]);
-
-  useKeyListener(KEYS.TAB, onTabPress);
-
-  return useMemo(() => isVisible, [isVisible]);
 };
 
 const StopButton = () => {

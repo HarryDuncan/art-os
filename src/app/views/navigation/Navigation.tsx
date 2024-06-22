@@ -1,13 +1,12 @@
 import { useCallback, useMemo, useState } from "react";
-
 import { NavItem } from "./nav-item/NavItem";
 import { useIdleTimer } from "react-idle-timer";
-import SideBar from "app/components/draw-components/side-bar/SideBar";
 import { useIsSceneActive } from "app/hooks/useIsSceneActive";
 import {
   SideBarLinkList,
   SideBarTitleContainer,
-} from "app/components/draw-components/side-bar/SideBar.styles";
+} from "app/components/drawer/vertical-drawer/VerticalDrawer.styles";
+import SideBar from "app/components/drawer/vertical-drawer/VerticalDrawer";
 
 const IDLE_TIMER_TIMEOUT = 5000;
 const NAVIGATION_ITEMS = [

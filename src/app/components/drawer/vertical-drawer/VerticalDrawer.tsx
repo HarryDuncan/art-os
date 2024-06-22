@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { StyledSideBar } from "./SideBar.styles";
-import { DRAWER_SIDES } from "./sideBar.consts";
+import { StyledSideBar } from "./VerticalDrawer.styles";
+import { DRAWER_POSITIONS } from "../drawer.consts";
 
 interface ISideBarProps {
   children: ReactNode;
@@ -11,10 +11,13 @@ interface ISideBarProps {
 function SideBar({
   children,
   isSidebarVisible,
-  drawerSide = DRAWER_SIDES.LEFT,
+  drawerSide = DRAWER_POSITIONS.LEFT,
 }: ISideBarProps) {
   return (
-    <StyledSideBar $drawerSide={drawerSide} $isVisible={isSidebarVisible}>
+    <StyledSideBar
+      $drawerHorizontalPosition={drawerSide}
+      $isVisible={isSidebarVisible}
+    >
       {children}
     </StyledSideBar>
   );

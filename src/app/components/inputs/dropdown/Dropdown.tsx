@@ -1,41 +1,48 @@
-import React, { useState } from "react";
+import * as React from "react";
+import {
+  Dropdown as FluentUiDropdown,
+  IDropdownStyles,
+  IDropdownOption,
+  DropdownMenuItemType,
+  IDropdownProps,
+} from "@fluentui/react/lib/Dropdown";
 
-interface Option {
-  id: number;
-  label: string;
-}
+const dropdownStyles: Partial<IDropdownStyles> = {
+  dropdown: { width: 300 },
+};
 
 interface DropdownProps {
-  options: Option[];
-  onSelect: (selectedOption: Option) => void;
+  options: IDropdownOption[];
+  value?: string;
+  placeholder?: string;
+  label?: string;
+  onSelect: (value: string) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const handleSelect = (option: Option) => {
-    setSelectedOption(option);
-    onSelect(option);
-    setIsOpen(false);
+export const Dropdown: React.FunctionComponent<DropdownProps> = ({
+  options,
+  value,
+  placeholder,
+  label,
+  onSelect,
+}) => {
+  const handleChange = (
+    _event: React.FormEvent<HTMLDivElement>,
+    option?: IDropdownOption
+  ): void => {
+    if (option) {
+      onSelect(option.key as string);
+    }
   };
 
   return (
-    <div className="dropdown">
-      <button onClick={() => setIsOpen(!isOpen)}>
-        {selectedOption ? selectedOption.label : "Select an option"}
-      </button>
-      {isOpen && (
-        <ul className="dropdown-list">
-          {options.map((option) => (
-            <li key={option.id} onClick={() => handleSelect(option)}>
-              {option.label}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <FluentUiDropdown
+      selectedKey={value}
+      placeholder={placeholder}
+      label={label ?? ""}
+      options={options}
+      onChange={handleChange}
+      styles={dropdownStyles}
+    />
   );
 };
-
-export default Dropdown;

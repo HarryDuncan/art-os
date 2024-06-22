@@ -1,4 +1,4 @@
-import { SIDE_BAR_WIDTH } from "app/components/draw-components/side-bar/SideBar.styles";
+import { SIDE_BAR_WIDTH } from "app/components/drawer/vertical-drawer/VerticalDrawer.styles";
 import styled from "styled-components/macro";
 
 export const Container = styled.div`

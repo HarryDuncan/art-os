@@ -1,10 +1,10 @@
-import SideBar from "app/components/drawer/vertical-drawer/SideBar";
-import { DRAWER_POSITIONS } from "app/components/draw-components/side-bar/sideBar.consts";
+import { DRAWER_POSITIONS } from "app/components/drawer/drawer.consts";
+import SideBar from "app/components/drawer/vertical-drawer/VerticalDrawer";
 import { KEYS } from "interaction/interactions.consts";
 import { useKeyListener } from "interaction/internal/useSetUpKeyListener";
 import { useCallback, useState } from "react";
 
-export const EditorDraw = () => {
+export const SceneEditor = () => {
   const isVisible = useSideBarVisibility();
 
   return (

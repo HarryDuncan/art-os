@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
-import { DrawComponent } from "app/components/draw-components/DrawComponent.styles";
-import { DRAWER_SIDES } from "./sideBar.consts";
+import { DrawComponent } from "../DrawerComponent.styles";
+import { DRAWER_POSITIONS } from "../drawer.consts";
 
 export const SIDE_BAR_WIDTH = 220;
 const SIDE_BAR_LINK_HEIGHT = 65;
@@ -13,9 +13,11 @@ export const StyledSideBar = styled(DrawComponent)`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  ${({ $drawerSide }) => {
-    if ($drawerSide) {
-      return $drawerSide === DRAWER_SIDES.LEFT ? "left : 0px" : "right : 0px";
+  ${({ $drawerHorizontalPosition }) => {
+    if ($drawerHorizontalPosition) {
+      return $drawerHorizontalPosition === DRAWER_POSITIONS.LEFT
+        ? "left : 0px"
+        : "right : 0px";
     }
   }}
 `;
