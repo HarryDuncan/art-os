@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "title": "Editor Test",
+    "configId": "test",
+    "configPath": "scenes/hjd-art/gel-prints/test",
+    "componentId": "InteractiveSceneContainer"
+  }
+]
