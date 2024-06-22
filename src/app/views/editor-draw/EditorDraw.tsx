@@ -1,13 +1,14 @@
 import SideBar from "app/components/draw-components/side-bar/SideBar";
+import { DRAWER_SIDES } from "app/components/draw-components/side-bar/sideBar.consts";
 import { KEYS } from "interaction/interactions.consts";
 import { useKeyListener } from "interaction/internal/useSetUpKeyListener";
 import { useCallback, useState } from "react";
 
 export const EditorDraw = () => {
   const isVisible = useSideBarVisibility();
-  console.log("asdasd");
+
   return (
-    <SideBar isSidebarVisible={isVisible}>
+    <SideBar isSidebarVisible={isVisible} drawerSide={DRAWER_SIDES.RIGHT}>
       <EditorContent />
     </SideBar>
   );

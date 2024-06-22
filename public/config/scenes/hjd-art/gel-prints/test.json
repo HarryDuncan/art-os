@@ -56,42 +56,6 @@
         "position": { "x": -10, "y": -10 },
         "meshType": "POINTS",
         "materialId": "distortion-material"
-      },
-      {
-        "id": "hjdcurves1",
-        "geometryId": "Cube",
-        "size": 50,
-        "position": { "x": -0.5, "y": 7, "z": 50 },
-        "rotation": { "x": -90, "y": -130, "z": -40 },
-        "materialId": "phong-color-two"
-      },
-      {
-        "id": "hjdcurves2",
-        "geometryId": "Cube.003",
-        "size": 50,
-        "position": { "x": 1.5, "z": -3.2 },
-        "rotation": { "x": 110, "y": -10, "z": 10 },
-        "materialId": "phong-color-two"
-      },
-      {
-        "id": "hjdcurves3",
-        "geometryId": "hjdcurves3-geometry",
-        "size": 50,
-        "position": { "x": 0.5, "z": -2.5 },
-        "rotation": { "x": 90, "y": 40, "z": -0 },
-        "materialConfig": {
-          "materialById": "phong-color-one"
-        }
-      },
-      {
-        "id": "hjdcurves4",
-        "geometryId": "hjdcurves4-geometry",
-        "size": 50,
-        "position": { "x": -1.5, "z": -3 },
-        "rotation": { "x": 90, "y": 0, "z": -0 },
-        "materialConfig": {
-          "materialById": "phong-color-two"
-        }
       }
     ],
     "globalMaterialConfigs": [
