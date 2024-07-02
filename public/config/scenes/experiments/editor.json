@@ -18,6 +18,149 @@
         "assetType": "MODEL3D"
       },
       {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/hot-green.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "hera",
+        "geometryId": "smk25-orig1120-head-of-hera-barberini",
+        "geometryConfig": {
+          "scale": 0.25
+        },
+        "rotation": { "y": 90 },
+        "position": { "x": -10, "y": -10 },
+
+        "materialId": "distortion-material"
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "distortion-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": {},
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
+          }
+        ]
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "curve-rotate",
+        "targetIdentifier": "curve",
+        "animationFunctionType": "ALL",
+        "animationType": "SPIN",
+        "animationProperties": {
+          "speed": 0.0006,
+          "rotationAxis": "Y",
+          "animationDurationMilis": -1,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true
+        }
+      },
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "hera",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            },
+            {
+              "uniform": "uBrightness",
+              "loopType": "FLICKER",
+              "loopProps": {
+                "peak": 1.3,
+                "trough": 0,
+                "steepness": 20
+              }
+            },
+            {
+              "uniform": "uNoiseStrength",
+              "loopType": "FLICKER",
+              "loopProps": {
+                "flickerType": "FIXED",
+                "peak": 40,
+                "trough": 0,
+                "steepness": 20
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "CUSTOM_ATTRIBUTES",
+        "transformedMeshIds": ["hera"],
+        "materialId": "distortion-material"
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "sceneComponentConfigs": []
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": -1, "z": 50 } },
+      "controls": {
+        "hasOrbitControls": true
+      }
+    },
+    "assets": [
+      {
+        "name": "hera",
+        "url": "../assets/models/sculptures/hera.glb",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "hjdcurves1-geometry",
+        "url": "../assets/models/hjd-lines/line-1.obj",
+        "assetType": "MODEL3D"
+      },
+      {
         "name": "hjdcurves2-geometry",
         "url": "../assets/models/hjd-lines/line-2.obj",
         "assetType": "MODEL3D"
@@ -52,7 +195,7 @@
         "geometryConfig": {
           "scale": 0.25
         },
-        "rotation": { "z": 0 },
+        "rotation": { "y": 90 },
         "position": { "x": -10, "y": -10 },
         "meshType": "POINTS",
         "materialId": "distortion-material"
@@ -120,7 +263,7 @@
             {
               "id": "pointDisplay",
               "valueType": "FLOAT",
-              "valueConfig": { "randomizedPercentage": 0.0007 }
+              "valueConfig": { "randomizedPercentage": 0.0009 }
             }
           ]
         },

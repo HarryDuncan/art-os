@@ -9,7 +9,8 @@ const SIDE_BAR_LINK_FONT_SIZE = "1.6rem";
 const LOGO_HEIGHT = 40;
 
 export const StyledSideBar = styled(DrawComponent)`
-  width: ${({ $isVisible }) => ($isVisible ? SIDE_BAR_WIDTH : 0)}px;
+  width: ${({ $isVisible, $width }) =>
+    $isVisible ? $width ?? SIDE_BAR_WIDTH : 0}px;
   height: 100vh;
   display: flex;
   flex-direction: column;

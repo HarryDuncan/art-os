@@ -6,6 +6,7 @@ import { useRunAlgorithm } from "interaction/external/interaction-node-requests/
 import { NodeProps } from "visual/node/node.types";
 import { RootContainer } from "visual/node/root/root-container";
 import { EditorProvider } from "./context/editor.context";
+import { useSceneEditor } from "./useSceneEditor";
 
 const EditorNode = (props) => {
   return (
@@ -43,7 +44,7 @@ const EditorNodeContent = ({
   );
 
   useThreadWithPostProcessor(currentFrameRef, scene, camera, renderer, []);
-  useSceneEditor();
+  useSceneEditor(scene);
   if (isInteractive) {
     return (
       <Interactive containerRef={container} sceneProperties={sceneProperties} />

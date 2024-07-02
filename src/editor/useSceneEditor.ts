@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { InteractiveScene } from "visual/display/components/interactive-scene/InteractiveScene";
 
-export const useSceneEditor = (interactiveScene: InteractiveScene) => {
+export const useSceneEditor = (interactiveScene: InteractiveScene | null) => {
   const sceneEditorUpdate = useCallback((updatedSceneData) => {
     console.log(updatedSceneData);
   }, []);

@@ -6,17 +6,20 @@ interface ISideBarProps {
   children: ReactNode;
   isSidebarVisible: boolean;
   drawerSide?: string;
+  width?: number;
 }
 
 function SideBar({
   children,
   isSidebarVisible,
+  width,
   drawerSide = DRAWER_POSITIONS.LEFT,
 }: ISideBarProps) {
   return (
     <StyledSideBar
       $drawerHorizontalPosition={drawerSide}
       $isVisible={isSidebarVisible}
+      $width={width}
     >
       {children}
     </StyledSideBar>
