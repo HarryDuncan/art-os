@@ -12,7 +12,7 @@
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/purple.jpg",
+        "url": "../assets/textures/matcaps/hot-cloud.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -96,7 +96,7 @@
         "materialType": "BUILT_SHADER",
         "blendingConfig": {
           "blendSrcKey": "SRC_ALPHA",
-          "blendDstKey": "DST_ALPHA",
+          "blendDstKey": "ONE",
           "depthTest": false,
           "transparent": true
         },

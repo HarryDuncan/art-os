@@ -44,7 +44,7 @@ export const pointMaterialTransform = (
  
   vec4 ${fragName};
   ${getPointTexture(fragName, pointTextures, effectFragName)}
-  ${fragName} = vec4(${fragName}.rgb , opacity);
+
   if(${fragName}.a < 0.5) discard;
   `;
 
