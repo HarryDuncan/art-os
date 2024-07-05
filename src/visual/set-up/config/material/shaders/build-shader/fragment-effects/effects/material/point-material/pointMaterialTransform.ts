@@ -1,4 +1,5 @@
 import { ShaderPropertyValueTypes } from "../../../../constants";
+import { fragmentEffectToEffectData } from "../../../../helpers/fragmentEffectToEffectData";
 import { mergeUniformConfigs } from "../../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import {
   PointMaterialFragmentEffectProps,
@@ -28,22 +29,31 @@ export const pointMaterialTransform = (
   const {
     effectTransform,
     effectFragName,
+    effectAttributes,
+    effectVaryings,
+    effectRequiredFunctions,
     effectUniforms: returnedEffectUniforms,
   } = getEffectData(fragName, pointEffectProps);
 
   const transform = `
-  float opacity = uOpacity;
-  if(vPointDisplay == 0.0 ){
+ float opacity = 1.0;
+  ${effectTransform}
+   if(vPointDisplay == 0.0 ){
       opacity = 0.0;
   }
-  ${effectTransform}
-  ${getPointTexture(fragName, pointTextures)}
-  if(${effectFragName}.a < 0.5) discard;
+ 
+  vec4 ${fragName};
+  ${getPointTexture(fragName, pointTextures, effectFragName)}
+  ${fragName} = vec4(${fragName}.rgb , opacity);
+  if(${fragName}.a < 0.5) discard;
   `;
 
   return {
     transform,
     effectFragName,
+    effectAttributes,
+    effectRequiredFunctions,
+    effectVaryings,
     effectUniforms: mergeUniformConfigs([
       defaultEffectUniforms,
       returnedEffectUniforms,
@@ -60,10 +70,8 @@ const getEffectData = (
   switch (effectType) {
     case "MATCAP": {
       const matcap = matcapMaterial(fragName, effectProps);
-      console.log(matcap);
-      return defaultPointMaterial(fragName, pointEffectProps);
+      return fragmentEffectToEffectData(matcap);
     }
-
     case "COLOR":
     default:
       return defaultPointMaterial(fragName, pointEffectProps);
@@ -72,10 +80,6 @@ const getEffectData = (
 
 const defaultPointMaterial = (fragName, pointEffectProps) => {
   const { defaultColor } = pointEffectProps;
-  const effectUniforms = {
-    defaultUniforms: [],
-    customUniforms: [],
-  };
-  const effectTransform = `${getPointColor(fragName, defaultColor)}`;
-  return { effectTransform, effectUniforms, effectFragName: fragName };
+  const transformation = `${getPointColor(fragName, defaultColor)}`;
+  return fragmentEffectToEffectData({ transformation, fragName });
 };

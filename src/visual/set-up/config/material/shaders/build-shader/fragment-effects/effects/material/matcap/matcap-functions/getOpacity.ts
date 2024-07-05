@@ -1,4 +1,4 @@
-const getOpacity = (hasOpacity?: boolean | undefined) => {
+export const getOpacity = (hasOpacity?: boolean | undefined) => {
   if (hasOpacity) {
     return `matcapColor.a * opacity`;
   }

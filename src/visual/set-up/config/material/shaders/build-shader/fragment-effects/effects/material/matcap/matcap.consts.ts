@@ -14,9 +14,7 @@ export const DEFAULT_MATCAP_UNIFORMS = {
   ],
 };
 
-export const DEFAULT_MATCAP_EFFECT_PROPS = {
-  opacity: 1.0,
-};
+export const DEFAULT_MATCAP_EFFECT_PROPS = {};
 
 export const MATCAP_REQUIRED_FUNCTIONS = [
   { id: "calculateNormal", functionDefinition: calculateNormal },

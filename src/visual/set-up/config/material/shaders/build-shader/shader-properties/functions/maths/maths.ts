@@ -37,9 +37,9 @@ export const taylorInvSqrtVec4 = `// **- // returns the taylor inverse sqrt
   `;
 
 export const calculateNormal = `
-vec3 calculateNormal(vec3 position) {
-  vec3 fdx = vec3(dFdx(position.x), dFdx(position.y), dFdx(position.z));
-  vec3 fdy = vec3(dFdy(position.x), dFdy(position.y), dFdy(position.z));
+vec3 calculateNormal(vec3 objectPosition) {
+  vec3 fdx = vec3(dFdx(objectPosition.x), dFdx(objectPosition.y), dFdx(objectPosition.z));
+  vec3 fdy = vec3(dFdy(objectPosition.x), dFdy(objectPosition.y), dFdy(objectPosition.z));
   vec3 normal = normalize(cross(fdx, fdy));
 
   if (!gl_FrontFacing) {

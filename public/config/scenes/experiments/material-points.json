@@ -10,7 +10,13 @@
         "url": "../assets/models/barba/la-novena/barba-geometry.obj",
         "assetType": "MODEL3D"
       },
-
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/purple.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      },
       {
         "name": "1-texture",
         "url": "../assets/textures/point-textures/1.png",
@@ -54,6 +60,14 @@
                 "maxPeak": 1,
                 "minTrough": 0
               }
+            },
+            {
+              "uniform": "uOpacity",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0
+              }
             }
           ]
         }
@@ -80,7 +94,12 @@
       {
         "id": "distortion-material",
         "materialType": "BUILT_SHADER",
-        "blendingConfig": {},
+        "blendingConfig": {
+          "blendSrcKey": "SRC_ALPHA",
+          "blendDstKey": "DST_ALPHA",
+          "depthTest": false,
+          "transparent": true
+        },
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
@@ -99,12 +118,14 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDisplayPercentage": 0.05,
+                "pointDisplayPercentage": 0.5,
                 "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#f53105" },
                   { "id": "uTexture2", "pointColor": "#f53105" }
                 ],
-                "pointColor": "#f53105"
+                "pointColor": "#f53105",
+                "effectType": "MATCAP",
+                "effectProps": {}
               }
             }
           ],
@@ -112,7 +133,7 @@
             {
               "id": "pointDisplay",
               "valueType": "FLOAT",
-              "valueConfig": { "randomizedPercentage": 0.00007 }
+              "valueConfig": { "randomizedPercentage": 0.0007 }
             }
           ]
         },
@@ -126,6 +147,11 @@
             "uniform": "uTexture1",
             "assetId": "1-texture",
             "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "MATCAP"
           }
         ]
       },
@@ -145,8 +171,6 @@
       }
     ],
     "sceneComponentConfigs": [],
-    "scenePropertiesConfig": {
-      "backgroundColor": "black"
-    }
+    "scenePropertiesConfig": {}
   }
 ]

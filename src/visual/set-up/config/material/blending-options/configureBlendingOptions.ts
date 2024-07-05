@@ -9,6 +9,7 @@ export const configureBlendingOptions = (
   const formattedBlendingConfig = formatBlendingConfig(blendingConfig);
   const blendDst = getBlendingDstFactor(formattedBlendingConfig.blendDstKey);
   const blendSrc = getBlendingFactor(formattedBlendingConfig.blendSrcKey);
+
   return {
     blendSrc,
     blendDst,
