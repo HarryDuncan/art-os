@@ -1,7 +1,4 @@
-import {
-  DEFAULT_UNIFORMS,
-  ShaderPropertyValueTypes,
-} from "../../../../constants";
+import { ShaderPropertyValueTypes } from "../../../../constants";
 import { VARYING_TYPES } from "../../../../shader-properties/varyings/varyings.consts";
 import { VaryingConfig } from "../../../../types";
 

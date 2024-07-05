@@ -4,5 +4,11 @@
     "configId": "editor",
     "configPath": "scenes/experiments/editor",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Points Material",
+    "configId": "material-points",
+    "configPath": "scenes/experiments/material-points",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

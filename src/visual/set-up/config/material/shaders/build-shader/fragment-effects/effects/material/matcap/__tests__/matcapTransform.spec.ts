@@ -3,16 +3,15 @@ import {
   POINT_MATERIAL_FUNCTIONS,
   POINT_MATERIAL_VARYINGS,
   POINT_MATERIAL_ATTRIBUTES,
-  POINT_MATERIAL_UNIFORMS,
 } from "../pointMaterial.consts";
 import { pointMaterial } from "../pointMaterial";
-import { FRAGMENT_COLOR_NAMES } from "../../../../fragmentEffects.consts";
+import { VERTEX_EFFECT_POINT_NAMES } from "../../../../../vertex-effects/vertexEffects.consts";
 
 vi.mock("../pointMaterialTransform", () => ({
   pointMaterialTransform: () => ({
     uniformConfig: POINT_MATERIAL_UNIFORMS,
     requiredFunctions: POINT_MATERIAL_FUNCTIONS,
-    transform: "point transform",
+    transformation: "point transform",
   }),
 }));
 
@@ -26,14 +25,14 @@ describe("pointMaterialEffect", () => {
       transformation: "point transform",
       varyingConfig: POINT_MATERIAL_VARYINGS,
       attributeConfig: POINT_MATERIAL_ATTRIBUTES,
-      fragName: FRAGMENT_COLOR_NAMES.POINT_MATERIAL,
+      fragName: VERTEX_EFFECT_POINT_NAMES.ROTATED_POINT,
     };
     expect(fragData).toEqual(expectedResult);
   });
   test("returns frag name with point parent appended", () => {
     const fragData = pointMaterial(MOCK_FRAG, { pointParent: "TRIGGERED" });
     expect(fragData.fragName).toContain(
-      `${FRAGMENT_COLOR_NAMES.POINT_MATERIAL}_TRIGGERED`
+      `${VERTEX_EFFECT_POINT_NAMES.ROTATED_POINT}_TRIGGERED`
     );
   });
 });

@@ -5,8 +5,10 @@ import {
   PointMaterialFragmentEffectProps,
   UniformConfig,
 } from "../../../../types";
-import { ROTATION_ATTRIBUTES } from "../../../../vertex-effects/effects/rotation/rotation.consts";
-import { FRAGMENT_EFFECT } from "../../../fragmentEffects.consts";
+import {
+  FRAGMENT_COLOR_NAMES,
+  FRAGMENT_EFFECT,
+} from "../../../fragmentEffects.consts";
 import {
   DEFAULT_POINT_MATERIAL_PROPS,
   POINT_MATERIAL_ATTRIBUTES,
@@ -21,7 +23,7 @@ export const pointMaterial = (
   effectProps: Partial<PointMaterialFragmentEffectProps> = {}
 ) => {
   const fragName = generateUniqueFragName(
-    FRAGMENT_EFFECT.POINT_MATERIAL,
+    FRAGMENT_COLOR_NAMES.POINT_MATERIAL,
     effectProps.pointParent
   );
 
@@ -30,7 +32,7 @@ export const pointMaterial = (
     DEFAULT_POINT_MATERIAL_PROPS
   ) as PointMaterialFragmentEffectProps;
 
-  const { effectUniforms, transformation } = pointMaterialTransform(
+  const { effectUniforms, transform } = pointMaterialTransform(
     fragName,
     previousFragName,
     formattedProps
@@ -44,7 +46,7 @@ export const pointMaterial = (
   return {
     requiredFunctions: POINT_MATERIAL_FUNCTIONS,
     uniformConfig: mergedUniformConfigs,
-    transformation,
+    transformation: transform,
     varyingConfig: POINT_MATERIAL_VARYINGS,
     attributeConfig: POINT_MATERIAL_ATTRIBUTES,
     fragName,

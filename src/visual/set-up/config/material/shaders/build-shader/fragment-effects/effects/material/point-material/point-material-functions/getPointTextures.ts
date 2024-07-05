@@ -3,7 +3,8 @@ import { PointTexture } from "../../../../../types";
 
 export const getPointTexture = (
   fragName: string,
-  pointTextures: PointTexture[]
+  pointTextures: PointTexture[],
+  parsedPointColor?: string
 ) => {
   const increment = 1 / pointTextures.length;
   return pointTextures

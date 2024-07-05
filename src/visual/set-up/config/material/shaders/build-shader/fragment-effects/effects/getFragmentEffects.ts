@@ -14,8 +14,7 @@ import { brightness } from "./brightness/brightness";
 import { color } from "./color/color";
 import { defaultFragmentEffect } from "./defaultFragmentEffect/defaultFragmentEffect";
 import { getInteractiveEffects } from "./interactive/interactiveEffect";
-import { matcapMaterial } from "./material/matcap/matcapMaterial";
-import { simpleMatcap } from "./material/matcap/simpleMatcap";
+import { matcapMaterial } from "./material/matcap/matcap";
 import { pointMaterial } from "./material/point-material/pointMaterial";
 import { opacity } from "./opacity/opacity";
 import { triggeredEffect } from "./triggered-effect/triggeredEffect";
@@ -37,13 +36,8 @@ export const getFragmentEffects = (
         previousFragName,
         effectProps as Partial<ColorFragmentEffectProps>
       );
-    case FRAGMENT_EFFECT.MATERIAL:
-      return matcapMaterial(
-        previousFragName,
-        effectProps as Partial<MaterialEffectProps>
-      );
     case FRAGMENT_EFFECT.MATCAP:
-      return simpleMatcap(
+      return matcapMaterial(
         previousFragName,
         effectProps as Partial<MaterialEffectProps>
       );
