@@ -2,17 +2,17 @@
   {
     "sceneConfigType": "Master",
     "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 30.5 } }
+      "camera": { "position": { "x": 0, "y": 0, "z": 15.5 } }
     },
     "assets": [
       {
         "name": "geometry-1",
-        "url": "../assets/models/barba/la-novena/barba-geometry.obj",
+        "url": "../assets/models/sculptures/crouching-venus.obj",
         "assetType": "MODEL3D"
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/hot-cloud.jpg",
+        "url": "../assets/textures/matcaps/neon-blur.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -33,10 +33,10 @@
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
-        "geometryId": "barba",
+        "geometryId": "crouching-venus",
         "meshType": "POINTS",
         "geometryConfig": {
-          "scale": 15
+          "scale": 2.4
         },
 
         "rotation": { "x": 0, "y": -0, "z": -0 },
@@ -49,7 +49,7 @@
         "targetIdentifier": "geometry",
         "animationFunctionType": "UTIME",
         "animationProperties": {
-          "animationDurationMilis": 8000,
+          "animationDurationMilis": 24000,
           "animationPauseMilis": 0,
           "repeatAnimation": true,
           "animationLoopConfig": [
@@ -62,10 +62,10 @@
               }
             },
             {
-              "uniform": "uOpacity",
+              "uniform": "uNoiseStrength",
               "loopType": "MIN_MAX",
               "loopProps": {
-                "maxPeak": 1,
+                "maxPeak": 2,
                 "minTrough": 0
               }
             }
@@ -95,19 +95,24 @@
         "id": "distortion-material",
         "materialType": "BUILT_SHADER",
         "blendingConfig": {
-          "blendSrcKey": "SRC_ALPHA",
-          "blendDstKey": "ONE",
-          "depthTest": false,
           "transparent": true
         },
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
+              "effectType": "ROTATE",
+              "effectProps": { "speed": 0.8 }
+            },
+            {
+              "effectType": "NOISE",
+              "effectProps": { "noiseType": "NORMAL", "effectStrength": 1.0 }
+            },
+            {
               "effectType": "POINTS",
               "effectProps": {
                 "perspectiveConfig": {
-                  "floor": 8,
-                  "ceiling": 34,
+                  "floor": 15,
+                  "ceiling": 18,
                   "scaleFactor": 8,
                   "divisor": 9
                 }
@@ -133,7 +138,7 @@
             {
               "id": "pointDisplay",
               "valueType": "FLOAT",
-              "valueConfig": { "randomizedPercentage": 0.0007 }
+              "valueConfig": { "randomizedPercentage": 0.002 }
             }
           ]
         },
@@ -171,6 +176,8 @@
       }
     ],
     "sceneComponentConfigs": [],
-    "scenePropertiesConfig": {}
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
   }
 ]

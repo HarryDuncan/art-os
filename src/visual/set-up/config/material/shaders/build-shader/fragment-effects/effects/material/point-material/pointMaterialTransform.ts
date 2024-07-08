@@ -72,6 +72,7 @@ const getEffectData = (
       const matcap = matcapMaterial(fragName, effectProps);
       return fragmentEffectToEffectData(matcap);
     }
+
     case "COLOR":
     default:
       return defaultPointMaterial(fragName, pointEffectProps);
