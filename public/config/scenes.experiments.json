@@ -10,5 +10,11 @@
     "configId": "material-points",
     "configPath": "scenes/experiments/material-points",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Decadance Logo Morph",
+    "configId": "decadance-morph",
+    "configPath": "scenes/experiments/decadance-morph",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

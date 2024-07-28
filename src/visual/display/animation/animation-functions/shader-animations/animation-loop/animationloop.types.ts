@@ -9,6 +9,11 @@ export interface AnimationLoopConfigItem {
   loopProps: Partial<LoopProps>;
 }
 
+export type TransitionLoopConfig = {
+  transitionAnimations: AnimationLoopConfigItem[];
+  transitionDuration: number;
+};
+
 export type AnimationLoopKeyPoint = {
   start: number;
   end: number;
@@ -31,9 +36,4 @@ export type FlickerLoopProps = BaseLoopProps & {
   flickerType: string;
 };
 
-export type TransitionLoopProps = BaseLoopProps & {
-  valueAtTrough: number;
-  valueAtPeak: number;
-};
-
-export type AnimationLoopProps = FlickerLoopProps | TransitionLoopProps;
+export type AnimationLoopProps = FlickerLoopProps;

@@ -1,8 +1,9 @@
 import { ShaderMeshObject } from "visual/set-up/config/mesh/mesh.types";
 import { getLoopType } from "./loops/getLoopTypes";
 import { updateObjectUniformByKey } from "../uniforms/updateObjectUniformByKey";
-import { AnimationLoopConfigItem } from "./animationloop.types";
+import { AnimationLoopConfigItem, TransitionLoopConfig } from "./animationloop.types";
 import { composeFunctions } from "../../../../../utils/composeFunctions";
+import { transitionLoop } from "./transition-loop/transitionLoop";
 
 const defaultConfig = [
   {
@@ -12,6 +13,7 @@ const defaultConfig = [
 ];
 export const setUpAnimationLoop = (
   config: AnimationLoopConfigItem[],
+  transitionAnimations : TransitionLoopConfig|null,
   loopDuration: number
 ): ((
   shaderMesh: ShaderMeshObject,
@@ -39,5 +41,9 @@ export const setUpAnimationLoop = (
       };
     }
   );
+  const transitionAnimationFunction = transitionLoop(transitionAnimations)
+  if(transitionAnimationFunction){
+    animationLoopFunctions.push(transitionAnimationFunction)
+  } 
   return composeFunctions(animationLoopFunctions);
 };

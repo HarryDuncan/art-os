@@ -1,4 +1,4 @@
-export const twister = `
+export const twisterDistortion = `
 vec4 twister( vec4 pos, float t ) {
 	float st = sin(t);
 	float ct = cos(t);

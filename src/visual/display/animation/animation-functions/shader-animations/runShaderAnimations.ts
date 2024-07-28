@@ -16,9 +16,14 @@ export const runShaderAnimations = (
     snapOnPause,
     animationPauseMilis,
     animationLoopConfig,
+    transitionAnimation,
   } = animationProperties;
   const duration = animationDurationMilis / 1000;
-  const animationLoop = setUpAnimationLoop(animationLoopConfig, duration);
+  const animationLoop = setUpAnimationLoop(
+    animationLoopConfig,
+    transitionAnimation,
+    duration
+  );
   function step(timestamp: number) {
     if (startTime === 0) {
       scene.clock.getElapsedTime();

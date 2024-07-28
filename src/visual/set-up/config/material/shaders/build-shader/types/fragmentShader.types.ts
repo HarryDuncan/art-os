@@ -32,6 +32,7 @@ export type MaterialEffectProps = EffectParameters & {
 };
 
 export type ColorFragmentEffectProps = EffectParameters & {
+  shadingType: string;
   color: string;
   opacity?: number;
 };

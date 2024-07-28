@@ -1,4 +1,4 @@
-import { twister } from "visual/display/materials/webgl-shaders/shader-functions/noise/distortion/distortion";
+import { twister } from "visual/set-up/config/material/shaders/build-shader/shader-properties/functions/distortion/distortion";
 import { UniformConfig, VaryingConfig } from "../../../../types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";

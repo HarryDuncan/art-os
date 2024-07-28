@@ -9,5 +9,5 @@ export const getPointColor = (
     defaultColor ?? DEFAULT_FRAG_COLOR,
     true
   );
-  return `vec4 ${fragName} =  ${defaultColorVector};`;
+  return `vec4 pointColor_${fragName} =  ${defaultColorVector};`;
 };

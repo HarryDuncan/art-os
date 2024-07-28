@@ -6,6 +6,7 @@ import {
   PointTexture,
 } from "../../../../types";
 import { matcapMaterial } from "../matcap/matcap";
+
 import { getPointColor } from "./point-material-functions/getPointColor";
 import { getPointTexture } from "./point-material-functions/getPointTextures";
 
@@ -82,5 +83,8 @@ const getEffectData = (
 const defaultPointMaterial = (fragName, pointEffectProps) => {
   const { defaultColor } = pointEffectProps;
   const transformation = `${getPointColor(fragName, defaultColor)}`;
-  return fragmentEffectToEffectData({ transformation, fragName });
+  return fragmentEffectToEffectData({
+    transformation,
+    fragName: `pointColor_${fragName}`,
+  });
 };

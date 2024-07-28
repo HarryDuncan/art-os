@@ -1,11 +1,11 @@
 import { MaterialEffectProps } from "../../../../types";
 
-export const matcapTransform = (
+export const phongTransform = (
   fragName: string,
   _previousFragName: string,
   matcapEffectProps: MaterialEffectProps
 ) => {
-  const matcapType = "MESH";
+  const matcapType = "POINT";
   const { transform } = getEffectData(fragName, matcapType);
 
   return { transform };
@@ -37,7 +37,7 @@ const getEffectData = (fragName: string, matcapType: string) => {
           vec3 y = cross( vEye, x );
           vec2 uv = vec2( dot( x, newNormal ), dot( y, newNormal ) ) * 0.495 + 0.5;
           vec4 matcapColor = texture2D(uMaterial, uv);
-          vec4 ${fragName} = vec4( matcapColor.rgb, 1.0);`,
+          vec4 ${fragName} = vec4( matcapColor.rgb, 0.0);`,
       };
   }
 };
