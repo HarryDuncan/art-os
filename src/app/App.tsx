@@ -15,6 +15,7 @@ import { ViewObject } from "./views/view-object/ViewObject";
 import { WindowStateProvider } from "visual/compat/window-state/windowStateProvider";
 import { ViewPiece } from "./views/digital-art/view-piece/ViewPiece";
 import { DigitalArtGallery } from "./views/digital-art/digital-art-gallery/DigitalArtGallery";
+import { ImageFilter } from "./views/image-filter/ImageFilter";
 
 export function App() {
   return (
@@ -42,6 +43,7 @@ export const AppContent = () => {
       <Route exact path="/view-object" component={ViewObject} />
       <Route exact path="/geometry-preprocess" component={GeometryPreprocess} />
       <Route path="/digital-art/:sceneid" component={ViewPiece} />
+      <Route path="/image-filter" component={ImageFilter} />
     </Switch>
   );
 };

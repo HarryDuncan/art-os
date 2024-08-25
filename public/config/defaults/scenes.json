@@ -10,5 +10,11 @@
     "configId": "view-object",
     "configPath": "viewObject",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Image Filter",
+    "configId": "image-filter",
+    "configPath": "defaults/image-filter",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

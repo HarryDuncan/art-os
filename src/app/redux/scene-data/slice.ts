@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AnimatedScene } from "./types";
 import { SceneItem } from "scenes/types";
+import { SceneConfig } from "visual/set-up/config/config.types";
 
 export enum ScenePlayState {
   PAUSE = "PAUSE",
@@ -14,6 +15,7 @@ export type SceneState = {
     isUsingLastScene: boolean;
     scenePlayState: ScenePlayState;
   };
+  customSceneConfig: Partial<SceneConfig>;
   selectedConfigId: string | null;
   isEditorEnabled: boolean;
   data: SceneItem | null;
@@ -29,6 +31,7 @@ export const INITIAL_STATE: SceneState = {
     isUsingLastScene: false,
     scenePlayState: ScenePlayState.PLAY,
   },
+  customSceneConfig: {},
   workspaceId: null,
   isEditorEnabled: false,
   selectedConfigId: null,
@@ -103,6 +106,15 @@ export const slice = createSlice({
           ...state.sceneControls,
           scenePlayState: payload,
         },
+      };
+    },
+    setCustomConfigData: (
+      state,
+      { payload }: PayloadAction<Partial<SceneConfig>>
+    ) => {
+      return {
+        ...state,
+        customSceneConfig: payload,
       };
     },
   },

@@ -14,13 +14,14 @@ export const setAttributes = (
   attributeConfig: AttributeConfig[] = []
 ) => {
   const vertexCount = getVerticesCount(bufferGeometry);
-  attributeConfig.forEach(({ id, valueConfig }) => {
+  attributeConfig.forEach(({ id, valueConfig, attributeCount }) => {
+    const valueCount = attributeCount ?? vertexCount;
     if (checkIds(id, RANDOM_ATTRIBUTE_IDS)) {
-      setRandomValues(id, vertexCount, bufferGeometry);
+      setRandomValues(id, valueCount, bufferGeometry);
     } else if (checkIds(id, INDEX_ATTRIBUTE_IDS)) {
-      setIndexValues(id, vertexCount, bufferGeometry);
+      setIndexValues(id, valueCount, bufferGeometry);
     } else if (checkIds(id, RANDOMIZED_ATTRIBUTE_IDS)) {
-      setRandomizedPercentage(id, vertexCount, bufferGeometry, valueConfig);
+      setRandomizedPercentage(id, valueCount, bufferGeometry, valueConfig);
     }
   });
   return bufferGeometry;

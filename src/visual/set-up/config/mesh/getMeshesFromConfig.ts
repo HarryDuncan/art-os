@@ -35,7 +35,7 @@ export const getMeshesFromConfig = (
     meshTransforms ?? [],
     attributeConfigs
   );
-
+  console.log(formattedGeometry);
   const transformedGeometry = transformGeometry(
     meshAttributes,
     formattedGeometry

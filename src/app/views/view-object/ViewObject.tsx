@@ -1,5 +1,5 @@
 import { Container } from "../views.styles";
-import { AssetFileUpload } from "./AssetFileUpload";
+import { AssetFileUpload } from "../../components/asset-file-upload/AssetFileUpload";
 import { Suspense } from "react";
 import SceneNode from "visual/node/scene-node/SceneNode";
 import { useSceneParameters } from "scenes/useSceneParameters";

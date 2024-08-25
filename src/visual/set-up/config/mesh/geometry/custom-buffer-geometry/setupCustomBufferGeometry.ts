@@ -13,6 +13,10 @@ export const setUpCustomBufferGeometry = (
   switch (bufferGeometryType) {
     case CUSTOM_BUFFER_GEOMETRY_TYPES.QUAD:
       return setUpQuad();
+    default:
+      console.warn(
+        `No custom buffer geometry has been set for ${bufferGeometryType}`
+      );
   }
 };
 

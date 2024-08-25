@@ -9,6 +9,7 @@ import { useAppSelector } from "app/redux/store";
 
 export const useSceneParameters = (configId = "default") => {
   const configData = useConfigData(configId);
+  console.log(configData);
   const {
     sceneControls: { sceneIndex },
   } = useAppSelector((state) => state.sceneData);

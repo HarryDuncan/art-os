@@ -35,6 +35,11 @@ const NAVIGATION_ITEMS = [
     title: "Sandbox",
     link: "sandbox",
   },
+  {
+    key: "Image Filter",
+    title: "Image Filter",
+    link: "image-filter",
+  },
 ];
 export const Navigation = () => {
   const isNavVisible = useNavigationBarVisibility();

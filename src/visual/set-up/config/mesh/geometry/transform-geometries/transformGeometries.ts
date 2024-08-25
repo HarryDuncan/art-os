@@ -54,12 +54,21 @@ export const transformGeometry = (
         case MESH_TRANSFORM.CUSTOM_ATTRIBUTES: {
           const attributesSet = transformedMeshes.map((formattedGeometry) => {
             const { geometry } = formattedGeometry;
-            console.log(geometry);
             const setAttributeGeometry = setAttributes(
               geometry,
               attributeConfig
             );
             return { ...formattedGeometry, geometry: setAttributeGeometry };
+          });
+          return attributesSet;
+        }
+        case MESH_TRANSFORM.PRE_DEFINED: {
+          const attributesSet = transformedMeshes.map(({ geometry }) => {
+            attributeConfig?.forEach((config) => {
+              if (config.value) {
+                geometry.setAttribute(config.id, config.value);
+              }
+            });
           });
           return attributesSet;
         }

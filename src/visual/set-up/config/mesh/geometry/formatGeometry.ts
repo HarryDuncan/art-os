@@ -70,12 +70,14 @@ const getGeometryForMeshConfig = (
   geometries: FormattedGeometry[],
   geometryId: string
 ) => {
+  console.log(geometryId);
   if (CUSTOM_GEOMETRY_TYPES.includes(geometryId)) {
     const customGeometry = setUpCustomBufferGeometry(
       geometryId as CustomBufferGeometryType,
       {}
     );
-    return { ...customGeometry };
+    console.log(customGeometry);
+    return { geometry: customGeometry };
   }
   const meshGeometry = geometries.find(
     (geometry) => geometry.name === geometryId
