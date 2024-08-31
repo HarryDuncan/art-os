@@ -31,7 +31,7 @@ const getMappedAsset = (assetMapping: AssetMap, assets: Asset[]) => {
         const texture = mappedAsset.data;
         return texture;
       case ASSET_MAPPING_RELATIONSHIPS.DIMENSION:
-        const { width, height } = mappedAsset.data.source.data;
+        const { width, height } = mappedAsset.data.image;
         return new Vector2(width, height);
       default:
         console.warn(`No configuration for ${assetMapping.relationship}`);

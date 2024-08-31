@@ -1,5 +1,6 @@
 import { Asset } from "visual/set-up/assets/asset.types";
 import { AttributeConfig } from "../../material/shaders/build-shader/types";
+import { BufferAttribute } from "three";
 
 export const getAttributeValuesFromAssets = (
   attributeConfig: AttributeConfig[],
@@ -12,18 +13,19 @@ export const getAttributeValuesFromAssets = (
         const texture = selectedAsset.data;
         const { width, height } = texture.source.data;
         const numPoints = width * height;
-        let threshold = 0;
         let originalColors;
-        threshold = 40;
+        const threshold = 40;
         const img = texture.image;
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
+        console.log(ctx);
         let numVisible = 0;
         canvas.width = width;
         canvas.height = height;
         if (ctx) {
-          ctx.scale(30, -30);
-          ctx.drawImage(img, 0, 0, width, height * -30);
+          console.log(img);
+          ctx.scale(1, -1);
+          ctx.drawImage(img, 0, 0, width, height * -1);
           const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           originalColors = Float32Array.from(imgData.data);
           for (let i = 0; i < numPoints; i += 1) {
@@ -37,23 +39,32 @@ export const getAttributeValuesFromAssets = (
 
         for (let i = 0, j = 0; i < numVisible; i += 1) {
           if (originalColors[i * 4] > threshold) {
-            offsets[j * 3 + 0] = i % width;
-            offsets[j * 3 + 1] = Math.floor(i / width);
+            const x = i % width;
+            const y = Math.floor(i / height);
+            offsets[j * 3 + 0] = x;
+            offsets[j * 3 + 1] = y;
+            offsets[j * 3 + 2] = 0;
             indices[j] = i;
             angles[j] = Math.random() * Math.PI;
             j += 1;
           }
         }
+        if (config.id === "position") {
+          return {
+            ...config,
+            value: new BufferAttribute(offsets, 3),
+          };
+        }
         if (config.id === "pointOffset") {
           return {
             ...config,
-            value: offsets,
+            value: new BufferAttribute(offsets, 3),
           };
         }
         if (config.id === "pointIndex") {
           return {
             ...config,
-            value: indices,
+            value: new BufferAttribute(indices, 1),
           };
         }
         return {

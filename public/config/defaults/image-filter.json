@@ -1,7 +1,7 @@
 [
   {
     "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 10, "z": 80.5 } }
+      "camera": { "position": { "x": 0, "y": 0, "z": 900 } }
     },
     "assets": [
       {
@@ -15,18 +15,24 @@
         "url": "../assets/textures/point-textures/0.png",
         "assetType": "TEXTURE",
         "id": "0-texture"
+      },
+      {
+        "assetType": "TEXTURE",
+        "id": "image",
+        "name": "image",
+        "url": "../assets/textures/emergence/sapling.jpg"
       }
     ],
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
-        "geometryId": "QUAD",
-        "meshType": "MESH",
+        "geometryId": "EMPTY",
+        "meshType": "POINTS",
         "geometryConfig": {
-          "scale": 6
+          "scale": 1
         },
         "position": { "x": 0, "y": 0, "z": 0 },
-        "rotation": { "x": 90, "y": 0, "z": -0 },
+        "rotation": { "x": 0, "y": 0, "z": -0 },
         "materialId": "morphing-material"
       }
     ],
@@ -42,8 +48,8 @@
             "defaultUniforms": [],
             "customUniforms": [
               { "id": "uRandom", "valueType": "FLOAT", "value": 1.0 },
-              { "id": "uSize", "valueType": "FLOAT", "value": 0.0 },
-              { "id": "uDepth", "valueType": "FLOAT", "value": 2.0 },
+              { "id": "uSize", "valueType": "FLOAT", "value": 10.5 },
+              { "id": "uDepth", "valueType": "FLOAT", "value": 1.0 },
               { "id": "uTextureSize", "valueType": "VEC2" },
               { "id": "uTexture", "valueType": "SAMPLER2D" }
             ]
@@ -71,6 +77,7 @@
                 ],
                 "pointColor": "#ffffff",
                 "defaultColor": "#ffffff",
+                "effectType": "TEXTURE",
                 "effectProps": {}
               }
             }
@@ -80,11 +87,16 @@
               "id": "pointDisplay",
               "valueType": "FLOAT",
               "assetId": "image",
-              "valueConfig": { "randomizedPercentage": 0.0007 }
+              "valueConfig": { "randomizedPercentage": 1.7 }
             },
             {
               "id": "pointIndex",
               "valueType": "FLOAT",
+              "assetId": "image"
+            },
+            {
+              "id": "position",
+              "valueType": "VEC3",
               "assetId": "image"
             },
             {
@@ -120,17 +132,29 @@
     ],
     "meshTransforms": [
       {
-        "type": "CUSTOM_ATTRIBUTES",
+        "type": "PRE_DEFINED",
         "transformedMeshIds": ["geometry-1"],
         "materialId": "morphing-material"
       },
       {
-        "type": "PRE_DEFINED",
+        "type": "CUSTOM_ATTRIBUTES",
         "transformedMeshIds": ["geometry-1"],
         "materialId": "morphing-material"
       }
     ],
-    "animationConfig": [],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 24000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": []
+        }
+      }
+    ],
     "lightConfig": [
       {
         "name": "ambient-light",
@@ -148,6 +172,7 @@
         "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
       }
     ],
+    "scenePropertiesConfig": { "backgroundColor": "black" },
     "sceneComponentConfigs": [],
     "interactionConfig": []
   }

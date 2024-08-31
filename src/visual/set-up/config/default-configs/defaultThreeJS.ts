@@ -26,5 +26,7 @@ export const DEFAULT_THREE_JS = {
   renderer: {
     rendererType: RENDERER_TYPES.WEBGL,
     outputEncoding: sRGBEncoding,
+    clearColor: 0x000000,
+    alpha: 0,
   },
 };

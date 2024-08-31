@@ -9,6 +9,7 @@ import { matcapMaterial } from "../matcap/matcap";
 
 import { getPointColor } from "./point-material-functions/getPointColor";
 import { getPointTexture } from "./point-material-functions/getPointTextures";
+import { textureAsPoints } from "./point-material-functions/textureAsPoints";
 
 const setUpTextureUniforms = (pointTextures: PointTexture[]) =>
   pointTextures.map(({ id }) => ({
@@ -73,7 +74,10 @@ const getEffectData = (
       const matcap = matcapMaterial(fragName, effectProps);
       return fragmentEffectToEffectData(matcap);
     }
-
+    case "TEXTURE": {
+      const texture = textureAsPoints(fragName, effectProps);
+      return fragmentEffectToEffectData(texture);
+    }
     case "COLOR":
     default:
       return defaultPointMaterial(fragName, pointEffectProps);

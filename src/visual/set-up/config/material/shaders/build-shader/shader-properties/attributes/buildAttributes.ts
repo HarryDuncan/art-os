@@ -7,13 +7,16 @@ export const buildAttributes = (config: AttributeConfig[]) => {
   return declarationString;
 };
 
+const NON_DECLARABLE_ATTRIBUTES = ["position"];
 const createDeclarationStrings = (config: AttributeConfig[]) =>
   config
-    .map(({ id, valueType }) =>
-      createDeclarationString(
-        ShaderPropertyTypes.ATTRIBUTE as ShaderPropertyTypes,
-        valueType,
-        id
-      )
+    .flatMap(({ id, valueType }) =>
+      NON_DECLARABLE_ATTRIBUTES.includes(id)
+        ? []
+        : createDeclarationString(
+            ShaderPropertyTypes.ATTRIBUTE as ShaderPropertyTypes,
+            valueType,
+            id
+          )
     )
     .join(" \n ");

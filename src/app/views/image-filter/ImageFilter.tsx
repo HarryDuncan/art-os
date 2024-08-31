@@ -21,31 +21,26 @@ export const ImageFilter = () => {
   // update the material uniform config to add the texture dimensions
   // format the material to create the buffer geometry
 
-  const onImageLoaded = async (file) => {
-    const url = transformPath(file.path);
-    const imageAsset = {
-      name: "image",
-      id: "image",
-      url: url,
-      assetType: "TEXTURE",
-    } as Asset;
-    const mergedConfigData = {
-      assets: [imageAsset],
-    };
-    dispatch(setCustomConfigData(mergedConfigData));
-  };
+  // const onImageLoaded = async (file) => {
+  //   const url = transformPath(file.path);
+  //   const imageAsset = {
+  //     name: "image",
+  //     id: "image",
+  //     url: url,
+  //     assetType: "TEXTURE",
+  //   } as Asset;
+  //   const mergedConfigData = {
+  //     assets: [imageAsset],
+  //   };
+  //   dispatch(setCustomConfigData(mergedConfigData));
+  // };
 
   return (
     <AppContainer>
       <ViewPieceContainer>
-        <AssetFileUpload
-          onFileLoad={onImageLoaded}
-          returnType={UPLOAD_RETURN_TYPES.UPLOAD_OBJECT}
-        >
-          <Suspense>
-            {sceneParameters ? <SceneNode {...sceneParameters} /> : null}
-          </Suspense>
-        </AssetFileUpload>
+        <Suspense>
+          {sceneParameters ? <SceneNode {...sceneParameters} /> : null}
+        </Suspense>
       </ViewPieceContainer>
     </AppContainer>
   );
