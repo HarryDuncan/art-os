@@ -27,8 +27,9 @@ export const RootContainer = ({
         ref={containerRef}
         $backgroundColor={sceneProperties.backgroundColor}
         $backgroundUrl={sceneProperties.backgroundUrl}
-      />
-      <VideoBackground videoSrc={sceneProperties.videoBackground} />
+      >
+        <VideoBackground videoSrc={sceneProperties.videoBackground} />
+      </Root>
     </>
   );
 };

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "decadance-logo-old",
+    "id": "old-logo",
+    "url": "../assets/models/blackout/logo/decadance-old.obj",
+    "assetType": "MODEL3D"
+  },
+  {
+    "name": "decadance-logo-new",
+    "id": "new-logo",
+    "url": "../assets/models/blackout/logo/decadance-logo.obj",
+    "assetType": "MODEL3D"
+  }
+]

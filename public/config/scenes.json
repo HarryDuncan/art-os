@@ -1,11 +1,5 @@
 [
   {
-    "title": "Website Home Scene",
-    "configId": "home",
-    "configPath": "scenes/website/home",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
     "title": "Vector Morph",
     "configId": "hjd-vector-morph",
     "configPath": "scenes/hjd-art/hjd-vector-morph",
@@ -75,12 +69,6 @@
     "title": "HJD Explosion",
     "configId": "explosion",
     "configPath": "scenes/hjd-art/explosion/explosion",
-    "componentId": "InteractiveSceneContainer"
-  },
-  {
-    "title": "HJD Explosion",
-    "configId": "test",
-    "configPath": "scenes/hjd-art/gel-prints/test",
     "componentId": "InteractiveSceneContainer"
   }
 ]

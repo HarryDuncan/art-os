@@ -3,7 +3,8 @@ import { PointTexture } from "../../../../../types";
 
 export const getPointTexture = (
   fragName: string,
-  pointTextures: PointTexture[]
+  pointTextures: PointTexture[],
+  effectMaterial?: string
 ) => {
   const increment = 1 / pointTextures.length;
   return pointTextures
@@ -13,11 +14,22 @@ export const getPointTexture = (
       return `if(vPointType > ${lowerBound} && vPointType < ${
         upperBound === "1.0" ? "1.1" : upperBound
       }){
-              ${fragName} = ${createColorVectorString(
+              vec4 textureColor =  texture2D(${id}, gl_PointCoord);
+           
+              ${fragName} = ${formatPointColor(
         pointColor,
-        true
-      )} * texture2D(${id}, gl_PointCoord);
+        effectMaterial
+      )} * textureColor ;
+      
           } \n `;
     })
     .join(" \n ");
+};
+
+const formatPointColor = (pointColor, effectMaterial?: string) => {
+  if (effectMaterial) {
+    return `vec4(${effectMaterial}.rgb, opacity)`;
+  } else {
+    return `${createColorVectorString(pointColor, true)}`;
+  }
 };

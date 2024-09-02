@@ -1,12 +1,17 @@
 import { formatFragmentParameters } from "../../../../helpers/formatFragmentParameters";
 import { generateUniqueFragName } from "../../../../helpers/generateUniqueFragName";
+import { reduceFunctions } from "../../../../helpers/reduceFunctions";
+import { mergeAttributeConfigs } from "../../../../shader-properties/attributes/helpers/mergeAttributeConfigs";
 import { mergeUniformConfigs } from "../../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
+import { mergeVaryingConfigs } from "../../../../shader-properties/varyings/helpers/mergeVaryingConfigs";
 import {
   PointMaterialFragmentEffectProps,
   UniformConfig,
 } from "../../../../types";
-import { ROTATION_ATTRIBUTES } from "../../../../vertex-effects/effects/rotation/rotation.consts";
-import { FRAGMENT_EFFECT } from "../../../fragmentEffects.consts";
+import {
+  FRAGMENT_COLOR_NAMES,
+  FRAGMENT_EFFECT,
+} from "../../../fragmentEffects.consts";
 import {
   DEFAULT_POINT_MATERIAL_PROPS,
   POINT_MATERIAL_ATTRIBUTES,
@@ -21,7 +26,7 @@ export const pointMaterial = (
   effectProps: Partial<PointMaterialFragmentEffectProps> = {}
 ) => {
   const fragName = generateUniqueFragName(
-    FRAGMENT_EFFECT.POINT_MATERIAL,
+    FRAGMENT_COLOR_NAMES.POINT_MATERIAL,
     effectProps.pointParent
   );
 
@@ -30,23 +35,37 @@ export const pointMaterial = (
     DEFAULT_POINT_MATERIAL_PROPS
   ) as PointMaterialFragmentEffectProps;
 
-  const { effectUniforms, transformation } = pointMaterialTransform(
-    fragName,
-    previousFragName,
-    formattedProps
-  );
+  const {
+    effectUniforms,
+    transform,
+    effectAttributes,
+    effectVaryings,
+    effectRequiredFunctions,
+  } = pointMaterialTransform(fragName, previousFragName, formattedProps);
 
   const mergedUniformConfigs = mergeUniformConfigs([
     effectUniforms,
     POINT_MATERIAL_UNIFORMS as UniformConfig,
   ]);
 
+  const mergedVaryings = mergeVaryingConfigs([
+    POINT_MATERIAL_VARYINGS,
+    effectVaryings,
+  ]);
+  const mergedAttributes = mergeAttributeConfigs([
+    POINT_MATERIAL_ATTRIBUTES,
+    effectAttributes,
+  ]);
+  const requiredFunctions = reduceFunctions([
+    POINT_MATERIAL_FUNCTIONS,
+    effectRequiredFunctions,
+  ]);
   return {
-    requiredFunctions: POINT_MATERIAL_FUNCTIONS,
+    requiredFunctions,
     uniformConfig: mergedUniformConfigs,
-    transformation,
-    varyingConfig: POINT_MATERIAL_VARYINGS,
-    attributeConfig: POINT_MATERIAL_ATTRIBUTES,
+    transformation: transform,
+    varyingConfig: mergedVaryings,
+    attributeConfig: mergedAttributes,
     fragName,
   };
 };

@@ -6,6 +6,7 @@ import { buildShader } from "./build-shader/buildShader";
 import { formatBuiltShaderConfig } from "./shader-formatting/formatBuiltShaderConfig";
 import { formatBuiltShaderUniforms } from "./shader-formatting/formatBuiltShaderUniforms";
 import { configureBlendingOptions } from "../blending-options/configureBlendingOptions";
+import { getAttributeValuesFromAssets } from "../../mesh/attributes/getAttributeValuesFromAsset";
 
 export const getBuiltShaderMaterials = (
   config: SceneConfig,
@@ -29,8 +30,12 @@ export const getBuiltShaderMaterials = (
           fragmentShader,
           attributeConfigs,
         } = buildShader(shaderConfig);
-        console.log(vertexShader);
+        const attributesFromAssets = getAttributeValuesFromAssets(
+          attributeConfigs,
+          assets
+        );
         console.log(fragmentShader);
+        console.log(vertexShader);
         const formattedUniforms = formatBuiltShaderUniforms(
           uniforms,
           assetMapping ?? [],
@@ -47,7 +52,7 @@ export const getBuiltShaderMaterials = (
           side: DoubleSide,
         });
         shader.name = materialConfig.id;
-        return { shader, attributeConfigs };
+        return { shader, attributeConfigs: attributesFromAssets };
       }
       return [];
     }

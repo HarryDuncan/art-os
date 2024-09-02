@@ -9,4 +9,5 @@ export const {
   incrementSceneIndex,
   setScenePlayState,
   setWorkspaceId,
+  setCustomConfigData,
 } = slice.actions;

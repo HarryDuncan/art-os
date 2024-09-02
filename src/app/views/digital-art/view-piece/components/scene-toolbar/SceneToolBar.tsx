@@ -16,7 +16,7 @@ const BACK = {
   link: "/digital-art",
 };
 
-export const UtilityBar = () => {
+export const SceneToolBar = () => {
   return (
     <HorizontalDraw keyCode={KEYS.TAB}>
       <>

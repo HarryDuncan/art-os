@@ -43,27 +43,6 @@
         "name": "tech-geometry",
         "url": "../assets/models/website/tech-geometry.glb",
         "assetType": "MODEL3D"
-      },
-
-      {
-        "name": "hjdcurves1-geometry",
-        "url": "../assets/models/hjd-lines/line-1.glb",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "hjdcurves2-geometry",
-        "url": "../assets/models/hjd-lines/line-2.glb",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "hjdcurves3-geometry",
-        "url": "../assets/models/hjd-lines/line-3.glb",
-        "assetType": "MODEL3D"
-      },
-      {
-        "name": "hjdcurves4-geometry",
-        "url": "../assets/models/hjd-lines/line-4.glb",
-        "assetType": "MODEL3D"
       }
     ],
     "meshComponentConfigs": [

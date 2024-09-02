@@ -11,7 +11,7 @@
       },
       {
         "name": "geometry-2",
-        "url": "../assets/models/barba/vivid/morph/man.obj",
+        "url": "../assets/models/barba/vivid/morph/apollo.obj",
         "assetType": "MODEL3D"
       },
       {
@@ -31,9 +31,9 @@
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
-        "geometryId": "barba",
+        "geometryId": "apollo",
         "geometryConfig": {
-          "scale": 10
+          "scale": 3
         },
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "morphing-material"

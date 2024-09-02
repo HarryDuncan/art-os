@@ -1,10 +1,12 @@
 import { ShaderPropertyValueTypes } from "../../../constants/buildShader.consts";
-import { MorphEffectProps, UniformConfig } from "../../../types";
-import {
-  DEFAULT_MORPH_EFFECT_CONFIG,
-  VERTEX_EFFECT_POINT_NAMES,
-} from "../../vertexEffects.consts";
+import { formatVertexParameters } from "../../../helpers/formatVertexParameters";
+import { MorphEffectProps } from "../../../types";
+import { VERTEX_EFFECT_POINT_NAMES } from "../../vertexEffects.consts";
 import { buildMorphTransforms } from "./buildMorphTransforms";
+import {
+  DEFAULT_MORPH_EFFECT_PROPS,
+  DEFAULT_UNIFORM_CONFIG,
+} from "./morphVertex.consts";
 import { setUpMorphObjects } from "./setUpMorphObjects";
 
 const getAttributeConfig = (morphCount: number) =>
@@ -22,13 +24,14 @@ export const morphVertex = (
   previousPointName: string,
   effectProps: Partial<MorphEffectProps> | undefined = {}
 ) => {
-  const formattedProps = mergeWithDefault(effectProps);
+  const formattedProps = formatVertexParameters(
+    effectProps,
+    DEFAULT_MORPH_EFFECT_PROPS
+  ) as MorphEffectProps;
+
   const { morphCount, preTransformConfigs } = formattedProps;
   const pointName = VERTEX_EFFECT_POINT_NAMES.MORPHED_POINT;
-  const uniformConfig = {
-    defaultUniforms: ["uProgress", "uLoopCount"],
-    customUniforms: [],
-  } as UniformConfig;
+
   const attributeConfig = getAttributeConfig(morphCount);
   const { requiredFunctions, morphObjects, transforms } = setUpMorphObjects(
     morphCount,
@@ -45,14 +48,10 @@ export const morphVertex = (
     `;
   return {
     requiredFunctions,
-    uniformConfig,
+    uniformConfig: DEFAULT_UNIFORM_CONFIG,
     transformation,
     attributeConfig,
     varyingConfig: [],
     pointName,
   };
-};
-
-const mergeWithDefault = (effectProps: Partial<MorphEffectProps>) => {
-  return { ...DEFAULT_MORPH_EFFECT_CONFIG, ...effectProps };
 };

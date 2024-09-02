@@ -101,6 +101,8 @@ export type ShaderAttributeConfig = {
 export type AttributeValueConfig = RandomBoolConfig;
 export type AttributeConfig = ShaderPropertyConfig & {
   valueConfig?: AttributeValueConfig;
+  assetId?: string;
+  attributeCount?: number;
 };
 
 // <-------------------------------------UNIFORMS ---------------------------------->

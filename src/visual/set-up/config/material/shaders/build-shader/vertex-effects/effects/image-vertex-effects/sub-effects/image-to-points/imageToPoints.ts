@@ -47,7 +47,6 @@ export const imageToPoints = (
     imageToPointsEffectProps
   );
 
-  console.log(transformation);
   const uniformConfig = IMAGE_TO_POINTS_UNIFORM_CONFIG;
   const varyingConfig = IMAGE_TO_POINTS_VARYING_CONFIG;
   const requiredFunctions: ShaderFunction[] = IMAGE_TO_POINTS_REQUIRED_FUNCTIONS;

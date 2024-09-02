@@ -9,45 +9,28 @@ export const setupVideo = (url: string, identifier: string) => {
   video.id = identifier;
   video.width = 600;
   video.height = 600;
-  video.preload = "none";
+  video.preload = "auto";
   video.playsInline = true;
   video.muted = true;
   video.loop = true;
-
+  video.playbackRate = 0.2;
   // Waiting for these 2 events ensures
   // there is data in the video
 
-  video.addEventListener(
-    "playing",
-    () => {
-      // playing = true;
-    },
-    true
-  );
-
-  video.addEventListener(
-    "timeupdate",
-    () => {
-      // timeupdate = true;
-    },
-    true
-  );
-
   video.src = url;
 
-  const playPromise = video.play();
-  if (playPromise !== undefined) {
-    setTimeout(() => {
-      playPromise
-        .then((_) => {
-          // Automatic playback started!
-          // Show playing UI.
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }, 3000);
-  }
+  setTimeout(() => {
+    video
+      .play()
+      .then((_) => {
+        console.log("asd");
+        // Automatic playback started!
+        // Show playing UI.
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, 3000);
 
   return video;
 };

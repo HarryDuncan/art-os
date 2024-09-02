@@ -22,7 +22,7 @@
       },
       {
         "name": "chrome-material",
-        "url": "../assets/textures/matcaps/shifted_image_5.jpg",
+        "url": "../assets/textures/matcaps/shifted_image_3.jpg",
         "assetType": "TEXTURE",
         "id": "chrome-material",
         "assetTag": ["MATCAP"]
@@ -33,7 +33,7 @@
         "id": "geometry-1",
         "geometryId": "man",
         "geometryConfig": {
-          "scale": 2
+          "scale": 1.5
         },
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "morphing-material"
@@ -43,7 +43,7 @@
         "geometryId": "apollo",
         "meshType": "NONE",
         "geometryConfig": {
-          "scale": 3
+          "scale": 1.5
         },
         "position": { "x": 0, "y": 0, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": -0 },

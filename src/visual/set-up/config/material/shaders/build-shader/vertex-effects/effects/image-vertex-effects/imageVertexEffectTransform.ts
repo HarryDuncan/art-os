@@ -1,11 +1,7 @@
 import { DEFAULT_VERTEX_EFFECT } from "../../../constants";
 import { POINT_PARENTS } from "../../../constants/buildShader.consts";
-import {
-  ImageVertexEffect,
-  ImageVertexEffectProps,
-  PointParent,
-} from "../../../types";
-import { VERTEX_EFFECTS } from "../../vertexEffects.consts";
+import { ImageVertexEffect, PointParent } from "../../../types";
+import { IMAGE_VERTEX_EFFECT } from "../../vertexEffects.consts";
 import { VertexEffectData } from "../../vertexEffects.types";
 import { imageToPoints } from "./sub-effects/image-to-points/imageToPoints";
 
@@ -14,7 +10,7 @@ export const imageVertexEffectTransform = (
   previousPointName: string,
   imageVertexEffectProps: ImageVertexEffect
 ) => {
-  const { declareInTransform, effectProps } = imageVertexEffectProps;
+  const { declareInTransform, effectType } = imageVertexEffectProps;
   const {
     uniformConfig: effectUniforms,
     varyingConfig: effectVaryings,
@@ -22,7 +18,7 @@ export const imageVertexEffectTransform = (
     pointName: effectPointName,
     requiredFunctions: effectFunctions,
     attributeConfig: effectAttributes,
-  } = getEffectData(previousPointName, effectProps);
+  } = getEffectData(previousPointName, effectType);
 
   const vertexPointInstantiation = `vec4 ${pointName} = vec4(${previousPointName}.xyz, 1.0);`;
   const transformation = `
@@ -43,16 +39,13 @@ export const imageVertexEffectTransform = (
 
 const getEffectData = (
   pointName: string,
-  imageVertexEffectProps: ImageVertexEffectProps
+  effectType: string
 ): VertexEffectData => {
-  const { effectType } = imageVertexEffectProps;
   const formattedEffectProps = {
-    ...imageVertexEffectProps,
     pointParent: POINT_PARENTS.IMAGE_EFFECT as PointParent,
   };
-  console.log(formattedEffectProps);
   switch (effectType) {
-    case VERTEX_EFFECTS.IMAGE_TO_POINT:
+    case IMAGE_VERTEX_EFFECT.IMAGE_TO_POINTS:
       return imageToPoints(pointName, formattedEffectProps);
     default:
       return { ...DEFAULT_VERTEX_EFFECT, pointName };

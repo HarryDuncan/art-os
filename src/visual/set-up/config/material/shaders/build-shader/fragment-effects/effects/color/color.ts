@@ -1,41 +1,29 @@
-import { Vector3 } from "three";
-import { ShaderPropertyValueTypes } from "../../../constants/buildShader.consts";
-import {
-  DEFAULT_FRAG_COLOR,
-  FRAGMENT_COLOR_NAMES,
-} from "../../fragmentEffects.consts";
+import { FRAGMENT_COLOR_NAMES } from "../../fragmentEffects.consts";
 import { colorTransformation } from "./colorTransformation";
+import { ColorFragmentEffectProps, FragmentEffectData } from "../../../types";
 import {
-  ColorFragmentEffectProps,
-  FragmentEffectData,
-  UniformConfig,
-} from "../../../types";
-
-export const colorFunctions = () => [];
-
-export const colorUniforms = () => ({
-  defaultUniforms: [],
-  customUniforms: [
-    {
-      id: "uColor",
-      valueType: ShaderPropertyValueTypes.VEC3,
-      value: new Vector3(0, 0, 0),
-    },
-  ],
-});
-
-export const colorVaryings = () => [];
+  DEFAULT_COLOR_EFFECT_PROPS,
+  DEFAULT_COLOR_FUNCTIONS,
+  DEFAULT_COLOR_UNIFORMS,
+  DEFAULT_COLOR_VARYINGS,
+} from "./color.consts";
+import { formatFragmentParameters } from "../../../helpers/formatFragmentParameters";
 
 export const color = (
   _previousFragName: string,
   effectProps: Partial<ColorFragmentEffectProps>
 ): FragmentEffectData => {
-  const formattedEffectProps = formatEffectProps(effectProps);
+  const formattedEffectProps = formatFragmentParameters(
+    effectProps,
+    DEFAULT_COLOR_EFFECT_PROPS
+  ) as ColorFragmentEffectProps;
   const fragName = FRAGMENT_COLOR_NAMES.COLOR;
-  const uniformConfig = colorUniforms() as UniformConfig;
-  const varyingConfig = colorVaryings();
+  const uniformConfig = DEFAULT_COLOR_UNIFORMS;
+  const varyingConfig = DEFAULT_COLOR_VARYINGS;
+  const requiredFunctions = DEFAULT_COLOR_FUNCTIONS;
+
   const transformation = colorTransformation(fragName, formattedEffectProps);
-  const requiredFunctions = colorFunctions();
+
   return {
     requiredFunctions,
     uniformConfig,
@@ -44,9 +32,4 @@ export const color = (
     attributeConfig: [],
     fragName,
   };
-};
-const formatEffectProps = (
-  parsedEffectProps: Partial<ColorFragmentEffectProps>
-) => {
-  return { color: DEFAULT_FRAG_COLOR, ...parsedEffectProps };
 };

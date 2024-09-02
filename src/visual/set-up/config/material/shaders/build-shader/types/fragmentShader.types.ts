@@ -23,6 +23,8 @@ export type PointMaterialFragmentEffectProps = EffectParameters & {
   pointDisplayPercentage: number;
   defaultColor?: string;
   pointTextures: PointTexture[];
+  effectProps?: any;
+  effectType?: string;
 };
 
 export type MaterialEffectProps = EffectParameters & {
@@ -30,6 +32,7 @@ export type MaterialEffectProps = EffectParameters & {
 };
 
 export type ColorFragmentEffectProps = EffectParameters & {
+  shadingType: string;
   color: string;
   opacity?: number;
 };
@@ -46,7 +49,7 @@ export type OpacityFragmentEffectProps = EffectParameters & {
 export type BrightnessFragmentEffectProps = EffectParameters & {};
 
 export type FragmentEffectProps =
-  | PointMaterialEffectProps
+  | PointMaterialFragmentEffectProps
   | ColorFragmentEffectProps
   | OpacityFragmentEffectProps
   | VanishFragmentEffectProps

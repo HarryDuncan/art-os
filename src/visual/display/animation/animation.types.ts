@@ -5,7 +5,10 @@ import {
   OBJECT_UPDATE_PROPERTY,
   TRIG_FUNCTION_TYPES,
 } from "./animation.constants";
-import { AnimationLoopConfigItem } from "./animation-functions/shader-animations/animation-loop/animationloop.types";
+import {
+  AnimationLoopConfigItem,
+  TransitionLoopConfig,
+} from "./animation-functions/shader-animations/animation-loop/animationloop.types";
 import {
   Axis,
   Position3d,
@@ -53,6 +56,7 @@ export interface TraversalAnimationConfig extends AnimationPropertiesConfig {
 export interface ShaderAnimationConfig extends AnimationPropertiesConfig {
   snapOnPause?: boolean;
   animationLoopConfig: AnimationLoopConfigItem[];
+  transitionAnimation?: TransitionLoopConfig[];
 }
 
 export type FallParams = {

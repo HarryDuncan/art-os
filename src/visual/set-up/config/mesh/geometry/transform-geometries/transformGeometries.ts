@@ -62,6 +62,16 @@ export const transformGeometry = (
           });
           return attributesSet;
         }
+        case MESH_TRANSFORM.PRE_DEFINED: {
+          const attributesSet = transformedMeshes.map(({ geometry }) => {
+            attributeConfig?.forEach((config) => {
+              if (config.value) {
+                geometry.setAttribute(config.id, config.value);
+              }
+            });
+          });
+          return attributesSet;
+        }
         case MESH_TRANSFORM.DEFAULT:
         default: {
           return formattedGeometries;

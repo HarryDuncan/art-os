@@ -110,4 +110,11 @@ export class InteractiveScene extends Scene {
       this.orbitControls = orbitControls;
     }
   }
+
+  // Initialize Editor
+  initializeSceneEditor() {
+    console.log("initializing");
+  }
+  // On Editor Update
+  onEditorUpdate() {}
 }

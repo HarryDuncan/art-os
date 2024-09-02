@@ -9,6 +9,9 @@ import { useAppSelector } from "app/redux/store";
 import { ScenePlayState } from "app/redux/scene-data/slice";
 import InteractiveNode from "interaction/external/interactive-node/InteractiveNode";
 import { AppendContainer } from "app/components/AppendContainer";
+import EditorNode from "editor/EditorNode";
+import { SceneEditor } from "./components/scene-editor/SceneEditor";
+import { SceneToolBar } from "./components/scene-toolbar/SceneToolBar";
 
 export const ViewPiece = () => {
   const {
@@ -29,6 +32,7 @@ const ViewPieceContent = () => {
     sceneControls: { sceneIndex },
   } = useAppSelector((state) => state.sceneData);
   const isInteractive = true;
+  const isEditable = true;
   return (
     <>
       <SceneToolBar />
@@ -38,7 +42,13 @@ const ViewPieceContent = () => {
           <Suspense>
             {sceneParameters ? (
               <>
-                {isInteractive ? (
+                {isEditable ? (
+                  <EditorNode
+                    {...sceneParameters}
+                    key={sceneIndex}
+                    isInteractive={isInteractive}
+                  />
+                ) : isInteractive ? (
                   <InteractiveNode {...sceneParameters} key={sceneIndex} />
                 ) : (
                   <SceneNode {...sceneParameters} key={sceneIndex} />

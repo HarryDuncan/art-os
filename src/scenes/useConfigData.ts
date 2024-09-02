@@ -2,6 +2,7 @@ import { ROOT } from "app/constants";
 import { setSceneCounts } from "app/redux/scene-data/actions";
 import { useAppDispatch, useAppSelector } from "app/redux/store";
 import { useMemo } from "react";
+import { deepMergeObjects } from "utils";
 import { SceneConfigType } from "visual/set-up/config/config.constants";
 import { SceneConfig } from "visual/set-up/config/config.types";
 import { useFetchConfig } from "visual/set-up/config/useFetchConfig";
@@ -14,7 +15,8 @@ export const useConfigData = (sceneConfigId: string) => {
     : "";
   const sceneConfigData = useFetchConfig(configPath);
   const configData = useMasterSceneData(sceneConfigData);
-  return configData;
+  const mergedConfigData = useMergeCustomConfig(configData);
+  return mergedConfigData;
 };
 
 const useSceneConfig = (sceneConfigId: string) => {
@@ -57,4 +59,15 @@ const useMasterSceneData = (sceneConfigData: SceneConfig[] | undefined) => {
     console.warn(`error retrieving scene config at index ${sceneIndex}`);
     return sceneConfigData[0];
   }, [sceneConfigData, sceneIndex, isUsingLastScene]);
+};
+
+const useMergeCustomConfig = (sceneConfig: SceneConfig | null) => {
+  const { customSceneConfig } = useAppSelector((state) => state.sceneData);
+  return useMemo(() => {
+    if (!sceneConfig) {
+      return null;
+    } else {
+      return deepMergeObjects(sceneConfig, customSceneConfig);
+    }
+  }, [customSceneConfig, sceneConfig]);
 };

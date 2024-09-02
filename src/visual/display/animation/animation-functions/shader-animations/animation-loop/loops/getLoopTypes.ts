@@ -6,10 +6,8 @@ import {
   AnimationLoopType,
   FlickerLoopProps,
   LoopProps,
-  TransitionLoopProps,
 } from "../animationloop.types";
 import { flickerLoop } from "./flicker-loop/flickerLoop";
-import { transitionLoop } from "./transition-loop/transitionLoop";
 
 export const getLoopType = (
   loopType: AnimationLoopType,
@@ -46,8 +44,7 @@ export const getLoopType = (
     case ANIMATION_LOOP_TYPES.FLICKER: {
       return flickerLoop(loopProps as FlickerLoopProps);
     }
-    case ANIMATION_LOOP_TYPES.TRANSITION_LOOP:
-      return transitionLoop(loopProps as TransitionLoopProps);
+
     case ANIMATION_LOOP_TYPES.MIN_MAX:
       return (time: number) =>
         Math.max(

@@ -1,6 +1,7 @@
 import {
   DoubleSide,
   Material,
+  MeshBasicMaterial,
   MeshLambertMaterial,
   MeshMatcapMaterial,
   MeshPhongMaterial,
@@ -46,19 +47,26 @@ export const getMaterial = (
       if (video) {
         const texture = new VideoTexture(video as HTMLVideoElement);
         const parameters = { color: 0xffffff, map: texture };
-        return new MeshLambertMaterial(parameters);
+        return new MeshBasicMaterial(parameters);
       }
       console.warn("no video element found");
       return new MeshStandardMaterial({});
     }
     case MATERIAL_TYPES.PHONG: {
-      const { color, specular, shininess } =
-        materialProps as unknown as PhongMaterialProps;
+      const {
+        color,
+        specular,
+        shininess,
+      } = (materialProps as unknown) as PhongMaterialProps;
       return new MeshPhongMaterial({ color, specular, shininess });
     }
     case MATERIAL_TYPES.STANDARD: {
-      const { color, roughness, metalness, envMapIntensity } =
-        materialProps as unknown as StandardMaterialProps;
+      const {
+        color,
+        roughness,
+        metalness,
+        envMapIntensity,
+      } = (materialProps as unknown) as StandardMaterialProps;
       return new MeshStandardMaterial({
         color,
         roughness,

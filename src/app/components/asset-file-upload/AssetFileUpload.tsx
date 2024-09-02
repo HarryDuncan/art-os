@@ -1,14 +1,17 @@
 import React, { ReactNode, useState } from "react";
-import { FullScreenContainer } from "../digital-art/StyledComponents";
+import { FullScreenContainer } from "../../views/digital-art/StyledComponents";
+import { UPLOAD_RETURN_TYPES } from "./AssetFileUpload.consts";
 
 interface FileDropProps {
   children: ReactNode;
-  onFileLoad: (fileContent: string) => void;
+  onFileLoad: (fileContent: string | any) => void;
+  returnType?: string;
 }
 
 export const AssetFileUpload: React.FC<FileDropProps> = ({
   children,
   onFileLoad,
+  returnType = UPLOAD_RETURN_TYPES.FILE,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
 
@@ -25,10 +28,18 @@ export const AssetFileUpload: React.FC<FileDropProps> = ({
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files[0];
-
+    console.log(file);
     if (file) {
-      const fileContent = await readFileContent(file);
-      onFileLoad(fileContent);
+      switch (returnType) {
+        case UPLOAD_RETURN_TYPES.FILE:
+          const fileContent = await readFileContent(file);
+          onFileLoad(fileContent);
+          break;
+        case UPLOAD_RETURN_TYPES.UPLOAD_OBJECT:
+        default:
+          onFileLoad(file);
+          break;
+      }
     }
   };
 

@@ -33,11 +33,6 @@ export const VERTEX_EFFECT_POINT_NAMES = {
   IMAGE_TO_POINT: "imageToPoint",
 };
 
-export const DEFAULT_MORPH_EFFECT_CONFIG = {
-  morphCount: 2,
-  preTransformConfigs: [],
-};
-
 export const enum TransformTypes {
   TRANSLATE = "TRANSLATE",
 }

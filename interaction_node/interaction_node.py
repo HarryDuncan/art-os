@@ -8,8 +8,6 @@ import grpc
 import interactionNode_pb2 as pb2
 import interactionNode_pb2_grpc as pb2_grpc
 
-
-
 # ALGOS
 import detection.posenet as Posenet
 

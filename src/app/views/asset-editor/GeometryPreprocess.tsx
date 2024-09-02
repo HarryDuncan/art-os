@@ -18,7 +18,7 @@ const preTranformConfig = {
 };
 
 export const GeometryPreprocess = () => {
-  const assets = useFetchData(`${CONFIG}assets/vivid.json`);
+  const assets = useFetchData(`${CONFIG}assets/blackout/blackout-logo.json`);
   const { initializedAssets, areAssetsInitialized } = useAssets(
     assets as Asset[]
   );
