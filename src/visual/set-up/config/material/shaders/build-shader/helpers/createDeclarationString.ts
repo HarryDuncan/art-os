@@ -6,11 +6,12 @@ import {
 export const createDeclarationString = (
   propertyType: ShaderPropertyTypes,
   valueType: ShaderPropertyValueTypes,
-  propertyId: string
+  id: string,
+  arrayLength?: number
 ) =>
-  `${propertyType.toLowerCase()} ${getValueTypeString(
-    valueType
-  )} ${propertyId};`;
+  `${propertyType.toLowerCase()} ${getValueTypeString(valueType)} ${id}${
+    arrayLength ? `[${arrayLength}]` : ""
+  };`;
 
 const getValueTypeString = (valueType: ShaderPropertyValueTypes) => {
   switch (valueType) {

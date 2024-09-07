@@ -27,6 +27,7 @@ export type ShaderPropertyConfig = {
   id: string;
   valueType: ShaderPropertyValueTypes;
   value?: unknown;
+  arrayLength?: number;
 };
 
 export type ShaderFunction = {

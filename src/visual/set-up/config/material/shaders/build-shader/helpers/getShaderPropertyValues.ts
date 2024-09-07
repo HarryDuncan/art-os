@@ -7,7 +7,7 @@ import { ShaderPropertyConfig } from "../types";
 import { createDeclarationString } from "./createDeclarationString";
 
 interface CustomProperties {
-  [key: string]: { value: unknown };
+  [key: string]: { value: unknown } | { value: unknown }[];
 }
 export const setUpCustomPropertyValues = (
   config: ShaderPropertyConfig[],
@@ -15,49 +15,57 @@ export const setUpCustomPropertyValues = (
 ) => {
   const customProperties: CustomProperties = {};
   const customStrings: string[] = [];
-  config.forEach(({ value, id, valueType }) => {
-    switch (valueType) {
-      case ShaderPropertyValueTypes.INT:
-        customProperties[id] = { value: value ?? 0 };
-        break;
-      case ShaderPropertyValueTypes.FLOAT:
-        customProperties[id] = { value: value ?? 0 };
-        break;
-      case ShaderPropertyValueTypes.BOOL:
-        customProperties[id] = { value: value ?? false };
-        break;
-      case ShaderPropertyValueTypes.VEC2:
-        customProperties[id] = { value: value ?? new Vector2() };
-        break;
-      case ShaderPropertyValueTypes.VEC3:
-        customProperties[id] = { value: value ?? new Vector3() };
-        break;
-      case ShaderPropertyValueTypes.VEC4:
-        customProperties[id] = { value: value ?? new Vector4() };
-        break;
-      case ShaderPropertyValueTypes.MAT2:
-        customProperties[id] = { value: value ?? new Matrix3() };
-        break;
-      case ShaderPropertyValueTypes.MAT3:
-        customProperties[id] = { value: value ?? new Matrix3() };
-        break;
-      case ShaderPropertyValueTypes.MAT4:
-        customProperties[id] = { value: value ?? new Matrix4() };
-        break;
-      case ShaderPropertyValueTypes.SAMPLER2D:
-        customProperties[id] = { value: value ?? null };
-        break;
-      case ShaderPropertyValueTypes.SAMPLER_CUBE:
-        customProperties[id] = { value: value ?? null };
-        break;
-      case ShaderPropertyValueTypes.VOID:
-        break;
-      case ShaderPropertyValueTypes.CONST:
-        break;
-      default:
-        console.warn(`uniform configuration not set for ${valueType}`);
+  config.forEach(({ value, id, valueType, arrayLength }) => {
+    if (arrayLength !== undefined) {
+      const propertyValues = new Array(arrayLength).fill(
+        getValue(valueType, value)
+      );
+      customProperties[id] = propertyValues;
+    } else {
+      const propertyValue = getValue(valueType, value);
+      if (propertyValue) {
+        customProperties[id] = propertyValue;
+      } else {
+        console.warn(`Property value for ${id} ${valueType} is undefined`);
+      }
     }
-    customStrings.push(createDeclarationString(propertyType, valueType, id));
+
+    customStrings.push(
+      createDeclarationString(propertyType, valueType, id, arrayLength)
+    );
   });
   return { customProperties, customStrings };
+};
+
+const getValue = (valueType, value) => {
+  switch (valueType) {
+    case ShaderPropertyValueTypes.INT:
+      return { value: value ?? 0 };
+    case ShaderPropertyValueTypes.FLOAT:
+      return { value: value ?? 0 };
+    case ShaderPropertyValueTypes.BOOL:
+      return { value: value ?? false };
+    case ShaderPropertyValueTypes.VEC2:
+      return { value: value ?? new Vector2() };
+    case ShaderPropertyValueTypes.VEC3:
+      return { value: value ?? new Vector3() };
+    case ShaderPropertyValueTypes.VEC4:
+      return { value: value ?? new Vector4() };
+    case ShaderPropertyValueTypes.MAT2:
+      return { value: value ?? new Matrix3() };
+    case ShaderPropertyValueTypes.MAT3:
+      return { value: value ?? new Matrix3() };
+    case ShaderPropertyValueTypes.MAT4:
+      return { value: value ?? new Matrix4() };
+    case ShaderPropertyValueTypes.SAMPLER2D:
+      return { value: value ?? null };
+    case ShaderPropertyValueTypes.SAMPLER_CUBE:
+      return { value: value ?? null };
+    case ShaderPropertyValueTypes.VOID:
+      break;
+    case ShaderPropertyValueTypes.CONST:
+      break;
+    default:
+      console.warn(`uniform configuration not set for ${valueType}`);
+  }
 };

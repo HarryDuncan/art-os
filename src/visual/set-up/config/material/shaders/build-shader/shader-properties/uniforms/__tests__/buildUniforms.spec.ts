@@ -16,7 +16,6 @@ describe("buildUniforms", () => {
 
   test("returns default uniforms", () => {
     const result = buildUniforms(configs[1] as UniformConfig);
-
     const expected = {
       uniformDeclaration:
         "// UNIFORM DECLARATION \n uniform float uTime; \n uniform vec3 uPosition; \n uniform vec2 uResolution;",
@@ -43,5 +42,22 @@ describe("buildUniforms", () => {
       },
     };
     expect(result).toStrictEqual(expected);
+  });
+  test("returns correct uniform with an array of vec 3", () => {
+    const VEC3_ARRAY_UNIFORM_CONFIG = {
+      defaultUniforms: [],
+      customUniforms: [
+        { id: "uArray", valueType: "FLOAT", arrayLength: 3 },
+        { id: "uArray2", valueType: "FLOAT", value: 15.5, arrayLength: 3 },
+      ],
+    } as UniformConfig;
+    const { uniforms, uniformDeclaration } = buildUniforms(
+      VEC3_ARRAY_UNIFORM_CONFIG
+    );
+    expect(uniformDeclaration).toContain("float uArray[3];");
+    // @ts-ignore
+    expect(uniforms.uArray.length).toStrictEqual(3);
+    // @ts-ignore
+    expect(uniforms.uArray2.length).toEqual(3);
   });
 });
