@@ -78,6 +78,9 @@ const getDefaultVaryingString = (
           `vNormal = normalize((modelViewMatrix * vec4(normal, 0.0)).xyz);`
         );
         break;
+      case "vModelViewMatrix":
+        strings.push("vModelViewMatrix = modelViewMatrix;");
+        break;
       case "vTexCoord":
         strings.push(`vTexCoord = texcoord;`);
       case "vEye":

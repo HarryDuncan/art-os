@@ -1,3 +1,4 @@
+import { Vector3 } from "three";
 import { ShaderPropertyValueTypes } from "../../../../constants";
 import {
   getDistanceAttenuation,
@@ -24,9 +25,13 @@ export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
     { id: "uSpecularIntensity", valueType: ShaderPropertyValueTypes.FLOAT },
     { id: "uRoughness", valueType: ShaderPropertyValueTypes.FLOAT },
     { id: "uMetalness", valueType: ShaderPropertyValueTypes.FLOAT },
-    { id: "uOpacity", valueType: ShaderPropertyValueTypes.FLOAT },
+    { id: "uOpacity", valueType: ShaderPropertyValueTypes.FLOAT, value: 1.0 },
     { id: "uIor", valueType: ShaderPropertyValueTypes.FLOAT },
-    { id: "uDiffuse", valueType: ShaderPropertyValueTypes.VEC3 },
+    {
+      id: "uDiffuse",
+      valueType: ShaderPropertyValueTypes.VEC3,
+      value: new Vector3(1, 0.5, 0.5),
+    },
     { id: "uEmissive", valueType: ShaderPropertyValueTypes.VEC3 },
     { id: "uSpecularColor", valueType: ShaderPropertyValueTypes.VEC3 },
     { id: "uAmbientLightColor", valueType: ShaderPropertyValueTypes.VEC3 },
@@ -34,6 +39,7 @@ export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
       id: "uLightProbe",
       valueType: ShaderPropertyValueTypes.VEC3,
       arrayLength: 9,
+      value: new Vector3(1, 0.5, 0.5),
     },
   ],
 } as UniformConfig;
@@ -65,7 +71,7 @@ export const PHYSICAL_MATERIAL_VARYING_CONFIG = [
   },
   {
     id: "vModelViewMatrix",
-    varyingType: VARYING_TYPES.ATTRIBUTE,
+    varyingType: VARYING_TYPES.DEFAULT,
     attributeKey: "modelViewMatrix",
     valueType: ShaderPropertyValueTypes.MAT4,
   },
