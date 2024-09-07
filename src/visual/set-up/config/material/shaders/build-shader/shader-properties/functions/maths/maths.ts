@@ -14,6 +14,7 @@ export const mod289Vec4 = `// **- // Returns vector4 modulo 289
   }
   `;
 
+export const pow2 = `float pow2 (float x) { return x*x; }`;
 export const permuteFloat = `// **- // permutates a float
 float permute(float x) {
     return mod289(((x*34.0)+1.0)*x);

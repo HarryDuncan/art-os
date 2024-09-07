@@ -16,6 +16,7 @@ import { buildVaryings } from "./shader-properties/varyings/buildVaryings";
 import { mergeVaryingConfigs } from "./shader-properties/varyings/helpers/mergeVaryingConfigs";
 import { setUpVertexEffects } from "./vertex-effects/setUpVertexEffects";
 import { buildStruct } from "./shader-properties/structs/buildStructs";
+import { mergeStructConfigs } from "./shader-properties/structs/mergeStructConfigs";
 
 export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const {
@@ -71,7 +72,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   );
 
   const vertexShader = formatVertexShader(
-    mergedStructConfig,
+    structDeclaration,
     attributes,
     uniformDeclaration,
     varyingDeclaration,
@@ -81,7 +82,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     vertexEffects.viewMatrix
   );
   const fragmentShader = formatFragmentShader(
-    mergedStructConfig,
+    structDeclaration,
     uniformDeclaration,
     varyingDeclaration,
     fragmentEffects.requiredFunctions,
