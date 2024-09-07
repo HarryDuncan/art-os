@@ -41,6 +41,7 @@ describe("buildUniforms", () => {
         uTime: { value: 0 },
       },
     };
+    console.log(result);
     expect(result).toStrictEqual(expected);
   });
   test("returns correct uniform with an array of vec 3", () => {
@@ -56,8 +57,8 @@ describe("buildUniforms", () => {
     );
     expect(uniformDeclaration).toContain("float uArray[3];");
     // @ts-ignore
-    expect(uniforms.uArray.length).toStrictEqual(3);
+    expect(uniforms.uArray.value.length).toStrictEqual(3);
     // @ts-ignore
-    expect(uniforms.uArray2.length).toEqual(3);
+    expect(uniforms.uArray2.value.length).toEqual(3);
   });
 });

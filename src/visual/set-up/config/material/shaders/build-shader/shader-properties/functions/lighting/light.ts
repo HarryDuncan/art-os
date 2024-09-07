@@ -45,10 +45,20 @@ vec3 shGetIrradianceAt(  vec3 normal,  vec3 shCoefficients[ 9 ] ) {
 	return result;
 }`;
 export const getLightProbeIrradiance = `
-vec3 getLightProbeIrradiance( vec3 lightProbe, vec3 normal , mat4 modelViewMatrix) {
-	vec3 worldNormal = inverseTransformDirection( normal, modelViewMatrix  );
+vec3 getLightProbeIrradiance( vec3 lightProbe[9], vec3 normal , mat4 viewMatrix) {
+	vec3 worldNormal = inverseTransformDirection( normal, viewMatrix  );
 	vec3 irradiance = shGetIrradianceAt( worldNormal, lightProbe );
 	return irradiance;
 }`;
 
 export const getIBLIrradiance = ``;
+
+export const linearToneMapping = `
+    vec3 linearToneMapping(vec3 color, float toneMappingExposure){
+        return toneMappingExposure * color;
+    }
+`;
+
+export const linearTosRGB = `vec4 linearTosRGB( vec4 value ) {
+	return vec4( mix( pow( value.rgb, vec3( 0.41666 ) ) * 1.055 - vec3( 0.055 ), value.rgb * 12.92, vec3( lessThanEqual( value.rgb, vec3( 0.0031308 ) ) ) ), value.a );
+}`;

@@ -45,7 +45,7 @@ export const physicalMaterialTransform = (
 
 	vec3 iblIrradiance = vec3( 0.0 );
 	vec3 irradiance = uAmbientLightColor;
-	// irradiance += getLightProbeIrradiance( uLightProbe, geometry.normal , modelViewMatrix);
+	irradiance += getLightProbeIrradiance( uLightProbe, geometry.normal , vModelViewMatrix);
 	vec3 radiance = vec3( 0.0 );
 	vec3 clearcoatRadiance = vec3( 0.0 );
 	vec3 totalDiffuse = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse;
@@ -53,8 +53,8 @@ export const physicalMaterialTransform = (
 	vec3 outgoingLight = totalDiffuse + totalSpecular + totalEmissiveRadiance;
     diffuseColor.a = 1.0;
     vec4 ${fragName} = vec4( outgoingLight, diffuseColor.a );
-    ${fragName}.rgb = toneMapping( ${fragName}.rgb );
-    ${fragName} = linearToOutputTexel( ${fragName} );
+    ${fragName}.rgb = linearToneMapping( ${fragName}.rgb ,uToneMappingExposure);
+    ${fragName} = linearTosRGB( ${fragName} );
     `;
 
   return { transform };

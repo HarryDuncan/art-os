@@ -3,6 +3,8 @@ import {
   getDistanceAttenuation,
   getLightProbeIrradiance,
   inverseTransformDirection,
+  linearToneMapping,
+  linearTosRGB,
   pointLightInfo,
   shGetIrradianceAt,
 } from "../../../../shader-properties/functions/lighting/light";
@@ -18,6 +20,7 @@ import {
 export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
   defaultUniforms: ["uResolution"],
   customUniforms: [
+    { id: "uToneMappingExposure", valueType: ShaderPropertyValueTypes.FLOAT },
     { id: "uSpecularIntensity", valueType: ShaderPropertyValueTypes.FLOAT },
     { id: "uRoughness", valueType: ShaderPropertyValueTypes.FLOAT },
     { id: "uMetalness", valueType: ShaderPropertyValueTypes.FLOAT },
@@ -27,7 +30,11 @@ export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
     { id: "uEmissive", valueType: ShaderPropertyValueTypes.VEC3 },
     { id: "uSpecularColor", valueType: ShaderPropertyValueTypes.VEC3 },
     { id: "uAmbientLightColor", valueType: ShaderPropertyValueTypes.VEC3 },
-    { id: "uLightProbe", valueType: ShaderPropertyValueTypes.VEC3 },
+    {
+      id: "uLightProbe",
+      valueType: ShaderPropertyValueTypes.VEC3,
+      arrayLength: 9,
+    },
   ],
 } as UniformConfig;
 
@@ -45,6 +52,8 @@ export const PHYSICAL_MATERIAL_REQUIRED_FUNCTIONS = [
     id: "getLightProbeIrradiance",
     functionDefinition: getLightProbeIrradiance,
   },
+  { id: "linearToneMapping", functionDefinition: linearToneMapping },
+  { id: "linearTosRGB", functionDefinition: linearTosRGB },
 ] as ShaderFunction[];
 
 export const PHYSICAL_MATERIAL_VARYING_CONFIG = [
@@ -53,6 +62,12 @@ export const PHYSICAL_MATERIAL_VARYING_CONFIG = [
     varyingType: VARYING_TYPES.ATTRIBUTE,
     attributeKey: "normal",
     valueType: ShaderPropertyValueTypes.VEC3,
+  },
+  {
+    id: "vModelViewMatrix",
+    varyingType: VARYING_TYPES.ATTRIBUTE,
+    attributeKey: "modelViewMatrix",
+    valueType: ShaderPropertyValueTypes.MAT4,
   },
   {
     id: "vEye",
