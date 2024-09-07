@@ -9,6 +9,7 @@ import {
   UniformConfig,
   VaryingConfig,
   AttributeConfig,
+  StructConfig,
 } from "./buildShader.types";
 
 export type FragmentEffectType = keyof typeof FRAGMENT_EFFECT;
@@ -72,6 +73,7 @@ export interface FragmentEffectData {
   transformation: string;
   fragName: string;
   fragmentColorInstantiation?: string;
+  structConfigs?: StructConfig[];
 }
 
 // <------------------------------------Interactive ------------------------------------->

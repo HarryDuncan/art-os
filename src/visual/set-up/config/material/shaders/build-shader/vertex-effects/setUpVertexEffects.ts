@@ -1,6 +1,7 @@
 import {
   AttributeConfig,
   ShaderFunction,
+  StructConfig,
   UniformConfig,
   VaryingConfig,
   VertexEffectConfig,
@@ -11,6 +12,7 @@ import { mergeUniformConfigs } from "../shader-properties/uniforms/helpers/merge
 import { mergeVaryingConfigs } from "../shader-properties/varyings/helpers/mergeVaryingConfigs";
 import { getVertexEffect } from "./effects/getVertexEffect";
 import { VERTEX_EFFECT_POINT_NAMES } from "./vertexEffects.consts";
+import { mergeStructConfigs } from "../shader-properties/structs/mergeStructConfigs";
 
 export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
   const {
@@ -43,6 +45,7 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
   const unmergedVaryingConfigs: VaryingConfig[][] = [];
   const unmergedTransformations: string[] = [];
   const allRequiredFunctions: ShaderFunction[][] = [];
+  const unmergedStructConfigs: StructConfig[][] = [];
   const unmergedAttributeConfigs: AttributeConfig[][] = [];
   vertexEffects.forEach((effect) => {
     const {
@@ -60,6 +63,7 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
     unmergedAttributeConfigs.push(attributeConfig);
     unmergedTransformations.push(transformation);
     allRequiredFunctions.push(requiredFunctions);
+    unmergedStructConfigs.push(structConfigs);
   });
 
   const mergedUniformConfigs = mergeUniformConfigs(unmergedUniformConfigs);
@@ -68,6 +72,7 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
   const mergedAttributeConfigs = mergeAttributeConfigs(
     unmergedAttributeConfigs
   );
+  const mergedStructConfigs = mergeStructConfigs(unmergedStructConfigs);
   const transformations = unmergedTransformations.join("");
   return {
     uniformConfigs: mergedUniformConfigs,
@@ -76,6 +81,6 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
     previousPointName,
     requiredFunctions: mergedRequiredFunction,
     attributeConfigs: mergedAttributeConfigs,
-    structConfig: [],
+    structConfigs: mergedStructConfigs,
   };
 };

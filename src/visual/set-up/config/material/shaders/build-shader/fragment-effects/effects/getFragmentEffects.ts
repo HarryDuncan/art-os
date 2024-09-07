@@ -6,6 +6,7 @@ import {
   InteractiveFragmentEffect,
   MaterialEffectProps,
   OpacityFragmentEffectProps,
+  PhysicalMaterialProps,
   TriggeredFragmentEffect,
   VanishFragmentEffectProps,
 } from "../../types";
