@@ -11,21 +11,22 @@ export const getAttributeValuesFromAssets = (
       const selectedAsset = assets.find((asset) => asset.id === config.assetId);
       if (selectedAsset) {
         const texture = selectedAsset.data;
+        // @ts-ignore
         const { width, height } = texture.source.data;
         const numPoints = width * height;
         let originalColors;
         const threshold = 40;
+        // @ts-ignore
         const img = texture.image;
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-        console.log(ctx);
+
         let numVisible = 0;
         canvas.width = width;
         canvas.height = height;
         if (ctx) {
-          console.log(img);
-          ctx.scale(1, -1);
-          ctx.drawImage(img, 0, 0, width, height * -1);
+          ctx.scale(1, 1);
+          ctx.drawImage(img, 0, 0, width, height);
           const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           originalColors = Float32Array.from(imgData.data);
           for (let i = 0; i < numPoints; i += 1) {

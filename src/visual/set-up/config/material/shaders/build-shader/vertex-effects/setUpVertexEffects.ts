@@ -20,6 +20,7 @@ export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
     previousPointName,
     requiredFunctions,
     attributeConfigs,
+    structConfigs,
   } = getVertexTransformations(vertexEffects);
 
   const viewMatrix = `gl_Position = projectionMatrix * modelViewMatrix * vec4(${previousPointName}.xyz, 1.0);`;
@@ -32,6 +33,7 @@ export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
     viewMatrix,
     previousPointName,
     attributeConfigs,
+    structConfigs,
   };
 };
 
@@ -50,6 +52,7 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
       pointName,
       requiredFunctions,
       attributeConfig = [],
+      structConfigs = [],
     } = getVertexEffect(effect, previousPointName);
     previousPointName = pointName;
     unmergedUniformConfigs.push(uniformConfig);
@@ -73,5 +76,6 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
     previousPointName,
     requiredFunctions: mergedRequiredFunction,
     attributeConfigs: mergedAttributeConfigs,
+    structConfig: [],
   };
 };

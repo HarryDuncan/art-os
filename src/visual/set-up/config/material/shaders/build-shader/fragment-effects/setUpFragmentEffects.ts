@@ -16,6 +16,7 @@ export const setUpFragmentEffects = (
     transformations,
     attributeConfigs,
     requiredFunctions,
+    structConfigs,
   } = getFragmentColors(fragmentEffects);
 
   const fragColor = `gl_FragColor = ${finalFragmentColor};`;
@@ -26,6 +27,7 @@ export const setUpFragmentEffects = (
     transformations,
     attributeConfigs,
     requiredFunctions,
+    structConfigs,
   };
 };
 
@@ -70,6 +72,7 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
     transformations: mergedTransformations,
     attributeConfigs: mergedAttributeConfigs,
     requiredFunctions: mergedRequiredFunction,
+    structConfigs: [],
   };
 };
 

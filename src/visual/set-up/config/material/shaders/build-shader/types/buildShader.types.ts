@@ -117,10 +117,12 @@ export type UniformConfig = {
   customUniforms?: UniformValueConfig[];
 };
 
+export type StructConfig = { id: string; properties: ShaderPropertyConfig[] };
 export type BuiltShaderConfig = {
   vertexEffectConfigs: VertexEffectConfig[];
   fragmentEffectConfigs: FragmentEffectConfig[];
   uniformConfig?: UniformConfig;
   varyingConfig?: VaryingConfig[];
   attributeConfig?: AttributeConfig[];
+  structConfigs?: StructConfig[];
 };

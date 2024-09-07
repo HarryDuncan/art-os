@@ -67,3 +67,12 @@ float rand(vec2 n) {
 export const random = `float random(float n) {
 	return fract(sin(n) * 43758.5453123);
 }`;
+
+export const interpolate = `float interpolate(float x, float min_x, float max_x) {
+	return x * max_x + (1.0 - x) * min_x;
+}
+`;
+
+export const normSin = `float normsin(float x) {
+	return (sin(x) + 1.0) / 2.0;
+}`;

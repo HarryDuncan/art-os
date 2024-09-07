@@ -15,6 +15,7 @@ import { EMPTY_UNIFORM_CONFIG } from "./shader-properties/uniforms/uniforms.cons
 import { buildVaryings } from "./shader-properties/varyings/buildVaryings";
 import { mergeVaryingConfigs } from "./shader-properties/varyings/helpers/mergeVaryingConfigs";
 import { setUpVertexEffects } from "./vertex-effects/setUpVertexEffects";
+import { buildStruct } from "./shader-properties/structs/buildStructs";
 
 export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const {
@@ -23,7 +24,9 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     uniformConfig,
     varyingConfig,
     attributeConfig,
+    structConfigs,
   } = shaderConfig;
+
   const fragmentEffects = setUpFragmentEffects(fragmentEffectConfigs);
   const vertexEffects = setUpVertexEffects(vertexEffectConfigs);
 
@@ -49,6 +52,14 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const mergedShaderVaryings = mergeVaryingConfigs(
     shaderVaryings
   ) as VaryingConfig[];
+
+  const shaderStructConfigs = [
+    vertexEffects.structConfigs,
+    fragmentEffects.structConfigs,
+    structConfigs ?? [],
+  ];
+  const mergedStructConfig = mergeStructConfigs(shaderStructConfigs);
+  const structDeclaration = buildStruct(mergedStructConfig);
   const { uniforms, uniformDeclaration } = buildUniforms(mergedShaderUniforms);
   const {
     declaration: varyingDeclaration,
@@ -60,6 +71,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   );
 
   const vertexShader = formatVertexShader(
+    mergedStructConfig,
     attributes,
     uniformDeclaration,
     varyingDeclaration,
@@ -69,6 +81,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     vertexEffects.viewMatrix
   );
   const fragmentShader = formatFragmentShader(
+    mergedStructConfig,
     uniformDeclaration,
     varyingDeclaration,
     fragmentEffects.requiredFunctions,
@@ -84,6 +97,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
 };
 
 const formatVertexShader = (
+  structDeclaration: string,
   attributes: string,
   uniformDeclarations: string,
   varyingDeclaration: string,
@@ -93,6 +107,7 @@ const formatVertexShader = (
   viewMatrix: string
 ) => {
   return [
+    structDeclaration,
     attributes,
     uniformDeclarations,
     varyingDeclaration,
@@ -108,6 +123,7 @@ const formatVertexShader = (
 };
 
 export const formatFragmentShader = (
+  structDeclaration: string,
   uniformDeclaration: string,
   varyingDeclaration: string,
   fragmentFunctions: ShaderFunction[],
@@ -115,6 +131,7 @@ export const formatFragmentShader = (
   fragColor: string
 ) => {
   const shaderCodeArray: string[] = [
+    structDeclaration,
     uniformDeclaration,
     varyingDeclaration,
     ...fragmentFunctions.map(({ functionDefinition }) => functionDefinition),

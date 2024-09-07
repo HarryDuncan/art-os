@@ -1,6 +1,7 @@
 import {
   AttributeConfig,
   ShaderFunction,
+  StructConfig,
   UniformConfig,
   VaryingConfig,
 } from "../types";
@@ -13,6 +14,7 @@ export interface VertexEffectData {
   pointName: string;
   attributeConfig: AttributeConfig[];
   vertexPointInstantiation?: string;
+  structConfigs?: StructConfig[];
 }
 
 export type MorphObject = {
