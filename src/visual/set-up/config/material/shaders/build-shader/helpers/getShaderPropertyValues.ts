@@ -16,7 +16,7 @@ export const setUpCustomPropertyValues = (
 ) => {
   const customProperties: CustomProperties = {};
   const customStrings: string[] = [];
-  config.forEach(({ value, id, valueType, arrayLength }) => {
+  config.forEach(({ value, id, valueType, arrayLength, structProperties }) => {
     if (arrayLength !== undefined) {
       const propertyValues = new Array(arrayLength).fill(
         value ?? getDefaultValue(valueType)
@@ -32,7 +32,13 @@ export const setUpCustomPropertyValues = (
     }
 
     customStrings.push(
-      createDeclarationString(propertyType, valueType, id, arrayLength)
+      createDeclarationString(
+        propertyType,
+        valueType,
+        id,
+        arrayLength,
+        structProperties
+      )
     );
   });
   return { customProperties, customStrings };

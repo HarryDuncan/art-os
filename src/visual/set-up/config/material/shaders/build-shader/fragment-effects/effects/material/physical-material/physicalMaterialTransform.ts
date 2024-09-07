@@ -16,7 +16,8 @@ export const physicalMaterialTransform = (
     material.diffuseColor = diffuseColor.rgb * ( 1.0 - metalnessFactor );
     vec3 dxy = max( abs( dFdx( geometryNormal ) ), abs( dFdy( geometryNormal ) ) );
     float geometryRoughness = max( max( dxy.x, dxy.y ), dxy.z );
-    material.roughness = max( roughnessFactor, 0.0525 );material.roughness += geometryRoughness;
+    material.roughness = max( roughnessFactor, 0.0525 );
+    material.roughness += geometryRoughness;
     material.roughness = min( material.roughness, 1.0 );
 	material.ior = uIor;
     float specularIntensityFactor = uSpecularIntensity;
@@ -31,23 +32,23 @@ export const physicalMaterialTransform = (
     IncidentLight directLight;
 	PointLight pointLight;
 	
-    // pointLight = pointLights[ 0 ];
+    pointLight = uPointLight[ 0 ];
+    getPointLightInfo( pointLight, geometry, directLight );
+    redirectPhysicalLight( directLight, geometry, material, reflectedLight );
+
+     pointLight = uPointLight[ 1 ];
+     getPointLightInfo( pointLight, geometry, directLight );
+     redirectPhysicalLight( directLight, geometry, material, reflectedLight );
+
+    // pointLight = uPointLight[ 2 ];
     // getPointLightInfo( pointLight, geometry, directLight );
     // RE_Direct_Physical_1723231464811_0( directLight, geometry, material, reflectedLight );
 
-    // pointLight = pointLights[ 1 ];
-    // getPointLightInfo( pointLight, geometry, directLight );
-    // RE_Direct_Physical_1723231464811_0( directLight, geometry, material, reflectedLight );
-
-    // pointLight = pointLights[ 2 ];
-    // getPointLightInfo( pointLight, geometry, directLight );
-    // RE_Direct_Physical_1723231464811_0( directLight, geometry, material, reflectedLight );
-
-	vec3 iblIrradiance = vec3( 0.0 );
+	vec3 iblIrradiance = vec3( 1.0 );
 	vec3 irradiance = uAmbientLightColor;
 	irradiance += getLightProbeIrradiance( uLightProbe, geometry.normal , vModelViewMatrix);
-	vec3 radiance = vec3( 0.0 );
-	vec3 clearcoatRadiance = vec3( 0.0 );
+	vec3 radiance = vec3( 1.0 );
+	vec3 clearcoatRadiance = vec3( 1.0 );
 	vec3 totalDiffuse = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse;
 	vec3 totalSpecular = reflectedLight.directSpecular + reflectedLight.indirectSpecular;
 	vec3 outgoingLight = totalDiffuse + totalSpecular + totalEmissiveRadiance;

@@ -22,12 +22,12 @@ import {
 import { DEFAULT_UNIFORMS } from "../constants";
 
 // GENERAL TYPES
-
 export type ShaderPropertyConfig = {
   id: string;
   valueType: ShaderPropertyValueTypes;
   value?: unknown;
   arrayLength?: number;
+  structProperties?: StructConfig;
 };
 
 export type ShaderFunction = {

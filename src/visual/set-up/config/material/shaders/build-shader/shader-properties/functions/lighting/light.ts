@@ -9,14 +9,18 @@ export const pointLightInfo = `
 	}
 `;
 
-export const directPhysicalLight = `
-    void reflectDirectPhysical( IncidentLight directLight,  GeometricContext geometry, PhysicalMaterial material, ReflectedLight reflectedLight ) {
+export const redirectPhysicalLight = `
+    void redirectPhysicalLight( IncidentLight directLight,  GeometricContext geometry, PhysicalMaterial material, ReflectedLight reflectedLight ) {
 	float dotNL = clamp( dot( geometry.normal, directLight.direction ), 0.0, 1.0 );
 	vec3 irradiance = dotNL * directLight.color;
-	reflectedLight.directSpecular += irradiance * BRDF_GGX( directLight.direction, geometry.viewDir, geometry.normal, material.specularColor, material.specularF90, material.roughness );
-	reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );
+	reflectedLight.directSpecular += irradiance * brdfGgx( directLight.direction, geometry.viewDir, geometry.normal, material.specularColor, material.specularF90, material.roughness );
+	reflectedLight.directDiffuse += irradiance * brdfLambert( material.diffuseColor );
 }
 `;
+
+export const brdfLambert = ` vec3 brdfLambert(vec3 diffuseColor ) {
+	return 0.3183098861837907 * diffuseColor;
+}`;
 
 export const getDistanceAttenuation = `
 float getDistanceAttenuation(  float lightDistance,  float cutoffDistance, float decayExponent ) {
@@ -61,4 +65,39 @@ export const linearToneMapping = `
 
 export const linearTosRGB = `vec4 linearTosRGB( vec4 value ) {
 	return vec4( mix( pow( value.rgb, vec3( 0.41666 ) ) * 1.055 - vec3( 0.055 ), value.rgb * 12.92, vec3( lessThanEqual( value.rgb, vec3( 0.0031308 ) ) ) ), value.a );
+}`;
+
+export const fSchlickVector = `vec3 fSchlickVector(vec3 f0, float f90, float dotVH ) {
+	float fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );
+	return f0 * (( 1.0 - fresnel ) + ( f90 * fresnel ));
+}`;
+export const fSchlickFloat = `float fSchlickFloat( float f0, float f90, float dotVH ) {
+	float fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );
+	return f0 * ( 1.0 - fresnel ) + ( f90 * fresnel );
+}`;
+
+export const vGGXSmithCorrelated = `float vGGXSmithCorrelated( float alpha, float dotNL, float dotNV ) {
+	float a2 = pow2( alpha );
+	float gv = dotNL * sqrt( a2 + ( 1.0 - a2 ) * pow2( dotNV ) );
+	float gl = dotNV * sqrt( a2 + ( 1.0 - a2 ) * pow2( dotNL ) );
+	return 0.5 / max( gv + gl, 1e-6 );
+}`;
+
+export const brdfGgx = `vec3 brdfGgx( vec3 lightDir,vec3 viewDir, vec3 normal, vec3 f0, float f90, float roughness ) {
+	float alpha = pow2( roughness );
+	vec3 halfDir = normalize( lightDir + viewDir );
+	float dotNL = clamp( dot( normal, lightDir ), 0.0, 1.0 );
+	float dotNV = clamp( dot( normal, viewDir ), 0.0, 1.0 );
+	float dotNH = clamp( dot( normal, halfDir ), 0.0, 1.0 );
+	float dotVH = clamp( dot( viewDir, halfDir ), 0.0, 1.0 );
+	vec3 F = fSchlickVector( f0, f90, dotVH );
+	float V = vGGXSmithCorrelated( alpha, dotNL, dotNV );
+	float D = dGGX( alpha, dotNH );
+	return F * ( V * D );
+}`;
+
+export const dGGX = `float dGGX( float alpha, float dotNH ) {
+	float a2 = pow2( alpha );
+	float denom = pow2( dotNH ) * ( a2 - 1.0 ) + 1.0;
+	return 0.3183098861837907 * a2 / pow2( denom );
 }`;

@@ -1,13 +1,19 @@
 import { Vector3 } from "three";
 import { ShaderPropertyValueTypes } from "../../../../constants";
 import {
+  brdfGgx,
+  brdfLambert,
+  dGGX,
+  fSchlickVector,
   getDistanceAttenuation,
   getLightProbeIrradiance,
   inverseTransformDirection,
   linearToneMapping,
   linearTosRGB,
   pointLightInfo,
+  redirectPhysicalLight,
   shGetIrradianceAt,
+  vGGXSmithCorrelated,
 } from "../../../../shader-properties/functions/lighting/light";
 import { pow2 } from "../../../../shader-properties/functions/maths/maths";
 import { VARYING_TYPES } from "../../../../shader-properties/varyings/varyings.consts";
@@ -21,7 +27,11 @@ import {
 export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
   defaultUniforms: ["uResolution"],
   customUniforms: [
-    { id: "uToneMappingExposure", valueType: ShaderPropertyValueTypes.FLOAT },
+    {
+      id: "uToneMappingExposure",
+      valueType: ShaderPropertyValueTypes.FLOAT,
+      value: 1.0,
+    },
     { id: "uSpecularIntensity", valueType: ShaderPropertyValueTypes.FLOAT },
     { id: "uRoughness", valueType: ShaderPropertyValueTypes.FLOAT },
     { id: "uMetalness", valueType: ShaderPropertyValueTypes.FLOAT },
@@ -36,6 +46,12 @@ export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
     { id: "uSpecularColor", valueType: ShaderPropertyValueTypes.VEC3 },
     { id: "uAmbientLightColor", valueType: ShaderPropertyValueTypes.VEC3 },
     {
+      id: "uPointLight",
+      valueType: ShaderPropertyValueTypes.STRUCT,
+      arrayLength: 2,
+      structProperties: { id: "PointLight", properties: [] },
+    },
+    {
       id: "uLightProbe",
       valueType: ShaderPropertyValueTypes.VEC3,
       arrayLength: 9,
@@ -47,6 +63,11 @@ export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
 export const DEFAULT_PHYSICAL_MATERIAL_EFFECT_PROPS = {};
 export const PHYSICAL_MATERIAL_REQUIRED_FUNCTIONS = [
   { id: "pow2", functionDefinition: pow2 },
+  { id: "brdfLambert", functionDefinition: brdfLambert },
+  { id: "fSchlickVector", functionDefinition: fSchlickVector },
+  { id: "vGGXSmithCorrelated", functionDefinition: vGGXSmithCorrelated },
+  { id: "dGGX", functionDefinition: dGGX },
+  { id: "brdfGgx", functionDefinition: brdfGgx },
   { id: "getDistanceAttenuation", functionDefinition: getDistanceAttenuation },
   { id: "getPointLightInfo", functionDefinition: pointLightInfo },
   {
@@ -60,6 +81,7 @@ export const PHYSICAL_MATERIAL_REQUIRED_FUNCTIONS = [
   },
   { id: "linearToneMapping", functionDefinition: linearToneMapping },
   { id: "linearTosRGB", functionDefinition: linearTosRGB },
+  { id: "redirectPhysicalLight", functionDefinition: redirectPhysicalLight },
 ] as ShaderFunction[];
 
 export const PHYSICAL_MATERIAL_VARYING_CONFIG = [
