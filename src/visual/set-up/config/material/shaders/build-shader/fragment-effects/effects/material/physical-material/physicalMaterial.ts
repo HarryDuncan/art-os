@@ -1,11 +1,8 @@
 import { FragmentEffectData, MaterialEffectProps } from "../../../../types";
 import { FRAGMENT_COLOR_NAMES } from "../../../fragmentEffects.consts";
 import { generateUniqueFragName } from "../../../../helpers/generateUniqueFragName";
-import { formatFragmentParameters } from "../../../../helpers/formatFragmentParameters";
-import { DEFAULT_UNIFORM_CONFIG } from "../../../../vertex-effects/effects/morph/morphVertex.consts";
 import { physicalMaterialTransform } from "./physicalMaterialTransform";
 import {
-  DEFAULT_PHYSICAL_MATERIAL_EFFECT_PROPS,
   PHYSICAL_MATERIAL_REQUIRED_FUNCTIONS,
   PHYSICAL_MATERIAL_STRUCT_CONFIG,
   PHYSICAL_MATERIAL_UNIFORM_CONFIG,

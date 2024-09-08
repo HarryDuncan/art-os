@@ -5,12 +5,12 @@ export const physicalMaterialTransform = (
   const transform = `
     
   	vec4 diffuseColor = vec4( uDiffuse, uOpacity );
-	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );
+	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.5 ), vec3( 0.5 ), vec3( 0.5 ), vec3( 1.0 ) );
 	vec3 totalEmissiveRadiance = uEmissive;
     float roughnessFactor = uRoughness;
     float metalnessFactor = uMetalness;
     float faceDirection = gl_FrontFacing ? 1.0 : - 1.0;
-	vec3 normal = normalize( vNormal );
+	vec3 normal = calculateNormal(vPosition);
     vec3 geometryNormal = normal;
     PhysicalMaterial material;
     material.diffuseColor = diffuseColor.rgb * ( 1.0 - metalnessFactor );
@@ -26,9 +26,9 @@ export const physicalMaterialTransform = (
 	material.specularColor = mix( min( pow2( ( material.ior - 1.0 ) / ( material.ior + 1.0 ) ) * specularColorFactor, vec3( 1.0 ) ) * specularIntensityFactor, diffuseColor.rgb, metalnessFactor );
 
     GeometricContext geometry;
-    geometry.position = - vEye;
+    geometry.position = vPosition;
     geometry.normal = normal;
-    geometry.viewDir = ( isOrthographic ) ? vec3( 0, 0, 1 ) : normalize( vEye );
+    geometry.viewDir = normalize( -vPosition );
     IncidentLight directLight;
 	PointLight pointLight;
 	
@@ -44,18 +44,20 @@ export const physicalMaterialTransform = (
     // getPointLightInfo( pointLight, geometry, directLight );
     // RE_Direct_Physical_1723231464811_0( directLight, geometry, material, reflectedLight );
 
-	vec3 iblIrradiance = vec3( 1.0 );
+	vec3 iblIrradiance = vec3( 0.2 );
 	vec3 irradiance = uAmbientLightColor;
-	irradiance += getLightProbeIrradiance( uLightProbe, geometry.normal , vModelViewMatrix);
-	vec3 radiance = vec3( 1.0 );
-	vec3 clearcoatRadiance = vec3( 1.0 );
+    irradiance += getLightProbeIrradiance( uLightProbe, geometry.normal , vModelViewMatrix);
+	vec3 radiance = vec3( 0.0 );
+	vec3 clearcoatRadiance = vec3( 0.0 );
+    indirectDiffusePhysical( irradiance, geometry, material, reflectedLight );
+	indirectSpecularPhysical( radiance, iblIrradiance, clearcoatRadiance, geometry, material, reflectedLight );
 	vec3 totalDiffuse = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse;
 	vec3 totalSpecular = reflectedLight.directSpecular + reflectedLight.indirectSpecular;
 	vec3 outgoingLight = totalDiffuse + totalSpecular + totalEmissiveRadiance;
-    diffuseColor.a = 1.0;
+    diffuseColor.a = 0.2;
     vec4 ${fragName} = vec4( outgoingLight, diffuseColor.a );
     ${fragName}.rgb = linearToneMapping( ${fragName}.rgb ,uToneMappingExposure);
-    ${fragName} = linearTosRGB( ${fragName} );
+   ${fragName} = linearTosRGB( ${fragName} );
     `;
 
   return { transform };

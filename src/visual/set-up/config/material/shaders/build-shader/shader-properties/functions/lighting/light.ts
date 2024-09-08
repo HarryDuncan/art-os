@@ -9,6 +9,40 @@ export const pointLightInfo = `
 	}
 `;
 
+export const dfgApprox = `vec2 dfgApprox( vec3 normal,  vec3 viewDir, float roughness ) {
+	float dotNV = clamp( dot( normal, viewDir ), 0.0, 1.0 );
+	const vec4 c0 = vec4( - 1, - 0.0275, - 0.572, 0.022 );
+	const vec4 c1 = vec4( 1, 0.0425, 1.04, - 0.04 );
+	vec4 r = roughness * c0 + c1;
+	float a004 = min( r.x * r.x, exp2( - 9.28 * dotNV ) ) * r.x + r.y;
+	vec2 fab = vec2( - 1.04, 1.04 ) * a004 + r.zw;
+	return fab;
+}`;
+
+export const computeMultiScattering = `void computeMultiScattering( vec3 normal, vec3 viewDir,  vec3 specularColor,  float specularF90,  float roughness,  vec3 singleScatter,  vec3 multiScatter ) {
+	vec2 fab = dfgApprox( normal, viewDir, roughness );
+	vec3 Fr = specularColor;
+	vec3 FssEss = Fr * fab.x + specularF90 * fab.y;
+	float Ess = fab.x + fab.y;
+	float Ems = 1.0 - Ess;
+	vec3 Favg = Fr + ( 1.0 - Fr ) * 0.047619;	vec3 Fms = FssEss * Favg / ( 1.0 - Ems * Favg );
+	singleScatter += FssEss;
+	multiScatter += Fms * Ems;
+}`;
+
+export const indirectSpecularPhysical = `
+void indirectSpecularPhysical( vec3 radiance, vec3 irradiance, vec3 clearcoatRadiance, GeometricContext geometry, PhysicalMaterial material, ReflectedLight reflectedLight) {
+	vec3 singleScattering = vec3( 0.0 );
+	vec3 multiScattering = vec3( 0.0 );
+	vec3 cosineWeightedIrradiance = irradiance * 0.3183098861837907;
+	computeMultiScattering( geometry.normal, geometry.viewDir, material.specularColor, material.specularF90, material.roughness, singleScattering, multiScattering );
+	vec3 totalScattering = singleScattering + multiScattering;
+	vec3 diffuse = material.diffuseColor * ( 1.0 - max( max( totalScattering.r, totalScattering.g ), totalScattering.b ) );
+	reflectedLight.indirectSpecular += radiance * singleScattering * 0.0;
+	reflectedLight.indirectSpecular += multiScattering * cosineWeightedIrradiance * 0.0;
+	reflectedLight.indirectDiffuse += diffuse * cosineWeightedIrradiance * 0.0;
+}`;
+
 export const redirectPhysicalLight = `
     void redirectPhysicalLight( IncidentLight directLight,  GeometricContext geometry, PhysicalMaterial material, ReflectedLight reflectedLight ) {
 	float dotNL = clamp( dot( geometry.normal, directLight.direction ), 0.0, 1.0 );
@@ -62,7 +96,9 @@ export const linearToneMapping = `
         return toneMappingExposure * color;
     }
 `;
-
+export const indirectDiffusePhysical = `void indirectDiffusePhysical( vec3 irradiance,  GeometricContext geometry, PhysicalMaterial material, ReflectedLight reflectedLight ) {
+	reflectedLight.indirectDiffuse += irradiance * brdfLambert( material.diffuseColor );
+}`;
 export const linearTosRGB = `vec4 linearTosRGB( vec4 value ) {
 	return vec4( mix( pow( value.rgb, vec3( 0.41666 ) ) * 1.055 - vec3( 0.055 ), value.rgb * 12.92, vec3( lessThanEqual( value.rgb, vec3( 0.0031308 ) ) ) ), value.a );
 }`;

@@ -19,11 +19,12 @@ export const setUpCustomPropertyValues = (
   config.forEach(({ value, id, valueType, arrayLength, structProperties }) => {
     if (arrayLength !== undefined) {
       const propertyValues = new Array(arrayLength).fill(
-        value ?? getDefaultValue(valueType)
+        value ?? getDefaultValue(valueType, structProperties)
       );
       customProperties[id] = { value: propertyValues };
     } else {
-      const propertyValue = value ?? getDefaultValue(valueType);
+      const propertyValue =
+        value ?? getDefaultValue(valueType, structProperties);
       if (propertyValue !== undefined && propertyValue !== null) {
         customProperties[id] = { value: propertyValue };
       } else {

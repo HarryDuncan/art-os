@@ -41,7 +41,6 @@ describe("buildUniforms", () => {
         uTime: { value: 0 },
       },
     };
-    console.log(result);
     expect(result).toStrictEqual(expected);
   });
   test("returns correct uniform with an array of vec 3", () => {
@@ -60,5 +59,29 @@ describe("buildUniforms", () => {
     expect(uniforms.uArray.value.length).toStrictEqual(3);
     // @ts-ignore
     expect(uniforms.uArray2.value.length).toEqual(3);
+  });
+  test("struct uniforms are correctly initialized, declaration string uses their id and the data is set up correctly", () => {
+    const VEC3_ARRAY_UNIFORM_CONFIG = {
+      defaultUniforms: [],
+      customUniforms: [
+        {
+          id: "uArray",
+          valueType: "STRUCT",
+          arrayLength: 3,
+          structProperties: {
+            id: "ArrayStruct",
+            properties: [{ id: "Array2", valueType: "FLOAT", value: 15.5 }],
+          },
+        },
+      ],
+    } as UniformConfig;
+    const { uniforms, uniformDeclaration } = buildUniforms(
+      VEC3_ARRAY_UNIFORM_CONFIG
+    );
+    expect(uniformDeclaration).toContain("ArrayStruct uArray[3];");
+    // @ts-ignore
+    expect(uniforms.uArray.value.length).toStrictEqual(3);
+    // @ts-ignore
+    expect(uniforms.uArray.value[0]).toEqual({ Array2: 15.5 });
   });
 });
