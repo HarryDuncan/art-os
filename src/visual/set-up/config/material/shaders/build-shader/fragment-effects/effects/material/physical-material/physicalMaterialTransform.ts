@@ -5,11 +5,12 @@ export const physicalMaterialTransform = (
   const transform = `
     
   	vec4 diffuseColor = vec4( uDiffuse, uOpacity );
-	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.5 ), vec3( 0.5 ), vec3( 0.5 ), vec3( 1.0 ) );
+	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );
 	vec3 totalEmissiveRadiance = uEmissive;
+    vec4 sampledDiffuseColor = vec4(transition(vUv, 0.5 + 0.5 * sin(uTime)).rgb, 1.0);
+    diffuseColor *= sampledDiffuseColor;
     float roughnessFactor = uRoughness;
     float metalnessFactor = uMetalness;
-    float faceDirection = gl_FrontFacing ? 1.0 : - 1.0;
 	vec3 normal = calculateNormal(vPosition);
     vec3 geometryNormal = normal;
     PhysicalMaterial material;
@@ -28,17 +29,17 @@ export const physicalMaterialTransform = (
     GeometricContext geometry;
     geometry.position = vPosition;
     geometry.normal = normal;
-    geometry.viewDir = normalize( -vPosition );
+    geometry.viewDir = normalize( vPosition );
     IncidentLight directLight;
 	PointLight pointLight;
 	
-    pointLight = uPointLight[ 0 ];
-    getPointLightInfo( pointLight, geometry, directLight );
-    redirectPhysicalLight( directLight, geometry, material, reflectedLight );
+    // pointLight = uPointLight[ 0 ];
+    // getPointLightInfo( pointLight, geometry, directLight );
+    // redirectPhysicalLight( directLight, geometry, material, reflectedLight );
 
-     pointLight = uPointLight[ 1 ];
-     getPointLightInfo( pointLight, geometry, directLight );
-     redirectPhysicalLight( directLight, geometry, material, reflectedLight );
+    //  pointLight = uPointLight[ 1 ];
+    //  getPointLightInfo( pointLight, geometry, directLight );
+    //  redirectPhysicalLight( directLight, geometry, material, reflectedLight );
 
     // pointLight = uPointLight[ 2 ];
     // getPointLightInfo( pointLight, geometry, directLight );
@@ -48,7 +49,7 @@ export const physicalMaterialTransform = (
 	vec3 irradiance = uAmbientLightColor;
     irradiance += getLightProbeIrradiance( uLightProbe, geometry.normal , vModelViewMatrix);
 	vec3 radiance = vec3( 0.0 );
-	vec3 clearcoatRadiance = vec3( 0.0 );
+	vec3 clearcoatRadiance = vec3( 1.0 );
     indirectDiffusePhysical( irradiance, geometry, material, reflectedLight );
 	indirectSpecularPhysical( radiance, iblIrradiance, clearcoatRadiance, geometry, material, reflectedLight );
 	vec3 totalDiffuse = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse;

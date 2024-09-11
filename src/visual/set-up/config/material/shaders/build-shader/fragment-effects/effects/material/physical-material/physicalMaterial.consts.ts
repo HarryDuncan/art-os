@@ -1,4 +1,4 @@
-import { Vector3 } from "three";
+import { Vector2, Vector3 } from "three";
 import { ShaderPropertyValueTypes } from "../../../../constants";
 import {
   brdfGgx,
@@ -21,7 +21,9 @@ import {
 } from "../../../../shader-properties/functions/lighting/light";
 import {
   calculateNormal,
+  interpolate,
   mod289Vec4,
+  normSin,
   permuteVec4,
   pow2,
   taylorInvSqrtVec4,
@@ -37,7 +39,9 @@ import {
   displaceByNoise,
   fitPosition,
   frostedTips,
+  sinNoise,
   smoothMod,
+  transition,
   wavePattern,
 } from "../../../../shader-properties/functions/distortion/distortion";
 import {
@@ -51,7 +55,7 @@ export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
     {
       id: "uToneMappingExposure",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.1,
+      value: 0.3,
     },
     {
       id: "uSpecularIntensity",
@@ -59,7 +63,7 @@ export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
       value: 1.0,
     },
     { id: "uRoughness", valueType: ShaderPropertyValueTypes.FLOAT, value: 1.0 },
-    { id: "uMetalness", valueType: ShaderPropertyValueTypes.FLOAT },
+    { id: "uMetalness", valueType: ShaderPropertyValueTypes.FLOAT, value: 0.0 },
     { id: "uOpacity", valueType: ShaderPropertyValueTypes.FLOAT, value: 1.0 },
     { id: "uIor", valueType: ShaderPropertyValueTypes.FLOAT },
     {
@@ -76,6 +80,26 @@ export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
       id: "uSpecularColor",
       valueType: ShaderPropertyValueTypes.VEC3,
       value: new Vector3(0.0, 0.0, 1.0),
+    },
+    {
+      id: "uDirection",
+      valueType: ShaderPropertyValueTypes.VEC2,
+      value: new Vector2(0.5, 0.5),
+    },
+    {
+      id: "uSmoothness",
+      valueType: ShaderPropertyValueTypes.FLOAT,
+      value: 0.5,
+    },
+    {
+      id: "uSinColor",
+      valueType: ShaderPropertyValueTypes.VEC3,
+      value: new Vector3(1.0, 0.0, 1.0),
+    },
+    {
+      id: "uSinBrightness",
+      valueType: ShaderPropertyValueTypes.FLOAT,
+      value: 1.0,
     },
     { id: "uAmbientLightColor", valueType: ShaderPropertyValueTypes.VEC3 },
     {
@@ -117,7 +141,7 @@ export const PHYSICAL_MATERIAL_UNIFORM_CONFIG = {
     },
 
     // Move these uniforms to distortion/transition effect
-    { id: "uDensity", valueType: ShaderPropertyValueTypes.FLOAT, value: 1.0 },
+    { id: "uDensity", valueType: ShaderPropertyValueTypes.FLOAT, value: 0.5 },
   ],
 } as UniformConfig;
 
@@ -165,10 +189,19 @@ export const PHYSICAL_MATERIAL_REQUIRED_FUNCTIONS = [
   { id: "taylorInvSqrt", functionDefinition: taylorInvSqrtVec4 },
   { id: "transitionalNoise", functionDefinition: transitionalNoise },
   { id: "displaceByNoise", functionDefinition: displaceByNoise },
+  { id: "normSin", functionDefinition: normSin },
+  { id: "interpolate", functionDefinition: interpolate },
+  { id: "sinNoise", functionDefinition: sinNoise },
   { id: "frostedTips", functionDefinition: frostedTips },
+  { id: "transition", functionDefinition: transition },
 ] as ShaderFunction[];
 
 export const PHYSICAL_MATERIAL_VARYING_CONFIG = [
+  {
+    id: "vUv",
+    valueType: ShaderPropertyValueTypes.VEC2,
+    varyingType: VARYING_TYPES.DEFAULT,
+  },
   {
     id: "vPosition",
     varyingType: VARYING_TYPES.DEFAULT,
@@ -184,6 +217,12 @@ export const PHYSICAL_MATERIAL_VARYING_CONFIG = [
     id: "vEye",
     varyingType: VARYING_TYPES.DEFAULT,
     valueType: ShaderPropertyValueTypes.VEC3,
+  },
+  {
+    id: "vDisplacement",
+    varyingType: VARYING_TYPES.CUSTOM,
+    valueType: ShaderPropertyValueTypes.FLOAT,
+    value: 0.5,
   },
 ] as VaryingConfig[];
 

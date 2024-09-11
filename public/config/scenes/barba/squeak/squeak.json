@@ -68,23 +68,7 @@
         }
       }
     ],
-    "lightConfig": [
-      {
-        "name": "ambient-light",
-        "lightType": "AMBIENT",
-        "props": { "intensity": 1.0 }
-      },
-      {
-        "name": "point-light",
-        "lightType": "POINT_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      },
-      {
-        "name": "point-lightd",
-        "lightType": "DIRECTIONAL_LIGHT",
-        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
-      }
-    ],
+    "lightConfig": [],
     "globalMaterialConfigs": [
       {
         "id": "morphing-material",
@@ -98,9 +82,13 @@
           ],
           "fragmentEffectConfigs": [
             {
-              "effectType": "PHYSICAL_MATERIAL"
+              "effectType": "PHONG"
             }
           ],
+          "uniformConfig": {
+            "defaultUniforms": [],
+            "customUniforms": []
+          },
           "attributeConfig": []
         },
         "assetMapping": [

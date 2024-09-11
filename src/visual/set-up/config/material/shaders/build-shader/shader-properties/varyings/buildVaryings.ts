@@ -74,13 +74,13 @@ const getDefaultVaryingString = (
         strings.push(`vPosition = ${vertexTransformationName}.xyz;`);
         break;
       case "vNormal":
-        strings.push(
-          `vNormal = normalize((modelViewMatrix * vec4(normal, 0.0)).xyz);`
-        );
+        strings.push(`vNormal = normal;`);
         break;
       case "vModelViewMatrix":
         strings.push("vModelViewMatrix = modelViewMatrix;");
         break;
+      case "vNormalInterpolation":
+        return strings.push("vNormalInterpolation = normalMatrix * normal;");
       case "vTexCoord":
         strings.push(`vTexCoord = texcoord;`);
       case "vGeometryNormal":

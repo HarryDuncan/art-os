@@ -33,6 +33,7 @@ export type MaterialEffectProps = EffectParameters & {
 };
 
 export type PhysicalMaterialProps = EffectParameters & {};
+export type PhongFragmentEffectProps = EffectParameters & {};
 export type ColorFragmentEffectProps = EffectParameters & {
   shadingType: string;
   color: string;

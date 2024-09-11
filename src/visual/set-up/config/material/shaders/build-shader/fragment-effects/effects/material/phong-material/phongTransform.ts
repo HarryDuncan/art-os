@@ -1,43 +1,22 @@
-import { MaterialEffectProps } from "../../../../types";
+export const phongTransform = (fragName: string, _previousFragName: string) => {
+  const transform = `
+  vec3 N = normalize(vNormalInterpolation);
+  vec3 L = normalize(uLightPosition - vPosition);
 
-export const phongTransform = (
-  fragName: string,
-  _previousFragName: string,
-  matcapEffectProps: MaterialEffectProps
-) => {
-  const matcapType = "POINT";
-  const { transform } = getEffectData(fragName, matcapType);
-
-  return { transform };
-};
-
-const getEffectData = (fragName: string, matcapType: string) => {
-  switch (matcapType) {
-    case "TEXTURED_POINT":
-      return {
-        transform: `  vec4 matcapColor = texture2D(uMaterial, gl_PointCoord);
-        vec4 ${fragName} = vec4( matcapColor.rgb, 0.0);`,
-      };
-    case "POINT":
-      return {
-        transform: `  vec3 eyeDirection = normalize(vEye);
-                      vec3 normal= calculateNormal(vPosition);
-                      vec3 reflection = reflect(eyeDirection, vPosition);
-                      float m = 20.8284271247461903 * sqrt(reflection.z + 1.0);
-                      vec2 matcapUV = reflection.xy / m + 0.5;
-                      vec4 matcapColor = texture2D(uMaterial, matcapUV );
-                    vec4 ${fragName} = vec4( matcapColor.rgb, 1.0);`,
-      };
-    default:
-    case "MESH":
-      return {
-        transform: `
-          vec3 newNormal = calculateNormal(vPosition);
-          vec3 x = normalize( vec3( vEye.z, 0.0, - vEye.x ) );
-          vec3 y = cross( vEye, x );
-          vec2 uv = vec2( dot( x, newNormal ), dot( y, newNormal ) ) * 0.495 + 0.5;
-          vec4 matcapColor = texture2D(uMaterial, uv);
-          vec4 ${fragName} = vec4( matcapColor.rgb, 0.0);`,
-      };
+  // Lambert's cosine law
+  float lambertian = max(dot(N, L), 0.0);
+  float specular = 0.0;
+  if(lambertian > 0.0) {
+    vec3 R = reflect(-L, N);      // Reflected light vector
+    vec3 V = normalize(-vPosition); // Vector to viewer
+    // Compute the specular term
+    float specAngle = max(dot(R, V), 0.0);
+    specular = pow(specAngle, uShininess);
   }
+  vec4 ${fragName} = vec4(uAmbientReflection * uAmbientColor +
+                      uDiffuseReflection * lambertian * uDiffuseColor +
+                      uSpecularReflection * specular * uSpecularColor, 1.0);
+
+    `;
+  return { transform };
 };

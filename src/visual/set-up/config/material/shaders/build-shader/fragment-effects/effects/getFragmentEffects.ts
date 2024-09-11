@@ -1,3 +1,4 @@
+import { PhongMaterialProps } from "visual/set-up/config/material/materials.types";
 import {
   BrightnessFragmentEffectProps,
   ColorFragmentEffectProps,
@@ -6,6 +7,7 @@ import {
   InteractiveFragmentEffect,
   MaterialEffectProps,
   OpacityFragmentEffectProps,
+  PhongFragmentEffectProps,
   PhysicalMaterialProps,
   TriggeredFragmentEffect,
   VanishFragmentEffectProps,
@@ -16,6 +18,7 @@ import { color } from "./color/color";
 import { defaultFragmentEffect } from "./defaultFragmentEffect/defaultFragmentEffect";
 import { getInteractiveEffects } from "./interactive/interactiveEffect";
 import { matcapMaterial } from "./material/matcap/matcap";
+import { phongMaterial } from "./material/phong-material/phong";
 import { physicalMaterial } from "./material/physical-material/physicalMaterial";
 import { pointMaterial } from "./material/point-material/pointMaterial";
 import { opacity } from "./opacity/opacity";
@@ -47,6 +50,11 @@ export const getFragmentEffects = (
       return pointMaterial(
         previousFragName,
         effectProps as Partial<MaterialEffectProps>
+      );
+    case FRAGMENT_EFFECT.PHONG:
+      return phongMaterial(
+        previousFragName,
+        effectProps as Partial<PhongFragmentEffectProps>
       );
     case FRAGMENT_EFFECT.PHYSICAL_MATERIAL:
       return physicalMaterial(

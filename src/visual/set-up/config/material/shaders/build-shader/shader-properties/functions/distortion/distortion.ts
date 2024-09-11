@@ -39,3 +39,23 @@ export const frostedTips = `vec4 frostedTips(vec2 vUv) {
 	float colorOut = clamp((displaced - 0.5) * 10.0, 0.0, 1.0);
 	return vec4(uInColor * vec3(colorOut), 1.0);
   }`;
+
+export const sinNoise = `vec4 sinNoise(vec2 vUv) {
+	vec2 position = vUv * uResolution;
+	float color = normSin(30.3 * position.x + interpolate(normSin(25. * position.y + 10.0), 11.0, 25.0) + 
+			      30. * position.y + interpolate(normSin(25. * position.x + 10.0), 5.0, 25.) + 2. * uTime);
+	vec3 mixt = mix(vec3(0.0), uSinColor, (vDisplacement * 9.0));
+	mixt = vec3(vDisplacement) * uSinBrightness;
+	return vec4(clamp(uSinColor * mixt, vec3(0.0), vec3(1.0)), 1.0 );
+}`;
+
+export const transition = `vec4 transition(vec2 uv, float progress) {
+	vec2 v = normalize(uDirection);
+	v /= abs(v.x) + abs(v.y);
+	vec2 center = vec2(0.5, 0.5);
+	float d = v.x * center.x + v.y * center.y;
+	float m = 1.0 - smoothstep(-uSmoothness, 0.0, v.x * uv.x + v.y * uv.y - (d - 0.5 + progress * (1.0 + uSmoothness)));
+	vec4 c1 = frostedTips((uv - 0.5) * (1.0 - m) + 0.5);
+	vec4 c2 = sinNoise((uv - 0.5) * m + 0.5);
+	return mix(c1, c2, m);
+  }`;

@@ -110,7 +110,7 @@ export type AttributeConfig = ShaderPropertyConfig & {
 
 export type DefaultUniform = keyof typeof DEFAULT_UNIFORMS;
 export type UniformObject = {
-  [key: string]: { value: unknown };
+  [key: string]: { value: unknown } | { value: unknown }[];
 };
 export type UniformValueConfig = ShaderPropertyConfig;
 export type UniformConfig = {

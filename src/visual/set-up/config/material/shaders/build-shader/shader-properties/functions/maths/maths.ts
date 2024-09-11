@@ -74,6 +74,6 @@ export const interpolate = `float interpolate(float x, float min_x, float max_x)
 }
 `;
 
-export const normSin = `float normsin(float x) {
+export const normSin = `float normSin(float x) {
 	return (sin(x) + 1.0) / 2.0;
 }`;
