@@ -8,7 +8,9 @@ import {
   rotateY,
   rotateZ,
 } from "../../../shader-properties/functions/rotation/rotation";
-import { ROTATION_UNIFORMS } from "./rotation.consts";
+import { ROTATION_EFFECT_TYPES, ROTATION_UNIFORMS } from "./rotation.consts";
+import { shaderSafeFloat } from "visual/utils/conversion/shaderConversions";
+import { vertexEffectToEffectData } from "../../../helpers/vertexEffectToEffectData";
 
 const getFunctionName = (axis: Axis) => {
   switch (axis) {
@@ -38,29 +40,74 @@ export const rotationTransform = (
   previousPointName: string,
   rotationEffect: RotationEffectProps
 ) => {
-  const { axis, speed, declareInTransform } = rotationEffect;
-  const uniformConfig = {
-    ...ROTATION_UNIFORMS,
-    customUniforms: ROTATION_UNIFORMS.customUniforms.map((uniformConfig) =>
-      uniformConfig.id === "uRotationSpeed"
-        ? { ...uniformConfig, value: speed }
-        : uniformConfig
-    ),
-  };
-  const requiredFunctions = getRequiredFunctions(axis as Axis);
-
-  const vertexPointInstantiation = `vec4 ${pointName} = vec4(${previousPointName}.xyz, 1.0);`;
-  const transformation = `
-    ${declareInTransform ? vertexPointInstantiation : ""}
-    float rotationAngle = uTime * uRotationSpeed;
-    mat4 rotationMatrix = ${getFunctionName(axis as Axis)}(rotationAngle);
-    ${pointName} = ${pointName} * rotationMatrix; 
-  `;
-
+  const {
+    uniformConfig,
+    requiredFunctions,
+    transformation,
+    vertexPointInstantiation,
+  } = getRotationEffect(pointName, previousPointName, rotationEffect);
   return {
     uniformConfig,
     requiredFunctions,
     transformation,
     vertexPointInstantiation,
   };
+};
+
+const getRotationEffect = (
+  pointName,
+  previousPointName,
+  rotationEffectProps
+) => {
+  const {
+    effectType,
+    axis,
+    speed,
+    degrees,
+    declareInTransform,
+  } = rotationEffectProps;
+  switch (effectType) {
+    case ROTATION_EFFECT_TYPES.ROTATION_BY_DEGREES: {
+      const requiredFunctions = getRequiredFunctions(axis as Axis);
+      const vertexPointInstantiation = `vec4 ${pointName} = vec4(${previousPointName}.xyz, 1.0);`;
+      const transformation = `
+        ${declareInTransform ? vertexPointInstantiation : ""}
+        mat4 rotationMatrixByTime = ${getFunctionName(
+          axis as Axis
+        )}(${shaderSafeFloat(degrees)});
+        ${pointName} = ${pointName} * rotationMatrixByTime; 
+      `;
+      return vertexEffectToEffectData({
+        transformation,
+        pointName,
+        requiredFunctions,
+      });
+    }
+    case ROTATION_EFFECT_TYPES.ROTATION_BY_TIME:
+    default: {
+      const uniformConfig = {
+        ...ROTATION_UNIFORMS,
+        customUniforms: ROTATION_UNIFORMS.customUniforms.map((uniformConfig) =>
+          uniformConfig.id === "uRotationSpeed"
+            ? { ...uniformConfig, value: speed }
+            : uniformConfig
+        ),
+      };
+
+      const requiredFunctions = getRequiredFunctions(axis as Axis);
+      const vertexPointInstantiation = `vec4 ${pointName} = vec4(${previousPointName}.xyz, 1.0);`;
+      const transformation = `
+        ${declareInTransform ? vertexPointInstantiation : ""}
+        float rotationAngle = uTime * uRotationSpeed;
+        mat4 rotationMatrix = ${getFunctionName(axis as Axis)}(rotationAngle);
+        ${pointName} = ${pointName} * rotationMatrix; 
+      `;
+      return {
+        transformation,
+        vertexPointInstantiation,
+        requiredFunctions,
+        uniformConfig,
+      };
+    }
+  }
 };

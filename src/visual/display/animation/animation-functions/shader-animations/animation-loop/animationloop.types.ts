@@ -1,11 +1,14 @@
+import { ShaderPropertyValueTypes } from "visual/set-up/config/material/shaders/build-shader/constants";
 import { ANIMATION_LOOP_TYPES } from "./animationLoop.consts";
 
 export type AnimationLoopType = keyof typeof ANIMATION_LOOP_TYPES;
 export interface AnimationLoopConfigItem {
   loopType: AnimationLoopType;
   uniform: string;
+  uniformArrayIndex?: number;
   toMaterial?: string;
   duration?: number;
+
   loopProps: Partial<LoopProps>;
 }
 

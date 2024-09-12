@@ -5,6 +5,7 @@ import { AnimationLoopConfigItem, TransitionLoopConfig } from "./animationloop.t
 import { composeFunctions } from "../../../../../utils/composeFunctions";
 import { transitionLoop } from "./transition-loop/transitionLoop";
 
+
 const defaultConfig = [
   {
     uniform: "uTime",
@@ -24,7 +25,7 @@ export const setUpAnimationLoop = (
     ...config,
   ] as AnimationLoopConfigItem[];
   const animationLoopFunctions = animationConfig.map(
-    ({ uniform,toMaterial, loopType, duration, loopProps }) => {
+    ({ uniform,toMaterial, loopType, duration, loopProps , uniformArrayIndex}) => {
       const animationLoopDuration = duration ?? loopDuration;
       const loopFunction = getLoopType(
         loopType,
@@ -32,11 +33,11 @@ export const setUpAnimationLoop = (
        loopProps
       );
       return (shaderMesh: ShaderMeshObject, time: number) => {
-        const uniformValue = loopFunction(time);
         if (toMaterial && shaderMesh?.material.name !== toMaterial) {
           return [shaderMesh, time];
         }
-        updateObjectUniformByKey(shaderMesh, uniform, uniformValue);
+        const uniformValue = loopFunction(time);
+        updateObjectUniformByKey(shaderMesh, uniform, uniformValue, uniformArrayIndex);
         return [shaderMesh, time];
       };
     }

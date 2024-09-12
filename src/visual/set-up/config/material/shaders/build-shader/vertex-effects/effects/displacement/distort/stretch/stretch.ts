@@ -1,16 +1,16 @@
 import { Vector3 } from "three";
 import { ShaderPropertyValueTypes } from "../../../../../constants";
 import { UniformConfig } from "../../../../../types";
+import { scaleVector3 } from "../../../../../shader-properties/functions/maths/vectorCalculations";
 
 export const stretch = (pointName, previousPointName, effectProps) => {
   const uniformConfig = {
     defaultUniforms: [],
     customUniforms: [
       {
-        id: "uStretchPoints",
-        valueType: ShaderPropertyValueTypes.VEC3,
-        arrayLength: 2,
-        arrayValue: [new Vector3(0, 0, 0), new Vector3(0, 0, 0)],
+        id: "uStretchStrength",
+        valueType: ShaderPropertyValueTypes.FLOAT,
+        arrayValue: 0.0,
       },
       {
         id: "uCenter",
@@ -20,34 +20,40 @@ export const stretch = (pointName, previousPointName, effectProps) => {
     ],
   } as UniformConfig;
 
+  const requiredFunctions = [
+    { id: "scaleVector3", functionDefinition: scaleVector3 },
+  ];
+
   const transformation = `
-   
-    vec3 stretchPoint1 = uStretchPoints[0];
-    vec3 stretchPoint2 = uStretchPoints[1];
+    vec4 p = vec4(${previousPointName}, 1.0);
+    vec4 ${pointName} = p;
+    vec3 stretchPoint1 = scaleVector3(-7.0, uStretchStrength);
+    vec3 stretchPoint2 = scaleVector3(7.0, uStretchStrength);
     // get the distance from position to uStrechPoints 1 and 2
     vec3 center = uCenter;
 
     // Calculate distance from the vertex position to the center and stretch points
-    float distFromCenter = distance(position, center);
-    float distFromStretch1 = distance(position, stretchPoint1);
-    float distFromStretch2 = distance(position, stretchPoint2);
+    float distFromCenter = distance(${pointName}.xyz, center);
+    float distFromStretch1 = distance(${pointName}.xyz, stretchPoint1);
+    float distFromStretch2 = distance(${pointName}.xyz, stretchPoint2);
+
+    vec3 selectedPosition = distFromStretch1 < distFromStretch2 ? stretchPoint1 : stretchPoint2;
+    float minStretchDistance = min(distFromStretch1, distFromStretch2);
 
     // Linearly interpolate stretch factor based on the distance
-    float stretchFactor = mix(1.0, 2.0, distFromCenter / min(distFromStretch1, distFromStretch2));
-     vec3 selectedPosition = stretchPoint1;
-    if(min(distFromStretch1, distFromStretch2) == distFromStretch2){
-      selectedPosition = stretchPoint2;
-    }
+    float stretchFactor = mix(1.0, 2.0, minStretchDistance / distFromCenter);
+    
  
     // Apply the stretch transformation
-    vec3 stretchedPosition = mix(position, selectedPosition,  stretchFactor);
+    vec3 stretchedPosition = mix(${pointName}.xyz, selectedPosition,  1.0 / stretchFactor);
 
     // Assign the transformed position
-    vec4 ${pointName} = vec4(stretchedPosition, 1.0);
+    ${pointName} = vec4(stretchedPosition, 1.0);
     vec4 twistedNormal = vec4( normal, 1.0 );`;
   return {
     transformation,
     uniformConfig,
     pointName,
+    requiredFunctions,
   };
 };

@@ -27,17 +27,6 @@
         },
         "rotation": { "x": 0, "y": -0, "z": -0 },
         "materialId": "morphing-material"
-      },
-      {
-        "id": "geometry-2",
-        "geometryId": "apollo",
-        "meshType": "NONE",
-        "geometryConfig": {
-          "scale": 1.5
-        },
-        "position": { "x": 0, "y": 0, "z": 0 },
-        "rotation": { "x": 0, "y": 0, "z": -0 },
-        "materialId": "morphing-material"
       }
     ],
     "animationConfig": [
@@ -51,11 +40,9 @@
           "repeatAnimation": true,
           "animationLoopConfig": [
             {
-              "uniform": "uDistortAngle",
-              "loopType": "MIN_MAX",
+              "uniform": "uStretchStrength",
+              "loopType": "ZERO_TO_ZERO",
               "loopProps": {
-                "maxPeak": 1,
-                "minTrough": 0,
                 "speed": 0.2
               }
             },
@@ -83,6 +70,14 @@
               "effectType": "DISTORT",
               "effectProps": {
                 "distortionType": "STRETCH"
+              }
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": {
+                "degrees": 180,
+                "axis": "Y",
+                "effectType": "ROTATION_BY_DEGREES"
               }
             },
             {
