@@ -1,4 +1,5 @@
 import {
+  DistortionEffectProps,
   ExpandEffectProps,
   ExplodeEffectProps,
   ImageVertexEffect,
@@ -13,7 +14,7 @@ import {
 import { VERTEX_EFFECTS } from "../vertexEffects.consts";
 import { VertexEffectData } from "../vertexEffects.types";
 import { cloudEffect } from "./displacement/cloud/cloudTransform";
-import { distort } from "./displacement/distort/distort";
+import { distortionEffect } from "./displacement/distort/distortionEffect";
 import { expand } from "./displacement/expand/expand";
 import { explode } from "./displacement/explode/explode";
 import { noise } from "./displacement/noise/noise";
@@ -60,7 +61,10 @@ export const getVertexEffect = (
       return traverseTransform(previousPointName);
     }
     case VERTEX_EFFECTS.DISTORT: {
-      return distort(previousPointName);
+      return distortionEffect(
+        previousPointName,
+        effectProps as DistortionEffectProps
+      );
     }
     case VERTEX_EFFECTS.INTERACTIVE: {
       return interactiveEffect(

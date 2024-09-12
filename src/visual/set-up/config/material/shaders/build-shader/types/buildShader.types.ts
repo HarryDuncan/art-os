@@ -27,6 +27,7 @@ export type ShaderPropertyConfig = {
   valueType: ShaderPropertyValueTypes;
   value?: unknown;
   arrayLength?: number;
+  arrayValue?: unknown[];
   structProperties?: StructConfig;
 };
 

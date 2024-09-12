@@ -1,7 +1,6 @@
-import { twisterDistortion } from "../../../../shader-properties/functions/distortion/distortion";
-import { UniformConfig, VaryingConfig } from "../../../../types";
+import { UniformConfig, VaryingConfig } from "../../../../../types";
 
-export const DEFAULT_DISTORT_UNIFORMS = {
+export const TWIST_UNIFORM_CONFIG = {
   defaultUniforms: [],
   customUniforms: [
     { id: "uDistortAngle", valueType: "FLOAT", value: 1.5 },
@@ -9,7 +8,7 @@ export const DEFAULT_DISTORT_UNIFORMS = {
   ],
 } as UniformConfig;
 
-export const DEFAULT_DISTORT_VARYING = [
+export const TWIST_VARYINGS = [
   { id: "vPosition", valueType: "VEC3", varyingType: "DEFAULT" },
   {
     id: "vNormal",
@@ -18,7 +17,3 @@ export const DEFAULT_DISTORT_VARYING = [
     value: "twistedNormal.xyz",
   },
 ] as VaryingConfig[];
-
-export const DEFAULT_DISTORT_FUNCTION = [
-  { id: "twister", functionDefinition: twisterDistortion },
-];

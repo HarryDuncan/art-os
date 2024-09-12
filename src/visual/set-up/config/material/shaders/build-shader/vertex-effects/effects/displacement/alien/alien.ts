@@ -1,11 +1,11 @@
-import { twister } from "visual/set-up/config/material/shaders/build-shader/shader-properties/functions/distortion/distortion";
+import { twisterDistortion } from "../../../../shader-properties/functions/distortion/distortion";
 import { UniformConfig, VaryingConfig } from "../../../../types";
 import { VERTEX_EFFECT_POINT_NAMES } from "../../../vertexEffects.consts";
 import { VertexEffectData } from "../../../vertexEffects.types";
 import { alienTransform } from "./alienTransform";
 
 export const distortFunctions = () => [
-  { id: "twister", functionDefinition: twister },
+  { id: "twister", functionDefinition: twisterDistortion },
 ];
 
 export const distortUniforms = () => ({

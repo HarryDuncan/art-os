@@ -43,7 +43,7 @@ describe("buildUniforms", () => {
     };
     expect(result).toStrictEqual(expected);
   });
-  test("returns correct uniform with an array of vec 3", () => {
+  test("returns correct uniform with an array of floats", () => {
     const VEC3_ARRAY_UNIFORM_CONFIG = {
       defaultUniforms: [],
       customUniforms: [
@@ -59,6 +59,29 @@ describe("buildUniforms", () => {
     expect(uniforms.uArray.value.length).toStrictEqual(3);
     // @ts-ignore
     expect(uniforms.uArray2.value.length).toEqual(3);
+  });
+  test("returns correct uniforms with an array of predefined vec3s", () => {
+    const VEC3_ARRAY_UNIFORM_CONFIG = {
+      defaultUniforms: [],
+      customUniforms: [
+        {
+          id: "uArray",
+          valueType: "VEC3",
+          arrayLength: 2,
+          value: [new Vector3(1, 1, 1), new Vector3(2, 2, 2)],
+        },
+      ],
+    } as UniformConfig;
+    const { uniforms, uniformDeclaration } = buildUniforms(
+      VEC3_ARRAY_UNIFORM_CONFIG
+    );
+    expect(uniformDeclaration).toContain("vec3 uArray[2];");
+    // @ts-ignore
+    expect(uniforms.uArray.value.length).toStrictEqual(2);
+    expect(uniforms.uArray.value[0]).toEqual([
+      new Vector3(1, 1, 1),
+      new Vector3(2, 2, 2),
+    ]);
   });
   test("struct uniforms are correctly initialized, declaration string uses their id and the data is set up correctly", () => {
     const VEC3_ARRAY_UNIFORM_CONFIG = {
