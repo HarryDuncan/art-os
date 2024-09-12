@@ -9,7 +9,7 @@ export const DEFAULT_PHONG_UNIFORMS = {
     {
       id: "uLightPosition",
       valueType: ShaderPropertyValueTypes.VEC3,
-      value: new Vector3(1, 1, 1),
+      value: new Vector3(5, 5, 5),
     },
     {
       id: "uDiffuseColor",
@@ -24,22 +24,22 @@ export const DEFAULT_PHONG_UNIFORMS = {
     {
       id: "uAmbientReflection",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.3,
+      value: 0.6,
     },
     {
       id: "uDiffuseReflection",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.5,
+      value: 0.2,
     },
     {
       id: "uSpecularReflection",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.5,
+      value: 0.9,
     },
     {
       id: "uAmbientColor",
       valueType: ShaderPropertyValueTypes.VEC3,
-      value: new Vector3(0.2, 0.2, 0.2),
+      value: new Vector3(0.82, 0.92, 0.2),
     },
     {
       id: "uMaterialDiffuse",
@@ -49,17 +49,17 @@ export const DEFAULT_PHONG_UNIFORMS = {
     {
       id: "uMaterialSpecular",
       valueType: ShaderPropertyValueTypes.VEC3,
-      value: new Vector3(0.5, 0.5, 0.5),
+      value: new Vector3(0.0, 0.2, 0.3),
     },
     {
       id: "uSpecularColor",
       valueType: ShaderPropertyValueTypes.VEC3,
-      value: new Vector3(0.5, 0.5, 0.5),
+      value: new Vector3(0.9, 0.3, 0.1),
     },
     {
       id: "uShininess",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.5,
+      value: 0.9,
     },
   ],
 };

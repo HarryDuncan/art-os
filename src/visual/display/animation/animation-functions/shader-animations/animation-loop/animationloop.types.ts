@@ -30,10 +30,16 @@ export interface LoopProps {
 interface BaseLoopProps {
   peak: number;
   trough: number;
+  duration: number;
+  speed?: number;
 }
+
 export type FlickerLoopProps = BaseLoopProps & {
   flickerTimeAtMax: number;
   flickerType: string;
 };
 
-export type AnimationLoopProps = FlickerLoopProps;
+export type IncrementLoopProps = BaseLoopProps & {
+  overlapPercentage: number;
+};
+export type AnimationLoopProps = FlickerLoopProps | IncrementLoopProps;

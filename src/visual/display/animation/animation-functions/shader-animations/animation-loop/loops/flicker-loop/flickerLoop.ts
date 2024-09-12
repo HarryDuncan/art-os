@@ -13,7 +13,6 @@ export const flickerLoop = (flickerLoopProps: Partial<FlickerLoopProps>) => {
     trough,
   } = formatLoopPropsWithDefault(DEFAULT_FLICKER_LOOP_PROPS, flickerLoopProps);
 
-  console.log(flickerType);
   switch (flickerType) {
     case FLICKER_LOOP_TYPES.UNDULATING:
       return (time: number) =>

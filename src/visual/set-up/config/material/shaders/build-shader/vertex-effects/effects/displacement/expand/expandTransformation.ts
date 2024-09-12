@@ -14,7 +14,7 @@ export const expandTransformation = (
         vec3 direction = normalize(uCenter - ${pointName}.xyz);
         ${pointName}.xyz -= direction * ${shaderSafeFloat(
     effectStrength
-  )} * uStrength;
+  )} * uExpandStrength;
       `;
   return { vertexPointInstantiation, transformation };
 };

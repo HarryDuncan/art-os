@@ -5,9 +5,11 @@ import {
 import {
   AnimationLoopType,
   FlickerLoopProps,
+  IncrementLoopProps,
   LoopProps,
 } from "../animationloop.types";
 import { flickerLoop } from "./flicker-loop/flickerLoop";
+import { incrementLoop } from "./increment-loop/incrementLoop";
 
 export const getLoopType = (
   loopType: AnimationLoopType,
@@ -42,7 +44,7 @@ export const getLoopType = (
           minTrough
         );
     case ANIMATION_LOOP_TYPES.FLICKER: {
-      return flickerLoop(loopProps as FlickerLoopProps);
+      return flickerLoop({ duration, ...loopProps } as FlickerLoopProps);
     }
 
     case ANIMATION_LOOP_TYPES.MIN_MAX:
@@ -51,6 +53,8 @@ export const getLoopType = (
           Math.min(Math.cos(time * speed) * steepness + 0.5, maxPeak),
           minTrough
         );
+    case ANIMATION_LOOP_TYPES.INCREMENT_LOOP:
+      return incrementLoop({ duration, ...loopProps } as IncrementLoopProps);
     case ANIMATION_LOOP_TYPES.LINEAR:
     default:
       return (time: number) => time * speed;
