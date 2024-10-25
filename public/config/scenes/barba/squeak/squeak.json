@@ -5,17 +5,789 @@
     },
     "assets": [
       {
+        "name": "geometry-1",
+        "url": "../assets/models/sculptures/graces.glb",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "three-graces",
+        "geometryConfig": {
+          "scale": 0.09
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uDistortAngle",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            },
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT",
+              "effectProps": {
+                "distortionType": "FLEXY_TWISTER"
+              }
+            },
+            { "effectType": "ROTATE" }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "PHONG"
+            }
+          ],
+          "uniformConfig": {
+            "defaultUniforms": [],
+            "customUniforms": [
+              {
+                "id": "uDiffuseColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uLightColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uAmbientColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              { "id": "uDiffuseReflection", "valueType": "FLOAT", "value": 0.5 }
+            ]
+          },
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/sculptures/venus-with-apple.glb",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "venus-with-apple",
+        "geometryConfig": {
+          "scale": 0.08
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            },
+            {
+              "uniform": "uExpandStrength",
+              "loopType": "INCREMENT",
+              "loopProps": {
+                "peak": 1,
+                "trough": 0,
+                "duration": 2.5,
+                "overlapPercentage": 0.25
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "EXPAND",
+              "effectProps": {
+                "effectStrength": 0.5
+              }
+            },
+            {
+              "effectType": "ROTATE"
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "PHONG"
+            }
+          ],
+          "uniformConfig": {
+            "defaultUniforms": [],
+            "customUniforms": [
+              {
+                "id": "uDiffuseColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uLightColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uAmbientColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              { "id": "uDiffuseReflection", "valueType": "FLOAT", "value": 0.5 }
+            ]
+          },
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/sculptures/nymph.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "nymph",
+        "geometryConfig": {
+          "scale": 2.5
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            },
+            {
+              "uniform": "uExpandStrength",
+              "loopType": "INCREMENT",
+              "loopProps": {
+                "peak": 1,
+                "trough": 0,
+                "duration": 2.5,
+                "overlapPercentage": 0.25
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "EXPAND",
+              "effectProps": {
+                "effectStrength": 0.5
+              }
+            },
+            {
+              "effectType": "ROTATE"
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "PHONG"
+            }
+          ],
+          "uniformConfig": {
+            "defaultUniforms": [],
+            "customUniforms": [
+              {
+                "id": "uDiffuseColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uLightColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uAmbientColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              { "id": "uDiffuseReflection", "valueType": "FLOAT", "value": 0.5 }
+            ]
+          },
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25.5 } }
+    },
+    "assets": [
+      {
+        "name": "geometry-1",
+        "url": "../assets/models/barba/vivid/morph/man.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "man",
+        "geometryConfig": {
+          "scale": 1.5
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            },
+            {
+              "uniform": "uExpandStrength",
+              "loopType": "INCREMENT",
+              "loopProps": {
+                "peak": 1,
+                "trough": 0,
+                "duration": 2.5,
+                "overlapPercentage": 0.25
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "EXPAND",
+              "effectProps": {
+                "effectStrength": 0.5
+              }
+            },
+            {
+              "effectType": "ROTATE"
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "PHONG"
+            }
+          ],
+          "uniformConfig": {
+            "defaultUniforms": [],
+            "customUniforms": [
+              {
+                "id": "uDiffuseColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uLightColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uAmbientColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              { "id": "uDiffuseReflection", "valueType": "FLOAT", "value": 0.5 }
+            ]
+          },
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "TEXTURE"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 2, "z": 20.5 } }
+    },
+    "assets": [
+      {
+        "id": "model",
+        "name": "geometry-1",
+        "url": "../assets/models/sculptures/crouching-venus.obj",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "crouching-venus",
+        "geometryConfig": {
+          "scale": 3.5
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uStretchStrength",
+              "loopType": "ZERO_TO_ZERO",
+              "loopProps": {
+                "speed": 0.2
+              }
+            },
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT",
+              "effectProps": {
+                "distortionType": "STRETCH"
+              }
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": {
+                "degrees": 180,
+                "axis": "Y",
+                "effectType": "ROTATION_BY_DEGREES"
+              }
+            },
+            {
+              "effectType": "ROTATE"
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "PHONG"
+            }
+          ],
+          "uniformConfig": {
+            "defaultUniforms": [],
+            "customUniforms": [
+              {
+                "id": "uDiffuseColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uLightColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uAmbientColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              { "id": "uDiffuseReflection", "valueType": "FLOAT", "value": 0.5 }
+            ]
+          },
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uCenter",
+            "assetId": "model",
+            "relationship": "CENTER3D"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": -2, "z": 14.5 } }
+    },
+    "assets": [
+      {
+        "id": "model",
+        "name": "geometry-1",
+        "url": "../assets/models/sculptures/hera.glb",
+        "assetType": "MODEL3D"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "geometry-1",
+        "geometryId": "smk25-orig1120-head-of-hera-barberini",
+        "geometryConfig": {
+          "scale": 0.1
+        },
+        "rotation": { "x": 0, "y": -0, "z": -0 },
+        "materialId": "morphing-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "geometry",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": [
+            {
+              "uniform": "uStretchStrength",
+              "loopType": "ZERO_TO_ZERO",
+              "loopProps": {
+                "speed": 0.2
+              }
+            },
+            {
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
+              "loopProps": {
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "lightConfig": [],
+    "globalMaterialConfigs": [
+      {
+        "id": "morphing-material",
+        "materialType": "BUILT_SHADER",
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "DISTORT",
+              "effectProps": {
+                "distortionType": "STRETCH"
+              }
+            },
+            {
+              "effectType": "ROTATE",
+              "effectProps": {
+                "degrees": 180,
+                "axis": "Y",
+                "effectType": "ROTATION_BY_DEGREES"
+              }
+            },
+            {
+              "effectType": "ROTATE"
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "PHONG"
+            }
+          ],
+          "uniformConfig": {
+            "defaultUniforms": [],
+            "customUniforms": [
+              {
+                "id": "uDiffuseColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uLightColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uAmbientColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              { "id": "uDiffuseReflection", "valueType": "FLOAT", "value": 0.5 }
+            ]
+          },
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uCenter",
+            "assetId": "model",
+            "relationship": "CENTER3D"
+          }
+        ]
+      },
+      {
+        "id": "bg-vid",
+        "materialProps": {
+          "assetId": "bg-vid"
+        },
+        "materialType": "VIDEO"
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "MORPH",
+        "transformedMeshIds": ["geometry-1", "geometry-2"],
+        "materialId": "morphing-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 2, "z": 15.5 } }
+    },
+    "assets": [
+      {
         "id": "model",
         "name": "geometry-1",
         "url": "../assets/models/barba/vivid/morph/man.obj",
         "assetType": "MODEL3D"
-      },
-      {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/shifted_image_3.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
       }
     ],
     "meshComponentConfigs": [
@@ -81,8 +853,7 @@
               }
             },
             {
-              "effectType": "ROTATE",
-              "effectProps": {}
+              "effectType": "ROTATE"
             }
           ],
           "fragmentEffectConfigs": [
@@ -92,7 +863,24 @@
           ],
           "uniformConfig": {
             "defaultUniforms": [],
-            "customUniforms": []
+            "customUniforms": [
+              {
+                "id": "uDiffuseColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uLightColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uAmbientColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              { "id": "uDiffuseReflection", "valueType": "FLOAT", "value": 0.5 }
+            ]
           },
           "attributeConfig": []
         },
@@ -131,42 +919,18 @@
     "assets": [
       {
         "name": "geometry-1",
-        "url": "../assets/models/barba/vivid/morph/man.obj",
+        "url": "../assets/models/sculptures/venus-bust.obj",
         "assetType": "MODEL3D"
-      },
-      {
-        "name": "geometry-2",
-        "url": "../assets/models/barba/vivid/morph/apollo.obj",
-        "assetType": "MODEL3D"
-      },
-
-      {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/shifted_image_3.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
       }
     ],
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
-        "geometryId": "man",
+        "geometryId": "venus-bust",
         "geometryConfig": {
-          "scale": 1.5
+          "scale": 5.5
         },
         "rotation": { "x": 0, "y": -0, "z": -0 },
-        "materialId": "morphing-material"
-      },
-      {
-        "id": "geometry-2",
-        "geometryId": "apollo",
-        "meshType": "NONE",
-        "geometryConfig": {
-          "scale": 1.5
-        },
-        "position": { "x": 0, "y": 0, "z": 0 },
-        "rotation": { "x": 0, "y": 0, "z": -0 },
         "materialId": "morphing-material"
       }
     ],
@@ -214,7 +978,8 @@
               "effectProps": {
                 "distortionType": "FLEXY_TWISTER"
               }
-            }
+            },
+            { "effectType": "ROTATE" }
           ],
           "fragmentEffectConfigs": [
             {
@@ -223,7 +988,24 @@
           ],
           "uniformConfig": {
             "defaultUniforms": [],
-            "customUniforms": []
+            "customUniforms": [
+              {
+                "id": "uDiffuseColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uLightColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uAmbientColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              { "id": "uDiffuseReflection", "valueType": "FLOAT", "value": 0.5 }
+            ]
           },
           "attributeConfig": []
         },
@@ -262,42 +1044,18 @@
     "assets": [
       {
         "name": "geometry-1",
-        "url": "../assets/models/barba/vivid/morph/man.obj",
+        "url": "../assets/models/sculptures/hera.glb",
         "assetType": "MODEL3D"
-      },
-      {
-        "name": "geometry-2",
-        "url": "../assets/models/barba/vivid/morph/apollo.obj",
-        "assetType": "MODEL3D"
-      },
-
-      {
-        "name": "chrome-material",
-        "url": "../assets/textures/matcaps/shifted_image_3.jpg",
-        "assetType": "TEXTURE",
-        "id": "chrome-material",
-        "assetTag": ["MATCAP"]
       }
     ],
     "meshComponentConfigs": [
       {
         "id": "geometry-1",
-        "geometryId": "man",
+        "geometryId": "smk25-orig1120-head-of-hera-barberini",
         "geometryConfig": {
-          "scale": 1.5
+          "scale": 0.1
         },
         "rotation": { "x": 0, "y": -0, "z": -0 },
-        "materialId": "morphing-material"
-      },
-      {
-        "id": "geometry-2",
-        "geometryId": "apollo",
-        "meshType": "NONE",
-        "geometryConfig": {
-          "scale": 1.5
-        },
-        "position": { "x": 0, "y": 0, "z": 0 },
-        "rotation": { "x": 0, "y": 0, "z": -0 },
         "materialId": "morphing-material"
       }
     ],
@@ -312,7 +1070,7 @@
           "repeatAnimation": true,
           "animationLoopConfig": [
             {
-              "uniform": "uProgress",
+              "uniform": "uDistortAngle",
               "loopType": "MIN_MAX",
               "loopProps": {
                 "maxPeak": 1,
@@ -321,13 +1079,12 @@
               }
             },
             {
-              "uniform": "uExpandStrength",
-              "loopType": "INCREMENT",
+              "uniform": "uProgress",
+              "loopType": "MIN_MAX",
               "loopProps": {
-                "peak": 1,
-                "trough": 0,
-                "duration": 2.5,
-                "overlapPercentage": 0.25
+                "maxPeak": 1,
+                "minTrough": 0,
+                "speed": 0.2
               }
             }
           ]
@@ -342,11 +1099,12 @@
         "builtShaderConfig": {
           "vertexEffectConfigs": [
             {
-              "effectType": "EXPAND",
+              "effectType": "DISTORT",
               "effectProps": {
-                "effectStrength": 0.5
+                "distortionType": "FLEXY_TWISTER"
               }
-            }
+            },
+            { "effectType": "ROTATE" }
           ],
           "fragmentEffectConfigs": [
             {
@@ -355,7 +1113,24 @@
           ],
           "uniformConfig": {
             "defaultUniforms": [],
-            "customUniforms": []
+            "customUniforms": [
+              {
+                "id": "uDiffuseColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uLightColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              {
+                "id": "uAmbientColor",
+                "valueType": "VEC3",
+                "value": "#001eff"
+              },
+              { "id": "uDiffuseReflection", "valueType": "FLOAT", "value": 0.5 }
+            ]
           },
           "attributeConfig": []
         },
@@ -386,5 +1161,5 @@
     "scenePropertiesConfig": {
       "backgroundColor": "black"
     }
-  }
+  },
 ]

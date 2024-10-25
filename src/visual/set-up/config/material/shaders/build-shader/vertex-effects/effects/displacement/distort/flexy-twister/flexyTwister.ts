@@ -23,6 +23,7 @@ export const flexyTwister = (pointName, previousPointName, effectProps) => {
 
     float twistAngle = angle * howFarUp;
     vec4 ${pointName} = twister( vec4( position, 1.0 ), twistAngle );
+    vec4 twistNormal = twister( vec4( normal, 1.0 ), twistAngle );
     vec4 twistedNormal = twister( vec4( normal, 1.0 ), twistAngle );`;
   return {
     transformation,

@@ -20,7 +20,7 @@
         "assetType": "TEXTURE",
         "id": "image",
         "name": "image",
-        "url": "../assets/textures/emergence/atom-square.jpg"
+        "url": "../assets/textures/id-references/ref-1.jpg"
       }
     ],
     "meshComponentConfigs": [
@@ -48,7 +48,7 @@
             "defaultUniforms": [],
             "customUniforms": [
               { "id": "uRandom", "valueType": "FLOAT", "value": 1.0 },
-              { "id": "uSize", "valueType": "FLOAT", "value": 25.5 },
+              { "id": "uSize", "valueType": "FLOAT", "value": 8.5 },
               { "id": "uDepth", "valueType": "FLOAT", "value": 1.0 },
               { "id": "uTextureSize", "valueType": "VEC2" },
               { "id": "uTexture", "valueType": "SAMPLER2D" }
@@ -70,7 +70,7 @@
             {
               "effectType": "POINT_MATERIAL",
               "effectProps": {
-                "pointDisplayPercentage": 0.5,
+                "pointDisplayPercentage": 0.2,
                 "pointTextures": [
                   { "id": "uTexture1", "pointColor": "#ffffff" },
                   { "id": "uTexture2", "pointColor": "#ff32sd" }
@@ -87,7 +87,7 @@
               "id": "pointDisplay",
               "valueType": "FLOAT",
               "assetId": "image",
-              "valueConfig": { "randomizedPercentage": 0.05 }
+              "valueConfig": { "randomizedPercentage": 0.25 }
             },
             {
               "id": "pointIndex",

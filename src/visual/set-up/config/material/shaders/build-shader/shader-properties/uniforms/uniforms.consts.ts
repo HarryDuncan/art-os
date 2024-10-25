@@ -4,3 +4,7 @@ export const EMPTY_UNIFORM_CONFIG = {
   defaultUniforms: [],
   customUniforms: [],
 };
+
+export const UNIFORM_TAGS = {
+  COLOR: "COLOR",
+};

@@ -22,5 +22,11 @@
     "configId": "squeak",
     "configPath": "scenes/barba/squeak/squeak",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Squeak",
+    "configId": "hjd-background",
+    "configPath": "scenes/hjd-art/backgrounds/hjd-background",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

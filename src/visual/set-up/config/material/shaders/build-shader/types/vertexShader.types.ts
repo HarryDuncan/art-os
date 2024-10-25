@@ -48,6 +48,7 @@ export type NoiseEffectProps = EffectParameters & {
   effectStrength: number;
 };
 export type RotationEffectProps = EffectParameters & {
+  rotation;
   speed: number;
   degrees?: number;
   axis: Axis;

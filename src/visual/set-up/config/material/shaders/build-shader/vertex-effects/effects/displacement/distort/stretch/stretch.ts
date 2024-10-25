@@ -30,7 +30,7 @@ export const stretch = (pointName, previousPointName, effectProps) => {
     vec3 stretchPoint1 = scaleVector3(-7.0, uStretchStrength);
     vec3 stretchPoint2 = scaleVector3(7.0, uStretchStrength);
     // get the distance from position to uStrechPoints 1 and 2
-    vec3 center = uCenter;
+    vec3 center = vec3(0.0,0.0,0.0);
 
     // Calculate distance from the vertex position to the center and stretch points
     float distFromCenter = distance(${pointName}.xyz, center);

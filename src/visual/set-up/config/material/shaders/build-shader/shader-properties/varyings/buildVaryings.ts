@@ -80,7 +80,9 @@ const getDefaultVaryingString = (
         strings.push("vModelViewMatrix = modelViewMatrix;");
         break;
       case "vNormalInterpolation":
-        return strings.push("vNormalInterpolation = normalMatrix * normal;");
+        return strings.push(
+          "vNormalInterpolation = normalMatrix * rotationNormal;"
+        );
       case "vTexCoord":
         strings.push(`vTexCoord = texcoord;`);
       case "vGeometryNormal":

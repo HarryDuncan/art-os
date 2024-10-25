@@ -31,10 +31,11 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const fragmentEffects = setUpFragmentEffects(fragmentEffectConfigs);
   const vertexEffects = setUpVertexEffects(vertexEffectConfigs);
 
+  // pass the parsed uniform config first so the values override any values defined in the other effects - vertex/fragment
   const shaderUniforms: UniformConfig[] = [
+    uniformConfig ?? { ...EMPTY_UNIFORM_CONFIG },
     vertexEffects.uniformConfigs,
     fragmentEffects.uniformConfigs,
-    uniformConfig ?? { ...EMPTY_UNIFORM_CONFIG },
   ];
   const mergedShaderUniforms = mergeUniformConfigs(shaderUniforms);
 

@@ -2,6 +2,7 @@ import { Vector3 } from "three";
 import { ShaderPropertyValueTypes } from "../../../../constants";
 import { VARYING_TYPES } from "../../../../shader-properties/varyings/varyings.consts";
 import { DefaultUniform, VaryingConfig } from "../../../../types";
+import { UNIFORM_TAGS } from "../../../../shader-properties/uniforms/uniforms.consts";
 
 export const DEFAULT_PHONG_UNIFORMS = {
   defaultUniforms: ["uMaterial", "uResolution"] as DefaultUniform[],
@@ -13,28 +14,29 @@ export const DEFAULT_PHONG_UNIFORMS = {
     },
     {
       id: "uDiffuseColor",
+      tag: [UNIFORM_TAGS.COLOR],
       valueType: ShaderPropertyValueTypes.VEC3,
-      value: new Vector3(0.5, 0.5, 0.5),
+      value: new Vector3(0.2, 0.2, 0.2),
     },
     {
       id: "uLightColor",
       valueType: ShaderPropertyValueTypes.VEC3,
-      value: new Vector3(0.5, 0.5, 1),
+      value: new Vector3(1, 1.0, 1.0),
     },
     {
       id: "uAmbientReflection",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.6,
+      value: 0.45,
     },
     {
       id: "uDiffuseReflection",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.2,
+      value: 0.9,
     },
     {
       id: "uSpecularReflection",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.9,
+      value: 0.7,
     },
     {
       id: "uAmbientColor",
@@ -46,20 +48,16 @@ export const DEFAULT_PHONG_UNIFORMS = {
       valueType: ShaderPropertyValueTypes.VEC3,
       value: new Vector3(0.5, 0.5, 0.5),
     },
-    {
-      id: "uMaterialSpecular",
-      valueType: ShaderPropertyValueTypes.VEC3,
-      value: new Vector3(0.0, 0.2, 0.3),
-    },
+
     {
       id: "uSpecularColor",
       valueType: ShaderPropertyValueTypes.VEC3,
-      value: new Vector3(0.9, 0.3, 0.1),
+      value: new Vector3(1.0, 1.0, 1.0),
     },
     {
       id: "uShininess",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.9,
+      value: 20.3,
     },
   ],
 };
