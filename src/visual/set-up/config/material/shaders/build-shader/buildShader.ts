@@ -15,6 +15,8 @@ import { EMPTY_UNIFORM_CONFIG } from "./shader-properties/uniforms/uniforms.cons
 import { buildVaryings } from "./shader-properties/varyings/buildVaryings";
 import { mergeVaryingConfigs } from "./shader-properties/varyings/helpers/mergeVaryingConfigs";
 import { setUpVertexEffects } from "./vertex-effects/setUpVertexEffects";
+import { buildStruct } from "./shader-properties/structs/buildStructs";
+import { mergeStructConfigs } from "./shader-properties/structs/mergeStructConfigs";
 
 export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const {
@@ -23,14 +25,17 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     uniformConfig,
     varyingConfig,
     attributeConfig,
+    structConfigs,
   } = shaderConfig;
+
   const fragmentEffects = setUpFragmentEffects(fragmentEffectConfigs);
   const vertexEffects = setUpVertexEffects(vertexEffectConfigs);
 
+  // pass the parsed uniform config first so the values override any values defined in the other effects - vertex/fragment
   const shaderUniforms: UniformConfig[] = [
+    uniformConfig ?? { ...EMPTY_UNIFORM_CONFIG },
     vertexEffects.uniformConfigs,
     fragmentEffects.uniformConfigs,
-    uniformConfig ?? { ...EMPTY_UNIFORM_CONFIG },
   ];
   const mergedShaderUniforms = mergeUniformConfigs(shaderUniforms);
 
@@ -41,6 +46,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   ] as AttributeConfig[][];
   const combinedAttributeConfigs = mergeAttributeConfigs(shaderAttributes);
   const attributes = buildAttributes(combinedAttributeConfigs);
+
   const shaderVaryings = [
     vertexEffects.varyingConfigs,
     fragmentEffects.varyingConfigs,
@@ -49,6 +55,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
   const mergedShaderVaryings = mergeVaryingConfigs(
     shaderVaryings
   ) as VaryingConfig[];
+
   const { uniforms, uniformDeclaration } = buildUniforms(mergedShaderUniforms);
   const {
     declaration: varyingDeclaration,
@@ -59,7 +66,16 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     vertexEffects.previousPointName
   );
 
+  const shaderStructConfigs = [
+    vertexEffects.structConfigs,
+    fragmentEffects.structConfigs,
+    structConfigs ?? [],
+  ];
+  const mergedStructConfig = mergeStructConfigs(shaderStructConfigs);
+  const structDeclaration = buildStruct(mergedStructConfig);
+
   const vertexShader = formatVertexShader(
+    structDeclaration,
     attributes,
     uniformDeclaration,
     varyingDeclaration,
@@ -69,6 +85,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     vertexEffects.viewMatrix
   );
   const fragmentShader = formatFragmentShader(
+    structDeclaration,
     uniformDeclaration,
     varyingDeclaration,
     fragmentEffects.requiredFunctions,
@@ -84,6 +101,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
 };
 
 const formatVertexShader = (
+  structDeclaration: string,
   attributes: string,
   uniformDeclarations: string,
   varyingDeclaration: string,
@@ -93,6 +111,7 @@ const formatVertexShader = (
   viewMatrix: string
 ) => {
   return [
+    structDeclaration,
     attributes,
     uniformDeclarations,
     varyingDeclaration,
@@ -108,6 +127,7 @@ const formatVertexShader = (
 };
 
 export const formatFragmentShader = (
+  structDeclaration: string,
   uniformDeclaration: string,
   varyingDeclaration: string,
   fragmentFunctions: ShaderFunction[],
@@ -115,6 +135,7 @@ export const formatFragmentShader = (
   fragColor: string
 ) => {
   const shaderCodeArray: string[] = [
+    structDeclaration,
     uniformDeclaration,
     varyingDeclaration,
     ...fragmentFunctions.map(({ functionDefinition }) => functionDefinition),

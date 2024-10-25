@@ -14,6 +14,7 @@ export const mod289Vec4 = `// **- // Returns vector4 modulo 289
   }
   `;
 
+export const pow2 = `float pow2 (float x) { return x*x; }`;
 export const permuteFloat = `// **- // permutates a float
 float permute(float x) {
     return mod289(((x*34.0)+1.0)*x);
@@ -66,4 +67,13 @@ float rand(vec2 n) {
 
 export const random = `float random(float n) {
 	return fract(sin(n) * 43758.5453123);
+}`;
+
+export const interpolate = `float interpolate(float x, float min_x, float max_x) {
+	return x * max_x + (1.0 - x) * min_x;
+}
+`;
+
+export const normSin = `float normSin(float x) {
+	return (sin(x) + 1.0) / 2.0;
 }`;

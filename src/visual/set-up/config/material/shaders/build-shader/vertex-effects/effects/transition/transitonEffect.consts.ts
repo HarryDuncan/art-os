@@ -1,15 +1,10 @@
 import { POINT_PARENTS } from "../../../constants/buildShader.consts";
-import { TRANSITION_FRAGMENT_EFFECT } from "../../../fragment-effects/fragmentEffects.consts";
-import {
-  TransitionVertexEffect,
-  UniformConfig,
-  VaryingConfig,
-} from "../../../types";
+import { UniformConfig, VaryingConfig } from "../../../types";
 
-export const TRANSITION_UNIFORM_CONFIG = {
+export const TRANSITION_UNIFORM_CONFIG = ({
   defaultUniforms: [""],
   customUniforms: [],
-} as UniformConfig;
+} as unknown) as UniformConfig;
 
 export const TRANSITION_VARYING_CONFIG = [
   {

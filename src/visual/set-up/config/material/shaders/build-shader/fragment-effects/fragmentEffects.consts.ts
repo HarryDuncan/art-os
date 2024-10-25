@@ -10,6 +10,8 @@ export const FRAGMENT_EFFECT = {
   TRIGGERED: "TRIGGERED",
   VANISH: "VANISH",
   BRIGHTNESS: "BRIGHTNESS",
+  PHYSICAL_MATERIAL: "PHYSICAL_MATERIAL",
+  PHONG: "PHONG",
 };
 
 export const FRAGMENT_COLOR_NAMES = {
@@ -22,6 +24,7 @@ export const FRAGMENT_COLOR_NAMES = {
   TRIGGERED: "fragTriggered",
   VANISH: "fragVanish",
   BRIGHTNESS: "fragBrightness",
+  PHYSICAL_MATERIAL: "fragPhysicalMaterial",
 };
 export const DEFAULT_FRAG_COLOR = "#ff1205";
 

@@ -1,4 +1,4 @@
-import { Vector3 } from "three";
+import { Vector2, Vector3, Vector4 } from "three";
 import { PositionConfig } from "../three-dimension-space/position/position.types";
 
 export const position3dToVector = (position: PositionConfig) => {
@@ -24,4 +24,26 @@ export const positionConfigToPosition = (positionConfig: PositionConfig) => {
     y: positionConfig.y ?? 0,
     z: positionConfig.z ?? 0,
   };
+};
+
+export const arrayToVector = (numberArray: number[]) => {
+  const arrayLength = numberArray.length;
+  switch (arrayLength) {
+    case 2:
+      return new Vector2(numberArray[0], numberArray[1]);
+    case 3:
+      return new Vector3(numberArray[0], numberArray[1], numberArray[2]);
+    case 4:
+      return new Vector4(
+        numberArray[0],
+        numberArray[1],
+        numberArray[2],
+        numberArray[3]
+      );
+    default:
+      console.warn(
+        `${length} can not be matched to a vector size - returning a 2d vector`
+      );
+      return new Vector2(numberArray[0] ?? 0, numberArray[1] ?? 0);
+  }
 };

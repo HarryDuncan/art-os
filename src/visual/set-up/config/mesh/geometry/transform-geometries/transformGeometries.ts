@@ -66,6 +66,7 @@ export const transformGeometry = (
           const attributesSet = transformedMeshes.map(({ geometry }) => {
             attributeConfig?.forEach((config) => {
               if (config.value) {
+                // @ts-ignore
                 geometry.setAttribute(config.id, config.value);
               }
             });

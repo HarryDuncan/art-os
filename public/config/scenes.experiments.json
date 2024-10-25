@@ -16,5 +16,17 @@
     "configId": "decadance-morph",
     "configPath": "scenes/experiments/decadance-morph",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Squeak",
+    "configId": "squeak",
+    "configPath": "scenes/barba/squeak/squeak",
+    "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Squeak",
+    "configId": "hjd-background",
+    "configPath": "scenes/hjd-art/backgrounds/hjd-background",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

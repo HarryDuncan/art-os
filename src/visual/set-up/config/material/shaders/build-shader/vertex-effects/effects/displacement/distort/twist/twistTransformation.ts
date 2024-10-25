@@ -1,9 +1,14 @@
-export const distortTransform = (
-  previousPointName: string,
-  pointName: string
+import { TWIST_UNIFORM_CONFIG, TWIST_VARYINGS } from "./twist.consts";
+
+export const twistTransformation = (
+  pointName,
+  previousPointName,
+  effectProps
 ) => {
   const vertexPointInstantiation = `vec3 ${pointName} = ${previousPointName}.xyz;`;
-  const transform = `
+  const uniformConfig = TWIST_UNIFORM_CONFIG;
+  const varyingConfig = TWIST_VARYINGS;
+  const transformation = `
 	${vertexPointInstantiation};
 	float howFarUp = ${pointName}.y;
     vec3 cXaxis = vec3(1.0, 0.0, 0.0);
@@ -33,5 +38,11 @@ export const distortTransform = (
     ${pointName} = twister( vec4( ${pointName}.xyz, 1.0 ), twistAngle ).xyz;
     vec4 twistedNormal = twister( vec4( normal, 1.0 ), twistAngle);
 	`;
-  return { transform, vertexPointInstantiation };
+  return {
+    transformation,
+    vertexPointInstantiation,
+    pointName,
+    uniformConfig,
+    varyingConfig,
+  };
 };

@@ -28,5 +28,11 @@
     "configId": "noise",
     "configPath": "scenes/barba/vivid/noise",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Squeak",
+    "configId": "squeak",
+    "configPath": "scenes/barba/squeak/squeak",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

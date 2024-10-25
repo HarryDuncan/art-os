@@ -4,6 +4,7 @@ import { NOISE_EFFECT_TYPES } from "../vertex-effects/effects/displacement/noise
 import { EffectParameters, PreTransformConfig } from "./buildShader.types";
 import {
   DISPLACEMENT_TYPES,
+  DISTORTION_TYPES,
   IMAGE_VERTEX_EFFECT,
   TRIGGERED_VERTEX_EFFECT,
 } from "../vertex-effects/vertexEffects.consts";
@@ -27,6 +28,13 @@ export type DisplacementEffectProps = {
   };
 };
 
+export type DistortionType = keyof typeof DISTORTION_TYPES;
+export type TwistDistortionProps = {};
+export type DistortionParams = TwistDistortionProps;
+export type DistortionEffectProps = EffectParameters & {
+  distortionType: DistortionType;
+  effectProps: DistortionParams;
+};
 export type ExpandEffectProps = EffectParameters & {
   effectDistanceMinLength: number;
   effectStrength: number;
@@ -40,7 +48,9 @@ export type NoiseEffectProps = EffectParameters & {
   effectStrength: number;
 };
 export type RotationEffectProps = EffectParameters & {
+  rotation;
   speed: number;
+  degrees?: number;
   axis: Axis;
 };
 

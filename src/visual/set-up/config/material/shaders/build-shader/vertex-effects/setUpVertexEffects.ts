@@ -1,6 +1,7 @@
 import {
   AttributeConfig,
   ShaderFunction,
+  StructConfig,
   UniformConfig,
   VaryingConfig,
   VertexEffectConfig,
@@ -11,6 +12,7 @@ import { mergeUniformConfigs } from "../shader-properties/uniforms/helpers/merge
 import { mergeVaryingConfigs } from "../shader-properties/varyings/helpers/mergeVaryingConfigs";
 import { getVertexEffect } from "./effects/getVertexEffect";
 import { VERTEX_EFFECT_POINT_NAMES } from "./vertexEffects.consts";
+import { mergeStructConfigs } from "../shader-properties/structs/mergeStructConfigs";
 
 export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
   const {
@@ -20,6 +22,7 @@ export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
     previousPointName,
     requiredFunctions,
     attributeConfigs,
+    structConfigs,
   } = getVertexTransformations(vertexEffects);
 
   const viewMatrix = `gl_Position = projectionMatrix * modelViewMatrix * vec4(${previousPointName}.xyz, 1.0);`;
@@ -32,6 +35,7 @@ export const setUpVertexEffects = (vertexEffects: VertexEffectConfig[]) => {
     viewMatrix,
     previousPointName,
     attributeConfigs,
+    structConfigs,
   };
 };
 
@@ -41,6 +45,7 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
   const unmergedVaryingConfigs: VaryingConfig[][] = [];
   const unmergedTransformations: string[] = [];
   const allRequiredFunctions: ShaderFunction[][] = [];
+  const unmergedStructConfigs: StructConfig[][] = [];
   const unmergedAttributeConfigs: AttributeConfig[][] = [];
   vertexEffects.forEach((effect) => {
     const {
@@ -50,6 +55,7 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
       pointName,
       requiredFunctions,
       attributeConfig = [],
+      structConfigs = [],
     } = getVertexEffect(effect, previousPointName);
     previousPointName = pointName;
     unmergedUniformConfigs.push(uniformConfig);
@@ -57,6 +63,7 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
     unmergedAttributeConfigs.push(attributeConfig);
     unmergedTransformations.push(transformation);
     allRequiredFunctions.push(requiredFunctions);
+    unmergedStructConfigs.push(structConfigs);
   });
 
   const mergedUniformConfigs = mergeUniformConfigs(unmergedUniformConfigs);
@@ -65,6 +72,7 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
   const mergedAttributeConfigs = mergeAttributeConfigs(
     unmergedAttributeConfigs
   );
+  const mergedStructConfigs = mergeStructConfigs(unmergedStructConfigs);
   const transformations = unmergedTransformations.join("");
   return {
     uniformConfigs: mergedUniformConfigs,
@@ -73,5 +81,6 @@ const getVertexTransformations = (vertexEffects: VertexEffectConfig[]) => {
     previousPointName,
     requiredFunctions: mergedRequiredFunction,
     attributeConfigs: mergedAttributeConfigs,
+    structConfigs: mergedStructConfigs,
   };
 };

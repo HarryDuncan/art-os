@@ -54,11 +54,11 @@ export const imageToPointsTransform = (
       // center
       displaced.xy -= uTextureSize * 0.5;
       // particle size
-       float psize = (noise(vec2(uTime, pointIndex) * 0.5) + 2.0);
+      float psize = (noise(vec2(uTime, pointIndex) * 0.5) + 2.0);
       float siz = 0.0;
       if( grey < 0.8 )
       {
-          siz = 4.4 ;
+          siz = 12.4 ;
       };
       ${pointName} =  vec4(displaced, 1.0);
       psize *= min(grey, siz);

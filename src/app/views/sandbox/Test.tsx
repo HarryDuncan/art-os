@@ -37,7 +37,7 @@ export const Test = () => {
       hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
       new GLTFLoader()
         .setPath("assets/models/sculptures/")
-        .load("torn-torso.glb", function(gltf) {
+        .load("jason.glb", function(gltf) {
           gltf.scene.traverse(function(child) {
             if (child.isMesh) {
               mesh = child;
@@ -206,6 +206,7 @@ export const Test = () => {
   function render() {
     renderer.render(scene, camera);
   }
+  return render();
 
   //   const addGUI = (model: THREE.Mesh) => {
   //     const gui = new GUI();

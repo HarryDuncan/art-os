@@ -1,30 +1,71 @@
+import { Vector3 } from "three";
 import { ShaderPropertyValueTypes } from "../../../../constants";
-import {
-  matcapFunction,
-  textureLevel,
-} from "../../../../shader-properties/functions/matcapFunctions";
-import { calculateNormal } from "../../../../shader-properties/functions/maths/maths";
 import { VARYING_TYPES } from "../../../../shader-properties/varyings/varyings.consts";
 import { DefaultUniform, VaryingConfig } from "../../../../types";
+import { UNIFORM_TAGS } from "../../../../shader-properties/uniforms/uniforms.consts";
 
-export const DEFAULT_MATCAP_UNIFORMS = {
+export const DEFAULT_PHONG_UNIFORMS = {
   defaultUniforms: ["uMaterial", "uResolution"] as DefaultUniform[],
   customUniforms: [
     {
-      id: "uLightDir",
-      valueType: ShaderPropertyValueTypes.VEC2,
+      id: "uLightPosition",
+      valueType: ShaderPropertyValueTypes.VEC3,
+      value: new Vector3(5, 5, 5),
+    },
+    {
+      id: "uDiffuseColor",
+      tag: [UNIFORM_TAGS.COLOR],
+      valueType: ShaderPropertyValueTypes.VEC3,
+      value: new Vector3(0.2, 0.2, 0.2),
+    },
+    {
+      id: "uLightColor",
+      valueType: ShaderPropertyValueTypes.VEC3,
+      value: new Vector3(1, 1.0, 1.0),
+    },
+    {
+      id: "uAmbientReflection",
+      valueType: ShaderPropertyValueTypes.FLOAT,
+      value: 0.45,
+    },
+    {
+      id: "uDiffuseReflection",
+      valueType: ShaderPropertyValueTypes.FLOAT,
+      value: 0.9,
+    },
+    {
+      id: "uSpecularReflection",
+      valueType: ShaderPropertyValueTypes.FLOAT,
+      value: 0.7,
+    },
+    {
+      id: "uAmbientColor",
+      valueType: ShaderPropertyValueTypes.VEC3,
+      value: new Vector3(0.82, 0.92, 0.2),
+    },
+    {
+      id: "uMaterialDiffuse",
+      valueType: ShaderPropertyValueTypes.VEC3,
+      value: new Vector3(0.5, 0.5, 0.5),
+    },
+
+    {
+      id: "uSpecularColor",
+      valueType: ShaderPropertyValueTypes.VEC3,
+      value: new Vector3(1.0, 1.0, 1.0),
+    },
+    {
+      id: "uShininess",
+      valueType: ShaderPropertyValueTypes.FLOAT,
+      value: 20.3,
     },
   ],
 };
 
-export const DEFAULT_MATCAP_EFFECT_PROPS = {};
+export const DEFAULT_PHONG_EFFECT_PROPS = {};
 
-export const MATCAP_REQUIRED_FUNCTIONS = [
-  { id: "calculateNormal", functionDefinition: calculateNormal },
-  { id: "matcap", functionDefinition: matcapFunction },
-  { id: "textureLevel", functionDefinition: textureLevel },
-];
-export const MATCAP_VARYINGS = [
+export const PHONG_REQUIRED_FUNCTIONS = [];
+export const PHONG_VARYINGS = [
   {
     id: "vEye",
     varyingType: VARYING_TYPES.DEFAULT,
@@ -45,5 +86,10 @@ export const MATCAP_VARYINGS = [
     id: "vUv",
     varyingType: VARYING_TYPES.DEFAULT,
     valueType: ShaderPropertyValueTypes.VEC2,
+  },
+  {
+    id: "vNormalInterpolation",
+    varyingType: VARYING_TYPES.DEFAULT,
+    valueType: ShaderPropertyValueTypes.VEC3,
   },
 ] as VaryingConfig[];

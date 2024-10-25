@@ -22,11 +22,13 @@ import {
 import { DEFAULT_UNIFORMS } from "../constants";
 
 // GENERAL TYPES
-
 export type ShaderPropertyConfig = {
   id: string;
   valueType: ShaderPropertyValueTypes;
   value?: unknown;
+  arrayLength?: number;
+  arrayValue?: unknown[];
+  structProperties?: StructConfig;
 };
 
 export type ShaderFunction = {
@@ -109,7 +111,7 @@ export type AttributeConfig = ShaderPropertyConfig & {
 
 export type DefaultUniform = keyof typeof DEFAULT_UNIFORMS;
 export type UniformObject = {
-  [key: string]: { value: unknown };
+  [key: string]: { value: unknown } | { value: unknown }[];
 };
 export type UniformValueConfig = ShaderPropertyConfig;
 export type UniformConfig = {
@@ -117,10 +119,12 @@ export type UniformConfig = {
   customUniforms?: UniformValueConfig[];
 };
 
+export type StructConfig = { id: string; properties: ShaderPropertyConfig[] };
 export type BuiltShaderConfig = {
   vertexEffectConfigs: VertexEffectConfig[];
   fragmentEffectConfigs: FragmentEffectConfig[];
   uniformConfig?: UniformConfig;
   varyingConfig?: VaryingConfig[];
   attributeConfig?: AttributeConfig[];
+  structConfigs?: StructConfig[];
 };

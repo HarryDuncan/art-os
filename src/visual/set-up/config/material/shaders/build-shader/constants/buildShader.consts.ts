@@ -12,6 +12,7 @@ export enum ShaderPropertyValueTypes {
   SAMPLER_CUBE = "SAMPLER_CUBE",
   VOID = "VOID",
   CONST = "CONST",
+  STRUCT = "STRUCT",
 }
 
 export enum ShaderPropertyTypes {

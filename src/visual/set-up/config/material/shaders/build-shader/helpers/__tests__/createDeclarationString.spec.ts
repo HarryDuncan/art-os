@@ -16,6 +16,17 @@ describe("createDeclarationString", () => {
     expect(result).toStrictEqual(expected);
   });
 
+  test("returns correct declaration for uniform that is an array of 9", () => {
+    const result = createDeclarationString(
+      ShaderPropertyTypes.UNIFORM,
+      ShaderPropertyValueTypes.FLOAT,
+      "uTest",
+      10
+    );
+    const expected = "uniform float uTest[10];";
+    expect(result).toStrictEqual(expected);
+  });
+
   test("returns correct declaration for varying", () => {
     const result = createDeclarationString(
       ShaderPropertyTypes.VARYING,

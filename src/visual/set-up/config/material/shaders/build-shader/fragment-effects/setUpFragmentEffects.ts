@@ -2,9 +2,10 @@ import { defaultFragmentEffect } from "./effects/defaultFragmentEffect/defaultFr
 import { getFragmentEffects } from "./effects/getFragmentEffects";
 import { mergeUniformConfigs } from "../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import { mergeVaryingConfigs } from "../shader-properties/varyings/helpers/mergeVaryingConfigs";
-import { FragmentEffectConfig, ShaderFunction } from "../types";
+import { FragmentEffectConfig, ShaderFunction, StructConfig } from "../types";
 import { reduceFunctions } from "../helpers/reduceFunctions";
 import { mergeAttributeConfigs } from "../shader-properties/attributes/helpers/mergeAttributeConfigs";
+import { mergeStructConfigs } from "../shader-properties/structs/mergeStructConfigs";
 
 export const setUpFragmentEffects = (
   fragmentEffects: FragmentEffectConfig[]
@@ -16,6 +17,7 @@ export const setUpFragmentEffects = (
     transformations,
     attributeConfigs,
     requiredFunctions,
+    structConfigs,
   } = getFragmentColors(fragmentEffects);
 
   const fragColor = `gl_FragColor = ${finalFragmentColor};`;
@@ -26,6 +28,7 @@ export const setUpFragmentEffects = (
     transformations,
     attributeConfigs,
     requiredFunctions,
+    structConfigs,
   };
 };
 
@@ -36,6 +39,7 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
     unmergedUniformConfigs,
     unmergedTransformations,
     unmergedAttributeConfigs,
+    unmergedStructConfigs,
   } = setUpInitialParameters();
   const allRequiredFunctions: ShaderFunction[][] = [];
   fragmentEffects.forEach((effect) => {
@@ -46,11 +50,13 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
       fragName,
       requiredFunctions,
       attributeConfig,
+      structConfigs = [],
     } = getFragmentEffects(effect, currentFragmentColorName);
     unmergedVaryingConfigs.push(varyingConfig);
     unmergedUniformConfigs.push(uniformConfig);
     unmergedAttributeConfigs.push(attributeConfig);
     unmergedTransformations.push(transformation);
+    unmergedStructConfigs.push(structConfigs);
     allRequiredFunctions.push(requiredFunctions);
     currentFragmentColorName = fragName;
   });
@@ -62,6 +68,7 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
     unmergedAttributeConfigs
   );
   const mergedRequiredFunction = reduceFunctions(allRequiredFunctions);
+  const mergedStructConfigs = mergeStructConfigs(unmergedStructConfigs);
   const mergedTransformations = unmergedTransformations.join("");
   return {
     finalFragmentColor: currentFragmentColorName,
@@ -70,6 +77,7 @@ export const getFragmentColors = (fragmentEffects: FragmentEffectConfig[]) => {
     transformations: mergedTransformations,
     attributeConfigs: mergedAttributeConfigs,
     requiredFunctions: mergedRequiredFunction,
+    structConfigs: mergedStructConfigs,
   };
 };
 
@@ -89,5 +97,6 @@ const setUpInitialParameters = () => {
     unmergedUniformConfigs,
     unmergedTransformations,
     unmergedAttributeConfigs,
+    unmergedStructConfigs: [] as StructConfig[][],
   };
 };

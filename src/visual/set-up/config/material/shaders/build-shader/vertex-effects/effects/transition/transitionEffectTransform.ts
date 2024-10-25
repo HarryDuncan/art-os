@@ -1,7 +1,6 @@
 import { DEFAULT_VERTEX_EFFECT } from "../../../constants";
-import { TRANSITION_FRAGMENT_EFFECT } from "../../../fragment-effects/fragmentEffects.consts";
+
 import {
-  TransitionEffectProps,
   ExplodeEffectProps,
   ExpandEffectProps,
   RotationEffectProps,
