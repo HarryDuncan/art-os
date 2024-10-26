@@ -6,12 +6,11 @@ import {
 } from "./flickerLoop.consts";
 
 export const flickerLoop = (flickerLoopProps: Partial<FlickerLoopProps>) => {
-  const {
-    flickerTimeAtMax,
-    flickerType,
-    peak,
-    trough,
-  } = formatLoopPropsWithDefault(DEFAULT_FLICKER_LOOP_PROPS, flickerLoopProps);
+  const { flickerTimeAtMax, flickerType, peak, trough } =
+    formatLoopPropsWithDefault(
+      DEFAULT_FLICKER_LOOP_PROPS,
+      flickerLoopProps
+    ) as FlickerLoopProps;
 
   switch (flickerType) {
     case FLICKER_LOOP_TYPES.UNDULATING:

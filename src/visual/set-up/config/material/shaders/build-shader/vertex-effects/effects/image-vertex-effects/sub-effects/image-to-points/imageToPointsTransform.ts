@@ -6,7 +6,10 @@ import {
 import { noise } from "../../../../../shader-properties/functions/noise/noise";
 import { EMPTY_UNIFORM_CONFIG } from "../../../../../shader-properties/uniforms/uniforms.consts";
 import { VARYING_TYPES } from "../../../../../shader-properties/varyings/varyings.consts";
-import { ImageToPointsEffectProps } from "../../../../../types";
+import {
+  AttributeConfig,
+  ImageToPointsEffectProps,
+} from "../../../../../types";
 
 export const imageToPointsTransform = (
   pointName: string,
@@ -33,7 +36,7 @@ export const imageToPointsTransform = (
     { id: "noise", functionDefinition: noise },
     { id: "random", functionDefinition: random },
   ];
-  const effectAttributes = [];
+  const effectAttributes = [] as AttributeConfig[];
 
   const vertexPointInstantiation = `vec4 ${pointName} = vec4(${previousPointName}.xyz, 1.0);`;
   const transformation = `

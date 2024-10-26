@@ -2,7 +2,11 @@ import { ShaderPropertyValueTypes } from "../../../../../constants";
 import { twisterDistortion } from "../../../../../shader-properties/functions/distortion/distortion";
 import { ShaderFunction, UniformConfig } from "../../../../../types";
 
-export const flexyTwister = (pointName, previousPointName, effectProps) => {
+export const flexyTwister = (
+  pointName: string,
+  _previousPointName: string,
+  _effectProps: unknown
+) => {
   const uniformConfig = {
     defaultUniforms: [],
     customUniforms: [

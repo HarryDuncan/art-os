@@ -31,6 +31,7 @@ export const VERTEX_EFFECT_POINT_NAMES = {
   TRIGGERED_POINT: "triggeredPoint",
   IMAGE_VERTEX_POINT: "imageVertexPoint",
   IMAGE_TO_POINT: "imageToPoint",
+  TRANSITION_POINT: "transitionPoint",
 };
 
 export const enum TransformTypes {

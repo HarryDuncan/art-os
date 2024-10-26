@@ -3,6 +3,7 @@ import {
   AttributeConfig,
   ImageToPointsEffectProps,
   ShaderFunction,
+  VaryingConfig,
 } from "../../../../../types";
 import { formatVertexParameters } from "../../../../../helpers/formatVertexParameters";
 import { generateUniquePointName } from "../../../../../helpers/generateUniquePointName";
@@ -49,7 +50,8 @@ export const imageToPoints = (
 
   const uniformConfig = IMAGE_TO_POINTS_UNIFORM_CONFIG;
   const varyingConfig = IMAGE_TO_POINTS_VARYING_CONFIG;
-  const requiredFunctions: ShaderFunction[] = IMAGE_TO_POINTS_REQUIRED_FUNCTIONS;
+  const requiredFunctions: ShaderFunction[] =
+    IMAGE_TO_POINTS_REQUIRED_FUNCTIONS;
   const attributeConfig = IMAGE_TO_POINTS_ATTRIBUTE_CONFIG as AttributeConfig[];
 
   const mergedUniformConfigs = mergeUniformConfigs([
@@ -57,7 +59,7 @@ export const imageToPoints = (
     uniformConfig,
   ]);
   const mergedVaryingConfigs = mergeVaryingConfigs([
-    effectVaryings,
+    effectVaryings as VaryingConfig[],
     varyingConfig,
   ]);
   const mergedRequiredFunction = reduceFunctions([

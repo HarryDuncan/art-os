@@ -1,5 +1,4 @@
 import { Axis } from "visual/utils/three-dimension-space/position/position.types";
-
 import { NOISE_EFFECT_TYPES } from "../vertex-effects/effects/displacement/noise/noise.consts";
 import { EffectParameters, PreTransformConfig } from "./buildShader.types";
 import {
@@ -29,7 +28,7 @@ export type DisplacementEffectProps = {
 };
 
 export type DistortionType = keyof typeof DISTORTION_TYPES;
-export type TwistDistortionProps = {};
+export type TwistDistortionProps = unknown;
 export type DistortionParams = TwistDistortionProps;
 export type DistortionEffectProps = EffectParameters & {
   distortionType: DistortionType;
@@ -48,7 +47,7 @@ export type NoiseEffectProps = EffectParameters & {
   effectStrength: number;
 };
 export type RotationEffectProps = EffectParameters & {
-  rotation;
+  effectType?: string;
   speed: number;
   degrees?: number;
   axis: Axis;
@@ -73,12 +72,12 @@ export type PointsEffectProps = {
 
 // <-------------------- Image Vertex Effects ---------------------------------->
 
-export type ImageToPointsEffectProps = EffectParameters & {};
+export type ImageToPointsEffectProps = EffectParameters;
 
 type ImageSubEffect = {
   effectType: ImageVertexEffectType;
 };
-export type ImageVertexEffectProps = EffectParameters & ImageSubEffect & {};
+export type ImageVertexEffectProps = EffectParameters & ImageSubEffect;
 
 export type ImageVertexEffectType = keyof typeof IMAGE_VERTEX_EFFECT;
 export type ImageVertexEffect = EffectParameters & {
@@ -96,6 +95,11 @@ export type TriggeredVertexEffectType = keyof typeof TRIGGERED_VERTEX_EFFECT;
 export type TriggeredVertexEffect = {
   effectType: TriggeredVertexEffectType;
   effectProps: TriggeredVertexEffectProps;
+};
+
+export type TransitionEffectProps = EffectParameters & {
+  effectType: string;
+  effectProps: VertexEffectProps;
 };
 
 export type InteractiveVertexEffectProps =

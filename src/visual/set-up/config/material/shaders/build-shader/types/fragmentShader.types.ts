@@ -32,8 +32,8 @@ export type MaterialEffectProps = EffectParameters & {
   opacity?: number;
 };
 
-export type PhysicalMaterialProps = EffectParameters & {};
-export type PhongFragmentEffectProps = EffectParameters & {};
+export type PhysicalMaterialProps = EffectParameters;
+export type PhongFragmentEffectProps = EffectParameters;
 export type ColorFragmentEffectProps = EffectParameters & {
   shadingType: string;
   color: string;
@@ -49,7 +49,7 @@ export type OpacityFragmentEffectProps = EffectParameters & {
   asUniform: boolean;
 };
 
-export type BrightnessFragmentEffectProps = EffectParameters & {};
+export type BrightnessFragmentEffectProps = EffectParameters;
 
 export type FragmentEffectProps =
   | PointMaterialFragmentEffectProps
@@ -79,7 +79,8 @@ export interface FragmentEffectData {
 
 // <------------------------------------Interactive ------------------------------------->
 export type InteractiveFragmentEffectProps = PointColorFragmentEffectProps;
-export type InteractiveFragmentEffectType = keyof typeof INTERACTION_FRAGMENT_EFFECT;
+export type InteractiveFragmentEffectType =
+  keyof typeof INTERACTION_FRAGMENT_EFFECT;
 
 export type InteractiveFragmentEffect = {
   effectType: InteractiveFragmentEffectType;
@@ -91,7 +92,8 @@ export type InteractiveFragmentEffect = {
 export type TriggeredFragmentEffectProps =
   | PointColorFragmentEffectProps
   | OpacityFragmentEffectProps;
-export type TriggeredFragmentEffectType = keyof typeof TRIGGERED_FRAGMENT_EFFECT;
+export type TriggeredFragmentEffectType =
+  keyof typeof TRIGGERED_FRAGMENT_EFFECT;
 export type TriggeredFragmentEffect = {
   effectType: TriggeredFragmentEffectType;
   effectProps: TriggeredFragmentEffectProps;

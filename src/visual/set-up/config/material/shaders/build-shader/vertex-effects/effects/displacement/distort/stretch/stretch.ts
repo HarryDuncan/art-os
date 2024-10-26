@@ -3,7 +3,11 @@ import { ShaderPropertyValueTypes } from "../../../../../constants";
 import { UniformConfig } from "../../../../../types";
 import { scaleVector3 } from "../../../../../shader-properties/functions/maths/vectorCalculations";
 
-export const stretch = (pointName, previousPointName, effectProps) => {
+export const stretch = (
+  pointName: string,
+  previousPointName: string,
+  _effectProps: unknown
+) => {
   const uniformConfig = {
     defaultUniforms: [],
     customUniforms: [

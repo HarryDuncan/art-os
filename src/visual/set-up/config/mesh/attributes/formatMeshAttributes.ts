@@ -40,5 +40,5 @@ export const formatMeshAttributes = (
     return transform;
   });
 
-  return [...formattedTransforms, ...addedTransforms];
+  return [...formattedTransforms, ...addedTransforms] as MeshTransformConfig[];
 };

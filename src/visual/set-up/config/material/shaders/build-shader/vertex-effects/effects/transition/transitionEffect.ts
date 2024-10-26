@@ -10,15 +10,14 @@ import { mergeUniformConfigs } from "../../../shader-properties/uniforms/helpers
 import { mergeVaryingConfigs } from "../../../shader-properties/varyings/helpers/mergeVaryingConfigs";
 import { reduceFunctions } from "../../../helpers/reduceFunctions";
 import { mergeAttributeConfigs } from "../../../shader-properties/attributes/helpers/mergeAttributeConfigs";
+import { generateUniquePointName } from "../../../helpers/generateUniquePointName";
+import { transitionEffectTransform } from "./transitionEffectTransform";
+import { formatVertexParameters } from "../../../helpers/formatVertexParameters";
 import {
   DEFAULT_TRANSITION_EFFECT,
   TRANSITION_UNIFORM_CONFIG,
   TRANSITION_VARYING_CONFIG,
-} from "./transitionEffect.consts";
-
-import { generateUniquePointName } from "../../../helpers/generateUniquePointName";
-import { transitionEffectTransform } from "./transitionEffectTransform";
-import { formatVertexParameters } from "../../../helpers/formatVertexParameters";
+} from "./transitonEffect.consts";
 
 export const transitionEffect = (
   previousPointName: string,

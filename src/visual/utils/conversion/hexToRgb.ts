@@ -1,5 +1,3 @@
-import { Vector3 } from "three";
-
 export const hexToRgb = (hexCode: string): number[] | null => {
   // Remove the '#' if present
   const hex = String(hexCode).replace(/^#/, "");

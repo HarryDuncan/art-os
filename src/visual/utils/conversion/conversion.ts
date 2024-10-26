@@ -42,7 +42,7 @@ export const arrayToVector = (numberArray: number[]) => {
       );
     default:
       console.warn(
-        `${length} can not be matched to a vector size - returning a 2d vector`
+        `${arrayLength} can not be matched to a vector size - returning a 2d vector`
       );
       return new Vector2(numberArray[0] ?? 0, numberArray[1] ?? 0);
   }

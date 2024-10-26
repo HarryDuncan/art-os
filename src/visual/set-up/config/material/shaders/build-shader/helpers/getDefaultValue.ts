@@ -1,6 +1,6 @@
 import { Matrix3, Matrix4, Vector2, Vector3, Vector4 } from "three";
 import { ShaderPropertyValueTypes } from "../constants/buildShader.consts";
-import { StructConfig } from "../types";
+import { ShaderPropertyConfig, StructConfig } from "../types";
 
 export const getDefaultValue = (
   valueType: ShaderPropertyValueTypes,
@@ -10,12 +10,14 @@ export const getDefaultValue = (
     case ShaderPropertyValueTypes.STRUCT:
       if (structConfigs) {
         return structConfigs.properties.reduce((acc, curr) => {
-          acc[curr.id] = curr.value ?? getDefaultValue(curr.valueType);
+          const key = curr.id as keyof ShaderPropertyConfig;
+          // @ts-ignore
+          acc[key] = curr.value ?? getDefaultValue(curr.valueType);
           return acc;
-        }, {});
-      } else {
-        return null;
+        }, {} as ShaderPropertyConfig);
       }
+      return null;
+
     case ShaderPropertyValueTypes.FLOAT:
       return 0.0;
     case ShaderPropertyValueTypes.INT:

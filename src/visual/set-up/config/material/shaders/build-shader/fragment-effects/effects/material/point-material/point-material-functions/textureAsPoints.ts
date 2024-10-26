@@ -1,4 +1,4 @@
-export const textureAsPoints = (fragName: string, effectProps) => {
+export const textureAsPoints = (_fragName: string, _effectProps: unknown) => {
   const effectFragName = "textureAsPointFrag";
   const transformation = `
         vec4 color = vec4(0.0);

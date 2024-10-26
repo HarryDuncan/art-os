@@ -35,7 +35,7 @@ export const getMeshesFromConfig = (
     meshTransforms ?? [],
     attributeConfigs
   );
-  console.log(formattedGeometry);
+
   const transformedGeometry = transformGeometry(
     meshAttributes,
     formattedGeometry
@@ -46,13 +46,13 @@ export const getMeshesFromConfig = (
     allMeshes
   );
   const meshes = setUpMeshes(geometriesWithMaterials);
-  const advancedMeshes = (setUpAdvancedMeshes(
+  const advancedMeshes = setUpAdvancedMeshes(
     assets,
     advancedMeshConfigs,
     materials,
     meshTransforms,
     attributeConfigs
-  ) as unknown) as GLTF[];
+  ) as unknown as GLTF[];
 
   return [...meshes, ...advancedMeshes] as Object3D[];
 };

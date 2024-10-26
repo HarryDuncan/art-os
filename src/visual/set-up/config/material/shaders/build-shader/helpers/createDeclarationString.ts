@@ -24,9 +24,8 @@ const getValueTypeString = (
     case ShaderPropertyValueTypes.STRUCT:
       if (structProperties) {
         return structProperties.id;
-      } else {
-        console.warn("Struct properties not defined");
       }
+      console.warn("Struct properties not defined");
       return "";
     case ShaderPropertyValueTypes.SAMPLER2D:
       return "sampler2D";

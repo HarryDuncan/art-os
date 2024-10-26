@@ -55,17 +55,12 @@ export const rotationTransform = (
 };
 
 const getRotationEffect = (
-  pointName,
-  previousPointName,
-  rotationEffectProps
+  pointName: string,
+  previousPointName: string,
+  rotationEffectProps: RotationEffectProps
 ) => {
-  const {
-    effectType,
-    axis,
-    speed,
-    degrees,
-    declareInTransform,
-  } = rotationEffectProps;
+  const { effectType, axis, speed, degrees, declareInTransform } =
+    rotationEffectProps;
   switch (effectType) {
     case ROTATION_EFFECT_TYPES.ROTATION_BY_DEGREES: {
       const requiredFunctions = getRequiredFunctions(axis as Axis);
@@ -74,7 +69,7 @@ const getRotationEffect = (
         ${declareInTransform ? vertexPointInstantiation : ""}
         mat4 rotationMatrixByTime = ${getFunctionName(
           axis as Axis
-        )}(${shaderSafeFloat(degrees)});
+        )}(${shaderSafeFloat(degrees ?? 0)});
         ${pointName} = ${pointName} * rotationMatrixByTime; 
       `;
       return vertexEffectToEffectData({

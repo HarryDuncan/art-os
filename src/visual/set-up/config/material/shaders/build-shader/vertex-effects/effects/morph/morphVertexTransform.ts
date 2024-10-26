@@ -1,1 +1,3 @@
-export const morphVertexTransform = () => {};
+export const morphVertexTransform = () => {
+  console.warn("TODO");
+};

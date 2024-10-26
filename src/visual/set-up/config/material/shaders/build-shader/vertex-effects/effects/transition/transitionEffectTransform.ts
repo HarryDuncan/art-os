@@ -1,15 +1,16 @@
 import { DEFAULT_VERTEX_EFFECT } from "../../../constants";
-
 import {
   ExplodeEffectProps,
   ExpandEffectProps,
   RotationEffectProps,
+  TransitionEffectProps,
 } from "../../../types";
 import { VERTEX_EFFECTS } from "../../vertexEffects.consts";
 import { VertexEffectData } from "../../vertexEffects.types";
 import { expand } from "../displacement/expand/expand";
 import { explode } from "../displacement/explode/explode";
 import { rotationEffect } from "../rotation/rotation";
+import { DEFAULT_TRANSITION_EFFECT } from "./transitonEffect.consts";
 
 export const transitionEffectTransform = (
   pointName: string,
@@ -67,8 +68,6 @@ const getEffectData = (
         pointName,
         formattedEffectProps as Partial<RotationEffectProps>
       );
-    case TRANSITION_FRAGMENT_EFFECT.EMPTY:
-      return { ...DEFAULT_VERTEX_EFFECT, pointName };
     default:
       return { ...DEFAULT_VERTEX_EFFECT, pointName };
   }

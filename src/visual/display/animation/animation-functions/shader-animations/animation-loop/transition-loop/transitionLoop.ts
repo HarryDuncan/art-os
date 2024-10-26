@@ -16,12 +16,10 @@ export const transitionLoop = (
   );
 
   return (shaderMesh: ShaderMeshObject, time: number) => {
-    transitionLoopFunctions.forEach(
-      ({ loopFunction, _toMaterial, uniform }) => {
-        const uniformValue = loopFunction(time);
-        updateObjectUniformByKey(shaderMesh, uniform, uniformValue);
-      }
-    );
+    transitionLoopFunctions.forEach(({ loopFunction, uniform }) => {
+      const uniformValue = loopFunction(time);
+      updateObjectUniformByKey(shaderMesh, uniform, uniformValue);
+    });
     return [shaderMesh, time];
   };
 };

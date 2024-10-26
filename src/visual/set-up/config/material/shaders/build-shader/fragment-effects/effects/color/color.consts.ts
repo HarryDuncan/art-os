@@ -1,9 +1,9 @@
 import { Vector3 } from "three";
 import { ShaderPropertyValueTypes } from "../../../constants";
-import { ShaderFunction, UniformConfig } from "../../../types";
+import { UniformConfig, VaryingConfig } from "../../../types";
 
 export const DEFAULT_COLOR_EFFECT_PROPS = {};
-export const DEFAULT_COLOR_FUNCTIONS = () => [];
+export const DEFAULT_COLOR_FUNCTIONS = [];
 export const DEFAULT_COLOR_UNIFORMS = {
   defaultUniforms: [],
   customUniforms: [
@@ -15,4 +15,4 @@ export const DEFAULT_COLOR_UNIFORMS = {
   ],
 } as UniformConfig;
 
-export const DEFAULT_COLOR_VARYINGS = [] as ShaderFunction[];
+export const DEFAULT_COLOR_VARYINGS = [] as VaryingConfig[];

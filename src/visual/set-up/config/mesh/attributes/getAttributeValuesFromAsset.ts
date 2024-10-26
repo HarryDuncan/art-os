@@ -39,7 +39,7 @@ export const getAttributeValuesFromAssets = (
         const angles = new Float32Array(numVisible);
 
         for (let i = 0, j = 0; i < numVisible; i += 1) {
-          if (originalColors[i * 4] > threshold) {
+          if (originalColors && originalColors[i * 4] > threshold) {
             const x = i % width;
             const y = Math.floor(i / height);
             offsets[j * 3 + 0] = x;

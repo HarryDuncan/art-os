@@ -23,7 +23,6 @@ export const setupVideo = (url: string, identifier: string) => {
     video
       .play()
       .then((_) => {
-        console.log("asd");
         // Automatic playback started!
         // Show playing UI.
       })

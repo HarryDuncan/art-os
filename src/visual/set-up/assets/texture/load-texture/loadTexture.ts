@@ -3,7 +3,6 @@ import {
   MathUtils as Math,
   Texture,
   LinearFilter,
-  RGBFormat,
   RGBAFormat,
 } from "three";
 

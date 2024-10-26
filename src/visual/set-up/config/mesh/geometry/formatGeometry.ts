@@ -75,7 +75,7 @@ const getGeometryForMeshConfig = (
       geometryId as CustomBufferGeometryType,
       {}
     );
-    console.log(customGeometry);
+
     return { geometry: customGeometry };
   }
   const meshGeometry = geometries.find(

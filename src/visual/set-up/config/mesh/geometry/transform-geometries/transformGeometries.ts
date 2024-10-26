@@ -63,13 +63,14 @@ export const transformGeometry = (
           return attributesSet;
         }
         case MESH_TRANSFORM.PRE_DEFINED: {
-          const attributesSet = transformedMeshes.map(({ geometry }) => {
+          const attributesSet = transformedMeshes.flatMap(({ geometry }) => {
             attributeConfig?.forEach((config) => {
               if (config.value) {
                 // @ts-ignore
                 geometry.setAttribute(config.id, config.value);
               }
             });
+            return geometry;
           });
           return attributesSet;
         }

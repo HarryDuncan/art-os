@@ -47,7 +47,6 @@ const setUpQuad = () => {
   bufferGeometry.setIndex(
     new BufferAttribute(new Uint16Array([0, 2, 1, 2, 3, 1]), 1)
   );
-  console.log(bufferGeometry);
   return bufferGeometry;
 };
 

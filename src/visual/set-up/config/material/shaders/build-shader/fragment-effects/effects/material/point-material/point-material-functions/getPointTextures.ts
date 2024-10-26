@@ -26,10 +26,9 @@ export const getPointTexture = (
     .join(" \n ");
 };
 
-const formatPointColor = (pointColor, effectMaterial?: string) => {
+const formatPointColor = (pointColor: string, effectMaterial?: string) => {
   if (effectMaterial) {
     return `vec4(${effectMaterial}.rgb, opacity)`;
-  } else {
-    return `${createColorVectorString(pointColor, true)}`;
   }
+  return `${createColorVectorString(pointColor, true)}`;
 };

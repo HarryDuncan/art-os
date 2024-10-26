@@ -1,4 +1,3 @@
-import { PhongMaterialProps } from "visual/set-up/config/material/materials.types";
 import {
   BrightnessFragmentEffectProps,
   ColorFragmentEffectProps,

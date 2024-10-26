@@ -42,12 +42,13 @@ const getTransformation = (
         flexyTwister(pointName, previousPointName, effectProps)
       );
     case DISTORTION_TYPES.TWIST:
-    default:
+    default: {
       const twistTransformationData = twistTransformation(
         pointName,
         previousPointName,
         effectProps
       );
       return vertexEffectToEffectData(twistTransformationData);
+    }
   }
 };

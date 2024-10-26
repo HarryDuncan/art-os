@@ -84,7 +84,10 @@ const getEffectData = (
   }
 };
 
-const defaultPointMaterial = (fragName, pointEffectProps) => {
+const defaultPointMaterial = (
+  fragName: string,
+  pointEffectProps: PointMaterialFragmentEffectProps
+) => {
   const { defaultColor } = pointEffectProps;
   const transformation = `${getPointColor(fragName, defaultColor)}`;
   return fragmentEffectToEffectData({

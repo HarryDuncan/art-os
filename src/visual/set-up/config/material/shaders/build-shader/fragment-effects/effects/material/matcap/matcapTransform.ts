@@ -3,7 +3,7 @@ import { MaterialEffectProps } from "../../../../types";
 export const matcapTransform = (
   fragName: string,
   _previousFragName: string,
-  matcapEffectProps: MaterialEffectProps
+  _matcapEffectProps: MaterialEffectProps
 ) => {
   const matcapType = "MESH";
   const { transform } = getEffectData(fragName, matcapType);
@@ -28,8 +28,8 @@ const getEffectData = (fragName: string, matcapType: string) => {
                       vec4 matcapColor = texture2D(uMaterial, matcapUV );
                     vec4 ${fragName} = vec4( matcapColor.rgb, 1.0);`,
       };
-    default:
     case "MESH":
+    default:
       return {
         transform: `
           vec3 newNormal = calculateNormal(vPosition);

@@ -8,10 +8,7 @@ import {
   PointMaterialFragmentEffectProps,
   UniformConfig,
 } from "../../../../types";
-import {
-  FRAGMENT_COLOR_NAMES,
-  FRAGMENT_EFFECT,
-} from "../../../fragmentEffects.consts";
+import { FRAGMENT_COLOR_NAMES } from "../../../fragmentEffects.consts";
 import {
   DEFAULT_POINT_MATERIAL_PROPS,
   POINT_MATERIAL_ATTRIBUTES,
@@ -22,7 +19,7 @@ import {
 import { pointMaterialTransform } from "./pointMaterialTransform";
 
 export const pointMaterial = (
-  previousFragName,
+  previousFragName: string,
   effectProps: Partial<PointMaterialFragmentEffectProps> = {}
 ) => {
   const fragName = generateUniqueFragName(

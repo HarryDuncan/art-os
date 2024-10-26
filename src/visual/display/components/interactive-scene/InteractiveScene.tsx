@@ -113,8 +113,11 @@ export class InteractiveScene extends Scene {
 
   // Initialize Editor
   initializeSceneEditor() {
-    console.log("initializing");
+    console.warn("initializing");
   }
+
   // On Editor Update
-  onEditorUpdate() {}
+  onEditorUpdate() {
+    console.warn("updating editor");
+  }
 }

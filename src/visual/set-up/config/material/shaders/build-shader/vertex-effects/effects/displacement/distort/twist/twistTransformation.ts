@@ -1,9 +1,9 @@
 import { TWIST_UNIFORM_CONFIG, TWIST_VARYINGS } from "./twist.consts";
 
 export const twistTransformation = (
-  pointName,
-  previousPointName,
-  effectProps
+  pointName: string,
+  previousPointName: string,
+  _effectProps: unknown
 ) => {
   const vertexPointInstantiation = `vec3 ${pointName} = ${previousPointName}.xyz;`;
   const uniformConfig = TWIST_UNIFORM_CONFIG;

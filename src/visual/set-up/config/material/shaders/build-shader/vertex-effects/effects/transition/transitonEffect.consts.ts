@@ -1,10 +1,14 @@
 import { POINT_PARENTS } from "../../../constants/buildShader.consts";
-import { UniformConfig, VaryingConfig } from "../../../types";
+import {
+  TransitionEffectProps,
+  UniformConfig,
+  VaryingConfig,
+} from "../../../types";
 
-export const TRANSITION_UNIFORM_CONFIG = ({
+export const TRANSITION_UNIFORM_CONFIG = {
   defaultUniforms: [""],
   customUniforms: [],
-} as unknown) as UniformConfig;
+} as unknown as UniformConfig;
 
 export const TRANSITION_VARYING_CONFIG = [
   {
@@ -15,8 +19,8 @@ export const TRANSITION_VARYING_CONFIG = [
   },
 ] as VaryingConfig[];
 
-export const DEFAULT_TRANSITION_EFFECT = ({
+export const DEFAULT_TRANSITION_EFFECT = {
   declareInTransform: false,
   pointParent: POINT_PARENTS.TRANSITION,
-  effectType: TRANSITION_FRAGMENT_EFFECT.EMPTY,
-} as unknown) as Partial<TransitionVertexEffect>;
+  effectType: "",
+} as unknown as Partial<TransitionEffectProps>;
