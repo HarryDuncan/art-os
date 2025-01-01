@@ -2,10 +2,13 @@ import { ShaderPropertyValueTypes } from "../../../../constants";
 import { fragmentEffectToEffectData } from "../../../../helpers/fragmentEffectToEffectData";
 import { mergeUniformConfigs } from "../../../../shader-properties/uniforms/helpers/mergeUniformConfigs";
 import {
+  FragmentEffectData,
   PointMaterialFragmentEffectProps,
   PointTexture,
 } from "../../../../types";
 import { matcapMaterial } from "../matcap/matcap";
+import { phongMaterial } from "../phong-material/phong";
+import { phongTransform } from "../phong-material/phongTransform";
 
 import { getPointColor } from "./point-material-functions/getPointColor";
 import { getPointTexture } from "./point-material-functions/getPointTextures";
@@ -77,6 +80,10 @@ const getEffectData = (
     case "TEXTURE": {
       const texture = textureAsPoints(fragName, effectProps);
       return fragmentEffectToEffectData(texture);
+    }
+    case "PHONG": {
+      const shading = phongMaterial(fragName, effectProps);
+      return fragmentEffectToEffectData(shading);
     }
     case "COLOR":
     default:

@@ -59,8 +59,14 @@ const getRotationEffect = (
   previousPointName: string,
   rotationEffectProps: RotationEffectProps
 ) => {
-  const { effectType, axis, speed, degrees, declareInTransform } =
-    rotationEffectProps;
+  const {
+    effectType,
+    axis,
+    speed,
+    degrees,
+    declareInTransform,
+  } = rotationEffectProps;
+
   switch (effectType) {
     case ROTATION_EFFECT_TYPES.ROTATION_BY_DEGREES: {
       const requiredFunctions = getRequiredFunctions(axis as Axis);
@@ -96,8 +102,7 @@ const getRotationEffect = (
         float rotationAngle = uTime * uRotationSpeed;
         mat4 rotationMatrix = ${getFunctionName(axis as Axis)}(rotationAngle);
         ${pointName} = ${pointName} * rotationMatrix; 
-        vec4 rotationNormalVEC4 = twistNormal * rotationMatrix;
-        vec3 rotationNormal = rotationNormalVEC4.xyz;
+
         `;
       return {
         transformation,

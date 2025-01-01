@@ -8,6 +8,7 @@ export const pointsTransform = (
 ) => {
   const { pointSize, perspectiveConfig } = effectProps;
   const perspective = pointsPerspective(previousPointName, perspectiveConfig);
+
   const transformation = `gl_PointSize = ${
     perspective.length ? perspective : shaderSafeFloat(pointSize)
   };`;

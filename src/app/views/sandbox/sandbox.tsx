@@ -11,11 +11,7 @@ export const Sandbox = () => (
 
 const SandboxContent = () => {
   useEffect(() => {
-Test()
-  },[])
-  return (
-    <SandboxContainer>
-      
-    </SandboxContainer>
-  );
+    Test();
+  }, []);
+  return <SandboxContainer />;
 };

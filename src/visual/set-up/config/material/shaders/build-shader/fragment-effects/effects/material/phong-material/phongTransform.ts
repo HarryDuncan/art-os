@@ -1,5 +1,5 @@
 export const phongTransform = (fragName: string, _previousFragName: string) => {
-  const transform = `
+  const transformation = `
   vec3 N = normalize(vNormalInterpolation);
   vec3 L = normalize(uLightPosition - vPosition);
 
@@ -18,5 +18,5 @@ export const phongTransform = (fragName: string, _previousFragName: string) => {
                       uSpecularReflection * specular * uSpecularColor, 1.0);
 
     `;
-  return { transform };
+  return { transformation };
 };

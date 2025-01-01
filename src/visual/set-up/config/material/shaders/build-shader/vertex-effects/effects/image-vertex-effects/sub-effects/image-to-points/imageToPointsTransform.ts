@@ -59,7 +59,7 @@ export const imageToPointsTransform = (
       // particle size
       float psize = (noise(vec2(uTime, pointIndex) * 0.5) + 2.0);
       float siz = 0.0;
-      if( grey < 0.8 )
+      if( grey < 0.9 )
       {
           siz = 12.4 ;
       };

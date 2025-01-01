@@ -26,7 +26,7 @@ export const DEFAULT_PHONG_UNIFORMS = {
     {
       id: "uAmbientReflection",
       valueType: ShaderPropertyValueTypes.FLOAT,
-      value: 0.45,
+      value: 0.75,
     },
     {
       id: "uDiffuseReflection",
@@ -62,7 +62,7 @@ export const DEFAULT_PHONG_UNIFORMS = {
   ],
 };
 
-export const DEFAULT_PHONG_EFFECT_PROPS = {};
+export const DEFAULT_PHONG_EFFECT_PROPS = { DEFAULT_PHONG_UNIFORMS };
 
 export const PHONG_REQUIRED_FUNCTIONS = [];
 export const PHONG_VARYINGS = [

@@ -1,7 +1,7 @@
 [
   {
     "threeJsConfig": {
-      "camera": { "position": { "x": 0, "y": 0, "z": 950 } }
+      "camera": { "position": { "x": 0, "y": -6, "z": 950 } }
     },
     "assets": [
       {
@@ -20,12 +20,12 @@
         "assetType": "TEXTURE",
         "id": "image",
         "name": "image",
-        "url": "../assets/textures/id-references/ref-1.jpg"
+        "url": "../assets/textures/bg.jpg"
       }
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -48,7 +48,7 @@
             "defaultUniforms": [],
             "customUniforms": [
               { "id": "uRandom", "valueType": "FLOAT", "value": 1.0 },
-              { "id": "uSize", "valueType": "FLOAT", "value": 8.5 },
+              { "id": "uSize", "valueType": "FLOAT", "value": 22.5 },
               { "id": "uDepth", "valueType": "FLOAT", "value": 1.0 },
               { "id": "uTextureSize", "valueType": "VEC2" },
               { "id": "uTexture", "valueType": "SAMPLER2D" }
@@ -72,11 +72,11 @@
               "effectProps": {
                 "pointDisplayPercentage": 0.2,
                 "pointTextures": [
-                  { "id": "uTexture1", "pointColor": "#ffffff" },
-                  { "id": "uTexture2", "pointColor": "#ff32sd" }
+                  { "id": "uTexture1", "pointColor": "##00a6ff" },
+                  { "id": "uTexture2", "pointColor": "#00a6ff" }
                 ],
                 "pointColor": "#ffffff",
-                "defaultColor": "#3229ff",
+                "defaultColor": "#00a6ff",
 
                 "effectProps": {}
               }
@@ -87,7 +87,7 @@
               "id": "pointDisplay",
               "valueType": "FLOAT",
               "assetId": "image",
-              "valueConfig": { "randomizedPercentage": 0.25 }
+              "valueConfig": { "randomizedPercentage": 0.05 }
             },
             {
               "id": "pointIndex",
@@ -133,12 +133,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -202,7 +202,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -310,12 +310,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -379,7 +379,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -487,12 +487,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -556,7 +556,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -664,12 +664,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -733,7 +733,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -841,12 +841,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -910,7 +910,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -1018,12 +1018,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -1087,7 +1087,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -1195,12 +1195,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -1264,7 +1264,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -1372,12 +1372,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -1441,7 +1441,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -1549,12 +1549,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -1618,7 +1618,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -1726,12 +1726,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],
@@ -1795,7 +1795,7 @@
     ],
     "meshComponentConfigs": [
       {
-        "id": "geometry-1",
+        "id": "geometry-2",
         "geometryId": "EMPTY",
         "meshType": "POINTS",
         "geometryConfig": {
@@ -1903,12 +1903,12 @@
     "meshTransforms": [
       {
         "type": "PRE_DEFINED",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       },
       {
         "type": "CUSTOM_ATTRIBUTES",
-        "transformedMeshIds": ["geometry-1"],
+        "transformedMeshIds": ["geometry-2"],
         "materialId": "morphing-material"
       }
     ],

@@ -20,6 +20,7 @@ import {
   VertexEffectProps,
 } from "./vertexShader.types";
 import { DEFAULT_UNIFORMS } from "../constants";
+import { AssetType } from "visual/set-up/assets/asset.types";
 
 // GENERAL TYPES
 export type ShaderPropertyConfig = {
@@ -105,6 +106,7 @@ export type AttributeConfig = ShaderPropertyConfig & {
   valueConfig?: AttributeValueConfig;
   assetId?: string;
   attributeCount?: number;
+  assetType?: AssetType;
 };
 
 // <-------------------------------------UNIFORMS ---------------------------------->

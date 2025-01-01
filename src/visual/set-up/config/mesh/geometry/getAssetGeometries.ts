@@ -10,7 +10,12 @@ import { getFileTypeFromFilename } from "visual/utils/file/file";
 export const getAssetGeometries = (assets: Asset[]) =>
   assets.flatMap((asset) => {
     const geometry = getAssetGeometry(asset);
-    return geometry ?? [];
+    return geometry && geometry.length
+      ? geometry?.map((geometryItem) => ({
+          ...geometryItem,
+          assetId: asset.id,
+        }))
+      : [];
   });
 
 export const getAssetGeometry = (asset: Asset) => {
@@ -32,6 +37,7 @@ export const getAssetGeometry = (asset: Asset) => {
 
 export const getObjectGeometries = (data: LoadedGroup, name: string) => {
   const { children } = data;
+  console.log(data);
   if (children.length) {
     return children.map((child: LoadedObjChild) => ({
       name: child.name,

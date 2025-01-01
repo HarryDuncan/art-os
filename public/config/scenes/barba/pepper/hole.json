@@ -1,0 +1,411 @@
+[
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25.5 } }
+    },
+    "assets": [
+      {
+        "name": "penis",
+        "url": "../assets/models/barba/hole/penis.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "1-texture",
+        "url": "../assets/textures/point-textures/1.png",
+        "assetType": "TEXTURE",
+        "id": "1-texture"
+      },
+      {
+        "name": "0-texture",
+        "url": "../assets/textures/point-textures/0.png",
+        "assetType": "TEXTURE",
+        "id": "0-texture"
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "left-model",
+        "geometryId": "penis",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 9
+        },
+        "rotation": { "x": 90, "y": -0, "z": -90 },
+        "materialId": "point-material"
+      },
+      {
+        "id": "bottom-model",
+        "geometryId": "penis",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 9
+        },
+
+        "rotation": { "x": 0, "y": 0, "z": 180 },
+        "materialId": "point-material"
+      },
+      {
+        "id": "right-model",
+        "geometryId": "penis",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 9
+        },
+        "rotation": { "x": 90, "y": 0, "z": 90 },
+        "materialId": "point-material"
+      },
+      {
+        "id": "top-model",
+        "geometryId": "penis",
+        "meshType": "POINTS",
+        "geometryConfig": {
+          "scale": 9
+        },
+        "rotation": { "x": 0, "y": 180, "z": 0 },
+        "materialId": "point-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "penis",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": []
+        }
+      },
+      {
+        "animationId": "left-model-vert",
+        "targetIdentifier": "left-model",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 0, "y": 0, "z": 0 },
+          "moveFrom": { "x": 2.5, "y": 0, "z": 0 }
+        }
+      },
+      {
+        "animationId": "right-model-vert",
+        "targetIdentifier": "right-model",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 0, "y": 0, "z": 0 },
+          "moveFrom": { "x": -2.5, "y": 0, "z": 0 }
+        }
+      },
+      {
+        "animationId": "top-model-vert",
+        "targetIdentifier": "top-model",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 0, "y": 0, "z": 0 },
+          "moveFrom": { "x": 0, "y": 2.5, "z": 0 }
+        }
+      },
+      {
+        "animationId": "bottom-model-vert",
+        "targetIdentifier": "bottom-model",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 0, "y": 0, "z": 0 },
+          "moveFrom": { "x": 0, "y": -2.5, "z": 0 }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "point-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": { "transparent": true },
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [
+            {
+              "effectType": "POINTS",
+              "effectProps": {
+                "perspectiveConfig": {
+                  "floor": 24,
+                  "ceiling": 44,
+                  "scaleFactor": 2,
+                  "divisor": 3
+                }
+              }
+            }
+          ],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "POINT_MATERIAL",
+              "effectProps": {
+                "pointDisplayPercentage": 0.5,
+                "pointTextures": [
+                  { "id": "uTexture1", "pointColor": "#4CBB17" },
+                  { "id": "uTexture2", "pointColor": "#4CBB17" }
+                ],
+                "defaultColor": "#4CBB17",
+                "pointColor": "#4CBB17",
+                "effectType": "COLOR",
+                "effectProps": {}
+              }
+            }
+          ],
+          "attributeConfig": [
+            {
+              "id": "pointDisplay",
+              "valueType": "FLOAT",
+              "valueConfig": { "randomizedPercentage": 0.005 }
+            }
+          ]
+        },
+        "assetMapping": [
+          {
+            "uniform": "uTexture2",
+            "assetId": "0-texture",
+            "relationship": "TEXTURE"
+          },
+          {
+            "uniform": "uTexture1",
+            "assetId": "1-texture",
+            "relationship": "TEXTURE"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "CUSTOM_ATTRIBUTES",
+        "transformedMeshIds": [
+          "left-model",
+          "bottom-model",
+          "right-model",
+          "top-model"
+        ],
+        "materialId": "point-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  },
+  {
+    "threeJsConfig": {
+      "camera": { "position": { "x": 0, "y": 0, "z": 25.5 } }
+    },
+    "assets": [
+      {
+        "name": "penis",
+        "url": "../assets/models/barba/hole/penis.obj",
+        "assetType": "MODEL3D"
+      },
+      {
+        "name": "chrome-material",
+        "url": "../assets/textures/matcaps/shifted_image_3.jpg",
+        "assetType": "TEXTURE",
+        "id": "chrome-material",
+        "assetTag": ["MATCAP"]
+      }
+    ],
+    "meshComponentConfigs": [
+      {
+        "id": "left-model",
+        "geometryId": "penis",
+        "geometryConfig": {
+          "scale": 9
+        },
+        "rotation": { "x": 90, "y": -0, "z": -90 },
+        "materialId": "point-material"
+      },
+      {
+        "id": "bottom-model",
+        "geometryId": "penis",
+        "geometryConfig": {
+          "scale": 9
+        },
+        "rotation": { "x": 0, "y": 0, "z": 180 },
+        "materialId": "point-material"
+      },
+      {
+        "id": "right-model",
+        "geometryId": "penis",
+        "geometryConfig": {
+          "scale": 9
+        },
+        "rotation": { "x": 90, "y": 0, "z": 90 },
+        "materialId": "point-material"
+      },
+      {
+        "id": "top-model",
+        "geometryId": "penis",
+        "geometryConfig": {
+          "scale": 9
+        },
+        "rotation": { "x": 0, "y": 180, "z": 0 },
+        "materialId": "point-material"
+      }
+    ],
+    "animationConfig": [
+      {
+        "animationId": "morph-geometry",
+        "targetIdentifier": "penis",
+        "animationFunctionType": "UTIME",
+        "animationProperties": {
+          "animationDurationMilis": 8000,
+          "animationPauseMilis": 0,
+          "repeatAnimation": true,
+          "animationLoopConfig": []
+        }
+      },
+
+      {
+        "animationId": "left-model-vert",
+        "targetIdentifier": "left-model",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 0, "y": 0, "z": 0 },
+          "moveFrom": { "x": 2.5, "y": 0, "z": 0 }
+        }
+      },
+      {
+        "animationId": "right-model-vert",
+        "targetIdentifier": "right-model",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 0, "y": 0, "z": 0 },
+          "moveFrom": { "x": -2.5, "y": 0, "z": 0 }
+        }
+      },
+      {
+        "animationId": "top-model-vert",
+        "targetIdentifier": "top-model",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 0, "y": 0, "z": 0 },
+          "moveFrom": { "x": 0, "y": 2.5, "z": 0 }
+        }
+      },
+      {
+        "animationId": "bottom-model-vert",
+        "targetIdentifier": "bottom-model",
+        "animationFunctionType": "ALL",
+        "animationProperties": {
+          "animationType": "MOVE",
+          "speed": 0.008,
+          "animationDurationMilis": 1000,
+          "animationPauseMilis": -1,
+          "repeatAnimation": true,
+          "moveTo": { "x": 0, "y": 0, "z": 0 },
+          "moveFrom": { "x": 0, "y": -2.5, "z": 0 }
+        }
+      }
+    ],
+    "lightConfig": [
+      {
+        "name": "ambient-light",
+        "lightType": "AMBIENT",
+        "props": { "intensity": 1.0 }
+      },
+      {
+        "name": "point-light",
+        "lightType": "POINT_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      },
+      {
+        "name": "point-lightd",
+        "lightType": "DIRECTIONAL_LIGHT",
+        "props": { "color": "#ffffff", "position": { "y": 100, "z": 100 } }
+      }
+    ],
+    "globalMaterialConfigs": [
+      {
+        "id": "point-material",
+        "materialType": "BUILT_SHADER",
+        "blendingConfig": { "transparent": true },
+        "builtShaderConfig": {
+          "vertexEffectConfigs": [],
+          "fragmentEffectConfigs": [
+            {
+              "effectType": "MATCAP"
+            }
+          ],
+          "attributeConfig": []
+        },
+        "assetMapping": [
+          {
+            "uniform": "uMaterial",
+            "assetId": "chrome-material",
+            "relationship": "TEXTURE"
+          }
+        ]
+      }
+    ],
+    "meshTransforms": [
+      {
+        "type": "CUSTOM_ATTRIBUTES",
+        "transformedMeshIds": [
+          "left-model",
+          "bottom-model",
+          "right-model",
+          "top-model"
+        ],
+        "materialId": "point-material"
+      }
+    ],
+    "sceneComponentConfigs": [],
+    "scenePropertiesConfig": {
+      "backgroundColor": "black"
+    }
+  }
+]

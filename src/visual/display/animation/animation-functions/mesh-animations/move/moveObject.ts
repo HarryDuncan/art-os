@@ -9,9 +9,9 @@ export const moveObject = (
   moveFrom: Position3d,
   count: number
 ) => {
-  // assumes initial position is 0,0,0
   const prog = count % 2 === 0 ? 1.0 - progress : progress;
   // get distance for each axis
+
   const distance = calculatePositionDistance(moveFrom, moveTo);
   // set obj position as distance * progress
   const newX = moveFrom.x + distance.x * prog;

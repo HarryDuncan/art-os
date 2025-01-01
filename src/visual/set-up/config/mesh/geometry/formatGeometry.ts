@@ -22,6 +22,7 @@ export const formatGeometry = (
   meshComponentConfigs: MeshComponentConfig[]
 ): FormattedGeometry[] => {
   const geometries = getAssetGeometries(loadedAssets);
+  console.log(geometries);
   return meshComponentConfigs.flatMap((meshConfig) => {
     const geometry = getGeometryForMeshConfig(
       geometries,
@@ -79,7 +80,8 @@ const getGeometryForMeshConfig = (
     return { geometry: customGeometry };
   }
   const meshGeometry = geometries.find(
-    (geometry) => geometry.name === geometryId
+    (geometry) =>
+      geometry.name === geometryId || geometry.assetId === geometryId
   );
   if (!meshGeometry) {
     console.warn(

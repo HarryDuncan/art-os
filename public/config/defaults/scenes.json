@@ -16,5 +16,11 @@
     "configId": "image-filter",
     "configPath": "defaults/image-filter",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Model Filter",
+    "configId": "model-filter",
+    "configPath": "defaults/model-filter",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

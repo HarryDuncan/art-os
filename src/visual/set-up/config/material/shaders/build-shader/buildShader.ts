@@ -84,6 +84,9 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     vertexEffects.transformations,
     vertexEffects.viewMatrix
   );
+
+  console.log(vertexShader);
+
   const fragmentShader = formatFragmentShader(
     structDeclaration,
     uniformDeclaration,
@@ -92,6 +95,7 @@ export const buildShader = (shaderConfig: BuiltShaderConfig) => {
     fragmentEffects.transformations,
     fragmentEffects.fragColor
   );
+  console.log(fragmentShader);
   return {
     vertexShader,
     fragmentShader,

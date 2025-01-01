@@ -40,6 +40,8 @@ const NAVIGATION_ITEMS = [
     title: "Image Filter",
     link: "image-filter",
   },
+  { key: "Video Filter", title: "Video Filter", link: "video-filter" },
+  { key: "Model Filter", title: "Model Filter", link: "model-filter" },
 ];
 export const Navigation = () => {
   const isNavVisible = useNavigationBarVisibility();

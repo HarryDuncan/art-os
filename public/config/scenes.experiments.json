@@ -28,5 +28,11 @@
     "configId": "hjd-background",
     "configPath": "scenes/hjd-art/backgrounds/hjd-background",
     "componentId": "InteractiveSceneContainer"
+  },
+  {
+    "title": "Home 2",
+    "configId": "hjd-home-2",
+    "configPath": "scenes/hjd-art/hjd-home-2",
+    "componentId": "InteractiveSceneContainer"
   }
 ]

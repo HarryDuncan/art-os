@@ -22,7 +22,9 @@ export const Test = () => {
     exposure: 1,
   };
 
-  let camera, scene, renderer;
+  let camera;
+  let scene;
+  let renderer;
 
   let mesh;
 
@@ -33,12 +35,12 @@ export const Test = () => {
 
   const hdrEquirect = new RGBELoader()
     .setPath("assets/textures/hdr/")
-    .load("small_cathedral_02_1k.hdr", function() {
+    .load("small_cathedral_02_1k.hdr", () => {
       hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
       new GLTFLoader()
         .setPath("assets/models/sculptures/")
-        .load("jason.glb", function(gltf) {
-          gltf.scene.traverse(function(child) {
+        .load("jason.glb", (gltf) => {
+          gltf.scene.traverse((child) => {
             if (child.isMesh) {
               mesh = child;
               mesh.material = material;
@@ -67,7 +69,7 @@ export const Test = () => {
           scene.add(gltf.scene);
 
           scene.environment = hdrEquirect;
-          //scene.background = hdrEquirect;
+          // scene.background = hdrEquirect;
 
           render();
         });
@@ -110,17 +112,17 @@ export const Test = () => {
     window.addEventListener("resize", onWindowResize);
 
     const gui = new GUI();
-    gui.addColor(params, "color").onChange(function(data) {
+    gui.addColor(params, "color").onChange((data) => {
       material.color.set(params.color);
       render();
     });
 
-    gui.add(params, "transmission", 0, 1, 0.01).onChange(function() {
+    gui.add(params, "transmission", 0, 1, 0.01).onChange(() => {
       material.transmission = params.transmission;
       render();
     });
 
-    gui.add(params, "opacity", 0, 1, 0.01).onChange(function() {
+    gui.add(params, "opacity", 0, 1, 0.01).onChange(() => {
       material.opacity = params.opacity;
       const transparent = params.opacity < 1;
 
@@ -132,22 +134,22 @@ export const Test = () => {
       render();
     });
 
-    gui.add(params, "metalness", 0, 1, 0.01).onChange(function() {
+    gui.add(params, "metalness", 0, 1, 0.01).onChange(() => {
       material.metalness = params.metalness;
       render();
     });
 
-    gui.add(params, "roughness", 0, 1, 0.01).onChange(function() {
+    gui.add(params, "roughness", 0, 1, 0.01).onChange(() => {
       material.roughness = params.roughness;
       render();
     });
 
-    gui.add(params, "ior", 1, 2, 0.01).onChange(function() {
+    gui.add(params, "ior", 1, 2, 0.01).onChange(() => {
       material.ior = params.ior;
       render();
     });
 
-    gui.add(params, "thickness", 0, 5, 0.01).onChange(function() {
+    gui.add(params, "thickness", 0, 5, 0.01).onChange(() => {
       material.thickness = params.thickness;
       render();
     });
@@ -155,22 +157,22 @@ export const Test = () => {
     gui
       .addColor(params, "attenuationColor")
       .name("attenuation color")
-      .onChange(function() {
+      .onChange(() => {
         material.attenuationColor.set(params.attenuationColor);
         render();
       });
 
-    gui.add(params, "attenuationDistance", 0, 1, 0.01).onChange(function() {
+    gui.add(params, "attenuationDistance", 0, 1, 0.01).onChange(() => {
       material.attenuationDistance = params.attenuationDistance;
       render();
     });
 
-    gui.add(params, "specularIntensity", 0, 1, 0.01).onChange(function() {
+    gui.add(params, "specularIntensity", 0, 1, 0.01).onChange(() => {
       material.specularIntensity = params.specularIntensity;
       render();
     });
 
-    gui.addColor(params, "specularColor").onChange(function() {
+    gui.addColor(params, "specularColor").onChange(() => {
       material.specularColor.set(params.specularColor);
       render();
     });
@@ -178,12 +180,12 @@ export const Test = () => {
     gui
       .add(params, "envMapIntensity", 0, 1, 0.01)
       .name("envMap intensity")
-      .onChange(function() {
+      .onChange(() => {
         material.envMapIntensity = params.envMapIntensity;
         render();
       });
 
-    gui.add(params, "exposure", 0, 1, 0.01).onChange(function() {
+    gui.add(params, "exposure", 0, 1, 0.01).onChange(() => {
       renderer.toneMappingExposure = params.exposure;
       render();
     });
